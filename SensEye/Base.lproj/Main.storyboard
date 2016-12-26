@@ -1350,7 +1350,6 @@
                                                 <constraint firstItem="9ra-EJ-3ca" firstAttribute="top" secondItem="QFZ-tc-GFa" secondAttribute="bottom" constant="16" id="XYn-gF-DVy"/>
                                                 <constraint firstItem="LoC-81-1IA" firstAttribute="top" secondItem="8rI-e1-ila" secondAttribute="top" id="ZWq-1X-UUU"/>
                                                 <constraint firstItem="9ra-EJ-3ca" firstAttribute="leading" secondItem="QEj-Qs-i4S" secondAttribute="leadingMargin" constant="8" id="bH3-Ur-1bI"/>
-                                                <constraint firstAttribute="trailing" secondItem="Wla-M9-oVX" secondAttribute="trailing" id="dX0-kJ-ABk"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="9ra-EJ-3ca" secondAttribute="trailing" constant="8" id="e6i-rL-3r9"/>
                                                 <constraint firstItem="QFZ-tc-GFa" firstAttribute="leading" secondItem="QEj-Qs-i4S" secondAttribute="leading" constant="16" id="m6F-L0-eTc"/>
                                                 <constraint firstItem="8rI-e1-ila" firstAttribute="leading" secondItem="LoC-81-1IA" secondAttribute="trailing" id="pHS-Mt-4Rd"/>
@@ -1368,18 +1367,18 @@
                                             <outlet property="profileImageVIew" destination="jmX-JB-a9q" id="2Ax-hS-cPM"/>
                                             <outlet property="timestampLabel" destination="Mws-qH-vlo" id="eIf-gy-Mxw"/>
                                             <outlet property="usernameLabel" destination="NdZ-Ew-1Iw" id="ATh-SI-8fo"/>
-                                            <outletCollection property="galleryImageViews" destination="Wla-M9-oVX" id="7iq-pH-68T"/>
-                                            <outletCollection property="galleryImageViews" destination="LoC-81-1IA" id="FFr-ZY-nyL"/>
-                                            <outletCollection property="galleryImageViews" destination="8rI-e1-ila" id="hcH-oG-Mcz"/>
-                                            <outletCollection property="galleryImageViews" destination="Wah-v8-nqQ" id="c6d-dX-OO6"/>
-                                            <outletCollection property="photoHeights" destination="8KP-Yc-51E" id="DuS-qA-KyW"/>
-                                            <outletCollection property="photoHeights" destination="bpQ-FQ-Lbf" id="uK0-jn-7EB"/>
-                                            <outletCollection property="photoHeights" destination="xYF-Ot-ln6" id="TmY-Yn-IYE"/>
-                                            <outletCollection property="photoHeights" destination="Szx-zs-GAr" id="mkp-jw-9WB"/>
-                                            <outletCollection property="photoWidths" destination="fWC-z2-m45" id="lQS-jV-6Zf"/>
-                                            <outletCollection property="photoWidths" destination="tjF-RV-tdB" id="dWV-So-pSZ"/>
-                                            <outletCollection property="photoWidths" destination="OjM-mj-9yj" id="OXw-EL-DIM"/>
-                                            <outletCollection property="photoWidths" destination="oqO-5G-W2s" id="fq1-bX-Ebx"/>
+                                            <outletCollection property="galleryImageViews" destination="Wla-M9-oVX" collectionClass="NSMutableArray" id="7iq-pH-68T"/>
+                                            <outletCollection property="galleryImageViews" destination="LoC-81-1IA" collectionClass="NSMutableArray" id="FFr-ZY-nyL"/>
+                                            <outletCollection property="galleryImageViews" destination="8rI-e1-ila" collectionClass="NSMutableArray" id="hcH-oG-Mcz"/>
+                                            <outletCollection property="galleryImageViews" destination="Wah-v8-nqQ" collectionClass="NSMutableArray" id="c6d-dX-OO6"/>
+                                            <outletCollection property="photoHeights" destination="8KP-Yc-51E" collectionClass="NSMutableArray" id="DuS-qA-KyW"/>
+                                            <outletCollection property="photoHeights" destination="bpQ-FQ-Lbf" collectionClass="NSMutableArray" id="uK0-jn-7EB"/>
+                                            <outletCollection property="photoHeights" destination="xYF-Ot-ln6" collectionClass="NSMutableArray" id="TmY-Yn-IYE"/>
+                                            <outletCollection property="photoHeights" destination="Szx-zs-GAr" collectionClass="NSMutableArray" id="mkp-jw-9WB"/>
+                                            <outletCollection property="photoWidths" destination="fWC-z2-m45" collectionClass="NSMutableArray" id="lQS-jV-6Zf"/>
+                                            <outletCollection property="photoWidths" destination="tjF-RV-tdB" collectionClass="NSMutableArray" id="dWV-So-pSZ"/>
+                                            <outletCollection property="photoWidths" destination="OjM-mj-9yj" collectionClass="NSMutableArray" id="OXw-EL-DIM"/>
+                                            <outletCollection property="photoWidths" destination="oqO-5G-W2s" collectionClass="NSMutableArray" id="fq1-bX-Ebx"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

@@ -60,7 +60,7 @@ class PostPhotoGallery {
             
             maxRequiredSizeOfImageInFirstRow = maxAvailableSpaceToOperate
 
-            maxRequiredSizeOfImageInSecondRow = maxAvailableSpaceToOperate / CGFloat((post.postAttachments.count - firstRowCount))
+            maxRequiredSizeOfImageInSecondRow = maxAvailableSpaceToOperate / CGFloat(min(3, post.postAttachments.count - firstRowCount))
             
             
         }
@@ -76,110 +76,122 @@ class PostPhotoGallery {
         
         while index < post.postAttachments.count &&  index < 4 {
             
+            
+            var photoObject: Photo!
+
+            
             if let albumAttachment = post.postAttachments[index] as? PhotoAlbum {
                 
-                // * 1. Calculating width and height of current photo, according to calculated maxSize of square ImageView. If there's portrait photo - currentHeight = maxSize, if album oriented - currentWidth = maxSize
+                if let photoAlbumThumb = albumAttachment.albumThumbPhoto {
+                    photoObject = photoAlbumThumb
+                }
                 
-                guard let photoAlbumThumb = albumAttachment.albumThumbPhoto else {continue}
+            } else if let photoAttachment = post.postAttachments[index] as? Photo {
+                photoObject = photoAttachment
+            }
+            
+            
+            // * 1. Calculating width and height of current photo, according to calculated maxSize of square ImageView. If there's portrait photo - currentHeight = maxSize, if album oriented - currentWidth = maxSize
+            
+            
+            
+            let ratio: CGFloat = CGFloat(photoObject.width) / CGFloat(photoObject.height)
+            
+            var heightOfCurrentPhoto: CGFloat = 0
+            var widthOfCurrentPhoto: CGFloat = 0
+            
+            if ratio < 1 {
+                // ** Portrait oriented photo
                 
-                let ratio = photoAlbumThumb.width / photoAlbumThumb.height
-                
-                var heightOfCurrentPhoto: CGFloat = 0
-                var widthOfCurrentPhoto: CGFloat = 0
-                
-                if ratio < 1 {
-                    // ** Portrait oriented photo
+                if index < firstRowCount {
+                    // First Row of Gallery
                     
-                    if index < firstRowCount {
-                        // First Row of Gallery
-                        
-                        heightOfCurrentPhoto = maxRequiredSizeOfImageInFirstRow
-                        
-                        widthOfCurrentPhoto = heightOfCurrentPhoto * CGFloat(ratio)
-                        fullWidthFirstRow += widthOfCurrentPhoto
-                        
-                    } else {
-                        // Second Row Gallery
-                        
-                        heightOfCurrentPhoto = maxRequiredSizeOfImageInSecondRow
-                        widthOfCurrentPhoto = heightOfCurrentPhoto * CGFloat(ratio)
-                        
-                        fullWidthSecondRow += widthOfCurrentPhoto
-                        
-                    }
+                    heightOfCurrentPhoto = maxRequiredSizeOfImageInFirstRow
+                    
+                    widthOfCurrentPhoto = heightOfCurrentPhoto * CGFloat(ratio)
+                    fullWidthFirstRow += widthOfCurrentPhoto
                     
                 } else {
-                    // ** Landscape oriented photo
+                    // Second Row Gallery
                     
-                    if index < firstRowCount {
-                        
-                        // First Row of Gallery
-                        
-                        widthOfCurrentPhoto = maxRequiredSizeOfImageInFirstRow
-                        fullWidthFirstRow += widthOfCurrentPhoto
-                        
-                    } else {
-                        // Second Row Gallery
-                        
-                        widthOfCurrentPhoto = maxRequiredSizeOfImageInSecondRow
-                        fullWidthSecondRow += widthOfCurrentPhoto
-                        
-                    }
+                    heightOfCurrentPhoto = maxRequiredSizeOfImageInSecondRow
+                    widthOfCurrentPhoto = heightOfCurrentPhoto * CGFloat(ratio)
                     
-                    heightOfCurrentPhoto = widthOfCurrentPhoto / CGFloat(ratio)
+                    fullWidthSecondRow += widthOfCurrentPhoto
                     
                 }
                 
-                // * 2. Calculating height of FirstRow to get know value for gallerySecondRowTopConstraint
-
-                if heightOfCurrentPhoto > maxHeightFirstRow && index < firstRowCount {
-                    maxHeightFirstRow = heightOfCurrentPhoto
-                }
-                
-                // * 3. Setting width and height constraints for current photo and setting frame
-
-                let photoHightConstraint = postCell.photoHeights[index]
-                let photoWidthConstraint = postCell.photoWidths[index]
-                
-                photoHightConstraint.constant = heightOfCurrentPhoto
-                photoWidthConstraint.constant = widthOfCurrentPhoto
-
-                let currentImageView = postCell.galleryImageViews[index]
-                
-                let currentImageViewOrigin = currentImageView.frame.origin
-                
-                currentImageView.frame = CGRect(x: currentImageViewOrigin.x, y: currentImageViewOrigin.y, width: widthOfCurrentPhoto, height: heightOfCurrentPhoto)
-                
-                // * 4. Loading and setting image
-                
-                var linkToNeededRes: String
-                
+            } else {
+                // ** Landscape oriented photo
                 
                 if index < firstRowCount {
                     
-                    if maxRequiredSizeOfImageInFirstRow > 600 {
-                        linkToNeededRes = photoAlbumThumb.photo_807!
-                        
-                    } else {
-                        linkToNeededRes = photoAlbumThumb.photo_604!
-                    }
-               
+                    // First Row of Gallery
+                    
+                    widthOfCurrentPhoto = maxRequiredSizeOfImageInFirstRow
+                    fullWidthFirstRow += widthOfCurrentPhoto
+                    
                 } else {
-                    if maxRequiredSizeOfImageInSecondRow > 600 {
-                        linkToNeededRes = photoAlbumThumb.photo_807!
-                        
-                    } else {
-                        linkToNeededRes = photoAlbumThumb.photo_604!
-                    }
+                    // Second Row Gallery
+                    
+                    widthOfCurrentPhoto = maxRequiredSizeOfImageInSecondRow
+                    fullWidthSecondRow += widthOfCurrentPhoto
+                    
                 }
                 
-                
-                let urlPhoto = URL(string: linkToNeededRes)
-                
-                currentImageView.af_setImage(withURL: urlPhoto!)
-                
+                heightOfCurrentPhoto = widthOfCurrentPhoto / CGFloat(ratio)
                 
             }
+            
+            // * 2. Calculating height of FirstRow to get know value for gallerySecondRowTopConstraint
+            
+            if heightOfCurrentPhoto > maxHeightFirstRow && index < firstRowCount {
+                maxHeightFirstRow = heightOfCurrentPhoto
+            }
+            
+            // * 3. Setting width and height constraints for current photo and setting frame
+            
+            let photoHightConstraint = postCell.photoHeights[index]
+            let photoWidthConstraint = postCell.photoWidths[index]
+            
+            photoHightConstraint.constant = heightOfCurrentPhoto
+            photoWidthConstraint.constant = widthOfCurrentPhoto
+            
+            let currentImageView = postCell.galleryImageViews[index]
+            
+            let currentImageViewOrigin = currentImageView.frame.origin
+            
+            currentImageView.frame = CGRect(x: currentImageViewOrigin.x, y: currentImageViewOrigin.y, width: widthOfCurrentPhoto, height: heightOfCurrentPhoto)
+            
+            // * 4. Loading and setting image
+            
+            var linkToNeededRes: String
+            
+            
+            if index < firstRowCount {
+                
+                if maxRequiredSizeOfImageInFirstRow > 600 {
+                    linkToNeededRes = photoObject.photo_807!
+                    
+                } else {
+                    linkToNeededRes = photoObject.photo_604!
+                }
+                
+            } else {
+                if maxRequiredSizeOfImageInSecondRow > 600 {
+                    linkToNeededRes = photoObject.photo_807!
+                    
+                } else {
+                    linkToNeededRes = photoObject.photo_604!
+                }
+            }
+            
+            
+            let urlPhoto = URL(string: linkToNeededRes)
+            
+            currentImageView.af_setImage(withURL: urlPhoto!)
+            
+            
 
             
             index += 1
@@ -229,6 +241,8 @@ class PostPhotoGallery {
         }
         
         postCell.galleryFirstRowLeadingConstraint.constant = (self.tableViewWidth - 2 * indentsCountFirstRow - fullWidthFirstRow) / 2
+        
+        print("===NAG== postCell.galleryFirstRowLeadingConstraint.constant = \(postCell.galleryFirstRowLeadingConstraint.constant)")
         
         postCell.layoutIfNeeded()
         

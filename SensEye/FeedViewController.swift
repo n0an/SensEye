@@ -81,30 +81,9 @@ extension FeedViewController: UITableViewDataSource {
         
         postGallery.insertGallery(forPost: wallPost, toCell: cell)
         
-//        for attachment in wallPost.postAttachments {
-//            
-//            if let albumAttachment = attachment as? PhotoAlbum {
-//                
-//                let imageURL = URL(string: (albumAttachment.albumThumbPhoto?.photo_604)!)
-//                
-//                cell.mainPhotoImageView.af_setImage(withURL: imageURL!)
-//                
-//            }
-//            
-//        }
-        
-        
-        
-        
-        
-//        cell.mainPhotoImageView.image = UIImage(named: "lineplaceholder")
         
         cell.timestampLabel.text = "\(wallPost.postDate!)"
-        
-//        cell.mainPhotoImageView.image = UIImage(named: "space")
-//        cell.minorPhotoOneImageView.image = UIImage(named: "ufo")
-//        cell.minorPhotoTwoImageView.image = UIImage(named: "pyramid")
-//        cell.minorPhotoThreeImageView.image = UIImage(named: "space")
+       
         
         return cell
         
