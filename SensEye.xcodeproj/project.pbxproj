@@ -7,8 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		09C1CA3DBDD28430D4747B49 /* Pods_SensEye.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1F6287F56849E930AFED5DA /* Pods_SensEye.framework */; };
+		1838C2411E110A7700E02F88 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1838C2401E110A7700E02F88 /* Constants.swift */; };
+		1838C2431E11193E00E02F88 /* WallPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1838C2421E11193E00E02F88 /* WallPost.swift */; };
+		1838C2471E112CA200E02F88 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1838C2461E112CA200E02F88 /* Group.swift */; };
+		1838C24B1E11362D00E02F88 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1838C24A1E11362D00E02F88 /* User.swift */; };
 		188C04F81E1074C8008B58EB /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188C04F71E1074C8008B58EB /* FeedViewController.swift */; };
 		188C04FA1E1074D6008B58EB /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188C04F91E1074D6008B58EB /* FeedCell.swift */; };
+		188C04FC1E10FCBC008B58EB /* ServerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188C04FB1E10FCBC008B58EB /* ServerManager.swift */; };
 		18AA37D11E1053F700D5BCB1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AA37D01E1053F700D5BCB1 /* AppDelegate.swift */; };
 		18AA37D61E1053F700D5BCB1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18AA37D41E1053F700D5BCB1 /* Main.storyboard */; };
 		18AA37D81E1053F700D5BCB1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18AA37D71E1053F700D5BCB1 /* Assets.xcassets */; };
@@ -16,14 +22,22 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1838C2401E110A7700E02F88 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		1838C2421E11193E00E02F88 /* WallPost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WallPost.swift; sourceTree = "<group>"; };
+		1838C2461E112CA200E02F88 /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		1838C24A1E11362D00E02F88 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		188C04F71E1074C8008B58EB /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		188C04F91E1074D6008B58EB /* FeedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
+		188C04FB1E10FCBC008B58EB /* ServerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerManager.swift; sourceTree = "<group>"; };
 		18AA37CD1E1053F700D5BCB1 /* SensEye.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SensEye.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18AA37D01E1053F700D5BCB1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18AA37D51E1053F700D5BCB1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		18AA37D71E1053F700D5BCB1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		18AA37DA1E1053F700D5BCB1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		18AA37DC1E1053F700D5BCB1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		26E532DE5ABFA138EDDEDBB4 /* Pods-SensEye.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SensEye.release.xcconfig"; path = "Pods/Target Support Files/Pods-SensEye/Pods-SensEye.release.xcconfig"; sourceTree = "<group>"; };
+		80BE74E4C44AE3ED1571EFE9 /* Pods-SensEye.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SensEye.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SensEye/Pods-SensEye.debug.xcconfig"; sourceTree = "<group>"; };
+		F1F6287F56849E930AFED5DA /* Pods_SensEye.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SensEye.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +45,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				09C1CA3DBDD28430D4747B49 /* Pods_SensEye.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +57,8 @@
 			children = (
 				18AA37CF1E1053F700D5BCB1 /* SensEye */,
 				18AA37CE1E1053F700D5BCB1 /* Products */,
+				615055B3EAF5419CDCCB3084 /* Pods */,
+				1FD0F3EE1A61ED817B9FBE00 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -63,8 +80,30 @@
 				18AA37DC1E1053F700D5BCB1 /* Info.plist */,
 				188C04F71E1074C8008B58EB /* FeedViewController.swift */,
 				188C04F91E1074D6008B58EB /* FeedCell.swift */,
+				188C04FB1E10FCBC008B58EB /* ServerManager.swift */,
+				1838C2401E110A7700E02F88 /* Constants.swift */,
+				1838C2421E11193E00E02F88 /* WallPost.swift */,
+				1838C2461E112CA200E02F88 /* Group.swift */,
+				1838C24A1E11362D00E02F88 /* User.swift */,
 			);
 			path = SensEye;
+			sourceTree = "<group>";
+		};
+		1FD0F3EE1A61ED817B9FBE00 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F1F6287F56849E930AFED5DA /* Pods_SensEye.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		615055B3EAF5419CDCCB3084 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				80BE74E4C44AE3ED1571EFE9 /* Pods-SensEye.debug.xcconfig */,
+				26E532DE5ABFA138EDDEDBB4 /* Pods-SensEye.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +113,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 18AA37DF1E1053F700D5BCB1 /* Build configuration list for PBXNativeTarget "SensEye" */;
 			buildPhases = (
+				03F4FF4F2DBF9B50D7F1CBF4 /* [CP] Check Pods Manifest.lock */,
 				18AA37C91E1053F700D5BCB1 /* Sources */,
 				18AA37CA1E1053F700D5BCB1 /* Frameworks */,
 				18AA37CB1E1053F700D5BCB1 /* Resources */,
+				76D7A33ECF2ECE81501A08BA /* [CP] Embed Pods Frameworks */,
+				6DD31144CE27AC68FB96DF7F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -135,14 +177,67 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		03F4FF4F2DBF9B50D7F1CBF4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		6DD31144CE27AC68FB96DF7F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SensEye/Pods-SensEye-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		76D7A33ECF2ECE81501A08BA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SensEye/Pods-SensEye-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		18AA37C91E1053F700D5BCB1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1838C2471E112CA200E02F88 /* Group.swift in Sources */,
+				1838C2411E110A7700E02F88 /* Constants.swift in Sources */,
+				188C04FC1E10FCBC008B58EB /* ServerManager.swift in Sources */,
 				188C04F81E1074C8008B58EB /* FeedViewController.swift in Sources */,
+				1838C24B1E11362D00E02F88 /* User.swift in Sources */,
 				18AA37D11E1053F700D5BCB1 /* AppDelegate.swift in Sources */,
 				188C04FA1E1074D6008B58EB /* FeedCell.swift in Sources */,
+				1838C2431E11193E00E02F88 /* WallPost.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,6 +358,7 @@
 		};
 		18AA37E01E1053F700D5BCB1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 80BE74E4C44AE3ED1571EFE9 /* Pods-SensEye.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 358V8FBM3U;
@@ -276,6 +372,7 @@
 		};
 		18AA37E11E1053F700D5BCB1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 26E532DE5ABFA138EDDEDBB4 /* Pods-SensEye.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 358V8FBM3U;
