@@ -78,21 +78,45 @@
 			isa = PBXGroup;
 			children = (
 				18AA37D01E1053F700D5BCB1 /* AppDelegate.swift */,
+				18FC625F1E114C1700E25A18 /* Model */,
+				18FC62601E114C1F00E25A18 /* View */,
+				18FC62611E114C2300E25A18 /* Controller */,
+				188C04FB1E10FCBC008B58EB /* ServerManager.swift */,
+				1838C2401E110A7700E02F88 /* Constants.swift */,
 				18AA37D41E1053F700D5BCB1 /* Main.storyboard */,
 				18AA37D71E1053F700D5BCB1 /* Assets.xcassets */,
 				18AA37D91E1053F700D5BCB1 /* LaunchScreen.storyboard */,
 				18AA37DC1E1053F700D5BCB1 /* Info.plist */,
-				188C04F71E1074C8008B58EB /* FeedViewController.swift */,
-				188C04F91E1074D6008B58EB /* FeedCell.swift */,
-				188C04FB1E10FCBC008B58EB /* ServerManager.swift */,
-				1838C2401E110A7700E02F88 /* Constants.swift */,
+			);
+			path = SensEye;
+			sourceTree = "<group>";
+		};
+		18FC625F1E114C1700E25A18 /* Model */ = {
+			isa = PBXGroup;
+			children = (
 				1838C2421E11193E00E02F88 /* WallPost.swift */,
 				18FC625B1E113E9C00E25A18 /* Photo.swift */,
 				18FC625D1E11439D00E25A18 /* PhotoAlbum.swift */,
 				1838C2461E112CA200E02F88 /* Group.swift */,
 				1838C24A1E11362D00E02F88 /* User.swift */,
 			);
-			path = SensEye;
+			name = Model;
+			sourceTree = "<group>";
+		};
+		18FC62601E114C1F00E25A18 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				188C04F91E1074D6008B58EB /* FeedCell.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		18FC62611E114C2300E25A18 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				188C04F71E1074C8008B58EB /* FeedViewController.swift */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 		1FD0F3EE1A61ED817B9FBE00 /* Frameworks */ = {
