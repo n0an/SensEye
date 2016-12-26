@@ -35,6 +35,31 @@ class FeedCell: UITableViewCell {
     
     @IBOutlet weak var commentButton: UIButton!
     
+    
+    
+    
+    @IBOutlet weak var galleryFirstRowLeadingConstraint: NSLayoutConstraint!
+    
+    
+    @IBOutlet weak var gallerySecondRowLeadingConstraint: NSLayoutConstraint!
+    
+    
+    @IBOutlet weak var gallerySecondRowTopConstraint: NSLayoutConstraint!
+    
+    
+    @IBOutlet var galleryImageViews: [UIImageView]!
+    
+    
+    @IBOutlet var photoHeights: [NSLayoutConstraint]!
+    
+    
+    @IBOutlet var photoWidths: [NSLayoutConstraint]!
+    
+    
+    
+    
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

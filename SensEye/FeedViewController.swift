@@ -17,7 +17,7 @@ class FeedViewController: UIViewController {
     
     enum Storyboard {
         static let cellId = "FeedCell"
-        static let rowHeight: CGFloat = 200
+        static let rowHeight: CGFloat = 370
     }
     
     var wallPosts: [WallPost] = []
@@ -68,8 +68,6 @@ extension FeedViewController: UITableViewDataSource {
         if let postAuthor = wallPost.postAuthor {
             cell.usernameLabel.text = "\(postAuthor.firstName!) \(postAuthor.lastName!)"
             
-            
-            
         } else if let groupPostAuthor = wallPost.postGroupAuthor {
             cell.usernameLabel.text = "\(groupPostAuthor.groupName!)"
 
@@ -78,6 +76,28 @@ extension FeedViewController: UITableViewDataSource {
             cell.profileImageVIew.af_setImage(withURL: imageURL!)
             
         }
+        
+        let postGallery = PostPhotoGallery(withTableViewWidth: self.tableView.frame.width)
+        
+        postGallery.insertGallery(forPost: wallPost, toCell: cell)
+        
+//        for attachment in wallPost.postAttachments {
+//            
+//            if let albumAttachment = attachment as? PhotoAlbum {
+//                
+//                let imageURL = URL(string: (albumAttachment.albumThumbPhoto?.photo_604)!)
+//                
+//                cell.mainPhotoImageView.af_setImage(withURL: imageURL!)
+//                
+//            }
+//            
+//        }
+        
+        
+        
+        
+        
+//        cell.mainPhotoImageView.image = UIImage(named: "lineplaceholder")
         
         cell.timestampLabel.text = "\(wallPost.postDate!)"
         
