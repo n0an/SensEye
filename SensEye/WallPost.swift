@@ -19,9 +19,7 @@ class WallPost {
     var postAuthor: User?
     var postGroupAuthor: Group?
     
-    
-    
-//    let postAttachments: [Any]
+    var postAttachments: [Any]!
     
     var postComments: String!
     var postLikes: String!
@@ -74,6 +72,56 @@ class WallPost {
         }
         
         
+        // Attachments
+        
+        guard let attachments = responseObject["attachments"] as? [Any] else {
+            return
+        }
+        
+        var attachmentsArray = [Any]()
+        
+        for item in attachments {
+            
+            let attachmentItem = item as! [String: Any]
+            
+            let attachmentType = attachmentItem["type"] as! String
+            
+            if attachmentType == "photo" {
+                // Parse Photo Attachment
+                
+                let attachmentDict = attachmentItem["photo"] as! [String: Any]
+                
+                let photoAttachment = Photo(responseObject: attachmentDict)
+                
+                attachmentsArray.append(photoAttachment)
+                
+            } else if attachmentType == "album" {
+                // Parse Album Attachment
+                
+                let attachmentDict = attachmentItem["album"] as! [String: Any]
+                
+                let albumAttachment = PhotoAlbum(responseObject: attachmentDict)
+                
+                attachmentsArray.append(albumAttachment)
+            }
+            
+        }
+        
+        self.postAttachments = attachmentsArray
+        
     }
     
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

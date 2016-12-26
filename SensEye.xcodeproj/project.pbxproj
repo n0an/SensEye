@@ -19,6 +19,8 @@
 		18AA37D61E1053F700D5BCB1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18AA37D41E1053F700D5BCB1 /* Main.storyboard */; };
 		18AA37D81E1053F700D5BCB1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18AA37D71E1053F700D5BCB1 /* Assets.xcassets */; };
 		18AA37DB1E1053F700D5BCB1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18AA37D91E1053F700D5BCB1 /* LaunchScreen.storyboard */; };
+		18FC625C1E113E9C00E25A18 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FC625B1E113E9C00E25A18 /* Photo.swift */; };
+		18FC625E1E11439D00E25A18 /* PhotoAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FC625D1E11439D00E25A18 /* PhotoAlbum.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +37,8 @@
 		18AA37D71E1053F700D5BCB1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		18AA37DA1E1053F700D5BCB1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		18AA37DC1E1053F700D5BCB1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		18FC625B1E113E9C00E25A18 /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		18FC625D1E11439D00E25A18 /* PhotoAlbum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoAlbum.swift; sourceTree = "<group>"; };
 		26E532DE5ABFA138EDDEDBB4 /* Pods-SensEye.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SensEye.release.xcconfig"; path = "Pods/Target Support Files/Pods-SensEye/Pods-SensEye.release.xcconfig"; sourceTree = "<group>"; };
 		80BE74E4C44AE3ED1571EFE9 /* Pods-SensEye.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SensEye.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SensEye/Pods-SensEye.debug.xcconfig"; sourceTree = "<group>"; };
 		F1F6287F56849E930AFED5DA /* Pods_SensEye.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SensEye.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -83,6 +87,8 @@
 				188C04FB1E10FCBC008B58EB /* ServerManager.swift */,
 				1838C2401E110A7700E02F88 /* Constants.swift */,
 				1838C2421E11193E00E02F88 /* WallPost.swift */,
+				18FC625B1E113E9C00E25A18 /* Photo.swift */,
+				18FC625D1E11439D00E25A18 /* PhotoAlbum.swift */,
 				1838C2461E112CA200E02F88 /* Group.swift */,
 				1838C24A1E11362D00E02F88 /* User.swift */,
 			);
@@ -233,8 +239,10 @@
 				1838C2471E112CA200E02F88 /* Group.swift in Sources */,
 				1838C2411E110A7700E02F88 /* Constants.swift in Sources */,
 				188C04FC1E10FCBC008B58EB /* ServerManager.swift in Sources */,
+				18FC625C1E113E9C00E25A18 /* Photo.swift in Sources */,
 				188C04F81E1074C8008B58EB /* FeedViewController.swift in Sources */,
 				1838C24B1E11362D00E02F88 /* User.swift in Sources */,
+				18FC625E1E11439D00E25A18 /* PhotoAlbum.swift in Sources */,
 				18AA37D11E1053F700D5BCB1 /* AppDelegate.swift in Sources */,
 				188C04FA1E1074D6008B58EB /* FeedCell.swift in Sources */,
 				1838C2431E11193E00E02F88 /* WallPost.swift in Sources */,

@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import Alamofire
+import AlamofireImage
+
 
 class FeedViewController: UIViewController {
     
@@ -25,8 +28,6 @@ class FeedViewController: UIViewController {
         
         ServerManager.sharedManager.getGroupWall(forGroupID: "-55347641", offset: 0, count: 10) { (posts) in
             
-            print("===NAG=== success")
-
             print(posts)
             
             self.wallPosts = posts
@@ -35,7 +36,6 @@ class FeedViewController: UIViewController {
             
         }
         
-        
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -43,13 +43,8 @@ class FeedViewController: UIViewController {
         tableView.estimatedRowHeight = Storyboard.rowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
 
-
     }
 
-   
-    
-
-    
 }
 
 
@@ -72,12 +67,19 @@ extension FeedViewController: UITableViewDataSource {
         
         if let postAuthor = wallPost.postAuthor {
             cell.usernameLabel.text = "\(postAuthor.firstName!) \(postAuthor.lastName!)"
+            
+            
+            
         } else if let groupPostAuthor = wallPost.postGroupAuthor {
             cell.usernameLabel.text = "\(groupPostAuthor.groupName!)"
 
+            let imageURL = URL(string: groupPostAuthor.imageURL)
+            
+            cell.profileImageVIew.af_setImage(withURL: imageURL!)
+            
         }
         
-        cell.timestampLabel.text = "\(wallPost.postDate)"
+        cell.timestampLabel.text = "\(wallPost.postDate!)"
         
 //        cell.mainPhotoImageView.image = UIImage(named: "space")
 //        cell.minorPhotoOneImageView.image = UIImage(named: "ufo")

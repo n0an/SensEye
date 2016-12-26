@@ -7,4 +7,8 @@ target 'SensEye' do
 
   # Pods for SensEye
   pod 'Alamofire'
+  pod 'AlamofireImage'
+  
+  
+  
 end

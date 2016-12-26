@@ -24,3 +24,7 @@ enum URL_PARAMS: String {
 
 
 typealias DownloadComplete = ([WallPost]) -> Void
+
+
+
+
