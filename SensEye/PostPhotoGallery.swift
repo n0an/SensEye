@@ -14,6 +14,7 @@ class PostPhotoGallery {
     var tableViewWidth: CGFloat
     
     var firstRowCount = 1
+    var maxPhotos = 4
     
     init(withTableViewWidth tableViewWidth: CGFloat) {
         
@@ -60,7 +61,7 @@ class PostPhotoGallery {
             
             maxRequiredSizeOfImageInFirstRow = maxAvailableSpaceToOperate
 
-            maxRequiredSizeOfImageInSecondRow = maxAvailableSpaceToOperate / CGFloat(min(3, post.postAttachments.count - firstRowCount))
+            maxRequiredSizeOfImageInSecondRow = maxAvailableSpaceToOperate / CGFloat(min(maxPhotos, post.postAttachments.count - firstRowCount))
             
             
         }
@@ -74,7 +75,7 @@ class PostPhotoGallery {
         var fullWidthFirstRow: CGFloat = 0
         var fullWidthSecondRow: CGFloat = 0
         
-        while index < post.postAttachments.count &&  index < 4 {
+        while index < min(maxPhotos, post.postAttachments.count) {
             
             
             var photoObject: Photo!
@@ -234,7 +235,7 @@ class PostPhotoGallery {
         
         } else {
             indentsCountFirstRow = CGFloat(firstRowCount - 1)
-            indentsCountSecondRow = CGFloat(post.postAttachments.count - firstRowCount - 1)
+            indentsCountSecondRow = CGFloat(min(maxPhotos, post.postAttachments.count) - firstRowCount - 1)
             
             postCell.gallerySecondRowLeadingConstraint.constant = (self.tableViewWidth - 2 * indentsCountSecondRow - fullWidthSecondRow) / 2
             
