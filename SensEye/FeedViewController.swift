@@ -25,8 +25,10 @@ class FeedViewController: UIViewController {
         
         
         tableView.estimatedRowHeight = Storyboard.rowHeight
-        tableView.rowHeight = UITableViewAutomaticDimension
         
+        tableView.rowHeight = UITableViewAutomaticDimension
+//        tableView.rowHeight = Storyboard.rowHeight
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -47,6 +49,11 @@ extension FeedViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Storyboard.cellId, for: indexPath) as! FeedCell
+        
+//        cell.mainPhotoImageView.image = UIImage(named: "space")
+//        cell.minorPhotoOneImageView.image = UIImage(named: "ufo")
+//        cell.minorPhotoTwoImageView.image = UIImage(named: "pyramid")
+//        cell.minorPhotoThreeImageView.image = UIImage(named: "space")
         
         return cell
         

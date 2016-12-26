@@ -27,7 +27,7 @@ class FeedCell: UITableViewCell {
     
     @IBOutlet weak var minorPhotoThreeImageView: UIImageView!
     
-    @IBOutlet weak var minorPhotoFourImageView: UIImageView!
+    
     
     
     @IBOutlet weak var likeButton: UIButton!
