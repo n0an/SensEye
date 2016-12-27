@@ -72,6 +72,7 @@ class FeedViewController: UIViewController {
             
             if let photoAttach = selectedPost.postAttachments[0] as? Photo {
                 
+                
                 destinationVC.currentPhoto = photoAttach
                 destinationVC.mediasArray = selectedPost.postAttachments
                 destinationVC.currentIndex = indexOfPhoto

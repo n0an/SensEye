@@ -9,41 +9,34 @@
 import UIKit
 import AlamofireImage
 
-
 class PhotoViewController: UIViewController {
     
     // MARK: - PROPERTIES
-    var image: UIImage!
     
     var currentPhoto: Photo!
     var mediasArray: [Any]!
     var currentIndex: Int!
     
-    var senderName: String!
-    
     // MARK: - Private
     fileprivate var imageView: UIImageView!
     fileprivate var scrollView: UIScrollView!
     
-    fileprivate enum PhotoIteractionDirection {
-        case next
-        case previous
-    }
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        downloadPhotos()
+        title = "TITLE"
         
-        self.navigationController?.hidesBarsOnTap = true
+        let imageURL = URL(string: currentPhoto.photo_1280!)
+        
+        imageView = UIImageView(frame: view.bounds)
         
         
+        imageView.contentMode = .scaleAspectFit
         
+        imageView.af_setImage(withURL: imageURL!, placeholderImage: nil, filter: nil, progress: nil, progressQueue: DispatchQueue.main, imageTransition: UIImageView.ImageTransition.flipFromTop(0.4), runImageTransitionIfCached: true) { (response) in
+            print("INSIDE")
+        }
         
-        title = "Some Photo"
-        
-//        imageView = UIImageView(image: image)
         
         // take up the whole super view inner content
         scrollView = UIScrollView(frame: view.bounds)
@@ -104,7 +97,6 @@ class PhotoViewController: UIViewController {
         
         recenterImage()
     }
-    
 }
 
 extension PhotoViewController : UIScrollViewDelegate {
@@ -125,35 +117,3 @@ extension PhotoViewController : UIScrollViewDelegate {
     
     
 }
-
-
-// MARK: - VK API DOWNLOADING
-
-extension PhotoViewController {
-    
-    func downloadPhotos() {
-        
-        let imageURL = URL(string: currentPhoto.photo_1280!)
-        
-        // Animated set photo to ImageView
-        self.imageView = UIImageView()
-        self.imageView.af_setImage(withURL: imageURL!)
-        
-        
-        
-    }
-    
-    
-}
-
-
-
-
-
-
-
-
-
-
-
-
