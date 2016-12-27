@@ -7,11 +7,17 @@
 //
 
 import UIKit
+import AlamofireImage
+
 
 class PhotoViewController: UIViewController {
     
     // MARK: - PROPERTIES
     var image: UIImage!
+    
+    var currentPhoto: Photo!
+    var mediasArray: [Any]!
+    var currentIndex: Int!
     
     var senderName: String!
     
@@ -19,12 +25,25 @@ class PhotoViewController: UIViewController {
     fileprivate var imageView: UIImageView!
     fileprivate var scrollView: UIScrollView!
     
+    fileprivate enum PhotoIteractionDirection {
+        case next
+        case previous
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        downloadPhotos()
+        
+        self.navigationController?.hidesBarsOnTap = true
+        
+        
+        
+        
         title = "Some Photo"
         
-        imageView = UIImageView(image: image)
+//        imageView = UIImageView(image: image)
         
         // take up the whole super view inner content
         scrollView = UIScrollView(frame: view.bounds)
@@ -85,6 +104,7 @@ class PhotoViewController: UIViewController {
         
         recenterImage()
     }
+    
 }
 
 extension PhotoViewController : UIScrollViewDelegate {
@@ -105,3 +125,35 @@ extension PhotoViewController : UIScrollViewDelegate {
     
     
 }
+
+
+// MARK: - VK API DOWNLOADING
+
+extension PhotoViewController {
+    
+    func downloadPhotos() {
+        
+        let imageURL = URL(string: currentPhoto.photo_1280!)
+        
+        // Animated set photo to ImageView
+        self.imageView = UIImageView()
+        self.imageView.af_setImage(withURL: imageURL!)
+        
+        
+        
+    }
+    
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+

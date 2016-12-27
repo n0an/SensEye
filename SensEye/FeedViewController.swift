@@ -61,10 +61,7 @@ class FeedViewController: UIViewController {
             let destinationNavVC = segue.destination as! UINavigationController
             
             
-            let destinationVC = destinationNavVC.viewControllers.first as! PhotoViewController
-            
-            // TODO: - Here we should pass downloaded Image
-            destinationVC.image = UIImage()
+            let destinationVC = destinationNavVC.topViewController as! PhotoViewController
             
             guard let senderTuple = sender as? (WallPost, Int) else {
                 return
@@ -73,6 +70,18 @@ class FeedViewController: UIViewController {
             let selectedPost = senderTuple.0
             let indexOfPhoto = senderTuple.1
             
+            if let photoAttach = selectedPost.postAttachments[0] as? Photo {
+                
+                destinationVC.currentPhoto = photoAttach
+                destinationVC.mediasArray = selectedPost.postAttachments
+                destinationVC.currentIndex = indexOfPhoto
+                
+                
+            } else if let albumAttach = selectedPost.postAttachments[0] as? PhotoAlbum {
+                destinationVC.currentPhoto = albumAttach.albumThumbPhoto
+                destinationVC.mediasArray = [albumAttach.albumThumbPhoto]
+                destinationVC.currentIndex = 0
+            }
             
         }
     }
