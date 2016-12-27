@@ -24,12 +24,25 @@ class PhotoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.hidesBarsOnTap = true
+        
         title = "TITLE"
         
         let imageURL = URL(string: currentPhoto.photo_1280!)
         
-        imageView = UIImageView(frame: view.bounds)
+        let ratio = CGFloat(currentPhoto.width) / CGFloat(currentPhoto.height)
         
+        var rect: CGRect!
+        
+        if ratio > 1 {
+            
+            rect = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.width/ratio)
+
+        } else {
+            rect = CGRect(x: 0, y: 0, width: view.bounds.height * ratio, height: view.bounds.height)
+        }
+        
+        imageView = UIImageView(frame: rect)
         
         imageView.contentMode = .scaleAspectFit
         
