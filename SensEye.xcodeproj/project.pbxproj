@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		09C1CA3DBDD28430D4747B49 /* Pods_SensEye.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1F6287F56849E930AFED5DA /* Pods_SensEye.framework */; };
+		180231C11E12DDBA00FA8322 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180231C01E12DDBA00FA8322 /* PhotoViewController.swift */; };
 		1838C2411E110A7700E02F88 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1838C2401E110A7700E02F88 /* Constants.swift */; };
 		1838C2431E11193E00E02F88 /* WallPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1838C2421E11193E00E02F88 /* WallPost.swift */; };
 		1838C2471E112CA200E02F88 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1838C2461E112CA200E02F88 /* Group.swift */; };
@@ -25,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		180231C01E12DDBA00FA8322 /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		1838C2401E110A7700E02F88 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		1838C2421E11193E00E02F88 /* WallPost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WallPost.swift; sourceTree = "<group>"; };
 		1838C2461E112CA200E02F88 /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				188C04F71E1074C8008B58EB /* FeedViewController.swift */,
+				180231C01E12DDBA00FA8322 /* PhotoViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -268,6 +271,7 @@
 				188C04FC1E10FCBC008B58EB /* ServerManager.swift in Sources */,
 				18FC625C1E113E9C00E25A18 /* Photo.swift in Sources */,
 				188C04F81E1074C8008B58EB /* FeedViewController.swift in Sources */,
+				180231C11E12DDBA00FA8322 /* PhotoViewController.swift in Sources */,
 				1838C24B1E11362D00E02F88 /* User.swift in Sources */,
 				18FC625E1E11439D00E25A18 /* PhotoAlbum.swift in Sources */,
 				18AA37D11E1053F700D5BCB1 /* AppDelegate.swift in Sources */,

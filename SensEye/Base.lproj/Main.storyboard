@@ -9,6 +9,7 @@
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -1394,11 +1395,60 @@
                     </view>
                     <connections>
                         <outlet property="tableView" destination="dhK-hL-S59" id="AY8-4e-dcI"/>
+                        <segue destination="Uuj-Kp-AHt" kind="presentation" identifier="showPhoto" id="9lc-HA-SpN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iE8-b9-jbn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="213.59999999999999" y="134.48275862068968"/>
+            <point key="canvasLocation" x="1089" y="912"/>
+        </scene>
+        <!--Photo View Controller-->
+        <scene sceneID="ilZ-KP-C3b">
+            <objects>
+                <viewController id="FSA-lg-zHa" customClass="PhotoViewController" customModule="SensEye" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="VFg-m2-qhR"/>
+                        <viewControllerLayoutGuide type="bottom" id="s52-sr-484"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="K0K-yn-051">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="9ol-yE-rwC">
+                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="H5k-KP-EIl">
+                            <connections>
+                                <segue destination="Uex-tP-c8n" kind="unwind" unwindAction="unwindToFeedVCWithSegue:" id="WrN-Ga-BTf"/>
+                            </connections>
+                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem title="→" id="Vel-uF-2Du"/>
+                            <barButtonItem title="←" id="yh0-fe-PWX"/>
+                        </rightBarButtonItems>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="V5K-mF-HhF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Uex-tP-c8n" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="2537" y="912"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="DLy-Dc-2Pc">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Uuj-Kp-AHt" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="nf4-z0-1A8">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="FSA-lg-zHa" kind="relationship" relationship="rootViewController" id="os7-BU-ph4"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bki-uX-bOi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1822" y="912"/>
         </scene>
     </scenes>
     <resources>

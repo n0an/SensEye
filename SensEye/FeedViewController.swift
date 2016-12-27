@@ -13,41 +13,82 @@ import AlamofireImage
 
 class FeedViewController: UIViewController {
     
+    // MARK: - OUTLETS
     @IBOutlet weak var tableView: UITableView!
     
+    
+    // MARK: - PROPERTIES
     enum Storyboard {
         static let cellId = "FeedCell"
         static let rowHeight: CGFloat = 370
+        
+        static let seguePhotoDisplayer = "showPhoto"
     }
     
     var wallPosts: [WallPost] = []
 
+    // MARK: - viewDidLoad
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         ServerManager.sharedManager.getGroupWall(forGroupID: "-55347641", offset: 0, count: 10) { (posts) in
-            
             print(posts)
-            
             self.wallPosts = posts
-            
             self.tableView.reloadData()
-            
         }
         
         tableView.delegate = self
         tableView.dataSource = self
         
-        
         tableView.estimatedRowHeight = Storyboard.rowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
-
     }
+    
+    
+    // MARK: - HELPER METHODS
+    
+    
+    
+    // MARK: - ACTIONS
+    
+    
+    // MARK: - NAVIGATION
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == Storyboard.seguePhotoDisplayer {
+            
+            let destinationNavVC = segue.destination as! UINavigationController
+            
+            
+            let destinationVC = destinationNavVC.viewControllers.first as! PhotoViewController
+            
+            // TODO: - Here we should pass downloaded Image
+            destinationVC.image = UIImage()
+            
+            guard let senderTuple = sender as? (WallPost, Int) else {
+                return
+            }
+            
+            let selectedPost = senderTuple.0
+            let indexOfPhoto = senderTuple.1
+            
+            
+        }
+    }
+    
+    @IBAction func unwindToFeedVC(segue: UIStoryboardSegue) {
+        
+    }
+        
+    
 
 }
 
 
+
+
+// MARK: - UITableViewDataSource
 extension FeedViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -59,31 +100,15 @@ extension FeedViewController: UITableViewDataSource {
         
         let wallPost = self.wallPosts[indexPath.row]
         
-        cell.postTextLabel.text = wallPost.postText
+        cell.wallPost = wallPost
+        cell.delegate = self
         
-        cell.commentButton.setTitle(wallPost.postComments, for: [])
-        cell.likeButton.setTitle(wallPost.postLikes, for: [])
-        
-        
-        if let postAuthor = wallPost.postAuthor {
-            cell.usernameLabel.text = "\(postAuthor.firstName!) \(postAuthor.lastName!)"
-            
-        } else if let groupPostAuthor = wallPost.postGroupAuthor {
-            cell.usernameLabel.text = "\(groupPostAuthor.groupName!)"
+        // *** ADDING POST IMAGES GALLERY
 
-            let imageURL = URL(string: groupPostAuthor.imageURL)
-            
-            cell.profileImageVIew.af_setImage(withURL: imageURL!)
-            
-        }
-        
         let postGallery = PostPhotoGallery(withTableViewWidth: self.tableView.frame.width)
         
         postGallery.insertGallery(forPost: wallPost, toCell: cell)
         
-        
-        cell.timestampLabel.text = "\(wallPost.postDate!)"
-       
         
         return cell
         
@@ -92,11 +117,36 @@ extension FeedViewController: UITableViewDataSource {
     
 }
 
+
+// MARK: - UITableViewDelegate
 extension FeedViewController: UITableViewDelegate {
     
     
     
 }
+
+
+
+// MARK: - FeedCellDelegate
+
+extension FeedViewController: FeedCellDelegate {
+    
+    func galleryImageViewDidTap(wallPost: WallPost, clickedPhotoIndex: Int) {
+        
+        performSegue(withIdentifier: Storyboard.seguePhotoDisplayer, sender: (wallPost, clickedPhotoIndex))
+        
+        
+        
+    }
+}
+
+
+
+
+
+
+
+
 
 
 

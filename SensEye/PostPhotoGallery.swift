@@ -248,6 +248,17 @@ class PostPhotoGallery {
         postCell.layoutIfNeeded()
         
         
+        // ADDING GESTURE RECOGNIZERS FOR GALLERY
+        
+        for photoImageView in postCell.galleryImageViews {
+            photoImageView.isUserInteractionEnabled = true
+            
+            let tapGesture = UITapGestureRecognizer(target: postCell, action: #selector(postCell.actionGlryImageViewDidTap))
+            
+            photoImageView.addGestureRecognizer(tapGesture)
+            
+        }
+
         
     }
     
