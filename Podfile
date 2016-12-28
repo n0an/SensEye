@@ -9,6 +9,6 @@ target 'SensEye' do
   pod 'Alamofire'
   pod 'AlamofireImage'
   pod 'SVPullToRefresh'
-  
+  pod 'iCarousel'
   
 end
