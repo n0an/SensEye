@@ -16,6 +16,60 @@ class ServerManager {
     
     static let sharedManager = ServerManager()
     
+    // MARK: - PHOTOS
+    func getPhotos(forAlbumID albumID: String, ownerID: String, offset: Int? = nil, count: Int? = nil, completed: @escaping DownloadComplete) {
+        
+        var url = "\(URL_BASE)\(URL_PHOTOS)" +
+            "\(URL_PARAMS.OWNER_ID.rawValue)\(ownerID)&" +
+            "\(URL_PARAMS.ALBUM_ID.rawValue)\(albumID)&" +
+            "\(URL_PARAMS.REV.rawValue)0&" +
+        "\(URL_PARAMS.EXTENDED.rawValue)1"
+        
+        
+        if let offset = offset {
+            url += "&\(URL_PARAMS.OFFSET)\(offset)"
+        }
+        
+        if let count = count {
+            url += "&\(URL_PARAMS.COUNT)\(count)"
+        }
+        
+        let finalUrl = url + "&v=5.60"
+        
+        //        print(finalUrl)
+        
+        
+        Alamofire.request(finalUrl).responseJSON { (responseJson) in
+            
+            guard let responseRoot = responseJson.result.value as? [String: Any] else {return}
+            
+            guard let response = responseRoot["response"] as? [String: Any] else {return}
+            
+            guard let photoItemsArray = response["items"] as? [Any] else {
+                return
+            }
+            
+            var photosArray: [Photo] = []
+            
+            for item in photoItemsArray {
+                
+                let photoItem = item as! [String: Any]
+                
+                let photo = Photo(responseObject: photoItem)
+                
+                photosArray.append(photo)
+            }
+            
+            completed(photosArray)
+            
+        }
+        
+        
+        
+    }
+    
+    
+    
     // MARK: - GROUP WALL
     
     func getGroupWall(forGroupID groupID: String, offset: Int, count: Int, completed: @escaping DownloadComplete) {
