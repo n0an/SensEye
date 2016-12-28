@@ -45,6 +45,11 @@ class FeedViewController: UIViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
     }
     
+    override func viewWillLayoutSubviews() {
+        // To redraw Photos with new size after transition to portrait or landscape
+        tableView.reloadData()
+    }
+    
     
     // MARK: - HELPER METHODS
     
