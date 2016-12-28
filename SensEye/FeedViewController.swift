@@ -70,17 +70,16 @@ class FeedViewController: UIViewController {
             let selectedPost = senderTuple.0
             let indexOfPhoto = senderTuple.1
             
-            if let photoAttach = selectedPost.postAttachments[0] as? Photo {
+            if selectedPost.postAttachments[0] is Photo {
                 
-                
-                destinationVC.currentPhoto = photoAttach
+                destinationVC.currentPhoto = selectedPost.postAttachments[indexOfPhoto] as! Photo
                 destinationVC.mediasArray = selectedPost.postAttachments
                 destinationVC.currentIndex = indexOfPhoto
                 
                 
             } else if let albumAttach = selectedPost.postAttachments[0] as? PhotoAlbum {
                 destinationVC.currentPhoto = albumAttach.albumThumbPhoto
-                destinationVC.mediasArray = [albumAttach.albumThumbPhoto]
+                destinationVC.mediasArray = [albumAttach.albumThumbPhoto!]
                 destinationVC.currentIndex = 0
             }
             

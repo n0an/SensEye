@@ -11,16 +11,32 @@ import AlamofireImage
 
 class PhotoViewController: UIViewController {
     
+    @IBOutlet weak var nextPhotoBarButton: UIBarButtonItem!
+    @IBOutlet weak var previousPhotoBarButton: UIBarButtonItem!
+    
     // MARK: - PROPERTIES
     
     var currentPhoto: Photo!
-    var mediasArray: [Any]!
+    var mediasArray: [Any]! {
+        didSet {
+            if mediasArray.count <= 1 {
+                nextPhotoBarButton.isEnabled = false
+                previousPhotoBarButton.isEnabled = false
+            }
+        }
+    }
+    
     var currentIndex: Int!
     
-    // MARK: - Private
+    enum PhotoIteractionDirection {
+        case next
+        case previous
+    }
+    
     fileprivate var imageView: UIImageView!
     fileprivate var scrollView: UIScrollView!
     
+    // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -34,6 +50,54 @@ class PhotoViewController: UIViewController {
         
     }
     
+    // MARK: - HELPER METHODS
+    
+    func iterateAndSetPhoto(forDirection direction: PhotoIteractionDirection) -> Photo {
+        
+        var iteratedPhoto: Photo!
+        
+        if direction == .next {
+            if currentIndex == mediasArray.count - 1 {
+                iteratedPhoto = mediasArray.first as! Photo
+                currentIndex = 0
+            } else {
+                currentIndex! += 1
+                iteratedPhoto = mediasArray[currentIndex] as! Photo
+            }
+            
+        } else {
+            if currentIndex == 0 {
+                iteratedPhoto = mediasArray.last as! Photo
+                currentIndex = mediasArray.count - 1
+            } else {
+                currentIndex! -= 1
+                iteratedPhoto = mediasArray[currentIndex] as! Photo
+            }
+        }
+        
+        return iteratedPhoto
+    }
+    
+    // MARK: - ACTIONS
+    
+    @IBAction func actionNextPhotoTap() {
+        self.currentPhoto = iterateAndSetPhoto(forDirection: .next)
+        imageView.image = nil
+        downloadAndSetImage()
+        updateUI()
+    }
+    
+    @IBAction func actionPreviosPhotoTap() {
+        self.currentPhoto = iterateAndSetPhoto(forDirection: .previous)
+        imageView.image = nil
+
+        downloadAndSetImage()
+        updateUI()
+    }
+    
+    
+    // MARK: - DOWNLOAD METHODS
+
     func downloadAndSetImage() {
         let imageURL = URL(string: currentPhoto.photo_1280!)
         
@@ -53,12 +117,14 @@ class PhotoViewController: UIViewController {
         
         imageView.contentMode = .scaleAspectFit
         
-        imageView.af_setImage(withURL: imageURL!, placeholderImage: nil, filter: nil, progress: nil, progressQueue: DispatchQueue.main, imageTransition: UIImageView.ImageTransition.crossDissolve(0.4), runImageTransitionIfCached: true) { (response) in
-
+        imageView.af_setImage(withURL: imageURL!, placeholderImage: nil, filter: nil, progress: nil, progressQueue: DispatchQueue.main, imageTransition: UIImageView.ImageTransition.crossDissolve(0.3), runImageTransitionIfCached: true) { (response) in
+            
+            
         }
 
     }
     
+    // MARK: - UI METHODS
     func updateUI() {
         // take up the whole super view inner content
         scrollView = UIScrollView(frame: view.bounds)
@@ -67,7 +133,9 @@ class PhotoViewController: UIViewController {
         scrollView.contentSize = imageView.bounds.size	// the content size of the scroll view is the image size
         scrollView.delegate = self
         
-        recenterImage()
+        // !!!IMPORTANT!!!
+        // IF turn on - bug when mixed album and portrait photos
+//        recenterImage()
         
         // Set up the view hierarchy
         scrollView.addSubview(imageView)
@@ -108,7 +176,6 @@ class PhotoViewController: UIViewController {
     }
     
     // after the rotation
-    
     override func viewWillLayoutSubviews() {
         setZoomParametersForSize(scrollViewSize: scrollView.bounds.size)	// to determine landscape or portrait
         
