@@ -26,14 +26,16 @@ class FeedViewController: UIViewController {
     }
     
     var wallPosts: [WallPost] = []
-    let postsInRequest = 20
+    let postsInRequest = 10
 
+    var loadingData = false
 
     // MARK: - viewDidLoad
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.loadingData = true
         getPostsFromServer()
         
         tableView.delegate = self
@@ -43,14 +45,11 @@ class FeedViewController: UIViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         
         self.tableView.addInfiniteScrolling { 
-            print("GOT")
+            print("GO")
+            self.getPostsFromServer()
         }
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        tableView.triggerInfiniteScrolling()
-    }
-    
+
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         // To redraw Photos with new size after transition to portrait or landscape
@@ -62,10 +61,35 @@ class FeedViewController: UIViewController {
     // MARK: - API METHODS
     
     func getPostsFromServer() {
-        ServerManager.sharedManager.getGroupWall(forGroupID: groupID, offset: 0, count: 10) { (posts) in
+        ServerManager.sharedManager.getGroupWall(forGroupID: groupID, offset: self.wallPosts.count, count: postsInRequest) { (posts) in
             
-            self.wallPosts = posts as! [WallPost]
-            self.tableView.reloadData()
+            if posts.count > 0 {
+                
+                guard let posts = posts as? [WallPost] else { return }
+                
+                self.wallPosts.append(contentsOf: posts )
+                
+                var newPaths = [IndexPath]()
+                
+                var index = self.wallPosts.count - posts.count
+                
+                while index < self.wallPosts.count {
+                    
+                    let newIndPath = IndexPath(row: index, section: 0)
+                    newPaths.append(newIndPath)
+                    
+                    index += 1
+                }
+                
+                self.tableView.beginUpdates()
+                self.tableView.insertRows(at: newPaths, with: .fade)
+                self.tableView.endUpdates()
+                
+            }
+            
+            self.loadingData = false
+            self.tableView.infiniteScrollingView.stopAnimating()
+            
         }
     }
     
