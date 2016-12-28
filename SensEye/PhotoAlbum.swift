@@ -11,7 +11,7 @@ import Foundation
 class PhotoAlbum {
     
     var albumID: String!
-    var ownderID: String!
+    var ownerID: String!
     var albumTitle: String!
     var albumDescription: String!
     var albumSize: Int!
@@ -28,7 +28,7 @@ class PhotoAlbum {
         }
         
         if let ownderID = responseObject["owner_id"] as? Int {
-            self.ownderID = String(ownderID)
+            self.ownerID = String(ownderID)
         }
         
         if let albumTitle = responseObject["title"] as? String {
