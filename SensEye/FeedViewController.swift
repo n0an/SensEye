@@ -67,28 +67,19 @@ class FeedViewController: UIViewController {
             
             let destinationNavVC = segue.destination as! UINavigationController
             
-            
             let destinationVC = destinationNavVC.topViewController as! PhotoViewController
             
-            guard let senderTuple = sender as? (WallPost, Int) else {
+            guard let senderTuple = sender as? ([Photo], Int) else {
                 return
             }
             
-            let selectedPost = senderTuple.0
+            let photosArray = senderTuple.0
             let indexOfPhoto = senderTuple.1
             
-            if selectedPost.postAttachments[0] is Photo {
-                
-                destinationVC.currentPhoto = selectedPost.postAttachments[indexOfPhoto] as! Photo
-                destinationVC.mediasArray = selectedPost.postAttachments
-                destinationVC.currentIndex = indexOfPhoto
-                
-                
-            } else if let albumAttach = selectedPost.postAttachments[0] as? PhotoAlbum {
-                destinationVC.currentPhoto = albumAttach.albumThumbPhoto
-                destinationVC.mediasArray = [albumAttach.albumThumbPhoto!]
-                destinationVC.currentIndex = 0
-            }
+            
+            destinationVC.currentPhoto = photosArray[indexOfPhoto]
+            destinationVC.mediasArray = photosArray
+            destinationVC.currentIndex = indexOfPhoto
             
         }
     }
@@ -149,12 +140,28 @@ extension FeedViewController: FeedCellDelegate {
     
     func galleryImageViewDidTap(wallPost: WallPost, clickedPhotoIndex: Int) {
         
-        performSegue(withIdentifier: Storyboard.seguePhotoDisplayer, sender: (wallPost, clickedPhotoIndex))
-        
+        if wallPost.postAttachments[0] is Photo {
+            
+            performSegue(withIdentifier: Storyboard.seguePhotoDisplayer, sender: (wallPost.postAttachments as! [Photo], clickedPhotoIndex))
+
+            
+        } else if let albumAttach = wallPost.postAttachments[0] as? PhotoAlbum {
+            
+            ServerManager.sharedManager.getPhotos(forAlbumID: albumAttach.albumID, ownerID: albumAttach.ownerID, completed: { (result) in
+                
+                let photos = result as! [Photo]
+                
+                self.performSegue(withIdentifier: Storyboard.seguePhotoDisplayer, sender: (photos, clickedPhotoIndex))
+                
+            })
+            
+            
+        }
         
         
     }
 }
+
 
 
 
