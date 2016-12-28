@@ -15,6 +15,15 @@ let kPhoto_807 = "photo_807";
 let kPhoto_1280 = "photo_1280";
 let kPhoto_2560 = "photo_2560";
 
+enum PhotoResolution: Int {
+    case res75
+    case res130
+    case res604
+    case res807
+    case res1280
+    case res2560
+}
+
 class Photo {
     
     var width: Int!
@@ -78,9 +87,10 @@ class Photo {
         
         let resArray = [kPhoto_75, kPhoto_130, kPhoto_604, kPhoto_807, kPhoto_1280, kPhoto_2560]
         
-        var index = resArray.count - 1
         
-        while index > 0 {
+        var index = PhotoResolution.res2560.rawValue
+        
+        while index >= PhotoResolution.res130.rawValue {
             
             let res = resArray[index]
             
@@ -88,11 +98,10 @@ class Photo {
                 self.maxRes = currentRes
                 break
             }
-
+            
             index -= 1
             
         }
-
         
         
     }
