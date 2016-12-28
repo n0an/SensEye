@@ -28,6 +28,13 @@ class PhotoViewController: UIViewController {
         
         title = "TITLE"
         
+        downloadAndSetImage()
+        updateUI()
+
+        
+    }
+    
+    func downloadAndSetImage() {
         let imageURL = URL(string: currentPhoto.photo_1280!)
         
         let ratio = CGFloat(currentPhoto.width) / CGFloat(currentPhoto.height)
@@ -37,7 +44,7 @@ class PhotoViewController: UIViewController {
         if ratio > 1 {
             
             rect = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.width/ratio)
-
+            
         } else {
             rect = CGRect(x: 0, y: 0, width: view.bounds.height * ratio, height: view.bounds.height)
         }
@@ -46,11 +53,13 @@ class PhotoViewController: UIViewController {
         
         imageView.contentMode = .scaleAspectFit
         
-        imageView.af_setImage(withURL: imageURL!, placeholderImage: nil, filter: nil, progress: nil, progressQueue: DispatchQueue.main, imageTransition: UIImageView.ImageTransition.flipFromTop(0.4), runImageTransitionIfCached: true) { (response) in
-            print("INSIDE")
+        imageView.af_setImage(withURL: imageURL!, placeholderImage: nil, filter: nil, progress: nil, progressQueue: DispatchQueue.main, imageTransition: UIImageView.ImageTransition.crossDissolve(0.4), runImageTransitionIfCached: true) { (response) in
+
         }
-        
-        
+
+    }
+    
+    func updateUI() {
         // take up the whole super view inner content
         scrollView = UIScrollView(frame: view.bounds)
         scrollView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
