@@ -99,7 +99,26 @@ class PhotoViewController: UIViewController {
     // MARK: - DOWNLOAD METHODS
 
     func downloadAndSetImage() {
-        let imageURL = URL(string: currentPhoto.photo_1280!)
+        
+        // Checking device - iPad or iPhone, to select best resolution
+        
+        var linkToNeededRes: String!
+        
+        if traitCollection.horizontalSizeClass == .regular && traitCollection.verticalSizeClass == .regular {
+            
+            linkToNeededRes = currentPhoto.maxRes
+            
+        } else {
+            
+            if currentPhoto.photo_1280 != nil {
+                linkToNeededRes = currentPhoto.photo_1280
+            } else {
+                linkToNeededRes = currentPhoto.maxRes
+            }
+            
+        }
+        
+        let imageURL = URL(string: linkToNeededRes)
         
         let ratio = CGFloat(currentPhoto.width) / CGFloat(currentPhoto.height)
         
