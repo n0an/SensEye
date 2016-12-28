@@ -40,6 +40,33 @@ class PostPhotoGallery {
             
         }
         
+        //  Check of attachments array before start main loop. If occasionally, there's photo with width or height equals to 0 - remove this photo from attachments array
+
+        var index = 0
+        
+        while index < post.postAttachments.count {
+            
+            var photoObject: Photo!
+            
+            if let albumAttachment = post.postAttachments[index] as? PhotoAlbum {
+                
+                photoObject = albumAttachment.albumThumbPhoto
+                
+            } else if let photoAttachment = post.postAttachments[index] as? Photo {
+                
+                photoObject = photoAttachment
+            }
+            if photoObject.width == 0 || photoObject.height == 0 {
+                
+                post.postAttachments.remove(at: 0)
+                continue
+            }
+            
+            index += 1
+        }
+        
+        
+        
         // === PART 2. CALCULATIONS OF MAXIMUM SIZES FOR SQUARE GALLERY IMAGEVIEWS
         
         //  Calculation of Gallery ImageViews Maximum Sizes (depending on count of photos)
@@ -47,7 +74,7 @@ class PostPhotoGallery {
         var maxRequiredSizeOfImageInFirstRow: CGFloat = 0
         var maxRequiredSizeOfImageInSecondRow: CGFloat = 0
         
-        var maxAvailableSpaceToOperate = min(self.tableViewWidth, 1300)
+        let maxAvailableSpaceToOperate = min(self.tableViewWidth, 1300)
         
         
         
@@ -69,7 +96,7 @@ class PostPhotoGallery {
         
         // === PART 3. LOOP THROUGH PHOTOS IN ATTACHMENTS ARRAY AND HANDLE EACH PHOTO
         
-        var index = 0
+        index = 0
         
         var maxHeightFirstRow: CGFloat = 0
         var fullWidthFirstRow: CGFloat = 0
