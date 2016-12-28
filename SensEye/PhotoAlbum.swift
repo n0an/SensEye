@@ -29,6 +29,8 @@ class PhotoAlbum {
         
         if let albumID = responseObject["id"] as? String {
             self.albumID = albumID
+        } else if let albumID = responseObject["id"] as? Int {
+            self.albumID = String(albumID)
         }
         
         if let ownderID = responseObject["owner_id"] as? Int {

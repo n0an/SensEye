@@ -233,6 +233,10 @@ class PostPhotoGallery {
                     index -= 1
                 }
                 
+                if linkToNeededRes == nil {
+                    linkToNeededRes = photoObject.maxRes
+                }
+                
             }
             
             

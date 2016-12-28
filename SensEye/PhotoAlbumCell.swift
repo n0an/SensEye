@@ -26,21 +26,47 @@ class PhotoAlbumCell: UICollectionViewCell {
         
         albumTitle.text = self.album.albumTitle
         
-        var albumURLString: String?
-        
-        
-        if let albumThumbImageURLStr = album.albumThumbPhoto?.photo_604 {
-            albumURLString = albumThumbImageURLStr
+        ServerManager.sharedManager.getPhotos(forAlbumID: album.albumID, ownerID: groupID, offset: 0, count: 1) { (result) in
             
-        } else if let albumThumbImageURLStr = album.albumThumbImageURL {
-            albumURLString = albumThumbImageURLStr
-        }
-        
-        if let albumURLString = albumURLString {
+            guard let photos = result as? [Photo] else { return }
             
-            let imageURL = URL(string: albumURLString)
+            guard photos.count > 0 else { return }
             
-            albumThumbImageView.af_setImage(withURL: imageURL!)
+            let firstPhotoOfAlbum = photos.first
+            
+            var linkToNeededRes = firstPhotoOfAlbum?.photo_604
+            let neededRes: PhotoResolution = .res604
+            
+            // Looking for max resolution, if not found yet
+            if linkToNeededRes == nil {
+                
+                var index = neededRes.rawValue - 1
+                
+                while index >= PhotoResolution.res75.rawValue {
+                    
+                    let lessResKey = firstPhotoOfAlbum?.keysResArray[index]
+                    
+                    let lessResolution = firstPhotoOfAlbum?.resolutionDictionary[lessResKey!]
+                    
+                    if lessResolution != nil {
+                        linkToNeededRes = lessResolution!
+                        break
+                    }
+                    
+                    index -= 1
+                }
+                
+                if linkToNeededRes == nil {
+                    linkToNeededRes = firstPhotoOfAlbum?.maxRes
+                }
+                
+            }
+
+            let urlPhoto = URL(string: linkToNeededRes!)
+
+            self.albumThumbImageView.af_setImage(withURL: urlPhoto!)
+
+            
         }
         
         

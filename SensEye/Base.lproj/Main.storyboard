@@ -1558,7 +1558,7 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="280" height="380"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="r1" translatesAutoresizingMaskIntoConstraints="NO" id="kcN-5q-stY">
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="page" translatesAutoresizingMaskIntoConstraints="NO" id="kcN-5q-stY">
                                                                 <rect key="frame" x="0.0" y="0.0" width="280" height="380"/>
                                                             </imageView>
                                                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tcj-fs-4N0">
@@ -1701,6 +1701,7 @@
         <image name="icon-like" width="16" height="16"/>
         <image name="icon-share" width="16" height="16"/>
         <image name="p6" width="16" height="16"/>
+        <image name="page" width="240" height="380"/>
         <image name="placeholder" width="16" height="16"/>
         <image name="profile" width="16" height="16"/>
         <image name="profile1" width="806" height="674"/>
