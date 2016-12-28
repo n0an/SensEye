@@ -45,8 +45,13 @@ class FeedViewController: UIViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         
         self.tableView.addInfiniteScrolling { 
-            print("GO")
+            print("InfiniteScrolling GO")
             self.getPostsFromServer()
+        }
+        
+        self.tableView.addPullToRefresh { 
+            print("PullToRefresh GO")
+            self.refreshWall()
         }
     }
 
@@ -67,7 +72,7 @@ class FeedViewController: UIViewController {
                 
                 guard let posts = posts as? [WallPost] else { return }
                 
-                self.wallPosts.append(contentsOf: posts )
+                self.wallPosts.append(contentsOf: posts)
                 
                 var newPaths = [IndexPath]()
                 
@@ -91,6 +96,37 @@ class FeedViewController: UIViewController {
             self.tableView.infiniteScrollingView.stopAnimating()
             
         }
+    }
+    
+    func refreshWall() {
+        
+        if self.loadingData == false {
+            
+            self.loadingData = true
+            
+            ServerManager.sharedManager.getGroupWall(forGroupID: groupID, offset: 0, count: max(postsInRequest, self.wallPosts.count), completed: { (posts) in
+                
+                if posts.count > 0 {
+                    
+                    guard let posts = posts as? [WallPost] else { return }
+                    
+                    self.wallPosts.removeAll()
+                    
+                    self.wallPosts.append(contentsOf: posts)
+                    
+                    self.tableView.reloadData()
+                    
+                }
+                
+                self.loadingData = false
+                self.tableView.pullToRefreshView.stopAnimating()
+                
+            })
+            
+            
+        }
+        
+        
     }
     
     
