@@ -9,7 +9,7 @@
 import UIKit
 import Alamofire
 import AlamofireImage
-
+import SVPullToRefresh
 
 class FeedViewController: UIViewController {
     
@@ -26,23 +26,29 @@ class FeedViewController: UIViewController {
     }
     
     var wallPosts: [WallPost] = []
+    let postsInRequest = 20
+
 
     // MARK: - viewDidLoad
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        ServerManager.sharedManager.getGroupWall(forGroupID: "-55347641", offset: 0, count: 10) { (posts) in
-            
-            self.wallPosts = posts as! [WallPost]
-            self.tableView.reloadData()
-        }
+        getPostsFromServer()
         
         tableView.delegate = self
         tableView.dataSource = self
         
         tableView.estimatedRowHeight = Storyboard.rowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
+        
+        self.tableView.addInfiniteScrolling { 
+            print("GOT")
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        tableView.triggerInfiniteScrolling()
     }
     
     
@@ -53,8 +59,15 @@ class FeedViewController: UIViewController {
 
     
     
-    // MARK: - HELPER METHODS
+    // MARK: - API METHODS
     
+    func getPostsFromServer() {
+        ServerManager.sharedManager.getGroupWall(forGroupID: groupID, offset: 0, count: 10) { (posts) in
+            
+            self.wallPosts = posts as! [WallPost]
+            self.tableView.reloadData()
+        }
+    }
     
     
     // MARK: - ACTIONS
@@ -131,6 +144,7 @@ extension FeedViewController: UITableViewDelegate {
     
     
 }
+
 
 
 
