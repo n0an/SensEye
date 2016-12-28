@@ -16,9 +16,7 @@ class GalleriesCarouselViewController: UIViewController {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        for i in 0 ... 99 {
-            items.append(i)
-        }
+        
     }
 
     
@@ -36,16 +34,16 @@ class GalleriesCarouselViewController: UIViewController {
 
 
 
-extension GalleriesCarouselViewController: iCarouselDataSource {
-    
-    func numberOfItems(in carousel: iCarousel) -> Int {
-        return self.albums.count
-    }
-    
-}
-
-
-extension GalleriesCarouselViewController: iCarouselDelegate {
-    
-    
-}
+//extension GalleriesCarouselViewController: iCarouselDataSource {
+//    
+//    func numberOfItems(in carousel: iCarousel) -> Int {
+//        return self.albums.count
+//    }
+//    
+//}
+//
+//
+//extension GalleriesCarouselViewController: iCarouselDelegate {
+//    
+//    
+//}

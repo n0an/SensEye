@@ -11,6 +11,7 @@ import Foundation
 let URL_BASE = "https://api.vk.com/method"
 let URL_WALL_FEED = "/wall.get?"
 let URL_PHOTOS = "/photos.get?"
+let URL_PHOTO_ALBUMS = "/photos.getAlbums?"
 
 enum URL_PARAMS: String {
     
@@ -22,6 +23,7 @@ enum URL_PARAMS: String {
     case REV = "rev="
     case ALBUM_ID = "album_id="
     
+    case NEED_COVERS = "need_covers="
 }
 
 

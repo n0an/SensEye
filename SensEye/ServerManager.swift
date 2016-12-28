@@ -23,7 +23,7 @@ class ServerManager {
             "\(URL_PARAMS.OWNER_ID.rawValue)\(ownerID)&" +
             "\(URL_PARAMS.ALBUM_ID.rawValue)\(albumID)&" +
             "\(URL_PARAMS.REV.rawValue)0&" +
-        "\(URL_PARAMS.EXTENDED.rawValue)1"
+            "\(URL_PARAMS.EXTENDED.rawValue)1"
         
         
         if let offset = offset {
@@ -64,6 +64,41 @@ class ServerManager {
     }
     
     
+    
+    func getPhotoAlbums(forGroupID groupID: String, completed: @escaping DownloadComplete) {
+        
+        let url = "\(URL_BASE)\(URL_PHOTO_ALBUMS)" +
+            "\(URL_PARAMS.OWNER_ID.rawValue)\(groupID)&" +
+            "\(URL_PARAMS.NEED_COVERS.rawValue)1"
+        
+        let finalUrl = url + "&v=5.60"
+        
+        
+        Alamofire.request(finalUrl).responseJSON { (responseJson) in
+            
+            guard let responseRoot = responseJson.result.value as? [String: Any] else {return}
+            
+            guard let response = responseRoot["response"] as? [String: Any] else {return}
+            
+            guard let albumItemsArray = response["items"] as? [Any] else {
+                return
+            }
+            
+            var albumsArray: [PhotoAlbum] = []
+            
+            for item in albumItemsArray {
+                let albumItem = item as! [String: Any]
+                
+                let photoAlbum = PhotoAlbum(responseObject: albumItem)
+                
+                albumsArray.append(photoAlbum)
+            }
+            
+            completed(albumsArray)
+            
+        }
+        
+    }
     
     
     
