@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="kP9-3O-7UP">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="XUV-1z-m8F">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -1245,7 +1245,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="370" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dhK-hL-S59">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FeedCell" rowHeight="460" id="Ra5-In-1yI" customClass="FeedCell" customModule="SensEye" customModuleProvider="target">
@@ -1393,6 +1393,7 @@
                             <constraint firstItem="QvS-4e-jfm" firstAttribute="top" secondItem="dhK-hL-S59" secondAttribute="bottom" id="vha-Dz-bPD"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" systemItem="history" id="guo-4U-tIH"/>
                     <connections>
                         <outlet property="tableView" destination="dhK-hL-S59" id="AY8-4e-dcI"/>
                         <segue destination="Uuj-Kp-AHt" kind="presentation" identifier="showPhoto" id="9lc-HA-SpN"/>
@@ -1400,7 +1401,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iE8-b9-jbn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1089" y="912"/>
+            <point key="canvasLocation" x="2028" y="911.69415292353835"/>
         </scene>
         <!--Photo View Controller-->
         <scene sceneID="ilZ-KP-C3b">
@@ -1442,7 +1443,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V5K-mF-HhF" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Uex-tP-c8n" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2537" y="912"/>
+            <point key="canvasLocation" x="3574" y="912"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="DLy-Dc-2Pc">
@@ -1460,7 +1461,63 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bki-uX-bOi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1822" y="912"/>
+            <point key="canvasLocation" x="2760.8000000000002" y="911.69415292353835"/>
+        </scene>
+        <!--Data Source-->
+        <scene sceneID="vSU-mR-yod">
+            <objects>
+                <viewController id="N5i-IH-2cF" customClass="ViewController" customModule="SwiftExample" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ijk-YR-nx5"/>
+                        <viewControllerLayoutGuide type="bottom" id="BeK-cT-LZa"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="vvg-Qn-JpW">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EbO-BM-ndi" customClass="iCarousel">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="N5i-IH-2cF" id="M5u-NS-tEv"/>
+                                    <outlet property="delegate" destination="N5i-IH-2cF" id="UaT-2a-H4z"/>
+                                </connections>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="EbO-BM-ndi" firstAttribute="top" secondItem="vvg-Qn-JpW" secondAttribute="top" id="ISL-4i-6Dj"/>
+                            <constraint firstAttribute="bottom" secondItem="EbO-BM-ndi" secondAttribute="bottom" id="QYh-ra-6Kc"/>
+                            <constraint firstAttribute="trailing" secondItem="EbO-BM-ndi" secondAttribute="trailing" id="R8o-9k-S8T"/>
+                            <constraint firstItem="EbO-BM-ndi" firstAttribute="leading" secondItem="vvg-Qn-JpW" secondAttribute="leading" id="yG9-g7-AVo"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" systemItem="mostViewed" id="2mV-j1-7zd"/>
+                    <connections>
+                        <outlet property="carousel" destination="EbO-BM-ndi" id="MGh-uk-5K4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zvs-l5-Mvp" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2028" y="1703"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="A3C-Wr-iaq">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="XUV-1z-m8F" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="Vtb-kg-Jsv">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="kP9-3O-7UP" kind="relationship" relationship="viewControllers" id="1w4-ae-YNj"/>
+                        <segue destination="N5i-IH-2cF" kind="relationship" relationship="viewControllers" id="ClZ-fA-2Qg"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6Vu-px-Sac" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1088.8" y="911.69415292353835"/>
         </scene>
     </scenes>
     <resources>
