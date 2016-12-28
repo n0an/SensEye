@@ -33,7 +33,7 @@ class FeedViewController: UIViewController {
         super.viewDidLoad()
         
         ServerManager.sharedManager.getGroupWall(forGroupID: "-55347641", offset: 0, count: 10) { (posts) in
-            print(posts)
+            
             self.wallPosts = posts as! [WallPost]
             self.tableView.reloadData()
         }

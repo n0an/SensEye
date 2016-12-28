@@ -36,9 +36,6 @@ class ServerManager {
         
         let finalUrl = url + "&v=5.60"
         
-        //        print(finalUrl)
-        
-        
         Alamofire.request(finalUrl).responseJSON { (responseJson) in
             
             guard let responseRoot = responseJson.result.value as? [String: Any] else {return}
@@ -82,12 +79,8 @@ class ServerManager {
         
         
         let finalUrl = url + "&v=5.60"
-        
-//        print(finalUrl)
-        
+    
         Alamofire.request(finalUrl).responseJSON { (responseJson) in
-            
-//            print(responseJson)
             
             guard let responseRoot = responseJson.result.value as? [String: Any] else {return}
             

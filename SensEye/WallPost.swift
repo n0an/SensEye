@@ -29,28 +29,22 @@ class WallPost {
         if let postID = responseObject["id"] as? Int {
             
             self.postID = String(postID)
-            
-            print("===NAG=== self.postID = \(self.postID!)")
         }
         
         if let postText = responseObject["text"] as? String {
             
             self.postText = postText
-            
-            print("===NAG=== self.postText = \(self.postText!)")
 
         }
         
         if let postDate = responseObject["date"] as? Int {
             self.postDate = postDate
-            print("===NAG=== self.postDate = \(self.postDate!)")
 
         }
         
         if let postAuthorID = responseObject["from_id"] as? Int {
             self.postAuthorID = String(postAuthorID)
-            print("===NAG=== self.postAuthorID = \(self.postAuthorID!)")
-
+        
         }
         
         
@@ -59,7 +53,6 @@ class WallPost {
         
         if let postComments = commentsDict["count"] as? Int {
             self.postComments = String(postComments)
-            print("===NAG=== self.postComments = \(self.postComments!)")
             
         }
 
@@ -67,8 +60,7 @@ class WallPost {
         
         if let postLikes = likesDict["count"] as? Int {
             self.postLikes = String(postLikes)
-            print("===NAG=== self.postLikes = \(self.postLikes!)")
-
+        
         }
         
         

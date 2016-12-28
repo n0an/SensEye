@@ -24,22 +24,17 @@ class Group {
             
             self.groupID = String(groupID)
             
-            print("===NAG=== self.groupID = \(self.groupID!)")
         }
         
         if let groupName = responseObject["name"] as? String {
             
             self.groupName = groupName
             
-            print("===NAG=== self.groupName = \(self.groupName)")
-            
         }
         
         if let screenName = responseObject["screen_name"] as? String {
             
             self.screenName = screenName
-            
-            print("===NAG=== self.screenName = \(self.screenName!)")
             
         }
         

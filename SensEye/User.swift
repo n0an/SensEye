@@ -23,23 +23,18 @@ class User {
             
             self.userID = String(userID)
             
-            print("===NAG=== self.userID = \(self.userID!)")
         }
         
         if let firstName = responseObject["first_name"] as? String {
             
             self.firstName = firstName
             
-            print("===NAG=== self.firstName = \(self.firstName!)")
-            
         }
         
         if let lastName = responseObject["last_name"] as? String {
             
             self.lastName = lastName
-            
-            print("===NAG=== self.lastName = \(self.lastName!)")
-            
+
         }
         
         if let url50 = responseObject["photo_50"] as? String {

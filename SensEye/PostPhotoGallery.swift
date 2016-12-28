@@ -293,7 +293,6 @@ class PostPhotoGallery {
         
         postCell.galleryFirstRowLeadingConstraint.constant = (self.tableViewWidth - 2 * indentsCountFirstRow - fullWidthFirstRow) / 2
         
-        print("===NAG== postCell.galleryFirstRowLeadingConstraint.constant = \(postCell.galleryFirstRowLeadingConstraint.constant)")
         
         postCell.layoutIfNeeded()
         

@@ -93,7 +93,6 @@ class FeedCell: UITableViewCell {
     }
     
     func actionGlryImageViewDidTap(sender: UITapGestureRecognizer) {
-        print("===NAG=== actionGlryImageViewDidTap")
         
         guard let tappedImageView = sender.view as? UIImageView else {
             return
@@ -102,9 +101,7 @@ class FeedCell: UITableViewCell {
         if let clickedIndex = self.galleryImageViews.index(of: tappedImageView) {
             
             self.delegate?.galleryImageViewDidTap(wallPost: self.wallPost, clickedPhotoIndex: clickedIndex)
-            
         }
-        
         
     }
 

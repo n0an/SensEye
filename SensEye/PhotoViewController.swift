@@ -233,7 +233,7 @@ extension PhotoViewController : UIScrollViewDelegate {
     func scrollViewDidZoom(_ scrollView: UIScrollView) {
         // when the user finish zooming, we would want to check if we want to recenter
         // the image or not
-        print("scrollViewDidZoom")
+        
 
         recenterImage()
     }
@@ -241,7 +241,7 @@ extension PhotoViewController : UIScrollViewDelegate {
     // The image view is the subview of the scroll view that it should zoom
     
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
-        print("viewForZooming")
+
         return imageView
     }
     
