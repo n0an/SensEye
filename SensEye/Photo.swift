@@ -38,6 +38,7 @@ class Photo {
     
     var maxRes: String?
     
+    var keysResArray: [String]
     var resolutionDictionary: [String: String?]!
 
     
@@ -85,14 +86,14 @@ class Photo {
         ]
         
         
-        let resArray = [kPhoto_75, kPhoto_130, kPhoto_604, kPhoto_807, kPhoto_1280, kPhoto_2560]
+        self.keysResArray = [kPhoto_75, kPhoto_130, kPhoto_604, kPhoto_807, kPhoto_1280, kPhoto_2560]
         
         
         var index = PhotoResolution.res2560.rawValue
         
         while index >= PhotoResolution.res130.rawValue {
             
-            let res = resArray[index]
+            let res = self.keysResArray[index]
             
             if let currentRes = resolutionDictionary[res] {
                 self.maxRes = currentRes

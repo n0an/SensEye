@@ -49,7 +49,7 @@ class PostPhotoGallery {
         
         var maxAvailableSpaceToOperate = min(self.tableViewWidth, 1300)
         
-
+        
         
         if post.postAttachments.count <= firstRowCount {
             // If we have only 1 photo - use only first row
@@ -166,29 +166,54 @@ class PostPhotoGallery {
             
             // * 4. Loading and setting image
             
-            var linkToNeededRes: String
+            var linkToNeededRes: String?
+            var neededRes: PhotoResolution
             
             
             if index < firstRowCount {
                 
                 if maxRequiredSizeOfImageInFirstRow > 600 {
-                    linkToNeededRes = photoObject.photo_807!
-                    
+                    linkToNeededRes = photoObject.photo_807
+                    neededRes = .res807
                 } else {
-                    linkToNeededRes = photoObject.photo_604!
+                    linkToNeededRes = photoObject.photo_604
+                    neededRes = .res604
                 }
                 
             } else {
                 if maxRequiredSizeOfImageInSecondRow > 600 {
-                    linkToNeededRes = photoObject.photo_807!
+                    linkToNeededRes = photoObject.photo_807
+                    neededRes = .res807
                     
                 } else {
-                    linkToNeededRes = photoObject.photo_604!
+                    linkToNeededRes = photoObject.photo_604
+                    neededRes = .res604
                 }
             }
             
+            // Looking for max resolution, if not found yet
+            if linkToNeededRes == nil {
+                
+                var index = neededRes.rawValue - 1
+                
+                while index >= PhotoResolution.res75.rawValue {
+                    
+                    let lessResKey = photoObject.keysResArray[index]
+                    
+                    let lessResolution = photoObject.resolutionDictionary[lessResKey]
+                    
+                    if lessResolution != nil {
+                        linkToNeededRes = lessResolution!
+                        break
+                    }
+                    
+                    index -= 1
+                }
+                
+            }
             
-            let urlPhoto = URL(string: linkToNeededRes)
+            
+            let urlPhoto = URL(string: linkToNeededRes!)
             
             currentImageView.af_setImage(withURL: urlPhoto!)
             
