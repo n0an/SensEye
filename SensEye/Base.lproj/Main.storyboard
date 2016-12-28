@@ -1466,7 +1466,7 @@
         <!--Data Source-->
         <scene sceneID="vSU-mR-yod">
             <objects>
-                <viewController id="N5i-IH-2cF" customClass="ViewController" customModule="SwiftExample" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="N5i-IH-2cF" customClass="GalleriesCarouselViewController" customModule="SensEye" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ijk-YR-nx5"/>
                         <viewControllerLayoutGuide type="bottom" id="BeK-cT-LZa"/>
@@ -1499,7 +1499,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zvs-l5-Mvp" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2028" y="1703"/>
+            <point key="canvasLocation" x="2761" y="1711"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="A3C-Wr-iaq">
@@ -1512,7 +1512,6 @@
                     </tabBar>
                     <connections>
                         <segue destination="kP9-3O-7UP" kind="relationship" relationship="viewControllers" id="1w4-ae-YNj"/>
-                        <segue destination="N5i-IH-2cF" kind="relationship" relationship="viewControllers" id="ClZ-fA-2Qg"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Vu-px-Sac" userLabel="First Responder" sceneMemberID="firstResponder"/>
