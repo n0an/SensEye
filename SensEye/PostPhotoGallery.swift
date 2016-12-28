@@ -81,16 +81,16 @@ class PostPhotoGallery {
         if post.postAttachments.count <= firstRowCount {
             // If we have only 1 photo - use only first row
             
-            maxRequiredSizeOfImageInFirstRow = maxAvailableSpaceToOperate
+            maxRequiredSizeOfImageInFirstRow = min(800, maxAvailableSpaceToOperate) // Limit to 800
             
         } else {
             // If we have more than 2 photos - use both rows of Gallery
             
-            maxRequiredSizeOfImageInFirstRow = maxAvailableSpaceToOperate
+            maxRequiredSizeOfImageInFirstRow = min(800, maxAvailableSpaceToOperate)
 
             maxRequiredSizeOfImageInSecondRow = maxAvailableSpaceToOperate / CGFloat(min(maxPhotos, post.postAttachments.count - firstRowCount))
             
-            
+            maxRequiredSizeOfImageInSecondRow = min(800, maxRequiredSizeOfImageInSecondRow) // Limit to 800
         }
         
         
@@ -102,12 +102,12 @@ class PostPhotoGallery {
         var fullWidthFirstRow: CGFloat = 0
         var fullWidthSecondRow: CGFloat = 0
         
+        // *********^^^^^^^ MAIN LOOP FOR STARTS HERE ^^^^^^^****************
+
         while index < min(maxPhotos, post.postAttachments.count) {
-            
             
             var photoObject: Photo!
 
-            
             if let albumAttachment = post.postAttachments[index] as? PhotoAlbum {
                 
                 if let photoAlbumThumb = albumAttachment.albumThumbPhoto {
@@ -118,10 +118,7 @@ class PostPhotoGallery {
                 photoObject = photoAttachment
             }
             
-            
             // * 1. Calculating width and height of current photo, according to calculated maxSize of square ImageView. If there's portrait photo - currentHeight = maxSize, if album oriented - currentWidth = maxSize
-            
-            
             
             let ratio: CGFloat = CGFloat(photoObject.width) / CGFloat(photoObject.height)
             
@@ -172,13 +169,11 @@ class PostPhotoGallery {
             }
             
             // * 2. Calculating height of FirstRow to get know value for gallerySecondRowTopConstraint
-            
             if heightOfCurrentPhoto > maxHeightFirstRow && index < firstRowCount {
                 maxHeightFirstRow = heightOfCurrentPhoto
             }
             
             // * 3. Setting width and height constraints for current photo and setting frame
-            
             let photoHightConstraint = postCell.photoHeights[index]
             let photoWidthConstraint = postCell.photoWidths[index]
             
@@ -206,6 +201,7 @@ class PostPhotoGallery {
                     linkToNeededRes = photoObject.photo_604
                     neededRes = .res604
                 }
+                
                 
             } else {
                 if maxRequiredSizeOfImageInSecondRow > 600 {
@@ -249,6 +245,8 @@ class PostPhotoGallery {
             
             index += 1
         }
+        // *********$$$$$$$$ MAIN LOOP FOR ENDS HERE $$$$$$$****************
+
         
         
         // === PART 4. LAST PREPARATIONS, SETTING GLOBAL GALLERY INSETS, COLLAPSING UNUSED IMAGEVIEWS
