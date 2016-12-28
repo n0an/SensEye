@@ -72,23 +72,32 @@ class FeedViewController: UIViewController {
                 
                 guard let posts = posts as? [WallPost] else { return }
                 
-                self.wallPosts.append(contentsOf: posts)
-                
-                var newPaths = [IndexPath]()
-                
-                var index = self.wallPosts.count - posts.count
-                
-                while index < self.wallPosts.count {
+                if self.wallPosts.count == 0 {
                     
-                    let newIndPath = IndexPath(row: index, section: 0)
-                    newPaths.append(newIndPath)
+                    self.wallPosts = posts
+                    self.tableView.reloadData()
                     
-                    index += 1
+                } else {
+                    
+                    self.wallPosts.append(contentsOf: posts)
+                    
+                    var newPaths = [IndexPath]()
+                    
+                    var index = self.wallPosts.count - posts.count
+                    
+                    while index < self.wallPosts.count {
+                        
+                        let newIndPath = IndexPath(row: index, section: 0)
+                        newPaths.append(newIndPath)
+                        
+                        index += 1
+                    }
+                    
+                    self.tableView.beginUpdates()
+                    self.tableView.insertRows(at: newPaths, with: .fade)
+                    self.tableView.endUpdates()
                 }
                 
-                self.tableView.beginUpdates()
-                self.tableView.insertRows(at: newPaths, with: .fade)
-                self.tableView.endUpdates()
                 
             }
             
