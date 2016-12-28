@@ -1513,7 +1513,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="kP9-3O-7UP" kind="relationship" relationship="viewControllers" id="1w4-ae-YNj"/>
-                        <segue destination="0Gm-Zt-6Vl" kind="relationship" relationship="viewControllers" id="pOc-l2-fg1"/>
+                        <segue destination="Gd6-ET-ak5" kind="relationship" relationship="viewControllers" id="PuM-m3-0IQ"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Vu-px-Sac" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1684,6 +1684,93 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VnZ-DY-gxF" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2028" y="1662"/>
+        </scene>
+        <!--Walkthrough Content View Controller-->
+        <scene sceneID="jCI-jY-IIr">
+            <objects>
+                <viewController storyboardIdentifier="WalkthroughContentViewController" id="Sgt-6H-LI5" customClass="WalkthroughContentViewController" customModule="SensEye" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="9c9-0z-fbd"/>
+                        <viewControllerLayoutGuide type="bottom" id="quT-pp-o8j"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wRc-re-CR4">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Personalize" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vvM-T6-FKF">
+                                <rect key="frame" x="112" y="28" width="152" height="35"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="29"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0jT-xm-sjx">
+                                <rect key="frame" x="37" y="79" width="300" height="232"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="0jT-xm-sjx" secondAttribute="height" multiplier="75:58" id="1Z7-Ga-Ha0"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pin your favorite restaurants and create your own food guide" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C69-i2-C0f">
+                                <rect key="frame" x="47" y="319" width="282" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="282" id="PFL-DG-azS"/>
+                                    <constraint firstAttribute="height" constant="64" id="l8g-D9-ef3"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="4Os-72-V31">
+                                <rect key="frame" x="168" y="627" width="39" height="37"/>
+                            </pageControl>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Cw-yG-8Lq">
+                                <rect key="frame" x="320" y="630" width="39" height="30"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
+                                <state key="normal" title="NEXT">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="nextButtonTappedWithSender:" destination="Sgt-6H-LI5" eventType="touchUpInside" id="ZYI-gn-dDX"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.75294117650000003" green="0.22352941179999999" blue="0.16862745100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="4Os-72-V31" firstAttribute="centerX" secondItem="wRc-re-CR4" secondAttribute="centerX" id="6GF-ma-CkG"/>
+                            <constraint firstItem="0jT-xm-sjx" firstAttribute="leading" secondItem="wRc-re-CR4" secondAttribute="leadingMargin" constant="21" id="6qY-bH-Umw"/>
+                            <constraint firstItem="quT-pp-o8j" firstAttribute="top" secondItem="4Os-72-V31" secondAttribute="bottom" constant="3" id="9C3-2m-Qve"/>
+                            <constraint firstItem="C69-i2-C0f" firstAttribute="top" secondItem="0jT-xm-sjx" secondAttribute="bottom" constant="8" id="CwH-wH-EIV"/>
+                            <constraint firstItem="vvM-T6-FKF" firstAttribute="top" secondItem="9c9-0z-fbd" secondAttribute="bottom" constant="8" id="IVs-B7-EsH"/>
+                            <constraint firstItem="C69-i2-C0f" firstAttribute="centerX" secondItem="wRc-re-CR4" secondAttribute="centerX" id="PRo-LG-h7c"/>
+                            <constraint firstItem="vvM-T6-FKF" firstAttribute="centerX" secondItem="wRc-re-CR4" secondAttribute="centerX" id="RJK-Dj-6gD"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="0jT-xm-sjx" secondAttribute="trailing" constant="22" id="dUh-tg-AKQ"/>
+                            <constraint firstItem="0jT-xm-sjx" firstAttribute="top" secondItem="vvM-T6-FKF" secondAttribute="bottom" constant="16" id="fF6-hB-qH6"/>
+                            <constraint firstItem="7Cw-yG-8Lq" firstAttribute="trailing" secondItem="wRc-re-CR4" secondAttribute="trailingMargin" id="rnb-Ay-pZg"/>
+                            <constraint firstItem="quT-pp-o8j" firstAttribute="top" secondItem="7Cw-yG-8Lq" secondAttribute="bottom" constant="7" id="zEg-dw-EMc"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="contentImageView" destination="0jT-xm-sjx" id="Psz-ND-DlC"/>
+                        <outlet property="contentLabel" destination="C69-i2-C0f" id="jnP-bK-FbW"/>
+                        <outlet property="forwardButton" destination="7Cw-yG-8Lq" id="LGg-ku-LWi"/>
+                        <outlet property="headingLabel" destination="vvM-T6-FKF" id="iys-UT-bIT"/>
+                        <outlet property="pageControl" destination="4Os-72-V31" id="qnP-OL-0wT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="X5T-gt-NlR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2028" y="2409"/>
+        </scene>
+        <!--Walkthrough Page View Controller-->
+        <scene sceneID="cac-u6-lMO">
+            <objects>
+                <pageViewController storyboardIdentifier="WalkthroughController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="Gd6-ET-ak5" customClass="WalkthroughPageViewController" customModule="SensEye" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" systemItem="search" id="e44-6C-xkS">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
+                    </tabBarItem>
+                </pageViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nk7-Ql-VuE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1310" y="2409"/>
         </scene>
     </scenes>
     <resources>
