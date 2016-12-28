@@ -17,7 +17,7 @@ class PhotoViewController: UIViewController {
     // MARK: - PROPERTIES
     
     var currentPhoto: Photo!
-    var mediasArray: [Any]! {
+    var mediasArray: [Photo]! {
         didSet {
             if mediasArray.count <= 1 {
                 nextPhotoBarButton.isEnabled = false
@@ -42,7 +42,7 @@ class PhotoViewController: UIViewController {
         
         self.navigationController?.hidesBarsOnTap = true
         
-        title = "TITLE"
+        title = ""
         
         downloadAndSetImage()
         updateUI()
@@ -58,20 +58,20 @@ class PhotoViewController: UIViewController {
         
         if direction == .next {
             if currentIndex == mediasArray.count - 1 {
-                iteratedPhoto = mediasArray.first as! Photo
+                iteratedPhoto = mediasArray.first
                 currentIndex = 0
             } else {
                 currentIndex! += 1
-                iteratedPhoto = mediasArray[currentIndex] as! Photo
+                iteratedPhoto = mediasArray[currentIndex]
             }
             
         } else {
             if currentIndex == 0 {
-                iteratedPhoto = mediasArray.last as! Photo
+                iteratedPhoto = mediasArray.last
                 currentIndex = mediasArray.count - 1
             } else {
                 currentIndex! -= 1
-                iteratedPhoto = mediasArray[currentIndex] as! Photo
+                iteratedPhoto = mediasArray[currentIndex]
             }
         }
         
@@ -93,6 +93,10 @@ class PhotoViewController: UIViewController {
 
         downloadAndSetImage()
         updateUI()
+    }
+    
+    func gestureClose() {
+        dismiss(animated: true, completion: nil)
     }
     
     
@@ -140,6 +144,21 @@ class PhotoViewController: UIViewController {
             
             
         }
+        
+        let rightSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(actionPreviosPhotoTap))
+        let leftSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(actionNextPhotoTap))
+        
+        let downSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(gestureClose))
+
+        rightSwipeGesture.direction = .right
+        leftSwipeGesture.direction = .left
+        downSwipeGesture.direction = .down
+        
+        imageView.isUserInteractionEnabled = true
+        imageView.addGestureRecognizer(rightSwipeGesture)
+        imageView.addGestureRecognizer(leftSwipeGesture)
+        imageView.addGestureRecognizer(downSwipeGesture)
+
 
     }
     
@@ -153,7 +172,7 @@ class PhotoViewController: UIViewController {
         scrollView.delegate = self
         
         // !!!IMPORTANT!!!
-        // IF turn on - bug when mixed album and portrait photos
+        // IF turn on - bug when mixed landscape and portrait photos
 //        recenterImage()
         
         // Set up the view hierarchy
@@ -214,12 +233,15 @@ extension PhotoViewController : UIScrollViewDelegate {
     func scrollViewDidZoom(_ scrollView: UIScrollView) {
         // when the user finish zooming, we would want to check if we want to recenter
         // the image or not
+        print("scrollViewDidZoom")
+
         recenterImage()
     }
     
     // The image view is the subview of the scroll view that it should zoom
     
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        print("viewForZooming")
         return imageView
     }
     
