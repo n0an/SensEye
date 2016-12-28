@@ -10,6 +10,7 @@ import Foundation
 
 let URL_BASE = "https://api.vk.com/method"
 let URL_WALL_FEED = "/wall.get?"
+let URL_PHOTOS = "/photos.get?"
 
 enum URL_PARAMS: String {
     
@@ -18,13 +19,14 @@ enum URL_PARAMS: String {
     case OFFSET = "offset="
     case EXTENDED = "extended="
     
+    case REV = "rev="
+    case ALBUM_ID = "album_id="
     
 }
 
 
 
-typealias DownloadComplete = ([WallPost]) -> Void
-
+typealias DownloadComplete = ([Any]) -> Void
 
 
 
