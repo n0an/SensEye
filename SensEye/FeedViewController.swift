@@ -29,7 +29,17 @@ class FeedViewController: UIViewController {
     let postsInRequest = 10
 
     var loadingData = false
-
+    
+    fileprivate var slideRightTransitionAnimator = SlideRightTransitionAnimator()
+    fileprivate var popTransitionAnimator = PopTransitionAnimator()
+    fileprivate var slideRightThenPopTransitionAnimator = SlideRightThenPopTransitionAnimator()
+    
+    let slideDownTransition = SlideDownTransitionAnimator()
+    let slideRightTransition = SlideRightTransitionAnimator()
+    let popTransition = PopTransitionAnimator()
+    let rotateTransition = RotateTransitionAnimator()
+    
+    
     // MARK: - viewDidLoad
 
     override func viewDidLoad() {
@@ -149,7 +159,17 @@ class FeedViewController: UIViewController {
             
             let destinationNavVC = segue.destination as! UINavigationController
             
+            destinationNavVC.transitioningDelegate = popTransitionAnimator
+            
+//            destinationNavVC.transitioningDelegate = slideRightThenPopTransitionAnimator
+            
+//            destinationNavVC.transitioningDelegate = slideRightTransitionAnimator
+            
             let destinationVC = destinationNavVC.topViewController as! PhotoViewController
+            
+            
+//
+            
             
             guard let senderTuple = sender as? ([Photo], Int) else {
                 return
@@ -162,6 +182,8 @@ class FeedViewController: UIViewController {
             destinationVC.currentPhoto = photosArray[indexOfPhoto]
             destinationVC.mediasArray = photosArray
             destinationVC.currentIndex = indexOfPhoto
+            
+            
             
         }
     }
