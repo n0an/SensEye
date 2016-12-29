@@ -30,14 +30,14 @@ class FeedViewController: UIViewController {
 
     var loadingData = false
     
-    fileprivate var slideRightTransitionAnimator = SlideRightTransitionAnimator()
-    fileprivate var popTransitionAnimator = PopTransitionAnimator()
-    fileprivate var slideRightThenPopTransitionAnimator = SlideRightThenPopTransitionAnimator()
+    let slideRightTransitionAnimator = SlideRightTransitionAnimator()
+    let popTransitionAnimator = PopTransitionAnimator()
+    let slideRightThenPopTransitionAnimator = SlideRightThenPopTransitionAnimator()
     
-    let slideDownTransition = SlideDownTransitionAnimator()
-    let slideRightTransition = SlideRightTransitionAnimator()
-    let popTransition = PopTransitionAnimator()
-    let rotateTransition = RotateTransitionAnimator()
+    let acSlideDownTransition = ACSlideDownTransitionAnimator()
+    let acSlideRightTransition = ACSlideRightTransitionAnimator()
+    let acPopTransition = ACPopTransitionAnimator()
+    let acRotateTransition = ACRotateTransitionAnimator()
     
     
     // MARK: - viewDidLoad
@@ -159,11 +159,16 @@ class FeedViewController: UIViewController {
             
             let destinationNavVC = segue.destination as! UINavigationController
             
-            destinationNavVC.transitioningDelegate = popTransitionAnimator
+//            destinationNavVC.transitioningDelegate = popTransitionAnimator
             
 //            destinationNavVC.transitioningDelegate = slideRightThenPopTransitionAnimator
             
 //            destinationNavVC.transitioningDelegate = slideRightTransitionAnimator
+            
+            destinationNavVC.transitioningDelegate = acRotateTransition
+            
+            
+            
             
             let destinationVC = destinationNavVC.topViewController as! PhotoViewController
             
