@@ -234,7 +234,11 @@ extension FeedViewController: FeedCellDelegate {
                 
                 let photos = result as! [Photo]
                 
-                self.performSegue(withIdentifier: Storyboard.seguePhotoDisplayer, sender: (photos, clickedPhotoIndex))
+                // Calculating index of clicked photo in album
+                
+                let indexOfClickedPhotoInAlbum = photos.index(of: albumAttach.albumThumbPhoto!)
+                
+                self.performSegue(withIdentifier: Storyboard.seguePhotoDisplayer, sender: (photos, indexOfClickedPhotoInAlbum ?? clickedPhotoIndex))
                 
             })
             

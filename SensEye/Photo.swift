@@ -26,6 +26,7 @@ enum PhotoResolution: Int {
 
 class Photo {
     
+    var photoID: String!
     var width: Int!
     var height: Int!
     
@@ -43,6 +44,12 @@ class Photo {
 
     
     init(responseObject: [String: Any]) {
+        
+        if let photoID = responseObject["id"] as? String {
+            self.photoID = photoID
+        } else if let photoID = responseObject["id"] as? Int {
+            self.photoID = String(photoID)
+        }
         
         if let width = responseObject["width"] as? Int {
             self.width = width
@@ -108,6 +115,26 @@ class Photo {
     }
     
 }
+
+
+
+extension Photo: Equatable { }
+
+func ==(lhs: Photo, rhs: Photo) -> Bool {
+    return lhs.photoID == rhs.photoID
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

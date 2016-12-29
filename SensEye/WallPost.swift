@@ -109,6 +109,67 @@ class WallPost {
 
 
 
+extension WallPost: Equatable { }
+
+func ==(lhs: WallPost, rhs: WallPost) -> Bool {
+    return lhs.postID == rhs.postID
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
