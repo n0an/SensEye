@@ -12,17 +12,10 @@ class WalkthroughPageViewController: UIPageViewController, UIPageViewControllerD
 
     var albums: [PhotoAlbum] = []
     
-    
-    var pageHeadings = ["Personalize", "Locate", "Discover"]
-    var pageImages = ["foodpin-intro-1", "foodpin-intro-2", "foodpin-intro-3"]
-    var pageContent = ["Pin your favorite restaurants and create your own food guide",
-                       "Search and locate your favourite restaurant on Maps",
-                       "Find restaurants pinned by your friends and other foodies around the world"]
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
         dataSource = self
         
         getAlbumsFromServer()
@@ -37,7 +30,6 @@ class WalkthroughPageViewController: UIPageViewController, UIPageViewControllerD
             
             self.albums = albums
             
-            
             // Create the first walkthrough screen
             if let startingViewController = self.contentViewController(at: 0) {
                 self.setViewControllers([startingViewController], direction: .forward, animated: true, completion: nil)
@@ -50,21 +42,16 @@ class WalkthroughPageViewController: UIPageViewController, UIPageViewControllerD
     // MARK: - Helper Methods
     
     func contentViewController(at index: Int) -> WalkthroughContentViewController? {
-        if index < 0 || index >= pageHeadings.count {
+        if index < 0 || index >= self.albums.count {
             return nil
         }
         
         // Create a new view controller and pass suitable data.
         if let pageContentViewController = storyboard?.instantiateViewController(withIdentifier: "WalkthroughContentViewController") as? WalkthroughContentViewController {
             
+            pageContentViewController.index = index
+            pageContentViewController.totalAlbums = self.albums.count
             pageContentViewController.album = self.albums[index]
-            
-//
-//            
-//            pageContentViewController.imageFile = pageImages[index]
-//            pageContentViewController.heading = pageHeadings[index]
-//            pageContentViewController.content = pageContent[index]
-//            pageContentViewController.index = index
             
             return pageContentViewController
         }
@@ -80,6 +67,7 @@ class WalkthroughPageViewController: UIPageViewController, UIPageViewControllerD
     
     
     // MARK: - UIPageViewControllerDataSource Methods
+    
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         

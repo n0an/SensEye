@@ -70,6 +70,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1864A9E11E157E0B0058D2E2 /* AlbumsPageVC */ = {
+			isa = PBXGroup;
+			children = (
+				180231CC1E1456C600FA8322 /* WalkthroughContentViewController.swift */,
+				180231CD1E1456C600FA8322 /* WalkthroughPageViewController.swift */,
+			);
+			name = AlbumsPageVC;
+			sourceTree = "<group>";
+		};
+		1864A9E21E157E270058D2E2 /* AlbumsCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				180231C81E1443E400FA8322 /* PhotoAlbumsViewController.swift */,
+				180231CA1E14474100FA8322 /* PhotoAlbumCell.swift */,
+			);
+			name = AlbumsCollectionView;
+			sourceTree = "<group>";
+		};
+		1864A9E31E157E4A0058D2E2 /* AlbumsICarousel */ = {
+			isa = PBXGroup;
+			children = (
+				180231C61E140BE900FA8322 /* GalleriesCarouselViewController.swift */,
+			);
+			name = AlbumsICarousel;
+			sourceTree = "<group>";
+		};
 		18AA37C41E1053F700D5BCB1 = {
 			isa = PBXGroup;
 			children = (
@@ -122,7 +148,6 @@
 			children = (
 				188C04F91E1074D6008B58EB /* FeedCell.swift */,
 				18FC62621E11545D00E25A18 /* PostPhotoGallery.swift */,
-				180231CA1E14474100FA8322 /* PhotoAlbumCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -131,11 +156,10 @@
 			isa = PBXGroup;
 			children = (
 				188C04F71E1074C8008B58EB /* FeedViewController.swift */,
-				180231C61E140BE900FA8322 /* GalleriesCarouselViewController.swift */,
 				180231C41E12FC1D00FA8322 /* PhotoViewController.swift */,
-				180231C81E1443E400FA8322 /* PhotoAlbumsViewController.swift */,
-				180231CC1E1456C600FA8322 /* WalkthroughContentViewController.swift */,
-				180231CD1E1456C600FA8322 /* WalkthroughPageViewController.swift */,
+				1864A9E31E157E4A0058D2E2 /* AlbumsICarousel */,
+				1864A9E21E157E270058D2E2 /* AlbumsCollectionView */,
+				1864A9E11E157E0B0058D2E2 /* AlbumsPageVC */,
 			);
 			name = Controller;
 			sourceTree = "<group>";

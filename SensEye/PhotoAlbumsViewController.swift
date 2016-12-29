@@ -62,11 +62,7 @@ class PhotoAlbumsViewController: UIViewController {
             
         }
     }
-    
-    
-    
-    
-    
+   
 
 }
 
