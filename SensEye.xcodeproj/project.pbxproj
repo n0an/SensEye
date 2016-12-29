@@ -70,30 +70,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1864A9E11E157E0B0058D2E2 /* AlbumsPageVC */ = {
+		1864A9E11E157E0B0058D2E2 /* 03. AlbumsPageVC */ = {
 			isa = PBXGroup;
 			children = (
 				180231CC1E1456C600FA8322 /* AlbumsContentViewController.swift */,
 				180231CD1E1456C600FA8322 /* AlbumsPageViewController.swift */,
 			);
-			name = AlbumsPageVC;
+			name = "03. AlbumsPageVC";
 			sourceTree = "<group>";
 		};
-		1864A9E21E157E270058D2E2 /* AlbumsCollectionView */ = {
+		1864A9E21E157E270058D2E2 /* 02. AlbumsCollectionView */ = {
 			isa = PBXGroup;
 			children = (
 				180231C81E1443E400FA8322 /* PhotoAlbumsViewController.swift */,
 				180231CA1E14474100FA8322 /* PhotoAlbumCell.swift */,
 			);
-			name = AlbumsCollectionView;
+			name = "02. AlbumsCollectionView";
 			sourceTree = "<group>";
 		};
-		1864A9E31E157E4A0058D2E2 /* AlbumsICarousel */ = {
+		1864A9E31E157E4A0058D2E2 /* 01. AlbumsICarousel */ = {
 			isa = PBXGroup;
 			children = (
 				180231C61E140BE900FA8322 /* GalleriesCarouselViewController.swift */,
 			);
-			name = AlbumsICarousel;
+			name = "01. AlbumsICarousel";
+			sourceTree = "<group>";
+		};
+		1864A9E41E158E5A0058D2E2 /* AlbumsGallery */ = {
+			isa = PBXGroup;
+			children = (
+				1864A9E31E157E4A0058D2E2 /* 01. AlbumsICarousel */,
+				1864A9E21E157E270058D2E2 /* 02. AlbumsCollectionView */,
+				1864A9E11E157E0B0058D2E2 /* 03. AlbumsPageVC */,
+			);
+			name = AlbumsGallery;
 			sourceTree = "<group>";
 		};
 		18AA37C41E1053F700D5BCB1 = {
@@ -157,9 +167,7 @@
 			children = (
 				188C04F71E1074C8008B58EB /* FeedViewController.swift */,
 				180231C41E12FC1D00FA8322 /* PhotoViewController.swift */,
-				1864A9E31E157E4A0058D2E2 /* AlbumsICarousel */,
-				1864A9E21E157E270058D2E2 /* AlbumsCollectionView */,
-				1864A9E11E157E0B0058D2E2 /* AlbumsPageVC */,
+				1864A9E41E158E5A0058D2E2 /* AlbumsGallery */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
