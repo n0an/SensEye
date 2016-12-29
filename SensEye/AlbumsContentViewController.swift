@@ -1,20 +1,16 @@
-//
-//  WalkthroughContentViewController.swift
-//  FoodPin
-//
-//  Created by Simon Ng on 18/8/2016.
-//  Copyright © 2016 AppCoda. All rights reserved.
-//
 
 import UIKit
 
-class WalkthroughContentViewController: UIViewController {
+class AlbumsContentViewController: UIViewController {
     
     @IBOutlet var headingLabel: UILabel!
     @IBOutlet var contentLabel: UILabel!
     @IBOutlet var contentImageView: UIImageView!
     @IBOutlet var pageControl: UIPageControl!
     @IBOutlet var forwardButton: UIButton!
+    
+    @IBOutlet weak var visualEffectView: UIVisualEffectView!
+    
     
     var index = 0
     var heading = ""
@@ -27,18 +23,23 @@ class WalkthroughContentViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        pageControl.currentPage = index
+        pageControl.numberOfPages = totalAlbums
         
         updateUI()
         
-        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+     
     }
     
     func updateUI() {
         
-        contentLabel.text = self.album.albumTitle
-        pageControl.numberOfPages = totalAlbums
+        pageControl.currentPage = index
         
+        contentLabel.text = self.album.albumTitle
+
         ServerManager.sharedManager.getPhotos(forAlbumID: album.albumID, ownerID: groupID, offset: 0, count: 1) { (result) in
             
             guard let photos = result as? [Photo] else { return }
@@ -77,14 +78,8 @@ class WalkthroughContentViewController: UIViewController {
             
             let urlPhoto = URL(string: linkToNeededRes!)
             
-            
-            
             self.contentImageView.af_setImage(withURL: urlPhoto!)
-            
-            
         }
-        
-        
         
     }
     
@@ -95,7 +90,7 @@ class WalkthroughContentViewController: UIViewController {
     
     @IBAction func nextButtonTapped(sender: UIButton) {
         
-        let pageViewController = parent as! WalkthroughPageViewController
+        let pageViewController = parent as! AlbumsPageViewController
         pageViewController.forward(index: index)
     }
 }

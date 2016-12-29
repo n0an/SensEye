@@ -1685,10 +1685,10 @@
             </objects>
             <point key="canvasLocation" x="4660" y="1753"/>
         </scene>
-        <!--Walkthrough Content View Controller-->
+        <!--Albums Content View Controller-->
         <scene sceneID="jCI-jY-IIr">
             <objects>
-                <viewController storyboardIdentifier="WalkthroughContentViewController" id="Sgt-6H-LI5" customClass="WalkthroughContentViewController" customModule="SensEye" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AlbumsContentViewController" id="Sgt-6H-LI5" customClass="AlbumsContentViewController" customModule="SensEye" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9c9-0z-fbd"/>
                         <viewControllerLayoutGuide type="bottom" id="quT-pp-o8j"/>
@@ -1697,8 +1697,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="4Os-72-V31">
-                                <rect key="frame" x="168" y="627" width="39" height="37"/>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="5" translatesAutoresizingMaskIntoConstraints="NO" id="4Os-72-V31">
+                                <rect key="frame" x="152" y="627" width="71" height="37"/>
+                                <color key="pageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="currentPageIndicatorTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </pageControl>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Cw-yG-8Lq">
                                 <rect key="frame" x="320" y="630" width="39" height="30"/>
@@ -1722,13 +1724,15 @@
                                             <rect key="frame" x="0.0" y="0.0" width="303" height="65"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Pin your favorite restaurants and create your own food guide" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C69-i2-C0f">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C69-i2-C0f">
                                                     <rect key="frame" x="4" y="4" width="299" height="61"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.11042968750000004" green="0.11042968750000004" blue="0.11042968750000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstItem="C69-i2-C0f" firstAttribute="top" secondItem="6Ux-RB-tvz" secondAttribute="top" constant="4" id="ZmG-LI-gCE"/>
                                                 <constraint firstAttribute="trailing" secondItem="C69-i2-C0f" secondAttribute="trailing" id="fdP-w2-9KS"/>
@@ -1736,10 +1740,11 @@
                                                 <constraint firstAttribute="bottom" secondItem="C69-i2-C0f" secondAttribute="bottom" id="rhC-Ri-Hw6"/>
                                             </constraints>
                                         </view>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <blurEffect style="extraLight"/>
                                     </visualEffectView>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.88627450980392153" green="0.88627450980392153" blue="0.88627450980392153" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="0jT-xm-sjx" secondAttribute="trailing" id="2SV-Y7-gBd"/>
                                     <constraint firstAttribute="trailing" secondItem="Ubj-d3-lLo" secondAttribute="trailing" id="7Ti-hx-OcE"/>
@@ -1753,7 +1758,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.051635280065872105" green="0.11030629345523062" blue="0.27205078125000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.88627450980392153" green="0.88627450980392153" blue="0.88627450980392153" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="D5D-HV-hrx" firstAttribute="centerY" secondItem="wRc-re-CR4" secondAttribute="centerY" id="3fo-YO-Jgd"/>
                             <constraint firstItem="4Os-72-V31" firstAttribute="centerX" secondItem="wRc-re-CR4" secondAttribute="centerX" id="6GF-ma-CkG"/>
@@ -1769,16 +1774,17 @@
                         <outlet property="contentLabel" destination="C69-i2-C0f" id="jnP-bK-FbW"/>
                         <outlet property="forwardButton" destination="7Cw-yG-8Lq" id="LGg-ku-LWi"/>
                         <outlet property="pageControl" destination="4Os-72-V31" id="qnP-OL-0wT"/>
+                        <outlet property="visualEffectView" destination="Ubj-d3-lLo" id="RGu-Fa-VSX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X5T-gt-NlR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2746" y="1753"/>
         </scene>
-        <!--Walkthrough Page View Controller-->
+        <!--Albums Page View Controller-->
         <scene sceneID="cac-u6-lMO">
             <objects>
-                <pageViewController storyboardIdentifier="WalkthroughController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="Gd6-ET-ak5" customClass="WalkthroughPageViewController" customModule="SensEye" customModuleProvider="target" sceneMemberID="viewController">
+                <pageViewController storyboardIdentifier="AlbumsPageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="Gd6-ET-ak5" customClass="AlbumsPageViewController" customModule="SensEye" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="search" id="e44-6C-xkS">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>

@@ -1,14 +1,9 @@
-//
-//  WalkthroughPageViewController.swift
-//  FoodPin
-//
-//  Created by Simon Ng on 18/8/2016.
-//  Copyright © 2016 AppCoda. All rights reserved.
-//
+
+
 
 import UIKit
 
-class WalkthroughPageViewController: UIPageViewController, UIPageViewControllerDataSource {
+class AlbumsPageViewController: UIPageViewController, UIPageViewControllerDataSource {
 
     var albums: [PhotoAlbum] = []
     
@@ -30,7 +25,7 @@ class WalkthroughPageViewController: UIPageViewController, UIPageViewControllerD
             
             self.albums = albums
             
-            // Create the first walkthrough screen
+            // Create the first content screen
             if let startingViewController = self.contentViewController(at: 0) {
                 self.setViewControllers([startingViewController], direction: .forward, animated: true, completion: nil)
             }
@@ -41,13 +36,13 @@ class WalkthroughPageViewController: UIPageViewController, UIPageViewControllerD
     
     // MARK: - Helper Methods
     
-    func contentViewController(at index: Int) -> WalkthroughContentViewController? {
+    func contentViewController(at index: Int) -> AlbumsContentViewController? {
         if index < 0 || index >= self.albums.count {
             return nil
         }
         
         // Create a new view controller and pass suitable data.
-        if let pageContentViewController = storyboard?.instantiateViewController(withIdentifier: "WalkthroughContentViewController") as? WalkthroughContentViewController {
+        if let pageContentViewController = storyboard?.instantiateViewController(withIdentifier: "AlbumsContentViewController") as? AlbumsContentViewController {
             
             pageContentViewController.index = index
             pageContentViewController.totalAlbums = self.albums.count
@@ -71,7 +66,7 @@ class WalkthroughPageViewController: UIPageViewController, UIPageViewControllerD
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         
-        var index = (viewController as! WalkthroughContentViewController).index
+        var index = (viewController as! AlbumsContentViewController).index
         index -= 1
         
         return contentViewController(at: index)
@@ -79,7 +74,7 @@ class WalkthroughPageViewController: UIPageViewController, UIPageViewControllerD
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         
-        var index = (viewController as! WalkthroughContentViewController).index
+        var index = (viewController as! AlbumsContentViewController).index
         index += 1
         
         return contentViewController(at: index)
