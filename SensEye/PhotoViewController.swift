@@ -95,9 +95,15 @@ class PhotoViewController: UIViewController {
         updateUI()
     }
     
+    @IBAction func actionCloseButtonTapped() {
+        dismiss(animated: true, completion: nil)
+    }
+    
     func gestureClose() {
         dismiss(animated: true, completion: nil)
     }
+    
+    
     
     
     // MARK: - DOWNLOAD METHODS
@@ -225,6 +231,9 @@ class PhotoViewController: UIViewController {
         recenterImage()
     }
 }
+
+
+
 
 extension PhotoViewController : UIScrollViewDelegate {
     

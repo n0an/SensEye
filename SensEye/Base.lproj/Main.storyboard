@@ -1419,7 +1419,7 @@
                     <navigationItem key="navigationItem" id="9ol-yE-rwC">
                         <barButtonItem key="leftBarButtonItem" systemItem="done" id="H5k-KP-EIl">
                             <connections>
-                                <segue destination="Uex-tP-c8n" kind="unwind" unwindAction="unwindToFeedVCWithSegue:" id="WrN-Ga-BTf"/>
+                                <action selector="actionCloseButtonTapped" destination="FSA-lg-zHa" id="Qka-DW-vJn"/>
                             </connections>
                         </barButtonItem>
                         <rightBarButtonItems>
@@ -1441,7 +1441,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V5K-mF-HhF" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="Uex-tP-c8n" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3574" y="912"/>
         </scene>
