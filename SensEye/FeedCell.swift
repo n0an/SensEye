@@ -52,6 +52,13 @@ class FeedCell: UITableViewCell {
     
     weak var delegate: FeedCellDelegate?
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        self.profileImageVIew.layer.cornerRadius = self.profileImageVIew.bounds.width / 2
+        self.profileImageVIew.clipsToBounds = true
+    }
+    
     
     // MARK: - HELPER METHODS
     
@@ -65,6 +72,10 @@ class FeedCell: UITableViewCell {
         
         if let postAuthor = wallPost.postAuthor {
             self.usernameLabel.text = "\(postAuthor.firstName!) \(postAuthor.lastName!)"
+            
+            let imageURL = URL(string: postAuthor.imageURL)
+            
+            self.profileImageVIew.af_setImage(withURL: imageURL!)
             
         } else if let groupPostAuthor = wallPost.postGroupAuthor {
             self.usernameLabel.text = "\(groupPostAuthor.groupName!)"

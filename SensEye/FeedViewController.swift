@@ -165,7 +165,11 @@ class FeedViewController: UIViewController {
             
 //            destinationNavVC.transitioningDelegate = slideRightTransitionAnimator
             
-            destinationNavVC.transitioningDelegate = acRotateTransition
+//            destinationNavVC.transitioningDelegate = acRotateTransition
+//            destinationNavVC.transitioningDelegate = acSlideDownTransition
+//            destinationNavVC.transitioningDelegate = acSlideRightTransition
+
+            destinationNavVC.transitioningDelegate = acPopTransition
             
             
             
