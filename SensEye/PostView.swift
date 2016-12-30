@@ -8,9 +8,14 @@
 
 import UIKit
 
+@IBDesignable
 class PostView: UIView {
     
-    var cornerRadius: CGFloat = 4.0
+    @IBInspectable var cornerRadius: CGFloat = 4.0 {
+        didSet {
+            setupView()
+        }
+    }
     
     var shadowWidth: CGFloat = 1.0
     var shadowHeight: CGFloat = 2.0
@@ -23,16 +28,28 @@ class PostView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
+        setupView()
+    }
+    
+    
+    override func prepareForInterfaceBuilder() {
+        super.prepareForInterfaceBuilder()
+        
+        setupView()
+    }
+    
+    func setupView() {
+        
         layer.cornerRadius = cornerRadius
-
+        
         layer.shadowColor = shadowColor.cgColor
         layer.shadowOpacity = shadowOpacity
         
         layer.shadowOffset = CGSize(width: shadowWidth, height: shadowHeight)
         layer.shadowRadius = shadowRadius
-
+        
         layer.masksToBounds = false
+        
     }
-    
     
 }

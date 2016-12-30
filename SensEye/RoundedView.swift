@@ -13,15 +13,11 @@ class RoundedView: UIView{
     
     @IBInspectable var cornerRadius: CGFloat = 0 {
         didSet {
-            layoutSubviews()
+            layer.cornerRadius = cornerRadius
+            layer.masksToBounds = cornerRadius > 0
         }
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        self.layer.cornerRadius = cornerRadius
-        self.layer.masksToBounds = cornerRadius > 0
-    }
     
 }
 

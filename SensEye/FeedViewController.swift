@@ -45,8 +45,6 @@ class FeedViewController: UIViewController {
         tableView.estimatedRowHeight = Storyboard.rowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
         
-        tableView.separatorStyle = .none
-        
         self.tableView.addInfiniteScrolling { 
             print("InfiniteScrolling GO")
             self.getPostsFromServer()
