@@ -70,8 +70,6 @@ class FeedCell: UITableViewCell {
     
     func updateUI() {
         
-        self.contentView.backgroundColor = UIColor.clear
-        
         self.postTextLabel.text = wallPost.postText
         
         self.commentButton.setTitle(wallPost.postComments, for: [])

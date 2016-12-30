@@ -14,8 +14,7 @@ class PostView: UIView {
     
     var shadowWidth: CGFloat = 1.0
     var shadowHeight: CGFloat = 2.0
-    var shadowOpacity: Float = 0.8
-//    var shadowColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+    var shadowOpacity: Float = 0.7
     var shadowColor = UIColor(colorLiteralRed: 120/255, green: 120/255, blue: 120/255, alpha: 0.6)
     var shadowRadius: CGFloat = 3.0
     
@@ -24,16 +23,14 @@ class PostView: UIView {
         super.layoutSubviews()
         
         layer.cornerRadius = cornerRadius
-        layer.masksToBounds = false
-        
-//        let shadowPath = UIBezierPath(roundedRect: bounds, cornerRadius: cornerRadius)
-        
+
         layer.shadowColor = shadowColor.cgColor
+        layer.shadowOpacity = shadowOpacity
+        
         layer.shadowOffset = CGSize(width: shadowWidth, height: shadowHeight)
         layer.shadowRadius = shadowRadius
-        layer.shadowOpacity = shadowOpacity
-//        layer.shadowPath = shadowPath.cgPath
-        
+
+        layer.masksToBounds = false
     }
     
 }

@@ -1246,7 +1246,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="370" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dhK-hL-S59">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FeedCell" rowHeight="460" id="Ra5-In-1yI" customClass="FeedCell" customModule="SensEye" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="460"/>
@@ -1288,10 +1288,10 @@
                                                             </subviews>
                                                         </stackView>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Wla-M9-oVX">
-                                                            <rect key="frame" x="0.0" y="116" width="375" height="202"/>
+                                                            <rect key="frame" x="0.0" y="116" width="359" height="202"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="201.5" id="8KP-Yc-51E"/>
-                                                                <constraint firstAttribute="width" constant="375" id="fWC-z2-m45"/>
+                                                                <constraint firstAttribute="width" constant="359" id="fWC-z2-m45"/>
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A small river named Duden flows by their place and supplies it with the necessary regelialia" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ra-EJ-3ca">
@@ -1320,24 +1320,24 @@
                                                             </subviews>
                                                         </stackView>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Wah-v8-nqQ">
-                                                            <rect key="frame" x="125" y="320" width="125" height="84"/>
+                                                            <rect key="frame" x="120" y="320" width="120" height="84"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="84" id="Szx-zs-GAr"/>
-                                                                <constraint firstAttribute="width" constant="125" id="oqO-5G-W2s"/>
+                                                                <constraint firstAttribute="width" constant="120" id="oqO-5G-W2s"/>
                                                             </constraints>
                                                         </imageView>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8rI-e1-ila">
-                                                            <rect key="frame" x="250" y="320" width="125" height="84"/>
+                                                            <rect key="frame" x="240" y="320" width="119" height="84"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="125" id="OjM-mj-9yj"/>
+                                                                <constraint firstAttribute="width" constant="119" id="OjM-mj-9yj"/>
                                                                 <constraint firstAttribute="height" constant="84" id="xYF-Ot-ln6"/>
                                                             </constraints>
                                                         </imageView>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LoC-81-1IA">
-                                                            <rect key="frame" x="0.0" y="320" width="125" height="84"/>
+                                                            <rect key="frame" x="0.0" y="320" width="120" height="84"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="84" id="bpQ-FQ-Lbf"/>
-                                                                <constraint firstAttribute="width" constant="125" id="tjF-RV-tdB"/>
+                                                                <constraint firstAttribute="width" constant="120" id="tjF-RV-tdB"/>
                                                             </constraints>
                                                         </imageView>
                                                     </subviews>
@@ -1363,6 +1363,7 @@
                                                     </constraints>
                                                 </view>
                                             </subviews>
+                                            <color key="backgroundColor" red="0.81176470590000005" green="0.84705882349999995" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstItem="pb3-av-m2d" firstAttribute="leading" secondItem="QEj-Qs-i4S" secondAttribute="leading" constant="8" id="9bY-WG-fw2"/>
                                                 <constraint firstAttribute="trailing" secondItem="pb3-av-m2d" secondAttribute="trailing" constant="8" id="J5g-re-4Py"/>
@@ -1370,7 +1371,6 @@
                                                 <constraint firstItem="pb3-av-m2d" firstAttribute="top" secondItem="QEj-Qs-i4S" secondAttribute="top" constant="8" id="cgi-lj-MRi"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outlet property="commentButton" destination="iup-4X-kr2" id="Gos-kc-VBo"/>
                                             <outlet property="galleryFirstRowLeadingConstraint" destination="gJN-Ki-tQ5" id="oXj-58-LeV"/>
@@ -1398,7 +1398,7 @@
                                 </prototypes>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.88627450980392153" green="0.88627450980392153" blue="0.88627450980392153" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="dhK-hL-S59" firstAttribute="leading" secondItem="oDs-JP-bmw" secondAttribute="leading" id="C19-TN-YK9"/>
                             <constraint firstItem="dhK-hL-S59" firstAttribute="top" secondItem="oDs-JP-bmw" secondAttribute="top" id="MJE-KG-Ixz"/>
@@ -1414,7 +1414,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iE8-b9-jbn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1969" y="912"/>
+            <point key="canvasLocation" x="1968.8" y="911.69415292353835"/>
         </scene>
         <!--Photo View Controller-->
         <scene sceneID="ilZ-KP-C3b">
@@ -2025,6 +2025,6 @@
         <image name="ufo" width="710" height="450"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="qZD-Zy-8aB"/>
+        <segue reference="9lc-HA-SpN"/>
     </inferredMetricsTieBreakers>
 </document>

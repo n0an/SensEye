@@ -45,8 +45,7 @@ class FeedViewController: UIViewController {
         tableView.estimatedRowHeight = Storyboard.rowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
         
-        tableView.backgroundColor = UIColor.clear
-        tableView.separatorColor = UIColor.clear
+        tableView.separatorStyle = .none
         
         self.tableView.addInfiniteScrolling { 
             print("InfiniteScrolling GO")
