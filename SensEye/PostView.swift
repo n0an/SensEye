@@ -14,9 +14,10 @@ class PostView: UIView {
     
     var shadowWidth: CGFloat = 1.0
     var shadowHeight: CGFloat = 2.0
-    var shadowOpacity: Float = 0.7
-    var shadowColor = UIColor(colorLiteralRed: 120/255, green: 120/255, blue: 120/255, alpha: 0.6)
-    var shadowRadius: CGFloat = 3.0
+    var shadowOpacity: Float = 0.6
+    var shadowColor = mainShadowColor
+    
+    var shadowRadius: CGFloat = 4.0
     
     
     override func layoutSubviews() {
@@ -32,5 +33,6 @@ class PostView: UIView {
 
         layer.masksToBounds = false
     }
+    
     
 }

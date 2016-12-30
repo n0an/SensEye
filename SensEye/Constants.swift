@@ -6,7 +6,7 @@
 //  Copyright © 2016 Anton Novoselov. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 let URL_BASE = "https://api.vk.com/method"
 let URL_WALL_FEED = "/wall.get?"
@@ -34,3 +34,6 @@ typealias DownloadComplete = ([Any]) -> Void
 
 let groupID = "-55347641"
 
+let mainShadowColor = UIColor(colorLiteralRed: 120/255, green: 120/255, blue: 120/255, alpha: 1.0)
+
+let mainThemeColor = UIColor(colorLiteralRed: 226/255, green: 226/255, blue: 226/255, alpha: 1)
