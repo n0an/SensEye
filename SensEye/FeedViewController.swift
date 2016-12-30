@@ -29,16 +29,7 @@ class FeedViewController: UIViewController {
     let postsInRequest = 10
 
     var loadingData = false
-    
-    let slideRightTransitionAnimator = SlideRightTransitionAnimator()
-    let popTransitionAnimator = PopTransitionAnimator()
-    let slideRightThenPopTransitionAnimator = SlideRightThenPopTransitionAnimator()
-    
-    let acSlideDownTransition = ACSlideDownTransitionAnimator()
-    let acSlideRightTransition = ACSlideRightTransitionAnimator()
-    let acPopTransition = ACPopTransitionAnimator()
-    let acRotateTransition = ACRotateTransitionAnimator()
-    
+
     
     // MARK: - viewDidLoad
 
@@ -158,28 +149,11 @@ class FeedViewController: UIViewController {
         if segue.identifier == Storyboard.seguePhotoDisplayer {
             
             let destinationNavVC = segue.destination as! UINavigationController
-            
-//            destinationNavVC.transitioningDelegate = popTransitionAnimator
-            
-//            destinationNavVC.transitioningDelegate = slideRightThenPopTransitionAnimator
-            
-//            destinationNavVC.transitioningDelegate = slideRightTransitionAnimator
-            
-//            destinationNavVC.transitioningDelegate = acRotateTransition
-//            destinationNavVC.transitioningDelegate = acSlideDownTransition
-//            destinationNavVC.transitioningDelegate = acSlideRightTransition
 
-            destinationNavVC.transitioningDelegate = acPopTransition
-            
-            
-            
-            
+            destinationNavVC.transitioningDelegate = TransitionHelper.sharedHelper.acPopTransition
+     
             let destinationVC = destinationNavVC.topViewController as! PhotoViewController
-            
-            
-//
-            
-            
+
             guard let senderTuple = sender as? ([Photo], Int) else {
                 return
             }

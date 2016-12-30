@@ -9,7 +9,7 @@
 import UIKit
 
 class SlideRightThenPopTransitionAnimator: NSObject {
-    var duration = 1.0
+    var duration = 0.5
     fileprivate var isPresenting = false
 }
 
