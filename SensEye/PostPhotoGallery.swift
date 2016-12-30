@@ -18,7 +18,7 @@ class PostPhotoGallery {
     
     init(withTableViewWidth tableViewWidth: CGFloat) {
         
-        self.tableViewWidth = tableViewWidth
+        self.tableViewWidth = tableViewWidth - 16
         
     }
     
@@ -88,7 +88,7 @@ class PostPhotoGallery {
             
             maxRequiredSizeOfImageInFirstRow = min(800, maxAvailableSpaceToOperate)
 
-            maxRequiredSizeOfImageInSecondRow = maxAvailableSpaceToOperate / CGFloat(min(maxPhotos, post.postAttachments.count - firstRowCount))
+            maxRequiredSizeOfImageInSecondRow = (maxAvailableSpaceToOperate) / CGFloat(min(maxPhotos, post.postAttachments.count - firstRowCount))
             
             maxRequiredSizeOfImageInSecondRow = min(800, maxRequiredSizeOfImageInSecondRow) // Limit to 800
         }

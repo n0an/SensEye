@@ -6,7 +6,7 @@
 //  Copyright © 2016 Anton Novoselov. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 // MARK: - NSDATE EXTENSION
 extension NSDate {
@@ -26,3 +26,4 @@ extension NSDate {
         return dateString
     }
 }
+

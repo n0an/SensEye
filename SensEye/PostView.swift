@@ -10,11 +10,11 @@ import UIKit
 
 class PostView: UIView {
     
-    var cornerRadius: CGFloat = 3.0
+    var cornerRadius: CGFloat = 4.0
     
     var shadowWidth: CGFloat = 0
-    var shadowHeight: CGFloat = 1.0
-    var shadowOpacity: Float = 0.2
+    var shadowHeight: CGFloat = 2.0
+    var shadowOpacity: Float = 0.3
     var shadowColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
     
     override func layoutSubviews() {
