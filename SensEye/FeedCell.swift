@@ -55,8 +55,14 @@ class FeedCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        self.profileImageVIew.layer.cornerRadius = self.profileImageVIew.bounds.width / 2
-        self.profileImageVIew.clipsToBounds = true
+        // *** CREATING GESTURE RECOGNIZER FOR HANDLE AUTHOR IMAGEVIEW TAP
+        
+        self.profileImageVIew.isUserInteractionEnabled = true
+        
+        let tapProfileImageViewGesture = UITapGestureRecognizer(target: self, action: #selector(actionProfileImageViewDidTap))
+        
+        self.profileImageVIew.addGestureRecognizer(tapProfileImageViewGesture)
+
     }
     
     
@@ -93,15 +99,6 @@ class FeedCell: UITableViewCell {
             
         }
         
-        
-        // *** CREATING GESTURE RECOGNIZER FOR HANDLE AUTHOR IMAGEVIEW TAP
-        
-        self.profileImageVIew.isUserInteractionEnabled = true
-        
-        let tapProfileImageViewGesture = UITapGestureRecognizer(target: self, action: #selector(actionProfileImageViewDidTap))
-        
-        self.profileImageVIew.addGestureRecognizer(tapProfileImageViewGesture)
-      
         
     }
     

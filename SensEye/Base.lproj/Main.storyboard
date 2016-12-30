@@ -1261,7 +1261,7 @@
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="QFZ-tc-GFa">
                                                             <rect key="frame" x="16" y="16" width="327" height="40"/>
                                                             <subviews>
-                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Userpic 40px" translatesAutoresizingMaskIntoConstraints="NO" id="jmX-JB-a9q">
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Userpic 40px" translatesAutoresizingMaskIntoConstraints="NO" id="jmX-JB-a9q" customClass="CircleImageView" customModule="SensEye" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="40" id="VNh-5a-bYt"/>
@@ -1760,7 +1760,7 @@
                                                 <blurEffect style="extraLight"/>
                                             </visualEffectView>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="Xrj-gG-6xs" secondAttribute="trailing" id="AcT-T9-iR7"/>
                                             <constraint firstAttribute="trailing" secondItem="kMz-7q-1re" secondAttribute="trailing" id="BTD-am-QpJ"/>
@@ -1773,7 +1773,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="UJc-9V-U0h" secondAttribute="bottom" id="Dch-3X-DDK"/>
                                     <constraint firstItem="UJc-9V-U0h" firstAttribute="leading" secondItem="D5D-HV-hrx" secondAttribute="leading" id="OfI-qZ-NR9"/>

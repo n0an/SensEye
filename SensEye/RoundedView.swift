@@ -18,6 +18,7 @@ class RoundedView: UIView{
     }
     
     override func layoutSubviews() {
+        super.layoutSubviews()
         self.layer.cornerRadius = cornerRadius
         self.layer.masksToBounds = cornerRadius > 0
     }
