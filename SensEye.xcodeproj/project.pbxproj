@@ -33,6 +33,9 @@
 		18AA37D81E1053F700D5BCB1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18AA37D71E1053F700D5BCB1 /* Assets.xcassets */; };
 		18AA37DB1E1053F700D5BCB1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18AA37D91E1053F700D5BCB1 /* LaunchScreen.storyboard */; };
 		18C3952E1E16608700AE1867 /* TransitionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C3952D1E16608700AE1867 /* TransitionHelper.swift */; };
+		18C395321E166D0200AE1867 /* NSDate+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C395301E166D0200AE1867 /* NSDate+Utilities.m */; };
+		18C395361E16768F00AE1867 /* GeneralHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C395351E16768F00AE1867 /* GeneralHelper.swift */; };
+		18C395381E1676F200AE1867 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C395371E1676F200AE1867 /* Extensions.swift */; };
 		18FC625C1E113E9C00E25A18 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FC625B1E113E9C00E25A18 /* Photo.swift */; };
 		18FC625E1E11439D00E25A18 /* PhotoAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FC625D1E11439D00E25A18 /* PhotoAlbum.swift */; };
 		18FC62631E11545D00E25A18 /* PostPhotoGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FC62621E11545D00E25A18 /* PostPhotoGallery.swift */; };
@@ -66,6 +69,11 @@
 		18AA37DA1E1053F700D5BCB1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		18AA37DC1E1053F700D5BCB1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18C3952D1E16608700AE1867 /* TransitionHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionHelper.swift; sourceTree = "<group>"; };
+		18C3952F1E166D0100AE1867 /* SensEye-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SensEye-Bridging-Header.h"; sourceTree = "<group>"; };
+		18C395301E166D0200AE1867 /* NSDate+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Utilities.m"; sourceTree = "<group>"; };
+		18C395311E166D0200AE1867 /* NSDate+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Utilities.h"; sourceTree = "<group>"; };
+		18C395351E16768F00AE1867 /* GeneralHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralHelper.swift; sourceTree = "<group>"; };
+		18C395371E1676F200AE1867 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		18FC625B1E113E9C00E25A18 /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		18FC625D1E11439D00E25A18 /* PhotoAlbum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoAlbum.swift; sourceTree = "<group>"; };
 		18FC62621E11545D00E25A18 /* PostPhotoGallery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostPhotoGallery.swift; sourceTree = "<group>"; };
@@ -158,19 +166,41 @@
 			isa = PBXGroup;
 			children = (
 				18AA37D01E1053F700D5BCB1 /* AppDelegate.swift */,
+				18C395331E166D1D00AE1867 /* Extensions */,
 				18FC625F1E114C1700E25A18 /* Model */,
 				18FC62601E114C1F00E25A18 /* View */,
 				18FC62611E114C2300E25A18 /* Controller */,
 				184DE8A81E15A3AE00E98926 /* Transition Animators */,
-				188C04FB1E10FCBC008B58EB /* ServerManager.swift */,
-				18C3952D1E16608700AE1867 /* TransitionHelper.swift */,
-				1838C2401E110A7700E02F88 /* Constants.swift */,
+				18C395341E166D2600AE1867 /* Helpers */,
 				18AA37D41E1053F700D5BCB1 /* Main.storyboard */,
 				18AA37D71E1053F700D5BCB1 /* Assets.xcassets */,
 				18AA37D91E1053F700D5BCB1 /* LaunchScreen.storyboard */,
 				18AA37DC1E1053F700D5BCB1 /* Info.plist */,
+				18C3952F1E166D0100AE1867 /* SensEye-Bridging-Header.h */,
 			);
 			path = SensEye;
+			sourceTree = "<group>";
+		};
+		18C395331E166D1D00AE1867 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				18C395301E166D0200AE1867 /* NSDate+Utilities.m */,
+				18C395311E166D0200AE1867 /* NSDate+Utilities.h */,
+				18C395371E1676F200AE1867 /* Extensions.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
+		18C395341E166D2600AE1867 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				188C04FB1E10FCBC008B58EB /* ServerManager.swift */,
+				18C395351E16768F00AE1867 /* GeneralHelper.swift */,
+				18C3952D1E16608700AE1867 /* TransitionHelper.swift */,
+				18FC62621E11545D00E25A18 /* PostPhotoGallery.swift */,
+				1838C2401E110A7700E02F88 /* Constants.swift */,
+			);
+			name = Helpers;
 			sourceTree = "<group>";
 		};
 		18FC625F1E114C1700E25A18 /* Model */ = {
@@ -189,7 +219,6 @@
 			isa = PBXGroup;
 			children = (
 				188C04F91E1074D6008B58EB /* FeedCell.swift */,
-				18FC62621E11545D00E25A18 /* PostPhotoGallery.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -257,6 +286,7 @@
 					18AA37CC1E1053F700D5BCB1 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 358V8FBM3U;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -352,6 +382,7 @@
 				180231C91E1443E400FA8322 /* PhotoAlbumsViewController.swift in Sources */,
 				1838C2411E110A7700E02F88 /* Constants.swift in Sources */,
 				188C04FC1E10FCBC008B58EB /* ServerManager.swift in Sources */,
+				18C395321E166D0200AE1867 /* NSDate+Utilities.m in Sources */,
 				18FC625C1E113E9C00E25A18 /* Photo.swift in Sources */,
 				188C04F81E1074C8008B58EB /* FeedViewController.swift in Sources */,
 				184DE8AC1E15A89300E98926 /* ACRotateTransitionAnimator.swift in Sources */,
@@ -367,9 +398,11 @@
 				188C04FA1E1074D6008B58EB /* FeedCell.swift in Sources */,
 				1838C2431E11193E00E02F88 /* WallPost.swift in Sources */,
 				18C3952E1E16608700AE1867 /* TransitionHelper.swift in Sources */,
+				18C395361E16768F00AE1867 /* GeneralHelper.swift in Sources */,
 				18FC62631E11545D00E25A18 /* PostPhotoGallery.swift in Sources */,
 				184DE8A61E15A39900E98926 /* PopTransitionAnimator.swift in Sources */,
 				180231C71E140BE900FA8322 /* GalleriesCarouselViewController.swift in Sources */,
+				18C395381E1676F200AE1867 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -493,11 +526,14 @@
 			baseConfigurationReference = 80BE74E4C44AE3ED1571EFE9 /* Pods-SensEye.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 358V8FBM3U;
 				INFOPLIST_FILE = SensEye/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.antonnovoselov.SensEye;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SensEye/SensEye-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -507,11 +543,13 @@
 			baseConfigurationReference = 26E532DE5ABFA138EDDEDBB4 /* Pods-SensEye.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 358V8FBM3U;
 				INFOPLIST_FILE = SensEye/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.antonnovoselov.SensEye;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SensEye/SensEye-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

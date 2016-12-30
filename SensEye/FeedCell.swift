@@ -68,7 +68,12 @@ class FeedCell: UITableViewCell {
         
         self.commentButton.setTitle(wallPost.postComments, for: [])
         self.likeButton.setTitle(wallPost.postLikes, for: [])
-        self.timestampLabel.text = "\(wallPost.postDate!)"
+        
+        let timeInterval = TimeInterval(wallPost.postDate)
+        let createdDate = NSDate(timeIntervalSince1970: timeInterval)
+        
+        self.timestampLabel.text = createdDate.stringFromDate()
+
         
         if let postAuthor = wallPost.postAuthor {
             self.usernameLabel.text = "\(postAuthor.firstName!) \(postAuthor.lastName!)"

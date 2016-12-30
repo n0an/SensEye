@@ -110,6 +110,7 @@ class ServerManager {
                     "\(URL_PARAMS.OWNER_ID.rawValue)\(groupID)&" +
                     "\(URL_PARAMS.COUNT.rawValue)\(count)&" +
                     "\(URL_PARAMS.OFFSET.rawValue)\(offset)&" +
+                    "\(URL_PARAMS.LANG.rawValue)ru&" +
                     "\(URL_PARAMS.EXTENDED.rawValue)1"
         
         
@@ -193,28 +194,7 @@ class ServerManager {
         
     }
     
-    
-    
-    
-    
-//    func getGroupWall(forGroupID groupID: String, offset: Int, count: Int, onSuccess: SuccessHandler, onFailure: FailureHandler) {
-//        
-//        let params = [
-//            
-//            groupID:    "owner_id",
-//            offset:     "offset",
-//            count:      "count",
-//     
-//        ] as [AnyHashable : String]
-//        
-//        let groupWallURL = URL(string: "wall.get", relativeTo: baseURL)
-//        
-//        
-//        
-//        
-//    }
-    
-    
+ 
     
     
 }

@@ -24,6 +24,8 @@ enum URL_PARAMS: String {
     case ALBUM_ID = "album_id="
     
     case NEED_COVERS = "need_covers="
+    
+    case LANG = "lang="
 }
 
 
