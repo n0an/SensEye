@@ -70,6 +70,7 @@ class FeedCell: UITableViewCell {
     
     func updateUI() {
         
+        
         self.postTextLabel.text = wallPost.postText
         
         self.commentButton.setTitle(wallPost.postComments, for: [])

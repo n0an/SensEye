@@ -85,6 +85,54 @@ extension UIView {
     
 }
 
+// MARK: - UIAlertController Extension
+
+extension UIAlertController {
+    public static func alert(title: String?, message: String?, handler: ((UIAlertAction) -> Void)? = nil) -> UIAlertController {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: handler))
+        return alert
+    }
+    
+    public static func alertError(error: NSError, handler: ((UIAlertAction) -> Void)? = nil) -> UIAlertController {
+        return UIAlertController.alert(title: error.localizedDescription, message: error.localizedRecoverySuggestion, handler: handler)
+    }
+    
+    public static func confirm(title: String?, message: String?, handler: @escaping (UIAlertAction) -> Void) -> UIAlertController {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: handler))
+        return alert
+    }
+    
+    
+}
+
+extension UIViewController {
+    public func alert(title: String?, message: String?, handler: ((UIAlertAction) -> Void)? = nil) {
+        let alert = UIAlertController.alert(title: title, message: message, handler: handler)
+        present(alert, animated: true, completion: nil)
+    }
+    
+    public func alertError(error: NSError, handler: ((UIAlertAction) -> Void)? = nil) {
+        let alert = UIAlertController.alertError(error: error, handler: handler)
+        present(alert, animated: true, completion: nil)
+    }
+    
+    public func confirm(title: String?, message: String?, handler: @escaping (UIAlertAction) -> Void) {
+        let alert = UIAlertController.confirm(title: title, message: message, handler: handler)
+        present(alert, animated: true, completion: nil)
+    }
+}
+
+
+
+
+
+
+
+
+
 
 
 
