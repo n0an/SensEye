@@ -34,6 +34,10 @@ typealias DownloadComplete = ([Any]) -> Void
 
 let groupID = "-55347641"
 
-let mainShadowColor = UIColor(colorLiteralRed: 120/255, green: 120/255, blue: 120/255, alpha: 1.0)
 
-let mainThemeColor = UIColor(colorLiteralRed: 226/255, green: 226/255, blue: 226/255, alpha: 1)
+//let mainShadowColor = UIColor(colorLiteralRed: 120/255, green: 120/255, blue: 120/255, alpha: 1.0)
+let mainShadowColor = UIColor(netHex: 0x787878)
+
+//let mainThemeColor = UIColor(colorLiteralRed: 226/255, green: 226/255, blue: 226/255, alpha: 1)
+
+let mainThemeColor = UIColor(netHex: 0xf2f2f2)
