@@ -35,8 +35,17 @@ typealias DownloadComplete = ([Any]) -> Void
 let groupID = "-55347641"
 
 
+// MARK: - UI Settings
 //let mainShadowColor = UIColor(colorLiteralRed: 120/255, green: 120/255, blue: 120/255, alpha: 1.0)
 let mainShadowColor = UIColor(netHex: 0x787878)
+var shadowWidth: CGFloat = 1.0
+var shadowHeight: CGFloat = 2.0
+var shadowOpacity: Float = 0.6
+var shadowColor = mainShadowColor
+
+var shadowRadius: CGFloat = 4.0
+
+
 
 //let mainThemeColor = UIColor(colorLiteralRed: 226/255, green: 226/255, blue: 226/255, alpha: 1)
 
