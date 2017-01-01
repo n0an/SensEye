@@ -11,4 +11,7 @@ target 'SensEye' do
   pod 'SVPullToRefresh'
   pod 'iCarousel'
   
+  pod 'Jelly'
+  pod 'SwifterSwift'
+  
 end

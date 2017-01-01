@@ -233,6 +233,11 @@ extension FeedViewController: FeedCellDelegate {
         if wallPost.postAttachments[0] is Photo {
             
             performSegue(withIdentifier: Storyboard.seguePhotoDisplayer, sender: (wallPost.postAttachments as! [Photo], clickedPhotoIndex))
+            
+            
+            
+            
+            
 
             
         } else if let albumAttach = wallPost.postAttachments[0] as? PhotoAlbum {

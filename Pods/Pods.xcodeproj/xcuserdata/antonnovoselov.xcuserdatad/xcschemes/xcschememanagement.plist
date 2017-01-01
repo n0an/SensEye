@@ -14,12 +14,22 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Jelly.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-SensEye.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
 		<key>SVPullToRefresh.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SwifterSwift.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -32,6 +42,11 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>11873DB9F1CCCDC99465E228CEB3EFB5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>88E9EC28B8B46C3631E6B242B50F4442</key>
 		<dict>
 			<key>primary</key>
@@ -42,7 +57,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B29EEB0CF9890341F181E8F44BC6AFDD</key>
+		<key>A34D2C6B58CAE9273716BDCE2B016C72</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B2170FE9789F2DB8AC3A28BDB8C1F51C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -52,7 +72,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E3BADD10699D631D80E7C43E01621644</key>
+		<key>CB3F286D26C8B91B032CFF2FBB9D40EC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
