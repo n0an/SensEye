@@ -49,6 +49,19 @@ class PhotoViewController: UIViewController {
 
         
     }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+        super.viewWillDisappear(animated)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+        
+        super.viewDidAppear(animated)
+
+    }
     
     // MARK: - HELPER METHODS
     

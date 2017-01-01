@@ -1341,7 +1341,7 @@
                                                             </constraints>
                                                         </imageView>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstItem="fLS-bB-xEt" firstAttribute="top" secondItem="LoC-81-1IA" secondAttribute="bottom" constant="16" id="6Fw-CS-VdS"/>
                                                         <constraint firstAttribute="trailing" secondItem="QFZ-tc-GFa" secondAttribute="trailing" constant="16" id="9Qe-v7-bbR"/>
@@ -1474,6 +1474,10 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="hdm-gS-k53">
+                        <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="FSA-lg-zHa" kind="relationship" relationship="rootViewController" id="os7-BU-ph4"/>
                     </connections>
