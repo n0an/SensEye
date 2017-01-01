@@ -11,6 +11,8 @@ import Alamofire
 import AlamofireImage
 import SVPullToRefresh
 
+import Jelly
+
 class FeedViewController: UIViewController {
     
     // MARK: - OUTLETS
@@ -23,12 +25,17 @@ class FeedViewController: UIViewController {
         static let rowHeight: CGFloat = 370
         
         static let seguePhotoDisplayer = "showPhoto"
+        
+        static let viewControllerIdPhotoDisplayer = "PhotoNavViewController"
     }
     
     var wallPosts: [WallPost] = []
     let postsInRequest = 10
 
     var loadingData = false
+    
+    fileprivate var jellyAnimator: JellyAnimator?
+    
 
     
     // MARK: - viewDidLoad
@@ -136,9 +143,12 @@ class FeedViewController: UIViewController {
             
         }
         
-        
-        
-        
+    }
+    
+    // MARK: - HELPER ACTIONS
+    
+    fileprivate func createVC(withID identifier: String) -> UIViewController? {
+        return self.storyboard?.instantiateViewController(withIdentifier: identifier)
     }
     
     
@@ -228,16 +238,60 @@ extension FeedViewController: UITableViewDelegate {
 
 extension FeedViewController: FeedCellDelegate {
     
+    func performJellyTransition(withPhotos photosArray: [Photo], indexOfPhoto: Int) {
+        if let photoDisplayerNavVC = self.createVC(withID: Storyboard.viewControllerIdPhotoDisplayer) as? UINavigationController {
+            
+            let photoDisplayerVC = photoDisplayerNavVC.topViewController as! PhotoViewController
+            
+            photoDisplayerVC.currentPhoto = photosArray[indexOfPhoto]
+            photoDisplayerVC.mediasArray = photosArray
+            photoDisplayerVC.currentIndex = indexOfPhoto
+            
+//            let customCornerSlideInPresentation = JellySlideInPresentation(cornerRadius: 0,
+//                                                                           backgroundStyle: .blur(effectStyle: .light),
+//                                                                           jellyness: .jellier,
+//                                                                           duration: .normal,
+//                                                                           directionShow: .left,
+//                                                                           directionDismiss: .right,
+//                                                                           widthForViewController: .fullscreen,
+//                                                                           heightForViewController: .fullscreen)
+//            
+//            let testPresentation2 = JellyShiftInPresentation(dismissCurve: .easeIn, presentationCurve: .easeOut, cornerRadius: 0, backgroundStyle: .blur(effectStyle: .light), jellyness: .jelly, duration: .medium, direction: .left, size: .fullscreen)
+            
+            
+            
+            let customBlurFadeInPresentation2 = JellyFadeInPresentation(dismissCurve: .easeInEaseOut,
+                                                                        presentationCurve: .easeInEaseOut,
+                                                                        cornerRadius: 0,
+                                                                        backgroundStyle: .blur(effectStyle: .light),
+                                                                        duration: .normal,
+                                                                        widthForViewController: .fullscreen,
+                                                                        heightForViewController: .fullscreen)
+
+            
+            self.jellyAnimator = JellyAnimator(presentation: customBlurFadeInPresentation2)
+            
+            self.jellyAnimator?.prepare(viewController: photoDisplayerNavVC)
+            
+            self.present(photoDisplayerNavVC, animated: true, completion: nil)
+        }
+    }
+    
+    
+    
+    
     func galleryImageViewDidTap(wallPost: WallPost, clickedPhotoIndex: Int) {
         
-        if wallPost.postAttachments[0] is Photo {
-            
-            performSegue(withIdentifier: Storyboard.seguePhotoDisplayer, sender: (wallPost.postAttachments as! [Photo], clickedPhotoIndex))
+        if let photosArray = wallPost.postAttachments as? [Photo] {
             
             
+            // ** UNCOMMENT IF USE SEGUE WITH CUSTOM TRANSITIONING ANIMATOR
+//            performSegue(withIdentifier: Storyboard.seguePhotoDisplayer, sender: (wallPost.postAttachments as! [Photo], clickedPhotoIndex))
+//            
             
+            // ** COMMENT IF NOT USE JELLY TRANSITION
             
-            
+            performJellyTransition(withPhotos: photosArray, indexOfPhoto: clickedPhotoIndex)
 
             
         } else if let albumAttach = wallPost.postAttachments[0] as? PhotoAlbum {
@@ -250,7 +304,12 @@ extension FeedViewController: FeedCellDelegate {
                 
                 let indexOfClickedPhotoInAlbum = photos.index(of: albumAttach.albumThumbPhoto!)
                 
-                self.performSegue(withIdentifier: Storyboard.seguePhotoDisplayer, sender: (photos, indexOfClickedPhotoInAlbum ?? clickedPhotoIndex))
+                // ** UNCOMMENT IF USE SEGUE WITH CUSTOM TRANSITIONING ANIMATOR
+//                self.performSegue(withIdentifier: Storyboard.seguePhotoDisplayer, sender: (photos, indexOfClickedPhotoInAlbum ?? clickedPhotoIndex))
+                
+                self.performJellyTransition(withPhotos: photos, indexOfPhoto: indexOfClickedPhotoInAlbum ?? clickedPhotoIndex)
+
+                
                 
             })
             

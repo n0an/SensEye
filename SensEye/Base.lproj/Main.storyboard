@@ -1426,7 +1426,7 @@
         <!--Photo View Controller-->
         <scene sceneID="ilZ-KP-C3b">
             <objects>
-                <viewController id="FSA-lg-zHa" customClass="PhotoViewController" customModule="SensEye" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PhotoViewController" id="FSA-lg-zHa" customClass="PhotoViewController" customModule="SensEye" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="VFg-m2-qhR"/>
                         <viewControllerLayoutGuide type="bottom" id="s52-sr-484"/>
@@ -1467,7 +1467,7 @@
         <!--Navigation Controller-->
         <scene sceneID="DLy-Dc-2Pc">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Uuj-Kp-AHt" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="PhotoNavViewController" automaticallyAdjustsScrollViewInsets="NO" id="Uuj-Kp-AHt" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="nf4-z0-1A8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
