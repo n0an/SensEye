@@ -14,4 +14,6 @@ target 'SensEye' do
   pod 'Jelly'
   #pod 'SwifterSwift'
   
+  pod 'Reveal-SDK', :configurations => ['Debug']
+  
 end

@@ -134,8 +134,15 @@ class LandscapeViewController: UIViewController {
             }
             
             let urlPhoto = URL(string: linkToNeededRes!)
+//            button.imageView?.af_setImage(withURL: urlPhoto!)
+            
+            
+            
+            
+            
             
             button.af_setImage(for: .normal, url: urlPhoto!)
+            
             
         }
         
@@ -167,10 +174,10 @@ class LandscapeViewController: UIViewController {
             
         case 667:
             columnsPerPage = 3
-            itemWidth = 200
-            itemHeight = 250
+            itemWidth = 222
+            itemHeight = 360
             marginX = 1
-            marginY = 29
+            marginY = 0
             
         case 736:
             columnsPerPage = 3
@@ -182,11 +189,12 @@ class LandscapeViewController: UIViewController {
         }
         
         
-        let buttonWidth: CGFloat = 170
-        let buttonHeight: CGFloat = 170
+        let buttonWidth: CGFloat = 206
+        let buttonHeight: CGFloat = 340
         let paddingHorz = (itemWidth - buttonWidth)/2
-        let paddingVert = (itemHeight - buttonHeight)/2
-        
+//        let paddingVert = (itemHeight - buttonHeight)/2
+        let paddingVert = CGFloat(0)
+
         
         var row = 0
         var column = 0
@@ -200,6 +208,8 @@ class LandscapeViewController: UIViewController {
             button.setBackgroundImage(UIImage(named: "LandscapeButton"), for: .normal)
             
             button.imageView?.contentMode = .scaleAspectFill
+//            button.imageView?.clipsToBounds = true
+//            button.clipsToBounds = true
             
             button.tag = 2000 + index
             
@@ -209,7 +219,9 @@ class LandscapeViewController: UIViewController {
             
             button.frame = CGRect(
                 x: x + paddingHorz,
-                y: marginY + CGFloat(row)*itemHeight + paddingVert, width: buttonWidth, height: buttonHeight)
+                y: marginY + CGFloat(row)*itemHeight + paddingVert,
+                width: buttonWidth,
+                height: buttonHeight)
             
             
             scrollView.addSubview(button)

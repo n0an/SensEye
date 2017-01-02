@@ -4,6 +4,7 @@ PODS:
     - Alamofire (~> 4.1)
   - iCarousel (1.8.3)
   - Jelly (1.2.0)
+  - Reveal-SDK (5)
   - SVPullToRefresh (0.4.1)
 
 DEPENDENCIES:
@@ -11,6 +12,7 @@ DEPENDENCIES:
   - AlamofireImage
   - iCarousel
   - Jelly
+  - Reveal-SDK
   - SVPullToRefresh
 
 SPEC CHECKSUMS:
@@ -18,8 +20,9 @@ SPEC CHECKSUMS:
   AlamofireImage: 157ed682cc81d3b9db4fb90c1f12180ac552d93b
   iCarousel: d782f635afac190c49bb8ee455882284cff8b85f
   Jelly: 116d4d5a884295b0b0d3bb1899ebf1a86e54dfb9
+  Reveal-SDK: 7e3945c0c3649106c3cc8923672ee545e25605c0
   SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
 
-PODFILE CHECKSUM: 93a39e5115b2687ae2d3dd89f519d63f4484286a
+PODFILE CHECKSUM: da315893cfc152440b70eab8c39e4131f241a480
 
 COCOAPODS: 1.1.1
