@@ -65,6 +65,7 @@ class FeedViewController: UIViewController {
 
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
         // To redraw Photos with new size after transition to portrait or landscape
         tableView.reloadData()
     }

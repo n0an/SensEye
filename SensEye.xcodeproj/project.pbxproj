@@ -39,6 +39,8 @@
 		18C395321E166D0200AE1867 /* NSDate+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C395301E166D0200AE1867 /* NSDate+Utilities.m */; };
 		18C395361E16768F00AE1867 /* GeneralHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C395351E16768F00AE1867 /* GeneralHelper.swift */; };
 		18C395381E1676F200AE1867 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C395371E1676F200AE1867 /* Extensions.swift */; };
+		18DD2E2B1E1A484800451CE7 /* LandscapeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DD2E2A1E1A484800451CE7 /* LandscapeViewController.swift */; };
+		18DD2E2D1E1A499C00451CE7 /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DD2E2C1E1A499C00451CE7 /* Search.swift */; };
 		18FC625C1E113E9C00E25A18 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FC625B1E113E9C00E25A18 /* Photo.swift */; };
 		18FC625E1E11439D00E25A18 /* PhotoAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FC625D1E11439D00E25A18 /* PhotoAlbum.swift */; };
 		18FC62631E11545D00E25A18 /* PostPhotoGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FC62621E11545D00E25A18 /* PostPhotoGallery.swift */; };
@@ -80,6 +82,8 @@
 		18C395311E166D0200AE1867 /* NSDate+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Utilities.h"; sourceTree = "<group>"; };
 		18C395351E16768F00AE1867 /* GeneralHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralHelper.swift; sourceTree = "<group>"; };
 		18C395371E1676F200AE1867 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		18DD2E2A1E1A484800451CE7 /* LandscapeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandscapeViewController.swift; sourceTree = "<group>"; };
+		18DD2E2C1E1A499C00451CE7 /* Search.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
 		18FC625B1E113E9C00E25A18 /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		18FC625D1E11439D00E25A18 /* PhotoAlbum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoAlbum.swift; sourceTree = "<group>"; };
 		18FC62621E11545D00E25A18 /* PostPhotoGallery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostPhotoGallery.swift; sourceTree = "<group>"; };
@@ -227,6 +231,7 @@
 				18FC625D1E11439D00E25A18 /* PhotoAlbum.swift */,
 				1838C2461E112CA200E02F88 /* Group.swift */,
 				1838C24A1E11362D00E02F88 /* User.swift */,
+				18DD2E2C1E1A499C00451CE7 /* Search.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -244,6 +249,7 @@
 			isa = PBXGroup;
 			children = (
 				188C04F71E1074C8008B58EB /* FeedViewController.swift */,
+				18DD2E2A1E1A484800451CE7 /* LandscapeViewController.swift */,
 				180231C41E12FC1D00FA8322 /* PhotoViewController.swift */,
 				1864A9E41E158E5A0058D2E2 /* AlbumsGallery */,
 			);
@@ -392,8 +398,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18DD2E2D1E1A499C00451CE7 /* Search.swift in Sources */,
 				184DE8A51E15A39900E98926 /* SlideRightTransitionAnimator.swift in Sources */,
 				184DE8B01E15A90B00E98926 /* ACPopTransitionAnimator.swift in Sources */,
+				18DD2E2B1E1A484800451CE7 /* LandscapeViewController.swift in Sources */,
 				1838C2471E112CA200E02F88 /* Group.swift in Sources */,
 				184DE8AA1E15A84700E98926 /* ACSlideDownTransitionAnimator.swift in Sources */,
 				180231C91E1443E400FA8322 /* PhotoAlbumsViewController.swift in Sources */,

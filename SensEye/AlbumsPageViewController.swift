@@ -5,9 +5,12 @@ import UIKit
 
 class AlbumsPageViewController: UIPageViewController, UIPageViewControllerDataSource {
 
+    // MARK: - PROPERTIES
     var albums: [PhotoAlbum] = []
     
-
+    var landscapeViewController: LandscapeViewController?
+    
+    // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -15,9 +18,9 @@ class AlbumsPageViewController: UIPageViewController, UIPageViewControllerDataSo
         
         getAlbumsFromServer()
         
-        
     }
 
+    // MARK: - API METHODS
     func getAlbumsFromServer() {
         ServerManager.sharedManager.getPhotoAlbums(forGroupID: groupID) { (result) in
             
@@ -34,7 +37,7 @@ class AlbumsPageViewController: UIPageViewController, UIPageViewControllerDataSo
     }
     
     
-    // MARK: - Helper Methods
+    // MARK: - HELPER METHODS
     
     func contentViewController(at index: Int) -> AlbumsContentViewController? {
         if index < 0 || index >= self.albums.count {
@@ -61,8 +64,7 @@ class AlbumsPageViewController: UIPageViewController, UIPageViewControllerDataSo
     }
     
     
-    // MARK: - UIPageViewControllerDataSource Methods
-    
+    // MARK: - UIPageViewControllerDataSource
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         
@@ -81,5 +83,131 @@ class AlbumsPageViewController: UIPageViewController, UIPageViewControllerDataSo
     }
     
     
+    
 
 }
+
+
+
+// MARK: - LANDSCAPE MODE
+
+extension AlbumsPageViewController {
+    
+    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
+        
+        super.willTransition(to: newCollection, with: coordinator)
+        
+        let rect = UIScreen.main.bounds
+        
+        // iPhone 6 Plus handler
+        if (rect.width == 736 && rect.height == 414) || (rect.width == 414 && rect.height == 736)  {
+            if presentedViewController != nil {
+                dismiss(animated: true, completion: nil)
+            }
+        } else if UIDevice.current.userInterfaceIdiom != .pad {
+            
+            switch newCollection.verticalSizeClass {
+            case .compact:
+                showLandscapeViewWithCoordinator(coordinator)
+            case .regular, .unspecified:
+                hideLandscapeViewWithCoordinator(coordinator)
+                
+            }
+            
+        }
+
+    }
+    
+    
+    func showLandscapeViewWithCoordinator(_ coordinator: UIViewControllerTransitionCoordinator) {
+        
+        precondition(landscapeViewController == nil)
+        
+        landscapeViewController = storyboard!.instantiateViewController(withIdentifier: "LandscapeViewController") as? LandscapeViewController
+        
+        if let controller = landscapeViewController {
+            
+            // VIEW CONTROLLER CONTAINMENT
+            controller.albums = albums
+            
+            controller.view.frame = view.bounds
+            
+            controller.view.alpha = 0
+            
+            view.addSubview(controller.view)
+            addChildViewController(controller)
+            
+            coordinator.animate(alongsideTransition: { _ in
+                
+                // !!!IMPORTANT!!!
+                // Close modal VC upon current VC
+                if self.presentedViewController != nil {
+                    self.dismiss(animated: true, completion: nil)
+                }
+                
+                controller.view.alpha = 1
+                
+            }, completion: { _ in
+                controller.didMove(toParentViewController: self)
+            })
+            
+        }
+        
+    }
+    
+    func hideLandscapeViewWithCoordinator(_ coordinator: UIViewControllerTransitionCoordinator) {
+        
+        if let controller = landscapeViewController {
+            
+            controller.willMove(toParentViewController: nil)
+            
+            coordinator.animate(alongsideTransition: { _ in
+                
+                if self.presentedViewController != nil {
+                    self.dismiss(animated: true, completion: nil)
+                }
+                
+                controller.view.alpha = 0
+            }, completion: { _ in
+                controller.view.removeFromSuperview()
+                
+                controller.removeFromParentViewController()
+                
+                self.landscapeViewController = nil
+            })
+            
+            
+        }
+    }
+
+    
+    
+    
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
