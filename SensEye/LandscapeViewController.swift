@@ -146,11 +146,11 @@ class LandscapeViewController: UIViewController {
     // MARK: - HELPER METHODS
     private func tileButtons(albums: [PhotoAlbum]) {
         
-        var columnsPerPage = 5
-        var rowsPerPage = 3
+        var columnsPerPage = 3
+        var rowsPerPage = 1
         
-        var itemWidth: CGFloat = 96
-        var itemHeight: CGFloat = 88
+        var itemWidth: CGFloat = 200
+        var itemHeight: CGFloat = 200
         
         var marginX: CGFloat = 0
         var marginY: CGFloat = 20
@@ -161,29 +161,29 @@ class LandscapeViewController: UIViewController {
         switch scrollViewWidth {
             
         case 568:
-            columnsPerPage = 6
-            itemWidth = 94
+            columnsPerPage = 3
+            itemWidth = 170
             marginX = 2
             
         case 667:
-            columnsPerPage = 7
-            itemWidth = 95
-            itemHeight = 98
+            columnsPerPage = 3
+            itemWidth = 200
+            itemHeight = 250
             marginX = 1
             marginY = 29
             
         case 736:
-            columnsPerPage = 8
-            rowsPerPage = 4
-            itemWidth = 92
+            columnsPerPage = 3
+            rowsPerPage = 1
+            itemWidth = 200
             
         default:
             break
         }
         
         
-        let buttonWidth: CGFloat = 82
-        let buttonHeight: CGFloat = 82
+        let buttonWidth: CGFloat = 170
+        let buttonHeight: CGFloat = 170
         let paddingHorz = (itemWidth - buttonWidth)/2
         let paddingVert = (itemHeight - buttonHeight)/2
         
@@ -198,6 +198,8 @@ class LandscapeViewController: UIViewController {
             let button = UIButton(type: .custom)
             
             button.setBackgroundImage(UIImage(named: "LandscapeButton"), for: .normal)
+            
+            button.imageView?.contentMode = .scaleAspectFill
             
             button.tag = 2000 + index
             
