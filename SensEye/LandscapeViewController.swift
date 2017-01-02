@@ -155,6 +155,7 @@ class LandscapeViewController: UIViewController {
         var marginX: CGFloat = 0
         var marginY: CGFloat = 20
         
+        let contentLabelHeight: CGFloat = 40
         
         let scrollViewWidth = scrollView.bounds.size.width
         
@@ -183,9 +184,9 @@ class LandscapeViewController: UIViewController {
         
         
         let imageViewWidth: CGFloat = 206
-        let imageViewHeight: CGFloat = 300
+        let imageViewHeight: CGFloat = 260
         let paddingHorz = (itemWidth - imageViewWidth)/2
-        let paddingVert = (itemHeight - imageViewHeight)/2
+        let paddingVert = (itemHeight - imageViewHeight - contentLabelHeight)/2
         
         
         var row = 0
@@ -215,10 +216,15 @@ class LandscapeViewController: UIViewController {
             contentLabel.frame = CGRect(x: x + paddingHorz,
                                         y: marginY + CGFloat(row)*itemHeight + paddingVert + imageView.frame.height,
                                         width: imageViewWidth,
-                                        height: 40)
+                                        height: contentLabelHeight)
             
             
             contentLabel.text = album.albumTitle
+            contentLabel.textColor = UIColor.white
+            contentLabel.textAlignment = .center
+            
+            contentLabel.font = UIFont(name: "AvenirNext-Regular", size: 14.0)
+            contentLabel.numberOfLines = 2
             
             imageView.isUserInteractionEnabled = true
             contentLabel.isUserInteractionEnabled = true
