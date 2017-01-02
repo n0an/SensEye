@@ -134,12 +134,14 @@ extension AlbumsPageViewController {
             
             controller.view.alpha = 0
             
+            // Hide tabBar
+            self.tabBarController?.tabBar.layer.zPosition = -1
+            
             view.addSubview(controller.view)
             addChildViewController(controller)
             
             coordinator.animate(alongsideTransition: { _ in
                 
-                // !!!IMPORTANT!!!
                 // Close modal VC upon current VC
                 if self.presentedViewController != nil {
                     self.dismiss(animated: true, completion: nil)
@@ -158,6 +160,9 @@ extension AlbumsPageViewController {
     func hideLandscapeViewWithCoordinator(_ coordinator: UIViewControllerTransitionCoordinator) {
         
         if let controller = landscapeViewController {
+            
+            // Show tabBar
+            self.tabBarController?.tabBar.layer.zPosition = 0
             
             controller.willMove(toParentViewController: nil)
             

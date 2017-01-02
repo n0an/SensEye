@@ -33,6 +33,8 @@ class LandscapeViewController: UIViewController {
     // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
 
         // TURN OFF AUTO LAYOUT FOR DEDICATED VC
         view.removeConstraints(view.constraints)
@@ -53,6 +55,7 @@ class LandscapeViewController: UIViewController {
 
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
+        
         
         scrollView.frame = view.bounds
         
