@@ -95,7 +95,7 @@ class LandscapeViewController: UIViewController {
         }
     }
     
-    private func downloadThumb(forAlbum album: PhotoAlbum, andPlaceOnButton button: UIButton) {
+    private func downloadThumb(forAlbum album: PhotoAlbum, andPlaceOnImageView imageView: UIImageView) {
         
         ServerManager.sharedManager.getPhotos(forAlbumID: album.albumID, ownerID: groupID, offset: 0, count: 1) { (result) in
             
@@ -134,14 +134,8 @@ class LandscapeViewController: UIViewController {
             }
             
             let urlPhoto = URL(string: linkToNeededRes!)
-//            button.imageView?.af_setImage(withURL: urlPhoto!)
             
-            
-            
-            
-            
-            
-            button.af_setImage(for: .normal, url: urlPhoto!)
+            imageView.af_setImage(withURL: urlPhoto!)
             
             
         }
@@ -189,11 +183,10 @@ class LandscapeViewController: UIViewController {
         }
         
         
-        let buttonWidth: CGFloat = 206
-        let buttonHeight: CGFloat = 340
-        let paddingHorz = (itemWidth - buttonWidth)/2
-//        let paddingVert = (itemHeight - buttonHeight)/2
-        let paddingVert = CGFloat(0)
+        let imageViewWidth: CGFloat = 206
+        let imageViewHeight: CGFloat = 200
+        let paddingHorz = (itemWidth - imageViewWidth)/2
+        let paddingVert = (itemHeight - imageViewHeight)/2
 
         
         var row = 0
@@ -203,28 +196,23 @@ class LandscapeViewController: UIViewController {
         
         for (index, album) in albums.enumerated() {
             
-            let button = UIButton(type: .custom)
+            let imageView = UIImageView()
             
-            button.setBackgroundImage(UIImage(named: "LandscapeButton"), for: .normal)
+            imageView.contentMode = .scaleAspectFill
+            imageView.clipsToBounds = true
             
-            button.imageView?.contentMode = .scaleAspectFill
-//            button.imageView?.clipsToBounds = true
-//            button.clipsToBounds = true
+            imageView.tag = 2000 + index
             
-            button.tag = 2000 + index
+            downloadThumb(forAlbum: album, andPlaceOnImageView: imageView)
             
-            button.addTarget(self, action: #selector(LandscapeViewController.buttonPressed(sender:)), for: .touchUpInside)
-            
-            downloadThumb(forAlbum: album, andPlaceOnButton: button)
-            
-            button.frame = CGRect(
+            imageView.frame = CGRect(
                 x: x + paddingHorz,
                 y: marginY + CGFloat(row)*itemHeight + paddingVert,
-                width: buttonWidth,
-                height: buttonHeight)
+                width: imageViewWidth,
+                height: imageViewHeight)
             
             
-            scrollView.addSubview(button)
+            scrollView.addSubview(imageView)
             
             row += 1
             
