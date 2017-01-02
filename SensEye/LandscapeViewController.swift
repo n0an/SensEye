@@ -44,9 +44,6 @@ class LandscapeViewController: UIViewController {
         scrollView.removeConstraints(scrollView.constraints)
         scrollView.translatesAutoresizingMaskIntoConstraints = true
         
-        
-//        scrollView.backgroundColor = UIColor(patternImage: UIImage(named: "LandscapeBackground")!)
-        
         pageControl.numberOfPages = 0
         
     }
@@ -74,9 +71,6 @@ class LandscapeViewController: UIViewController {
     deinit {
         print("deinit \(self)")
         
-        //        for task in downloadTasks {
-        //            task.cancel()
-        //        }
     }
     
     // MARK: - API METHODS
@@ -144,6 +138,8 @@ class LandscapeViewController: UIViewController {
     
     
     // MARK: - HELPER METHODS
+    
+    // MAIN METHOD. CREATING GALLERY
     private func tileButtons(albums: [PhotoAlbum]) {
         
         var columnsPerPage = 3
@@ -196,46 +192,54 @@ class LandscapeViewController: UIViewController {
         
         for (index, album) in albums.enumerated() {
             
-            let imageView = UIImageView()
-            
-            let contentLabel = UILabel()
-            
-            imageView.contentMode = .scaleAspectFill
-            imageView.clipsToBounds = true
-            
-            imageView.tag = 2000 + index
             
             // Create two WRAPPER UIViews to create shadow effect. Inside wrapper - for cornerRadius (masksToBounds = true). External wrapper - for shadow (masksToBounds = false)
             
+            // 1. External WrapView for shadow
             
-
+            let extWrapperRect = CGRect(x: x + paddingHorz,
+                                        y: marginY + CGFloat(row) * itemHeight + paddingVert,
+                                        width: imageViewWidth,
+                                        height: imageViewHeight)
             
-            let insideWrapperRect = CGRect(x: x + paddingHorz,
-                                           y: marginY + CGFloat(row) * itemHeight + paddingVert,
-                                           width: imageViewWidth,
-                                           height: imageViewHeight)
+            let extWrapView = UIView(frame: extWrapperRect)
             
-            
-            let insideWrapperView = UIView(frame: insideWrapperRect)
-            
-            insideWrapperView.layer.cornerRadius = 20.0
-            insideWrapperView.layer.masksToBounds = true
-            
-            let outsideWrapperView = UIView(frame: insideWrapperView.bounds)
-            outsideWrapperView.shadowDesign = true
+            extWrapView.shadowDesign = true
             
             
+            // 2. Internal WrapView for cornerRadius
             
-            imageView.frame = CGRect(
-                x: 0,
-                y: 0,
-                width: imageViewWidth,
-                height: imageViewHeight)
+            let innerWrapperRect = CGRect(x: 0,
+                                          y: 0,
+                                          width: imageViewWidth,
+                                          height: imageViewHeight)
             
-            downloadThumb(forAlbum: album, andPlaceOnImageView: imageView)
-
+            let innerWrapView = UIView(frame: innerWrapperRect)
             
+            innerWrapView.layer.cornerRadius = 4.0
+            innerWrapView.layer.masksToBounds = true
             
+            // 3. Album Thumb ImageView
+            
+            let albumThumbImageView = UIImageView()
+            
+            albumThumbImageView.contentMode = .scaleAspectFill
+            albumThumbImageView.clipsToBounds = true
+            
+            albumThumbImageView.tag = 2000 + index
+            
+            print("imageView.tag = \(albumThumbImageView.tag)")
+            
+            albumThumbImageView.frame = CGRect(x: 0,
+                                               y: 0,
+                                               width: imageViewWidth,
+                                               height: imageViewHeight)
+            
+            albumThumbImageView.isUserInteractionEnabled = true
+            
+            downloadThumb(forAlbum: album, andPlaceOnImageView: albumThumbImageView)
+            
+            // 4. Blur Effect View with Label with Album Title
             
             let blurEffect = UIBlurEffect(style: .extraLight)
             let visualEffectView = UIVisualEffectView(effect: blurEffect)
@@ -246,62 +250,48 @@ class LandscapeViewController: UIViewController {
                                             height: contentLabelHeight)
             
             
-            //            contentLabel.frame = CGRect(x: x + paddingHorz,
-            //                                        y: marginY + CGFloat(row)*itemHeight + paddingVert + imageViewHeight,
-            //                                        width: imageViewWidth,
-            //                                        height: contentLabelHeight)
+            let albumTitleLabel = UILabel()
             
+            albumTitleLabel.text = album.albumTitle
+            albumTitleLabel.tag = 2000 + index
             
-            contentLabel.frame = visualEffectView.bounds
+            albumTitleLabel.textColor = UIColor.black
+            albumTitleLabel.textAlignment = .center
             
-            visualEffectView.contentView.addSubview(contentLabel)
+            albumTitleLabel.font = UIFont.systemFont(ofSize: 14.0)
             
+            albumTitleLabel.numberOfLines = 2
             
-            contentLabel.text = album.albumTitle
-            contentLabel.textColor = UIColor.black
-            contentLabel.textAlignment = .center
+            albumTitleLabel.frame = visualEffectView.bounds
             
-            //            contentLabel.font = UIFont(name: "AvenirNext-Regular", size: 14.0)
-            contentLabel.font = UIFont.systemFont(ofSize: 14.0)
+            albumTitleLabel.isUserInteractionEnabled = true
             
-            contentLabel.numberOfLines = 2
+            visualEffectView.contentView.addSubview(albumTitleLabel)
             
-            imageView.isUserInteractionEnabled = true
-            contentLabel.isUserInteractionEnabled = true
+            // 5. Adding Tap Gesture Recognizers for albumThumbImageView and albumTitleLabel
             
             let tapOnImageViewGesture = UITapGestureRecognizer(target: self, action: #selector(self.actionGestureTap))
             let tapOnLabelGesture = UITapGestureRecognizer(target: self, action: #selector(actionGestureTap))
             
-            let tapOnInsideViewGesture = UITapGestureRecognizer(target: self, action: #selector(self.actionGestureTap))
-            let tapOnOutsideViewGesture = UITapGestureRecognizer(target: self, action: #selector(self.actionGestureTap))
-
+            albumThumbImageView.addGestureRecognizer(tapOnImageViewGesture)
+            albumTitleLabel.addGestureRecognizer(tapOnLabelGesture)
             
-            imageView.addGestureRecognizer(tapOnImageViewGesture)
-            contentLabel.addGestureRecognizer(tapOnLabelGesture)
             
-            insideWrapperView.isUserInteractionEnabled = true
-            insideWrapperView.addGestureRecognizer(tapOnInsideViewGesture)
+            // 6. Constructing all together.
             
-            outsideWrapperView.isUserInteractionEnabled = true
-            outsideWrapperView.addGestureRecognizer(tapOnOutsideViewGesture)
+            innerWrapView.addSubview(albumThumbImageView)
+            innerWrapView.addSubview(visualEffectView)
             
-            insideWrapperView.addSubview(imageView)
-            insideWrapperView.addSubview(visualEffectView)
+            extWrapView.addSubview(innerWrapView)
             
-            outsideWrapperView.addSubview(insideWrapperView)
-
-            
-//            scrollView.addSubview(imageView)
-//            scrollView.addSubview(visualEffectView)
-            
-            scrollView.addSubview(outsideWrapperView)
+            scrollView.addSubview(extWrapView)
             
             row += 1
             
             if row == rowsPerPage {
                 
                 print("x = \(x)")
-
+                
                 
                 row = 0
                 x += itemWidth
@@ -314,7 +304,7 @@ class LandscapeViewController: UIViewController {
                 }
                 
                 print("x = \(x)")
-
+                
             }
             
             print("x = \(x)")
@@ -377,28 +367,30 @@ class LandscapeViewController: UIViewController {
     
     func actionGestureTap(_ sender: UITapGestureRecognizer) {
         
-        guard let outsideWrapperView = sender.view else {
-            return
+        var tappedAlbum: PhotoAlbum?
+        
+        if let tappedImageView = sender.view as? UIImageView {
+            
+            tappedAlbum = self.albums[tappedImageView.tag - 2000]
+            
+        } else if let tappedLabel = sender.view as? UILabel {
+            
+            tappedAlbum = self.albums[tappedLabel.tag - 2000]
         }
         
-        print("outsideWrapperView.subview = \(outsideWrapperView.subviews)")
+        if let tappedAlbum = tappedAlbum {
+            
+            ServerManager.sharedManager.getPhotos(forAlbumID: tappedAlbum.albumID, ownerID: groupID, completed: { (result) in
+                
+                let photos = result as! [Photo]
+                
+                self.performSegue(withIdentifier: Storyboard.seguePhotoDisplayer, sender: photos)
+                
+                
+            })
+        }
         
-        let insdieWrapperView = outsideWrapperView.subviews[0]
         
-        guard let tappedImageView = insdieWrapperView.subviews[0] as? UIImageView else { return }
-        
-        let tappedAlbum = self.albums[tappedImageView.tag - 2000]
-        
-        ServerManager.sharedManager.getPhotos(forAlbumID: tappedAlbum.albumID, ownerID: groupID, completed: { (result) in
-            
-            let photos = result as! [Photo]
-            
-            self.performSegue(withIdentifier: Storyboard.seguePhotoDisplayer, sender: photos)
-            
-            
-            
-            
-        })
     }
     
     
@@ -415,9 +407,6 @@ class LandscapeViewController: UIViewController {
                             y: 0)
         }, completion: nil)
         
-//        self.scrollView.contentOffset = CGPoint(
-//            x: self.scrollView.bounds.width * CGFloat(sender.currentPage),
-//            y: 0)
         
     }
     
