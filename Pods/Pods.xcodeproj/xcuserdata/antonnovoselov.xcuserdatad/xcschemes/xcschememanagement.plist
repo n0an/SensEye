@@ -29,11 +29,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>SwifterSwift.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>iCarousel.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -41,42 +36,6 @@
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
-	<dict>
-		<key>11873DB9F1CCCDC99465E228CEB3EFB5</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>88E9EC28B8B46C3631E6B242B50F4442</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>9EFE4C70245EE2857D336B8B9FA4E825</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>A34D2C6B58CAE9273716BDCE2B016C72</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>B2170FE9789F2DB8AC3A28BDB8C1F51C</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>B8D8C363B343A0778AE6633D70E11749</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>CB3F286D26C8B91B032CFF2FBB9D40EC</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-	</dict>
+	<dict/>
 </dict>
 </plist>

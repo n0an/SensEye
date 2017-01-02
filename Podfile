@@ -12,6 +12,6 @@ target 'SensEye' do
   pod 'iCarousel'
   
   pod 'Jelly'
-  pod 'SwifterSwift'
+  #pod 'SwifterSwift'
   
 end
