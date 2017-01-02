@@ -136,7 +136,8 @@ extension AlbumsPageViewController {
             
             // Hide tabBar
             self.tabBarController?.tabBar.layer.zPosition = -1
-            
+            self.tabBarController?.tabBar.isUserInteractionEnabled = false
+
             view.addSubview(controller.view)
             addChildViewController(controller)
             
@@ -163,6 +164,7 @@ extension AlbumsPageViewController {
             
             // Show tabBar
             self.tabBarController?.tabBar.layer.zPosition = 0
+            self.tabBarController?.tabBar.isUserInteractionEnabled = true
             
             controller.willMove(toParentViewController: nil)
             

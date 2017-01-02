@@ -184,9 +184,9 @@ class LandscapeViewController: UIViewController {
         
         
         let imageViewWidth: CGFloat = 206
-        let imageViewHeight: CGFloat = 260
+        let imageViewHeight: CGFloat = 300
         let paddingHorz = (itemWidth - imageViewWidth)/2
-        let paddingVert = (itemHeight - imageViewHeight - contentLabelHeight)/2
+        let paddingVert = (itemHeight - imageViewHeight - contentLabelHeight/2)/2
         
         
         var row = 0
@@ -213,17 +213,34 @@ class LandscapeViewController: UIViewController {
                 width: imageViewWidth,
                 height: imageViewHeight)
             
-            contentLabel.frame = CGRect(x: x + paddingHorz,
-                                        y: marginY + CGFloat(row)*itemHeight + paddingVert + imageView.frame.height,
-                                        width: imageViewWidth,
-                                        height: contentLabelHeight)
+            
+            let blurEffect = UIBlurEffect(style: .extraLight)
+            let visualEffectView = UIVisualEffectView(effect: blurEffect)
+            
+            visualEffectView.frame = CGRect(x: x + paddingHorz,
+                                            y: marginY + CGFloat(row)*itemHeight + paddingVert + imageViewHeight - contentLabelHeight,
+                                            width: imageViewWidth,
+                                            height: contentLabelHeight)
+            
+            
+            //            contentLabel.frame = CGRect(x: x + paddingHorz,
+            //                                        y: marginY + CGFloat(row)*itemHeight + paddingVert + imageViewHeight,
+            //                                        width: imageViewWidth,
+            //                                        height: contentLabelHeight)
+            
+            
+            contentLabel.frame = visualEffectView.bounds
+            
+            visualEffectView.contentView.addSubview(contentLabel)
             
             
             contentLabel.text = album.albumTitle
-            contentLabel.textColor = UIColor.white
+            contentLabel.textColor = UIColor.black
             contentLabel.textAlignment = .center
             
-            contentLabel.font = UIFont(name: "AvenirNext-Regular", size: 14.0)
+            //            contentLabel.font = UIFont(name: "AvenirNext-Regular", size: 14.0)
+            contentLabel.font = UIFont.systemFont(ofSize: 14.0)
+            
             contentLabel.numberOfLines = 2
             
             imageView.isUserInteractionEnabled = true
@@ -234,10 +251,9 @@ class LandscapeViewController: UIViewController {
             
             imageView.addGestureRecognizer(tapOnImageViewGesture)
             contentLabel.addGestureRecognizer(tapOnLabelGesture)
-
             
-            scrollView.addSubview(contentLabel)
             scrollView.addSubview(imageView)
+            scrollView.addSubview(visualEffectView)
             
             row += 1
             
@@ -298,26 +314,26 @@ class LandscapeViewController: UIViewController {
             self.performSegue(withIdentifier: Storyboard.seguePhotoDisplayer, sender: photos)
         })
     }
-
     
     
     
-    //    @IBAction func pageChanged(sender: UIPageControl) {
-    //
-    //        UIView.animate(withDuration: 0.3,
-    //                       delay: 0,
-    //                       options: .curveEaseInOut,
-    //                       animations: {
-    //                        self.scrollView.contentOffset = CGPoint(
-    //                            x: self.scrollView.bounds.width * CGFloat(sender.currentPage),
-    //                            y: 0)
-    //        }, completion: nil)
-    //
-    //        self.scrollView.contentOffset = CGPoint(
-    //            x: self.scrollView.bounds.width * CGFloat(sender.currentPage),
-    //            y: 0)
-    //
-    //    }
+    
+    @IBAction func pageChanged(sender: UIPageControl) {
+        
+        UIView.animate(withDuration: 0.3,
+                       delay: 0,
+                       options: .curveEaseInOut,
+                       animations: {
+                        self.scrollView.contentOffset = CGPoint(
+                            x: self.scrollView.bounds.width * CGFloat(sender.currentPage),
+                            y: 0)
+        }, completion: nil)
+        
+//        self.scrollView.contentOffset = CGPoint(
+//            x: self.scrollView.bounds.width * CGFloat(sender.currentPage),
+//            y: 0)
+        
+    }
     
     
     
