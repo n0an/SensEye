@@ -1867,7 +1867,7 @@
                                 </connections>
                             </pageControl>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.88619667291641235" green="0.88632434606552124" blue="0.8861687183380127" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <connections>
                         <outlet property="pageControl" destination="chC-Mk-ohC" id="dIy-Kd-FEz"/>
@@ -1908,6 +1908,6 @@
         <image name="ufo" width="710" height="450"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="qZD-Zy-8aB"/>
+        <segue reference="ryc-y6-vxv"/>
     </inferredMetricsTieBreakers>
 </document>

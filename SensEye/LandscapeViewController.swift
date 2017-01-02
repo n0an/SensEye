@@ -45,7 +45,7 @@ class LandscapeViewController: UIViewController {
         scrollView.translatesAutoresizingMaskIntoConstraints = true
         
         
-        scrollView.backgroundColor = UIColor(patternImage: UIImage(named: "LandscapeBackground")!)
+//        scrollView.backgroundColor = UIColor(patternImage: UIImage(named: "LandscapeBackground")!)
         
         pageControl.numberOfPages = 0
         
@@ -205,20 +205,43 @@ class LandscapeViewController: UIViewController {
             
             imageView.tag = 2000 + index
             
-            downloadThumb(forAlbum: album, andPlaceOnImageView: imageView)
+            // Create two WRAPPER UIViews to create shadow effect. Inside wrapper - for cornerRadius (masksToBounds = true). External wrapper - for shadow (masksToBounds = false)
+            
+            
+
+            
+            let insideWrapperRect = CGRect(x: x + paddingHorz,
+                                           y: marginY + CGFloat(row) * itemHeight + paddingVert,
+                                           width: imageViewWidth,
+                                           height: imageViewHeight)
+            
+            
+            let insideWrapperView = UIView(frame: insideWrapperRect)
+            
+            insideWrapperView.layer.cornerRadius = 20.0
+            insideWrapperView.layer.masksToBounds = true
+            
+            let outsideWrapperView = UIView(frame: insideWrapperView.bounds)
+            outsideWrapperView.shadowDesign = true
+            
+            
             
             imageView.frame = CGRect(
-                x: x + paddingHorz,
-                y: marginY + CGFloat(row)*itemHeight + paddingVert,
+                x: 0,
+                y: 0,
                 width: imageViewWidth,
                 height: imageViewHeight)
+            
+            downloadThumb(forAlbum: album, andPlaceOnImageView: imageView)
+
+            
             
             
             let blurEffect = UIBlurEffect(style: .extraLight)
             let visualEffectView = UIVisualEffectView(effect: blurEffect)
             
-            visualEffectView.frame = CGRect(x: x + paddingHorz,
-                                            y: marginY + CGFloat(row)*itemHeight + paddingVert + imageViewHeight - contentLabelHeight,
+            visualEffectView.frame = CGRect(x: 0,
+                                            y: imageViewHeight - contentLabelHeight,
                                             width: imageViewWidth,
                                             height: contentLabelHeight)
             
@@ -246,26 +269,56 @@ class LandscapeViewController: UIViewController {
             imageView.isUserInteractionEnabled = true
             contentLabel.isUserInteractionEnabled = true
             
-            let tapOnImageViewGesture = UITapGestureRecognizer(target: self, action: #selector(self.actionGestureTap(_:)))
+            let tapOnImageViewGesture = UITapGestureRecognizer(target: self, action: #selector(self.actionGestureTap))
             let tapOnLabelGesture = UITapGestureRecognizer(target: self, action: #selector(actionGestureTap))
+            
+            let tapOnInsideViewGesture = UITapGestureRecognizer(target: self, action: #selector(self.actionGestureTap))
+            let tapOnOutsideViewGesture = UITapGestureRecognizer(target: self, action: #selector(self.actionGestureTap))
+
             
             imageView.addGestureRecognizer(tapOnImageViewGesture)
             contentLabel.addGestureRecognizer(tapOnLabelGesture)
             
-            scrollView.addSubview(imageView)
-            scrollView.addSubview(visualEffectView)
+            insideWrapperView.isUserInteractionEnabled = true
+            insideWrapperView.addGestureRecognizer(tapOnInsideViewGesture)
+            
+            outsideWrapperView.isUserInteractionEnabled = true
+            outsideWrapperView.addGestureRecognizer(tapOnOutsideViewGesture)
+            
+            insideWrapperView.addSubview(imageView)
+            insideWrapperView.addSubview(visualEffectView)
+            
+            outsideWrapperView.addSubview(insideWrapperView)
+
+            
+//            scrollView.addSubview(imageView)
+//            scrollView.addSubview(visualEffectView)
+            
+            scrollView.addSubview(outsideWrapperView)
             
             row += 1
             
             if row == rowsPerPage {
                 
-                row = 0; x += itemWidth; column += 1
+                print("x = \(x)")
+
+                
+                row = 0
+                x += itemWidth
+                column += 1
                 
                 if column == columnsPerPage {
                     
-                    column = 0; x += marginX * 2
+                    column = 0
+                    x += marginX * 2
                 }
+                
+                print("x = \(x)")
+
             }
+            
+            print("x = \(x)")
+            
         }
         
         let imagesPerPage = columnsPerPage * rowsPerPage
@@ -284,7 +337,6 @@ class LandscapeViewController: UIViewController {
         
     }
     
-    // MARK: - Show/Hide Spinner
     private func showSpinner() {
         let spinner = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
         spinner.center = CGPoint(x: scrollView.bounds.width / 2 + 0.5, y: scrollView.bounds.height / 2 + 0.5)
@@ -297,13 +349,43 @@ class LandscapeViewController: UIViewController {
         view.viewWithTag(1000)?.removeFromSuperview()
     }
     
+    
+    
+    // MARK: - NAVIGATION
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == Storyboard.seguePhotoDisplayer {
+            
+            let destinationNavVC = segue.destination as! UINavigationController
+            destinationNavVC.transitioningDelegate = TransitionHelper.sharedHelper.acRotateTransition
+            
+            let destinationVC = destinationNavVC.topViewController as! PhotoViewController
+            
+            guard let photos = sender as? [Photo] else { return }
+            
+            destinationVC.currentPhoto = photos[0]
+            destinationVC.mediasArray = photos
+            destinationVC.currentIndex = 0
+            
+            
+        }
+    }
+    
+    
+    
     // MARK: - ACTIONS
     
     func actionGestureTap(_ sender: UITapGestureRecognizer) {
         
-        guard  let tappedImageView = sender.view as? UIImageView else {
+        guard let outsideWrapperView = sender.view else {
             return
         }
+        
+        print("outsideWrapperView.subview = \(outsideWrapperView.subviews)")
+        
+        let insdieWrapperView = outsideWrapperView.subviews[0]
+        
+        guard let tappedImageView = insdieWrapperView.subviews[0] as? UIImageView else { return }
         
         let tappedAlbum = self.albums[tappedImageView.tag - 2000]
         
@@ -312,6 +394,10 @@ class LandscapeViewController: UIViewController {
             let photos = result as! [Photo]
             
             self.performSegue(withIdentifier: Storyboard.seguePhotoDisplayer, sender: photos)
+            
+            
+            
+            
         })
     }
     
