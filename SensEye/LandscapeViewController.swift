@@ -26,16 +26,14 @@ class LandscapeViewController: UIViewController {
     }
     
     public var albums: [PhotoAlbum] = []
-
+    
     fileprivate var firstTime = true
-
+    
     
     // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-
         // TURN OFF AUTO LAYOUT FOR DEDICATED VC
         view.removeConstraints(view.constraints)
         view.translatesAutoresizingMaskIntoConstraints = true
@@ -50,12 +48,11 @@ class LandscapeViewController: UIViewController {
         scrollView.backgroundColor = UIColor(patternImage: UIImage(named: "LandscapeBackground")!)
         
         pageControl.numberOfPages = 0
-
+        
     }
-
+    
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        
         
         scrollView.frame = view.bounds
         
@@ -63,7 +60,6 @@ class LandscapeViewController: UIViewController {
                                    y: view.frame.size.height - pageControl.frame.size.height,
                                    width: view.frame.size.width,
                                    height: pageControl.frame.size.height)
-
         
         if firstTime {
             firstTime = false
@@ -78,9 +74,9 @@ class LandscapeViewController: UIViewController {
     deinit {
         print("deinit \(self)")
         
-//        for task in downloadTasks {
-//            task.cancel()
-//        }
+        //        for task in downloadTasks {
+        //            task.cancel()
+        //        }
     }
     
     // MARK: - API METHODS
@@ -154,7 +150,7 @@ class LandscapeViewController: UIViewController {
         var rowsPerPage = 1
         
         var itemWidth: CGFloat = 200
-        var itemHeight: CGFloat = 200
+        var itemHeight: CGFloat = 317
         
         var marginX: CGFloat = 0
         var marginY: CGFloat = 20
@@ -172,7 +168,7 @@ class LandscapeViewController: UIViewController {
         case 667:
             columnsPerPage = 3
             itemWidth = 222
-            itemHeight = 360
+            itemHeight = 375
             marginX = 1
             marginY = 0
             
@@ -187,10 +183,10 @@ class LandscapeViewController: UIViewController {
         
         
         let imageViewWidth: CGFloat = 206
-        let imageViewHeight: CGFloat = 200
+        let imageViewHeight: CGFloat = 300
         let paddingHorz = (itemWidth - imageViewWidth)/2
         let paddingVert = (itemHeight - imageViewHeight)/2
-
+        
         
         var row = 0
         var column = 0
@@ -200,6 +196,8 @@ class LandscapeViewController: UIViewController {
         for (index, album) in albums.enumerated() {
             
             let imageView = UIImageView()
+            
+            let contentLabel = UILabel()
             
             imageView.contentMode = .scaleAspectFill
             imageView.clipsToBounds = true
@@ -214,7 +212,25 @@ class LandscapeViewController: UIViewController {
                 width: imageViewWidth,
                 height: imageViewHeight)
             
+            contentLabel.frame = CGRect(x: x + paddingHorz,
+                                        y: marginY + CGFloat(row)*itemHeight + paddingVert + imageView.frame.height,
+                                        width: imageViewWidth,
+                                        height: 40)
             
+            
+            contentLabel.text = album.albumTitle
+            
+            imageView.isUserInteractionEnabled = true
+            contentLabel.isUserInteractionEnabled = true
+            
+            let tapOnImageViewGesture = UITapGestureRecognizer(target: self, action: #selector(self.actionGestureTap(_:)))
+            let tapOnLabelGesture = UITapGestureRecognizer(target: self, action: #selector(actionGestureTap))
+            
+            imageView.addGestureRecognizer(tapOnImageViewGesture)
+            contentLabel.addGestureRecognizer(tapOnLabelGesture)
+
+            
+            scrollView.addSubview(contentLabel)
             scrollView.addSubview(imageView)
             
             row += 1
@@ -230,9 +246,9 @@ class LandscapeViewController: UIViewController {
             }
         }
         
-        let buttonsPerPage = columnsPerPage * rowsPerPage
+        let imagesPerPage = columnsPerPage * rowsPerPage
         
-        let numPages = 1 + (albums.count - 1) / buttonsPerPage
+        let numPages = 1 + (albums.count - 1) / imagesPerPage
         
         scrollView.contentSize = CGSize(
             width: CGFloat(numPages)*scrollViewWidth,
@@ -241,12 +257,11 @@ class LandscapeViewController: UIViewController {
         print("Number of pages: \(numPages)")
         
         
-        
         pageControl.numberOfPages = numPages
         pageControl.currentPage = 0
         
     }
-
+    
     // MARK: - Show/Hide Spinner
     private func showSpinner() {
         let spinner = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
@@ -262,28 +277,46 @@ class LandscapeViewController: UIViewController {
     
     // MARK: - ACTIONS
     
-    func buttonPressed(sender: UIButton) {
-        performSegue(withIdentifier: Storyboard.seguePhotoDisplayer, sender: sender)
+    func actionGestureTap(_ sender: UITapGestureRecognizer) {
+        
+        guard  let tappedImageView = sender.view as? UIImageView else {
+            return
+        }
+        
+        let tappedAlbum = self.albums[tappedImageView.tag - 2000]
+        
+        ServerManager.sharedManager.getPhotos(forAlbumID: tappedAlbum.albumID, ownerID: groupID, completed: { (result) in
+            
+            let photos = result as! [Photo]
+            
+            self.performSegue(withIdentifier: Storyboard.seguePhotoDisplayer, sender: photos)
+        })
     }
-    
-    @IBAction func pageChanged(sender: UIPageControl) {
-        
-        UIView.animate(withDuration: 0.3,
-                       delay: 0,
-                       options: .curveEaseInOut,
-                       animations: { 
-                        self.scrollView.contentOffset = CGPoint(
-                            x: self.scrollView.bounds.width * CGFloat(sender.currentPage),
-                            y: 0)
-        }, completion: nil)
-        
-//        self.scrollView.contentOffset = CGPoint(
-//            x: self.scrollView.bounds.width * CGFloat(sender.currentPage),
-//            y: 0)
-        
-    }
-    
 
+    
+    
+    
+    //    @IBAction func pageChanged(sender: UIPageControl) {
+    //
+    //        UIView.animate(withDuration: 0.3,
+    //                       delay: 0,
+    //                       options: .curveEaseInOut,
+    //                       animations: {
+    //                        self.scrollView.contentOffset = CGPoint(
+    //                            x: self.scrollView.bounds.width * CGFloat(sender.currentPage),
+    //                            y: 0)
+    //        }, completion: nil)
+    //
+    //        self.scrollView.contentOffset = CGPoint(
+    //            x: self.scrollView.bounds.width * CGFloat(sender.currentPage),
+    //            y: 0)
+    //
+    //    }
+    
+    
+    
+    
+    
 }
 
 
