@@ -13,13 +13,13 @@ import UIKit
 class AlbumsContentViewController: UIViewController {
     
     // MARK: - OUTLETS
-    @IBOutlet var headingLabel: UILabel!
+//    @IBOutlet var headingLabel: UILabel!
     @IBOutlet var contentLabel: UILabel!
     @IBOutlet var contentImageView: UIImageView!
     @IBOutlet var pageControl: UIPageControl!
-    @IBOutlet var forwardButton: UIButton!
+//    @IBOutlet var forwardButton: UIButton!
     
-    @IBOutlet weak var visualEffectView: UIVisualEffectView!
+//    @IBOutlet weak var visualEffectView: UIVisualEffectView!
     
     
     // MARK: - PROPERTIES
@@ -35,6 +35,8 @@ class AlbumsContentViewController: UIViewController {
     var imageFile = ""
     var content = ""
     var totalAlbums: Int!
+    
+    var currentPage: Int!
     
     var album: PhotoAlbum!
     
@@ -61,6 +63,8 @@ class AlbumsContentViewController: UIViewController {
     func updateUI() {
         
         pageControl.currentPage = index
+        
+        self.currentPage = index
         
         contentLabel.text = self.album.albumTitle
 
@@ -147,6 +151,22 @@ class AlbumsContentViewController: UIViewController {
         let pageViewController = parent as! AlbumsPageViewController
         pageViewController.forward(index: index)
     }
+    
+    
+    
+    @IBAction func pageChanged(_ sender: UIPageControl) {
+        
+        let pageViewController = parent as! AlbumsPageViewController
+        
+        
+        if sender.currentPage > index {
+            pageViewController.showViewController(forIndex: sender.currentPage, andDirection: .forward)
+        } else {
+            pageViewController.showViewController(forIndex: sender.currentPage, andDirection: .backward)
+        }
+        
+    }
+    
 }
 
 

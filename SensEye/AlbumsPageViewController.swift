@@ -8,6 +8,11 @@ class AlbumsPageViewController: UIPageViewController, UIPageViewControllerDataSo
     // MARK: - PROPERTIES
     var albums: [PhotoAlbum] = []
     
+    enum ContentControllerCyclingDirection {
+        case forward
+        case backward
+    }
+    
     var landscapeViewController: LandscapeViewController?
     
     // MARK: - viewDidLoad
@@ -61,6 +66,19 @@ class AlbumsPageViewController: UIPageViewController, UIPageViewControllerDataSo
         if let nextViewController = contentViewController(at: index + 1) {
             setViewControllers([nextViewController], direction: .forward, animated: true, completion: nil)
         }
+    }
+    
+    func showViewController(forIndex index: Int, andDirection direction: ContentControllerCyclingDirection) {
+        
+        if let viewController = contentViewController(at: index) {
+            
+            if direction == .forward {
+                setViewControllers([viewController], direction: .forward, animated: true, completion: nil)
+            } else {
+                setViewControllers([viewController], direction: .reverse, animated: true, completion: nil)
+            }
+        }
+        
     }
     
     

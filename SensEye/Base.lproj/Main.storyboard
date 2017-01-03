@@ -1721,20 +1721,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="5" translatesAutoresizingMaskIntoConstraints="NO" id="4Os-72-V31">
-                                <rect key="frame" x="152" y="627" width="71" height="37"/>
+                                <rect key="frame" x="0.0" y="630" width="375" height="37"/>
                                 <color key="pageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="currentPageIndicatorTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                            </pageControl>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Cw-yG-8Lq">
-                                <rect key="frame" x="320" y="630" width="39" height="30"/>
-                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
-                                <state key="normal" title="NEXT">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
                                 <connections>
-                                    <action selector="nextButtonTappedWithSender:" destination="Sgt-6H-LI5" eventType="touchUpInside" id="ZYI-gn-dDX"/>
+                                    <action selector="pageChanged:" destination="Sgt-6H-LI5" eventType="valueChanged" id="hvE-Cv-k24"/>
                                 </connections>
-                            </button>
+                            </pageControl>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D5D-HV-hrx" userLabel="ExtContentView" customClass="PostView" customModule="SensEye" customModuleProvider="target">
                                 <rect key="frame" x="25" y="100" width="326" height="467"/>
                                 <subviews>
@@ -1808,25 +1801,23 @@
                         <color key="backgroundColor" red="0.88627450980392153" green="0.88627450980392153" blue="0.88627450980392153" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="D5D-HV-hrx" firstAttribute="centerY" secondItem="wRc-re-CR4" secondAttribute="centerY" id="3fo-YO-Jgd"/>
-                            <constraint firstItem="4Os-72-V31" firstAttribute="centerX" secondItem="wRc-re-CR4" secondAttribute="centerX" id="6GF-ma-CkG"/>
-                            <constraint firstItem="quT-pp-o8j" firstAttribute="top" secondItem="4Os-72-V31" secondAttribute="bottom" constant="3" id="9C3-2m-Qve"/>
+                            <constraint firstItem="4Os-72-V31" firstAttribute="leading" secondItem="wRc-re-CR4" secondAttribute="leading" id="E4Q-ta-Geb"/>
+                            <constraint firstAttribute="trailing" secondItem="4Os-72-V31" secondAttribute="trailing" id="Zm0-CX-CPI"/>
                             <constraint firstItem="D5D-HV-hrx" firstAttribute="height" secondItem="wRc-re-CR4" secondAttribute="height" multiplier="0.7" id="hMn-rf-tgW"/>
                             <constraint firstItem="D5D-HV-hrx" firstAttribute="centerX" secondItem="wRc-re-CR4" secondAttribute="centerX" id="puR-df-pik"/>
-                            <constraint firstItem="7Cw-yG-8Lq" firstAttribute="trailing" secondItem="wRc-re-CR4" secondAttribute="trailingMargin" id="rnb-Ay-pZg"/>
-                            <constraint firstItem="quT-pp-o8j" firstAttribute="top" secondItem="7Cw-yG-8Lq" secondAttribute="bottom" constant="7" id="zEg-dw-EMc"/>
+                            <constraint firstItem="quT-pp-o8j" firstAttribute="top" secondItem="4Os-72-V31" secondAttribute="bottom" id="vXt-aM-cDS"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="contentImageView" destination="Xrj-gG-6xs" id="SPm-h9-knH"/>
                         <outlet property="contentLabel" destination="RaQ-Co-nu6" id="xa9-Og-wJT"/>
-                        <outlet property="forwardButton" destination="7Cw-yG-8Lq" id="LGg-ku-LWi"/>
                         <outlet property="pageControl" destination="4Os-72-V31" id="qnP-OL-0wT"/>
                         <segue destination="Uuj-Kp-AHt" kind="presentation" identifier="showPhoto" id="qZD-Zy-8aB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X5T-gt-NlR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2746" y="1753"/>
+            <point key="canvasLocation" x="2744.8000000000002" y="1752.7736131934034"/>
         </scene>
         <!--Albums Page View Controller-->
         <scene sceneID="cac-u6-lMO">
@@ -1910,6 +1901,6 @@
         <image name="ufo" width="710" height="450"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ryc-y6-vxv"/>
+        <segue reference="qZD-Zy-8aB"/>
     </inferredMetricsTieBreakers>
 </document>
