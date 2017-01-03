@@ -142,63 +142,65 @@ class LandscapeViewController: UIViewController {
     // MAIN METHOD. CREATING GALLERY
     private func tileButtons(albums: [PhotoAlbum]) {
         
-        var columnsPerPage = 3
-        var rowsPerPage = 1
+        let columnsPerPage = 3
         
-        var itemWidth: CGFloat = 200
-        var itemHeight: CGFloat = 317
-        
-        var marginX: CGFloat = 0
-        var marginY: CGFloat = 20
+        var itemWidth: CGFloat!
+        var itemHeight: CGFloat!
         
         let contentLabelHeight: CGFloat = 40
         
         let scrollViewWidth = scrollView.bounds.size.width
         
+        var imageViewWidth: CGFloat!
+        var imageViewHeight: CGFloat!
+        
         switch scrollViewWidth {
             
         case 568:
-            columnsPerPage = 3
-            itemWidth = 170
-            marginX = 2
+            
+            itemWidth = 189
+            itemHeight = 320
+
+            imageViewWidth = 170
+            imageViewHeight = 260
             
         case 667:
-            columnsPerPage = 3
+            
             itemWidth = 222
             itemHeight = 375
-            marginX = 1
-            marginY = 0
+
+            imageViewWidth = 206
+            imageViewHeight = 300
             
         case 736:
-            columnsPerPage = 3
-            rowsPerPage = 1
-            itemWidth = 200
             
+            itemWidth = 245
+            itemHeight = 414
+
+            imageViewWidth = 229
+            imageViewHeight = 338
+
         default:
-            break
+            itemWidth = 222
+            itemHeight = 375
+            
+            imageViewWidth = 206
+            imageViewHeight = 300
         }
         
-        
-        let imageViewWidth: CGFloat = 206
-        let imageViewHeight: CGFloat = 300
         let paddingHorz = (itemWidth - imageViewWidth)/2
         let paddingVert = (itemHeight - imageViewHeight - contentLabelHeight/2)/2
         
-        
-        var row = 0
-        var column = 0
-        var x = marginX
-        
+        var x: CGFloat = 0
         
         for (index, album) in albums.enumerated() {
-            
             
             // Create two WRAPPER UIViews to create shadow effect. Inside wrapper - for cornerRadius (masksToBounds = true). External wrapper - for shadow (masksToBounds = false)
             
             // 1. External WrapView for shadow
             
             let extWrapperRect = CGRect(x: x + paddingHorz,
-                                        y: marginY + CGFloat(row) * itemHeight + paddingVert,
+                                        y: paddingVert,
                                         width: imageViewWidth,
                                         height: imageViewHeight)
             
@@ -227,8 +229,6 @@ class LandscapeViewController: UIViewController {
             albumThumbImageView.clipsToBounds = true
             
             albumThumbImageView.tag = 2000 + index
-            
-            print("imageView.tag = \(albumThumbImageView.tag)")
             
             albumThumbImageView.frame = CGRect(x: 0,
                                                y: 0,
@@ -286,32 +286,13 @@ class LandscapeViewController: UIViewController {
             
             scrollView.addSubview(extWrapView)
             
-            row += 1
             
-            if row == rowsPerPage {
-                
-                print("x = \(x)")
-                
-                
-                row = 0
-                x += itemWidth
-                column += 1
-                
-                if column == columnsPerPage {
-                    
-                    column = 0
-                    x += marginX * 2
-                }
-                
-                print("x = \(x)")
-                
-            }
-            
-            print("x = \(x)")
+            x += itemWidth
+
             
         }
         
-        let imagesPerPage = columnsPerPage * rowsPerPage
+        let imagesPerPage = columnsPerPage
         
         let numPages = 1 + (albums.count - 1) / imagesPerPage
         
