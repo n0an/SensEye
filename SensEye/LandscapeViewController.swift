@@ -83,7 +83,7 @@ class LandscapeViewController: UIViewController {
             
             self.hideSpinner()
             
-            self.tileButtons(albums: albums)
+            self.tileAlbums(albums: albums)
             
         }
     }
@@ -140,7 +140,7 @@ class LandscapeViewController: UIViewController {
     // MARK: - HELPER METHODS
     
     // MAIN METHOD. CREATING GALLERY
-    private func tileButtons(albums: [PhotoAlbum]) {
+    private func tileAlbums(albums: [PhotoAlbum]) {
         
         let columnsPerPage = 3
         

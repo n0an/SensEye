@@ -117,6 +117,22 @@ extension AlbumsPageViewController {
         
         let rect = UIScreen.main.bounds
         
+        
+        
+        if UIDevice.current.userInterfaceIdiom != .pad {
+            
+            switch newCollection.verticalSizeClass {
+            case .compact:
+                showLandscapeViewWithCoordinator(coordinator)
+            case .regular, .unspecified:
+                hideLandscapeViewWithCoordinator(coordinator)
+                
+            }
+            
+        }
+        
+        // TODO: - Uncomment when implement split view. Comment ^^^
+        /*
         // iPhone 6 Plus handler
         if (rect.width == 736 && rect.height == 414) || (rect.width == 414 && rect.height == 736)  {
             if presentedViewController != nil {
@@ -133,6 +149,7 @@ extension AlbumsPageViewController {
             }
             
         }
+        */
 
     }
     
