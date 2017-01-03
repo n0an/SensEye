@@ -185,6 +185,10 @@ class PhotoViewController: UIViewController {
     func updateUI() {
         // take up the whole super view inner content
         scrollView = UIScrollView(frame: view.bounds)
+        
+        scrollView.showsHorizontalScrollIndicator = false
+        scrollView.showsVerticalScrollIndicator = false
+        
         scrollView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         scrollView.backgroundColor =  UIColor.black
         scrollView.contentSize = imageView.bounds.size	// the content size of the scroll view is the image size
