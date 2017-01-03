@@ -114,7 +114,7 @@ class AlbumsContentViewController: UIViewController {
         if segue.identifier == Storyboard.seguePhotoDisplayer {
             
             let destinationNavVC = segue.destination as! UINavigationController
-            destinationNavVC.transitioningDelegate = TransitionHelper.sharedHelper.acRotateTransition
+//            destinationNavVC.transitioningDelegate = TransitionHelper.sharedHelper.acRotateTransition
             
             let destinationVC = destinationNavVC.topViewController as! PhotoViewController
             

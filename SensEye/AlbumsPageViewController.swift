@@ -144,9 +144,9 @@ extension AlbumsPageViewController {
             coordinator.animate(alongsideTransition: { _ in
                 
                 // Close modal VC upon current VC
-                if self.presentedViewController != nil {
-                    self.dismiss(animated: true, completion: nil)
-                }
+//                if self.presentedViewController != nil {
+//                    self.dismiss(animated: true, completion: nil)
+//                }
                 
                 controller.view.alpha = 1
                 
@@ -170,9 +170,9 @@ extension AlbumsPageViewController {
             
             coordinator.animate(alongsideTransition: { _ in
                 
-                if self.presentedViewController != nil {
-                    self.dismiss(animated: true, completion: nil)
-                }
+//                if self.presentedViewController != nil {
+//                    self.dismiss(animated: true, completion: nil)
+//                }
                 
                 controller.view.alpha = 0
             }, completion: { _ in
