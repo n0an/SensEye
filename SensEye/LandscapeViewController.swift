@@ -27,7 +27,7 @@ class LandscapeViewController: UIViewController {
     
     public var albums: [PhotoAlbum] = []
     
-    fileprivate var firstTime = true
+//    fileprivate var firstTime = true
     
     
     // MARK: - viewDidLoad
@@ -46,6 +46,8 @@ class LandscapeViewController: UIViewController {
         
         pageControl.numberOfPages = 0
         
+        self.tileAlbums(albums: albums)
+        
     }
     
     override func viewWillLayoutSubviews() {
@@ -58,12 +60,13 @@ class LandscapeViewController: UIViewController {
                                    width: view.frame.size.width,
                                    height: pageControl.frame.size.height)
         
-        if firstTime {
-            firstTime = false
-            getAlbumsFromServer()
-            
-            showSpinner()
-        }
+//        if firstTime {
+//            firstTime = false
+//            getAlbumsFromServer()
+//            
+//            showSpinner()
+//        }
+        
         
         
     }
@@ -74,19 +77,21 @@ class LandscapeViewController: UIViewController {
     }
     
     // MARK: - API METHODS
-    func getAlbumsFromServer() {
-        ServerManager.sharedManager.getPhotoAlbums(forGroupID: groupID) { (result) in
-            
-            guard let albums = result as? [PhotoAlbum] else { return }
-            
-            self.albums = albums
-            
-            self.hideSpinner()
-            
-            self.tileAlbums(albums: albums)
-            
-        }
-    }
+    
+    
+//    func getAlbumsFromServer() {
+//        ServerManager.sharedManager.getPhotoAlbums(forGroupID: groupID) { (result) in
+//            
+//            guard let albums = result as? [PhotoAlbum] else { return }
+//            
+//            self.albums = albums
+//            
+//            self.hideSpinner()
+//            
+//            self.tileAlbums(albums: albums)
+//            
+//        }
+//    }
     
     private func downloadThumb(forAlbum album: PhotoAlbum, andPlaceOnImageView imageView: UIImageView) {
         

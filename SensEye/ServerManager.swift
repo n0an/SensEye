@@ -16,6 +16,18 @@ class ServerManager {
     
     static let sharedManager = ServerManager()
     
+    var networkActivityIndicatorVisible: Bool = false {
+        didSet {
+            if networkActivityIndicatorVisible == true {
+                
+                UIApplication.shared.isNetworkActivityIndicatorVisible = true
+            } else {
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
+            }
+            
+        }
+    }
+    
     // MARK: - PHOTOS
     func getPhotos(forAlbumID albumID: String, ownerID: String, offset: Int? = nil, count: Int? = nil, completed: @escaping DownloadComplete) {
         
@@ -36,7 +48,11 @@ class ServerManager {
         
         let finalUrl = url + "&v=5.60"
         
+        self.networkActivityIndicatorVisible = true
+        
         Alamofire.request(finalUrl).responseJSON { (responseJson) in
+            
+            self.networkActivityIndicatorVisible = false
             
             guard let responseRoot = responseJson.result.value as? [String: Any] else {return}
             
@@ -73,8 +89,11 @@ class ServerManager {
         
         let finalUrl = url + "&v=5.60"
         
+        self.networkActivityIndicatorVisible = true
         
         Alamofire.request(finalUrl).responseJSON { (responseJson) in
+            
+            self.networkActivityIndicatorVisible = false
             
             guard let responseRoot = responseJson.result.value as? [String: Any] else {return}
             
@@ -115,8 +134,12 @@ class ServerManager {
         
         
         let finalUrl = url + "&v=5.60"
+        
+        self.networkActivityIndicatorVisible = true
     
         Alamofire.request(finalUrl).responseJSON { (responseJson) in
+            
+            self.networkActivityIndicatorVisible = false
             
             guard let responseRoot = responseJson.result.value as? [String: Any] else {return}
             

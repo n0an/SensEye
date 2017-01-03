@@ -169,6 +169,8 @@ extension AlbumsPageViewController {
             
             controller.view.alpha = 0
             
+            controller.albums = self.albums
+            
             // Hide tabBar
             self.tabBarController?.tabBar.layer.zPosition = -1
             self.tabBarController?.tabBar.isUserInteractionEnabled = false
