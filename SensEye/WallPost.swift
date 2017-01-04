@@ -9,7 +9,7 @@
 import Foundation
 
 
-class WallPost {
+class WallPost: ServerObject {
     
     var postID: String!
     var postText: String!
@@ -24,7 +24,7 @@ class WallPost {
     var postComments: String!
     var postLikes: String!
     
-    init(responseObject: [String: Any]) {
+    required init(responseObject: [String: Any]) {
         
         if let postID = responseObject["id"] as? Int {
             

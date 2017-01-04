@@ -12,6 +12,7 @@ let URL_BASE = "https://api.vk.com/method"
 let URL_WALL_FEED = "/wall.get?"
 let URL_PHOTOS = "/photos.get?"
 let URL_PHOTO_ALBUMS = "/photos.getAlbums?"
+let URL_COMMENTS = "/wall.getComments?"
 
 enum URL_PARAMS: String {
     
@@ -26,6 +27,9 @@ enum URL_PARAMS: String {
     case NEED_COVERS = "need_covers="
     
     case LANG = "lang="
+    
+    case POST_ID = "post_id="
+    case NEED_LIKES = "need_likes="
 }
 
 
