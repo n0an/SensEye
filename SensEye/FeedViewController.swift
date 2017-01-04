@@ -75,6 +75,9 @@ class FeedViewController: UIViewController {
     // MARK: - API METHODS
     
     func getPostsFromServer() {
+        
+        GeneralHelper.sharedHelper.showSpinner(onView: self.view, usingBoundsFromView: self.tableView)
+        
         ServerManager.sharedManager.getGroupWall(forGroupID: groupID, offset: self.wallPosts.count, count: postsInRequest) { (posts) in
             
             if posts.count > 0 {
@@ -111,6 +114,7 @@ class FeedViewController: UIViewController {
             }
             
             self.loadingData = false
+            GeneralHelper.sharedHelper.hideSpinner(onView: self.view)
             self.tableView.infiniteScrollingView.stopAnimating()
             
         }
@@ -121,6 +125,8 @@ class FeedViewController: UIViewController {
         if self.loadingData == false {
             
             self.loadingData = true
+            
+            GeneralHelper.sharedHelper.showSpinner(onView: self.view, usingBoundsFromView: self.tableView)
             
             ServerManager.sharedManager.getGroupWall(forGroupID: groupID, offset: 0, count: max(postsInRequest, self.wallPosts.count), completed: { (posts) in
                 
@@ -137,6 +143,7 @@ class FeedViewController: UIViewController {
                 }
                 
                 self.loadingData = false
+                GeneralHelper.sharedHelper.showSpinner(onView: self.view, usingBoundsFromView: self.tableView)
                 self.tableView.pullToRefreshView.stopAnimating()
                 
             })

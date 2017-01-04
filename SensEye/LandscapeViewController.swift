@@ -27,8 +27,6 @@ class LandscapeViewController: UIViewController {
     
     public var albums: [PhotoAlbum] = []
     
-//    fileprivate var firstTime = true
-    
     
     // MARK: - viewDidLoad
     override func viewDidLoad() {
@@ -61,17 +59,7 @@ class LandscapeViewController: UIViewController {
                                    height: pageControl.frame.size.height)
         
         self.tileAlbums(albums: albums)
-        
-        
-//        if firstTime {
-//            firstTime = false
-//            getAlbumsFromServer()
-//            
-//            showSpinner()
-//        }
-        
-        
-        
+  
     }
     
     deinit {
@@ -80,22 +68,7 @@ class LandscapeViewController: UIViewController {
     }
     
     // MARK: - API METHODS
-    
-    
-//    func getAlbumsFromServer() {
-//        ServerManager.sharedManager.getPhotoAlbums(forGroupID: groupID) { (result) in
-//            
-//            guard let albums = result as? [PhotoAlbum] else { return }
-//            
-//            self.albums = albums
-//            
-//            self.hideSpinner()
-//            
-//            self.tileAlbums(albums: albums)
-//            
-//        }
-//    }
-    
+
     private func downloadThumb(forAlbum album: PhotoAlbum, andPlaceOnImageView imageView: UIImageView) {
         
         ServerManager.sharedManager.getPhotos(forAlbumID: album.albumID, ownerID: groupID, offset: 0, count: 1) { (result) in
@@ -131,17 +104,12 @@ class LandscapeViewController: UIViewController {
                 if linkToNeededRes == nil {
                     linkToNeededRes = firstPhotoOfAlbum?.maxRes
                 }
-                
             }
             
             let urlPhoto = URL(string: linkToNeededRes!)
             
             imageView.af_setImage(withURL: urlPhoto!)
-            
-            
         }
-        
-        
     }
     
     
@@ -316,17 +284,7 @@ class LandscapeViewController: UIViewController {
         
     }
     
-    private func showSpinner() {
-        let spinner = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
-        spinner.center = CGPoint(x: scrollView.bounds.width / 2 + 0.5, y: scrollView.bounds.height / 2 + 0.5)
-        spinner.tag = 1000
-        view.addSubview(spinner)
-        spinner.startAnimating()
-    }
     
-    private func hideSpinner() {
-        view.viewWithTag(1000)?.removeFromSuperview()
-    }
     
     
     
@@ -345,8 +303,6 @@ class LandscapeViewController: UIViewController {
             destinationVC.currentPhoto = photos[0]
             destinationVC.mediasArray = photos
             destinationVC.currentIndex = 0
-            
-            
         }
     }
     
@@ -374,16 +330,9 @@ class LandscapeViewController: UIViewController {
                 let photos = result as! [Photo]
                 
                 self.performSegue(withIdentifier: Storyboard.seguePhotoDisplayer, sender: photos)
-                
-                
             })
         }
-        
-        
     }
-    
-    
-    
     
     @IBAction func pageChanged(sender: UIPageControl) {
         
@@ -395,17 +344,8 @@ class LandscapeViewController: UIViewController {
                             x: self.scrollView.bounds.width * CGFloat(sender.currentPage),
                             y: 0)
         }, completion: nil)
-        
-        
     }
-    
-    
-    
-    
-    
 }
-
-
 
 extension LandscapeViewController: UIScrollViewDelegate {
     
@@ -416,9 +356,7 @@ extension LandscapeViewController: UIScrollViewDelegate {
         let currentPage = Int((scrollView.contentOffset.x + width / 2) / width)
         
         pageControl.currentPage = currentPage
-        
     }
-    
 }
 
 
