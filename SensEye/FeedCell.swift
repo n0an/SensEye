@@ -63,6 +63,15 @@ class FeedCell: UITableViewCell {
         
         self.profileImageVIew.addGestureRecognizer(tapProfileImageViewGesture)
 
+        
+        // ADDING CUSTOM COLOR FOR SELECTION FOR CELL
+        
+        let selectedView = UIView(frame: CGRect.zero)
+        selectedView.backgroundColor = cellSelectionColor
+        
+        selectedBackgroundView = selectedView
+        
+        
     }
     
     
