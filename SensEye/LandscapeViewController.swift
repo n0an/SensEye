@@ -46,7 +46,7 @@ class LandscapeViewController: UIViewController {
         
         pageControl.numberOfPages = 0
         
-        self.tileAlbums(albums: albums)
+        
         
     }
     
@@ -59,6 +59,9 @@ class LandscapeViewController: UIViewController {
                                    y: view.frame.size.height - pageControl.frame.size.height,
                                    width: view.frame.size.width,
                                    height: pageControl.frame.size.height)
+        
+        self.tileAlbums(albums: albums)
+        
         
 //        if firstTime {
 //            firstTime = false
