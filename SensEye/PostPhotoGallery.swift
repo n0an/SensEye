@@ -11,16 +11,24 @@ import AlamofireImage
 
 class PostPhotoGallery {
     
-    var tableViewWidth: CGFloat
+    private static let _sharedGalleryManager = PostPhotoGallery()
+    
+    static var sharedGalleryManager: PostPhotoGallery {
+        return _sharedGalleryManager
+    }
+    
+//    var tableViewWidth: CGFloat
+    
+    let marginSpace: CGFloat = 16
     
     var firstRowCount = 1
     var maxPhotos = 4
     
-    init(withTableViewWidth tableViewWidth: CGFloat) {
-        
-        self.tableViewWidth = tableViewWidth - 16
-        
-    }
+//    init(withTableViewWidth tableViewWidth: CGFloat) {
+//        
+//        self.tableViewWidth = tableViewWidth - 16
+//        
+//    }
     
     func clearGallery(forPost post: WallPost, fromCell postCell: FeedCell) {
         
@@ -88,7 +96,9 @@ class PostPhotoGallery {
         var maxRequiredSizeOfImageInFirstRow: CGFloat = 0
         var maxRequiredSizeOfImageInSecondRow: CGFloat = 0
         
-        let maxAvailableSpaceToOperate = min(self.tableViewWidth, 1300)
+//        let maxAvailableSpaceToOperate = min(self.tableViewWidth, 1300)
+        let maxAvailableSpaceToOperate = min(UIScreen.main.bounds.width - marginSpace, 1300)
+
         
         
         
@@ -305,11 +315,11 @@ class PostPhotoGallery {
             indentsCountFirstRow = CGFloat(firstRowCount - 1)
             indentsCountSecondRow = CGFloat(min(maxPhotos, post.postAttachments.count) - firstRowCount - 1)
             
-            postCell.gallerySecondRowLeadingConstraint.constant = (self.tableViewWidth - 2 * indentsCountSecondRow - fullWidthSecondRow) / 2
+            postCell.gallerySecondRowLeadingConstraint.constant = (UIScreen.main.bounds.width - marginSpace - 2 * indentsCountSecondRow - fullWidthSecondRow) / 2
             
         }
         
-        postCell.galleryFirstRowLeadingConstraint.constant = (self.tableViewWidth - 2 * indentsCountFirstRow - fullWidthFirstRow) / 2
+        postCell.galleryFirstRowLeadingConstraint.constant = (UIScreen.main.bounds.width - marginSpace - 2 * indentsCountFirstRow - fullWidthFirstRow) / 2
         
         
         postCell.layoutIfNeeded()
