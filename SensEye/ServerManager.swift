@@ -213,12 +213,7 @@ class ServerManager {
                 completed(parsedObjects)
             }
             
-            
-            
-            
         }
-        
-        
         
     }
     
@@ -255,13 +250,16 @@ class ServerManager {
         return feedObjectsArray
     }
     
+ 
     
-//    func getComments(forPostID postID: String, ownerID: String, offset: Int? = nil, count: Int? = nil, completed: @escaping DownloadComplete) {
+    
+    
+    // MARK: - GROUP WALL
+    
+//    func getGroupWall(forGroupID groupID: String, offset: Int, count: Int, completed: @escaping DownloadComplete) {
 //        
-//        let url = "\(URL_BASE)\(URL_COMMENTS)" +
+//        let url = "\(URL_BASE)\(URL_WALL_FEED)" +
 //                    "\(URL_PARAMS.OWNER_ID.rawValue)\(groupID)&" +
-//                    "\(URL_PARAMS.POST_ID.rawValue)\(postID)&" +
-//                    "\(URL_PARAMS.NEED_LIKES.rawValue)1&" +
 //                    "\(URL_PARAMS.COUNT.rawValue)\(count)&" +
 //                    "\(URL_PARAMS.OFFSET.rawValue)\(offset)&" +
 //                    "\(URL_PARAMS.LANG.rawValue)ru&" +
@@ -271,7 +269,7 @@ class ServerManager {
 //        let finalUrl = url + "&v=5.60"
 //        
 //        self.networkActivityIndicatorVisible = true
-//        
+//    
 //        Alamofire.request(finalUrl).responseJSON { (responseJson) in
 //            
 //            self.networkActivityIndicatorVisible = false
@@ -279,8 +277,8 @@ class ServerManager {
 //            guard let responseRoot = responseJson.result.value as? [String: Any] else {return}
 //            
 //            guard let response = responseRoot["response"] as? [String: Any] else {return}
-//
-//            guard let commentsArray = response["items"] as? [Any] else {
+//            
+//            guard let wallFeed = response["items"] as? [Any] else {
 //                return
 //            }
 //            
@@ -293,110 +291,64 @@ class ServerManager {
 //            }
 //            
 //            
+//            // Parsing Group object
+//            
+//            let group = Group(responseObject: groupsArray[0] as! [String : Any])
+//            
+//            // Parsing Profiles
+//            
+//            var authorsArray = [User]()
+//            
+//            for item in profilesArray {
+//                
+//                let profileItem = item as! [String: Any]
+//                
+//                let profile = User(responseObject: profileItem)
+//                
+//                authorsArray.append(profile)
+//                
+//            }
+//            
+//            
+//            
+//            var postsArray = [WallPost]()
+//            
+//            for item in wallFeed {
+//                
+//                let postItem = item as! [String: Any]
+//                
+//                let post = WallPost(responseObject: postItem)
+//                
+//                postsArray.append(post)
+//
+//                // Iterating through array of authors - looking for author for this post
+//                
+//                for author in authorsArray {
+//                    
+//                    if post.postAuthorID.hasPrefix("-") {
+//                        post.postGroupAuthor = group
+//                        break
+//                    }
+//                    
+//                    if author.userID == post.postAuthorID {
+//                        post.postAuthor = author
+//                        break
+//                    }
+//                }
+//                
+//                
+//                
+//            }
+//            
+//            completed(postsArray)
+//   
+//            
 //            
 //        }
 //        
 //        
+//        
 //    }
-    
-    
-    
-    
-    // MARK: - GROUP WALL
-    
-    func getGroupWall(forGroupID groupID: String, offset: Int, count: Int, completed: @escaping DownloadComplete) {
-        
-        let url = "\(URL_BASE)\(URL_WALL_FEED)" +
-                    "\(URL_PARAMS.OWNER_ID.rawValue)\(groupID)&" +
-                    "\(URL_PARAMS.COUNT.rawValue)\(count)&" +
-                    "\(URL_PARAMS.OFFSET.rawValue)\(offset)&" +
-                    "\(URL_PARAMS.LANG.rawValue)ru&" +
-                    "\(URL_PARAMS.EXTENDED.rawValue)1"
-        
-        
-        let finalUrl = url + "&v=5.60"
-        
-        self.networkActivityIndicatorVisible = true
-    
-        Alamofire.request(finalUrl).responseJSON { (responseJson) in
-            
-            self.networkActivityIndicatorVisible = false
-            
-            guard let responseRoot = responseJson.result.value as? [String: Any] else {return}
-            
-            guard let response = responseRoot["response"] as? [String: Any] else {return}
-            
-            guard let wallFeed = response["items"] as? [Any] else {
-                return
-            }
-            
-            guard let profilesArray = response["profiles"] as? [Any] else {
-                return
-            }
-            
-            guard let groupsArray = response["groups"] as? [Any] else {
-                return
-            }
-            
-            
-            // Parsing Group object
-            
-            let group = Group(responseObject: groupsArray[0] as! [String : Any])
-            
-            // Parsing Profiles
-            
-            var authorsArray = [User]()
-            
-            for item in profilesArray {
-                
-                let profileItem = item as! [String: Any]
-                
-                let profile = User(responseObject: profileItem)
-                
-                authorsArray.append(profile)
-                
-            }
-            
-            
-            
-            var postsArray = [WallPost]()
-            
-            for item in wallFeed {
-                
-                let postItem = item as! [String: Any]
-                
-                let post = WallPost(responseObject: postItem)
-                
-                postsArray.append(post)
-
-                // Iterating through array of authors - looking for author for this post
-                
-                for author in authorsArray {
-                    
-                    if post.postAuthorID.hasPrefix("-") {
-                        post.postGroupAuthor = group
-                        break
-                    }
-                    
-                    if author.userID == post.postAuthorID {
-                        post.postAuthor = author
-                        break
-                    }
-                }
-                
-                
-                
-            }
-            
-            completed(postsArray)
-   
-            
-            
-        }
-        
-        
-        
-    }
     
     
     

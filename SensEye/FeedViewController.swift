@@ -79,7 +79,8 @@ class FeedViewController: UIViewController {
         
         GeneralHelper.sharedHelper.showSpinner(onView: self.view, usingBoundsFromView: self.tableView)
         
-        ServerManager.sharedManager.getGroupWall(forGroupID: groupID, offset: self.wallPosts.count, count: postsInRequest) { (posts) in
+        
+        ServerManager.sharedManager.getFeed(forType: .post, ownerID: groupID, offset: self.wallPosts.count, count: postsInRequest) { (posts) in
             
             if posts.count > 0 {
                 
@@ -117,8 +118,53 @@ class FeedViewController: UIViewController {
             self.loadingData = false
             GeneralHelper.sharedHelper.hideSpinner(onView: self.view)
             self.tableView.infiniteScrollingView.stopAnimating()
+
             
         }
+        
+        
+        
+        
+//        ServerManager.sharedManager.getGroupWall(forGroupID: groupID, offset: self.wallPosts.count, count: postsInRequest) { (posts) in
+//            
+//            if posts.count > 0 {
+//                
+//                guard let posts = posts as? [WallPost] else { return }
+//                
+//                if self.wallPosts.count == 0 {
+//                    
+//                    self.wallPosts = posts
+//                    self.tableView.reloadData()
+//                    
+//                } else {
+//                    
+//                    self.wallPosts.append(contentsOf: posts)
+//                    
+//                    var newPaths = [IndexPath]()
+//                    
+//                    var index = self.wallPosts.count - posts.count
+//                    
+//                    while index < self.wallPosts.count {
+//                        
+//                        let newIndPath = IndexPath(row: index, section: 0)
+//                        newPaths.append(newIndPath)
+//                        
+//                        index += 1
+//                    }
+//                    
+//                    self.tableView.beginUpdates()
+//                    self.tableView.insertRows(at: newPaths, with: .fade)
+//                    self.tableView.endUpdates()
+//                }
+//                
+//                
+//            }
+//            
+//            self.loadingData = false
+//            GeneralHelper.sharedHelper.hideSpinner(onView: self.view)
+//            self.tableView.infiniteScrollingView.stopAnimating()
+//            
+//        }
     }
     
     func refreshWall() {
@@ -129,8 +175,9 @@ class FeedViewController: UIViewController {
             
             GeneralHelper.sharedHelper.showSpinner(onView: self.view, usingBoundsFromView: self.tableView)
             
-            ServerManager.sharedManager.getGroupWall(forGroupID: groupID, offset: 0, count: max(postsInRequest, self.wallPosts.count), completed: { (posts) in
-                
+            
+            ServerManager.sharedManager.getFeed(forType: .post, ownerID: groupID, offset: 0, count: max(postsInRequest, self.wallPosts.count)) { (posts) in
+
                 if posts.count > 0 {
                     
                     guard let posts = posts as? [WallPost] else { return }
@@ -146,8 +193,30 @@ class FeedViewController: UIViewController {
                 self.loadingData = false
                 GeneralHelper.sharedHelper.showSpinner(onView: self.view, usingBoundsFromView: self.tableView)
                 self.tableView.pullToRefreshView.stopAnimating()
-                
-            })
+
+            }
+            
+            
+            
+//            ServerManager.sharedManager.getGroupWall(forGroupID: groupID, offset: 0, count: max(postsInRequest, self.wallPosts.count), completed: { (posts) in
+//                
+//                if posts.count > 0 {
+//                    
+//                    guard let posts = posts as? [WallPost] else { return }
+//                    
+//                    self.wallPosts.removeAll()
+//                    
+//                    self.wallPosts.append(contentsOf: posts)
+//                    
+//                    self.tableView.reloadData()
+//                    
+//                }
+//                
+//                self.loadingData = false
+//                GeneralHelper.sharedHelper.showSpinner(onView: self.view, usingBoundsFromView: self.tableView)
+//                self.tableView.pullToRefreshView.stopAnimating()
+//                
+//            })
             
             
         }
