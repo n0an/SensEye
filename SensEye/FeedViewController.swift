@@ -217,16 +217,6 @@ extension FeedViewController: UITableViewDataSource {
         cell.wallPost = wallPost
         cell.delegate = self
         
-        // *** ADDING POST IMAGES GALLERY
-
-        PostPhotoGallery.sharedGalleryManager.insertGallery(forPost: wallPost, toCell: cell)
-        
-        
-//        let postGallery = PostPhotoGallery(withTableViewWidth: self.tableView.frame.width)
-        
-//        postGallery.insertGallery(forPost: wallPost, toCell: cell)
-        
-        
         return cell
         
     }

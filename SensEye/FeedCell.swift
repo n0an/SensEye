@@ -21,13 +21,7 @@ class FeedCell: UITableViewCell {
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var timestampLabel: UILabel!
     @IBOutlet weak var postTextLabel: UILabel!
-    
-//    @IBOutlet weak var mainPhotoImageView: UIImageView!
-//    @IBOutlet weak var minorPhotoOneImageView: UIImageView!
-//    @IBOutlet weak var minorPhotoTwoImageView: UIImageView!
-//    @IBOutlet weak var minorPhotoThreeImageView: UIImageView!
-    
-    
+ 
     @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var commentButton: UIButton!
     
@@ -63,7 +57,6 @@ class FeedCell: UITableViewCell {
         
         self.profileImageVIew.addGestureRecognizer(tapProfileImageViewGesture)
 
-        
         // ADDING CUSTOM COLOR FOR SELECTION FOR CELL
         
         let selectedView = UIView(frame: CGRect.zero)
@@ -84,7 +77,7 @@ class FeedCell: UITableViewCell {
         timestampLabel.text = nil
         postTextLabel.text = nil
         
-        
+        PostPhotoGallery.sharedGalleryManager.clearGallery(forPost: wallPost, fromCell: self)
         
     }
     
@@ -121,6 +114,8 @@ class FeedCell: UITableViewCell {
             
         }
         
+        PostPhotoGallery.sharedGalleryManager.insertGallery(forPost: wallPost, toCell: self)
+        
         
     }
     
@@ -143,9 +138,6 @@ class FeedCell: UITableViewCell {
     }
 
     
-    
-    
-
 }
 
 

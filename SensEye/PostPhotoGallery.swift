@@ -17,29 +17,28 @@ class PostPhotoGallery {
         return _sharedGalleryManager
     }
     
-//    var tableViewWidth: CGFloat
-    
     let marginSpace: CGFloat = 16
     
     var firstRowCount = 1
     var maxPhotos = 4
     
-//    init(withTableViewWidth tableViewWidth: CGFloat) {
-//        
-//        self.tableViewWidth = tableViewWidth - 16
-//        
-//    }
-    
+
     func clearGallery(forPost post: WallPost, fromCell postCell: FeedCell) {
         
         for imageView in postCell.galleryImageViews {
             imageView.image = nil
         }
         
+        postCell.galleryFirstRowLeadingConstraint.constant = 0
+        postCell.gallerySecondRowLeadingConstraint.constant = 0
         postCell.gallerySecondRowTopConstraint.constant = 0
         
         for heightOfImageView in postCell.photoHeights {
             heightOfImageView.constant = 0
+        }
+        
+        for widthOfImageView in postCell.photoWidths {
+            widthOfImageView.constant = 0
         }
         
     }
@@ -96,7 +95,6 @@ class PostPhotoGallery {
         var maxRequiredSizeOfImageInFirstRow: CGFloat = 0
         var maxRequiredSizeOfImageInSecondRow: CGFloat = 0
         
-//        let maxAvailableSpaceToOperate = min(self.tableViewWidth, 1300)
         let maxAvailableSpaceToOperate = min(UIScreen.main.bounds.width - marginSpace, 1300)
 
         
