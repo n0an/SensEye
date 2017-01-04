@@ -126,7 +126,7 @@ class ServerManager {
     
     // MARK: - COMMENTS
     
-    func getFeed(forType feedType: FeedItemsType, ownerID: String, postID: String? = nil, offset: Int? = nil, count: Int? = nil, completed: @escaping DownloadComplete) {
+    func getFeed(forType feedType: FeedItemsType, ownerID: String, postID: String? = nil, offset: Int, count: Int, completed: @escaping DownloadComplete) {
         
         var url = ""
         
@@ -143,8 +143,9 @@ class ServerManager {
                 "\(URL_PARAMS.EXTENDED.rawValue)1"
         
         
+        
         if feedType == .comment {
-            url += "&\(URL_PARAMS.POST_ID.rawValue)\(postID)&" +
+            url += "&\(URL_PARAMS.POST_ID.rawValue)\(postID!)&" +
                     "\(URL_PARAMS.NEED_LIKES.rawValue)1"
         }
         
@@ -175,7 +176,13 @@ class ServerManager {
             
             // Parsing Group object
             
-            let group = Group(responseObject: groupsArray[0] as! [String : Any])
+            var group: Group?
+            
+            if groupsArray.count > 0 {
+                group = Group(responseObject: groupsArray[0] as! [String : Any])
+            }
+            
+//            let group = Group(responseObject: groupsArray[0] as! [String : Any])
             
             // Parsing Profiles
             
@@ -216,7 +223,7 @@ class ServerManager {
     }
     
     
-    func parseFeedObjects<T: ServerObject>(forArray array: [Any], authorsArray: [User], group: Group) -> [T] {
+    func parseFeedObjects<T: ServerObject>(forArray array: [Any], authorsArray: [User], group: Group?) -> [T] {
         
         var feedObjectsArray = [T]()
         

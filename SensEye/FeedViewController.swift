@@ -25,7 +25,8 @@ class FeedViewController: UIViewController {
         static let rowHeight: CGFloat = 370
         
         static let seguePhotoDisplayer = "showPhoto"
-        
+        static let seguePostVC = "showPost"
+
         static let viewControllerIdPhotoDisplayer = "PhotoNavViewController"
     }
     
@@ -188,7 +189,15 @@ class FeedViewController: UIViewController {
             
             
             
+        } else if segue.identifier == Storyboard.seguePostVC {
+            
+            let destinationVC = segue.destination as! PostViewController
+            
+            destinationVC.wallPost = sender as! WallPost
+            
         }
+        
+        
     }
     
     @IBAction func unwindToFeedVC(segue: UIStoryboardSegue) {
@@ -228,7 +237,13 @@ extension FeedViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 extension FeedViewController: UITableViewDelegate {
     
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let selectedPost = self.wallPosts[indexPath.row]
+        
+        performSegue(withIdentifier: Storyboard.seguePostVC, sender: selectedPost)
+    }
     
 }
 

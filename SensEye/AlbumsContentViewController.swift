@@ -3,13 +3,6 @@
 import UIKit
 
 
-
-
-
-
-
-
-
 class AlbumsContentViewController: UIViewController {
     
     // MARK: - OUTLETS
