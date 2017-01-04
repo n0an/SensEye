@@ -22,6 +22,20 @@ class PostPhotoGallery {
         
     }
     
+    func clearGallery(forPost post: WallPost, fromCell postCell: FeedCell) {
+        
+        for imageView in postCell.galleryImageViews {
+            imageView.image = nil
+        }
+        
+        postCell.gallerySecondRowTopConstraint.constant = 0
+        
+        for heightOfImageView in postCell.photoHeights {
+            heightOfImageView.constant = 0
+        }
+        
+    }
+    
     func insertGallery(forPost post: WallPost, toCell postCell: FeedCell) {
         
         // === PART 1. CHECKINGS

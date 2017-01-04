@@ -22,10 +22,10 @@ class FeedCell: UITableViewCell {
     @IBOutlet weak var timestampLabel: UILabel!
     @IBOutlet weak var postTextLabel: UILabel!
     
-    @IBOutlet weak var mainPhotoImageView: UIImageView!
-    @IBOutlet weak var minorPhotoOneImageView: UIImageView!
-    @IBOutlet weak var minorPhotoTwoImageView: UIImageView!
-    @IBOutlet weak var minorPhotoThreeImageView: UIImageView!
+//    @IBOutlet weak var mainPhotoImageView: UIImageView!
+//    @IBOutlet weak var minorPhotoOneImageView: UIImageView!
+//    @IBOutlet weak var minorPhotoTwoImageView: UIImageView!
+//    @IBOutlet weak var minorPhotoThreeImageView: UIImageView!
     
     
     @IBOutlet weak var likeButton: UIButton!
@@ -70,6 +70,20 @@ class FeedCell: UITableViewCell {
         selectedView.backgroundColor = cellSelectionColor
         
         selectedBackgroundView = selectedView
+        
+        
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        // CLEARING CELL BEFORE REUSING
+        profileImageVIew.image = nil
+        
+        usernameLabel.text = nil
+        timestampLabel.text = nil
+        postTextLabel.text = nil
+        
         
         
     }
