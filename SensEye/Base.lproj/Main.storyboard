@@ -1930,12 +1930,6 @@
                                                         </constraints>
                                                         <blurEffect style="dark"/>
                                                     </visualEffectView>
-                                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Travel Around The World" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uax-BZ-AI9">
-                                                        <rect key="frame" x="8" y="71" width="359" height="21"/>
-                                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="17"/>
-                                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dark_crop_1000" translatesAutoresizingMaskIntoConstraints="NO" id="tR2-xe-mbi">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -1951,14 +1945,11 @@
                                                     <constraint firstItem="NSE-OF-Hyu" firstAttribute="top" secondItem="JAA-YG-a4F" secondAttribute="top" constant="8" id="6iv-pW-fSE"/>
                                                     <constraint firstItem="tR2-xe-mbi" firstAttribute="leading" secondItem="JAA-YG-a4F" secondAttribute="leading" id="7F4-Nu-Gpy"/>
                                                     <constraint firstAttribute="bottom" secondItem="tR2-xe-mbi" secondAttribute="bottom" id="Agx-JP-GFW"/>
-                                                    <constraint firstItem="uax-BZ-AI9" firstAttribute="leading" secondItem="JAA-YG-a4F" secondAttribute="leading" constant="8" id="DUJ-lF-iyy"/>
                                                     <constraint firstItem="Zwq-Rg-GsE" firstAttribute="top" secondItem="JAA-YG-a4F" secondAttribute="top" constant="36" id="Wup-7p-QgS"/>
                                                     <constraint firstItem="NSE-OF-Hyu" firstAttribute="centerX" secondItem="JAA-YG-a4F" secondAttribute="centerX" id="Wx0-kL-oMB"/>
                                                     <constraint firstAttribute="trailing" secondItem="tR2-xe-mbi" secondAttribute="trailing" id="XJz-CR-5yP"/>
                                                     <constraint firstAttribute="trailing" secondItem="Zwq-Rg-GsE" secondAttribute="trailing" constant="5" id="aLO-Zh-hEi"/>
                                                     <constraint firstItem="tR2-xe-mbi" firstAttribute="top" secondItem="JAA-YG-a4F" secondAttribute="top" id="b86-Pq-YtY"/>
-                                                    <constraint firstAttribute="trailing" secondItem="uax-BZ-AI9" secondAttribute="trailing" constant="8" id="vyG-jA-PG9"/>
-                                                    <constraint firstAttribute="bottom" secondItem="uax-BZ-AI9" secondAttribute="bottom" constant="8" id="xcY-Yx-NoE"/>
                                                 </constraints>
                                             </view>
                                             <blurEffect style="light"/>
@@ -1979,7 +1970,6 @@
                                         <outlet property="backgroundImageView" destination="PKZ-Aa-0bq" id="CHB-lv-7B6"/>
                                         <outlet property="closeButtonBackgroundView" destination="Zwq-Rg-GsE" id="AzO-HA-y0n"/>
                                         <outlet property="logoImageView" destination="tR2-xe-mbi" id="FRC-8y-SQl"/>
-                                        <outlet property="postTitleLabel" destination="uax-BZ-AI9" id="yPT-2u-0Gb"/>
                                         <outlet property="pullDownToCloseLabel" destination="NSE-OF-Hyu" id="C2e-CT-Y9P"/>
                                     </connections>
                                 </view>
@@ -2250,7 +2240,7 @@
         <image name="add" width="20" height="20"/>
         <image name="add-image" width="16" height="16"/>
         <image name="add-post" width="16" height="16"/>
-        <image name="dark_crop_1000" width="1103" height="654"/>
+        <image name="dark_crop_1000" width="367" height="218"/>
         <image name="defaultProfileImage" width="600" height="600"/>
         <image name="empty-heart" width="16" height="16"/>
         <image name="icon-comment" width="16" height="16"/>

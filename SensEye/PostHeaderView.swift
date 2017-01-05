@@ -17,7 +17,6 @@ class PostHeaderView: UIView {
     // MARK: - OUTLETS
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var logoImageView: UIImageView!
-    @IBOutlet weak var postTitleLabel: UILabel!
     
     @IBOutlet weak var pullDownToCloseLabel: UILabel!
     
@@ -25,18 +24,10 @@ class PostHeaderView: UIView {
 
    // MARK: - PUBLIC
     
-    public var wallPost: WallPost! {
-        didSet {
-//            updateUI()
-        }
-    }
-    
     weak var delegate: PostHeaderViewDelegate?
     
     
     public func updateUI(withPost wallPost: WallPost, andImage image: UIImage?) {
-        
-        postTitleLabel.text = wallPost.postText
         
         pullDownToCloseLabel.text! = "Pull down to close"
         
@@ -45,30 +36,7 @@ class PostHeaderView: UIView {
         self.backgroundImageView.image = image
         
     }
-    
-    fileprivate func updateUI() {
-        
-//        interest.featuredImageFile.getDataInBackground { (imageData, error) in
-//            
-//            if error == nil {
-//                
-//                if let featuredImageData = imageData {
-//                    self.backgroundImageView.image = UIImage(data: featuredImageData)!
-//                }
-//                
-//            } else {
-//                print("\(error?.localizedDescription)")
-//            }
-//            
-//        }
-        
-        
-        postTitleLabel.text = wallPost.postText
-        
-        pullDownToCloseLabel.text! = "Pull down to close"
-        
-        pullDownToCloseLabel.isHidden = true
-    }
+  
     
     
     override func layoutSubviews() {

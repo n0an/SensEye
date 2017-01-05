@@ -261,7 +261,7 @@ extension PostViewController: UIScrollViewDelegate {
         updateHeaderView()
         
         let offsetY = scrollView.contentOffset.y
-        let adjustment: CGFloat = 130.0
+        let adjustment: CGFloat = 100
         
         
         if (-offsetY) > (Storyboard.tableHeaderHeight + adjustment) {
