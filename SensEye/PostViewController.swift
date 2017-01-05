@@ -25,6 +25,9 @@ class PostViewController: UIViewController {
         
         static let rowHeightPostCell: CGFloat = 370
         static let rowHeightCommentCell: CGFloat = 100
+        
+        static let tableHeaderHeight: CGFloat = 100
+        static let tableHeaderCutAway: CGFloat = 50
 
         static let seguePhotoDisplayer = "showPhoto"
         
@@ -42,6 +45,10 @@ class PostViewController: UIViewController {
     var loadingData = false
     
     fileprivate var jellyAnimator: JellyAnimator?
+    
+    fileprivate var headerView: PostHeaderView!
+    fileprivate var headerMaskLayer: CAShapeLayer!
+
     
     // MARK: - viewDidLoad
 
@@ -61,10 +68,28 @@ class PostViewController: UIViewController {
             self.getCommentsFromServer()
         }
         
-        self.tableView.addPullToRefresh {
-            print("PullToRefresh GO")
-//            self.refreshPost()
-        }
+        
+        
+        
+        headerView = tableView.tableHeaderView as! PostHeaderView
+        headerView.delegate = self
+        headerView.wallPost = wallPost
+        
+        tableView.tableHeaderView = nil
+        tableView.addSubview(headerView)
+        
+        tableView.contentInset = UIEdgeInsets(top: Storyboard.tableHeaderHeight, left: 0, bottom: 0, right: 0)
+        tableView.contentOffset = CGPoint(x: 0, y: -Storyboard.tableHeaderHeight)
+        
+        headerMaskLayer = CAShapeLayer()
+        headerMaskLayer.fillColor = UIColor.black.cgColor
+        headerView.layer.mask = headerMaskLayer
+        
+        updateHeaderView()
+        
+        
+        
+        
 
     }
 
@@ -111,9 +136,31 @@ class PostViewController: UIViewController {
     }
     
     
+    // MARK: - HELPER METHODS
     
-    
+    func updateHeaderView() {
+        let effectiveHeight = Storyboard.tableHeaderHeight - Storyboard.tableHeaderCutAway / 2
+        var headerRect = CGRect(x: 0, y: -effectiveHeight, width: tableView.bounds.width, height: Storyboard.tableHeaderHeight)
+        
+        if tableView.contentOffset.y < -effectiveHeight {
+            headerRect.origin.y = tableView.contentOffset.y
+            headerRect.size.height = -tableView.contentOffset.y + Storyboard.tableHeaderCutAway/2
+        }
+        
+        headerView.frame = headerRect
+        
+        // cut away
+        let path = UIBezierPath()
+        path.move(to: CGPoint(x: 0, y: 0))
+        path.addLine(to: CGPoint(x: headerRect.width, y: 0))
+        path.addLine(to: CGPoint(x: headerRect.width, y: headerRect.height))
+        path.addLine(to: CGPoint(x: 0, y: headerRect.height - Storyboard.tableHeaderCutAway))
+        headerMaskLayer?.path = path.cgPath
+        
+    }
 
+    
+    
 }
 
 
@@ -184,9 +231,39 @@ extension PostViewController: UITableViewDelegate {
 }
 
 
+// MARK: - UIScrollViewDelegate
+
+extension PostViewController: UIScrollViewDelegate {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        updateHeaderView()
+        
+        let offsetY = scrollView.contentOffset.y
+        let adjustment: CGFloat = 130.0
+        
+        
+        if (-offsetY) > (Storyboard.tableHeaderHeight + adjustment) {
+            self.dismiss(animated: true, completion: nil)
+        }
+        
+        if (-offsetY) > (Storyboard.tableHeaderHeight) {
+            self.headerView.pullDownToCloseLabel.isHidden = false
+        } else {
+            self.headerView.pullDownToCloseLabel.isHidden = true
+        }
+    }
+}
 
 
-
+// MARK: - ===PostHeaderViewDelegate===
+extension PostViewController: PostHeaderViewDelegate {
+    func closeButtonTapped() {
+        
+        self.dismiss(animated: true, completion: nil)
+        
+        
+    }
+}
 
 
 

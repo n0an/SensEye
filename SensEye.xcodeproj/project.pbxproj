@@ -34,6 +34,7 @@
 		188C04F81E1074C8008B58EB /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188C04F71E1074C8008B58EB /* FeedViewController.swift */; };
 		188C04FA1E1074D6008B58EB /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188C04F91E1074D6008B58EB /* FeedCell.swift */; };
 		188C04FC1E10FCBC008B58EB /* ServerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188C04FB1E10FCBC008B58EB /* ServerManager.swift */; };
+		189FC5101E1E778C00092D2F /* PostHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189FC50F1E1E778C00092D2F /* PostHeaderView.swift */; };
 		18AA37D11E1053F700D5BCB1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AA37D01E1053F700D5BCB1 /* AppDelegate.swift */; };
 		18AA37D61E1053F700D5BCB1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18AA37D41E1053F700D5BCB1 /* Main.storyboard */; };
 		18AA37D81E1053F700D5BCB1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18AA37D71E1053F700D5BCB1 /* Assets.xcassets */; };
@@ -77,6 +78,7 @@
 		188C04F71E1074C8008B58EB /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		188C04F91E1074D6008B58EB /* FeedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
 		188C04FB1E10FCBC008B58EB /* ServerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerManager.swift; sourceTree = "<group>"; };
+		189FC50F1E1E778C00092D2F /* PostHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostHeaderView.swift; sourceTree = "<group>"; };
 		18AA37CD1E1053F700D5BCB1 /* SensEye.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SensEye.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18AA37D01E1053F700D5BCB1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18AA37D51E1053F700D5BCB1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -251,6 +253,7 @@
 			children = (
 				188C04F91E1074D6008B58EB /* FeedCell.swift */,
 				182681921E1D822500D96764 /* CommentCell.swift */,
+				189FC50F1E1E778C00092D2F /* PostHeaderView.swift */,
 				18BE87F21E16E02A00B5837E /* Customized Views */,
 			);
 			name = View;
@@ -431,6 +434,7 @@
 				1826818F1E1D79D300D96764 /* ServerObject.swift in Sources */,
 				180231CF1E1456C600FA8322 /* AlbumsPageViewController.swift in Sources */,
 				184DE8AE1E15A8C500E98926 /* ACSlideRightTransitionAnimator.swift in Sources */,
+				189FC5101E1E778C00092D2F /* PostHeaderView.swift in Sources */,
 				180231CB1E14474100FA8322 /* PhotoAlbumCell.swift in Sources */,
 				1838C24B1E11362D00E02F88 /* User.swift in Sources */,
 				18BE87F11E16CF5A00B5837E /* CircleImageView.swift in Sources */,
