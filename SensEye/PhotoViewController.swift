@@ -164,21 +164,6 @@ class PhotoViewController: UIViewController {
             
         }
         
-        let rightSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(actionPreviosPhotoTap))
-        let leftSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(actionNextPhotoTap))
-        
-        let downSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(gestureClose))
-
-        rightSwipeGesture.direction = .right
-        leftSwipeGesture.direction = .left
-        downSwipeGesture.direction = .down
-        
-        imageView.isUserInteractionEnabled = true
-        imageView.addGestureRecognizer(rightSwipeGesture)
-        imageView.addGestureRecognizer(leftSwipeGesture)
-        imageView.addGestureRecognizer(downSwipeGesture)
-
-
     }
     
     // MARK: - UI METHODS
@@ -209,6 +194,28 @@ class PhotoViewController: UIViewController {
         
         // Fit the image on the first launch
         scrollView.zoomScale = scrollView.minimumZoomScale
+        
+        addGestures()
+    }
+    
+    func addGestures() {
+        let rightSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(actionPreviosPhotoTap))
+        let leftSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(actionNextPhotoTap))
+        
+        let downSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(gestureClose))
+        let upSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(gestureClose))
+        
+        rightSwipeGesture.direction = .right
+        leftSwipeGesture.direction = .left
+        upSwipeGesture.direction = .up
+        downSwipeGesture.direction = .down
+        
+        
+        scrollView.isUserInteractionEnabled = true
+        scrollView.addGestureRecognizer(rightSwipeGesture)
+        scrollView.addGestureRecognizer(leftSwipeGesture)
+        scrollView.addGestureRecognizer(downSwipeGesture)
+        scrollView.addGestureRecognizer(upSwipeGesture)
     }
     
     func recenterImage() {

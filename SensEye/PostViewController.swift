@@ -75,6 +75,8 @@ class PostViewController: UIViewController {
 
         headerView.updateUI(withPost: wallPost, andImage: backgroundImage)
         
+        tableView.allowsSelection = false
+        
         tableView.tableHeaderView = nil
         tableView.addSubview(headerView)
         
@@ -247,6 +249,8 @@ extension PostViewController: UITableViewDelegate {
         }
         
     }
+    
+    
     
     
     
