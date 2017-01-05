@@ -37,7 +37,7 @@ class FeedViewController: UIViewController {
     
     fileprivate var jellyAnimator: JellyAnimator?
     
-
+    private var refreshControl: UIRefreshControl!
     
     // MARK: - viewDidLoad
 
@@ -58,10 +58,15 @@ class FeedViewController: UIViewController {
             self.getPostsFromServer()
         }
         
-        self.tableView.addPullToRefresh { 
-            print("PullToRefresh GO")
-            self.refreshWall()
-        }
+//        self.tableView.addPullToRefresh { 
+//            print("PullToRefresh GO")
+//            self.refreshWall()
+//        }
+        
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(actionRefreshTableView), for: .valueChanged)
+        self.tableView.refreshControl = refreshControl
+        self.refreshControl = refreshControl
     }
 
     
@@ -150,7 +155,9 @@ class FeedViewController: UIViewController {
                 
                 self.loadingData = false
                 GeneralHelper.sharedHelper.hideSpinner(onView: self.view)
-                self.tableView.pullToRefreshView.stopAnimating()
+//                self.tableView.pullToRefreshView.stopAnimating()
+                self.refreshControl.endRefreshing()
+                
 
             }
             
@@ -166,6 +173,10 @@ class FeedViewController: UIViewController {
     
     
     // MARK: - ACTIONS
+    
+    func actionRefreshTableView() {
+        self.refreshWall()
+    }
     
     
     // MARK: - NAVIGATION
