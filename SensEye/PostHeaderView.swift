@@ -16,6 +16,7 @@ class PostHeaderView: UIView {
     
     // MARK: - OUTLETS
     @IBOutlet weak var backgroundImageView: UIImageView!
+    @IBOutlet weak var logoImageView: UIImageView!
     @IBOutlet weak var postTitleLabel: UILabel!
     
     @IBOutlet weak var pullDownToCloseLabel: UILabel!
@@ -26,12 +27,24 @@ class PostHeaderView: UIView {
     
     public var wallPost: WallPost! {
         didSet {
-            updateUI()
+//            updateUI()
         }
     }
     
     weak var delegate: PostHeaderViewDelegate?
     
+    
+    public func updateUI(withPost wallPost: WallPost, andImage image: UIImage?) {
+        
+        postTitleLabel.text = wallPost.postText
+        
+        pullDownToCloseLabel.text! = "Pull down to close"
+        
+        pullDownToCloseLabel.isHidden = true
+        
+        self.backgroundImageView.image = image
+        
+    }
     
     fileprivate func updateUI() {
         

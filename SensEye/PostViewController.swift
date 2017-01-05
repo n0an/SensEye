@@ -18,6 +18,7 @@ class PostViewController: UIViewController {
     // MARK: - PROPERTIES
     
     public var wallPost: WallPost!
+    public var backgroundImage: UIImage?
     
     enum Storyboard {
         static let cellIdPost = "FeedCell"
@@ -69,11 +70,10 @@ class PostViewController: UIViewController {
         }
         
         
-        
-        
         headerView = tableView.tableHeaderView as! PostHeaderView
         headerView.delegate = self
-        headerView.wallPost = wallPost
+
+        headerView.updateUI(withPost: wallPost, andImage: backgroundImage)
         
         tableView.tableHeaderView = nil
         tableView.addSubview(headerView)
@@ -88,10 +88,22 @@ class PostViewController: UIViewController {
         updateHeaderView()
         
         
-        
-        
-
     }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        updateHeaderView()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        updateHeaderView()
+    }
+    
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+    
 
     // MARK: - API METHODS
     func getCommentsFromServer() {
@@ -140,11 +152,21 @@ class PostViewController: UIViewController {
     
     func updateHeaderView() {
         let effectiveHeight = Storyboard.tableHeaderHeight - Storyboard.tableHeaderCutAway / 2
+        
         var headerRect = CGRect(x: 0, y: -effectiveHeight, width: tableView.bounds.width, height: Storyboard.tableHeaderHeight)
+        
+        headerView.logoImageView.alpha = 0
         
         if tableView.contentOffset.y < -effectiveHeight {
             headerRect.origin.y = tableView.contentOffset.y
             headerRect.size.height = -tableView.contentOffset.y + Storyboard.tableHeaderCutAway/2
+            
+            let final: CGFloat = -100
+            
+            let alpha =  min((tableView.contentOffset.y + effectiveHeight) / final, 1)
+            
+            headerView.logoImageView.alpha = alpha
+
         }
         
         headerView.frame = headerRect

@@ -262,8 +262,12 @@ class FeedViewController: UIViewController {
             
             let destinationVC = segue.destination as! PostViewController
             
-            destinationVC.wallPost = sender as! WallPost
+            guard let postCell = sender as? FeedCell else {
+                return
+            }
             
+            destinationVC.wallPost = postCell.wallPost
+            destinationVC.backgroundImage = postCell.galleryImageViews[0].image
         }
         
         
@@ -309,9 +313,11 @@ extension FeedViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let selectedPost = self.wallPosts[indexPath.row]
+//        let selectedPost = self.wallPosts[indexPath.row]
         
-        performSegue(withIdentifier: Storyboard.seguePostVC, sender: selectedPost)
+        let cell = tableView.cellForRow(at: indexPath) as! FeedCell
+        
+        performSegue(withIdentifier: Storyboard.seguePostVC, sender: cell)
     }
     
 }
