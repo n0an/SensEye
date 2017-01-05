@@ -39,6 +39,8 @@ class FeedViewController: UIViewController {
     
     private var refreshControl: UIRefreshControl!
     
+    var observer: AnyObject!
+    
     // MARK: - viewDidLoad
 
     override func viewDidLoad() {
@@ -71,6 +73,8 @@ class FeedViewController: UIViewController {
         self.refreshControl = refreshControl
         
         
+        listenForBackgroundNotification()
+        
     }
 
     
@@ -78,6 +82,10 @@ class FeedViewController: UIViewController {
         super.viewWillTransition(to: size, with: coordinator)
         // To redraw Photos with new size after transition to portrait or landscape
         tableView.reloadData()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(observer)
     }
 
     
@@ -173,6 +181,23 @@ class FeedViewController: UIViewController {
     
     fileprivate func createVC(withID identifier: String) -> UIViewController? {
         return self.storyboard?.instantiateViewController(withIdentifier: identifier)
+    }
+    
+    // HIDING ALERTS, ACTIONS SHEETS, PICKERS WHEN APP GOES TO BACKGROUND
+    
+    func listenForBackgroundNotification() {
+        
+        self.observer = NotificationCenter.default.addObserver(forName: NSNotification.Name.UIApplicationDidEnterBackground, object: nil, queue: OperationQueue.main) { [weak self] _ in
+            
+            if let strongSelf = self {
+                if strongSelf.presentedViewController != nil {
+                    strongSelf.dismiss(animated: false, completion: nil)
+                }
+                
+            }
+         
+        }
+  
     }
     
     
