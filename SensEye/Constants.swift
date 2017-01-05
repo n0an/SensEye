@@ -55,4 +55,6 @@ var shadowRadius: CGFloat = 4.0
 
 let mainThemeColor = UIColor(netHex: 0xe2e2e2)
 
-let cellSelectionColor = UIColor(netHex: 0x7F7DFF)
+//let cellSelectionColor = UIColor(netHex: 0x7F7DFF)
+
+let cellSelectionColor = UIColor(white: 1.0, alpha: 0.2)

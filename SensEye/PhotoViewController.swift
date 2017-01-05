@@ -42,7 +42,7 @@ class PhotoViewController: UIViewController {
         
         self.navigationController?.hidesBarsOnTap = true
         
-        title = ""
+        title = "TESt"
         
         downloadAndSetImage()
         updateUI()

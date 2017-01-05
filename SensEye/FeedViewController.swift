@@ -44,6 +44,8 @@ class FeedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.tintColor = UIColor(red: 20/255, green: 160/255, blue: 160/255, alpha: 1)
+        
         self.loadingData = true
         getPostsFromServer()
         
@@ -67,6 +69,8 @@ class FeedViewController: UIViewController {
         refreshControl.addTarget(self, action: #selector(actionRefreshTableView), for: .valueChanged)
         self.tableView.refreshControl = refreshControl
         self.refreshControl = refreshControl
+        
+        
     }
 
     

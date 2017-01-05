@@ -19,9 +19,50 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window?.backgroundColor = mainThemeColor
         
+        customizeAppearance()
+        
         
         return true
     }
+    
+    func customizeAppearance() {
+        
+        window!.tintColor = UIColor(red: 10/255, green: 80/255, blue: 80/255, alpha: 1)
+        
+        // NavigationBar Customization
+        UINavigationBar.appearance().barTintColor = UIColor.black
+
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        UINavigationBar.appearance().tintColor = UIColor.white
+        
+        
+        // TabBar Customization
+
+        UITabBar.appearance().barTintColor = UIColor.black
+        
+        let tintColor = UIColor(red: 255/255.0, green: 238/255.0, blue: 136/255.0, alpha: 1.0)
+        
+        UITabBar.appearance().tintColor = tintColor
+        
+    }
+    
+    
+    // ** Getting current Top ViewController
+    func viewControllerForShowingAlert() -> UIViewController {
+        
+        let rootViewController = self.window!.rootViewController!
+        
+        if let presentedViewController = rootViewController.presentedViewController {
+            
+            return presentedViewController
+            
+        } else {
+            
+            return rootViewController
+        }
+        
+    }
+    
 
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

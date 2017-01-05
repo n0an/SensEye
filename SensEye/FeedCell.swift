@@ -56,7 +56,11 @@ class FeedCell: UITableViewCell {
         let tapProfileImageViewGesture = UITapGestureRecognizer(target: self, action: #selector(actionProfileImageViewDidTap))
         
         self.profileImageVIew.addGestureRecognizer(tapProfileImageViewGesture)
-
+        
+        // Colors customizations
+        
+        usernameLabel.highlightedTextColor = usernameLabel.textColor
+        
         // ADDING CUSTOM COLOR FOR SELECTION FOR CELL
         
         let selectedView = UIView(frame: CGRect.zero)
