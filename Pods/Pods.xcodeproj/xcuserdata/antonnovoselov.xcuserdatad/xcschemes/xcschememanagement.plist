@@ -29,6 +29,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Spring.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>iCarousel.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -37,7 +42,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>7BB6790CE4268BE119F93E1E85AF6470</key>
+		<key>76EEA5DDB18FB04CAFABD6571E4B000A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -57,12 +62,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>BB5A0D85C0381FEA4887AA5D39C5EDBB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>CB3F286D26C8B91B032CFF2FBB9D40EC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CC89C57E0742E824E7209A549DEC63A6</key>
+		<key>CE750B838FB915C61C68D12510563BC3</key>
 		<dict>
 			<key>primary</key>
 			<true/>

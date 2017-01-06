@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Spring
 
 protocol FeedCellDelegate: class {
     
@@ -94,7 +95,9 @@ class FeedCell: UITableViewCell {
         self.postTextLabel.text = wallPost.postText
         
         self.commentButton.setTitle(wallPost.postComments, for: [])
-        self.likeButton.setTitle(wallPost.postLikes, for: [])
+        self.likeButton.setTitle("\(wallPost.postLikesCount)", for: [])
+        
+        changeLikeImage()
         
         let timeInterval = TimeInterval(wallPost.postDate)
         let createdDate = NSDate(timeIntervalSince1970: timeInterval)
@@ -120,8 +123,39 @@ class FeedCell: UITableViewCell {
         
         PostPhotoGallery.sharedGalleryManager.insertGallery(forPost: wallPost, toCell: self)
         
+    }
+    
+    
+    func currentUserLikes() -> Bool {
+        if self.wallPost.isLikedByCurrentUser == true {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func changeLikeImage() {
+        
+        if currentUserLikes() {
+            likeButton.setImage(UIImage(named: "LikeYes"), for: [])
+            
+        } else {
+            likeButton.setImage(UIImage(named: "LikeNo"), for: [])
+        }
         
     }
+    
+    func animateButton(_ button: DesignableButton) {
+        // animation
+        button.animation = "pop"
+        button.curve = "spring"
+        button.duration = 1.25
+        button.damping = 0.1
+        button.velocity = 0.2
+        button.animate()
+    }
+    
+    
     
     // MARK: - GESTURES
     func actionProfileImageViewDidTap(sender: UITapGestureRecognizer) {
@@ -142,14 +176,38 @@ class FeedCell: UITableViewCell {
     }
     
     // MARK: - ACTIONS
-    
-    @IBAction func likeDidTap() {
+    @IBAction func likeDidTap(_ sender: DesignableButton) {
         print("likeDidTap")
+        
+        if currentUserLikes() {
+            self.wallPost.toDislike()
+        } else {
+            self.wallPost.toLike()
+        }
+        
+        likeButton.setTitle("\(self.wallPost.postLikesCount)", for: [])
+        
+        changeLikeImage()
+        
+        animateButton(sender)
+        
+
+        
+        
     }
+
     
-    @IBAction func commentDidTap() {
+    
+    @IBAction func commentDidTap(_ sender: DesignableButton) {
         print("commentDidTap")
 
+        // animation
+        sender.animation = "pop"
+        sender.curve = "spring"
+        sender.duration = 1.5
+        sender.damping = 0.1
+        sender.velocity = 0.2
+        sender.animate()
     }
 
     

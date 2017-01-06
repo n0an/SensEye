@@ -22,7 +22,9 @@ class WallPost: ServerObject {
     var postAttachments: [Any]!
     
     var postComments: String!
-    var postLikes: String!
+    var postLikesCount: Int = 0
+    
+    var isLikedByCurrentUser = false
     
     required init(responseObject: [String: Any]) {
         
@@ -58,8 +60,8 @@ class WallPost: ServerObject {
 
         let likesDict = responseObject["likes"] as! [String: Any]
         
-        if let postLikes = likesDict["count"] as? Int {
-            self.postLikes = String(postLikes)
+        if let postLikesCount = likesDict["count"] as? Int {
+            self.postLikesCount = postLikesCount
         
         }
         
@@ -109,10 +111,63 @@ class WallPost: ServerObject {
 
 
 
-extension WallPost: Equatable { }
-
-func ==(lhs: WallPost, rhs: WallPost) -> Bool {
-    return lhs.postID == rhs.postID
+// MARK: - Like/Dislike feature
+extension WallPost {
+    
+    //        var likesCount = Int((likeButton.titleLabel?.text)!) ?? 0
+    //
+    //        if self.wallPost.isLiked == true {
+    //
+    //            likeButton.setImage(UIImage(named: "LikeNo"), for: [])
+    //
+    //            likesCount -= 1
+    //
+    //            if likesCount >= 0 {
+    //
+    //                likeButton.setTitle("\(likesCount)", for: [])
+    //            }
+    //
+    //            self.wallPost.isLiked = false
+    //
+    //
+    //        } else {
+    //
+    //            likeButton.setImage(UIImage(named: "LikeYes"), for: [])
+    //
+    //            likesCount += 1
+    //
+    //            likeButton.setTitle("\(likesCount)", for: [])
+    //            
+    //            self.wallPost.isLiked = true
+    //            
+    //        }
+    
+    
+    
+    func toLike() {
+        
+        if self.isLikedByCurrentUser == false {
+            
+            postLikesCount += 1
+            
+            self.isLikedByCurrentUser = true
+            
+        }
+    }
+    
+    
+    func toDislike() {
+        
+        if self.isLikedByCurrentUser == true {
+            
+            postLikesCount -= 1
+            
+            self.isLikedByCurrentUser = false
+        }
+        
+    }
+    
+    
 }
 
 
@@ -125,8 +180,11 @@ func ==(lhs: WallPost, rhs: WallPost) -> Bool {
 
 
 
+extension WallPost: Equatable { }
 
-
+func ==(lhs: WallPost, rhs: WallPost) -> Bool {
+    return lhs.postID == rhs.postID
+}
 
 
 

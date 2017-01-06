@@ -16,4 +16,7 @@ target 'SensEye' do
   
   pod 'Reveal-SDK', :configurations => ['Debug']
   
+  pod 'Spring', :git => 'https://github.com/MengTo/Spring.git', :branch => 'swift3'
+
+
 end
