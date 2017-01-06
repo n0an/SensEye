@@ -292,9 +292,35 @@ class ServerManager {
         }
         
         
+    }
+    
+    func deleteLike(forItemType itemType: String, ownerID: String, itemID: String, completed: @escaping LikeFeatureCompletion) {
         
         
+        var url = "\(URL_BASE)\(URL_LIKES_DELETE)" +
+                    "\(URL_PARAMS.ITEM_TYPE.rawValue)\(itemType)&" +
+                    "\(URL_PARAMS.ITEM_ID.rawValue)\(itemID)&" +
+                    "\(URL_PARAMS.OWNER_ID.rawValue)\(ownerID)"
         
+        if let accessToken = self.vkAccessToken {
+            url += "&\(URL_PARAMS.ACCESS_TOKEN.rawValue)\(accessToken.token!)"
+        }
+        
+        let finalUrl = url + "&v=5.60"
+        
+        self.networkActivityIndicatorVisible = true
+        
+        Alamofire.request(finalUrl, method: .post, parameters: [:], encoding: JSONEncoding.default, headers: nil).responseJSON { (responseJson) in
+            
+            self.networkActivityIndicatorVisible = false
+            
+            guard let responseRoot = responseJson.result.value as? [String: Any] else {return}
+            
+            guard let response = responseRoot["response"] as? [String:Any] else {return}
+            
+            completed(response)
+            
+        }
         
         
     }

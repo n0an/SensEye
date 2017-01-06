@@ -113,63 +113,6 @@ class WallPost: ServerObject {
 
 
 
-
-
-// MARK: - Like/Dislike feature
-extension WallPost {
-   
-    func toLike() {
-        
-        ServerManager.sharedManager.addLike(forItemType: "post", ownerID: groupID, itemID: self.postID) { (resultDict) in
-            
-            
-            if let postLikesCount = resultDict["likes"] as? Int {
-                self.postLikesCount = postLikesCount
-                
-                self.isLikedByCurrentUser = true
-                
-            }
-            
-            
-            
-            
-        }
-        
-        
-        
-//        if self.isLikedByCurrentUser == false {
-//            
-//            postLikesCount += 1
-//            
-//            self.isLikedByCurrentUser = true
-//            
-//        }
-    }
-    
-    
-    func toDislike() {
-        
-        if self.isLikedByCurrentUser == true {
-            
-            postLikesCount -= 1
-            
-            self.isLikedByCurrentUser = false
-        }
-        
-    }
-    
-    
-}
-
-
-
-
-
-
-
-
-
-
 // MARK: - Equatable protocol
 
 extension WallPost: Equatable { }

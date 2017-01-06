@@ -87,10 +87,57 @@ class FeedCell: UITableViewCell {
     }
     
     
+    // MARK: - API METHODS
+    
+    func authorize() {
+        ServerManager.sharedManager.authorizeUser(completed: { (user) in
+            
+            ServerManager.sharedManager.currentVKUser = user
+            
+            
+        })
+    }
+    
+    // LIKE/DISLIKE FEATURE
+
+    func toLike() {
+        
+        ServerManager.sharedManager.addLike(forItemType: "post", ownerID: groupID, itemID: self.wallPost.postID) { (resultDict) in
+            
+            if let postLikesCount = resultDict["likes"] as? Int {
+                self.wallPost.postLikesCount = postLikesCount
+                
+                self.wallPost.isLikedByCurrentUser = true
+                
+                self.likeButton.setTitle("\(self.wallPost.postLikesCount)", for: [])
+                
+                self.changeLikeImage()
+            }
+            
+        }
+    }
+    
+    func toDislike() {
+        
+        ServerManager.sharedManager.deleteLike(forItemType: "post", ownerID: groupID, itemID: self.wallPost.postID) { (resultDict) in
+            
+            if let postLikesCount = resultDict["likes"] as? Int {
+                self.wallPost.postLikesCount = postLikesCount
+                
+                self.wallPost.isLikedByCurrentUser = false
+                
+                self.likeButton.setTitle("\(self.wallPost.postLikesCount)", for: [])
+                
+                self.changeLikeImage()
+            }
+            
+        }
+        
+    }
+    
     // MARK: - HELPER METHODS
     
     func updateUI() {
-        
         
         self.postTextLabel.text = wallPost.postText
         
@@ -155,19 +202,6 @@ class FeedCell: UITableViewCell {
         button.animate()
     }
     
-    func toggleLikes() {
-        if currentUserLikes() {
-            self.wallPost.toDislike()
-        } else {
-            self.wallPost.toLike()
-        }
-        
-        likeButton.setTitle("\(self.wallPost.postLikesCount)", for: [])
-        
-        changeLikeImage()
-        
-        
-    }
     
     
     // MARK: - GESTURES
@@ -192,37 +226,28 @@ class FeedCell: UITableViewCell {
     @IBAction func likeDidTap(_ sender: DesignableButton) {
         print("likeDidTap")
         
-        
-        if ServerManager.sharedManager.currentVKUser == nil {
-            
-            ServerManager.sharedManager.authorizeUser(completed: { (user) in
-                
-                ServerManager.sharedManager.currentVKUser = user
-                
-//                self.toggleLikes()
-            })
-            
-        } else {
-            toggleLikes()
+        guard ServerManager.sharedManager.currentVKUser != nil else {
+            authorize()
+            return
         }
         
-                
+        if currentUserLikes() {
+            toDislike()
+        } else {
+            toLike()
+        }
+
+        
         animateButton(sender)
         
     }
+    
+    
 
-    
-    
     @IBAction func commentDidTap(_ sender: DesignableButton) {
         print("commentDidTap")
 
-        // animation
-        sender.animation = "pop"
-        sender.curve = "spring"
-        sender.duration = 1.5
-        sender.damping = 0.1
-        sender.velocity = 0.2
-        sender.animate()
+        animateButton(sender)
     }
 
     

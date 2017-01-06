@@ -15,6 +15,7 @@ let URL_PHOTO_ALBUMS = "/photos.getAlbums?"
 let URL_COMMENTS = "/wall.getComments?"
 let URL_USERS = "/users.get?"
 let URL_LIKES_ADD = "/likes.add?"
+let URL_LIKES_DELETE = "/likes.delete?"
 
 enum URL_PARAMS: String {
     
