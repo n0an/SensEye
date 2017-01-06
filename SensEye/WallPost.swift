@@ -120,13 +120,30 @@ extension WallPost {
    
     func toLike() {
         
-        if self.isLikedByCurrentUser == false {
+        ServerManager.sharedManager.addLike(forItemType: "post", ownerID: groupID, itemID: self.postID) { (resultDict) in
             
-            postLikesCount += 1
             
-            self.isLikedByCurrentUser = true
+            if let postLikesCount = resultDict["likes"] as? Int {
+                self.postLikesCount = postLikesCount
+                
+                self.isLikedByCurrentUser = true
+                
+            }
+            
+            
+            
             
         }
+        
+        
+        
+//        if self.isLikedByCurrentUser == false {
+//            
+//            postLikesCount += 1
+//            
+//            self.isLikedByCurrentUser = true
+//            
+//        }
     }
     
     

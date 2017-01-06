@@ -199,7 +199,7 @@ class FeedCell: UITableViewCell {
                 
                 ServerManager.sharedManager.currentVKUser = user
                 
-                self.toggleLikes()
+//                self.toggleLikes()
             })
             
         } else {
