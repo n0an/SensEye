@@ -179,7 +179,8 @@ class FeedCell: UITableViewCell {
     @IBAction func likeDidTap(_ sender: DesignableButton) {
         print("likeDidTap")
         
-        if ServerManager.sharedManager.vkAccessToken == nil {
+        
+        if ServerManager.sharedManager.currentVKUser == nil {
             
             ServerManager.sharedManager.authorizeUser(completed: { (user) in
                 
@@ -191,6 +192,7 @@ class FeedCell: UITableViewCell {
             
         }
         
+                
         
         if currentUserLikes() {
             self.wallPost.toDislike()

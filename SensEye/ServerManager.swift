@@ -18,7 +18,7 @@ class ServerManager {
     
     var vkAccessToken: VKAccessToken?
     
-    var currentVKUser: User!
+    var currentVKUser: User?
     
     enum FeedItemsType {
         case post
