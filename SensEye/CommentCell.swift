@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Spring
 
 class CommentCell: UITableViewCell {
     
@@ -65,7 +66,7 @@ class CommentCell: UITableViewCell {
         
         self.commentTextLabel.text = comment.commentText
         
-        self.likeButton.setTitle(comment.commentLikes, for: [])
+        self.likeButton.setTitle("\(self.comment.commentLikesCount)", for: [])
         
         let timeInterval = TimeInterval(comment.commentDate)
         
@@ -90,9 +91,37 @@ class CommentCell: UITableViewCell {
             
         }
         
+    }
+    
+    func currentUserLikes() -> Bool {
+        if self.comment.isLikedByCurrentUser == true {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func changeLikeImage() {
         
+        if currentUserLikes() {
+            likeButton.setImage(UIImage(named: "LikeYes"), for: [])
+            
+        } else {
+            likeButton.setImage(UIImage(named: "LikeNo"), for: [])
+        }
         
     }
+    
+    func animateButton(_ button: DesignableButton) {
+        // animation
+        button.animation = "pop"
+        button.curve = "spring"
+        button.duration = 1.25
+        button.damping = 0.1
+        button.velocity = 0.2
+        button.animate()
+    }
+    
     
     // MARK: - GESTURES
     func actionProfileImageViewDidTap(sender: UITapGestureRecognizer) {
@@ -100,10 +129,35 @@ class CommentCell: UITableViewCell {
     }
     
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
+    // MARK: - ACTIONS
+    @IBAction func likeDidTap(_ sender: DesignableButton) {
+        print("likeDidTap")
         
+        if currentUserLikes() {
+            self.comment.toDislike()
+        } else {
+            self.comment.toLike()
+        }
+        
+        likeButton.setTitle("\(self.comment.commentLikesCount)", for: [])
+        
+        changeLikeImage()
+        
+        animateButton(sender)
+        
+    }
+    
+    
+    @IBAction func commentDidTap(_ sender: DesignableButton) {
+        print("commentDidTap")
+        
+        // animation
+        sender.animation = "pop"
+        sender.curve = "spring"
+        sender.duration = 1.5
+        sender.damping = 0.1
+        sender.velocity = 0.2
+        sender.animate()
     }
 
 }

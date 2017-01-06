@@ -113,37 +113,7 @@ class WallPost: ServerObject {
 
 // MARK: - Like/Dislike feature
 extension WallPost {
-    
-    //        var likesCount = Int((likeButton.titleLabel?.text)!) ?? 0
-    //
-    //        if self.wallPost.isLiked == true {
-    //
-    //            likeButton.setImage(UIImage(named: "LikeNo"), for: [])
-    //
-    //            likesCount -= 1
-    //
-    //            if likesCount >= 0 {
-    //
-    //                likeButton.setTitle("\(likesCount)", for: [])
-    //            }
-    //
-    //            self.wallPost.isLiked = false
-    //
-    //
-    //        } else {
-    //
-    //            likeButton.setImage(UIImage(named: "LikeYes"), for: [])
-    //
-    //            likesCount += 1
-    //
-    //            likeButton.setTitle("\(likesCount)", for: [])
-    //            
-    //            self.wallPost.isLiked = true
-    //            
-    //        }
-    
-    
-    
+   
     func toLike() {
         
         if self.isLikedByCurrentUser == false {
@@ -179,6 +149,7 @@ extension WallPost {
 
 
 
+// MARK: - Equatable protocol
 
 extension WallPost: Equatable { }
 

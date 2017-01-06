@@ -2195,6 +2195,9 @@
                                                                                     <state key="normal" title=" 20" image="LikeNo">
                                                                                         <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                                                     </state>
+                                                                                    <connections>
+                                                                                        <action selector="likeDidTap:" destination="450-58-f23" eventType="touchUpInside" id="S6R-eL-3Ef"/>
+                                                                                    </connections>
                                                                                 </button>
                                                                             </subviews>
                                                                         </stackView>

@@ -20,7 +20,9 @@ class Comment: ServerObject {
     var postGroupAuthor: Group?
     
     var postComments: String!
-    var commentLikes: String!
+    var commentLikesCount: Int = 0
+    
+    var isLikedByCurrentUser = false
     
     required init(responseObject: [String: Any]) {
         
@@ -47,8 +49,8 @@ class Comment: ServerObject {
         
         let likesDict = responseObject["likes"] as! [String: Any]
         
-        if let postLikes = likesDict["count"] as? Int {
-            self.commentLikes = String(postLikes)
+        if let commentLikesCount = likesDict["count"] as? Int {
+            self.commentLikesCount = commentLikesCount
             
         }
         
@@ -58,14 +60,49 @@ class Comment: ServerObject {
 }
 
 
+// MARK: - Like/Dislike feature
+extension Comment {
+    
+    func toLike() {
+        
+        if self.isLikedByCurrentUser == false {
+            
+            commentLikesCount += 1
+            
+            self.isLikedByCurrentUser = true
+        }
+    }
+    
+    func toDislike() {
+        
+        if self.isLikedByCurrentUser == true {
+            
+            commentLikesCount -= 1
+            
+            self.isLikedByCurrentUser = false
+        }
+    }
+}
 
 
+// MARK: - Equatable protocol
 
 extension Comment: Equatable { }
 
 func ==(lhs: Comment, rhs: Comment) -> Bool {
     return lhs.commentID == rhs.commentID
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
 
