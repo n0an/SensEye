@@ -10,15 +10,16 @@ import UIKit
 
 import Jelly
 
+protocol PostViewControllerDelegate: class {
+    func postViewControllerWillDisappear(withPost post: WallPost)
+}
+
 class PostViewController: UIViewController {
     
     // MARK: - OUTLETS
     @IBOutlet weak var tableView: UITableView!
     
-    // MARK: - PROPERTIES
-    
-    public var wallPost: WallPost!
-    public var backgroundImage: UIImage?
+    // MARK: - ENUMS
     
     enum Storyboard {
         static let cellIdPost = "FeedCell"
@@ -29,7 +30,7 @@ class PostViewController: UIViewController {
         
         static let tableHeaderHeight: CGFloat = 100
         static let tableHeaderCutAway: CGFloat = 50
-
+        
         static let seguePhotoDisplayer = "showPhoto"
         
         static let viewControllerIdPhotoDisplayer = "PhotoNavViewController"
@@ -39,6 +40,15 @@ class PostViewController: UIViewController {
         case post
         case comment
     }
+    
+    
+    // MARK: - PROPERTIES
+    
+
+    public var wallPost: WallPost!
+    public var backgroundImage: UIImage?
+    
+    weak var delegate: PostViewControllerDelegate?
     
     var comments: [Comment] = []
     let commentsInRequest = 10
@@ -68,7 +78,6 @@ class PostViewController: UIViewController {
             print("InfiniteScrolling GO")
             self.getCommentsFromServer()
         }
-        
         
         headerView = tableView.tableHeaderView as! PostHeaderView
         headerView.delegate = self
@@ -104,6 +113,12 @@ class PostViewController: UIViewController {
     
     override var prefersStatusBarHidden: Bool {
         return true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        delegate?.postViewControllerWillDisappear(withPost: self.wallPost)
     }
     
 

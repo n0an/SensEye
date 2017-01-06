@@ -252,6 +252,7 @@ class FeedViewController: UIViewController {
                 return
             }
             
+            destinationVC.delegate = self
             destinationVC.wallPost = postCell.wallPost
             destinationVC.backgroundImage = postCell.galleryImageViews[0].image
         }
@@ -311,7 +312,7 @@ extension FeedViewController: UITableViewDelegate {
 
 
 
-// MARK: - FeedCellDelegate
+// MARK: - ===FeedCellDelegate===
 
 extension FeedViewController: FeedCellDelegate {
     
@@ -395,6 +396,25 @@ extension FeedViewController: FeedCellDelegate {
         
         
     }
+}
+
+
+// MARK: - ===PostViewControllerDelegate===
+
+extension FeedViewController: PostViewControllerDelegate {
+    
+    func postViewControllerWillDisappear(withPost post: WallPost) {
+        
+        if let index = self.wallPosts.index(of: post) {
+            
+            let indexPath = IndexPath(row: index, section: 0)
+            let cell = tableView.cellForRow(at: indexPath) as! FeedCell
+            
+            cell.updateUI()
+            
+        }
+    }
+    
 }
 
 

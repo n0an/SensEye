@@ -60,6 +60,58 @@ class CommentCell: UITableViewCell {
         
     }
     
+    
+    // MARK: - API METHODS
+    
+    func authorize() {
+        ServerManager.sharedManager.authorizeUser(completed: { (user) in
+            
+            ServerManager.sharedManager.currentVKUser = user
+            
+            
+        })
+    }
+    
+    // LIKE/DISLIKE FEATURE
+    
+    func toLike() {
+        
+        ServerManager.sharedManager.addLike(forItemType: "comment", ownerID: groupID, itemID: self.comment.commentID) { (resultDict) in
+            
+            if let commentLikesCount = resultDict["likes"] as? Int {
+                self.comment.commentLikesCount = commentLikesCount
+                
+                self.comment.isLikedByCurrentUser = true
+                
+                self.likeButton.setTitle("\(self.comment.commentLikesCount)", for: [])
+                
+                self.changeLikeImage()
+            }
+            
+        }
+    }
+    
+    func toDislike() {
+        
+        ServerManager.sharedManager.deleteLike(forItemType: "comment", ownerID: groupID, itemID: self.comment.commentID) { (resultDict) in
+            
+            if let commentLikesCount = resultDict["likes"] as? Int {
+                self.comment.commentLikesCount = commentLikesCount
+                
+                self.comment.isLikedByCurrentUser = false
+                
+                self.likeButton.setTitle("\(self.comment.commentLikesCount)", for: [])
+                
+                self.changeLikeImage()
+            }
+            
+        }
+        
+    }
+    
+    
+    
+    
     // MARK: - HELPER METHODS
 
     func updateUI() {
@@ -74,6 +126,7 @@ class CommentCell: UITableViewCell {
         
         self.timestampLabel.text = createdDate.stringFromDate()
         
+        changeLikeImage()
         
         if let commentAuthor = comment.postAuthor {
             self.usernameLabel.text = "\(commentAuthor.firstName!) \(commentAuthor.lastName!)"
@@ -133,15 +186,17 @@ class CommentCell: UITableViewCell {
     @IBAction func likeDidTap(_ sender: DesignableButton) {
         print("likeDidTap")
         
-        if currentUserLikes() {
-            self.comment.toDislike()
-        } else {
-            self.comment.toLike()
+        guard ServerManager.sharedManager.currentVKUser != nil else {
+            authorize()
+            return
         }
         
-        likeButton.setTitle("\(self.comment.commentLikesCount)", for: [])
+        if currentUserLikes() {
+            toDislike()
+        } else {
+            toLike()
+        }
         
-        changeLikeImage()
         
         animateButton(sender)
         
@@ -151,13 +206,7 @@ class CommentCell: UITableViewCell {
     @IBAction func commentDidTap(_ sender: DesignableButton) {
         print("commentDidTap")
         
-        // animation
-        sender.animation = "pop"
-        sender.curve = "spring"
-        sender.duration = 1.5
-        sender.damping = 0.1
-        sender.velocity = 0.2
-        sender.animate()
+        animateButton(sender)
     }
 
 }

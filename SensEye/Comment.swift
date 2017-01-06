@@ -19,7 +19,6 @@ class Comment: ServerObject {
     var postAuthor: User?
     var postGroupAuthor: Group?
     
-    var postComments: String!
     var commentLikesCount: Int = 0
     
     var isLikedByCurrentUser = false
@@ -54,34 +53,13 @@ class Comment: ServerObject {
             
         }
         
-        
-    }
-    
-}
-
-
-// MARK: - Like/Dislike feature
-extension Comment {
-    
-    func toLike() {
-        
-        if self.isLikedByCurrentUser == false {
-            
-            commentLikesCount += 1
-            
-            self.isLikedByCurrentUser = true
+        if let isLikedByCurrentUser = likesDict["can_like"] as? Int {
+            self.isLikedByCurrentUser = isLikedByCurrentUser == 0 ? true : false
         }
+        
+        
     }
     
-    func toDislike() {
-        
-        if self.isLikedByCurrentUser == true {
-            
-            commentLikesCount -= 1
-            
-            self.isLikedByCurrentUser = false
-        }
-    }
 }
 
 
