@@ -155,6 +155,19 @@ class FeedCell: UITableViewCell {
         button.animate()
     }
     
+    func toggleLikes() {
+        if currentUserLikes() {
+            self.wallPost.toDislike()
+        } else {
+            self.wallPost.toLike()
+        }
+        
+        likeButton.setTitle("\(self.wallPost.postLikesCount)", for: [])
+        
+        changeLikeImage()
+        
+        
+    }
     
     
     // MARK: - GESTURES
@@ -186,26 +199,15 @@ class FeedCell: UITableViewCell {
                 
                 ServerManager.sharedManager.currentVKUser = user
                 
+                self.toggleLikes()
             })
             
+        } else {
+            toggleLikes()
         }
         
                 
-        
-        if currentUserLikes() {
-            self.wallPost.toDislike()
-        } else {
-            self.wallPost.toLike()
-        }
-        
-        likeButton.setTitle("\(self.wallPost.postLikesCount)", for: [])
-        
-        changeLikeImage()
-        
         animateButton(sender)
-        
-
-        
         
     }
 
