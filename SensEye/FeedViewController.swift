@@ -327,6 +327,17 @@ extension FeedViewController: FeedCellDelegate {
                 ServerManager.sharedManager.vkAccessToken = token
                 
                 ServerManager.sharedManager.getUserFor(userID: token.userID, completed: { (user) in
+                    
+                    
+//                    ServerManager.sharedManager.currentVKUser = user
+//                    
+//                    // Post notification when authenticated with VK
+//                    
+//                    let center = NotificationCenter.default
+//                    let notification = Notification(name: Notification.Name(rawValue: "NotificationAuthorizationCompleted"))
+//                    
+//                    center.post(notification)
+                    
                     completed(user)
                 })
                 

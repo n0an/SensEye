@@ -133,14 +133,12 @@ extension VKLoginViewController: UIWebViewDelegate {
             if let completionHandler = completionHandler {
                 completionHandler(accessToken)
                 
-                // Post notification when authenticated with VK
-                
-                let center = NotificationCenter.default
-                let notification = Notification(name: Notification.Name(rawValue: "NotificationAuthorizationCompleted"))
-                
-                center.post(notification)
-                
             }
+            
+            let center = NotificationCenter.default
+            let notification = Notification(name: Notification.Name(rawValue: "NotificationAuthorizationCompleted"))
+            
+            center.post(notification)
             
             self.dismiss(animated: true, completion: nil)
             

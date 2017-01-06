@@ -124,6 +124,33 @@ class PostViewController: UIViewController {
     
 
     // MARK: - API METHODS
+    
+    func refreshMainPost() {
+        
+        GeneralHelper.sharedHelper.showSpinner(onView: self.view, usingBoundsFromView: self.tableView)
+
+        ServerManager.sharedManager.isLiked(forItemType: "post", ownerID: groupID, itemID: self.wallPost.postID) { (resultDict) in
+            
+            
+            if let liked = resultDict["liked"] as? Int {
+                self.wallPost.isLikedByCurrentUser = liked == 1 ? true : false
+                
+                
+                let cell = self.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! FeedCell
+                
+                cell.wallPost = self.wallPost
+                
+            }
+            
+            GeneralHelper.sharedHelper.hideSpinner(onView: self.view)
+            
+            
+        }
+        
+        
+    }
+    
+    
     func getCommentsFromServer() {
         
         GeneralHelper.sharedHelper.showSpinner(onView: self.view, usingBoundsFromView: self.tableView)
@@ -220,7 +247,7 @@ class PostViewController: UIViewController {
     func vkAuthorizationCompleted() {
         
         // TODO: - REFRESH ONLY ONE POST AND ALL COMMENTS
-        
+        refreshMainPost()
         
     }
 
@@ -352,9 +379,22 @@ extension PostViewController: FeedCellDelegate, CommentCellDelegate {
                 ServerManager.sharedManager.vkAccessToken = token
                 
                 ServerManager.sharedManager.getUserFor(userID: token.userID, completed: { (user) in
+                    
+//                    ServerManager.sharedManager.currentVKUser = user
+                    
+                    // Post notification when authenticated with VK
+                    
+//                    let center = NotificationCenter.default
+//                    let notification = Notification(name: Notification.Name(rawValue: "NotificationAuthorizationCompleted"))
+//                    
+//                    center.post(notification)
+                    
+//                    self.vkAuthorizationCompleted()
+                    
+                    
                     completed(user)
                     
-                    self.vkAuthorizationCompleted()
+                    
                 })
                 
                 
