@@ -65,6 +65,10 @@ class WallPost: ServerObject {
         
         }
         
+        if let isLikedByCurrentUser = likesDict["can_like"] as? Int {
+            self.isLikedByCurrentUser = isLikedByCurrentUser == 1 ? true : false
+        }
+        
         
         // Attachments
         

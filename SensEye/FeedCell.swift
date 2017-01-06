@@ -186,8 +186,6 @@ class FeedCell: UITableViewCell {
                 
                 ServerManager.sharedManager.currentVKUser = user
                 
-                print("currentVKUser = \(user)")
-                
             })
             
         }

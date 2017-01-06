@@ -153,6 +153,10 @@ class ServerManager {
                     "\(URL_PARAMS.NEED_LIKES.rawValue)1"
         }
         
+        if let accessToken = self.vkAccessToken {
+            url += "&\(URL_PARAMS.ACCESS_TOKEN.rawValue)\(accessToken.token!)"
+        }
+        
         let finalUrl = url + "&v=5.60"
         
         self.networkActivityIndicatorVisible = true

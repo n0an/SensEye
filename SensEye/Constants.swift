@@ -35,6 +35,8 @@ enum URL_PARAMS: String {
     case USER_IDS = "user_ids="
     case USER_FIELDS = "fields="
     
+    case ACCESS_TOKEN = "access_token="
+    
 }
 
 
