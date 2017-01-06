@@ -1309,6 +1309,9 @@
                                                                     <state key="normal" title=" 20" image="LikeNo">
                                                                         <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                                     </state>
+                                                                    <connections>
+                                                                        <action selector="likeDidTap" destination="Ra5-In-1yI" eventType="touchUpInside" id="pcx-Kq-svL"/>
+                                                                    </connections>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iup-4X-kr2">
                                                                     <rect key="frame" x="58" y="0.0" width="44" height="19"/>
@@ -1316,6 +1319,9 @@
                                                                     <state key="normal" title=" 20" image="Comment">
                                                                         <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                                     </state>
+                                                                    <connections>
+                                                                        <action selector="commentDidTap" destination="Ra5-In-1yI" eventType="touchUpInside" id="2yS-Gv-ali"/>
+                                                                    </connections>
                                                                 </button>
                                                             </subviews>
                                                         </stackView>
@@ -2035,6 +2041,9 @@
                                                                     <state key="normal" title=" 20" image="LikeNo">
                                                                         <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                                     </state>
+                                                                    <connections>
+                                                                        <action selector="likeDidTap" destination="fxZ-yW-dBd" eventType="touchUpInside" id="Gdc-OE-UDc"/>
+                                                                    </connections>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hds-qh-F0X">
                                                                     <rect key="frame" x="58" y="0.0" width="44" height="19"/>
@@ -2042,6 +2051,9 @@
                                                                     <state key="normal" title=" 20" image="Comment">
                                                                         <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                                     </state>
+                                                                    <connections>
+                                                                        <action selector="commentDidTap" destination="fxZ-yW-dBd" eventType="touchUpInside" id="cfA-k4-vHo"/>
+                                                                    </connections>
                                                                 </button>
                                                             </subviews>
                                                         </stackView>

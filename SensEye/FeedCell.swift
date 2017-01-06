@@ -140,6 +140,17 @@ class FeedCell: UITableViewCell {
         }
         
     }
+    
+    // MARK: - ACTIONS
+    
+    @IBAction func likeDidTap() {
+        print("likeDidTap")
+    }
+    
+    @IBAction func commentDidTap() {
+        print("commentDidTap")
+
+    }
 
     
 }
