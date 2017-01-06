@@ -75,6 +75,7 @@ class FeedViewController: UIViewController {
         
         listenForBackgroundNotification()
         
+        listenForAuthenticationNotification()
     }
 
     
@@ -86,6 +87,7 @@ class FeedViewController: UIViewController {
     
     deinit {
         NotificationCenter.default.removeObserver(observer)
+        NotificationCenter.default.removeObserver(self)
     }
 
     
@@ -200,6 +202,15 @@ class FeedViewController: UIViewController {
   
     }
     
+    func listenForAuthenticationNotification() {
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(vkAuthorizationCompleted), name: Notification.Name(rawValue: "NotificationAuthorizationCompleted"), object: nil)
+        
+    }
+    
+    func vkAuthorizationCompleted() {
+        self.refreshWall()
+    }
     
     // MARK: - ACTIONS
     
