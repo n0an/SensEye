@@ -16,6 +16,10 @@ class ServerManager {
     
     static let sharedManager = ServerManager()
     
+    var vkAccessToken: VKAccessToken?
+    
+    var currentVKUser: User!
+    
     enum FeedItemsType {
         case post
         case comment
@@ -124,7 +128,7 @@ class ServerManager {
         
     }
     
-    // MARK: - COMMENTS
+    // MARK: - POSTS/COMMENTS
     
     func getFeed(forType feedType: FeedItemsType, ownerID: String, postID: String? = nil, offset: Int, count: Int, completed: @escaping DownloadComplete) {
         
@@ -181,9 +185,7 @@ class ServerManager {
             if groupsArray.count > 0 {
                 group = Group(responseObject: groupsArray[0] as! [String : Any])
             }
-            
-//            let group = Group(responseObject: groupsArray[0] as! [String : Any])
-            
+         
             // Parsing Profiles
             
             var authorsArray = [User]()
@@ -217,6 +219,85 @@ class ServerManager {
         
     }
     
+    func getUserFor(userID: String, completed: @escaping AuthoizationComplete) {
+        
+        let url = "\(URL_BASE)\(URL_USERS)" +
+                    "\(URL_PARAMS.USER_IDS.rawValue)\(userID)&" +
+                    "\(URL_PARAMS.USER_FIELDS.rawValue)photo_50&" +
+                    "\(URL_PARAMS.LANG.rawValue)ru"
+        
+        let finalUrl = url + "&v=5.60"
+
+        self.networkActivityIndicatorVisible = true
+        
+        Alamofire.request(finalUrl).responseJSON { (responseJson) in
+            
+            self.networkActivityIndicatorVisible = false
+            
+            guard let responseRoot = responseJson.result.value as? [String: Any] else {return}
+            
+            guard let response = responseRoot["response"] as? [Any] else {return}
+            
+            
+            
+            if response.count > 0 {
+                let userItem = response[0] as! [String: Any]
+                
+                let user = User(responseObject: userItem)
+                
+                completed(user)
+            }
+            
+            
+            
+        }
+        
+        
+        
+        
+    }
+    
+    
+    // MARK: - AUTHORIZATION
+    
+    func authorizeUser(completed: @escaping AuthoizationComplete) {
+        
+        let loginVC = VKLoginViewController()
+        
+        loginVC.completionHandler = {(accessToken) in
+        
+            self.vkAccessToken = accessToken
+            
+            if let token = self.vkAccessToken {
+                
+                self.getUserFor(userID: token.userID, completed: { (user) in
+                    
+                    completed(user)
+                    
+                })
+                
+
+            }
+        
+        
+        }
+        
+        
+        
+        let navController = UINavigationController(rootViewController: loginVC)
+        
+        let mainVC = UIApplication.shared.keyWindow?.rootViewController
+        
+        mainVC?.present(navController, animated: true, completion: nil)
+        
+        
+        
+    }
+    
+    
+    
+    
+    // MARK: - HELPER METHODS
     
     func parseFeedObjects<T: ServerObject>(forArray array: [Any], authorsArray: [User], group: Group?) -> [T] {
         
@@ -251,108 +332,7 @@ class ServerManager {
     }
     
  
-    
-    
-    
-    // MARK: - GROUP WALL
-    
-//    func getGroupWall(forGroupID groupID: String, offset: Int, count: Int, completed: @escaping DownloadComplete) {
-//        
-//        let url = "\(URL_BASE)\(URL_WALL_FEED)" +
-//                    "\(URL_PARAMS.OWNER_ID.rawValue)\(groupID)&" +
-//                    "\(URL_PARAMS.COUNT.rawValue)\(count)&" +
-//                    "\(URL_PARAMS.OFFSET.rawValue)\(offset)&" +
-//                    "\(URL_PARAMS.LANG.rawValue)ru&" +
-//                    "\(URL_PARAMS.EXTENDED.rawValue)1"
-//        
-//        
-//        let finalUrl = url + "&v=5.60"
-//        
-//        self.networkActivityIndicatorVisible = true
-//    
-//        Alamofire.request(finalUrl).responseJSON { (responseJson) in
-//            
-//            self.networkActivityIndicatorVisible = false
-//            
-//            guard let responseRoot = responseJson.result.value as? [String: Any] else {return}
-//            
-//            guard let response = responseRoot["response"] as? [String: Any] else {return}
-//            
-//            guard let wallFeed = response["items"] as? [Any] else {
-//                return
-//            }
-//            
-//            guard let profilesArray = response["profiles"] as? [Any] else {
-//                return
-//            }
-//            
-//            guard let groupsArray = response["groups"] as? [Any] else {
-//                return
-//            }
-//            
-//            
-//            // Parsing Group object
-//            
-//            let group = Group(responseObject: groupsArray[0] as! [String : Any])
-//            
-//            // Parsing Profiles
-//            
-//            var authorsArray = [User]()
-//            
-//            for item in profilesArray {
-//                
-//                let profileItem = item as! [String: Any]
-//                
-//                let profile = User(responseObject: profileItem)
-//                
-//                authorsArray.append(profile)
-//                
-//            }
-//            
-//            
-//            
-//            var postsArray = [WallPost]()
-//            
-//            for item in wallFeed {
-//                
-//                let postItem = item as! [String: Any]
-//                
-//                let post = WallPost(responseObject: postItem)
-//                
-//                postsArray.append(post)
-//
-//                // Iterating through array of authors - looking for author for this post
-//                
-//                for author in authorsArray {
-//                    
-//                    if post.postAuthorID.hasPrefix("-") {
-//                        post.postGroupAuthor = group
-//                        break
-//                    }
-//                    
-//                    if author.userID == post.postAuthorID {
-//                        post.postAuthor = author
-//                        break
-//                    }
-//                }
-//                
-//                
-//                
-//            }
-//            
-//            completed(postsArray)
-//   
-//            
-//            
-//        }
-//        
-//        
-//        
-//    }
-    
-    
-    
-    
+   
     
     
  

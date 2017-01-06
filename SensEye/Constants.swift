@@ -13,6 +13,7 @@ let URL_WALL_FEED = "/wall.get?"
 let URL_PHOTOS = "/photos.get?"
 let URL_PHOTO_ALBUMS = "/photos.getAlbums?"
 let URL_COMMENTS = "/wall.getComments?"
+let URL_USERS = "/users.get?"
 
 enum URL_PARAMS: String {
     
@@ -30,11 +31,16 @@ enum URL_PARAMS: String {
     
     case POST_ID = "post_id="
     case NEED_LIKES = "need_likes="
+    
+    case USER_IDS = "user_ids="
+    case USER_FIELDS = "fields="
+    
 }
 
 
 
 typealias DownloadComplete = ([Any]) -> Void
+typealias AuthoizationComplete = (User) -> Void
 
 let groupID = "-55347641"
 
