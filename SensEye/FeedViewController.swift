@@ -316,6 +316,35 @@ extension FeedViewController: UITableViewDelegate {
 
 extension FeedViewController: FeedCellDelegate {
     
+    func provideAuthorization(completed: @escaping AuthoizationComplete) {
+        
+        let loginVC = self.storyboard?.instantiateViewController(withIdentifier: "VKLoginViewController") as! VKLoginViewController
+        
+        loginVC.completionHandler = {(accessToken) in
+            
+            if let token = accessToken {
+                
+                ServerManager.sharedManager.vkAccessToken = token
+                
+                ServerManager.sharedManager.getUserFor(userID: token.userID, completed: { (user) in
+                    completed(user)
+                })
+                
+                
+            }
+            
+            
+        }
+       
+        
+        self.present(loginVC, animated: true, completion: nil)
+        
+        
+        
+        
+    }
+    
+
     func performJellyTransition(withPhotos photosArray: [Photo], indexOfPhoto: Int) {
         if let photoDisplayerNavVC = self.createVC(withID: Storyboard.viewControllerIdPhotoDisplayer) as? UINavigationController {
             
@@ -325,18 +354,7 @@ extension FeedViewController: FeedCellDelegate {
             photoDisplayerVC.mediasArray = photosArray
             photoDisplayerVC.currentIndex = indexOfPhoto
             
-//            let customCornerSlideInPresentation = JellySlideInPresentation(cornerRadius: 0,
-//                                                                           backgroundStyle: .blur(effectStyle: .light),
-//                                                                           jellyness: .jellier,
-//                                                                           duration: .normal,
-//                                                                           directionShow: .left,
-//                                                                           directionDismiss: .right,
-//                                                                           widthForViewController: .fullscreen,
-//                                                                           heightForViewController: .fullscreen)
-//            
-//            let testPresentation2 = JellyShiftInPresentation(dismissCurve: .easeIn, presentationCurve: .easeOut, cornerRadius: 0, backgroundStyle: .blur(effectStyle: .light), jellyness: .jelly, duration: .medium, direction: .left, size: .fullscreen)
-            
-            
+
             
             let customBlurFadeInPresentation2 = JellyFadeInPresentation(dismissCurve: .easeInEaseOut,
                                                                         presentationCurve: .easeInEaseOut,
@@ -415,9 +433,9 @@ extension FeedViewController: PostViewControllerDelegate {
         }
     }
     
+  
+    
 }
-
-
 
 
 

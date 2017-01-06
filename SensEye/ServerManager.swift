@@ -326,41 +326,7 @@ class ServerManager {
     }
     
     
-    // MARK: - AUTHORIZATION
     
-    func authorizeUser(completed: @escaping AuthoizationComplete) {
-        
-        let loginVC = VKLoginViewController()
-        
-        loginVC.completionHandler = {(accessToken) in
-        
-            self.vkAccessToken = accessToken
-            
-            if let token = self.vkAccessToken {
-                
-                self.getUserFor(userID: token.userID, completed: { (user) in
-                    
-                    completed(user)
-                    
-                })
-                
-
-            }
-        
-        
-        }
-        
-        
-        
-        let navController = UINavigationController(rootViewController: loginVC)
-        
-        let mainVC = UIApplication.shared.keyWindow?.rootViewController
-        
-        mainVC?.present(navController, animated: true, completion: nil)
-        
-        
-        
-    }
     
     
     

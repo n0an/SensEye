@@ -13,28 +13,28 @@ typealias CompletionHandler = (VKAccessToken?) -> Void
 class VKLoginViewController: UIViewController {
     
     
-    var webView: UIWebView!
+    @IBOutlet weak var webView: UIWebView!
     var completionHandler: CompletionHandler?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        var rect = self.view.bounds
+//        var rect = self.view.bounds
+//        
+//        rect.origin = CGPoint.zero
+//        
+//        let webView = UIWebView(frame: rect)
+//        webView.delegate = self
+//        
+//        self.view.addSubview(webView)
         
-        rect.origin = CGPoint.zero
+//        self.webView = webView
         
-        let webView = UIWebView(frame: rect)
-        webView.delegate = self
-        
-        self.view.addSubview(webView)
-        
-        self.webView = webView
-        
-        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(actionCancelTapped))
-        
-        self.navigationItem.setRightBarButton(cancelButton, animated: false)
-        
-        self.navigationItem.title = "Login"
+//        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(actionCancelTapped))
+//        
+//        self.navigationItem.setRightBarButton(cancelButton, animated: false)
+//        
+//        self.navigationItem.title = "Login"
         
         
         let urlString = "https://oauth.vk.com/authorize?" +
@@ -56,11 +56,11 @@ class VKLoginViewController: UIViewController {
     }
     
     deinit {
-//        self.webView.delegate = nil
+        self.webView.delegate = nil
     }
 
     
-    func actionCancelTapped() {
+    @IBAction func actionCancelTapped() {
         
         if let completionHandler = self.completionHandler {
             completionHandler(nil)
@@ -148,11 +148,7 @@ extension VKLoginViewController: UIWebViewDelegate {
             
         }
         
-        
-        
-//            ▿ Optional<String>
-//            - some : "https://oauth.vk.com/blank.html#access_token=d9cf7c3df34afb5226fe230dbcb242f8f966d350ad8829baff04689dd2cf9492c6991f68729290982ad35&expires_in=86400&user_id=21743772"
-        
+  
         
         return true
         

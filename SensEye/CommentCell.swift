@@ -9,6 +9,12 @@
 import UIKit
 import Spring
 
+protocol CommentCellDelegate: class {
+    
+    func provideAuthorization(completed: @escaping AuthoizationComplete)
+    
+}
+
 class CommentCell: UITableViewCell {
     
     // MARK: - OUTLETS
@@ -27,6 +33,8 @@ class CommentCell: UITableViewCell {
             
         }
     }
+    
+    weak var delegate: CommentCellDelegate?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -64,12 +72,12 @@ class CommentCell: UITableViewCell {
     // MARK: - API METHODS
     
     func authorize() {
-        ServerManager.sharedManager.authorizeUser(completed: { (user) in
-            
+        
+        delegate?.provideAuthorization(completed: { (user) in
             ServerManager.sharedManager.currentVKUser = user
-            
-            
         })
+        
+        
     }
     
     // LIKE/DISLIKE FEATURE

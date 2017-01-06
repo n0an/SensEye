@@ -13,6 +13,8 @@ protocol FeedCellDelegate: class {
     
     func galleryImageViewDidTap(wallPost: WallPost, clickedPhotoIndex: Int)
     
+    func provideAuthorization(completed: @escaping AuthoizationComplete)
+    
 }
 
 class FeedCell: UITableViewCell {
@@ -90,13 +92,23 @@ class FeedCell: UITableViewCell {
     // MARK: - API METHODS
     
     func authorize() {
-        ServerManager.sharedManager.authorizeUser(completed: { (user) in
-            
+        
+        delegate?.provideAuthorization(completed: { (user) in
             ServerManager.sharedManager.currentVKUser = user
-            
-            
         })
+        
+        
     }
+    
+    
+    // MARK: - AUTHORIZATION
+    
+    
+        
+        
+        
+    
+    
     
     // LIKE/DISLIKE FEATURE
 

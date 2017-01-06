@@ -98,7 +98,8 @@ class PostViewController: UIViewController {
         
         updateHeaderView()
         
-        
+        listenForAuthenticationNotification()
+
     }
     
     override func viewWillLayoutSubviews() {
@@ -167,6 +168,10 @@ class PostViewController: UIViewController {
     
     // MARK: - HELPER METHODS
     
+    fileprivate func createVC(withID identifier: String) -> UIViewController? {
+        return self.storyboard?.instantiateViewController(withIdentifier: identifier)
+    }
+    
     func updateHeaderView() {
         let effectiveHeight = Storyboard.tableHeaderHeight - Storyboard.tableHeaderCutAway / 2
         
@@ -197,7 +202,31 @@ class PostViewController: UIViewController {
         headerMaskLayer?.path = path.cgPath
         
     }
+    
+//    func listenForAuthenticationNotification() {
+//        
+//        NotificationCenter.default.addObserver(self, selector: #selector(vkAuthorizationCompleted), name: Notification.Name(rawValue: "NotificationAuthorizationCompleted"), object: nil)
+//        
+//    }
+    
+    
+    
+    func listenForAuthenticationNotification() {
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(vkAuthorizationCompleted), name: Notification.Name(rawValue: "NotificationAuthorizationCompleted"), object: nil)
+        
+    }
+    
+    func vkAuthorizationCompleted() {
+        
+        // TODO: - REFRESH ONLY ONE POST AND ALL COMMENTS
+        
+        
+    }
 
+    
+    
+    
     
     
 }
@@ -227,6 +256,7 @@ extension PostViewController: UITableViewDataSource {
             let postCell = tableView.dequeueReusableCell(withIdentifier: Storyboard.cellIdPost, for: indexPath) as! FeedCell
             
             postCell.wallPost = self.wallPost
+            postCell.delegate = self
             
             postCell.commentButton.isEnabled = false
             
@@ -239,7 +269,7 @@ extension PostViewController: UITableViewDataSource {
             let comment = self.comments[indexPath.row]
             
             commentCell.comment = comment
-            //        cell.delegate = self
+            commentCell.delegate = self
             
             return commentCell
         }
@@ -307,8 +337,110 @@ extension PostViewController: PostHeaderViewDelegate {
 }
 
 
+// MARK: - ===FeedCellDelegate===
+
+extension PostViewController: FeedCellDelegate, CommentCellDelegate {
+    
+    func provideAuthorization(completed: @escaping AuthoizationComplete) {
+        
+        let loginVC = self.storyboard?.instantiateViewController(withIdentifier: "VKLoginViewController") as! VKLoginViewController
+        
+        loginVC.completionHandler = {(accessToken) in
+            
+            if let token = accessToken {
+                
+                ServerManager.sharedManager.vkAccessToken = token
+                
+                ServerManager.sharedManager.getUserFor(userID: token.userID, completed: { (user) in
+                    completed(user)
+                    
+                    self.vkAuthorizationCompleted()
+                })
+                
+                
+            }
+            
+            
+        }
+       
+        self.present(loginVC, animated: true, completion: nil)
+        
+        
+        
+        
+    }
+    
+    func performJellyTransition(withPhotos photosArray: [Photo], indexOfPhoto: Int) {
+        if let photoDisplayerNavVC = self.createVC(withID: Storyboard.viewControllerIdPhotoDisplayer) as? UINavigationController {
+            
+            let photoDisplayerVC = photoDisplayerNavVC.topViewController as! PhotoViewController
+            
+            photoDisplayerVC.currentPhoto = photosArray[indexOfPhoto]
+            photoDisplayerVC.mediasArray = photosArray
+            photoDisplayerVC.currentIndex = indexOfPhoto
+            
+            
+            
+            let customBlurFadeInPresentation2 = JellyFadeInPresentation(dismissCurve: .easeInEaseOut,
+                                                                        presentationCurve: .easeInEaseOut,
+                                                                        cornerRadius: 0,
+                                                                        backgroundStyle: .blur(effectStyle: .light),
+                                                                        duration: .normal,
+                                                                        widthForViewController: .fullscreen,
+                                                                        heightForViewController: .fullscreen)
+            
+            
+            self.jellyAnimator = JellyAnimator(presentation: customBlurFadeInPresentation2)
+            
+            self.jellyAnimator?.prepare(viewController: photoDisplayerNavVC)
+            
+            self.present(photoDisplayerNavVC, animated: true, completion: nil)
+        }
+    }
+    
+    func galleryImageViewDidTap(wallPost: WallPost, clickedPhotoIndex: Int) {
+        
+        if let photosArray = wallPost.postAttachments as? [Photo] {
+            
+            
+            // ** UNCOMMENT IF USE SEGUE WITH CUSTOM TRANSITIONING ANIMATOR
+            //            performSegue(withIdentifier: Storyboard.seguePhotoDisplayer, sender: (wallPost.postAttachments as! [Photo], clickedPhotoIndex))
+            //
+            
+            // ** COMMENT IF NOT USE JELLY TRANSITION
+            
+            performJellyTransition(withPhotos: photosArray, indexOfPhoto: clickedPhotoIndex)
+            
+            
+        } else if let albumAttach = wallPost.postAttachments[0] as? PhotoAlbum {
+            
+            ServerManager.sharedManager.getPhotos(forAlbumID: albumAttach.albumID, ownerID: albumAttach.ownerID, completed: { (result) in
+                
+                let photos = result as! [Photo]
+                
+                // Calculating index of clicked photo in album
+                
+                let indexOfClickedPhotoInAlbum = photos.index(of: albumAttach.albumThumbPhoto!)
+                
+                // ** UNCOMMENT IF USE SEGUE WITH CUSTOM TRANSITIONING ANIMATOR
+                //                self.performSegue(withIdentifier: Storyboard.seguePhotoDisplayer, sender: (photos, indexOfClickedPhotoInAlbum ?? clickedPhotoIndex))
+                
+                self.performJellyTransition(withPhotos: photos, indexOfPhoto: indexOfClickedPhotoInAlbum ?? clickedPhotoIndex)
+                
+                
+                
+            })
+            
+            
+        }
+        
+        
+    }
+    
+}
 
 
+// MARK: - ===CommentCellDelegate===
 
 
 
