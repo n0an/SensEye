@@ -9,11 +9,6 @@
 import UIKit
 import Spring
 
-protocol CommentCellDelegate: class {
-    
-    func provideAuthorization(completed: @escaping AuthoizationComplete)
-    
-}
 
 class CommentCell: UITableViewCell {
     
@@ -34,7 +29,7 @@ class CommentCell: UITableViewCell {
         }
     }
     
-    weak var delegate: CommentCellDelegate?
+    weak var delegate: FeedCellDelegate?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -84,7 +79,7 @@ class CommentCell: UITableViewCell {
     
     func toLike() {
         
-        ServerManager.sharedManager.addLike(forItemType: "comment", ownerID: groupID, itemID: self.comment.commentID) { (resultDict) in
+        ServerManager.sharedManager.addLike(forItemType: .comment, ownerID: groupID, itemID: self.comment.commentID) { (resultDict) in
             
             if let commentLikesCount = resultDict["likes"] as? Int {
                 self.comment.commentLikesCount = commentLikesCount
@@ -101,7 +96,7 @@ class CommentCell: UITableViewCell {
     
     func toDislike() {
         
-        ServerManager.sharedManager.deleteLike(forItemType: "comment", ownerID: groupID, itemID: self.comment.commentID) { (resultDict) in
+        ServerManager.sharedManager.deleteLike(forItemType: .comment, ownerID: groupID, itemID: self.comment.commentID) { (resultDict) in
             
             if let commentLikesCount = resultDict["likes"] as? Int {
                 self.comment.commentLikesCount = commentLikesCount
@@ -111,14 +106,9 @@ class CommentCell: UITableViewCell {
                 self.likeButton.setTitle("\(self.comment.commentLikesCount)", for: [])
                 
                 self.changeLikeImage()
-            }
-            
+            }   
         }
-        
     }
-    
-    
-    
     
     // MARK: - HELPER METHODS
 

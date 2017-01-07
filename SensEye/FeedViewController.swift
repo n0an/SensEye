@@ -171,12 +171,8 @@ class FeedViewController: UIViewController {
                 GeneralHelper.sharedHelper.hideSpinner(onView: self.view)
 //                self.tableView.pullToRefreshView.stopAnimating()
                 self.refreshControl.endRefreshing()
-                
-
             }
-            
         }
-        
     }
     
     // MARK: - HELPER ACTIONS
@@ -184,6 +180,9 @@ class FeedViewController: UIViewController {
     fileprivate func createVC(withID identifier: String) -> UIViewController? {
         return self.storyboard?.instantiateViewController(withIdentifier: identifier)
     }
+    
+    
+    // MARK: - NOTIFICATIONS
     
     // HIDING ALERTS, ACTIONS SHEETS, PICKERS WHEN APP GOES TO BACKGROUND
     
@@ -197,22 +196,23 @@ class FeedViewController: UIViewController {
                 }
                 
             }
-         
+            
         }
-  
+        
     }
-    
+
     func listenForAuthenticationNotification() {
         
         NotificationCenter.default.addObserver(self, selector: #selector(vkAuthorizationCompleted), name: Notification.Name(rawValue: "NotificationAuthorizationCompleted"), object: nil)
         
     }
     
+    
+    // MARK: - ACTIONS
+    
     func vkAuthorizationCompleted() {
         self.refreshWall()
     }
-    
-    // MARK: - ACTIONS
     
     func actionRefreshTableView() {
         self.refreshWall()
@@ -328,30 +328,12 @@ extension FeedViewController: FeedCellDelegate {
                 
                 ServerManager.sharedManager.getUserFor(userID: token.userID, completed: { (user) in
                     
-                    
-//                    ServerManager.sharedManager.currentVKUser = user
-//                    
-//                    // Post notification when authenticated with VK
-//                    
-//                    let center = NotificationCenter.default
-//                    let notification = Notification(name: Notification.Name(rawValue: "NotificationAuthorizationCompleted"))
-//                    
-//                    center.post(notification)
-                    
                     completed(user)
                 })
-                
-                
             }
-            
-            
         }
        
-        
         self.present(loginVC, animated: true, completion: nil)
-        
-        
-        
         
     }
     
@@ -447,22 +429,6 @@ extension FeedViewController: PostViewControllerDelegate {
   
     
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

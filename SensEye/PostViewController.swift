@@ -129,7 +129,7 @@ class PostViewController: UIViewController {
         
         GeneralHelper.sharedHelper.showSpinner(onView: self.view, usingBoundsFromView: self.tableView)
 
-        ServerManager.sharedManager.isLiked(forItemType: "post", ownerID: groupID, itemID: self.wallPost.postID) { (resultDict) in
+        ServerManager.sharedManager.isLiked(forItemType: .post, ownerID: groupID, itemID: self.wallPost.postID) { (resultDict) in
             
             
             if let liked = resultDict["liked"] as? Int {
@@ -148,6 +148,33 @@ class PostViewController: UIViewController {
         }
         
         
+    }
+    
+    func refreshComments() {
+        
+        if self.loadingData == false {
+            self.loadingData = true
+            
+            GeneralHelper.sharedHelper.showSpinner(onView: self.view, usingBoundsFromView: self.tableView)
+
+            ServerManager.sharedManager.getFeed(forType: .comment, ownerID: groupID, postID: wallPost.postID, offset: 0, count: max(commentsInRequest, self.comments.count), completed: { (comments) in
+                
+                if comments.count > 0 {
+                    
+                    guard let comments = comments as? [Comment] else { return }
+                    
+                    self.comments.removeAll()
+                    
+                    self.comments.append(contentsOf: comments)
+                    
+                    self.tableView.reloadData()
+                }
+            })
+            
+            self.loadingData = false
+            
+            GeneralHelper.sharedHelper.hideSpinner(onView: self.view)
+        }
     }
     
     
@@ -229,33 +256,26 @@ class PostViewController: UIViewController {
         headerMaskLayer?.path = path.cgPath
         
     }
-    
-//    func listenForAuthenticationNotification() {
-//        
-//        NotificationCenter.default.addObserver(self, selector: #selector(vkAuthorizationCompleted), name: Notification.Name(rawValue: "NotificationAuthorizationCompleted"), object: nil)
-//        
-//    }
+
     
     
-    
+    // MARK: - NOTIFICATIONS
+
     func listenForAuthenticationNotification() {
         
         NotificationCenter.default.addObserver(self, selector: #selector(vkAuthorizationCompleted), name: Notification.Name(rawValue: "NotificationAuthorizationCompleted"), object: nil)
         
     }
     
+    
+    // MARK: - ACTIONS
+    
     func vkAuthorizationCompleted() {
         
         // TODO: - REFRESH ONLY ONE POST AND ALL COMMENTS
         refreshMainPost()
-        
+        refreshComments()
     }
-
-    
-    
-    
-    
-    
 }
 
 
@@ -366,7 +386,7 @@ extension PostViewController: PostHeaderViewDelegate {
 
 // MARK: - ===FeedCellDelegate===
 
-extension PostViewController: FeedCellDelegate, CommentCellDelegate {
+extension PostViewController: FeedCellDelegate {
     
     func provideAuthorization(completed: @escaping AuthoizationComplete) {
         
@@ -380,33 +400,12 @@ extension PostViewController: FeedCellDelegate, CommentCellDelegate {
                 
                 ServerManager.sharedManager.getUserFor(userID: token.userID, completed: { (user) in
                     
-//                    ServerManager.sharedManager.currentVKUser = user
-                    
-                    // Post notification when authenticated with VK
-                    
-//                    let center = NotificationCenter.default
-//                    let notification = Notification(name: Notification.Name(rawValue: "NotificationAuthorizationCompleted"))
-//                    
-//                    center.post(notification)
-                    
-//                    self.vkAuthorizationCompleted()
-                    
-                    
                     completed(user)
-                    
-                    
                 })
-                
-                
             }
-            
-            
         }
        
         self.present(loginVC, animated: true, completion: nil)
-        
-        
-        
         
     }
     
@@ -466,53 +465,10 @@ extension PostViewController: FeedCellDelegate, CommentCellDelegate {
                 //                self.performSegue(withIdentifier: Storyboard.seguePhotoDisplayer, sender: (photos, indexOfClickedPhotoInAlbum ?? clickedPhotoIndex))
                 
                 self.performJellyTransition(withPhotos: photos, indexOfPhoto: indexOfClickedPhotoInAlbum ?? clickedPhotoIndex)
-                
-                
-                
             })
-            
-            
         }
-        
-        
     }
-    
 }
-
-
-// MARK: - ===CommentCellDelegate===
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

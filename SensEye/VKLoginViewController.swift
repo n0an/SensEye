@@ -12,38 +12,41 @@ typealias CompletionHandler = (VKAccessToken?) -> Void
 
 class VKLoginViewController: UIViewController {
     
-    
     @IBOutlet weak var webView: UIWebView!
+    
     var completionHandler: CompletionHandler?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-//        var rect = self.view.bounds
-//        
-//        rect.origin = CGPoint.zero
-//        
-//        let webView = UIWebView(frame: rect)
-//        webView.delegate = self
-//        
-//        self.view.addSubview(webView)
         
-//        self.webView = webView
         
-//        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(actionCancelTapped))
-//        
-//        self.navigationItem.setRightBarButton(cancelButton, animated: false)
-//        
-//        self.navigationItem.title = "Login"
-        
+        // ** UNCOMMENT FOR MANUAL VIEWCONTROLLER CREATING WITHOUD STORYBOARD
+        /*
+         var rect = self.view.bounds
+         
+         rect.origin = CGPoint.zero
+         
+         let webView = UIWebView(frame: rect)
+         webView.delegate = self
+         
+         self.view.addSubview(webView)
+         
+         self.webView = webView
+         
+         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(actionCancelTapped))
+         
+         self.navigationItem.setRightBarButton(cancelButton, animated: false)
+         
+         self.navigationItem.title = "Login"
+         */
         
         let urlString = "https://oauth.vk.com/authorize?" +
-                        "client_id=5795076&" +
-                        "scope=405526&" +
-                        "redirect_uri=https://oauth.vk.com/blank.html&" +
-                        "display=mobile&" +
-                        "response_type=token"
-
+            "client_id=5795076&" +
+            "scope=405526&" +
+            "redirect_uri=https://oauth.vk.com/blank.html&" +
+            "display=mobile&" +
+        "response_type=token"
+        
         let url = URL(string: urlString)
         
         let request = URLRequest(url: url!)
@@ -58,7 +61,7 @@ class VKLoginViewController: UIViewController {
     deinit {
         self.webView.delegate = nil
     }
-
+    
     
     @IBAction func actionCancelTapped() {
         
@@ -71,7 +74,7 @@ class VKLoginViewController: UIViewController {
     
     
     
-
+    
 }
 
 
@@ -146,7 +149,7 @@ extension VKLoginViewController: UIWebViewDelegate {
             
         }
         
-  
+        
         
         return true
         

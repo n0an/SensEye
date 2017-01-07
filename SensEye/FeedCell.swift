@@ -101,20 +101,11 @@ class FeedCell: UITableViewCell {
     }
     
     
-    // MARK: - AUTHORIZATION
-    
-    
-        
-        
-        
-    
-    
-    
     // LIKE/DISLIKE FEATURE
 
     func toLike() {
         
-        ServerManager.sharedManager.addLike(forItemType: "post", ownerID: groupID, itemID: self.wallPost.postID) { (resultDict) in
+        ServerManager.sharedManager.addLike(forItemType: .post, ownerID: groupID, itemID: self.wallPost.postID) { (resultDict) in
             
             if let postLikesCount = resultDict["likes"] as? Int {
                 self.wallPost.postLikesCount = postLikesCount
@@ -131,7 +122,7 @@ class FeedCell: UITableViewCell {
     
     func toDislike() {
         
-        ServerManager.sharedManager.deleteLike(forItemType: "post", ownerID: groupID, itemID: self.wallPost.postID) { (resultDict) in
+        ServerManager.sharedManager.deleteLike(forItemType: .post, ownerID: groupID, itemID: self.wallPost.postID) { (resultDict) in
             
             if let postLikesCount = resultDict["likes"] as? Int {
                 self.wallPost.postLikesCount = postLikesCount
@@ -141,10 +132,8 @@ class FeedCell: UITableViewCell {
                 self.likeButton.setTitle("\(self.wallPost.postLikesCount)", for: [])
                 
                 self.changeLikeImage()
-            }
-            
+            }   
         }
-        
     }
     
     // MARK: - HELPER METHODS

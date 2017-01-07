@@ -20,9 +20,9 @@ class ServerManager {
     
     var currentVKUser: User?
     
-    enum FeedItemsType {
-        case post
-        case comment
+    enum FeedItemsType: String {
+        case post = "post"
+        case comment = "comment"
     }
     
     var networkActivityIndicatorVisible: Bool = false {
@@ -37,7 +37,8 @@ class ServerManager {
         }
     }
     
-    // MARK: - PHOTOS
+    // MARK: - PHOTOS FEATURE
+    
     func getPhotos(forAlbumID albumID: String, ownerID: String, offset: Int? = nil, count: Int? = nil, completed: @escaping DownloadComplete) {
         
         var url = "\(URL_BASE)\(URL_PHOTOS)" +
@@ -89,7 +90,6 @@ class ServerManager {
     }
     
     
-    
     func getPhotoAlbums(forGroupID groupID: String, completed: @escaping DownloadComplete) {
         
         let url = "\(URL_BASE)\(URL_PHOTO_ALBUMS)" +
@@ -128,9 +128,8 @@ class ServerManager {
         
     }
     
-    // MARK: - POSTS/COMMENTS
     
-    
+    // MARK: - POSTS/COMMENTS FEATURE
     
     func getFeed(forType feedType: FeedItemsType, ownerID: String, postID: String? = nil, offset: Int, count: Int, completed: @escaping DownloadComplete) {
         
@@ -225,6 +224,8 @@ class ServerManager {
         
     }
     
+    // MARK: - USER FEATURE
+    
     func getUserFor(userID: String, completed: @escaping AuthoizationComplete) {
         
         let url = "\(URL_BASE)\(URL_USERS)" +
@@ -258,15 +259,15 @@ class ServerManager {
             
         }
         
-        
     }
-    
     
     // MARK: - LIKES FEATURE
     
-    func isLiked(forItemType itemType: String, ownerID: String, itemID: String, completed: @escaping LikeFeatureCompletion) {
+    func isLiked(forItemType itemType: FeedItemsType, ownerID: String, itemID: String, completed: @escaping LikeFeatureCompletion) {
+        
+        
         var url = "\(URL_BASE)\(URL_ISLIKED)" +
-                    "\(URL_PARAMS.ITEM_TYPE.rawValue)\(itemType)&" +
+                    "\(URL_PARAMS.ITEM_TYPE.rawValue)\(itemType.rawValue)&" +
                     "\(URL_PARAMS.ITEM_ID.rawValue)\(itemID)&" +
                     "\(URL_PARAMS.OWNER_ID.rawValue)\(ownerID)"
         
@@ -293,11 +294,11 @@ class ServerManager {
         
     }
     
-    func addLike(forItemType itemType: String, ownerID: String, itemID: String, completed: @escaping LikeFeatureCompletion) {
+    func addLike(forItemType itemType: FeedItemsType, ownerID: String, itemID: String, completed: @escaping LikeFeatureCompletion) {
         
         
         var url = "\(URL_BASE)\(URL_LIKES_ADD)" +
-                    "\(URL_PARAMS.ITEM_TYPE.rawValue)\(itemType)&" +
+                    "\(URL_PARAMS.ITEM_TYPE.rawValue)\(itemType.rawValue)&" +
                     "\(URL_PARAMS.ITEM_ID.rawValue)\(itemID)&" +
                     "\(URL_PARAMS.OWNER_ID.rawValue)\(ownerID)"
         
@@ -326,13 +327,11 @@ class ServerManager {
     }
     
     
-    
-    
-    func deleteLike(forItemType itemType: String, ownerID: String, itemID: String, completed: @escaping LikeFeatureCompletion) {
+    func deleteLike(forItemType itemType: FeedItemsType, ownerID: String, itemID: String, completed: @escaping LikeFeatureCompletion) {
         
         
         var url = "\(URL_BASE)\(URL_LIKES_DELETE)" +
-                    "\(URL_PARAMS.ITEM_TYPE.rawValue)\(itemType)&" +
+                    "\(URL_PARAMS.ITEM_TYPE.rawValue)\(itemType.rawValue)&" +
                     "\(URL_PARAMS.ITEM_ID.rawValue)\(itemID)&" +
                     "\(URL_PARAMS.OWNER_ID.rawValue)\(ownerID)"
         
@@ -358,10 +357,6 @@ class ServerManager {
         
         
     }
-    
-    
-    
-    
     
     
     
@@ -400,11 +395,6 @@ class ServerManager {
     }
     
  
-   
-    
-    
- 
-    
     
 }
 
