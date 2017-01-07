@@ -28,6 +28,7 @@
 		184DE8AC1E15A89300E98926 /* ACRotateTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184DE8AB1E15A89300E98926 /* ACRotateTransitionAnimator.swift */; };
 		184DE8AE1E15A8C500E98926 /* ACSlideRightTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184DE8AD1E15A8C500E98926 /* ACSlideRightTransitionAnimator.swift */; };
 		184DE8B01E15A90B00E98926 /* ACPopTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184DE8AF1E15A90B00E98926 /* ACPopTransitionAnimator.swift */; };
+		1871A7E71E218154004C532E /* gallery.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1871A7E61E218154004C532E /* gallery.storyboard */; };
 		188C04F81E1074C8008B58EB /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188C04F71E1074C8008B58EB /* FeedViewController.swift */; };
 		188C04FA1E1074D6008B58EB /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188C04F91E1074D6008B58EB /* FeedCell.swift */; };
 		188C04FC1E10FCBC008B58EB /* ServerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188C04FB1E10FCBC008B58EB /* ServerManager.swift */; };
@@ -76,6 +77,7 @@
 		184DE8AB1E15A89300E98926 /* ACRotateTransitionAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACRotateTransitionAnimator.swift; sourceTree = "<group>"; };
 		184DE8AD1E15A8C500E98926 /* ACSlideRightTransitionAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACSlideRightTransitionAnimator.swift; sourceTree = "<group>"; };
 		184DE8AF1E15A90B00E98926 /* ACPopTransitionAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACPopTransitionAnimator.swift; sourceTree = "<group>"; };
+		1871A7E61E218154004C532E /* gallery.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = gallery.storyboard; sourceTree = "<group>"; };
 		188C04F71E1074C8008B58EB /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		188C04F91E1074D6008B58EB /* FeedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
 		188C04FB1E10FCBC008B58EB /* ServerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerManager.swift; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 				184DE8A81E15A3AE00E98926 /* Transition Animators */,
 				18C395341E166D2600AE1867 /* Helpers */,
 				18AA37D41E1053F700D5BCB1 /* Main.storyboard */,
+				1871A7E61E218154004C532E /* gallery.storyboard */,
 				18D623761E215B9200138117 /* about.storyboard */,
 				18AA37D71E1053F700D5BCB1 /* Assets.xcassets */,
 				18AA37D91E1053F700D5BCB1 /* LaunchScreen.storyboard */,
@@ -349,6 +352,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				18AA37DB1E1053F700D5BCB1 /* LaunchScreen.storyboard in Resources */,
+				1871A7E71E218154004C532E /* gallery.storyboard in Resources */,
 				18AA37D81E1053F700D5BCB1 /* Assets.xcassets in Resources */,
 				18D623781E215B9200138117 /* about.storyboard in Resources */,
 				18AA37D61E1053F700D5BCB1 /* Main.storyboard in Resources */,
