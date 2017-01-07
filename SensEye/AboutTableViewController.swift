@@ -53,6 +53,11 @@ class AboutTableViewController: UITableViewController {
         tableView.tableFooterView = UIView(frame: CGRect.zero)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        tableView.reloadData()
+    }
     
     // MARK: - HELPER METHODS
     
@@ -74,6 +79,9 @@ class AboutTableViewController: UITableViewController {
 
     }
     
+    
+    // MARK: - ANIMATIONS
+    
     func animateIconImageView(iconImageView: DesignableImageView, delay: CGFloat) {
         iconImageView.animation = "fadeInLeft"
         iconImageView.curve = "spring"
@@ -92,6 +100,14 @@ class AboutTableViewController: UITableViewController {
         contactLabel.duration = 0.6
         contactLabel.delay = delay
         contactLabel.animate()
+    }
+    
+    func animateInfoLabel(infoLabel: DesignableLabel) {
+        infoLabel.animation = "fadeIn"
+        infoLabel.curve = "easeIn"
+        infoLabel.duration = 1.7
+        infoLabel.delay = 1.2
+        infoLabel.animate()
     }
     
     
@@ -149,8 +165,6 @@ class AboutTableViewController: UITableViewController {
             self.animateIconImageView(iconImageView: cell.iconImageView, delay: delay)
             self.animateLabel(contactLabel: cell.contactLabel, delay: delay)
             
-            
-            
             return cell
             
         case TableViewSection.info.rawValue:
@@ -158,6 +172,8 @@ class AboutTableViewController: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: Storyboard.cellIdInfo, for: indexPath) as! AboutCellInfo
             
             cell.selectionStyle = .none
+            
+            self.animateInfoLabel(infoLabel: cell.infoLabel)
             
             return cell
             

@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import Spring
 
 class AboutCellInfo: UITableViewCell {
+    
+    @IBOutlet weak var infoLabel: DesignableLabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
