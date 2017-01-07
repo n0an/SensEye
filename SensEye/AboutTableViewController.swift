@@ -8,6 +8,7 @@
 
 import UIKit
 import SafariServices
+import MessageUI
 
 class AboutTableViewController: UITableViewController {
     
@@ -135,7 +136,11 @@ class AboutTableViewController: UITableViewController {
             
         // Connections section
         case TableViewSection.connections.rawValue:
-            break
+            
+            if indexPath.row == 0 {
+                self.showEmailComposer()
+            }
+            
             
         //Social networks section
         case TableViewSection.socNet.rawValue:
@@ -167,6 +172,65 @@ class AboutTableViewController: UITableViewController {
     
     
 }
+
+
+extension AboutTableViewController: MFMailComposeViewControllerDelegate {
+    
+    func showEmailComposer() {
+        
+        guard MFMailComposeViewController.canSendMail() else {
+            return
+        }
+        
+        let messageSubject = "Здравствуйте"
+        let toRecipients = ["senseye.ru@gmail.com"]
+        
+        let mailComposer = MFMailComposeViewController()
+        mailComposer.mailComposeDelegate = self
+        mailComposer.setSubject(messageSubject)
+        mailComposer.setToRecipients(toRecipients)
+        
+        present(mailComposer, animated: true, completion: nil)
+        
+        
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        
+        switch result {
+        case .cancelled:
+            print("cancelled")
+        case .saved:
+            print("saved")
+        case .failed:
+            print("failed")
+        case .sent:
+            print("sent")
+        }
+        
+        dismiss(animated: true, completion: nil)
+        
+    }
+    
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
