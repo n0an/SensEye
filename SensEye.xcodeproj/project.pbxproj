@@ -50,7 +50,6 @@
 		18D6236E1E21422E00138117 /* AboutCellInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D6236D1E21422E00138117 /* AboutCellInfo.swift */; };
 		18D623701E21423D00138117 /* AboutCellSocnet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D6236F1E21423D00138117 /* AboutCellSocnet.swift */; };
 		18D623721E21469C00138117 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D623711E21469C00138117 /* Contact.swift */; };
-		18D623751E21561300138117 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D623741E21561300138117 /* WebViewController.swift */; };
 		18D623781E215B9200138117 /* about.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18D623761E215B9200138117 /* about.storyboard */; };
 		18DD2E2B1E1A484800451CE7 /* LandscapeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DD2E2A1E1A484800451CE7 /* LandscapeViewController.swift */; };
 		18DD2E2D1E1A499C00451CE7 /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DD2E2C1E1A499C00451CE7 /* Search.swift */; };
@@ -106,7 +105,6 @@
 		18D6236D1E21422E00138117 /* AboutCellInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutCellInfo.swift; sourceTree = "<group>"; };
 		18D6236F1E21423D00138117 /* AboutCellSocnet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutCellSocnet.swift; sourceTree = "<group>"; };
 		18D623711E21469C00138117 /* Contact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
-		18D623741E21561300138117 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		18D623771E215B9200138117 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/about.storyboard; sourceTree = "<group>"; };
 		18DD2E2A1E1A484800451CE7 /* LandscapeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandscapeViewController.swift; sourceTree = "<group>"; };
 		18DD2E2C1E1A499C00451CE7 /* Search.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
@@ -297,7 +295,6 @@
 				180231C41E12FC1D00FA8322 /* PhotoViewController.swift */,
 				18D623611E1FCCC800138117 /* VKLoginViewController.swift */,
 				18D6236B1E213AE200138117 /* AboutTableViewController.swift */,
-				18D623741E21561300138117 /* WebViewController.swift */,
 				1864A9E41E158E5A0058D2E2 /* AlbumsGallery */,
 			);
 			name = Controller;
@@ -474,7 +471,6 @@
 				180231CB1E14474100FA8322 /* PhotoAlbumCell.swift in Sources */,
 				1838C24B1E11362D00E02F88 /* User.swift in Sources */,
 				18BE87F11E16CF5A00B5837E /* CircleImageView.swift in Sources */,
-				18D623751E21561300138117 /* WebViewController.swift in Sources */,
 				18D623721E21469C00138117 /* Contact.swift in Sources */,
 				18FC625E1E11439D00E25A18 /* PhotoAlbum.swift in Sources */,
 				18D623641E1FCD0D00138117 /* VKAccessToken.swift in Sources */,

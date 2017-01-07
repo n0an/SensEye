@@ -21,7 +21,7 @@ class AboutTableViewController: UITableViewController {
         Contact(imageName: "icon-facebook", labelText: "Facebook", link: "https://facebook.com/elena.senseye"),
         Contact(imageName: "icon-twitter", labelText: "Instagram", link: "https://instagram.com/elena.senseye"),
         Contact(imageName: "icon-twitter", labelText: "VK", link: "https://vk.com/elena_senseye")
-                    ]
+    ]
     
     // MARK: - ENUMS
     
@@ -37,9 +37,6 @@ class AboutTableViewController: UITableViewController {
         static let cellIdInfo = "AboutCellInfo"
         
         static let rowHeightInfo: CGFloat = 200
-
-        static let seguePhotoDisplayer = "showPhoto"
-        static let seguePostVC = "showPost"
         
     }
     
@@ -62,7 +59,7 @@ class AboutTableViewController: UITableViewController {
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return sectionTitles.count
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -91,6 +88,7 @@ class AboutTableViewController: UITableViewController {
             
             cell.textLabel?.text = connection
             
+            
             return cell
             
         case TableViewSection.socNet.rawValue:
@@ -107,6 +105,8 @@ class AboutTableViewController: UITableViewController {
         case TableViewSection.info.rawValue:
             
             let cell = tableView.dequeueReusableCell(withIdentifier: Storyboard.cellIdInfo, for: indexPath) as! AboutCellInfo
+            
+            cell.selectionStyle = .none
             
             return cell
             
@@ -154,7 +154,15 @@ class AboutTableViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: false)
     }
     
-    
+    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        
+        if indexPath.section == TableViewSection.info.rawValue {
+            return nil
+        } else {
+            return indexPath
+        }
+        
+    }
     
     
     
