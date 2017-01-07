@@ -1,5 +1,5 @@
 //
-//  AboutCellContacts.swift
+//  AboutCellSocnet.swift
 //  SensEye
 //
 //  Created by Anton Novoselov on 07/01/2017.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AboutCellContacts: UITableViewCell {
+class AboutCellSocnet: UITableViewCell {
     
     
     @IBOutlet weak var iconImageView: UIImageView!

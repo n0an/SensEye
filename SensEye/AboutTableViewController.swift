@@ -13,35 +13,34 @@ class AboutTableViewController: UITableViewController {
     
     // MARK: - PROPERTIES
     
-    var sectionTitles = ["Контакты", "Обо мне"]
+    var sectionTitles = ["Связаться со мной", "Соцсети", "Обо мне"]
     
-    var contacts = [
-        Contact(imageName: "icon-facebook", labelText: "Facebook", link: "facebook.com/elena.senseye"),
-        Contact(imageName: "icon-email", labelText: "Email", link: "senseye.ru@gmail.com"),
-        Contact(imageName: "icon-email", labelText: "Skype: elena.senseye", link: ""),
-        Contact(imageName: "icon-twitter", labelText: "instagram.com/elena.senseye", link: "instagram.com/elena.senseye"),
-        Contact(imageName: "icon-twitter", labelText: "vk.com/elena_senseye", link: "vk.com/elena_senseye")
+    var connections = ["Напишите мне письмо", "Skype: elena.senseye"]
+    
+    var socNet = [
+        Contact(imageName: "icon-facebook", labelText: "Facebook", link: "https://facebook.com/elena.senseye"),
+        Contact(imageName: "icon-twitter", labelText: "Instagram", link: "https://instagram.com/elena.senseye"),
+        Contact(imageName: "icon-twitter", labelText: "VK", link: "https://vk.com/elena_senseye")
                     ]
-    
-    var sectionContent = [["Facebook", "Email", "Instagram", "Skype"],
-                          ["Twitter", "Facebook", "Pinterest"]]
-    
-    var links = ["https://twitter.com/appcodamobile", "https://facebook.com/appcodamobile", "https://www.pinterest.com/appcoda/"]
     
     // MARK: - ENUMS
     
+    enum TableViewSection: Int {
+        case connections = 0
+        case socNet
+        case info
+    }
+    
     enum Storyboard {
-        static let cellIdContacts = "AboutCellContacts"
+        static let cellConnection = "ConnectCell"
+        static let cellIdSocNet = "AboutCellSocnet"
         static let cellIdInfo = "AboutCellInfo"
-
-        static let rowHeightContacts: CGFloat = 93
+        
         static let rowHeightInfo: CGFloat = 200
 
-        
         static let seguePhotoDisplayer = "showPhoto"
         static let seguePostVC = "showPost"
         
-        static let viewControllerIdPhotoDisplayer = "PhotoNavViewController"
     }
     
     
@@ -58,16 +57,22 @@ class AboutTableViewController: UITableViewController {
     
     // MARK: - UITableViewDataSource
     
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return sectionTitles[section]
+    }
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         switch section {
-        case 0:
-            return self.contacts.count
-        case 1:
+        case TableViewSection.connections.rawValue:
+            return 2
+        case TableViewSection.socNet.rawValue:
+            return self.socNet.count
+        case TableViewSection.info.rawValue:
             return 1
         default:
             return 0
@@ -75,30 +80,41 @@ class AboutTableViewController: UITableViewController {
         
     }
     
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return sectionTitles[section]
-    }
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if indexPath.section == 0 {
+        switch indexPath.section {
+        case TableViewSection.connections.rawValue:
             
-            let cell = tableView.dequeueReusableCell(withIdentifier: Storyboard.cellIdContacts, for: indexPath) as! AboutCellContacts
+            let cell = tableView.dequeueReusableCell(withIdentifier: Storyboard.cellConnection, for: indexPath)
             
-            let contact = self.contacts[indexPath.row]
+            let connection = self.connections[indexPath.row]
+            
+            cell.textLabel?.text = connection
+            cell.imageView?.image = UIImage(named: "icon-email")
+            
+            return cell
+            
+        case TableViewSection.socNet.rawValue:
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: Storyboard.cellIdSocNet, for: indexPath) as! AboutCellSocnet
+            
+            let contact = self.socNet[indexPath.row]
             
             cell.contactLabel.text = contact.labelText
             cell.iconImageView.image = UIImage(named: contact.imageName)
             
             return cell
-            
-        } else {
+
+        case TableViewSection.info.rawValue:
             
             let cell = tableView.dequeueReusableCell(withIdentifier: Storyboard.cellIdInfo, for: indexPath) as! AboutCellInfo
             
             return cell
+            
+        default:
+            return UITableViewCell()
         }
-        
+
     }
     
     
@@ -106,7 +122,7 @@ class AboutTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        if indexPath.section == 1 {
+        if indexPath.section == TableViewSection.info.rawValue {
             return Storyboard.rowHeightInfo
         } else {
             return UITableViewAutomaticDimension
@@ -129,7 +145,7 @@ class AboutTableViewController: UITableViewController {
             
         // Follow us section
         case 1:
-            if let url = URL(string: links[indexPath.row]) {
+            if let url = URL(string: "www.ru") {
                 let safariController = SFSafariViewController(url: url)
                 present(safariController, animated: true, completion: nil)
             }
