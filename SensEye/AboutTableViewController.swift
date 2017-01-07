@@ -43,13 +43,26 @@ class AboutTableViewController: UITableViewController {
     
     
     // MARK: - viewDidLoad
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.rowHeight = UITableViewAutomaticDimension
         
         tableView.tableFooterView = UIView(frame: CGRect.zero)
+    }
+    
+    
+    // MARK: - HELPER METHODS
+    
+    func showSkype() {
+        
+        let skypeURL = URL(string: "skype:elena.senseye?chat")
+        
+        let canopen = UIApplication.shared.canOpenURL(URL(string: "skype:")!)
+        
+        UIApplication.shared.open(skypeURL!, options: [:], completionHandler: nil)
+
     }
     
     
@@ -102,7 +115,7 @@ class AboutTableViewController: UITableViewController {
             cell.iconImageView.image = UIImage(named: socNet.imageName)
             
             return cell
-
+            
         case TableViewSection.info.rawValue:
             
             let cell = tableView.dequeueReusableCell(withIdentifier: Storyboard.cellIdInfo, for: indexPath) as! AboutCellInfo
@@ -114,7 +127,7 @@ class AboutTableViewController: UITableViewController {
         default:
             return UITableViewCell()
         }
-
+        
     }
     
     
@@ -139,6 +152,9 @@ class AboutTableViewController: UITableViewController {
             
             if indexPath.row == 0 {
                 self.showEmailComposer()
+            } else {
+                self.showSkype()
+//                self.sendSMS()
             }
             
             
@@ -151,7 +167,7 @@ class AboutTableViewController: UITableViewController {
                 let safariController = SFSafariViewController(url: url)
                 present(safariController, animated: true, completion: nil)
             }
-
+            
         default:
             break
         }
@@ -219,37 +235,46 @@ extension AboutTableViewController: MFMailComposeViewControllerDelegate {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+extension AboutTableViewController: MFMessageComposeViewControllerDelegate {
+    
+    func sendSMS() {
+        
+        guard MFMessageComposeViewController.canSendText() else {
+            
+            self.alert(title: "SMS Unavailable", message: "Your device is not capable of sending SMS")
+            
+            return
+        }
+        
+        let messageController = MFMessageComposeViewController()
+        messageController.messageComposeDelegate = self
+        messageController.recipients = ["79163410046"]
+        
+        present(messageController, animated: true, completion: nil)
+        
+        
+    }
+    
+    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
+        
+        switch result {
+        case .cancelled:
+            print("SMS cancelled")
+        case .failed:
+            print("SMS failed")
+            self.alert(title: "Failure", message: "Failed to send the message")
+        case .sent:
+            print("SMS sent")
+            
+           
+        }
+        
+        dismiss(animated: true, completion: nil)
+        
+        
+    }
+    
+}
 
 
 
