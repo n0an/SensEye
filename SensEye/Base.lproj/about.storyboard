@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Zjf-gM-u2V">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--About-->
+        <scene sceneID="p2b-I6-O2I">
+            <objects>
+                <tableViewController id="rfz-fs-wtl" customClass="AboutTableViewController" customModule="SensEye" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="gOl-4d-5XO">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <imageView key="tableHeaderView" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="me" id="5Un-gR-ezJ">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="190"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ConnectCell" textLabel="Ex1-mA-d2V" style="IBUITableViewCellStyleDefault" id="CC1-sg-Snt">
+                                <rect key="frame" x="0.0" y="218" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CC1-sg-Snt" id="xad-Rb-vGC">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ex1-mA-d2V">
+                                            <rect key="frame" x="15" y="0.0" width="345" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AboutCellSocnet" id="CFg-z1-ghF" customClass="AboutCellSocnet" customModule="SensEye" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="262" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CFg-z1-ghF" id="iCS-Fa-480">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-facebook" translatesAutoresizingMaskIntoConstraints="NO" id="3of-O7-eiB">
+                                            <rect key="frame" x="8" y="11" width="20" height="20"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="20" id="bDy-tA-eZS"/>
+                                                <constraint firstAttribute="width" constant="20" id="q5L-T6-1N9"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="facebook.com/elena.senseye" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ESY-4U-VjF">
+                                            <rect key="frame" x="36" y="11" width="223" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="ESY-4U-VjF" firstAttribute="centerY" secondItem="iCS-Fa-480" secondAttribute="centerY" id="5Ow-a4-HVh"/>
+                                        <constraint firstAttribute="leadingMargin" secondItem="3of-O7-eiB" secondAttribute="leading" id="Zcj-Pe-h42"/>
+                                        <constraint firstItem="ESY-4U-VjF" firstAttribute="leading" secondItem="3of-O7-eiB" secondAttribute="trailing" constant="8" id="g7w-MR-K4I"/>
+                                        <constraint firstItem="3of-O7-eiB" firstAttribute="centerY" secondItem="iCS-Fa-480" secondAttribute="centerY" id="v8T-8f-mgS"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="contactLabel" destination="ESY-4U-VjF" id="Crm-Qf-mE0"/>
+                                    <outlet property="iconImageView" destination="3of-O7-eiB" id="73W-d2-DAX"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AboutCellInfo" rowHeight="100" id="r0X-Cf-fZz" customClass="AboutCellInfo" customModule="SensEye" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="306" width="375" height="100"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="r0X-Cf-fZz" id="Xfb-4N-KzX">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="99"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LsJ-Zz-xQR">
+                                            <rect key="frame" x="8" y="8" width="359" height="83"/>
+                                            <string key="text">Здравствуйте! Меня зовут Елена.
+Я фотограф из Москвы, по договоренности выезжаю и в другие города.
+Если Вы ищете фотографа, с которым будет легко и интересно работать — Вам сюда 🙂
+
+В свадебной фотосессии я стараюсь добиться искренности в кадре.
+Отвлечь молодоженов от суеты, дать возможность насладиться происходящим здесь и сейчас, совместным творчеством, раскрыться.
+Чтобы эти моменты остались и красивым кадром в фотоальбоме, и живым воспоминанием!
+
+— помогу с позированием
+— с составлением плана прогулки
+— с выбором места свадебной прогулки
+— дам контакты хорошего свадебного ведущего и визажистов
+— при заказе свадебной фотосессии- съемка лав стори в подарок!</string>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" red="0.071640625000000013" green="0.071640625000000013" blue="0.071640625000000013" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="LsJ-Zz-xQR" firstAttribute="leading" secondItem="Xfb-4N-KzX" secondAttribute="leadingMargin" id="9Gb-Ak-U5a"/>
+                                        <constraint firstItem="LsJ-Zz-xQR" firstAttribute="trailing" secondItem="Xfb-4N-KzX" secondAttribute="trailingMargin" id="9sl-lx-Pao"/>
+                                        <constraint firstItem="LsJ-Zz-xQR" firstAttribute="bottom" secondItem="Xfb-4N-KzX" secondAttribute="bottomMargin" id="NJG-tk-kB0"/>
+                                        <constraint firstItem="LsJ-Zz-xQR" firstAttribute="top" secondItem="Xfb-4N-KzX" secondAttribute="topMargin" id="qHu-es-huL"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="rfz-fs-wtl" id="Ujo-E3-OFy"/>
+                            <outlet property="delegate" destination="rfz-fs-wtl" id="b9f-Rf-PDB"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="About" id="zxH-gW-P6P"/>
+                    <connections>
+                        <segue destination="iyD-SG-Awt" kind="show" identifier="showWebView" id="Egy-2I-xra">
+                            <nil key="action"/>
+                        </segue>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dIP-6F-Vdh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1976.8" y="2518.2908545727137"/>
+        </scene>
+        <!--Web View Controller-->
+        <scene sceneID="Xuo-Kh-SND">
+            <objects>
+                <viewController id="iyD-SG-Awt" customClass="WebViewController" customModule="SensEye" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="mgg-HU-RUw"/>
+                        <viewControllerLayoutGuide type="bottom" id="imC-p9-X2D"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ZTS-3F-L6G">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xmc-jS-m2c" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2761" y="2519"/>
+        </scene>
+        <!--About-->
+        <scene sceneID="KMV-UN-Onk">
+            <objects>
+                <navigationController id="Zjf-gM-u2V" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="About" image="about" id="ckM-gn-hP4"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4_7.fullscreen"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8Cc-Sp-woK">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="rfz-fs-wtl" kind="relationship" relationship="rootViewController" id="7dj-iD-o7h"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JrQ-0g-afr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1138" y="2519"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="about" width="23" height="22"/>
+        <image name="icon-facebook" width="96" height="96"/>
+        <image name="me" width="500" height="400"/>
+    </resources>
+</document>

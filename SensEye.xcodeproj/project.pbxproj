@@ -51,6 +51,7 @@
 		18D623701E21423D00138117 /* AboutCellSocnet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D6236F1E21423D00138117 /* AboutCellSocnet.swift */; };
 		18D623721E21469C00138117 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D623711E21469C00138117 /* Contact.swift */; };
 		18D623751E21561300138117 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D623741E21561300138117 /* WebViewController.swift */; };
+		18D623781E215B9200138117 /* about.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18D623761E215B9200138117 /* about.storyboard */; };
 		18DD2E2B1E1A484800451CE7 /* LandscapeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DD2E2A1E1A484800451CE7 /* LandscapeViewController.swift */; };
 		18DD2E2D1E1A499C00451CE7 /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DD2E2C1E1A499C00451CE7 /* Search.swift */; };
 		18FC625C1E113E9C00E25A18 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FC625B1E113E9C00E25A18 /* Photo.swift */; };
@@ -106,6 +107,7 @@
 		18D6236F1E21423D00138117 /* AboutCellSocnet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutCellSocnet.swift; sourceTree = "<group>"; };
 		18D623711E21469C00138117 /* Contact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		18D623741E21561300138117 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		18D623771E215B9200138117 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/about.storyboard; sourceTree = "<group>"; };
 		18DD2E2A1E1A484800451CE7 /* LandscapeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandscapeViewController.swift; sourceTree = "<group>"; };
 		18DD2E2C1E1A499C00451CE7 /* Search.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
 		18FC625B1E113E9C00E25A18 /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 				184DE8A81E15A3AE00E98926 /* Transition Animators */,
 				18C395341E166D2600AE1867 /* Helpers */,
 				18AA37D41E1053F700D5BCB1 /* Main.storyboard */,
+				18D623761E215B9200138117 /* about.storyboard */,
 				18AA37D71E1053F700D5BCB1 /* Assets.xcassets */,
 				18AA37D91E1053F700D5BCB1 /* LaunchScreen.storyboard */,
 				18AA37DC1E1053F700D5BCB1 /* Info.plist */,
@@ -383,6 +386,7 @@
 			files = (
 				18AA37DB1E1053F700D5BCB1 /* LaunchScreen.storyboard in Resources */,
 				18AA37D81E1053F700D5BCB1 /* Assets.xcassets in Resources */,
+				18D623781E215B9200138117 /* about.storyboard in Resources */,
 				18AA37D61E1053F700D5BCB1 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -507,6 +511,14 @@
 				18AA37DA1E1053F700D5BCB1 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		18D623761E215B9200138117 /* about.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				18D623771E215B9200138117 /* Base */,
+			);
+			name = about.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
