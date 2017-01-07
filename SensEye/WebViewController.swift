@@ -15,13 +15,20 @@ class WebViewController: UIViewController {
     
     var webView: WKWebView!
     
+    var urlToLoad: URL?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let url = URL(string: "http://www.appcoda.com/contact") {
+        if let url = urlToLoad {
             let request = URLRequest(url: url)
             webView.load(request)
         }
+        
+//        if let url = URL(string: "http://www.appcoda.com/contact") {
+//            let request = URLRequest(url: url)
+//            webView.load(request)
+//        }
     }
     
     override func loadView() {

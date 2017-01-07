@@ -2324,7 +2324,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sxy-ep-Dcy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1138" y="2519"/>
+            <point key="canvasLocation" x="618" y="1621"/>
         </scene>
     </scenes>
     <resources>
@@ -2356,6 +2356,6 @@
         <image name="ufo" width="710" height="450"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="qZD-Zy-8aB"/>
+        <segue reference="ryc-y6-vxv"/>
     </inferredMetricsTieBreakers>
 </document>

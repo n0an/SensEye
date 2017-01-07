@@ -90,7 +90,6 @@ class AboutTableViewController: UITableViewController {
             let connection = self.connections[indexPath.row]
             
             cell.textLabel?.text = connection
-            cell.imageView?.image = UIImage(named: "icon-email")
             
             return cell
             
@@ -98,10 +97,10 @@ class AboutTableViewController: UITableViewController {
             
             let cell = tableView.dequeueReusableCell(withIdentifier: Storyboard.cellIdSocNet, for: indexPath) as! AboutCellSocnet
             
-            let contact = self.socNet[indexPath.row]
+            let socNet = self.socNet[indexPath.row]
             
-            cell.contactLabel.text = contact.labelText
-            cell.iconImageView.image = UIImage(named: contact.imageName)
+            cell.contactLabel.text = socNet.labelText
+            cell.iconImageView.image = UIImage(named: socNet.imageName)
             
             return cell
 
@@ -131,25 +130,23 @@ class AboutTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         switch indexPath.section {
             
-        // Leave us feedback section
-        case 0:
-            if indexPath.row == 0 {
-                if let url = URL(string: "http://www.apple.com/itunes/charts/paid-apps/") {
-                    UIApplication.shared.open(url)
-                }
-            } else if indexPath.row == 1 {
-                performSegue(withIdentifier: "showWebView", sender: self)
-            }
+        // Connections section
+        case TableViewSection.connections.rawValue:
+            break
             
-        // Follow us section
-        case 1:
-            if let url = URL(string: "www.ru") {
+        //Social networks section
+        case TableViewSection.socNet.rawValue:
+            
+            let socNet = self.socNet[indexPath.row]
+            
+            if let url = URL(string: socNet.link) {
                 let safariController = SFSafariViewController(url: url)
                 present(safariController, animated: true, completion: nil)
             }
-            
+
         default:
             break
         }
@@ -159,4 +156,29 @@ class AboutTableViewController: UITableViewController {
     
     
     
+    
+    
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
