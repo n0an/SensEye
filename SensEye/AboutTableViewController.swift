@@ -9,6 +9,7 @@
 import UIKit
 import SafariServices
 import MessageUI
+import Spring
 
 class AboutTableViewController: UITableViewController {
     
@@ -73,6 +74,26 @@ class AboutTableViewController: UITableViewController {
 
     }
     
+    func animateIconImageView(iconImageView: DesignableImageView, delay: CGFloat) {
+        iconImageView.animation = "fadeInLeft"
+        iconImageView.curve = "spring"
+        iconImageView.force = 2.0
+        iconImageView.duration = 0.6
+        iconImageView.delay = delay
+        iconImageView.animate()
+        
+        
+    }
+    
+    func animateLabel(contactLabel: DesignableLabel, delay: CGFloat) {
+        contactLabel.animation = "squeezeLeft"
+        contactLabel.curve = "spring"
+        contactLabel.force = 2.0
+        contactLabel.duration = 0.6
+        contactLabel.delay = delay
+        contactLabel.animate()
+    }
+    
     
     // MARK: - UITableViewDataSource
     
@@ -121,6 +142,14 @@ class AboutTableViewController: UITableViewController {
             
             cell.contactLabel.text = socNet.labelText
             cell.iconImageView.image = UIImage(named: socNet.imageName)
+            
+            
+            let delay = CGFloat(0.2 * Double(indexPath.row))
+            
+            self.animateIconImageView(iconImageView: cell.iconImageView, delay: delay)
+            self.animateLabel(contactLabel: cell.contactLabel, delay: delay)
+            
+            
             
             return cell
             

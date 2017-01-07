@@ -74,6 +74,7 @@ class FeedCell: UITableViewCell {
         
     }
     
+    
     override func prepareForReuse() {
         super.prepareForReuse()
         
@@ -99,6 +100,7 @@ class FeedCell: UITableViewCell {
         
         
     }
+    
     
     
     // LIKE/DISLIKE FEATURE

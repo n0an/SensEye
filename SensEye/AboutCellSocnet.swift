@@ -7,18 +7,32 @@
 //
 
 import UIKit
+import Spring
 
 class AboutCellSocnet: UITableViewCell {
     
     
-    @IBOutlet weak var iconImageView: UIImageView!
+    @IBOutlet weak var iconImageView: DesignableImageView!
     
-    @IBOutlet weak var contactLabel: UILabel!
+    @IBOutlet weak var contactLabel: DesignableLabel!
     
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        iconImageView.animation = "fadeInLeft"
+        iconImageView.curve = "easeIn"
+        iconImageView.duration = 1.0
+        iconImageView.animate()
+        
+        
+        contactLabel.animation = "squeezeLeft"
+        contactLabel.curve = "easeIn"
+        contactLabel.force = 2.0
+        contactLabel.duration = 0.6
+        contactLabel.animate()
+        
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
