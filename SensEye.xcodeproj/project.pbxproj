@@ -9,9 +9,6 @@
 /* Begin PBXBuildFile section */
 		09C1CA3DBDD28430D4747B49 /* Pods_SensEye.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1F6287F56849E930AFED5DA /* Pods_SensEye.framework */; };
 		180231C51E12FC1D00FA8322 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180231C41E12FC1D00FA8322 /* PhotoViewController.swift */; };
-		180231C71E140BE900FA8322 /* GalleriesCarouselViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180231C61E140BE900FA8322 /* GalleriesCarouselViewController.swift */; };
-		180231C91E1443E400FA8322 /* PhotoAlbumsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180231C81E1443E400FA8322 /* PhotoAlbumsViewController.swift */; };
-		180231CB1E14474100FA8322 /* PhotoAlbumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180231CA1E14474100FA8322 /* PhotoAlbumCell.swift */; };
 		180231CE1E1456C600FA8322 /* AlbumsContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180231CC1E1456C600FA8322 /* AlbumsContentViewController.swift */; };
 		180231CF1E1456C600FA8322 /* AlbumsPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180231CD1E1456C600FA8322 /* AlbumsPageViewController.swift */; };
 		1826818D1E1D781000D96764 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1826818C1E1D781000D96764 /* Comment.swift */; };
@@ -60,9 +57,6 @@
 
 /* Begin PBXFileReference section */
 		180231C41E12FC1D00FA8322 /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
-		180231C61E140BE900FA8322 /* GalleriesCarouselViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleriesCarouselViewController.swift; sourceTree = "<group>"; };
-		180231C81E1443E400FA8322 /* PhotoAlbumsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoAlbumsViewController.swift; sourceTree = "<group>"; };
-		180231CA1E14474100FA8322 /* PhotoAlbumCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoAlbumCell.swift; sourceTree = "<group>"; };
 		180231CC1E1456C600FA8322 /* AlbumsContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumsContentViewController.swift; sourceTree = "<group>"; };
 		180231CD1E1456C600FA8322 /* AlbumsPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumsPageViewController.swift; sourceTree = "<group>"; };
 		1826818C1E1D781000D96764 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
@@ -142,40 +136,13 @@
 			name = "Transition Animators";
 			sourceTree = "<group>";
 		};
-		1864A9E11E157E0B0058D2E2 /* 03. AlbumsPageVC */ = {
+		1864A9E11E157E0B0058D2E2 /* Gallery */ = {
 			isa = PBXGroup;
 			children = (
 				180231CC1E1456C600FA8322 /* AlbumsContentViewController.swift */,
 				180231CD1E1456C600FA8322 /* AlbumsPageViewController.swift */,
 			);
-			name = "03. AlbumsPageVC";
-			sourceTree = "<group>";
-		};
-		1864A9E21E157E270058D2E2 /* 02. AlbumsCollectionView */ = {
-			isa = PBXGroup;
-			children = (
-				180231C81E1443E400FA8322 /* PhotoAlbumsViewController.swift */,
-				180231CA1E14474100FA8322 /* PhotoAlbumCell.swift */,
-			);
-			name = "02. AlbumsCollectionView";
-			sourceTree = "<group>";
-		};
-		1864A9E31E157E4A0058D2E2 /* 01. AlbumsICarousel */ = {
-			isa = PBXGroup;
-			children = (
-				180231C61E140BE900FA8322 /* GalleriesCarouselViewController.swift */,
-			);
-			name = "01. AlbumsICarousel";
-			sourceTree = "<group>";
-		};
-		1864A9E41E158E5A0058D2E2 /* AlbumsGallery */ = {
-			isa = PBXGroup;
-			children = (
-				1864A9E31E157E4A0058D2E2 /* 01. AlbumsICarousel */,
-				1864A9E21E157E270058D2E2 /* 02. AlbumsCollectionView */,
-				1864A9E11E157E0B0058D2E2 /* 03. AlbumsPageVC */,
-			);
-			name = AlbumsGallery;
+			name = Gallery;
 			sourceTree = "<group>";
 		};
 		18AA37C41E1053F700D5BCB1 = {
@@ -289,13 +256,13 @@
 		18FC62611E114C2300E25A18 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				18D623611E1FCCC800138117 /* VKLoginViewController.swift */,
 				188C04F71E1074C8008B58EB /* FeedViewController.swift */,
 				182681901E1D7C9C00D96764 /* PostViewController.swift */,
 				18DD2E2A1E1A484800451CE7 /* LandscapeViewController.swift */,
 				180231C41E12FC1D00FA8322 /* PhotoViewController.swift */,
-				18D623611E1FCCC800138117 /* VKLoginViewController.swift */,
 				18D6236B1E213AE200138117 /* AboutTableViewController.swift */,
-				1864A9E41E158E5A0058D2E2 /* AlbumsGallery */,
+				1864A9E11E157E0B0058D2E2 /* Gallery */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -454,7 +421,6 @@
 				1826818D1E1D781000D96764 /* Comment.swift in Sources */,
 				184DE8AA1E15A84700E98926 /* ACSlideDownTransitionAnimator.swift in Sources */,
 				18D6236E1E21422E00138117 /* AboutCellInfo.swift in Sources */,
-				180231C91E1443E400FA8322 /* PhotoAlbumsViewController.swift in Sources */,
 				1838C2411E110A7700E02F88 /* Constants.swift in Sources */,
 				188C04FC1E10FCBC008B58EB /* ServerManager.swift in Sources */,
 				18C395321E166D0200AE1867 /* NSDate+Utilities.m in Sources */,
@@ -468,7 +434,6 @@
 				180231CF1E1456C600FA8322 /* AlbumsPageViewController.swift in Sources */,
 				184DE8AE1E15A8C500E98926 /* ACSlideRightTransitionAnimator.swift in Sources */,
 				189FC5101E1E778C00092D2F /* PostHeaderView.swift in Sources */,
-				180231CB1E14474100FA8322 /* PhotoAlbumCell.swift in Sources */,
 				1838C24B1E11362D00E02F88 /* User.swift in Sources */,
 				18BE87F11E16CF5A00B5837E /* CircleImageView.swift in Sources */,
 				18D623721E21469C00138117 /* Contact.swift in Sources */,
@@ -484,7 +449,6 @@
 				18C395361E16768F00AE1867 /* GeneralHelper.swift in Sources */,
 				18FC62631E11545D00E25A18 /* PostPhotoGallery.swift in Sources */,
 				184DE8A61E15A39900E98926 /* PopTransitionAnimator.swift in Sources */,
-				180231C71E140BE900FA8322 /* GalleriesCarouselViewController.swift in Sources */,
 				18D623621E1FCCC800138117 /* VKLoginViewController.swift in Sources */,
 				18C395381E1676F200AE1867 /* Extensions.swift in Sources */,
 			);

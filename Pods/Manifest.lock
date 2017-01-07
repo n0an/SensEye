@@ -2,7 +2,6 @@ PODS:
   - Alamofire (4.2.0)
   - AlamofireImage (3.2.0):
     - Alamofire (~> 4.1)
-  - iCarousel (1.8.3)
   - Jelly (1.2.0)
   - Reveal-SDK (5)
   - Spring (1.0.3)
@@ -11,7 +10,6 @@ PODS:
 DEPENDENCIES:
   - Alamofire
   - AlamofireImage
-  - iCarousel
   - Jelly
   - Reveal-SDK
   - Spring (from `https://github.com/MengTo/Spring.git`, branch `swift3`)
@@ -30,12 +28,11 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   Alamofire: aa2e09d871c9160ac53c90e83c68064a94e3dfbe
   AlamofireImage: 157ed682cc81d3b9db4fb90c1f12180ac552d93b
-  iCarousel: d782f635afac190c49bb8ee455882284cff8b85f
   Jelly: 116d4d5a884295b0b0d3bb1899ebf1a86e54dfb9
   Reveal-SDK: 7e3945c0c3649106c3cc8923672ee545e25605c0
   Spring: 3f02b5dc3308572ef177b3cad0fa7bbc4b0706f7
   SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
 
-PODFILE CHECKSUM: b4fa76739f235f8901b5f4a5b366ae09b830d642
+PODFILE CHECKSUM: f8ca697aa353796203cdac53bab4520592759464
 
 COCOAPODS: 1.1.1
