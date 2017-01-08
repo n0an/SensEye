@@ -20,25 +20,13 @@ class AboutCellSocnet: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        iconImageView.animation = "fadeInLeft"
-        iconImageView.curve = "easeIn"
-        iconImageView.duration = 1.0
-        iconImageView.animate()
-        
-        
-        contactLabel.animation = "squeezeLeft"
-        contactLabel.curve = "easeIn"
-        contactLabel.force = 2.0
-        contactLabel.duration = 0.6
-        contactLabel.animate()
-        
         
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
+        
     }
 
 }
