@@ -238,6 +238,11 @@
                                     <action selector="actionPreviosPhotoTap" destination="FSA-lg-zHa" id="vfe-y3-A4T"/>
                                 </connections>
                             </barButtonItem>
+                            <barButtonItem systemItem="action" id="V9g-YT-ZmX">
+                                <connections>
+                                    <action selector="actionShareTap" destination="FSA-lg-zHa" id="RKS-bA-i3R"/>
+                                </connections>
+                            </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>

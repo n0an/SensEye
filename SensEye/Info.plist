@@ -22,6 +22,10 @@
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Приложению необходим доступ к фотографиям, чтобы сохранить фотографию</string>
+	<key>NSContactsUsageDescription</key>
+	<string>Приложению необходим доступ к контактам, чтобы присвоить фотографию контакту</string>
 	<key>CFBundleName</key>
 	<string>SensEye</string>
 	<key>UIRequiredDeviceCapabilities</key>

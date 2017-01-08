@@ -108,6 +108,34 @@ class PhotoViewController: UIViewController {
         updateUI()
     }
     
+    @IBAction func actionShareTap() {
+        
+        let defaultText = "Фотограф Elena Senseye - vk.com/elena_senseye"
+        
+       
+        if let imageToShare = self.imageView.image {
+            let activityController = UIActivityViewController(activityItems: [defaultText, imageToShare], applicationActivities: nil)
+            
+            let excludedActivities = [
+                UIActivityType.postToWeibo,
+                .print,
+                .addToReadingList,
+                .postToVimeo,
+                .postToTencentWeibo,
+                .openInIBooks,
+                .assignToContact
+            ]
+            
+            activityController.excludedActivityTypes = excludedActivities
+            
+            self.present(activityController, animated: true, completion: nil)
+        }
+        
+        
+    }
+    
+    
+    
     @IBAction func actionCloseButtonTapped() {
         dismiss(animated: true, completion: nil)
     }
