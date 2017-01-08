@@ -36,5 +36,25 @@ class GeneralHelper {
         view.viewWithTag(1000)?.removeFromSuperview()
     }
     
+    public func showVKAuthorizeActionSheetOnViewController(viewController: UIViewController, completion: @escaping (Bool) -> Void) {
+        
+        let actionSheet = UIAlertController(title: "Необходима авторизация", message: "Для доступа к функционалу лайков и комментариев, необходимо авторизоваться в Вконтакте. Действие нужно выполнить один раз", preferredStyle: .actionSheet)
+        
+        let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
+            
+            completion(true)
+        }
+        
+        let cancelAction = UIAlertAction(title: "Отмена", style: .cancel) { (action) in
+            completion(false)
+        }
+        
+        actionSheet.addAction(okAction)
+        actionSheet.addAction(cancelAction)
+        
+        viewController.present(actionSheet, animated: true, completion: nil)
+        
+    }
+    
 }
 

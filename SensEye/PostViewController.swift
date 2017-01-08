@@ -388,8 +388,7 @@ extension PostViewController: PostHeaderViewDelegate {
 
 extension PostViewController: FeedCellDelegate {
     
-    func provideAuthorization(completed: @escaping AuthoizationComplete) {
-        
+    func toAuthorize() {
         let loginVC = self.storyboard?.instantiateViewController(withIdentifier: "VKLoginViewController") as! VKLoginViewController
         
         loginVC.completionHandler = {(accessToken) in
@@ -400,14 +399,29 @@ extension PostViewController: FeedCellDelegate {
                 
                 ServerManager.sharedManager.getUserFor(userID: token.userID, completed: { (user) in
                     
-                    completed(user)
+                    ServerManager.sharedManager.currentVKUser = user
                 })
             }
         }
-       
+        
         self.present(loginVC, animated: true, completion: nil)
         
     }
+    
+    
+    func provideAuthorization() {
+        
+        GeneralHelper.sharedHelper.showVKAuthorizeActionSheetOnViewController(viewController: self) { (selected) in
+            
+            if selected == true {
+                self.toAuthorize()
+            }
+            
+        }
+        
+    }
+    
+    
     
     func performJellyTransition(withPhotos photosArray: [Photo], indexOfPhoto: Int) {
         if let photoDisplayerNavVC = self.createVC(withID: Storyboard.viewControllerIdPhotoDisplayer) as? UINavigationController {

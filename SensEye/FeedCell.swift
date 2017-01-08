@@ -13,7 +13,7 @@ protocol FeedCellDelegate: class {
     
     func galleryImageViewDidTap(wallPost: WallPost, clickedPhotoIndex: Int)
     
-    func provideAuthorization(completed: @escaping AuthoizationComplete)
+    func provideAuthorization()
     
 }
 
@@ -49,6 +49,9 @@ class FeedCell: UITableViewCell {
     
     weak var delegate: FeedCellDelegate?
     
+    
+    // MARK: - awakeFromNib
+
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -94,10 +97,7 @@ class FeedCell: UITableViewCell {
     
     func authorize() {
         
-        delegate?.provideAuthorization(completed: { (user) in
-            ServerManager.sharedManager.currentVKUser = user
-        })
-        
+        delegate?.provideAuthorization()
         
     }
     

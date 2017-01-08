@@ -316,8 +316,7 @@ extension FeedViewController: UITableViewDelegate {
 
 extension FeedViewController: FeedCellDelegate {
     
-    func provideAuthorization(completed: @escaping AuthoizationComplete) {
-        
+    func toAuthorize() {
         let loginVC = self.storyboard?.instantiateViewController(withIdentifier: "VKLoginViewController") as! VKLoginViewController
         
         loginVC.completionHandler = {(accessToken) in
@@ -328,12 +327,25 @@ extension FeedViewController: FeedCellDelegate {
                 
                 ServerManager.sharedManager.getUserFor(userID: token.userID, completed: { (user) in
                     
-                    completed(user)
+                    ServerManager.sharedManager.currentVKUser = user
                 })
             }
         }
-       
+        
         self.present(loginVC, animated: true, completion: nil)
+
+    }
+    
+    
+    func provideAuthorization() {
+        
+        GeneralHelper.sharedHelper.showVKAuthorizeActionSheetOnViewController(viewController: self) { (selected) in
+            
+            if selected == true {
+                self.toAuthorize()
+            }
+            
+        }
         
     }
     

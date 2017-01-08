@@ -68,10 +68,7 @@ class CommentCell: UITableViewCell {
     
     func authorize() {
         
-        delegate?.provideAuthorization(completed: { (user) in
-            ServerManager.sharedManager.currentVKUser = user
-        })
-        
+        delegate?.provideAuthorization()
         
     }
     
