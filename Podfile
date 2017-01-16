@@ -19,4 +19,7 @@ target 'SensEye' do
   pod 'Spring', :git => 'https://github.com/MengTo/Spring.git', :branch => 'swift3'
 
 
+  pod 'Firebase/Core'
+  pod 'Firebase/Auth'
+
 end
