@@ -97,6 +97,7 @@ class FeedCell: UITableViewCell {
     
     func authorize() {
         
+        
         delegate?.provideAuthorization()
         
     }

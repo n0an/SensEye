@@ -19,9 +19,6 @@ class VKLoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        // ** UNCOMMENT FOR MANUAL VIEWCONTROLLER CREATING WITHOUD STORYBOARD
-        /*
          var rect = self.view.bounds
          
          rect.origin = CGPoint.zero
@@ -38,7 +35,7 @@ class VKLoginViewController: UIViewController {
          self.navigationItem.setRightBarButton(cancelButton, animated: false)
          
          self.navigationItem.title = "Login"
-         */
+        
         
         let urlString = "https://oauth.vk.com/authorize?" +
             "client_id=5795076&" +

@@ -16,7 +16,7 @@ class ServerManager {
     
     static let sharedManager = ServerManager()
     
-    var vkAccessToken: VKAccessToken?
+    private var vkAccessToken: VKAccessToken?
     
     var currentVKUser: User?
     
@@ -36,6 +36,47 @@ class ServerManager {
             
         }
     }
+    
+    
+    // MARK: - VK AUTHORIZATION
+    
+    func authorize(completed: @escaping AuthoizationComplete) {
+        
+        let loginVC = VKLoginViewController()
+        
+        loginVC.completionHandler = {(accessToken) in
+            
+            if let token = accessToken {
+                
+                self.vkAccessToken = token
+                
+                self.getUserFor(userID: token.userID, completed: { (user) in
+                    completed(user)
+                })
+
+            }
+        }
+        
+
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        var top = appDelegate.window?.rootViewController
+        
+        // Peel Off presented view controllers from rootViewController
+        while (top?.presentedViewController != nil) {
+            top = top?.presentedViewController
+        }
+
+        
+        let nav = UINavigationController(rootViewController: loginVC)
+
+        
+        top?.present(nav, animated: true, completion: nil)
+        
+        
+    }
+    
     
     // MARK: - PHOTOS FEATURE
     
