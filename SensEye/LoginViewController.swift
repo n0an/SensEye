@@ -1,5 +1,5 @@
 //
-//  WelcomeViewController.swift
+//  LoginViewController.swift
 //  SensEye
 //
 //  Created by Anton Novoselov on 16/01/2017.
@@ -9,7 +9,7 @@
 import UIKit
 import Spring
 
-class WelcomeViewController: UIViewController {
+class LoginViewController: UIViewController {
     
     
     @IBOutlet weak var emailTextField: UITextField!
@@ -42,6 +42,10 @@ class WelcomeViewController: UIViewController {
     @IBAction func actionLoginButtonTapped(_ sender: Any) {
     }
     
+    
+    @IBAction func unwindToLoginVC(segue: UIStoryboardSegue) {
+        
+    }
     
 
 }
