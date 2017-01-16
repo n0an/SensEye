@@ -13,7 +13,6 @@ class SignUpViewController: UIViewController {
 
     @IBOutlet weak var nameTextField: UITextField!
     
-    
     @IBOutlet weak var emailTextField: UITextField!
     
     @IBOutlet weak var passwordTextField: UITextField!
@@ -23,10 +22,27 @@ class SignUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        nameTextField.becomeFirstResponder()
+
         
     }
 
     @IBAction func actionSignUpButtonTapped(_ sender: Any) {
+        
+        // Validate the input
+        guard let name = nameTextField.text, name != "",
+            let emailAddress = emailTextField.text, emailAddress != "",
+            let password = passwordTextField.text, password != "" else {
+                
+                self.alert(title: "Registration Error", message: "Please make sure you provide your name, email address and password to complete the registration.", handler: nil)
+                
+                return
+        }
+        
+        
+
+        
+        
     }
     
 
