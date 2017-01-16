@@ -401,6 +401,9 @@ extension PostViewController: FeedCellDelegate {
     
     func provideAuthorization() {
         
+        UserDefaults.standard.set(false, forKey: KEY_VK_USERCANCELAUTH)
+        UserDefaults.standard.synchronize()
+        
         GeneralHelper.sharedHelper.showVKAuthorizeActionSheetOnViewController(viewController: self) { (selected) in
             
             if selected == true {

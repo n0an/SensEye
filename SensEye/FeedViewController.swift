@@ -78,6 +78,22 @@ class FeedViewController: UIViewController {
         listenForAuthenticationNotification()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        let currentVKUser = ServerManager.sharedManager.currentVKUser
+        
+        let userDidAuth = UserDefaults.standard.bool(forKey: KEY_VK_DIDAUTH)
+        let userCancelAuth = UserDefaults.standard.bool(forKey: KEY_VK_USERCANCELAUTH)
+        
+        
+        if currentVKUser == nil && userDidAuth == true && userCancelAuth != true {
+            
+            self.toAuthorize()
+            
+        }
+
+    }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
@@ -329,6 +345,10 @@ extension FeedViewController: FeedCellDelegate {
     
     
     func provideAuthorization() {
+        
+        UserDefaults.standard.set(false, forKey: KEY_VK_USERCANCELAUTH)
+        UserDefaults.standard.synchronize()
+
         
         GeneralHelper.sharedHelper.showVKAuthorizeActionSheetOnViewController(viewController: self) { (selected) in
             

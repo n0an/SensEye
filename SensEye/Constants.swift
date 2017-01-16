@@ -8,6 +8,13 @@
 
 import UIKit
 
+// MARK: - ===== VK =====
+
+let groupID = "-55347641"
+
+let KEY_VK_DIDAUTH = "vkAuth"
+let KEY_VK_USERCANCELAUTH = "vkUserCancelAuth"
+
 let URL_BASE = "https://api.vk.com/method"
 let URL_WALL_FEED = "/wall.get?"
 let URL_PHOTOS = "/photos.get?"
@@ -47,15 +54,15 @@ enum URL_PARAMS: String {
 }
 
 
+// MARK: - ===== Type Alias ====
 
 typealias DownloadComplete = ([Any]) -> Void
 typealias AuthoizationComplete = (User) -> Void
 typealias LikeFeatureCompletion = ([String: Any]) -> Void
 
-let groupID = "-55347641"
 
+// MARK: - ===== UI Settings ====
 
-// MARK: - UI Settings
 //let mainShadowColor = UIColor(colorLiteralRed: 120/255, green: 120/255, blue: 120/255, alpha: 1.0)
 let mainShadowColor = UIColor(netHex: 0x787878)
 var shadowWidth: CGFloat = 1.0
@@ -65,8 +72,6 @@ var shadowColor = mainShadowColor
 
 var shadowRadius: CGFloat = 4.0
 
-
-
 //let mainThemeColor = UIColor(colorLiteralRed: 226/255, green: 226/255, blue: 226/255, alpha: 1)
 
 let mainThemeColor = UIColor(netHex: 0xe2e2e2)
@@ -74,3 +79,8 @@ let mainThemeColor = UIColor(netHex: 0xe2e2e2)
 //let cellSelectionColor = UIColor(netHex: 0x7F7DFF)
 
 let cellSelectionColor = UIColor(white: 1.0, alpha: 0.2)
+
+
+
+
+

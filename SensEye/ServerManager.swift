@@ -47,6 +47,9 @@ class ServerManager {
                 
                 self.vkAccessToken = token
                 
+                UserDefaults.standard.set(true, forKey: KEY_VK_DIDAUTH)
+                UserDefaults.standard.synchronize()
+                
                 self.getUserFor(userID: token.userID, completed: { (user) in
                     completed(user)
                 })

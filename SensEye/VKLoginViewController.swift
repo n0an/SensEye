@@ -77,6 +77,9 @@ class VKLoginViewController: UIViewController {
             completionHandler(nil)
         }
         
+        UserDefaults.standard.set(true, forKey: KEY_VK_USERCANCELAUTH)
+        UserDefaults.standard.synchronize()
+        
         self.dismiss(animated: true, completion: nil)
     }
     
