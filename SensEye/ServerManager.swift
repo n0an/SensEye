@@ -42,10 +42,7 @@ class ServerManager {
     
     func authorize(completed: @escaping AuthoizationComplete) {
         
-        let loginVC = VKLoginViewController()
-        
-        loginVC.completionHandler = {(accessToken) in
-            
+        let loginVC = VKLoginViewController { (accessToken) in
             if let token = accessToken {
                 
                 self.vkAccessToken = token
@@ -53,10 +50,9 @@ class ServerManager {
                 self.getUserFor(userID: token.userID, completed: { (user) in
                     completed(user)
                 })
-
+                
             }
         }
-        
 
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate

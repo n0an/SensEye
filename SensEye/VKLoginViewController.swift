@@ -16,6 +16,17 @@ class VKLoginViewController: UIViewController {
     
     var completionHandler: CompletionHandler?
     
+    
+    init(withHandler handler: @escaping CompletionHandler) {
+        
+        self.completionHandler = handler
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
