@@ -10,7 +10,7 @@ import Foundation
 import Firebase
 
 
-typealias CompletionHandler = (String?, Any?) -> Void
+typealias FRCompletionHandler = (String?, Any?) -> Void
 
 class AuthService {
     
@@ -32,18 +32,20 @@ class AuthService {
     
     // MARK: - Sign Up Method
     
-    func signUp(withEmail email: String, username: String, fullName: String, password: String, onComplete: CompletionHandler?) {
+    func signUp(withEmail email: String, username: String, password: String, onComplete: FRCompletionHandler?) {
         
         FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (firCreatedUser, error) in
+            
             if error != nil {
                 // report error
                 self.handleFirebaseError(error: error! as NSError, onComplete: onComplete)
                 
             } else if let firCreatedUser = firCreatedUser {
                 
-                let newUser = FUser(uid: firCreatedUser.uid, username: username, fullName: fullName)
+                let newUser = FUser(uid: firCreatedUser.uid, username: username)
                 
                 newUser.save(completion: { (error) in
+                    
                     if error != nil {
                         // report error
                         print("===NAG=== SAVE USER ERROR: \(error!.localizedDescription)")
@@ -59,12 +61,13 @@ class AuthService {
     }
     
     // MARK: - Log In Method
-    func loginToFireBase(withEmail email: String, password: String, onComplete: CompletionHandler?) {
+    func loginToFireBase(withEmail email: String, password: String, onComplete: FRCompletionHandler?) {
         self.completeSignIn(withEmail: email, password: password, onComplete: onComplete)
     }
     
     // MARK: - Helper Methods
-    func completeSignIn(withEmail email: String, password: String, onComplete: CompletionHandler?) {
+    func completeSignIn(withEmail email: String, password: String, onComplete: FRCompletionHandler?) {
+        
         FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (firSignedUser, error) in
             if let error = error {
                 self.handleFirebaseError(error: error as NSError, onComplete: onComplete)
@@ -77,7 +80,7 @@ class AuthService {
     
     
     // MARK: - Handle Firebase Errors
-    func handleFirebaseError(error: NSError, onComplete: CompletionHandler?) {
+    func handleFirebaseError(error: NSError, onComplete: FRCompletionHandler?) {
         print("===NAG=== \(error.localizedDescription)")
         
         if let errorCode = FIRAuthErrorCode(rawValue: error.code) {

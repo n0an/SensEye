@@ -1680,6 +1680,7 @@
                                                             </button>
                                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="2Bp-NF-Por">
                                                                 <rect key="frame" x="34" y="0.0" width="289" height="20"/>
+                                                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
@@ -1798,6 +1799,7 @@
                         <outlet property="nameTextField" destination="kpb-D4-vS1" id="NPC-eJ-gG0"/>
                         <outlet property="passwordTextField" destination="mNF-no-yKE" id="kUM-I9-Baj"/>
                         <outlet property="signUpButton" destination="NRm-re-aAe" id="UFP-zA-HtD"/>
+                        <segue destination="WBC-Av-IXy" kind="presentation" identifier="LOGINSEGUE" id="fHv-Cv-4al"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oxp-yo-u1U" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1831,7 +1833,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AJr-dG-5hl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7330.3999999999996" y="2566.866566716642"/>
+            <point key="canvasLocation" x="4393" y="2543"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="91X-zA-3nf">

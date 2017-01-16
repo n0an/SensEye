@@ -20,7 +20,7 @@ class FUser {
     var userRef: FIRDatabaseReference
     
     // MARK: - INITIALIZERS
-    init(uid: String, username: String, friends: [String]) {
+    init(uid: String, username: String) {
         self.uid =      uid
         self.username = username
         

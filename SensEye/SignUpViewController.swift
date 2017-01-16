@@ -24,14 +24,16 @@ class SignUpViewController: UIViewController {
 
         nameTextField.becomeFirstResponder()
 
-        
+        nameTextField.delegate = self
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
     }
 
     @IBAction func actionSignUpButtonTapped(_ sender: Any) {
         
         // Validate the input
-        guard let name = nameTextField.text, name != "",
-            let emailAddress = emailTextField.text, emailAddress != "",
+        guard let username = nameTextField.text, username != "",
+            let email = emailTextField.text, email != "",
             let password = passwordTextField.text, password != "" else {
                 
                 self.alert(title: "Registration Error", message: "Please make sure you provide your name, email address and password to complete the registration.", handler: nil)
@@ -39,7 +41,19 @@ class SignUpViewController: UIViewController {
                 return
         }
         
-        
+        AuthService.instance.signUp(withEmail: email, username: username, password: password, onComplete: { (errMsg, data) in
+            
+            guard errMsg == nil else {
+                
+                self.alert(title: "Error", message: errMsg!)
+                return
+            }
+            
+//            self.dismiss(animated: true, completion: nil)
+            
+            self.performSegue(withIdentifier: "LOGINSEGUE", sender: nil)
+            
+        })
 
         
         
@@ -47,3 +61,20 @@ class SignUpViewController: UIViewController {
     
 
 }
+
+extension SignUpViewController: UITextFieldDelegate {
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

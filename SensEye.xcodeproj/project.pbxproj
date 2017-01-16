@@ -16,6 +16,7 @@
 		18251C4A1E2D53F4000DBE57 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18251C491E2D53F4000DBE57 /* SignUpViewController.swift */; };
 		18251C4C1E2D5B92000DBE57 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18251C4B1E2D5B92000DBE57 /* AuthService.swift */; };
 		18251C4F1E2D5E7A000DBE57 /* FUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18251C4E1E2D5E7A000DBE57 /* FUser.swift */; };
+		18251C511E2D5FCB000DBE57 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18251C501E2D5FCB000DBE57 /* DataService.swift */; };
 		1826818D1E1D781000D96764 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1826818C1E1D781000D96764 /* Comment.swift */; };
 		1826818F1E1D79D300D96764 /* ServerObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1826818E1E1D79D300D96764 /* ServerObject.swift */; };
 		182681911E1D7C9C00D96764 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182681901E1D7C9C00D96764 /* PostViewController.swift */; };
@@ -73,6 +74,7 @@
 		18251C491E2D53F4000DBE57 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		18251C4B1E2D5B92000DBE57 /* AuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		18251C4E1E2D5E7A000DBE57 /* FUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FUser.swift; sourceTree = "<group>"; };
+		18251C501E2D5FCB000DBE57 /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		1826818C1E1D781000D96764 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		1826818E1E1D79D300D96764 /* ServerObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerObject.swift; sourceTree = "<group>"; };
 		182681901E1D7C9C00D96764 /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
@@ -144,6 +146,15 @@
 			isa = PBXGroup;
 			children = (
 				18251C4E1E2D5E7A000DBE57 /* FUser.swift */,
+			);
+			name = Firebase;
+			sourceTree = "<group>";
+		};
+		18251C521E2D5FCF000DBE57 /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				18251C4B1E2D5B92000DBE57 /* AuthService.swift */,
+				18251C501E2D5FCB000DBE57 /* DataService.swift */,
 			);
 			name = Firebase;
 			sourceTree = "<group>";
@@ -244,8 +255,8 @@
 		18C395341E166D2600AE1867 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				18251C521E2D5FCF000DBE57 /* Firebase */,
 				188C04FB1E10FCBC008B58EB /* ServerManager.swift */,
-				18251C4B1E2D5B92000DBE57 /* AuthService.swift */,
 				18C395351E16768F00AE1867 /* GeneralHelper.swift */,
 				18C3952D1E16608700AE1867 /* TransitionHelper.swift */,
 				18FC62621E11545D00E25A18 /* PostPhotoGallery.swift */,
@@ -463,6 +474,7 @@
 				18D623701E21423D00138117 /* AboutCellSocnet.swift in Sources */,
 				18251C4A1E2D53F4000DBE57 /* SignUpViewController.swift in Sources */,
 				18D6236C1E213AE200138117 /* AboutTableViewController.swift in Sources */,
+				18251C511E2D5FCB000DBE57 /* DataService.swift in Sources */,
 				1838C2471E112CA200E02F88 /* Group.swift in Sources */,
 				1826818D1E1D781000D96764 /* Comment.swift in Sources */,
 				18251C481E2D51A5000DBE57 /* UITextField+Placeholder.swift in Sources */,
