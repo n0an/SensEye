@@ -1233,7 +1233,7 @@
         <!--Log In-->
         <scene sceneID="942-0q-CvW">
             <objects>
-                <viewController id="Vhv-ND-M4d" customClass="LoginViewController" customModule="SensEye" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Vhv-ND-M4d" customClass="WelcomeViewController" customModule="SensEye" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8z6-uB-atu"/>
                         <viewControllerLayoutGuide type="bottom" id="Swd-3J-Fem"/>
@@ -1249,7 +1249,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pPe-wI-kG6" customClass="LineButton" customModule="SensEye" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pPe-wI-kG6">
                                 <rect key="frame" x="0.0" y="548" width="375" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" priority="750" constant="343" id="Lrd-zm-ppG"/>
@@ -1359,7 +1359,7 @@
                                                     </stackView>
                                                 </subviews>
                                             </stackView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bo5-LE-gRK" customClass="LineButton" customModule="SensEye" customModuleProvider="target">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bo5-LE-gRK" customClass="DesignableButton" customModule="Spring">
                                                 <rect key="frame" x="0.0" y="123" width="343" height="50"/>
                                                 <color key="backgroundColor" red="0.18039215689999999" green="0.80000000000000004" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
@@ -1376,7 +1376,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="loginWithSender:" destination="Vhv-ND-M4d" eventType="touchUpInside" id="ORE-Av-pZF"/>
+                                                    <action selector="actionLoginButtonTapped:" destination="Vhv-ND-M4d" eventType="touchUpInside" id="ex2-k5-KgQ"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -1399,13 +1399,13 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="j4U-JT-Z4w">
                                 <rect key="frame" x="16" y="363" width="343" height="107"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="42s-Q1-YmL" customClass="LineButton" customModule="SensEye" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="42s-Q1-YmL" customClass="FancyButton" customModule="SensEye" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="50"/>
                                         <color key="backgroundColor" red="0.23137254900000001" green="0.34901960780000002" blue="0.59215686270000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="4uf-AK-APX"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="Rubik-Medium" family="Rubik" pointSize="17"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <state key="normal" title="SIGN IN WITH FACEBOOK" image="facebook-1">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1418,26 +1418,24 @@
                                                 <real key="value" value="-10"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="actionLoginFacebookTapped:" destination="Vhv-ND-M4d" eventType="touchUpInside" id="QbT-zj-Exz"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cTG-tc-2yg" customClass="LineButton" customModule="SensEye" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cTG-tc-2yg" customClass="FancyButton" customModule="SensEye" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="57" width="343" height="50"/>
                                         <color key="backgroundColor" red="0.82745098039999998" green="0.28235294119999998" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="4Zg-HI-ltc"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="Rubik-Medium" family="Rubik" pointSize="17"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <state key="normal" title="SIGN IN WITH GOOGLE" image="google">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="25"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="imageLeftPadding">
-                                                <real key="value" value="-10"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="actionLoginGoogleTapped:" destination="Vhv-ND-M4d" eventType="touchUpInside" id="2GW-Dl-nZF"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -1473,8 +1471,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="emailTextField" destination="BBX-p4-NUa" id="PM4-sz-3xX"/>
-                        <outlet property="passwordTextField" destination="QPq-so-NCn" id="Yuk-Wb-U09"/>
+                        <outlet property="emailTextField" destination="BBX-p4-NUa" id="isP-06-RwF"/>
+                        <outlet property="loginButton" destination="Bo5-LE-gRK" id="9VT-pK-1V2"/>
+                        <outlet property="passwordTextField" destination="QPq-so-NCn" id="F7z-qa-SnY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QJV-Mv-Or6" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1604,10 +1603,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="space" translatesAutoresizingMaskIntoConstraints="NO" id="eni-Zh-cDu" userLabel="Background Image View">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                             </imageView>
                             <view clipsSubviews="YES" alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="toT-H1-jDH" userLabel="MaskView">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="e8o-o7-HvS">
