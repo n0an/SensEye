@@ -1799,7 +1799,6 @@
                         <outlet property="nameTextField" destination="kpb-D4-vS1" id="NPC-eJ-gG0"/>
                         <outlet property="passwordTextField" destination="mNF-no-yKE" id="kUM-I9-Baj"/>
                         <outlet property="signUpButton" destination="NRm-re-aAe" id="UFP-zA-HtD"/>
-                        <segue destination="WBC-Av-IXy" kind="presentation" identifier="LOGINSEGUE" id="fHv-Cv-4al"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oxp-yo-u1U" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1807,10 +1806,10 @@
             </objects>
             <point key="canvasLocation" x="3423" y="3017"/>
         </scene>
-        <!--View Controller-->
+        <!--Chat View Controller-->
         <scene sceneID="T0J-wO-jHU">
             <objects>
-                <viewController storyboardIdentifier="ChatVC" id="WBC-Av-IXy" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChatVC" id="WBC-Av-IXy" customClass="ChatViewController" customModule="SensEye" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="tw5-mH-1k4"/>
                         <viewControllerLayoutGuide type="bottom" id="Bhp-BY-zaa"/>
@@ -1822,6 +1821,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ssP-E0-Txf">
                                 <rect key="frame" x="162" y="318" width="51" height="30"/>
                                 <state key="normal" title="LogOut"/>
+                                <connections>
+                                    <action selector="logoutButtonTapped" destination="WBC-Av-IXy" eventType="touchUpInside" id="93o-Dy-mXj"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

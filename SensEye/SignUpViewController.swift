@@ -28,6 +28,14 @@ class SignUpViewController: UIViewController {
         emailTextField.delegate = self
         passwordTextField.delegate = self
     }
+    
+    func goToChatVC() {
+        
+        let chatVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ChatVC")
+        
+        self.present(chatVC, animated: false, completion: nil)
+        
+    }
 
     @IBAction func actionSignUpButtonTapped(_ sender: Any) {
         
@@ -51,7 +59,9 @@ class SignUpViewController: UIViewController {
             
 //            self.dismiss(animated: true, completion: nil)
             
-            self.performSegue(withIdentifier: "LOGINSEGUE", sender: nil)
+//            self.performSegue(withIdentifier: "LOGINSEGUE", sender: nil)
+            
+            self.goToChatVC()
             
         })
 

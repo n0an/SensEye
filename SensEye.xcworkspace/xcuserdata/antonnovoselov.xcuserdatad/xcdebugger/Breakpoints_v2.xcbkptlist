@@ -9,13 +9,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SensEye/AuthService.swift"
-            timestampString = "506290681.804534"
+            filePath = "SensEye/SignUpViewController.swift"
+            timestampString = "506371073.755964"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
-            landmarkName = "completeSignIn(withEmail:password:onComplete:)"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
+            landmarkName = "actionSignUpButtonTapped(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SensEye/SignUpViewController.swift"
+            timestampString = "506371078.442181"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "goToChatVC()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

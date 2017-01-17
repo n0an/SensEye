@@ -20,9 +20,9 @@ class AuthService {
         return _instance
     }
     
-    private var _currentUser: User!
+    private var _currentUser: FUser!
     
-    var currentUser: User {
+    var currentUser: FUser {
         set {
             _currentUser = newValue
         } get {
