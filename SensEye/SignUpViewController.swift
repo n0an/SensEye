@@ -11,16 +11,17 @@ import Spring
 
 class SignUpViewController: UIViewController {
 
+    // MARK: - OUTLETS
     @IBOutlet weak var nameTextField: UITextField!
-    
     @IBOutlet weak var emailTextField: UITextField!
-    
     @IBOutlet weak var passwordTextField: UITextField!
-    
     @IBOutlet weak var signUpButton: DesignableButton!
     
+    // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationController?.isNavigationBarHidden = false
 
         nameTextField.becomeFirstResponder()
 
@@ -29,22 +30,28 @@ class SignUpViewController: UIViewController {
         passwordTextField.delegate = self
     }
     
+    deinit {
+        print("===NAG=== SignUpViewController deinit")
+    }
+    
+    // MARK: - HELPER METHODS
     func goToChatVC() {
         
-        let chatVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ChatVC")
-        
-        self.present(chatVC, animated: false, completion: nil)
-        
+        self.dismiss(animated: true, completion: nil)
+   
     }
 
+    // MARK: - ACTIONS
     @IBAction func actionSignUpButtonTapped(_ sender: Any) {
         
         // Validate the input
+        
+        
         guard let username = nameTextField.text, username != "",
             let email = emailTextField.text, email != "",
             let password = passwordTextField.text, password != "" else {
                 
-                self.alert(title: "Registration Error", message: "Please make sure you provide your name, email address and password to complete the registration.", handler: nil)
+                self.alert(title: "Sign Up Error", message: "Please make sure you provide your name, email address and password to complete the registration.", handler: nil)
                 
                 return
         }
@@ -56,11 +63,7 @@ class SignUpViewController: UIViewController {
                 self.alert(title: "Error", message: errMsg!)
                 return
             }
-            
-//            self.dismiss(animated: true, completion: nil)
-            
-//            self.performSegue(withIdentifier: "LOGINSEGUE", sender: nil)
-            
+ 
             self.goToChatVC()
             
         })

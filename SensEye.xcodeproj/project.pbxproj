@@ -195,10 +195,10 @@
 		18A9FAE51E2E9DC4004C548B /* Chat Tab */ = {
 			isa = PBXGroup;
 			children = (
-				1899316C1E2D4B7C006E00C6 /* LoginViewController.swift */,
-				18251C451E2D5160000DBE57 /* RecetPasswordViewController.swift */,
-				18251C491E2D53F4000DBE57 /* SignUpViewController.swift */,
 				18A9FAE31E2E9D93004C548B /* ChatViewController.swift */,
+				1899316C1E2D4B7C006E00C6 /* LoginViewController.swift */,
+				18251C491E2D53F4000DBE57 /* SignUpViewController.swift */,
+				18251C451E2D5160000DBE57 /* RecetPasswordViewController.swift */,
 			);
 			name = "Chat Tab";
 			sourceTree = "<group>";

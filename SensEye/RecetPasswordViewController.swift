@@ -17,9 +17,17 @@ class RecetPasswordViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
+        self.navigationController?.isNavigationBarHidden = false
     }
 
+    deinit {
+        print("===NAG=== RecetPasswordViewController deinit")
+    }
     
     @IBAction func actionResetPasswordButtonTapped(_ sender: Any) {
     }

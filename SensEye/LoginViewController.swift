@@ -23,15 +23,26 @@ class LoginViewController: UIViewController {
 
     }
     
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         if FIRAuth.auth()?.currentUser != nil {
+            
             self.goToChatVC()
         }
         
-        
+        self.navigationController?.isNavigationBarHidden = true
+    }
+    
+    deinit {
+        print("===NAG=== LoginViewController deinit")
     }
     
     
@@ -39,9 +50,8 @@ class LoginViewController: UIViewController {
     
     func goToChatVC() {
         
-        let chatVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ChatVC") as! ChatViewController
-        
-        self.present(chatVC, animated: false, completion: nil)
+        let _ = self.navigationController?.popViewController(animated: false)
+
         
     }
 
@@ -58,23 +68,32 @@ class LoginViewController: UIViewController {
     
     @IBAction func actionLoginButtonTapped(_ sender: Any) {
         
-        if emailTextField.text != "" && (passwordTextField.text?.characters.count)! > 6 {
-            let email = emailTextField.text!
-            let password = passwordTextField.text!
-            
-            AuthService.instance.loginToFireBase(withEmail: email, password: password, onComplete: { (errMsg, data) in
-                
-                guard errMsg == nil else {
-                    
-                    self.alert(title: "Error", message: errMsg!)
-                    return
-                }
-                
-                DispatchQueue.main.async {
-                    self.goToChatVC()
-                }
-            })
+        guard let email = emailTextField.text, emailTextField.text != "" else {
+            self.alert(title: "Email", message: "Enter your email")
+            return
         }
+        
+        guard let password = passwordTextField.text, passwordTextField.text != "" else {
+            self.alert(title: "Password", message: "Enter you password")
+            return
+        }
+        
+        AuthService.instance.loginToFireBase(withEmail: email, password: password, onComplete: { (errMsg, data) in
+            
+            guard errMsg == nil else {
+                
+                self.alert(title: "Error", message: errMsg!)
+                return
+            }
+            
+            DispatchQueue.main.async {
+                
+                self.goToChatVC()
+            }
+        })
+
+        
+
         
         
     }
