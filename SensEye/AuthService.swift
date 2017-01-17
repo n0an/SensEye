@@ -86,18 +86,18 @@ class AuthService {
         if let errorCode = FIRAuthErrorCode(rawValue: error.code) {
             switch errorCode {
             case .errorCodeInvalidEmail:
-                onComplete?("Invalid email address", nil)
+                onComplete?(error.localizedDescription, nil)
                 
             case .errorCodeWrongPassword:
-                onComplete?("Invalid password", nil)
+                onComplete?(error.localizedDescription, nil)
                 
             case .errorCodeAccountExistsWithDifferentCredential:
                 fallthrough
             case .errorCodeEmailAlreadyInUse:
-                onComplete?("Email already in use", nil)
+                onComplete?(error.localizedDescription, nil)
                 
             default:
-                onComplete?("There was a problem authenticating. Try again", nil)
+                onComplete?(error.localizedDescription, nil)
             }
         }
         
