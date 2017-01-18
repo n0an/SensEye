@@ -10,7 +10,7 @@ import Foundation
 import Firebase
 
 
-typealias FRCompletionHandler = (_ errorString: String?, _ firUser: Any?) -> Void
+typealias FRAuthCompletionHandler = (_ errorString: String?, _ firUser: Any?) -> Void
 
 class FRAuthManager {
     
@@ -31,13 +31,13 @@ class FRAuthManager {
     }
     
     // MARK: - Sign Up Method
-    func signUp(withEmail email: String, username: String, password: String, onComplete: FRCompletionHandler?) {
+    func signUp(withEmail email: String, username: String, password: String, onComplete: FRAuthCompletionHandler?) {
         
         FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (firCreatedUser, error) in
             
-            if error != nil {
+            if let error = error {
                 // report error
-                onComplete?(error?.localizedDescription, nil)
+                onComplete?(error.localizedDescription, nil)
                 
             } else if let firCreatedUser = firCreatedUser {
                 
@@ -45,12 +45,12 @@ class FRAuthManager {
                 
                 newUser.save(completion: { (error) in
                     
-                    if error != nil {
+                    if let error = error {
                         // report error
-                        onComplete?(error?.localizedDescription, nil)
+                        onComplete?(error.localizedDescription, nil)
                         
                     } else {
-                        
+                        // SUCCESS - NEW USER CREATED AND SAVED TO DATABASE - SIGN IN NOW
                         self.completeSignIn(withEmail: email, password: password, onComplete: onComplete)
                     }
                 })
@@ -59,12 +59,12 @@ class FRAuthManager {
     }
     
     // MARK: - Log In Method
-    func loginToFireBase(withEmail email: String, password: String, onComplete: FRCompletionHandler?) {
+    func loginToFireBase(withEmail email: String, password: String, onComplete: FRAuthCompletionHandler?) {
         self.completeSignIn(withEmail: email, password: password, onComplete: onComplete)
     }
     
     // MARK: - HELPER METHODS
-    func completeSignIn(withEmail email: String, password: String, onComplete: FRCompletionHandler?) {
+    func completeSignIn(withEmail email: String, password: String, onComplete: FRAuthCompletionHandler?) {
         
         FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (firSignedUser, error) in
             
@@ -72,7 +72,7 @@ class FRAuthManager {
                 onComplete?(error.localizedDescription, nil)
 
             } else {
-                // SUCCESS - NEW USER CREATED, SINGED IN AND SAVED TO DATABASE
+                // SUCCESS - SINGED IN
                 onComplete?(nil, firSignedUser)
             }
         })
