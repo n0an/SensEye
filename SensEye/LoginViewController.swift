@@ -68,15 +68,12 @@ class LoginViewController: UIViewController {
     
     @IBAction func actionLoginButtonTapped(_ sender: Any) {
         
-        guard let email = emailTextField.text, emailTextField.text != "" else {
-            self.alert(title: "Email", message: "Enter your email")
+        guard let email = emailTextField.text, email != "",
+            let password = passwordTextField.text, password != "" else {
+            self.alert(title: "Error", message: "Enter your email and password")
             return
         }
         
-        guard let password = passwordTextField.text, passwordTextField.text != "" else {
-            self.alert(title: "Password", message: "Enter you password")
-            return
-        }
         
         FRAuthManager.sharedManager.loginToFireBase(withEmail: email, password: password, onComplete: { (errMsg, data) in
             

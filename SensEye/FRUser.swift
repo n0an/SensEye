@@ -1,5 +1,5 @@
 //
-//  FUser.swift
+//  FRUser.swift
 //  SensEye
 //
 //  Created by Anton Novoselov on 16/01/2017.
@@ -9,9 +9,9 @@
 import Foundation
 import Firebase
 
-typealias modelCompletion = (Error?) -> Void
+typealias FRModelCompletion = (Error?) -> Void
 
-class FUser {
+class FRUser {
     
     // MARK: - PROPERTIES
     var uid: String
@@ -42,7 +42,7 @@ class FUser {
         ]
     }
     
-    func save(completion: @escaping modelCompletion) {
+    func save(completion: @escaping FRModelCompletion) {
         userRef.setValue(toDictionary())
         
         completion(nil)
@@ -53,7 +53,7 @@ class FUser {
 
 
 // COMPARE METHOD (FOR "CONTAINS" FEATURE) - for checking if array constains current User
-extension FUser: Equatable { }
-func ==(lhs: FUser, rhs: FUser) -> Bool {
+extension FRUser: Equatable { }
+func ==(lhs: FRUser, rhs: FRUser) -> Bool {
     return lhs.uid == rhs.uid
 }

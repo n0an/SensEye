@@ -26,7 +26,7 @@ class ChatViewController: UIViewController {
                     
                     if let userDict = snapshot.value as? [String: Any] {
                         
-                        FRAuthManager.sharedManager.currentUser = FUser(uid: user.uid, dictionary: userDict)
+                        FRAuthManager.sharedManager.currentUser = FRUser(uid: user.uid, dictionary: userDict)
                         print("===NAG===: currentUser = \(FRAuthManager.sharedManager.currentUser.username)")
                         
                     }

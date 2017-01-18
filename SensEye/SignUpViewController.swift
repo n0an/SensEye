@@ -55,6 +55,7 @@ class SignUpViewController: UIViewController {
                 return
         }
         
+        
         FRAuthManager.sharedManager.signUp(withEmail: email, username: username, password: password, onComplete: { (errMsg, data) in
             
             guard errMsg == nil else {
@@ -63,7 +64,10 @@ class SignUpViewController: UIViewController {
                 return
             }
  
-            self.goToChatVC()
+            DispatchQueue.main.async {
+                
+                self.goToChatVC()
+            }
             
         })
 

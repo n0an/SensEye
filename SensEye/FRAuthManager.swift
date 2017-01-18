@@ -10,7 +10,7 @@ import Foundation
 import Firebase
 
 
-typealias FRCompletionHandler = (String?, Any?) -> Void
+typealias FRCompletionHandler = (_ errorString: String?, _ firUser: Any?) -> Void
 
 class FRAuthManager {
     
@@ -20,9 +20,9 @@ class FRAuthManager {
         return _sharedManager
     }
     
-    private var _currentUser: FUser!
+    private var _currentUser: FRUser!
     
-    var currentUser: FUser {
+    var currentUser: FRUser {
         set {
             _currentUser = newValue
         } get {
@@ -31,7 +31,6 @@ class FRAuthManager {
     }
     
     // MARK: - Sign Up Method
-    
     func signUp(withEmail email: String, username: String, password: String, onComplete: FRCompletionHandler?) {
         
         FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (firCreatedUser, error) in
@@ -42,7 +41,7 @@ class FRAuthManager {
                 
             } else if let firCreatedUser = firCreatedUser {
                 
-                let newUser = FUser(uid: firCreatedUser.uid, username: username)
+                let newUser = FRUser(uid: firCreatedUser.uid, username: username)
                 
                 newUser.save(completion: { (error) in
                     
@@ -73,7 +72,7 @@ class FRAuthManager {
                 onComplete?(error.localizedDescription, nil)
 
             } else {
-                // We have successfully logged in
+                // SUCCESS - NEW USER CREATED, SINGED IN AND SAVED TO DATABASE
                 onComplete?(nil, firSignedUser)
             }
         })
