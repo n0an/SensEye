@@ -28,6 +28,15 @@ class SignUpViewController: UIViewController {
         nameTextField.delegate = self
         emailTextField.delegate = self
         passwordTextField.delegate = self
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(resignKeyboard))
+        self.view.addGestureRecognizer(tapGesture)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        nameTextField.becomeFirstResponder()
     }
     
     deinit {
@@ -39,6 +48,10 @@ class SignUpViewController: UIViewController {
         
         self.dismiss(animated: true, completion: nil)
    
+    }
+    
+    func resignKeyboard() {
+        self.view.endEditing(true)
     }
 
     // MARK: - ACTIONS
@@ -54,6 +67,9 @@ class SignUpViewController: UIViewController {
                 
                 return
         }
+        
+        // Dismiss keyboard
+        self.view.endEditing(true)
         
         
         FRAuthManager.sharedManager.signUp(withEmail: email, username: username, password: password, onComplete: { (errMsg, data) in
@@ -78,7 +94,25 @@ class SignUpViewController: UIViewController {
 
 }
 
+// MARK: - UITextFieldDelegate
 extension SignUpViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        if textField == nameTextField {
+            emailTextField.becomeFirstResponder()
+        } else if textField == emailTextField {
+            passwordTextField.becomeFirstResponder()
+        } else if textField == passwordTextField {
+            passwordTextField.resignFirstResponder()
+            self.actionSignUpButtonTapped(self)
+        }
+        
+        return true
+        
+        
+    }
+    
     
 }
 

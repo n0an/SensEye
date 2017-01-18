@@ -20,13 +20,19 @@ class LoginViewController: UIViewController {
     // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(resignKeyboard))
+        self.view.addGestureRecognizer(tapGesture)
 
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        
+        emailTextField.becomeFirstResponder()
         
     }
     
@@ -54,6 +60,10 @@ class LoginViewController: UIViewController {
 
         
     }
+    
+    func resignKeyboard() {
+        self.view.endEditing(true)
+    }
 
     
     
@@ -73,6 +83,9 @@ class LoginViewController: UIViewController {
             self.alert(title: "Error", message: "Enter your email and password")
             return
         }
+        
+        // Dismiss keyboard
+        self.view.endEditing(true)
         
         
         FRAuthManager.sharedManager.loginToFireBase(withEmail: email, password: password, onComplete: { (errMsg, data) in
@@ -102,3 +115,53 @@ class LoginViewController: UIViewController {
     
 
 }
+
+
+
+
+extension LoginViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        if textField == emailTextField {
+            passwordTextField.becomeFirstResponder()
+        } else if textField == passwordTextField {
+            passwordTextField.resignFirstResponder()
+            self.actionLoginButtonTapped(self)
+        }
+        
+        return true
+        
+        
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

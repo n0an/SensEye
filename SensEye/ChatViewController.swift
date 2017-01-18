@@ -29,6 +29,7 @@ class ChatViewController: UIViewController {
                         FRAuthManager.sharedManager.currentUser = FRUser(uid: user.uid, dictionary: userDict)
                         print("===NAG===: currentUser = \(FRAuthManager.sharedManager.currentUser.username)")
                         
+                        
 //                        self.fetchMessages()
                         
                     }
