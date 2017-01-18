@@ -24,6 +24,8 @@
 	<string>Main</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Приложению необходим доступ к фотографиям, чтобы сохранить фотографию</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Приложению необходим доступ к камере, чтобы создать аватар</string>
 	<key>NSContactsUsageDescription</key>
 	<string>Приложению необходим доступ к контактам, чтобы присвоить фотографию контакту</string>
 	<key>CFBundleName</key>

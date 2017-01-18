@@ -1751,40 +1751,39 @@
                                     <constraint firstAttribute="height" constant="228" id="aju-QR-VUT"/>
                                 </constraints>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sse-5z-hXY">
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-defaultAvatar" translatesAutoresizingMaskIntoConstraints="NO" id="auM-bd-Jf6" customClass="CircleImageView" customModule="SensEye" customModuleProvider="target">
                                 <rect key="frame" x="147.5" y="80" width="80" height="80"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="DNW-v5-4Hi"/>
-                                    <constraint firstAttribute="height" constant="80" id="yBO-8u-mKF"/>
+                                    <constraint firstAttribute="width" constant="80" id="Cgw-jw-W1V"/>
+                                    <constraint firstAttribute="height" constant="80" id="JIj-y8-coc"/>
                                 </constraints>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" image="icon-defaultAvatar">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P0a-vy-Xiy">
                                 <rect key="frame" x="111" y="168" width="152" height="30"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                 <state key="normal" title="Change Profile Photo">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="actionAvatarImageTapped" destination="J8o-x7-7cn" eventType="touchUpInside" id="JkL-7V-ENv"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="auM-bd-Jf6" firstAttribute="centerX" secondItem="TKZ-Xg-WVu" secondAttribute="centerX" id="0sB-nU-9QK"/>
                             <constraint firstItem="eni-Zh-cDu" firstAttribute="top" secondItem="TKZ-Xg-WVu" secondAttribute="top" id="3Bk-NS-24t"/>
                             <constraint firstItem="e8o-o7-HvS" firstAttribute="top" secondItem="P0a-vy-Xiy" secondAttribute="bottom" constant="20" id="ENA-cB-Z6c"/>
                             <constraint firstAttribute="trailing" secondItem="toT-H1-jDH" secondAttribute="trailing" id="EPY-rq-47M"/>
                             <constraint firstItem="toT-H1-jDH" firstAttribute="top" secondItem="TKZ-Xg-WVu" secondAttribute="top" id="F01-kM-goN"/>
                             <constraint firstAttribute="trailing" secondItem="eni-Zh-cDu" secondAttribute="trailing" id="Hx2-aC-631"/>
                             <constraint firstItem="2GH-j4-CG9" firstAttribute="top" secondItem="toT-H1-jDH" secondAttribute="bottom" id="Jvx-nt-gkY"/>
+                            <constraint firstItem="P0a-vy-Xiy" firstAttribute="top" secondItem="auM-bd-Jf6" secondAttribute="bottom" constant="8" id="KTJ-xi-UTy"/>
                             <constraint firstAttribute="trailingMargin" secondItem="e8o-o7-HvS" secondAttribute="trailing" constant="10" id="L3U-E5-z5L"/>
-                            <constraint firstItem="sse-5z-hXY" firstAttribute="top" secondItem="2sl-xe-QY1" secondAttribute="bottom" constant="16" id="TFf-YN-IW0"/>
                             <constraint firstItem="eni-Zh-cDu" firstAttribute="leading" secondItem="TKZ-Xg-WVu" secondAttribute="leading" id="b2z-UQ-Wqw"/>
+                            <constraint firstItem="auM-bd-Jf6" firstAttribute="top" secondItem="2sl-xe-QY1" secondAttribute="bottom" constant="16" id="ceD-o5-yw1"/>
                             <constraint firstItem="e8o-o7-HvS" firstAttribute="leading" secondItem="TKZ-Xg-WVu" secondAttribute="leadingMargin" constant="10" id="dCK-bH-lDP"/>
-                            <constraint firstItem="P0a-vy-Xiy" firstAttribute="top" secondItem="sse-5z-hXY" secondAttribute="bottom" constant="8" id="dGy-Tc-rsK"/>
-                            <constraint firstItem="P0a-vy-Xiy" firstAttribute="centerX" secondItem="sse-5z-hXY" secondAttribute="centerX" id="g4W-13-raX"/>
-                            <constraint firstItem="sse-5z-hXY" firstAttribute="centerX" secondItem="TKZ-Xg-WVu" secondAttribute="centerX" id="jBq-hR-CTA"/>
+                            <constraint firstItem="P0a-vy-Xiy" firstAttribute="centerX" secondItem="auM-bd-Jf6" secondAttribute="centerX" id="iYH-hE-35A"/>
                             <constraint firstItem="2GH-j4-CG9" firstAttribute="top" secondItem="eni-Zh-cDu" secondAttribute="bottom" id="pEt-6o-xWk"/>
                             <constraint firstItem="toT-H1-jDH" firstAttribute="leading" secondItem="TKZ-Xg-WVu" secondAttribute="leading" id="xgc-xl-ycR"/>
                         </constraints>
@@ -1798,6 +1797,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="avatarImageView" destination="auM-bd-Jf6" id="qfO-D2-Plf"/>
                         <outlet property="emailTextField" destination="2Bp-NF-Por" id="GcE-b4-Nhb"/>
                         <outlet property="nameTextField" destination="kpb-D4-vS1" id="NPC-eJ-gG0"/>
                         <outlet property="passwordTextField" destination="mNF-no-yKE" id="kUM-I9-Baj"/>

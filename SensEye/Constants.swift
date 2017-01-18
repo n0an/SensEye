@@ -83,4 +83,8 @@ let cellSelectionColor = UIColor(white: 1.0, alpha: 0.2)
 
 
 
+// MARK: - ==== CAMERA SETTINGS ===
+let kMAXDURATION: Double = 20.0
+
+
 

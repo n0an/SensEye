@@ -16,6 +16,7 @@ class FRUser {
     // MARK: - PROPERTIES
     var uid: String
     var username: String
+    var avatarImage: UIImage?
     
     var userRef: FIRDatabaseReference
     
@@ -32,6 +33,8 @@ class FRUser {
         self.username = dictionary["username"] as! String
         
         userRef = FRDataManager.sharedManager.REF_USERS.child(self.uid)
+        
+        
     }
     
     
@@ -45,7 +48,16 @@ class FRUser {
     func save(completion: @escaping FRModelCompletion) {
         userRef.setValue(toDictionary())
         
-        completion(nil)
+        // save avatar image
+        if let avatarImage = avatarImage {
+            let firImage = FRImage(image: avatarImage)
+            firImage.saveAvatarImageToFirebaseStorage(self.uid, completion: { (meta, error) in
+                completion(error)
+            })
+        }
+        
+        
+//        completion(nil)
     }
 }
 

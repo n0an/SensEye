@@ -47,6 +47,10 @@
 		18AA37D61E1053F700D5BCB1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18AA37D41E1053F700D5BCB1 /* Main.storyboard */; };
 		18AA37D81E1053F700D5BCB1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18AA37D71E1053F700D5BCB1 /* Assets.xcassets */; };
 		18AA37DB1E1053F700D5BCB1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18AA37D91E1053F700D5BCB1 /* LaunchScreen.storyboard */; };
+		18AEEC491E2FA01B00AB97B4 /* FRImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AEEC481E2FA01B00AB97B4 /* FRImage.swift */; };
+		18AEEC4B1E2FA30600AB97B4 /* UIImage+resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AEEC4A1E2FA30600AB97B4 /* UIImage+resize.swift */; };
+		18AEEC4D1E2FA64D00AB97B4 /* FRStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AEEC4C1E2FA64D00AB97B4 /* FRStorageManager.swift */; };
+		18AEEC4F1E2FAB1100AB97B4 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AEEC4E1E2FAB1100AB97B4 /* Camera.swift */; };
 		18BE87F11E16CF5A00B5837E /* CircleImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BE87F01E16CF5A00B5837E /* CircleImageView.swift */; };
 		18C3952E1E16608700AE1867 /* TransitionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C3952D1E16608700AE1867 /* TransitionHelper.swift */; };
 		18C395321E166D0200AE1867 /* NSDate+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C395301E166D0200AE1867 /* NSDate+Utilities.m */; };
@@ -108,6 +112,10 @@
 		18AA37D71E1053F700D5BCB1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		18AA37DA1E1053F700D5BCB1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		18AA37DC1E1053F700D5BCB1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		18AEEC481E2FA01B00AB97B4 /* FRImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FRImage.swift; sourceTree = "<group>"; };
+		18AEEC4A1E2FA30600AB97B4 /* UIImage+resize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+resize.swift"; sourceTree = "<group>"; };
+		18AEEC4C1E2FA64D00AB97B4 /* FRStorageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FRStorageManager.swift; sourceTree = "<group>"; };
+		18AEEC4E1E2FAB1100AB97B4 /* Camera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		18BE87F01E16CF5A00B5837E /* CircleImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleImageView.swift; sourceTree = "<group>"; };
 		18C3952D1E16608700AE1867 /* TransitionHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionHelper.swift; sourceTree = "<group>"; };
 		18C3952F1E166D0100AE1867 /* SensEye-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SensEye-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -148,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				18251C4E1E2D5E7A000DBE57 /* FRUser.swift */,
+				18AEEC481E2FA01B00AB97B4 /* FRImage.swift */,
 			);
 			name = Firebase;
 			sourceTree = "<group>";
@@ -157,6 +166,7 @@
 			children = (
 				18251C4B1E2D5B92000DBE57 /* FRAuthManager.swift */,
 				18251C501E2D5FCB000DBE57 /* FRDataManager.swift */,
+				18AEEC4C1E2FA64D00AB97B4 /* FRStorageManager.swift */,
 			);
 			name = Firebase;
 			sourceTree = "<group>";
@@ -261,6 +271,7 @@
 				18C395311E166D0200AE1867 /* NSDate+Utilities.h */,
 				18C395371E1676F200AE1867 /* Extensions.swift */,
 				18251C471E2D51A5000DBE57 /* UITextField+Placeholder.swift */,
+				18AEEC4A1E2FA30600AB97B4 /* UIImage+resize.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -274,6 +285,7 @@
 				18C3952D1E16608700AE1867 /* TransitionHelper.swift */,
 				18FC62621E11545D00E25A18 /* PostPhotoGallery.swift */,
 				1838C2401E110A7700E02F88 /* Constants.swift */,
+				18AEEC4E1E2FAB1100AB97B4 /* Camera.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -486,6 +498,7 @@
 				18251C4A1E2D53F4000DBE57 /* SignUpViewController.swift in Sources */,
 				18D6236C1E213AE200138117 /* AboutTableViewController.swift in Sources */,
 				18251C511E2D5FCB000DBE57 /* FRDataManager.swift in Sources */,
+				18AEEC4B1E2FA30600AB97B4 /* UIImage+resize.swift in Sources */,
 				1838C2471E112CA200E02F88 /* Group.swift in Sources */,
 				1826818D1E1D781000D96764 /* Comment.swift in Sources */,
 				18251C481E2D51A5000DBE57 /* UITextField+Placeholder.swift in Sources */,
@@ -497,6 +510,7 @@
 				183E2A201E16B5180099F775 /* RoundedView.swift in Sources */,
 				18A9FAE41E2E9D93004C548B /* ChatViewController.swift in Sources */,
 				18FC625C1E113E9C00E25A18 /* Photo.swift in Sources */,
+				18AEEC4D1E2FA64D00AB97B4 /* FRStorageManager.swift in Sources */,
 				18251C4C1E2D5B92000DBE57 /* FRAuthManager.swift in Sources */,
 				188C04F81E1074C8008B58EB /* FeedViewController.swift in Sources */,
 				184DE8AC1E15A89300E98926 /* ACRotateTransitionAnimator.swift in Sources */,
@@ -518,6 +532,8 @@
 				183E2A1E1E16A24A0099F775 /* PostView.swift in Sources */,
 				18AA37D11E1053F700D5BCB1 /* AppDelegate.swift in Sources */,
 				180231CE1E1456C600FA8322 /* AlbumsContentViewController.swift in Sources */,
+				18AEEC491E2FA01B00AB97B4 /* FRImage.swift in Sources */,
+				18AEEC4F1E2FAB1100AB97B4 /* Camera.swift in Sources */,
 				188C04FA1E1074D6008B58EB /* FeedCell.swift in Sources */,
 				182681931E1D822500D96764 /* CommentCell.swift in Sources */,
 				1838C2431E11193E00E02F88 /* WallPost.swift in Sources */,
