@@ -58,12 +58,20 @@ class ChatViewController: UIViewController {
     // MARK: - ACTIONS
     @IBAction func logoutButtonTapped() {
         
-        do {
-            try FIRAuth.auth()?.signOut()
+        GeneralHelper.sharedHelper.showLogoutView(onViewController: self) { (success) in
             
-        } catch {
-            self.alertError(error: error as NSError)
+            if success == true {
+                do {
+                    try FIRAuth.auth()?.signOut()
+                    
+                } catch {
+                    self.alertError(error: error as NSError)
+                }
+            }
+            
         }
+        
+        
         
     }
     

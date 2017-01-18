@@ -56,5 +56,28 @@ class GeneralHelper {
         
     }
     
+    public func showLogoutView(onViewController viewController: UIViewController, withHandler handler: @escaping (_ success: Bool) -> Void) {
+        
+        let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        let logOut = UIAlertAction(title: "Log Out", style: .destructive) { (alert: UIAlertAction!) in
+            
+            handler(true)
+            
+//            self.logOut()
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (alert: UIAlertAction!) in
+            
+        }
+        
+        optionMenu.addAction(logOut)
+        optionMenu.addAction(cancelAction)
+        
+        viewController.present(optionMenu, animated: true, completion: nil)
+        
+    }
+
+    
 }
 
