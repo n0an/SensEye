@@ -1605,7 +1605,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="e8o-o7-HvS">
-                                <rect key="frame" x="26" y="104" width="323" height="228"/>
+                                <rect key="frame" x="26" y="218" width="323" height="228"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="4K5-RO-QPx">
                                         <rect key="frame" x="0.0" y="0.0" width="323" height="148"/>
@@ -1751,18 +1751,40 @@
                                     <constraint firstAttribute="height" constant="228" id="aju-QR-VUT"/>
                                 </constraints>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sse-5z-hXY">
+                                <rect key="frame" x="147.5" y="80" width="80" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="DNW-v5-4Hi"/>
+                                    <constraint firstAttribute="height" constant="80" id="yBO-8u-mKF"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" image="icon-defaultAvatar">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P0a-vy-Xiy">
+                                <rect key="frame" x="111" y="168" width="152" height="30"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                <state key="normal" title="Change Profile Photo">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="eni-Zh-cDu" firstAttribute="top" secondItem="TKZ-Xg-WVu" secondAttribute="top" id="3Bk-NS-24t"/>
+                            <constraint firstItem="e8o-o7-HvS" firstAttribute="top" secondItem="P0a-vy-Xiy" secondAttribute="bottom" constant="20" id="ENA-cB-Z6c"/>
                             <constraint firstAttribute="trailing" secondItem="toT-H1-jDH" secondAttribute="trailing" id="EPY-rq-47M"/>
                             <constraint firstItem="toT-H1-jDH" firstAttribute="top" secondItem="TKZ-Xg-WVu" secondAttribute="top" id="F01-kM-goN"/>
                             <constraint firstAttribute="trailing" secondItem="eni-Zh-cDu" secondAttribute="trailing" id="Hx2-aC-631"/>
                             <constraint firstItem="2GH-j4-CG9" firstAttribute="top" secondItem="toT-H1-jDH" secondAttribute="bottom" id="Jvx-nt-gkY"/>
                             <constraint firstAttribute="trailingMargin" secondItem="e8o-o7-HvS" secondAttribute="trailing" constant="10" id="L3U-E5-z5L"/>
+                            <constraint firstItem="sse-5z-hXY" firstAttribute="top" secondItem="2sl-xe-QY1" secondAttribute="bottom" constant="16" id="TFf-YN-IW0"/>
                             <constraint firstItem="eni-Zh-cDu" firstAttribute="leading" secondItem="TKZ-Xg-WVu" secondAttribute="leading" id="b2z-UQ-Wqw"/>
                             <constraint firstItem="e8o-o7-HvS" firstAttribute="leading" secondItem="TKZ-Xg-WVu" secondAttribute="leadingMargin" constant="10" id="dCK-bH-lDP"/>
-                            <constraint firstItem="e8o-o7-HvS" firstAttribute="top" secondItem="2sl-xe-QY1" secondAttribute="bottom" constant="40" id="kGM-3U-QTd"/>
+                            <constraint firstItem="P0a-vy-Xiy" firstAttribute="top" secondItem="sse-5z-hXY" secondAttribute="bottom" constant="8" id="dGy-Tc-rsK"/>
+                            <constraint firstItem="P0a-vy-Xiy" firstAttribute="centerX" secondItem="sse-5z-hXY" secondAttribute="centerX" id="g4W-13-raX"/>
+                            <constraint firstItem="sse-5z-hXY" firstAttribute="centerX" secondItem="TKZ-Xg-WVu" secondAttribute="centerX" id="jBq-hR-CTA"/>
                             <constraint firstItem="2GH-j4-CG9" firstAttribute="top" secondItem="eni-Zh-cDu" secondAttribute="bottom" id="pEt-6o-xWk"/>
                             <constraint firstItem="toT-H1-jDH" firstAttribute="leading" secondItem="TKZ-Xg-WVu" secondAttribute="leading" id="xgc-xl-ycR"/>
                         </constraints>
@@ -1871,6 +1893,7 @@
         <image name="facebook" width="128" height="128"/>
         <image name="facebook-1" width="21" height="20"/>
         <image name="google" width="21" height="21"/>
+        <image name="icon-defaultAvatar" width="120" height="120"/>
         <image name="lock-1" width="20" height="27"/>
         <image name="nametag" width="24" height="20"/>
         <image name="space" width="1200" height="675"/>
