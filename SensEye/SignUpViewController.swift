@@ -154,13 +154,12 @@ extension SignUpViewController: UIImagePickerControllerDelegate, UINavigationCon
         
         self.avatarImageView.image = editedImage
         
-//        self.avatarButton.setImage(editedImage, for: [])
         
         picker.dismiss(animated: true, completion: nil)
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-//        picker.dismiss(animated: true, completion: nil)
+        picker.dismiss(animated: true, completion: nil)
     }
     
     
