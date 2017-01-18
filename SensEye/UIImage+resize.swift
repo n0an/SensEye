@@ -10,8 +10,8 @@ import UIKit
 
 extension UIImage {
     
-    func resized() -> UIImage {
-        let height: CGFloat = 800.0
+    func resized(forHeight height: CGFloat) -> UIImage {
+//        let height: CGFloat = 800.0
         let ratio = self.size.width / self.size.height
         let width = height * ratio
         let newSize = CGSize(width: width, height: height)

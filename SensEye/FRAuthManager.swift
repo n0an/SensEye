@@ -31,7 +31,7 @@ class FRAuthManager {
     }
     
     // MARK: - Sign Up Method
-    func signUp(withEmail email: String, username: String, password: String, onComplete: FRAuthCompletionHandler?) {
+    func signUp(withEmail email: String, username: String, password: String, avatarImage: UIImage?, onComplete: FRAuthCompletionHandler?) {
         
         FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (firCreatedUser, error) in
             
@@ -41,7 +41,7 @@ class FRAuthManager {
                 
             } else if let firCreatedUser = firCreatedUser {
                 
-                let newUser = FRUser(uid: firCreatedUser.uid, username: username)
+                let newUser = FRUser(uid: firCreatedUser.uid, username: username, avatarImage: avatarImage)
                 
                 newUser.save(completion: { (error) in
                     

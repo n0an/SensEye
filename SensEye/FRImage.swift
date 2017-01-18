@@ -25,15 +25,19 @@ class FRImage {
         
         let imageUid = NSUUID().uuidString
         
-        let resizedImage = self.image.resized()
+        let resizedImage = self.image.resized(forHeight: 480)
     
         let imageData = UIImageJPEGRepresentation(resizedImage, 0.5)
         
+        let metaData = FIRStorageMetadata()
+        metaData.contentType = "image/jpeg"
+        
         ref = FRStorageManager.sharedManager.REF_STORAGE_AVATARS.child(userUID)
         
-        ref.put(imageData!, metadata: nil) { (meta, error) in
+        ref.put(imageData!, metadata: metaData) { (meta, error) in
             
             completion(meta, error)
+            
             
         }
         

@@ -18,12 +18,16 @@ class FRUser {
     var username: String
     var avatarImage: UIImage?
     
+    var avatarDownloadLink: String?
+    
     var userRef: FIRDatabaseReference
     
     // MARK: - INITIALIZERS
-    init(uid: String, username: String) {
+    init(uid: String, username: String, avatarImage: UIImage?) {
         self.uid =      uid
         self.username = username
+        
+        self.avatarImage = avatarImage
         
         userRef = FRDataManager.sharedManager.REF_USERS.child(self.uid)
     }
@@ -49,11 +53,22 @@ class FRUser {
         userRef.setValue(toDictionary())
         
         // save avatar image
-        if let avatarImage = avatarImage {
+        if let avatarImage = self.avatarImage {
+            
             let firImage = FRImage(image: avatarImage)
+            
             firImage.saveAvatarImageToFirebaseStorage(self.uid, completion: { (meta, error) in
+                
+                let downloadURLString = meta?.downloadURL()?.absoluteString
+                
+                if let urlString = downloadURLString {
+                    self.avatarDownloadLink = urlString
+                }
+                
                 completion(error)
             })
+        } else {
+            completion(nil)
         }
         
         

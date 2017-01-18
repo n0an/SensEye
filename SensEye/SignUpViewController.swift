@@ -76,7 +76,7 @@ class SignUpViewController: UIViewController {
         // Dismiss keyboard
         self.view.endEditing(true)
         
-        FRAuthManager.sharedManager.signUp(withEmail: email, username: username, password: password, onComplete: { (errMsg, data) in
+        FRAuthManager.sharedManager.signUp(withEmail: email, username: username, password: password, avatarImage: avatarImage, onComplete: { (errMsg, data) in
             guard errMsg == nil else {
                 self.alert(title: "Error", message: errMsg!)
                 return
@@ -93,21 +93,15 @@ class SignUpViewController: UIViewController {
         
         let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let camera = Camera(delegate: self)
-        
         let takePhoto = UIAlertAction(title: "Take Photo", style: .default) { (alert: UIAlertAction!) in
-            
             camera.presentPhotoCamera(target: self, canEdit: true)
-            
         }
         
         let sharePhoto = UIAlertAction(title: "Photo Library", style: .default) { (alert: UIAlertAction!) in
-            
             camera.presentPhotoLibrary(target: self, canEdit: true)
-            
         }
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (alert: UIAlertAction!) in
-            
         }
         
         optionMenu.addAction(takePhoto)
@@ -115,7 +109,6 @@ class SignUpViewController: UIViewController {
         optionMenu.addAction(cancelAction)
         
         self.present(optionMenu, animated: true, completion: nil)
-        
         
     }
 
