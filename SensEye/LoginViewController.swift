@@ -78,7 +78,7 @@ class LoginViewController: UIViewController {
             return
         }
         
-        AuthService.instance.loginToFireBase(withEmail: email, password: password, onComplete: { (errMsg, data) in
+        FRAuthManager.sharedManager.loginToFireBase(withEmail: email, password: password, onComplete: { (errMsg, data) in
             
             guard errMsg == nil else {
                 

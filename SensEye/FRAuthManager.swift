@@ -1,5 +1,5 @@
 //
-//  AuthService.swift
+//  FRAuthManager.swift
 //  SensEye
 //
 //  Created by Anton Novoselov on 16/01/2017.
@@ -12,12 +12,12 @@ import Firebase
 
 typealias FRCompletionHandler = (String?, Any?) -> Void
 
-class AuthService {
+class FRAuthManager {
     
-    private static let _instance = AuthService()
+    private static let _sharedManager = FRAuthManager()
     
-    static var instance: AuthService {
-        return _instance
+    static var sharedManager: FRAuthManager {
+        return _sharedManager
     }
     
     private var _currentUser: FUser!
@@ -38,7 +38,7 @@ class AuthService {
             
             if error != nil {
                 // report error
-                self.handleFirebaseError(error: error! as NSError, onComplete: onComplete)
+                onComplete?(error?.localizedDescription, nil)
                 
             } else if let firCreatedUser = firCreatedUser {
                 
@@ -48,8 +48,7 @@ class AuthService {
                     
                     if error != nil {
                         // report error
-                        print("===NAG=== SAVE USER ERROR: \(error!.localizedDescription)")
-                        self.handleFirebaseError(error: error as! NSError, onComplete: onComplete)
+                        onComplete?(error?.localizedDescription, nil)
                         
                     } else {
                         
@@ -65,12 +64,14 @@ class AuthService {
         self.completeSignIn(withEmail: email, password: password, onComplete: onComplete)
     }
     
-    // MARK: - Helper Methods
+    // MARK: - HELPER METHODS
     func completeSignIn(withEmail email: String, password: String, onComplete: FRCompletionHandler?) {
         
         FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (firSignedUser, error) in
+            
             if let error = error {
-                self.handleFirebaseError(error: error as NSError, onComplete: onComplete)
+                onComplete?(error.localizedDescription, nil)
+
             } else {
                 // We have successfully logged in
                 onComplete?(nil, firSignedUser)
@@ -79,29 +80,6 @@ class AuthService {
     }
     
     
-    // MARK: - Handle Firebase Errors
-    func handleFirebaseError(error: NSError, onComplete: FRCompletionHandler?) {
-        print("===NAG=== \(error.localizedDescription)")
-        
-        if let errorCode = FIRAuthErrorCode(rawValue: error.code) {
-            switch errorCode {
-            case .errorCodeInvalidEmail:
-                onComplete?(error.localizedDescription, nil)
-                
-            case .errorCodeWrongPassword:
-                onComplete?(error.localizedDescription, nil)
-                
-            case .errorCodeAccountExistsWithDifferentCredential:
-                fallthrough
-            case .errorCodeEmailAlreadyInUse:
-                onComplete?(error.localizedDescription, nil)
-                
-            default:
-                onComplete?(error.localizedDescription, nil)
-            }
-        }
-        
-        onComplete?(error.localizedDescription, nil)
-    }
+  
     
 }

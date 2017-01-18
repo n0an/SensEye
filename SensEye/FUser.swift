@@ -24,14 +24,14 @@ class FUser {
         self.uid =      uid
         self.username = username
         
-        userRef = DataService.instance.REF_USERS.child(self.uid)
+        userRef = FRDataManager.sharedManager.REF_USERS.child(self.uid)
     }
     
     init(uid: String, dictionary: [String: Any]) {
         self.uid = uid
         self.username = dictionary["username"] as! String
         
-        userRef = DataService.instance.REF_USERS.child(self.uid)
+        userRef = FRDataManager.sharedManager.REF_USERS.child(self.uid)
     }
     
     

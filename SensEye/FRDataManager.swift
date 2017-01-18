@@ -1,5 +1,5 @@
 //
-//  DataService.swift
+//  FRDataManager.swift
 //  SensEye
 //
 //  Created by Anton Novoselov on 16/01/2017.
@@ -13,12 +13,12 @@ let DB_ROOT         = FIRDatabase.database().reference()
 let USERS_REF       = "users"
 let MESSAGES_REF    = "messages"
 
-class DataService {
+class FRDataManager {
     
-    private static let _instance = DataService()
+    private static let _sharedManager = FRDataManager()
     
-    static var instance: DataService {
-        return _instance
+    static var sharedManager: FRDataManager {
+        return _sharedManager
     }
     
     // MARK: - PUBLIC PROPERTIES

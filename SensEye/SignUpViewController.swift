@@ -46,7 +46,6 @@ class SignUpViewController: UIViewController {
         
         // Validate the input
         
-        
         guard let username = nameTextField.text, username != "",
             let email = emailTextField.text, email != "",
             let password = passwordTextField.text, password != "" else {
@@ -56,7 +55,7 @@ class SignUpViewController: UIViewController {
                 return
         }
         
-        AuthService.instance.signUp(withEmail: email, username: username, password: password, onComplete: { (errMsg, data) in
+        FRAuthManager.sharedManager.signUp(withEmail: email, username: username, password: password, onComplete: { (errMsg, data) in
             
             guard errMsg == nil else {
                 

@@ -14,9 +14,9 @@
 		18251C461E2D5160000DBE57 /* RecetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18251C451E2D5160000DBE57 /* RecetPasswordViewController.swift */; };
 		18251C481E2D51A5000DBE57 /* UITextField+Placeholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18251C471E2D51A5000DBE57 /* UITextField+Placeholder.swift */; };
 		18251C4A1E2D53F4000DBE57 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18251C491E2D53F4000DBE57 /* SignUpViewController.swift */; };
-		18251C4C1E2D5B92000DBE57 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18251C4B1E2D5B92000DBE57 /* AuthService.swift */; };
+		18251C4C1E2D5B92000DBE57 /* FRAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18251C4B1E2D5B92000DBE57 /* FRAuthManager.swift */; };
 		18251C4F1E2D5E7A000DBE57 /* FUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18251C4E1E2D5E7A000DBE57 /* FUser.swift */; };
-		18251C511E2D5FCB000DBE57 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18251C501E2D5FCB000DBE57 /* DataService.swift */; };
+		18251C511E2D5FCB000DBE57 /* FRDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18251C501E2D5FCB000DBE57 /* FRDataManager.swift */; };
 		1826818D1E1D781000D96764 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1826818C1E1D781000D96764 /* Comment.swift */; };
 		1826818F1E1D79D300D96764 /* ServerObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1826818E1E1D79D300D96764 /* ServerObject.swift */; };
 		182681911E1D7C9C00D96764 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182681901E1D7C9C00D96764 /* PostViewController.swift */; };
@@ -73,9 +73,9 @@
 		18251C451E2D5160000DBE57 /* RecetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecetPasswordViewController.swift; sourceTree = "<group>"; };
 		18251C471E2D51A5000DBE57 /* UITextField+Placeholder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+Placeholder.swift"; sourceTree = "<group>"; };
 		18251C491E2D53F4000DBE57 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
-		18251C4B1E2D5B92000DBE57 /* AuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		18251C4B1E2D5B92000DBE57 /* FRAuthManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FRAuthManager.swift; sourceTree = "<group>"; };
 		18251C4E1E2D5E7A000DBE57 /* FUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FUser.swift; sourceTree = "<group>"; };
-		18251C501E2D5FCB000DBE57 /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		18251C501E2D5FCB000DBE57 /* FRDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FRDataManager.swift; sourceTree = "<group>"; };
 		1826818C1E1D781000D96764 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		1826818E1E1D79D300D96764 /* ServerObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerObject.swift; sourceTree = "<group>"; };
 		182681901E1D7C9C00D96764 /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
@@ -155,8 +155,8 @@
 		18251C521E2D5FCF000DBE57 /* Firebase */ = {
 			isa = PBXGroup;
 			children = (
-				18251C4B1E2D5B92000DBE57 /* AuthService.swift */,
-				18251C501E2D5FCB000DBE57 /* DataService.swift */,
+				18251C4B1E2D5B92000DBE57 /* FRAuthManager.swift */,
+				18251C501E2D5FCB000DBE57 /* FRDataManager.swift */,
 			);
 			name = Firebase;
 			sourceTree = "<group>";
@@ -485,7 +485,7 @@
 				18D623701E21423D00138117 /* AboutCellSocnet.swift in Sources */,
 				18251C4A1E2D53F4000DBE57 /* SignUpViewController.swift in Sources */,
 				18D6236C1E213AE200138117 /* AboutTableViewController.swift in Sources */,
-				18251C511E2D5FCB000DBE57 /* DataService.swift in Sources */,
+				18251C511E2D5FCB000DBE57 /* FRDataManager.swift in Sources */,
 				1838C2471E112CA200E02F88 /* Group.swift in Sources */,
 				1826818D1E1D781000D96764 /* Comment.swift in Sources */,
 				18251C481E2D51A5000DBE57 /* UITextField+Placeholder.swift in Sources */,
@@ -497,7 +497,7 @@
 				183E2A201E16B5180099F775 /* RoundedView.swift in Sources */,
 				18A9FAE41E2E9D93004C548B /* ChatViewController.swift in Sources */,
 				18FC625C1E113E9C00E25A18 /* Photo.swift in Sources */,
-				18251C4C1E2D5B92000DBE57 /* AuthService.swift in Sources */,
+				18251C4C1E2D5B92000DBE57 /* FRAuthManager.swift in Sources */,
 				188C04F81E1074C8008B58EB /* FeedViewController.swift in Sources */,
 				184DE8AC1E15A89300E98926 /* ACRotateTransitionAnimator.swift in Sources */,
 				189931701E2D4E23006E00C6 /* FancyButton.swift in Sources */,

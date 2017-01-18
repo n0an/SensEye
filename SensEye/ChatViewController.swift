@@ -22,12 +22,12 @@ class ChatViewController: UIViewController {
             
             if let user = user {
                 
-                DataService.instance.REF_USERS.child(user.uid).observeSingleEvent(of: .value, with: { (snapshot) in
+                FRDataManager.sharedManager.REF_USERS.child(user.uid).observeSingleEvent(of: .value, with: { (snapshot) in
                     
                     if let userDict = snapshot.value as? [String: Any] {
                         
-                        AuthService.instance.currentUser = FUser(uid: user.uid, dictionary: userDict)
-                        print("===NAG===: currentUser = \(AuthService.instance.currentUser.username)")
+                        FRAuthManager.sharedManager.currentUser = FUser(uid: user.uid, dictionary: userDict)
+                        print("===NAG===: currentUser = \(FRAuthManager.sharedManager.currentUser.username)")
                         
                     }
                     
