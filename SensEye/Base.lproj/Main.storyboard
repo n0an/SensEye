@@ -1828,14 +1828,26 @@
                                     <action selector="logoutButtonTapped" destination="WBC-Av-IXy" eventType="touchUpInside" id="93o-Dy-mXj"/>
                                 </connections>
                             </button>
+                            <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-defaultAvatar" translatesAutoresizingMaskIntoConstraints="NO" id="C52-jc-EZ6" customClass="CircleImageView" customModule="SensEye" customModuleProvider="target">
+                                <rect key="frame" x="147" y="130" width="80" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="8Kz-lR-0Xt"/>
+                                    <constraint firstAttribute="height" constant="80" id="Ogh-s1-a1T"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="ssP-E0-Txf" firstAttribute="centerY" secondItem="FPs-QB-kc4" secondAttribute="centerY" id="41q-6K-QKD"/>
+                            <constraint firstItem="C52-jc-EZ6" firstAttribute="top" secondItem="tw5-mH-1k4" secondAttribute="bottom" constant="66" id="Pno-I3-Ug4"/>
+                            <constraint firstItem="C52-jc-EZ6" firstAttribute="centerX" secondItem="FPs-QB-kc4" secondAttribute="centerX" id="eHD-X8-2dD"/>
                             <constraint firstItem="ssP-E0-Txf" firstAttribute="centerX" secondItem="FPs-QB-kc4" secondAttribute="centerX" id="tZl-KJ-WP4"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Gbw-nE-HYa"/>
+                    <connections>
+                        <outlet property="currentUserAvatarImageView" destination="C52-jc-EZ6" id="dId-lX-wJP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AJr-dG-5hl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

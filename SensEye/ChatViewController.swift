@@ -13,7 +13,11 @@ class ChatViewController: UIViewController {
     
     // MARK: - OUTLETS
     @IBOutlet weak var logoutButton: UIButton!
+    @IBOutlet weak var currentUserAvatarImageView: UIImageView!
 
+    var currentUser: FRUser!
+    
+    
     // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,10 +31,12 @@ class ChatViewController: UIViewController {
                     if let userDict = snapshot.value as? [String: Any] {
                         
                         FRAuthManager.sharedManager.currentUser = FRUser(uid: user.uid, dictionary: userDict)
+                        self.currentUser = FRAuthManager.sharedManager.currentUser
+                        
                         print("===NAG===: currentUser = \(FRAuthManager.sharedManager.currentUser.username)")
                         
                         
-//                        self.fetchMessages()
+                        self.fetchMessages()
                         
                     }
                     
@@ -54,9 +60,39 @@ class ChatViewController: UIViewController {
     }
     
     // MARK: - HELPER METHODS
-    func goToLoginVC() {
+    
+    func fetchMessages() {
+        
+        if self.currentUser.avatarImage == nil {
+            
+            self.currentUserAvatarImageView.image = UIImage(named: "icon-defaultAvatar")
+            
+            self.currentUser.downloadAvatarImage { (image, error) in
+                
+                if let image = image {
+                    
+                    self.currentUserAvatarImageView.image = image
+                    
+                } else if let error = error {
+                    self.alertError(error: error as NSError)
+                }
+                
+                
+            }
+            
+        } else {
+            
+            self.currentUserAvatarImageView.image = currentUser.avatarImage
+            
+        }
+        
         
     }
+    
+    
+    
+    
+    
     
     // MARK: - ACTIONS
     @IBAction func logoutButtonTapped() {

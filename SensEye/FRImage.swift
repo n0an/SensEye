@@ -23,7 +23,7 @@ class FRImage {
     
     func saveAvatarImageToFirebaseStorage(_ userUID: String, completion: @escaping (FIRStorageMetadata?, Error?) -> Void) {
         
-        let imageUid = NSUUID().uuidString
+//        let imageUid = NSUUID().uuidString
         
         let resizedImage = self.image.resized(forHeight: 480)
     
@@ -38,22 +38,33 @@ class FRImage {
             
             completion(meta, error)
             
-            
         }
-        
-        
-        
     }
     
     
     
+}
+
+extension FRImage {
     
-    
-    
-    
-    
-    
-    
+    class func downloadAvatarImageFromFirebaseStorage(_ userUID: String, completion: @escaping (UIImage?, Error?) -> Void) {
+        
+        let ref = FRStorageManager.sharedManager.REF_STORAGE_AVATARS.child(userUID)
+        
+        ref.data(withMaxSize: 1 * 1024 * 1024) { (imageData, error) in
+            
+            if let imageData = imageData {
+                let image = UIImage(data: imageData)
+                completion(image, nil)
+            } else {
+                completion(nil, error)
+            }
+            
+            
+        }
+        
+        
+    }
     
     
     

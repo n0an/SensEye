@@ -59,11 +59,11 @@ class FRUser {
             
             firImage.saveAvatarImageToFirebaseStorage(self.uid, completion: { (meta, error) in
                 
-                let downloadURLString = meta?.downloadURL()?.absoluteString
-                
-                if let urlString = downloadURLString {
-                    self.avatarDownloadLink = urlString
-                }
+//                let downloadURLString = meta?.downloadURL()?.absoluteString
+//                
+//                if let urlString = downloadURLString {
+//                    self.avatarDownloadLink = urlString
+//                }
                 
                 completion(error)
             })
@@ -74,6 +74,26 @@ class FRUser {
         
 //        completion(nil)
     }
+    
+    
+    
+    func downloadAvatarImage(completion: @escaping (UIImage?, Error?) -> Void) {
+        
+        FRImage.downloadAvatarImageFromFirebaseStorage(self.uid) { (image, error) in
+            
+            self.avatarImage = image
+            
+            completion(image, error)
+            
+        }
+        
+    }
+    
+    
+    
+    
+    
+    
 }
 
 
@@ -84,3 +104,21 @@ extension FRUser: Equatable { }
 func ==(lhs: FRUser, rhs: FRUser) -> Bool {
     return lhs.uid == rhs.uid
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
