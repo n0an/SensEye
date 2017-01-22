@@ -18,23 +18,10 @@ class ChatViewController: JSQMessagesViewController {
     
     var messagesRef = FRDataManager.sharedManager.REF_MESSAGES
     
-    var messages = [FRMessage]()
-    
-    var jsqMessages = [JSQMessage]()
-    
-    var outgoingBubble: JSQMessagesBubbleImage!
-    var incomingBubble: JSQMessagesBubbleImage!
-    
     var chatUsers: [FRUser] = []
+        var initialLoadComplete: Bool = false
     
-    
-    
-    // =============================================
-    // vvvvvvvvvvvvvvv QUICK CHAT VER vvvvvvvvvvvvv
-    // =============================================
-
-    var initialLoadComplete: Bool = false
-    
+    var messages = [FRMessage]()
     var messagesLoaded = [FRMessage]()
     
     
@@ -43,8 +30,12 @@ class ChatViewController: JSQMessagesViewController {
 
     var loadCount = 0
     
-    // ^^^^^^^^^^^^^^^ QUICK CHAT VER ^^^^^^^^^^^^^^^^
-
+    
+    var jsqMessages = [JSQMessage]()
+    
+    var outgoingBubble: JSQMessagesBubbleImage!
+    var incomingBubble: JSQMessagesBubbleImage!
+    
     
     
     
@@ -112,12 +103,10 @@ class ChatViewController: JSQMessagesViewController {
     }
     
     
-    
+    // * OBSERVERS
     func observeNewMessages() {
         
         let messagesRef = FRDataManager.sharedManager.REF_MESSAGES.child(self.chat.uid)
-        
-        
         
         messagesRef.observe(.childAdded, with: { (snapshot) in
             
@@ -125,7 +114,6 @@ class ChatViewController: JSQMessagesViewController {
                 
                 let message = FRMessage(uid: snapshot.key, chatId: self.chat.uid, dictionary: snapshot.value as! [String: Any])
 
-                
                 if self.initialLoadComplete {
                     
                     let incoming = self.insertMessage(message)
@@ -211,6 +199,30 @@ class ChatViewController: JSQMessagesViewController {
     }
     
     
+    
+    func loadMore(maxNumber: Int, minNumber: Int) {
+        
+        max = minNumber - 1
+        min = max - kNUMBEROFMESSAGES
+        
+        if min < 0 {
+            
+            min = 0
+        }
+        
+        for i in (min ... max).reversed() {
+            
+            let message = self.messagesLoaded[i]
+            self.insertNewMessage(message)
+            loadCount += 1
+        }
+        
+        self.showLoadEarlierMessagesHeader = (loadCount != messagesLoaded.count)
+        
+    }
+    
+    
+    // ** INSERT NEW MESSAGE AFTER TAPPING LOAD MORE BUTTON
     func insertNewMessage(_ message: FRMessage) -> Bool {
         
         let incomingMessage = IncomingMessage(collectionView: self.collectionView)
@@ -224,6 +236,7 @@ class ChatViewController: JSQMessagesViewController {
         
     }
     
+    // ** CAST FRMESSAGE TO JSQMESSAGE. POPULATING JSQMESSAGES ARRAY
     func insertMessage(_ message: FRMessage) -> Bool {
         
         let incomingMessage = IncomingMessage(collectionView: self.collectionView)
@@ -237,6 +250,7 @@ class ChatViewController: JSQMessagesViewController {
         let jsqMessage = incomingMessage.createJSQMessage(fromFRMessage: message)
         
         self.messages.append(message)
+        
         self.jsqMessages.append(jsqMessage)
         
         return self.incomingMessage(message)
@@ -282,53 +296,13 @@ class ChatViewController: JSQMessagesViewController {
 
         
     }
-    
-    
-    
-//    func updateMessage(_ messageId: String) {
-//        
-//        FRDataManager.sharedManager.REF_MESSAGES.child(messageId).observe(.value, with: { (snapshot) in
-//            
-//            let message = FRMessage(uid: messageId, dictionary: snapshot.value as! [String: Any])
-//            
-//            for index in 0 ..< self.messages.count {
-//                
-//                let temp = self.messages[index]
-//                
-//                if message.uid == temp.uid {
-//                    
-//                    self.messages[index] = message
-//                    self.collectionView!.reloadData()
-//                }
-//            }
-//            
-//        })
-//        
-//    }
+   
 
     
     
     
     // ^^^^^^^^^^^^^^^ QUICK CHAT VER ^^^^^^^^^^^^^^^^
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    func addMessages(_ message: FRMessage) {
-        
-        let jsqMessage = JSQMessage(senderId: message.senderUID, displayName: message.senderDisplayName, text: message.text)
-        // TODO: - Check this method - look at Duc source, and in QuickChat
-        
-        self.jsqMessages.append(jsqMessage!)
-        
-    }
     
     func setupBubbleImages() {
         
@@ -424,19 +398,15 @@ extension ChatViewController {
     
 }
 
-
+// MARK: - JSQMessages Delegate
 // MARK: - SEND MESSAGES
 extension ChatViewController {
     
     override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
         
-//        let newMessage = FRMessage(senderUID: currentUser.uid, senderDisplayName: currentUser.username, text: text)
-        
         let newMessage = FRMessage(chatId: self.chat.uid, senderUID: currentUser.uid, senderDisplayName: currentUser.username, text: text)
         
-        
         newMessage.save()
-        
         
         
         JSQSystemSoundPlayer.jsq_playMessageSentSound()
@@ -445,6 +415,15 @@ extension ChatViewController {
         
         chat.send(message: newMessage)
     }
+    
+    override func collectionView(_ collectionView: JSQMessagesCollectionView!, header headerView: JSQMessagesLoadEarlierHeaderView!, didTapLoadEarlierMessagesButton sender: UIButton!) {
+        
+        self.loadMore(maxNumber: max, minNumber: min)
+        self.collectionView.reloadData()
+        
+        
+    }
+    
     
     
 }
