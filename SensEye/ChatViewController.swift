@@ -34,7 +34,17 @@ class ChatViewController: JSQMessagesViewController {
         self.title = chat.withUserName
         
         
-        let backButton = UIBarButtonItem(image: UIImage(named: "icon-back"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(actionBackButtonTapped))
+        var backButton: UIBarButtonItem
+            
+
+        if currentUser.uid == appOwnerUID {
+            backButton = UIBarButtonItem(image: UIImage(named: "icon-back"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(actionBackButtonTapped))
+
+        } else {
+            backButton = UIBarButtonItem(title: "Logout", style: .done, target: self, action: #selector(logoutButtonTapped))
+
+        }
+        
         self.navigationItem.leftBarButtonItem = backButton
         
         
@@ -131,6 +141,23 @@ class ChatViewController: JSQMessagesViewController {
 
 
     // MARK: - ACTIONS
+    
+    func logoutButtonTapped() {
+        
+        GeneralHelper.sharedHelper.showLogoutView(onViewController: self) { (success) in
+            
+            if success == true {
+                do {
+                    try FIRAuth.auth()?.signOut()
+                    
+                } catch {
+                    self.alertError(error: error as NSError)
+                }
+            }
+            
+        }
+        
+    }
     
     func actionBackButtonTapped() {
         

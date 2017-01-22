@@ -31,6 +31,12 @@ class RecentViewController: UIViewController {
         super.viewDidLoad()
 
         self.currentUser = FRAuthManager.sharedManager.currentUser
+        
+        let backButton = UIBarButtonItem(title: "Logout", style: .done, target: self, action: #selector(logoutButtonTapped))
+
+        
+        self.navigationItem.leftBarButtonItem = backButton
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -75,6 +81,26 @@ class RecentViewController: UIViewController {
     func alreadyAddedChat(_ chat: FRChat) -> Bool {
         
         return self.chats.contains(chat)
+        
+    }
+    
+    
+    // MARK: - ACTIONS
+    
+    func logoutButtonTapped() {
+        
+        GeneralHelper.sharedHelper.showLogoutView(onViewController: self) { (success) in
+            
+            if success == true {
+                do {
+                    try FIRAuth.auth()?.signOut()
+                    
+                } catch {
+                    self.alertError(error: error as NSError)
+                }
+            }
+            
+        }
         
     }
     
