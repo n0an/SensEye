@@ -15,6 +15,8 @@ class FRMessage {
     // MARK: - PROPERTIES
     var uid: String
     
+    var chatId: String
+    
     var senderDisplayName: String
     var senderUID: String
     
@@ -25,9 +27,11 @@ class FRMessage {
     var messageRef: FIRDatabaseReference
     
     // MARK: - INITIALIZERS
-    init(senderUID: String, senderDisplayName: String, text: String) {
+    init(chatId: String, senderUID: String, senderDisplayName: String, text: String) {
         
-        self.messageRef = FRDataManager.sharedManager.REF_MESSAGES.childByAutoId()
+        self.messageRef = FRDataManager.sharedManager.REF_MESSAGES.child(chatId).childByAutoId()
+        
+        self.chatId = chatId
         
         self.uid = messageRef.key
         
@@ -38,12 +42,13 @@ class FRMessage {
         
     }
     
-    init(uid: String, dictionary: [String: Any]) {
+    init(uid: String, chatId: String, dictionary: [String: Any]) {
         
         self.uid = uid
         
+        self.chatId = chatId
         
-        self.messageRef = FRDataManager.sharedManager.REF_MESSAGES.child(self.uid)
+        self.messageRef = FRDataManager.sharedManager.REF_MESSAGES.child(chatId).child(self.uid)
         
         self.senderDisplayName = dictionary["senderDisplayName"] as! String
         self.senderUID = dictionary["senderUID"] as! String

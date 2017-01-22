@@ -15,9 +15,12 @@ class OutgoingMessage {
     
     var message: FRMessage
     
-    init(text: String, senderId: String, senderName: String, date: Date) {
+    init(chatId: String, text: String, senderId: String, senderName: String, date: Date) {
         
-        self.message = FRMessage(senderUID: senderId, senderDisplayName: senderName, text: text)
+//        self.message = FRMessage(senderUID: senderId, senderDisplayName: senderName, text: text)
+        
+        self.message = FRMessage(chatId: chatId, senderUID: senderId, senderDisplayName: senderName, text: text)
+        
         
     }
     

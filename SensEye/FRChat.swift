@@ -22,7 +22,7 @@ class FRChat {
     var withUserName: String
     var withUserUID: String
     
-    var messageIds: [String]
+//    var messageIds: [String]
     var messagesCount: Int
     
     var chatRef: FIRDatabaseReference
@@ -42,7 +42,7 @@ class FRChat {
         self.withUserName = withUserName
         self.withUserUID = withUserUID
         
-        self.messageIds = []
+//        self.messageIds = []
         self.messagesCount = 0
         
     }
@@ -109,19 +109,20 @@ class FRChat {
         
         // init messages
         
-        self.messageIds = []
+//        self.messageIds = []
+//        
+//        if let messageIdsDict = dictionary["messageIds"] as? [String: Any] {
+//            
+//            for message in messageIdsDict.keys {
+//                
+//                self.messageIds.append(message)
+//                
+//            }
+//            
+//        }
         
-        if let messageIdsDict = dictionary["messageIds"] as? [String: Any] {
-            
-            for message in messageIdsDict.keys {
-                
-                self.messageIds.append(message)
-                
-            }
-            
-        }
-        
-        self.messagesCount = self.messageIds.count
+        // TODO: make count
+        self.messagesCount = 0
         
     }
     
@@ -141,11 +142,11 @@ class FRChat {
         }
         
         // saving messagesIds
-        let messageIdsRef = self.chatRef.child("messageIds")
-        
-        for messageId in messageIds {
-            messageIdsRef.child(messageId).setValue(true)
-        }
+//        let messageIdsRef = self.chatRef.child("messageIds")
+//        
+//        for messageId in messageIds {
+//            messageIdsRef.child(messageId).setValue(true)
+//        }
         
     }
     
@@ -193,13 +194,13 @@ extension FRChat {
     // TODO: - ADD SEND MESSAGE HANDLER
     
     func send(message: FRMessage) {
-        self.messageIds.append(message.uid)
+//        self.messageIds.append(message.uid)
         
         self.lastMessage = message.text
         
         // Partially saving when sending a message
         self.chatRef.child("lastMessage").setValue(self.lastMessage)
-        self.chatRef.child("messageIds").child(message.uid).setValue(true)
+//        self.chatRef.child("messageIds").child(message.uid).setValue(true)
         
         // TODO: - update lastUpdate using Firebase server value
     }

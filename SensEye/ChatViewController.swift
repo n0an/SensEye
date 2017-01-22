@@ -115,18 +115,16 @@ class ChatViewController: JSQMessagesViewController {
     
     func observeNewMessages() {
         
-        let chatMessageIdsRef = chat.chatRef.child("messageIds")
+        let messagesRef = FRDataManager.sharedManager.REF_MESSAGES.child(self.chat.uid)
         
-        chatMessageIdsRef.observe(.childAdded, with: { (snapshot) in
+        
+        
+        messagesRef.observe(.childAdded, with: { (snapshot) in
             
-            let messageId = snapshot.key
-            
-            
-            
-            FRDataManager.sharedManager.REF_MESSAGES.child(messageId).observeSingleEvent(of: .value, with: { (snapshot) in
+            if snapshot.exists() {
                 
-                let message = FRMessage(uid: messageId, dictionary: snapshot.value as! [String: Any])
-                
+                let message = FRMessage(uid: snapshot.key, chatId: self.chat.uid, dictionary: snapshot.value as! [String: Any])
+
                 
                 if self.initialLoadComplete {
                     
@@ -143,42 +141,49 @@ class ChatViewController: JSQMessagesViewController {
                 }
                 
                 
-                
-                
-//                self.messages.append(message)
-//                
-//                self.addMessages(message)
-//                
-//                self.finishReceivingMessage()
-            })
+            }
+            
         })
+        
+        
+        
+    
+        
     }
     
     
     func observeMessageChanged() {
         
-        let chatMessageIdsRef = chat.chatRef.child("messageIds")
         
-        chatMessageIdsRef.observe(.childChanged, with: { (snapshot) in
+        let messagesRef = FRDataManager.sharedManager.REF_MESSAGES.child(self.chat.uid)
+
+        messagesRef.observe(.childChanged, with: { (snapshot) in
+        
+            let message = FRMessage(uid: snapshot.key, chatId: self.chat.uid, dictionary: snapshot.value as! [String: Any])
             
-            self.updateMessage(snapshot.key)
+            self.updateMessage(message)
             
         })
-
+        
+        
+        
     }
     
     func obserInitialLoadMessages() {
         
-        let chatMessageIdsRef = chat.chatRef.child("messageIds")
+        let messagesRef = FRDataManager.sharedManager.REF_MESSAGES.child(self.chat.uid)
 
-        chatMessageIdsRef.observeSingleEvent(of: .value, with: { (snapshot) in
+        messagesRef.observeSingleEvent(of: .value, with: { (snapshot) in
             
             self.insertInitialMessages()
             self.finishReceivingMessage(animated: false)
             self.initialLoadComplete = true
             
             
+            
         })
+        
+  
         
     }
     
@@ -260,26 +265,46 @@ class ChatViewController: JSQMessagesViewController {
         
     }
     
-    func updateMessage(_ messageId: String) {
+    
+    
+    func updateMessage(_ message: FRMessage) {
         
-        FRDataManager.sharedManager.REF_MESSAGES.child(messageId).observe(.value, with: { (snapshot) in
+        for index in 0 ..< self.messages.count {
             
-            let message = FRMessage(uid: messageId, dictionary: snapshot.value as! [String: Any])
+            let temp = self.messages[index]
             
-            for index in 0 ..< self.messages.count {
+            if message.uid == temp.uid {
                 
-                let temp = self.messages[index]
-                
-                if message.uid == temp.uid {
-                    
-                    self.messages[index] = message
-                    self.collectionView!.reloadData()
-                }
+                self.messages[index] = message
+                self.collectionView!.reloadData()
             }
-            
-        })
+        }
+
         
     }
+    
+    
+    
+//    func updateMessage(_ messageId: String) {
+//        
+//        FRDataManager.sharedManager.REF_MESSAGES.child(messageId).observe(.value, with: { (snapshot) in
+//            
+//            let message = FRMessage(uid: messageId, dictionary: snapshot.value as! [String: Any])
+//            
+//            for index in 0 ..< self.messages.count {
+//                
+//                let temp = self.messages[index]
+//                
+//                if message.uid == temp.uid {
+//                    
+//                    self.messages[index] = message
+//                    self.collectionView!.reloadData()
+//                }
+//            }
+//            
+//        })
+//        
+//    }
 
     
     
@@ -405,7 +430,10 @@ extension ChatViewController {
     
     override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
         
-        let newMessage = FRMessage(senderUID: currentUser.uid, senderDisplayName: currentUser.username, text: text)
+//        let newMessage = FRMessage(senderUID: currentUser.uid, senderDisplayName: currentUser.username, text: text)
+        
+        let newMessage = FRMessage(chatId: self.chat.uid, senderUID: currentUser.uid, senderDisplayName: currentUser.username, text: text)
+        
         
         newMessage.save()
         
