@@ -42,7 +42,7 @@
 		1899316D1E2D4B7C006E00C6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899316C1E2D4B7C006E00C6 /* LoginViewController.swift */; };
 		189931701E2D4E23006E00C6 /* FancyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899316F1E2D4E23006E00C6 /* FancyButton.swift */; };
 		189FC5101E1E778C00092D2F /* PostHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189FC50F1E1E778C00092D2F /* PostHeaderView.swift */; };
-		18A9FAE41E2E9D93004C548B /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A9FAE31E2E9D93004C548B /* ChatViewController.swift */; };
+		18A9FAE41E2E9D93004C548B /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A9FAE31E2E9D93004C548B /* WelcomeViewController.swift */; };
 		18AA37D11E1053F700D5BCB1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AA37D01E1053F700D5BCB1 /* AppDelegate.swift */; };
 		18AA37D61E1053F700D5BCB1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18AA37D41E1053F700D5BCB1 /* Main.storyboard */; };
 		18AA37D81E1053F700D5BCB1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18AA37D71E1053F700D5BCB1 /* Assets.xcassets */; };
@@ -105,7 +105,7 @@
 		1899316C1E2D4B7C006E00C6 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		1899316F1E2D4E23006E00C6 /* FancyButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FancyButton.swift; sourceTree = "<group>"; };
 		189FC50F1E1E778C00092D2F /* PostHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostHeaderView.swift; sourceTree = "<group>"; };
-		18A9FAE31E2E9D93004C548B /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		18A9FAE31E2E9D93004C548B /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		18AA37CD1E1053F700D5BCB1 /* SensEye.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SensEye.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18AA37D01E1053F700D5BCB1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18AA37D51E1053F700D5BCB1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -205,7 +205,7 @@
 		18A9FAE51E2E9DC4004C548B /* Chat Tab */ = {
 			isa = PBXGroup;
 			children = (
-				18A9FAE31E2E9D93004C548B /* ChatViewController.swift */,
+				18A9FAE31E2E9D93004C548B /* WelcomeViewController.swift */,
 				1899316C1E2D4B7C006E00C6 /* LoginViewController.swift */,
 				18251C491E2D53F4000DBE57 /* SignUpViewController.swift */,
 				18251C451E2D5160000DBE57 /* RecetPasswordViewController.swift */,
@@ -508,7 +508,7 @@
 				188C04FC1E10FCBC008B58EB /* ServerManager.swift in Sources */,
 				18C395321E166D0200AE1867 /* NSDate+Utilities.m in Sources */,
 				183E2A201E16B5180099F775 /* RoundedView.swift in Sources */,
-				18A9FAE41E2E9D93004C548B /* ChatViewController.swift in Sources */,
+				18A9FAE41E2E9D93004C548B /* WelcomeViewController.swift in Sources */,
 				18FC625C1E113E9C00E25A18 /* Photo.swift in Sources */,
 				18AEEC4D1E2FA64D00AB97B4 /* FRStorageManager.swift in Sources */,
 				18251C4C1E2D5B92000DBE57 /* FRAuthManager.swift in Sources */,

@@ -1809,10 +1809,10 @@
             </objects>
             <point key="canvasLocation" x="2110" y="3993"/>
         </scene>
-        <!--Chat View Controller-->
+        <!--Welcome View Controller-->
         <scene sceneID="T0J-wO-jHU">
             <objects>
-                <viewController storyboardIdentifier="ChatVC" id="WBC-Av-IXy" customClass="ChatViewController" customModule="SensEye" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WelcomeVC" id="WBC-Av-IXy" customClass="WelcomeViewController" customModule="SensEye" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="tw5-mH-1k4"/>
                         <viewControllerLayoutGuide type="bottom" id="Bhp-BY-zaa"/>

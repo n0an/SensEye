@@ -1,5 +1,5 @@
 //
-//  ChatViewController.swift
+//  WelcomeViewController.swift
 //  SensEye
 //
 //  Created by Anton Novoselov on 17/01/2017.
@@ -9,12 +9,20 @@
 import UIKit
 import Firebase
 
-class ChatViewController: UIViewController {
+class WelcomeViewController: UIViewController {
     
     // MARK: - OUTLETS
     @IBOutlet weak var logoutButton: UIButton!
     @IBOutlet weak var currentUserAvatarImageView: UIImageView!
 
+    
+    // MARK: - PROPERTIES
+    enum Storyboard {
+        static let segueShowRecentChats = "showRecentChatsViewController"
+        static let segueShowChatVC = "showChatViewController"
+        
+    }
+    
     var currentUser: FRUser!
     
     
@@ -35,8 +43,8 @@ class ChatViewController: UIViewController {
                         
                         print("===NAG===: currentUser = \(FRAuthManager.sharedManager.currentUser.username)")
                         
+                        self.goToMessenger()
                         
-                        self.fetchMessages()
                         
                     }
                     
@@ -60,6 +68,16 @@ class ChatViewController: UIViewController {
     }
     
     // MARK: - HELPER METHODS
+    
+    func goToMessenger() {
+        
+        if self.currentUser.uid == "WHGetHIfSjRsWRnzyY6NEHWZso52" {
+            self.performSegue(withIdentifier: Storyboard.segueShowRecentChats, sender: nil)
+        } else {
+            self.performSegue(withIdentifier: Storyboard.segueShowChatVC, sender: nil)
+        }
+        
+    }
     
     func fetchMessages() {
         
@@ -92,8 +110,6 @@ class ChatViewController: UIViewController {
     
     
     
-    
-    
     // MARK: - ACTIONS
     @IBAction func logoutButtonTapped() {
         
@@ -113,6 +129,9 @@ class ChatViewController: UIViewController {
         
         
     }
+    
+    
+    
     
 
 
