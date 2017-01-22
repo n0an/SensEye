@@ -22,7 +22,6 @@ class FRChat {
     var withUserName: String
     var withUserUID: String
     
-//    var messageIds: [String]
     var messagesCount: Int
     
     var chatRef: FIRDatabaseReference
@@ -37,12 +36,9 @@ class FRChat {
         
         self.lastMessage = ""
         
-        // TODO: - lastUpdate using FIR Server Value
-        
         self.withUserName = withUserName
         self.withUserUID = withUserUID
         
-//        self.messageIds = []
         self.messagesCount = 0
         
     }
@@ -60,43 +56,11 @@ class FRChat {
         
         self.withUserUID = dictionary["withUserUID"] as! String
         
+        self.messagesCount = dictionary["messagesCount"] as! Int
+        
         // init users
         
-        
-//        var users: [FRUser] = []
-//        
-//        if let usersDict = dictionary["users"] as? [String: Any] {
-//            
-//            for user in usersDict.values {
-//                
-//                if let user = user as? [String: Any] {
-//                    
-//                    let userUid = user.first?.key
-//                    
-//                    let userRef = FRDataManager.sharedManager.REF_USERS.child(userUid!)
-//                    
-//                    userRef.observeSingleEvent(of: .value, with: { (snapshot) in
-//                        
-//                        let userKey = snapshot.key
-//                        let userDictionary = snapshot.value
-//                        
-//                        let user = FRUser(uid: userKey, dictionary: userDictionary as! [String : Any])
-//                        
-//                        users.append(user)
-//                        
-//                    })
-//                    
-//                    
-//                    
-//                }
-//                
-//            }
-//            
-//        }
-        
-        
         self.userIds = []
-        
         
         if let userIdsDict = dictionary["userIds"] as? [String: Any] {
             
@@ -106,23 +70,6 @@ class FRChat {
             
         }
         
-        
-        // init messages
-        
-//        self.messageIds = []
-//        
-//        if let messageIdsDict = dictionary["messageIds"] as? [String: Any] {
-//            
-//            for message in messageIdsDict.keys {
-//                
-//                self.messageIds.append(message)
-//                
-//            }
-//            
-//        }
-        
-        // TODO: make count
-        self.messagesCount = 0
         
     }
     
@@ -140,14 +87,7 @@ class FRChat {
         for userId in userIds {
             userIdsRef.child(userId).setValue(true)
         }
-        
-        // saving messagesIds
-//        let messageIdsRef = self.chatRef.child("messageIds")
-//        
-//        for messageId in messageIds {
-//            messageIdsRef.child(messageId).setValue(true)
-//        }
-        
+ 
     }
     
     func toDictionary() -> [String: Any] {
@@ -156,9 +96,9 @@ class FRChat {
             "lastMessage": lastMessage,
             "lastUpdate": FIRServerValue.timestamp(),
             "withUserName": withUserName,
-            "withUserUID": withUserUID
+            "withUserUID": withUserUID,
+            "messagesCount": messagesCount
             
-        
         ]
         
     }
@@ -200,13 +140,32 @@ extension FRChat {
         // Partially saving when sending a message
         self.chatRef.child("lastMessage").setValue(self.lastMessage)
 
-        self.chatRef.child("lastUpdate").setValue(message.lastUpdate)
+        self.chatRef.child("lastUpdate").setValue(FIRServerValue.timestamp())
+        
+        // Incrementing unread messages if current user IS NOT app owner
+        
+        if FRAuthManager.sharedManager.currentUser.uid != appOwnerUID {
+            
+            self.messagesCount += 1
+        }
+        
+//        if message.senderUID != FRAuthManager.sharedManager.currentUser.uid {
+//            self.messagesCount += 1
+//        }
+        
+        self.chatRef.child("messagesCount").setValue(self.messagesCount)
+        
+        
     }
     
     
     func clearUnreadMessagesCount() {
         
-        self.chatRef.child("messagesCount").setValue(0)
+        
+        if FRAuthManager.sharedManager.currentUser.uid == appOwnerUID {
+            self.messagesCount = 0
+            self.chatRef.child("messagesCount").setValue(0)
+        }
         
     }
     

@@ -16,6 +16,9 @@ class ChatTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var lastMessage: UILabel!
     
+    @IBOutlet weak var lastUpdateLabel: UILabel!
+    @IBOutlet weak var unreadMessagesLabel: UILabel!
+
     
     // MARK: - PROPERTIES
     var chat: FRChat! {
@@ -32,6 +35,13 @@ class ChatTableViewCell: UITableViewCell {
         self.titleLabel.text = chat.withUserName
         self.lastMessage.text = chat.lastMessage
         
+        
+        let timeInterval = chat.lastUpdate / 1000
+        let lastUpdateDate = NSDate(timeIntervalSince1970: timeInterval)
+        
+        self.lastUpdateLabel.text = lastUpdateDate.stringFromDate()
+        
+        self.unreadMessagesLabel.text = "\(chat.messagesCount)"
         
         FRImage.downloadAvatarImageFromFirebaseStorage(chat.withUserUID) { (image, error) in
             

@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SensEye/FRChat.swift"
-            timestampString = "506800392.273849"
+            timestampString = "506802880.679236"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "211"
-            endingLineNumber = "211"
+            startingLineNumber = "167"
+            endingLineNumber = "167"
             landmarkName = "clearUnreadMessagesCount()"
             landmarkType = "7">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SensEye/FRChat.swift"
-            timestampString = "506800559.843095"
+            timestampString = "506802690.858438"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "202"
-            endingLineNumber = "202"
+            startingLineNumber = "148"
+            endingLineNumber = "148"
             landmarkName = "send(message:)"
             landmarkType = "7">
          </BreakpointContent>

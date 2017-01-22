@@ -1981,7 +1981,9 @@
                                         <connections>
                                             <outlet property="featuredImageView" destination="fzc-MQ-B7v" id="hay-l2-80d"/>
                                             <outlet property="lastMessage" destination="w0J-n7-IIs" id="SPE-bx-Ho4"/>
+                                            <outlet property="lastUpdateLabel" destination="cv7-Qa-HIb" id="0rw-Q2-BEV"/>
                                             <outlet property="titleLabel" destination="pCB-bY-Hdh" id="3Yj-by-h5X"/>
+                                            <outlet property="unreadMessagesLabel" destination="EaU-2R-Ztk" id="fkf-Qw-OpL"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
