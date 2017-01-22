@@ -26,6 +26,6 @@ target 'SensEye' do
   
   # Messenger
   pod 'JSQMessagesViewController'
-
+  pod 'OneSignal'
 
 end

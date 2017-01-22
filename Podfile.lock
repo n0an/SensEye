@@ -51,6 +51,7 @@ PODS:
   - JSQMessagesViewController (7.3.4):
     - JSQSystemSoundPlayer (~> 2.0.1)
   - JSQSystemSoundPlayer (2.0.1)
+  - OneSignal (2.3.5)
   - Reveal-SDK (5)
   - Spring (1.0.3)
   - SVPullToRefresh (0.4.1)
@@ -64,6 +65,7 @@ DEPENDENCIES:
   - Firebase/Storage
   - Jelly
   - JSQMessagesViewController
+  - OneSignal
   - Reveal-SDK
   - Spring (from `https://github.com/MengTo/Spring.git`, branch `swift3`)
   - SVPullToRefresh
@@ -95,10 +97,11 @@ SPEC CHECKSUMS:
   Jelly: 116d4d5a884295b0b0d3bb1899ebf1a86e54dfb9
   JSQMessagesViewController: 39fed975e3c9f8eba7292071e29eeb541d105e66
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
+  OneSignal: 4cb42948ebc141bd5deb54d3fda25105db94f6d4
   Reveal-SDK: 7e3945c0c3649106c3cc8923672ee545e25605c0
   Spring: 3f02b5dc3308572ef177b3cad0fa7bbc4b0706f7
   SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
 
-PODFILE CHECKSUM: 30bccd4288dc63c2cf1be8d98295869c9f4ddb07
+PODFILE CHECKSUM: 027056293f7bf78744e20aa3a8e191f6c2ab2a80
 
 COCOAPODS: 1.1.1

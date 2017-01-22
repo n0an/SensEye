@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import OneSignal
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -22,6 +23,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.backgroundColor = mainThemeColor
         
         customizeAppearance()
+        
+        
+        
+        // oneSignal
+        
+        OneSignal.initWithLaunchOptions(launchOptions, appId: "2e5c5eb6-e526-4a05-8c76-9c1e022692b1", handleNotificationReceived: nil, handleNotificationAction: nil, settings: [kOSSettingsKeyInAppAlerts: false])
+        
+        
+        OneSignal.setLogLevel(ONE_S_LOG_LEVEL.LL_NONE, visualLevel: ONE_S_LOG_LEVEL.LL_NONE)
         
         
         return true

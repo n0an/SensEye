@@ -116,6 +116,7 @@
 		188C04FB1E10FCBC008B58EB /* ServerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerManager.swift; sourceTree = "<group>"; };
 		188FD7941E34F532007CA1EE /* IncomingMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncomingMessage.swift; sourceTree = "<group>"; };
 		188FD7961E34FF09007CA1EE /* OutgoingMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutgoingMessage.swift; sourceTree = "<group>"; };
+		188FD7981E3544C4007CA1EE /* SensEye.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SensEye.entitlements; sourceTree = "<group>"; };
 		1899316A1E2D42B7006E00C6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1899316C1E2D4B7C006E00C6 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		1899316F1E2D4E23006E00C6 /* FancyButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FancyButton.swift; sourceTree = "<group>"; };
@@ -254,6 +255,7 @@
 		18AA37CF1E1053F700D5BCB1 /* SensEye */ = {
 			isa = PBXGroup;
 			children = (
+				188FD7981E3544C4007CA1EE /* SensEye.entitlements */,
 				18AA37D01E1053F700D5BCB1 /* AppDelegate.swift */,
 				18C395331E166D1D00AE1867 /* Extensions */,
 				18FC625F1E114C1700E25A18 /* Model */,
@@ -420,6 +422,14 @@
 						DevelopmentTeam = 358V8FBM3U;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -703,6 +713,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = SensEye/SensEye.entitlements;
 				DEVELOPMENT_TEAM = 358V8FBM3U;
 				INFOPLIST_FILE = SensEye/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -720,6 +731,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = SensEye/SensEye.entitlements;
 				DEVELOPMENT_TEAM = 358V8FBM3U;
 				INFOPLIST_FILE = SensEye/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
