@@ -399,9 +399,9 @@ extension ChatViewController {
 }
 
 // MARK: - JSQMessages Delegate
-// MARK: - SEND MESSAGES
 extension ChatViewController {
     
+    // * DID PRESS SEND
     override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
         
         let newMessage = FRMessage(chatId: self.chat.uid, senderUID: currentUser.uid, senderDisplayName: currentUser.username, text: text)
@@ -416,11 +416,37 @@ extension ChatViewController {
         chat.send(message: newMessage)
     }
     
+    // * LOAD EARLIER MESSAGES
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, header headerView: JSQMessagesLoadEarlierHeaderView!, didTapLoadEarlierMessagesButton sender: UIButton!) {
         
         self.loadMore(maxNumber: max, minNumber: min)
         self.collectionView.reloadData()
         
+        
+    }
+    
+    // * DATE IN HEADER VIEW
+    override func collectionView(_ collectionView: JSQMessagesCollectionView!, attributedTextForCellTopLabelAt indexPath: IndexPath!) -> NSAttributedString! {
+        
+        if indexPath.item % 3 == 0 {
+            
+            let jsqMessage = self.jsqMessages[indexPath.item]
+            
+            return JSQMessagesTimestampFormatter.shared().attributedTimestamp(for: jsqMessage.date)
+            
+        }
+        
+        return nil
+    }
+    
+    override func collectionView(_ collectionView: JSQMessagesCollectionView!, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout!, heightForCellTopLabelAt indexPath: IndexPath!) -> CGFloat {
+        
+        if indexPath.item % 3 == 0 {
+            
+            return kJSQMessagesCollectionViewCellLabelHeightDefault
+        }
+        
+        return 0
         
     }
     
