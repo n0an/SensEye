@@ -33,13 +33,17 @@ class ChatViewController: JSQMessagesViewController {
         
         self.title = chat.withUserName
         
+        
+        let backButton = UIBarButtonItem(image: UIImage(named: "icon-back"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(actionBackButtonTapped))
+        self.navigationItem.leftBarButtonItem = backButton
+        
         self.fetchChatUsers()
         
         self.setupBubbleImages()
+        self.setupAvatarImages()
         
         self.observeNewMessages()
 
-        
     }
 
     
@@ -106,9 +110,23 @@ class ChatViewController: JSQMessagesViewController {
         
     }
     
+    // MARK: - AVATAR IMAGES
+    func setupAvatarImages() {
+        
+        // TODO: Download avatars from FIRStorage, and use them in this method
+        collectionView.collectionViewLayout.incomingAvatarViewSize = CGSize.zero
+        collectionView.collectionViewLayout.outgoingAvatarViewSize = CGSize.zero
+        
+    }
+
+
+    // MARK: - ACTIONS
     
-
-
+    func actionBackButtonTapped() {
+        
+        self.navigationController?.popViewController(animated: true)
+        
+    }
     
     
 }
@@ -118,6 +136,10 @@ extension ChatViewController {
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return jsqMessages.count
+    }
+    
+    override func collectionView(_ collectionView: JSQMessagesCollectionView!, messageDataForItemAt indexPath: IndexPath!) -> JSQMessageData! {
+        return jsqMessages[indexPath.item]
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -131,7 +153,7 @@ extension ChatViewController {
             cell.textView.textColor = UIColor.white
         } else {
             // INCOMING MESSAGE BLACK TEXT
-            cell.textView.textColor = UIColor.blue
+            cell.textView.textColor = UIColor.black
         }
         
         return cell
@@ -147,6 +169,10 @@ extension ChatViewController {
         } else {
             return self.incomingBubble
         }
+    }
+    
+    override func collectionView(_ collectionView: JSQMessagesCollectionView!, avatarImageDataForItemAt indexPath: IndexPath!) -> JSQMessageAvatarImageDataSource! {
+        return nil
     }
     
     

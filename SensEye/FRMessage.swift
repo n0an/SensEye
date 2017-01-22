@@ -34,8 +34,6 @@ class FRMessage {
         self.senderDisplayName = senderDisplayName
         self.senderUID = senderUID
         
-        // TODO: - lastUpdate using FIR Server Value
-        
         self.text = text
         
     }
@@ -70,10 +68,9 @@ class FRMessage {
     func toDictionary() -> [String: Any] {
         
         return [
-            "uid"                   :   uid,
             "senderDisplayName"     :   senderDisplayName,
             "senderUID"             :   senderUID,
-            "lastUpdate"            :   lastUpdate,
+            "lastUpdate"            :   FIRServerValue.timestamp(),
             "text"                  :   text
         ]
         

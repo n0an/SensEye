@@ -217,10 +217,10 @@
 		18A9FAE51E2E9DC4004C548B /* Chat Tab */ = {
 			isa = PBXGroup;
 			children = (
+				186E2A231E34A3540011AB88 /* WelcomeVC.swift */,
 				1899316C1E2D4B7C006E00C6 /* LoginViewController.swift */,
 				18251C491E2D53F4000DBE57 /* SignUpViewController.swift */,
 				18251C451E2D5160000DBE57 /* RecetPasswordViewController.swift */,
-				186E2A231E34A3540011AB88 /* WelcomeVC.swift */,
 				186E2A251E34A5D60011AB88 /* RecentViewController.swift */,
 				186E2A2D1E34BB940011AB88 /* ChatViewController.swift */,
 			);
