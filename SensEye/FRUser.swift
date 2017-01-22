@@ -94,6 +94,19 @@ class FRUser {
 }
 
 
+// MARK: - CHAT METHODS
+
+extension FRUser {
+    func saveNewChat(_ chat: FRChat) {
+        
+        FRDataManager.sharedManager.REF_USERS.child("chatIds/\(chat.uid)").setValue(true)
+        
+    }
+}
+
+
+
+
 
 // MARK: - Equatable
 // COMPARE METHOD (FOR "CONTAINS" FEATURE) - for checking if array constains current User

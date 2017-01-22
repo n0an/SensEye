@@ -25,11 +25,15 @@ class ChatViewController: JSQMessagesViewController {
     var outgoingBubble: JSQMessagesBubbleImage!
     var incomingBubble: JSQMessagesBubbleImage!
     
+    var chatUsers: [FRUser] = []
+    
     // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.title = chat.withUserName
+        
+        self.fetchChatUsers()
         
         self.setupBubbleImages()
         
@@ -39,7 +43,30 @@ class ChatViewController: JSQMessagesViewController {
     }
 
     
+    
     // MARK: - HELPER METHODS
+    func fetchChatUsers() {
+        
+        for userId in self.chat.userIds {
+            
+            let ref = FRDataManager.sharedManager.REF_USERS.child(userId)
+            
+            ref.observeSingleEvent(of: .value, with: { (snapshot) in
+                
+                let chatUser = FRUser(uid: snapshot.key, dictionary: snapshot.value as! [String: Any])
+                
+                self.chatUsers.append(chatUser)
+                
+            })
+            
+            
+        }
+        
+        
+    }
+    
+    
+    
     func observeNewMessages() {
         
         let chatMessageIdsRef = chat.chatRef.child("messageIds")
@@ -86,12 +113,77 @@ class ChatViewController: JSQMessagesViewController {
     
 }
 
+// MARK: - JSQMessagesCollectionViewDataSource
+extension ChatViewController {
+    
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return jsqMessages.count
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell = super.collectionView(collectionView, cellForItemAt: indexPath) as! JSQMessagesCollectionViewCell
+        
+        let jsqMessage = jsqMessages[indexPath.item]
+        
+        if jsqMessage.senderId == self.senderId {
+            // OUTGOING MESSAGE WHITE TEXT
+            cell.textView.textColor = UIColor.white
+        } else {
+            // INCOMING MESSAGE BLACK TEXT
+            cell.textView.textColor = UIColor.blue
+        }
+        
+        return cell
+    }
+    
+    // *** CHOOSING BUBBLE IMAGE FOR OUTGOING IN INCOMING
+    override func collectionView(_ collectionView: JSQMessagesCollectionView!, messageBubbleImageDataForItemAt indexPath: IndexPath!) -> JSQMessageBubbleImageDataSource! {
+        
+        let jsqMessage = jsqMessages[indexPath.item]
+        
+        if jsqMessage.senderId == self.senderId {
+            return self.outgoingBubble
+        } else {
+            return self.incomingBubble
+        }
+    }
+    
+    
+}
 
 
-
-
-
-
+// MARK: - SEND MESSAGES
+extension ChatViewController {
+    
+    override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
+        
+        // TODO: save chat even with 0 messages, right after nonadmin user login
+        // If this is the first message in the chat - save new chat
+        if self.chat.messageIds.count == 0 {
+            self.chat.save()
+            
+            for account in self.chatUsers {
+                account.saveNewChat(chat)
+            }
+        }
+        
+        
+        let newMessage = FRMessage(senderUID: currentUser.uid, senderDisplayName: currentUser.username, text: text)
+        
+        newMessage.save()
+        
+        chat.send(message: newMessage)
+        
+        JSQSystemSoundPlayer.jsq_playMessageSentSound()
+        
+        finishSendingMessage()
+        
+        
+    }
+    
+    
+}
 
 
 

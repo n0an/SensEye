@@ -22,7 +22,6 @@ class RecentViewController: UIViewController {
         static let segueUsersVC = "showUsersViewController"
     }
     
-    
     var chats: [FRChat] = []
     
     var currentUser: FRUser!
@@ -69,17 +68,8 @@ class RecentViewController: UIViewController {
                 } else {
                     self.tableView.reloadData()
                 }
-                
-                
-                
             })
-            
-            
-            
         })
-        
-        
-        
     }
     
     func alreadyAddedChat(_ chat: FRChat) -> Bool {
@@ -89,8 +79,38 @@ class RecentViewController: UIViewController {
     }
     
     
+    // MARK: - NAVIGATION
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == Storyboard.segueShowChatVC {
+            
+            let chatVC = segue.destination as! ChatViewController
+            
+            let selectedChat = sender as! FRChat
+            
+            chatVC.currentUser = currentUser
+            
+            chatVC.chat = selectedChat
+            
+            chatVC.senderId = currentUser.uid
+            
+            chatVC.senderDisplayName = currentUser.username
+            
+            chatVC.hidesBottomBarWhenPushed = true
+            
+        }
+    }
+    
+    
+    
+    
+    
 
 }
+
+
+
+
 
 
 // MARK: - UITableViewDataSource
@@ -118,6 +138,16 @@ extension RecentViewController: UITableViewDataSource {
 
 // MARK: - UITableViewDelegate
 extension RecentViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let selectedChat = self.chats[indexPath.row]
+        
+        performSegue(withIdentifier: Storyboard.segueShowChatVC, sender: selectedChat)
+        
+    }
     
 }
 
