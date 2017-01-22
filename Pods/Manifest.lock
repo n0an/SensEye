@@ -48,6 +48,9 @@ PODS:
   - GoogleToolboxForMac/NSString+URLArguments (2.1.1)
   - GTMSessionFetcher/Core (1.1.8)
   - Jelly (1.2.0)
+  - JSQMessagesViewController (7.3.4):
+    - JSQSystemSoundPlayer (~> 2.0.1)
+  - JSQSystemSoundPlayer (2.0.1)
   - Reveal-SDK (5)
   - Spring (1.0.3)
   - SVPullToRefresh (0.4.1)
@@ -60,6 +63,7 @@ DEPENDENCIES:
   - Firebase/Database
   - Firebase/Storage
   - Jelly
+  - JSQMessagesViewController
   - Reveal-SDK
   - Spring (from `https://github.com/MengTo/Spring.git`, branch `swift3`)
   - SVPullToRefresh
@@ -89,10 +93,12 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GTMSessionFetcher: 6f8d8b28b7e345549ac471071608170b31cb4977
   Jelly: 116d4d5a884295b0b0d3bb1899ebf1a86e54dfb9
+  JSQMessagesViewController: 39fed975e3c9f8eba7292071e29eeb541d105e66
+  JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
   Reveal-SDK: 7e3945c0c3649106c3cc8923672ee545e25605c0
   Spring: 3f02b5dc3308572ef177b3cad0fa7bbc4b0706f7
   SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
 
-PODFILE CHECKSUM: fabaa392539aa77050e84be4247bedc30c738706
+PODFILE CHECKSUM: 30bccd4288dc63c2cf1be8d98295869c9f4ddb07
 
 COCOAPODS: 1.1.1

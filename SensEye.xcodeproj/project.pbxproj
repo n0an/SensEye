@@ -39,6 +39,7 @@
 		186E2A281E34A9400011AB88 /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186E2A271E34A9400011AB88 /* ChatTableViewCell.swift */; };
 		186E2A2A1E34A98B0011AB88 /* FRChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186E2A291E34A98B0011AB88 /* FRChat.swift */; };
 		186E2A2C1E34B96F0011AB88 /* FRMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186E2A2B1E34B96F0011AB88 /* FRMessage.swift */; };
+		186E2A2E1E34BB940011AB88 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186E2A2D1E34BB940011AB88 /* ChatViewController.swift */; };
 		1871A7E71E218154004C532E /* gallery.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1871A7E61E218154004C532E /* gallery.storyboard */; };
 		188C04F81E1074C8008B58EB /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188C04F71E1074C8008B58EB /* FeedViewController.swift */; };
 		188C04FA1E1074D6008B58EB /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188C04F91E1074D6008B58EB /* FeedCell.swift */; };
@@ -106,6 +107,7 @@
 		186E2A271E34A9400011AB88 /* ChatTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTableViewCell.swift; sourceTree = "<group>"; };
 		186E2A291E34A98B0011AB88 /* FRChat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FRChat.swift; sourceTree = "<group>"; };
 		186E2A2B1E34B96F0011AB88 /* FRMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FRMessage.swift; sourceTree = "<group>"; };
+		186E2A2D1E34BB940011AB88 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		1871A7E61E218154004C532E /* gallery.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = gallery.storyboard; sourceTree = "<group>"; };
 		188C04F71E1074C8008B58EB /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		188C04F91E1074D6008B58EB /* FeedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
@@ -220,6 +222,7 @@
 				18251C451E2D5160000DBE57 /* RecetPasswordViewController.swift */,
 				186E2A231E34A3540011AB88 /* WelcomeVC.swift */,
 				186E2A251E34A5D60011AB88 /* RecentViewController.swift */,
+				186E2A2D1E34BB940011AB88 /* ChatViewController.swift */,
 			);
 			name = "Chat Tab";
 			sourceTree = "<group>";
@@ -516,6 +519,7 @@
 				18251C481E2D51A5000DBE57 /* UITextField+Placeholder.swift in Sources */,
 				184DE8AA1E15A84700E98926 /* ACSlideDownTransitionAnimator.swift in Sources */,
 				18D6236E1E21422E00138117 /* AboutCellInfo.swift in Sources */,
+				186E2A2E1E34BB940011AB88 /* ChatViewController.swift in Sources */,
 				1838C2411E110A7700E02F88 /* Constants.swift in Sources */,
 				188C04FC1E10FCBC008B58EB /* ServerManager.swift in Sources */,
 				18C395321E166D0200AE1867 /* NSDate+Utilities.m in Sources */,

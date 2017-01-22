@@ -23,5 +23,9 @@ target 'SensEye' do
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
   pod 'Firebase/Storage'
+  
+  # Messenger
+  pod 'JSQMessagesViewController'
+
 
 end
