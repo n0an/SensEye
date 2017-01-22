@@ -12,6 +12,9 @@ import UIKit
 
 let appOwnerUID = "WHGetHIfSjRsWRnzyY6NEHWZso52"
 
+let kNUMBEROFMESSAGES = 4
+
+
 // MARK: - ===== VK =====
 
 let groupID = "-55347641"

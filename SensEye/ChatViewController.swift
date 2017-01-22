@@ -41,6 +41,7 @@ class ChatViewController: JSQMessagesViewController {
     var max = 0
     var min = 0
 
+    var loadCount = 0
     
     // ^^^^^^^^^^^^^^^ QUICK CHAT VER ^^^^^^^^^^^^^^^^
 
@@ -77,7 +78,11 @@ class ChatViewController: JSQMessagesViewController {
         self.setupBubbleImages()
         self.setupAvatarImages()
         
+        
         self.observeNewMessages()
+        self.observeMessageChanged()
+        self.obserInitialLoadMessages()
+        
 
     }
     
@@ -116,18 +121,70 @@ class ChatViewController: JSQMessagesViewController {
             
             let messageId = snapshot.key
             
-            FRDataManager.sharedManager.REF_MESSAGES.child(messageId).observe(.value, with: { (snapshot) in
+            
+            
+            FRDataManager.sharedManager.REF_MESSAGES.child(messageId).observeSingleEvent(of: .value, with: { (snapshot) in
                 
                 let message = FRMessage(uid: messageId, dictionary: snapshot.value as! [String: Any])
                 
-                self.messages.append(message)
                 
-                self.addMessages(message)
+                if self.initialLoadComplete {
+                    
+                    let incoming = self.insertMessage(message)
+                    
+                    if incoming {
+                        JSQSystemSoundPlayer.jsq_playMessageReceivedAlert()
+                    }
+                    
+                    self.finishReceivingMessage()
+                    
+                } else {
+                    self.messagesLoaded.append(message)
+                }
                 
-                self.finishReceivingMessage()
+                
+                
+                
+//                self.messages.append(message)
+//                
+//                self.addMessages(message)
+//                
+//                self.finishReceivingMessage()
             })
         })
     }
+    
+    
+    func observeMessageChanged() {
+        
+        let chatMessageIdsRef = chat.chatRef.child("messageIds")
+        
+        chatMessageIdsRef.observe(.childChanged, with: { (snapshot) in
+            
+            self.updateMessage(snapshot.key)
+            
+        })
+
+    }
+    
+    func obserInitialLoadMessages() {
+        
+        let chatMessageIdsRef = chat.chatRef.child("messageIds")
+
+        chatMessageIdsRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            self.insertInitialMessages()
+            self.finishReceivingMessage(animated: false)
+            self.initialLoadComplete = true
+            
+            
+        })
+        
+    }
+    
+    
+    
+    
     
     // MARK: - HELPER METHODS
     
@@ -162,7 +219,7 @@ class ChatViewController: JSQMessagesViewController {
         
     }
     
-    func inserMessage(_ message: FRMessage) -> Bool {
+    func insertMessage(_ message: FRMessage) -> Bool {
         
         let incomingMessage = IncomingMessage(collectionView: self.collectionView)
         
@@ -180,6 +237,50 @@ class ChatViewController: JSQMessagesViewController {
         return self.incomingMessage(message)
         
     }
+    
+    func insertInitialMessages() {
+        
+        max = messagesLoaded.count - loadCount
+        min = max - kNUMBEROFMESSAGES
+        
+        
+        if min < 0 {
+            min = 0
+        }
+        
+        for i in min ..< max {
+            
+            let message = messagesLoaded[i]
+            self.insertMessage(message)
+            loadCount += 1
+        }
+        
+        self.showLoadEarlierMessagesHeader = (loadCount != messagesLoaded.count)
+        
+        
+    }
+    
+    func updateMessage(_ messageId: String) {
+        
+        FRDataManager.sharedManager.REF_MESSAGES.child(messageId).observe(.value, with: { (snapshot) in
+            
+            let message = FRMessage(uid: messageId, dictionary: snapshot.value as! [String: Any])
+            
+            for index in 0 ..< self.messages.count {
+                
+                let temp = self.messages[index]
+                
+                if message.uid == temp.uid {
+                    
+                    self.messages[index] = message
+                    self.collectionView!.reloadData()
+                }
+            }
+            
+        })
+        
+    }
+
     
     
     
@@ -308,13 +409,13 @@ extension ChatViewController {
         
         newMessage.save()
         
-        chat.send(message: newMessage)
+        
         
         JSQSystemSoundPlayer.jsq_playMessageSentSound()
         
         finishSendingMessage()
         
-        
+        chat.send(message: newMessage)
     }
     
     

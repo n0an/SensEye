@@ -45,6 +45,7 @@
 		188C04FA1E1074D6008B58EB /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188C04F91E1074D6008B58EB /* FeedCell.swift */; };
 		188C04FC1E10FCBC008B58EB /* ServerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188C04FB1E10FCBC008B58EB /* ServerManager.swift */; };
 		188FD7951E34F532007CA1EE /* IncomingMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188FD7941E34F532007CA1EE /* IncomingMessage.swift */; };
+		188FD7971E34FF09007CA1EE /* OutgoingMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188FD7961E34FF09007CA1EE /* OutgoingMessage.swift */; };
 		1899316B1E2D42B7006E00C6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1899316A1E2D42B7006E00C6 /* GoogleService-Info.plist */; };
 		1899316D1E2D4B7C006E00C6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899316C1E2D4B7C006E00C6 /* LoginViewController.swift */; };
 		189931701E2D4E23006E00C6 /* FancyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1899316F1E2D4E23006E00C6 /* FancyButton.swift */; };
@@ -114,6 +115,7 @@
 		188C04F91E1074D6008B58EB /* FeedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
 		188C04FB1E10FCBC008B58EB /* ServerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerManager.swift; sourceTree = "<group>"; };
 		188FD7941E34F532007CA1EE /* IncomingMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncomingMessage.swift; sourceTree = "<group>"; };
+		188FD7961E34FF09007CA1EE /* OutgoingMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutgoingMessage.swift; sourceTree = "<group>"; };
 		1899316A1E2D42B7006E00C6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1899316C1E2D4B7C006E00C6 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		1899316F1E2D4E23006E00C6 /* FancyButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FancyButton.swift; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 				186E2A251E34A5D60011AB88 /* RecentViewController.swift */,
 				186E2A2D1E34BB940011AB88 /* ChatViewController.swift */,
 				188FD7941E34F532007CA1EE /* IncomingMessage.swift */,
+				188FD7961E34FF09007CA1EE /* OutgoingMessage.swift */,
 			);
 			name = "Chat Tab";
 			sourceTree = "<group>";
@@ -526,6 +529,7 @@
 				1838C2411E110A7700E02F88 /* Constants.swift in Sources */,
 				188C04FC1E10FCBC008B58EB /* ServerManager.swift in Sources */,
 				18C395321E166D0200AE1867 /* NSDate+Utilities.m in Sources */,
+				188FD7971E34FF09007CA1EE /* OutgoingMessage.swift in Sources */,
 				183E2A201E16B5180099F775 /* RoundedView.swift in Sources */,
 				18FC625C1E113E9C00E25A18 /* Photo.swift in Sources */,
 				188FD7951E34F532007CA1EE /* IncomingMessage.swift in Sources */,
