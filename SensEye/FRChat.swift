@@ -162,6 +162,16 @@ class FRChat {
     }
     
     
+    func updateChatStatus(_ message: FRMessage) {
+        
+        let value = ["status" : "read"]
+        
+        // TODO: realize DELIVERED/READ status change
+        
+        
+    }
+    
+    
 }
 
 

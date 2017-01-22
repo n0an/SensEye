@@ -27,6 +27,27 @@ class ChatViewController: JSQMessagesViewController {
     
     var chatUsers: [FRUser] = []
     
+    
+    
+    // =============================================
+    // vvvvvvvvvvvvvvv QUICK CHAT VER vvvvvvvvvvvvv
+    // =============================================
+
+    var initialLoadComplete: Bool = false
+    
+    var messagesLoaded = [FRMessage]()
+    
+    
+    var max = 0
+    var min = 0
+
+    
+    // ^^^^^^^^^^^^^^^ QUICK CHAT VER ^^^^^^^^^^^^^^^^
+
+    
+    
+    
+    
     // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,7 +89,7 @@ class ChatViewController: JSQMessagesViewController {
 
     
     
-    // MARK: - HELPER METHODS
+    // MARK: - FIREBASE METHODS
     func fetchChatUsers() {
         
         for userId in self.chat.userIds {
@@ -82,11 +103,7 @@ class ChatViewController: JSQMessagesViewController {
                 self.chatUsers.append(chatUser)
                 
             })
-            
-            
         }
-        
-        
     }
     
     
@@ -111,6 +128,72 @@ class ChatViewController: JSQMessagesViewController {
             })
         })
     }
+    
+    // MARK: - HELPER METHODS
+    
+    // =============================================
+    // vvvvvvvvvvvvvvv QUICK CHAT VER vvvvvvvvvvvvv
+    // =============================================
+
+    // * Incoming/Outgoing FRMessage checkers
+    func incomingMessage(_ message: FRMessage) -> Bool {
+        if self.currentUser.uid == message.senderUID {
+            return false
+        } else {
+            return true
+        }
+    }
+    
+    func outgoingMessage(_ message: FRMessage) -> Bool {
+        return !incomingMessage(message)
+    }
+    
+    
+    func insertNewMessage(_ message: FRMessage) -> Bool {
+        
+        let incomingMessage = IncomingMessage(collectionView: self.collectionView)
+        
+        let jsqMessage = incomingMessage.createJSQMessage(fromFRMessage: message)
+        
+        self.messages.insert(message, at: 0)
+        self.jsqMessages.insert(jsqMessage, at: 0)
+        
+        return self.incomingMessage(message)
+        
+    }
+    
+    func inserMessage(_ message: FRMessage) -> Bool {
+        
+        let incomingMessage = IncomingMessage(collectionView: self.collectionView)
+        
+        
+        if self.currentUser.uid == message.senderUID {
+            self.chat.updateChatStatus(message)
+        }
+        
+        
+        let jsqMessage = incomingMessage.createJSQMessage(fromFRMessage: message)
+        
+        self.messages.append(message)
+        self.jsqMessages.append(jsqMessage)
+        
+        return self.incomingMessage(message)
+        
+    }
+    
+    
+    
+    // ^^^^^^^^^^^^^^^ QUICK CHAT VER ^^^^^^^^^^^^^^^^
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     func addMessages(_ message: FRMessage) {
         
