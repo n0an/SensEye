@@ -43,11 +43,6 @@ class FRUser {
     
     
     // MARK: - SAVE METHOD
-    func toDictionary() -> [String: Any] {
-        return [
-            "username": username
-        ]
-    }
     
     func save(completion: @escaping FRModelCompletion) {
         userRef.setValue(toDictionary())
@@ -72,12 +67,17 @@ class FRUser {
         } else {
             completion(nil)
         }
-        
-        
+    }
+    
+    func toDictionary() -> [String: Any] {
+        return [
+            "username": username
+        ]
     }
     
     
     
+    // MARK: - DOWNLOAD AVATAR
     func downloadAvatarImage(completion: @escaping (UIImage?, Error?) -> Void) {
         
         FRImage.downloadAvatarImageFromFirebaseStorage(self.uid) { (image, error) in
@@ -91,15 +91,11 @@ class FRUser {
     }
     
     
-    
-    
-    
-    
 }
 
 
 
-
+// MARK: - Equatable
 // COMPARE METHOD (FOR "CONTAINS" FEATURE) - for checking if array constains current User
 extension FRUser: Equatable { }
 func ==(lhs: FRUser, rhs: FRUser) -> Bool {

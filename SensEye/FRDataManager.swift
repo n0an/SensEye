@@ -12,6 +12,7 @@ import Firebase
 let DB_ROOT         = FIRDatabase.database().reference()
 let USERS_REF       = "users"
 let MESSAGES_REF    = "messages"
+let CHATS_REF       = "chats"
 
 class FRDataManager {
     
@@ -25,6 +26,7 @@ class FRDataManager {
     var REF_BASE        = DB_ROOT
     var REF_USERS       = DB_ROOT.child(USERS_REF)
     var REF_MESSAGES    = DB_ROOT.child(MESSAGES_REF)
+    var REF_CHATS       = DB_ROOT.child(CHATS_REF)
     
 }
 

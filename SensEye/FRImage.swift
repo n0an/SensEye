@@ -21,6 +21,7 @@ class FRImage {
         self.image = image
     }
     
+    // MARK: - UPLOAD METHODS
     func saveAvatarImageToFirebaseStorage(_ userUID: String, completion: @escaping (FIRStorageMetadata?, Error?) -> Void) {
         
 //        let imageUid = NSUUID().uuidString
@@ -46,7 +47,7 @@ class FRImage {
 }
 
 extension FRImage {
-    
+    // MARK: - DOWNLOAD METHODS
     class func downloadAvatarImageFromFirebaseStorage(_ userUID: String, completion: @escaping (UIImage?, Error?) -> Void) {
         
         let ref = FRStorageManager.sharedManager.REF_STORAGE_AVATARS.child(userUID)

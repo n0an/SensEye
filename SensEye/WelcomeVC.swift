@@ -1,20 +1,20 @@
 //
-//  WelcomeViewController.swift
+//  WelcomeVC.swift
 //  SensEye
 //
-//  Created by Anton Novoselov on 17/01/2017.
+//  Created by Anton Novoselov on 22/01/2017.
 //  Copyright © 2017 Anton Novoselov. All rights reserved.
 //
 
 import UIKit
 import Firebase
 
-class WelcomeViewController: UIViewController {
+class WelcomeVC: UIViewController {
     
     // MARK: - OUTLETS
     @IBOutlet weak var logoutButton: UIButton!
     @IBOutlet weak var currentUserAvatarImageView: UIImageView!
-
+    
     
     // MARK: - PROPERTIES
     enum Storyboard {
@@ -24,12 +24,13 @@ class WelcomeViewController: UIViewController {
     }
     
     var currentUser: FRUser!
-    
-    
+
     // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        super.viewDidLoad()
+        
         FIRAuth.auth()?.addStateDidChangeListener({ (auth, user) in
             
             if let user = user {
@@ -58,6 +59,8 @@ class WelcomeViewController: UIViewController {
             }
             
         })
+
+        
     }
 
     
@@ -95,7 +98,6 @@ class WelcomeViewController: UIViewController {
                     self.alertError(error: error as NSError)
                 }
                 
-                
             }
             
         } else {
@@ -126,13 +128,36 @@ class WelcomeViewController: UIViewController {
             
         }
         
-        
+    }
+    
+    
+    // MARK: - NAVIGATION
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
     }
     
     
     
     
+    
+    
+    
 
-
+    
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
