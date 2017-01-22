@@ -18,7 +18,8 @@ class RecentViewController: UIViewController {
     
     enum Storyboard {
         static let cellIdChat = "ChatCell"
-        
+        static let segueShowChatVC = "showChatViewController"
+        static let segueUsersVC = "showUsersViewController"
     }
     
     

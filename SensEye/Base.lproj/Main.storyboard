@@ -2003,12 +2003,12 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="hs1-rE-nxc">
                             <connections>
                                 <action selector="addRecentBarButtonPressed:" destination="kYh-Og-K9s" id="nqy-Zz-ecy"/>
+                                <segue destination="8G9-7f-h9j" kind="show" identifier="showUsersViewController" id="lOi-x4-3Gz"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="Mv5-Cg-OU3" id="yRa-Gh-Tz5"/>
-                        <segue destination="8G9-7f-h9j" kind="show" identifier="showContactsViewController" id="0Ci-6G-zaG"/>
                         <segue destination="mNO-6t-EPg" kind="show" identifier="showChatViewController" id="4QP-vi-Xbs"/>
                     </connections>
                 </viewController>
@@ -2033,11 +2033,11 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="separatorColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Cell" id="kpM-nu-8gp" customClass="FriendTableViewCell" customModule="SensEye" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="kpM-nu-8gp" customClass="FriendTableViewCell" customModule="SensEye" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="77"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kpM-nu-8gp" id="1xX-bb-0PO">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="76"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="76"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-defaultAvatar" translatesAutoresizingMaskIntoConstraints="NO" id="7X9-so-QQM">
@@ -2048,7 +2048,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yYM-5b-ZlM">
-                                                    <rect key="frame" x="66" y="28" width="268" height="21"/>
+                                                    <rect key="frame" x="66" y="28" width="301" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="Pb9-2x-gFN"/>
                                                     </constraints>
