@@ -45,6 +45,12 @@ class ChatViewController: JSQMessagesViewController {
         self.observeNewMessages()
 
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        self.navigationController?.isNavigationBarHidden = false
+    }
 
     
     

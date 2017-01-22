@@ -96,7 +96,9 @@ class WelcomeVC: UIViewController {
                 if snapshot.exists() {
                     print("snapshot.exists(). GO TO CHAT VIEW CONTROLLER")
                     
-                    let chatId = snapshot.key
+                    let chatsDict = snapshot.value as! [String: Any]
+                    
+                    let chatId = (chatsDict.keys.first)!
                     
                     FRDataManager.sharedManager.REF_CHATS.child(chatId).observeSingleEvent(of: .value, with: { (snapshot) in
                         
