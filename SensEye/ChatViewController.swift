@@ -37,7 +37,11 @@ class ChatViewController: JSQMessagesViewController {
         let backButton = UIBarButtonItem(image: UIImage(named: "icon-back"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(actionBackButtonTapped))
         self.navigationItem.leftBarButtonItem = backButton
         
-        self.fetchChatUsers()
+        
+        if self.chatUsers.isEmpty {
+            
+            self.fetchChatUsers()
+        }
         
         self.setupBubbleImages()
         self.setupAvatarImages()
@@ -189,17 +193,6 @@ extension ChatViewController {
 extension ChatViewController {
     
     override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
-        
-        // TODO: save chat even with 0 messages, right after nonadmin user login
-        // If this is the first message in the chat - save new chat
-        if self.chat.messageIds.count == 0 {
-            self.chat.save()
-            
-            for account in self.chatUsers {
-                account.saveNewChat(chat)
-            }
-        }
-        
         
         let newMessage = FRMessage(senderUID: currentUser.uid, senderDisplayName: currentUser.username, text: text)
         

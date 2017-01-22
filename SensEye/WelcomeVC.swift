@@ -24,11 +24,11 @@ class WelcomeVC: UIViewController {
     }
     
     var currentUser: FRUser!
-
+    
     // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         super.viewDidLoad()
         
         FIRAuth.auth()?.addStateDidChangeListener({ (auth, user) in
@@ -59,10 +59,10 @@ class WelcomeVC: UIViewController {
             }
             
         })
-
+        
         
     }
-
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -80,16 +80,9 @@ class WelcomeVC: UIViewController {
             
             
         } else {
-            // CUSTOMER USER - GO DIRECTLY TO OWN CHAT
+            // CUSTOMER USER - GO DIRECTLY TO OWN USER CHAT WITH APPOWNER
             
             let userChatsIdsRef = FRDataManager.sharedManager.REF_USERS.child(currentUser.uid).child("chatIds")
-            
-            
-//            userChatsIdsRef.observe(.value, with: { (snapshot) in
-//                print("observe")
-//
-//            })
-            
             
             userChatsIdsRef.observeSingleEvent(of: .value, with: { (snapshot) in
                 
@@ -104,7 +97,21 @@ class WelcomeVC: UIViewController {
                         
                         let chat = FRChat(uid: chatId, dictionary: snapshot.value as! [String: Any])
                         
-                        self.performSegue(withIdentifier: Storyboard.segueShowChatVC, sender: chat)
+                        let ref = FRDataManager.sharedManager.REF_USERS.child(appOwnerUID)
+                        
+                        
+                        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+                            
+                            let chatUser = FRUser(uid: snapshot.key, dictionary: snapshot.value as! [String: Any])
+                            
+                            
+                            let chatUsers: [FRUser] = [self.currentUser, chatUser]
+                            
+                            
+                            self.performSegue(withIdentifier: Storyboard.segueShowChatVC, sender: (chat, chatUsers))
+                            
+                            
+                        })
                         
                         
                     })
@@ -120,71 +127,58 @@ class WelcomeVC: UIViewController {
                     
                     newChat.userIds = userIds
                     
-//                    newChat.save()
-//                    
-//                    let chatUsers = self.fetchNewChatUsers(forUserIds: userIds)
-//                    
-//                    for account in chatUsers {
-//                        account.saveNewChat(newChat)
-//                    }
+                    newChat.save()
                     
-                    self.performSegue(withIdentifier: Storyboard.segueShowChatVC, sender: newChat)
                     
+                    let ref = FRDataManager.sharedManager.REF_USERS.child(appOwnerUID)
+                    
+                    
+                    ref.observeSingleEvent(of: .value, with: { (snapshot) in
+                        
+                        let chatUser = FRUser(uid: snapshot.key, dictionary: snapshot.value as! [String: Any])
+                        
+                        
+                        let chatUsers: [FRUser] = [self.currentUser, chatUser]
+                        
+                        for account in chatUsers {
+                            account.saveNewChat(newChat)
+                        }
+                        
+                        self.performSegue(withIdentifier: Storyboard.segueShowChatVC, sender: (newChat, chatUsers))
+                        
+                        
+                    })
                 }
             })
             
             
             
-            
-            
-            
-            
-            
-//            userChatsIdsRef.observe(.childAdded, with: { (snapshot) in
-//                
-//                let chatId = snapshot.key
-//                
-//                FRDataManager.sharedManager.REF_CHATS.child(chatId).observeSingleEvent(of: .value, with: { (snapshot) in
-//                    
-//                    let chat = FRChat(uid: chatId, dictionary: snapshot.value as! [String: Any])
-//                    
-//                    self.performSegue(withIdentifier: Storyboard.segueShowChatVC, sender: chat)
-//
-//                    
-//                })
-//                
-//                
-//            })
-            
-            
         }
         
     }
     
     
-    func fetchNewChatUsers(forUserIds userIds: [String]) -> [FRUser] {
+    func fetchNewChatUser(forUserId userId: String) -> FRUser? {
         
-        var fetchedUsersArray = [FRUser]()
+        let ref = FRDataManager.sharedManager.REF_USERS.child(userId)
         
-        for userId in userIds {
-            
-            let ref = FRDataManager.sharedManager.REF_USERS.child(userId)
-            
-            ref.observeSingleEvent(of: .value, with: { (snapshot) in
-                
-                let chatUser = FRUser(uid: snapshot.key, dictionary: snapshot.value as! [String: Any])
-                
-                fetchedUsersArray.append(chatUser)
-                
-            })
-            
-            
-        }
+        var result: FRUser?
         
-        return fetchedUsersArray
+        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            let chatUser = FRUser(uid: snapshot.key, dictionary: snapshot.value as! [String: Any])
+            
+            result = chatUser
+            
+            
+            
+        })
+        
+        return result
         
     }
-
+    
+    
     
     func fetchMessages() {
         
@@ -242,7 +236,16 @@ class WelcomeVC: UIViewController {
             
             let chatVC = segue.destination as! ChatViewController
             
-            let selectedChat = sender as! FRChat
+            
+            guard let senderTuple = sender as? (FRChat, [FRUser]) else {
+                return
+            }
+            
+            let selectedChat = senderTuple.0
+            let chatUsers = senderTuple.1
+            
+            chatVC.chatUsers = chatUsers
+            
             
             chatVC.currentUser = currentUser
             
@@ -267,7 +270,7 @@ class WelcomeVC: UIViewController {
     
     
     
-
+    
     
 }
 
