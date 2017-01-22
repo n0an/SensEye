@@ -99,7 +99,9 @@ class FRUser {
 extension FRUser {
     func saveNewChat(_ chat: FRChat) {
         
-        FRDataManager.sharedManager.REF_USERS.child("chatIds/\(chat.uid)").setValue(true)
+        self.userRef.child("chatIds/\(chat.uid)").setValue(true)
+
+        
         
     }
 }

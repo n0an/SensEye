@@ -8,6 +8,10 @@
 
 import UIKit
 
+// MARK: - ====== FIREBASE ======
+
+let appOwnerUID = "WHGetHIfSjRsWRnzyY6NEHWZso52"
+
 // MARK: - ===== VK =====
 
 let groupID = "-55347641"

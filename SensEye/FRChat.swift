@@ -152,9 +152,8 @@ class FRChat {
     func toDictionary() -> [String: Any] {
         
         return [
-            "uid": uid,
             "lastMessage": lastMessage,
-            "lastUpdate": lastUpdate,
+            "lastUpdate": FIRServerValue.timestamp(),
             "withUserName": withUserName,
             "withUserUID": withUserUID
         

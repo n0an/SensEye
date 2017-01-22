@@ -74,13 +74,115 @@ class WelcomeVC: UIViewController {
     
     func goToMessenger() {
         
-        if self.currentUser.uid == "WHGetHIfSjRsWRnzyY6NEHWZso52" {
+        if self.currentUser.uid == appOwnerUID {
+            // SUPER ADMIN USER - SEE ALL CHATS
             self.performSegue(withIdentifier: Storyboard.segueShowRecentChats, sender: nil)
+            
+            
         } else {
-            self.performSegue(withIdentifier: Storyboard.segueShowChatVC, sender: nil)
+            // CUSTOMER USER - GO DIRECTLY TO OWN CHAT
+            
+            let userChatsIdsRef = FRDataManager.sharedManager.REF_USERS.child(currentUser.uid).child("chatIds")
+            
+            
+//            userChatsIdsRef.observe(.value, with: { (snapshot) in
+//                print("observe")
+//
+//            })
+            
+            
+            userChatsIdsRef.observeSingleEvent(of: .value, with: { (snapshot) in
+                
+                if snapshot.exists() {
+                    print("snapshot.exists(). GO TO CHAT VIEW CONTROLLER")
+                    
+                    let chatId = snapshot.key
+                    
+                    FRDataManager.sharedManager.REF_CHATS.child(chatId).observeSingleEvent(of: .value, with: { (snapshot) in
+                        
+                        let chat = FRChat(uid: chatId, dictionary: snapshot.value as! [String: Any])
+                        
+                        self.performSegue(withIdentifier: Storyboard.segueShowChatVC, sender: chat)
+                        
+                        
+                    })
+                    
+                    
+                } else {
+                    print("snapshot NOT exists(). CREATE NEW CHAT AND GO TO CHAT VIEW CONTROLLER")
+                    
+                    let userIds = [self.currentUser.uid, appOwnerUID]
+                    
+                    
+                    let newChat = FRChat(userIds: userIds, withUserName: self.currentUser.username, withUserUID: self.currentUser.uid)
+                    
+                    newChat.userIds = userIds
+                    
+//                    newChat.save()
+//                    
+//                    let chatUsers = self.fetchNewChatUsers(forUserIds: userIds)
+//                    
+//                    for account in chatUsers {
+//                        account.saveNewChat(newChat)
+//                    }
+                    
+                    self.performSegue(withIdentifier: Storyboard.segueShowChatVC, sender: newChat)
+                    
+                }
+            })
+            
+            
+            
+            
+            
+            
+            
+            
+//            userChatsIdsRef.observe(.childAdded, with: { (snapshot) in
+//                
+//                let chatId = snapshot.key
+//                
+//                FRDataManager.sharedManager.REF_CHATS.child(chatId).observeSingleEvent(of: .value, with: { (snapshot) in
+//                    
+//                    let chat = FRChat(uid: chatId, dictionary: snapshot.value as! [String: Any])
+//                    
+//                    self.performSegue(withIdentifier: Storyboard.segueShowChatVC, sender: chat)
+//
+//                    
+//                })
+//                
+//                
+//            })
+            
+            
         }
         
     }
+    
+    
+    func fetchNewChatUsers(forUserIds userIds: [String]) -> [FRUser] {
+        
+        var fetchedUsersArray = [FRUser]()
+        
+        for userId in userIds {
+            
+            let ref = FRDataManager.sharedManager.REF_USERS.child(userId)
+            
+            ref.observeSingleEvent(of: .value, with: { (snapshot) in
+                
+                let chatUser = FRUser(uid: snapshot.key, dictionary: snapshot.value as! [String: Any])
+                
+                fetchedUsersArray.append(chatUser)
+                
+            })
+            
+            
+        }
+        
+        return fetchedUsersArray
+        
+    }
+
     
     func fetchMessages() {
         
@@ -133,6 +235,27 @@ class WelcomeVC: UIViewController {
     
     // MARK: - NAVIGATION
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == Storyboard.segueShowChatVC {
+            
+            let chatVC = segue.destination as! ChatViewController
+            
+            let selectedChat = sender as! FRChat
+            
+            chatVC.currentUser = currentUser
+            
+            chatVC.chat = selectedChat
+            
+            chatVC.senderId = currentUser.uid
+            
+            chatVC.senderDisplayName = currentUser.username
+            
+            chatVC.hidesBottomBarWhenPushed = true
+            
+            
+        }
+        
+        
         
     }
     
