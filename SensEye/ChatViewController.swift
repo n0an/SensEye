@@ -48,8 +48,7 @@ class ChatViewController: JSQMessagesViewController {
         
         
         var backButton: UIBarButtonItem
-            
-
+        
         if currentUser.uid == appOwnerUID {
             backButton = UIBarButtonItem(image: UIImage(named: "icon-back"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(actionBackButtonTapped))
 
@@ -61,13 +60,17 @@ class ChatViewController: JSQMessagesViewController {
         self.navigationItem.leftBarButtonItem = backButton
         
         
+        self.setupBubbleImages()
+        self.setupAvatarImages()
+        
+        
+        
         if self.chatUsers.isEmpty {
             
             self.fetchChatUsers()
         }
         
-        self.setupBubbleImages()
-        self.setupAvatarImages()
+        self.chat.clearUnreadMessagesCount()
         
         
         self.observeNewMessages()
@@ -86,6 +89,10 @@ class ChatViewController: JSQMessagesViewController {
     
     
     // MARK: - FIREBASE METHODS
+    
+    
+    
+    
     func fetchChatUsers() {
         
         for userId in self.chat.userIds {
@@ -404,6 +411,10 @@ extension ChatViewController {
     // * DID PRESS SEND
     override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
         
+        guard text != "" else {
+            return
+        }
+        
         let newMessage = FRMessage(chatId: self.chat.uid, senderUID: currentUser.uid, senderDisplayName: currentUser.username, text: text)
         
         newMessage.save()
@@ -411,7 +422,7 @@ extension ChatViewController {
         
         JSQSystemSoundPlayer.jsq_playMessageSentSound()
         
-        finishSendingMessage()
+        self.finishSendingMessage()
         
         chat.send(message: newMessage)
     }

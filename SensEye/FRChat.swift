@@ -157,6 +157,7 @@ class FRChat {
             "lastUpdate": FIRServerValue.timestamp(),
             "withUserName": withUserName,
             "withUserUID": withUserUID
+            
         
         ]
         
@@ -191,18 +192,22 @@ extension FRChat {
     }
     
     // MARK: - SEND MESSAGE
-    // TODO: - ADD SEND MESSAGE HANDLER
     
     func send(message: FRMessage) {
-//        self.messageIds.append(message.uid)
-        
+
         self.lastMessage = message.text
         
         // Partially saving when sending a message
         self.chatRef.child("lastMessage").setValue(self.lastMessage)
-//        self.chatRef.child("messageIds").child(message.uid).setValue(true)
+
+        self.chatRef.child("lastUpdate").setValue(message.lastUpdate)
+    }
+    
+    
+    func clearUnreadMessagesCount() {
         
-        // TODO: - update lastUpdate using Firebase server value
+        self.chatRef.child("messagesCount").setValue(0)
+        
     }
     
     
