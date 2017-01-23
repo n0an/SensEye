@@ -179,39 +179,97 @@ extension FRChat {
 
 extension FRChat {
     
-    func sendPushNotification(_ chatMembers: [FRUser], messageText: String) {
+//    func sendPushNotification(_ chatMembers: [FRUser], messageText: String) {
+//        
+//        let currentUser = FRAuthManager.sharedManager.currentUser
+//        
+//        var pushIds: [String] = []
+//        
+//        for user in chatMembers {
+//            
+//            if user.uid == currentUser.uid {
+//                continue
+//            }
+//            
+//            pushIds.append(user.pushId!)
+//            
+//        }
+//        
+//        
+//        
+//        // TODO: user push ids
+//        
+//        OneSignal.postNotification([
+//            
+//            "contents": ["en": "\(currentUser.username)\n\(messageText)"],
+//            "ios_badgeType": "Increase",
+//            "ios_badgeCount": "1",
+//            "include_player_ids": pushIds
+//            ])
+//        
+//        
+//        
+//    }
+    
+    
+    
+    
+    func sendPushNotification(_ messageText: String) {
         
         let currentUser = FRAuthManager.sharedManager.currentUser
         
-        var pushIds: [String] = []
+        let indexOfCurrentUser = self.userIds.index(of: currentUser.uid)
         
-        for user in chatMembers {
+        var recipientsUids = self.userIds
+        
+        recipientsUids.remove(at: indexOfCurrentUser!)
+        
+        
+        self.fetchChatUsers(forUids: recipientsUids) { (pushIds) in
             
-            if user.uid == currentUser.uid {
-                continue
-            }
-            
-            pushIds.append(user.pushId!)
+            OneSignal.postNotification([
+                
+                "contents": ["en": "\(currentUser.username)\n\(messageText)"],
+                "ios_badgeType": "Increase",
+                "ios_badgeCount": "1",
+                "include_player_ids": pushIds
+                ])
             
         }
-        
-        
-        
-        // TODO: user push ids
-        
-        OneSignal.postNotification([
-            
-            "contents": ["en": "\(currentUser.username)\n\(messageText)"],
-            "ios_badgeType": "Increase",
-            "ios_badgeCount": "1",
-            "include_player_ids": pushIds
-            ])
         
         
         
     }
     
     
+    
+    
+    func fetchChatUsers(forUids userUids: [String], result: @escaping ([String]) -> Void) {
+        
+        var count = 0
+        
+        var pushIds: [String] = []
+        
+        for userId in userUids {
+            
+            let ref = FRDataManager.sharedManager.REF_USERS.child(userId)
+            
+            ref.observeSingleEvent(of: .value, with: { (snapshot) in
+                
+                let chatUser = FRUser(uid: snapshot.key, dictionary: snapshot.value as! [String: Any])
+                
+                pushIds.append(chatUser.pushId!)
+                count += 1
+                
+                if userUids.count == count {
+                    result(pushIds)
+                }
+                
+            })
+        }
+        
+        
+    }
     
     
 }

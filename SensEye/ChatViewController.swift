@@ -337,12 +337,20 @@ class ChatViewController: JSQMessagesViewController {
         GeneralHelper.sharedHelper.showLogoutView(onViewController: self) { (success) in
             
             if success == true {
-                do {
-                    try FIRAuth.auth()?.signOut()
-                    
-                } catch {
-                    self.alertError(error: error as NSError)
-                }
+                
+                FRAuthManager.sharedManager.logOut(onComplete: { (error) in
+                    if let error = error {
+                        self.alertError(error: error as NSError)
+                    }
+                })
+                
+                
+//                do {
+//                    try FIRAuth.auth()?.signOut()
+//                    
+//                } catch {
+//                    self.alertError(error: error as NSError)
+//                }
             }
             
         }
@@ -426,7 +434,9 @@ extension ChatViewController {
         
         chat.send(message: newMessage)
         
-        chat.sendPushNotification(self.chatUsers, messageText: newMessage.text)
+//        chat.sendPushNotification(self.chatUsers, messageText: newMessage.text)
+        chat.sendPushNotification(newMessage.text)
+        
     }
     
     // * LOAD EARLIER MESSAGES

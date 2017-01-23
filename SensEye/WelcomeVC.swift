@@ -225,12 +225,21 @@ class WelcomeVC: UIViewController {
         GeneralHelper.sharedHelper.showLogoutView(onViewController: self) { (success) in
             
             if success == true {
-                do {
-                    try FIRAuth.auth()?.signOut()
-                    
-                } catch {
-                    self.alertError(error: error as NSError)
-                }
+                
+                FRAuthManager.sharedManager.logOut(onComplete: { (error) in
+                    if let error = error {
+                        self.alertError(error: error as NSError)
+                    }
+                })
+                
+                
+//                do {
+//                    
+//                    try FIRAuth.auth()?.signOut()
+//                    
+//                } catch {
+//                    self.alertError(error: error as NSError)
+//                }
             }
             
         }

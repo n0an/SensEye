@@ -63,6 +63,30 @@ class FRAuthManager {
         self.completeSignIn(withEmail: email, password: password, onComplete: onComplete)
     }
     
+    
+    
+    // MARK: - Log Out Method
+    
+    func logOut(onComplete: (Error?) -> Void) {
+        
+        do {
+            
+            UserDefaults.standard.removeObject(forKey: "OneSignalId")
+            self.removeOneSignalId()
+            
+            UserDefaults.standard.removeObject(forKey: "currentUser")
+            UserDefaults.standard.synchronize()
+            
+            try FIRAuth.auth()?.signOut()
+            
+        } catch {
+            onComplete(error)
+        }
+    }
+    
+    
+    
+    
     // MARK: - HELPER METHODS
     func completeSignIn(withEmail email: String, password: String, onComplete: FRAuthCompletionHandler?) {
         
@@ -77,6 +101,10 @@ class FRAuthManager {
             }
         })
     }
+    
+    
+    
+    
     
     
     // MARK: - PUSH NOTIFICATIOINS CONFIGURATION
