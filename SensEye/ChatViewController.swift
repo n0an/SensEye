@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import JSQMessagesViewController
 
-class ChatViewController: JSQMessagesViewController {
+class ChatViewController: JSQMessagesViewController, UIGestureRecognizerDelegate {
     
     // MARK: - PROPERTIES
     var chat: FRChat!
@@ -44,6 +44,11 @@ class ChatViewController: JSQMessagesViewController {
       
         self.inputToolbar.contentView.leftBarButtonItem = nil
         self.inputToolbar.contentView.textView.autocorrectionType = .no
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(resignKeyboard(gesture:)))
+        tapGesture.delegate = self
+        self.collectionView.addGestureRecognizer(tapGesture)
+        
         
         if currentUser.uid != appOwnerUID {
             let logoutButton = UIBarButtonItem(title: "Logout", style: .done, target: self, action: #selector(logoutButtonTapped))
@@ -354,6 +359,23 @@ class ChatViewController: JSQMessagesViewController {
             
         }
         
+        
+    }
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
+    
+    func resignKeyboard(gesture: UITapGestureRecognizer) {
+        
+        if gesture.state == .ended {
+            
+            if self.inputToolbar.contentView.textView.isFirstResponder {
+                self.inputToolbar.contentView.textView.resignFirstResponder()
+
+            }
+            
+        }
         
     }
     
