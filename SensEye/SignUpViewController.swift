@@ -8,6 +8,7 @@
 
 import UIKit
 import Spring
+import Firebase
 
 class SignUpViewController: UIViewController {
 
@@ -54,7 +55,7 @@ class SignUpViewController: UIViewController {
     
     // MARK: - HELPER METHODS
     func goToChatVC() {
-        
+//        postOnLoginNotification()
         self.dismiss(animated: true, completion: nil)
    
     }
@@ -62,6 +63,14 @@ class SignUpViewController: UIViewController {
     func resignKeyboard() {
         self.view.endEditing(true)
     }
+    
+    
+    func postOnLoginNotification() {
+        
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "FRUserDidLoginNotification"), object: nil, userInfo: ["userId" : FIRAuth.auth()!.currentUser!.uid])
+        
+    }
+    
 
     // MARK: - ACTIONS
     @IBAction func actionSignUpButtonTapped(_ sender: Any) {

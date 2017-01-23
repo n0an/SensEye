@@ -25,6 +25,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         customizeAppearance()
         
         
+        // On login notification
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "FRUserDidLoginNotification"), object: nil, queue: nil) { (notification) in
+            
+            let userId = notification.userInfo!["userId"] as! String
+            
+            UserDefaults.standard.set(userId, forKey: "userId")
+            UserDefaults.standard.synchronize()
+            
+            self.handleOnUserLogin()
+            
+            
+        }
+        
         
         // oneSignal
         

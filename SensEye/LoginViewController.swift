@@ -55,9 +55,15 @@ class LoginViewController: UIViewController {
     // MARK: - HELPER METHODS
     
     func goToChatVC() {
-        
+//        postOnLoginNotification()
         let _ = self.navigationController?.popViewController(animated: false)
 
+        
+    }
+    
+    func postOnLoginNotification() {
+        
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "FRUserDidLoginNotification"), object: nil, userInfo: ["userId" : FIRAuth.auth()!.currentUser!.uid])
         
     }
     

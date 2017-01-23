@@ -112,7 +112,9 @@ class FRAuthManager {
         
         saveUserToUserDefaults(user: currentUser)
         
-        currentUser.userRef.setValue(currentUser.toDictionary())
+        currentUser.userRef.child("pushId").setValue(newId)
+        
+//        currentUser.userRef.setValue(currentUser.toDictionary())
         
         
     }

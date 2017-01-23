@@ -44,6 +44,7 @@ class WelcomeVC: UIViewController {
                         
                         print("===NAG===: currentUser = \(FRAuthManager.sharedManager.currentUser.username)")
                         
+                        
                         self.goToMessenger()
                         
                         
@@ -72,7 +73,15 @@ class WelcomeVC: UIViewController {
     
     // MARK: - HELPER METHODS
     
+    func postOnLoginNotification() {
+        
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "FRUserDidLoginNotification"), object: nil, userInfo: ["userId" : FIRAuth.auth()!.currentUser!.uid])
+        
+    }
+    
     func goToMessenger() {
+        
+        self.postOnLoginNotification()
         
         if self.currentUser.uid == appOwnerUID {
             // SUPER ADMIN USER - SEE ALL CHATS
