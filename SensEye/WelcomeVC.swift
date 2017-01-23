@@ -56,6 +56,7 @@ class WelcomeVC: UIViewController {
                 
                 let loginVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
                 
+                loginVC.hidesBottomBarWhenPushed = false
                 self.navigationController?.pushViewController(loginVC, animated: false)
             }
             
@@ -232,14 +233,7 @@ class WelcomeVC: UIViewController {
                     }
                 })
                 
-                
-//                do {
-//                    
-//                    try FIRAuth.auth()?.signOut()
-//                    
-//                } catch {
-//                    self.alertError(error: error as NSError)
-//                }
+  
             }
             
         }

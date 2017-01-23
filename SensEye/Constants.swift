@@ -10,30 +10,33 @@ import UIKit
 
 // MARK: - ====== FIREBASE ======
 
-let appOwnerUID = "WHGetHIfSjRsWRnzyY6NEHWZso52"
+public let appOwnerUID = "WHGetHIfSjRsWRnzyY6NEHWZso52"
 
-let kNUMBEROFMESSAGES = 4
+public let kNUMBEROFMESSAGES = 40
+
+// MARK: - ====== OneSignal ======
+public let kONESIGNALAPPID = "2e5c5eb6-e526-4a05-8c76-9c1e022692b1"
 
 
 // MARK: - ===== VK =====
 
-let groupID = "-55347641"
+public let groupID = "-55347641"
 
-let KEY_VK_DIDAUTH = "vkAuth"
-let KEY_VK_USERCANCELAUTH = "vkUserCancelAuth"
+public let KEY_VK_DIDAUTH = "vkAuth"
+public let KEY_VK_USERCANCELAUTH = "vkUserCancelAuth"
 
-let URL_BASE = "https://api.vk.com/method"
-let URL_WALL_FEED = "/wall.get?"
-let URL_PHOTOS = "/photos.get?"
-let URL_PHOTO_ALBUMS = "/photos.getAlbums?"
-let URL_COMMENTS = "/wall.getComments?"
-let URL_USERS = "/users.get?"
+public let URL_BASE = "https://api.vk.com/method"
+public let URL_WALL_FEED = "/wall.get?"
+public let URL_PHOTOS = "/photos.get?"
+public let URL_PHOTO_ALBUMS = "/photos.getAlbums?"
+public let URL_COMMENTS = "/wall.getComments?"
+public let URL_USERS = "/users.get?"
 
-let URL_LIKES_ADD = "/likes.add?"
-let URL_LIKES_DELETE = "/likes.delete?"
-let URL_ISLIKED = "/likes.isLiked?"
+public let URL_LIKES_ADD = "/likes.add?"
+public let URL_LIKES_DELETE = "/likes.delete?"
+public let URL_ISLIKED = "/likes.isLiked?"
 
-enum URL_PARAMS: String {
+public enum URL_PARAMS: String {
     
     case OWNER_ID = "owner_id="
     case COUNT = "count="

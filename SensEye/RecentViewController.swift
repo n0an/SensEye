@@ -99,14 +99,7 @@ class RecentViewController: UIViewController {
                         self.alertError(error: error as NSError)
                     }
                 })
-                
-                
-//                do {
-//                    try FIRAuth.auth()?.signOut()
-//                    
-//                } catch {
-//                    self.alertError(error: error as NSError)
-//                }
+     
             }
             
         }

@@ -70,7 +70,6 @@ class ChatViewController: JSQMessagesViewController {
             self.fetchChatUsers()
         }
         
-        self.chat.clearUnreadMessagesCount()
         
         
         self.observeNewMessages()
@@ -82,6 +81,8 @@ class ChatViewController: JSQMessagesViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        self.chat.clearUnreadMessagesCount()
         
         self.navigationController?.isNavigationBarHidden = false
     }
@@ -344,13 +345,7 @@ class ChatViewController: JSQMessagesViewController {
                     }
                 })
                 
-                
-//                do {
-//                    try FIRAuth.auth()?.signOut()
-//                    
-//                } catch {
-//                    self.alertError(error: error as NSError)
-//                }
+     
             }
             
         }
@@ -394,7 +389,7 @@ extension ChatViewController {
         return cell
     }
     
-    // *** CHOOSING BUBBLE IMAGE FOR OUTGOING IN INCOMING
+    // * CHOOSING BUBBLE IMAGE FOR OUTGOING IN INCOMING
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, messageBubbleImageDataForItemAt indexPath: IndexPath!) -> JSQMessageBubbleImageDataSource! {
         
         let jsqMessage = jsqMessages[indexPath.item]
@@ -406,6 +401,7 @@ extension ChatViewController {
         }
     }
     
+    // * AVATARS
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, avatarImageDataForItemAt indexPath: IndexPath!) -> JSQMessageAvatarImageDataSource! {
         return nil
     }
@@ -433,8 +429,7 @@ extension ChatViewController {
         self.finishSendingMessage()
         
         chat.send(message: newMessage)
-        
-//        chat.sendPushNotification(self.chatUsers, messageText: newMessage.text)
+
         chat.sendPushNotification(newMessage.text)
         
     }
