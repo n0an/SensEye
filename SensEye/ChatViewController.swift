@@ -87,6 +87,9 @@ class ChatViewController: JSQMessagesViewController {
         self.chat.clearUnreadMessagesCount()
         
         self.navigationController?.isNavigationBarHidden = false
+//        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        self.scrollToBottom(animated: false)
+        self.navigationController?.hidesBarsOnSwipe = true
     }
 
     
