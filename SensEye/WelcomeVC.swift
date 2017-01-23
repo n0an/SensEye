@@ -48,7 +48,7 @@ class WelcomeVC: UIViewController {
                         
                         print("===NAG===: currentUser = \(FRAuthManager.sharedManager.currentUser.username)")
                         
-                        self.goToMessenger()
+//                        self.goToMessenger()
                     }
                     
                 })
@@ -79,6 +79,7 @@ class WelcomeVC: UIViewController {
         self.animationTimer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(startLogoAnimation), userInfo: nil, repeats: true)
         
         self.animationTimer.fire()
+        
         
         
     }
@@ -212,23 +213,37 @@ class WelcomeVC: UIViewController {
     
     
    
-    
+    // MARK: - ANIMATIONS FOR WAITING
     func startLogoAnimation() {
         
 //        logoImageView.delay = 0.5
         logoImageView.animation = "zoomIn"
+//        logoImageView.animation = "fadeIn"
         logoImageView.curve = "easeOutQuint"
         logoImageView.force = 1.7
         logoImageView.duration = 1.7
         
         logoImageView.animate()
         
+        logoImageView.alpha = 0.0
+        
+        UIView.animate(withDuration: 1.7, delay: 0, options: [], animations: {
+            self.logoImageView.alpha = 1.0
+        }) { (success) in
+            
+        }
+        
+        
         
     }
     
     func stopLogoAnimation() {
         
-        self.animationTimer.invalidate()
+        if self.animationTimer != nil {
+            self.animationTimer.invalidate()
+
+        }
+        
         
     }
     
