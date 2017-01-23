@@ -46,6 +46,10 @@ class RecentViewController: UIViewController {
         
         self.fetchChats()
     }
+    
+    deinit {
+        print("===NAG=== DEINIT RecentViewController")
+    }
 
     
     // MARK: - HELPER METHODS
@@ -93,6 +97,7 @@ class RecentViewController: UIViewController {
             
             if success == true {
                 
+                let _ = self.navigationController?.popViewController(animated: false)
                 
                 FRAuthManager.sharedManager.logOut(onComplete: { (error) in
                     if let error = error {
@@ -128,16 +133,8 @@ class RecentViewController: UIViewController {
             
         }
     }
-    
-    
-    
-    
-    
 
 }
-
-
-
 
 
 

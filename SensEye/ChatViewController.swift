@@ -38,24 +38,26 @@ class ChatViewController: JSQMessagesViewController {
     
     
     
-    
-    
     // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+      
         
-        self.title = chat.withUserName
-        
-        
-        var backButton: UIBarButtonItem
-        
-        if currentUser.uid == appOwnerUID {
-            backButton = UIBarButtonItem(image: UIImage(named: "icon-back"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(actionBackButtonTapped))
-
+        if currentUser.uid != appOwnerUID {
+            let logoutButton = UIBarButtonItem(title: "Logout", style: .done, target: self, action: #selector(logoutButtonTapped))
+            
+            self.navigationItem.rightBarButtonItem = logoutButton
+            
+            self.title = "Elena Senseye"
+            
         } else {
-            backButton = UIBarButtonItem(title: "Logout", style: .done, target: self, action: #selector(logoutButtonTapped))
-
+            
+            self.title = chat.withUserName
         }
+        
+        
+        let backButton = UIBarButtonItem(image: UIImage(named: "icon-back"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(actionBackButtonTapped))
+        
         
         self.navigationItem.leftBarButtonItem = backButton
         
@@ -64,12 +66,10 @@ class ChatViewController: JSQMessagesViewController {
         self.setupAvatarImages()
         
         
-        
         if self.chatUsers.isEmpty {
             
             self.fetchChatUsers()
         }
-        
         
         
         self.observeNewMessages()
@@ -89,10 +89,13 @@ class ChatViewController: JSQMessagesViewController {
 
     
     
+    deinit {
+        print("===NAG=== DEINIT ChatViewController")
+    }
+    
+    
+    
     // MARK: - FIREBASE METHODS
-    
-    
-    
     
     func fetchChatUsers() {
         
@@ -135,16 +138,8 @@ class ChatViewController: JSQMessagesViewController {
                 } else {
                     self.messagesLoaded.append(message)
                 }
-                
-                
             }
-            
         })
-        
-        
-        
-    
-        
     }
     
     
@@ -175,12 +170,7 @@ class ChatViewController: JSQMessagesViewController {
             self.finishReceivingMessage(animated: false)
             self.initialLoadComplete = true
             
-            
-            
         })
-        
-  
-        
     }
     
     
@@ -189,10 +179,6 @@ class ChatViewController: JSQMessagesViewController {
     
     // MARK: - HELPER METHODS
     
-    // =============================================
-    // vvvvvvvvvvvvvvv QUICK CHAT VER vvvvvvvvvvvvv
-    // =============================================
-
     // * Incoming/Outgoing FRMessage checkers
     func incomingMessage(_ message: FRMessage) -> Bool {
         if self.currentUser.uid == message.senderUID {
@@ -305,13 +291,6 @@ class ChatViewController: JSQMessagesViewController {
         
     }
    
-
-    
-    
-    
-    // ^^^^^^^^^^^^^^^ QUICK CHAT VER ^^^^^^^^^^^^^^^^
-
-    
     func setupBubbleImages() {
         
         let factory = JSQMessagesBubbleImageFactory()
@@ -329,15 +308,21 @@ class ChatViewController: JSQMessagesViewController {
         collectionView.collectionViewLayout.outgoingAvatarViewSize = CGSize.zero
         
     }
+    
+    
+    
 
 
     // MARK: - ACTIONS
+    
     
     func logoutButtonTapped() {
         
         GeneralHelper.sharedHelper.showLogoutView(onViewController: self) { (success) in
             
             if success == true {
+                
+                let _ = self.navigationController?.popViewController(animated: false)
                 
                 FRAuthManager.sharedManager.logOut(onComplete: { (error) in
                     if let error = error {
@@ -354,7 +339,16 @@ class ChatViewController: JSQMessagesViewController {
     
     func actionBackButtonTapped() {
         
-        self.navigationController?.popViewController(animated: true)
+        if currentUser.uid == appOwnerUID {
+            let _ = self.navigationController?.popViewController(animated: true)
+
+        } else {
+            
+            let tabBarController = UIApplication.shared.keyWindow?.rootViewController as! UITabBarController
+            tabBarController.selectedIndex = 0
+            
+        }
+        
         
     }
     

@@ -74,6 +74,8 @@ class FRAuthManager {
             UserDefaults.standard.removeObject(forKey: "OneSignalId")
             self.removeOneSignalId()
             
+            
+            // TODO: - check if it's necessary to store currentUser in UserDefaults
             UserDefaults.standard.removeObject(forKey: "currentUser")
             UserDefaults.standard.synchronize()
             

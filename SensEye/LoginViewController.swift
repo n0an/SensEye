@@ -32,7 +32,7 @@ class LoginViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        emailTextField.becomeFirstResponder()
+//        emailTextField.becomeFirstResponder()
         
     }
     
@@ -48,7 +48,7 @@ class LoginViewController: UIViewController {
     }
     
     deinit {
-        print("===NAG=== LoginViewController deinit")
+        print("===NAG=== DEINIT LoginViewController")
     }
     
     

@@ -72,6 +72,11 @@ class WelcomeVC: UIViewController {
         self.navigationController?.isNavigationBarHidden = true
     }
     
+    deinit {
+        print("===NAG=== DEINIT WelcomeVC")
+    }
+    
+    
     // MARK: - HELPER METHODS
     
     func postOnLoginNotification() {

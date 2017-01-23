@@ -50,7 +50,7 @@ class SignUpViewController: UIViewController {
     }
     
     deinit {
-        print("===NAG=== SignUpViewController deinit")
+        print("===NAG=== DEINIT SignUpViewController")
     }
     
     // MARK: - HELPER METHODS

@@ -26,7 +26,7 @@ class RecetPasswordViewController: UIViewController {
     }
 
     deinit {
-        print("===NAG=== RecetPasswordViewController deinit")
+        print("===NAG=== DEINIT RecetPasswordViewController")
     }
     
     @IBAction func actionResetPasswordButtonTapped(_ sender: Any) {
