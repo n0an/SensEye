@@ -8,13 +8,15 @@
 
 import UIKit
 import Firebase
+import Spring
 
 class WelcomeVC: UIViewController {
     
     // MARK: - OUTLETS
-    @IBOutlet weak var logoutButton: UIButton!
-    @IBOutlet weak var currentUserAvatarImageView: UIImageView!
+    //@IBOutlet weak var logoutButton: UIButton!
+    //@IBOutlet weak var currentUserAvatarImageView: UIImageView!
     
+    @IBOutlet weak var logoImageView: DesignableImageView!
     
     // MARK: - PROPERTIES
     enum Storyboard {
@@ -22,6 +24,8 @@ class WelcomeVC: UIViewController {
         static let segueShowChatVC = "showChatViewController"
         
     }
+    
+    var animationTimer: Timer!
     
     var currentUser: FRUser!
     
@@ -44,10 +48,7 @@ class WelcomeVC: UIViewController {
                         
                         print("===NAG===: currentUser = \(FRAuthManager.sharedManager.currentUser.username)")
                         
-                        
                         self.goToMessenger()
-                        
-                        
                     }
                     
                 })
@@ -70,6 +71,22 @@ class WelcomeVC: UIViewController {
         super.viewWillAppear(animated)
         
         self.navigationController?.isNavigationBarHidden = true
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+  
+        self.animationTimer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(startLogoAnimation), userInfo: nil, repeats: true)
+        
+        self.animationTimer.fire()
+        
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        stopLogoAnimation()
     }
     
     deinit {
@@ -194,56 +211,27 @@ class WelcomeVC: UIViewController {
     }
     
     
+   
     
-    func fetchMessages() {
+    func startLogoAnimation() {
         
-        if self.currentUser.avatarImage == nil {
-            
-            self.currentUserAvatarImageView.image = UIImage(named: "icon-defaultAvatar")
-            
-            self.currentUser.downloadAvatarImage { (image, error) in
-                
-                if let image = image {
-                    
-                    self.currentUserAvatarImageView.image = image
-                    
-                } else if let error = error {
-                    self.alertError(error: error as NSError)
-                }
-                
-            }
-            
-        } else {
-            
-            self.currentUserAvatarImageView.image = currentUser.avatarImage
-            
-        }
+//        logoImageView.delay = 0.5
+        logoImageView.animation = "zoomIn"
+        logoImageView.curve = "easeOutQuint"
+        logoImageView.force = 1.7
+        logoImageView.duration = 1.7
+        
+        logoImageView.animate()
         
         
     }
     
-    
-    
-    
-    // MARK: - ACTIONS
-    @IBAction func logoutButtonTapped() {
+    func stopLogoAnimation() {
         
-        GeneralHelper.sharedHelper.showLogoutView(onViewController: self) { (success) in
-            
-            if success == true {
-                
-                FRAuthManager.sharedManager.logOut(onComplete: { (error) in
-                    if let error = error {
-                        self.alertError(error: error as NSError)
-                    }
-                })
-                
-  
-            }
-            
-        }
+        self.animationTimer.invalidate()
         
     }
+    
     
     
     // MARK: - NAVIGATION

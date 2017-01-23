@@ -6,7 +6,9 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -1832,39 +1834,30 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ssP-E0-Txf">
-                                <rect key="frame" x="162" y="318" width="51" height="30"/>
-                                <state key="normal" title="LogOut"/>
-                                <connections>
-                                    <action selector="logoutButtonTapped" destination="WBC-Av-IXy" eventType="touchUpInside" id="93o-Dy-mXj"/>
-                                </connections>
-                            </button>
-                            <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-defaultAvatar" translatesAutoresizingMaskIntoConstraints="NO" id="C52-jc-EZ6" customClass="CircleImageView" customModule="SensEye" customModuleProvider="target">
-                                <rect key="frame" x="147" y="130" width="80" height="80"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dark_crop_1000" translatesAutoresizingMaskIntoConstraints="NO" id="HPm-L9-hkS" customClass="DesignableImageView" customModule="Spring">
+                                <rect key="frame" x="37.5" y="254" width="300" height="159"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="8Kz-lR-0Xt"/>
-                                    <constraint firstAttribute="height" constant="80" id="Ogh-s1-a1T"/>
+                                    <constraint firstAttribute="width" secondItem="HPm-L9-hkS" secondAttribute="height" multiplier="292:155" id="tb8-ad-RK8"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="ssP-E0-Txf" firstAttribute="centerY" secondItem="FPs-QB-kc4" secondAttribute="centerY" id="41q-6K-QKD"/>
-                            <constraint firstItem="C52-jc-EZ6" firstAttribute="top" secondItem="tw5-mH-1k4" secondAttribute="bottom" constant="66" id="Pno-I3-Ug4"/>
-                            <constraint firstItem="C52-jc-EZ6" firstAttribute="centerX" secondItem="FPs-QB-kc4" secondAttribute="centerX" id="eHD-X8-2dD"/>
-                            <constraint firstItem="ssP-E0-Txf" firstAttribute="centerX" secondItem="FPs-QB-kc4" secondAttribute="centerX" id="tZl-KJ-WP4"/>
+                            <constraint firstItem="HPm-L9-hkS" firstAttribute="width" secondItem="FPs-QB-kc4" secondAttribute="width" multiplier="0.8" id="ZZ9-fm-lsq"/>
+                            <constraint firstItem="HPm-L9-hkS" firstAttribute="centerY" secondItem="FPs-QB-kc4" secondAttribute="centerY" id="gBc-J0-ykl"/>
+                            <constraint firstItem="HPm-L9-hkS" firstAttribute="centerX" secondItem="FPs-QB-kc4" secondAttribute="centerX" id="sHo-MF-Rzx"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Gbw-nE-HYa"/>
                     <connections>
-                        <outlet property="currentUserAvatarImageView" destination="C52-jc-EZ6" id="dId-lX-wJP"/>
+                        <outlet property="logoImageView" destination="HPm-L9-hkS" id="AAL-pn-Leo"/>
                         <segue destination="kYh-Og-K9s" kind="show" identifier="showRecentChatsViewController" id="gzW-Nu-nWk"/>
                         <segue destination="mNO-6t-EPg" kind="show" identifier="showChatViewController" id="emx-kV-1YD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AJr-dG-5hl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1996" y="2245"/>
+            <point key="canvasLocation" x="1996" y="2244.8275862068967"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="91X-zA-3nf">
@@ -2141,6 +2134,6 @@
         <image name="space" width="1200" height="675"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="4QP-vi-Xbs"/>
+        <segue reference="emx-kV-1YD"/>
     </inferredMetricsTieBreakers>
 </document>
