@@ -41,7 +41,7 @@ class FRAuthManager {
                 
             } else if let firCreatedUser = firCreatedUser {
                 
-                let newUser = FRUser(uid: firCreatedUser.uid, username: username, avatarImage: avatarImage)
+                let newUser = FRUser(uid: firCreatedUser.uid, username: username, avatarImage: avatarImage, pushId: "")
                 
                 newUser.save(completion: { (error) in
                     
@@ -79,6 +79,68 @@ class FRAuthManager {
     }
     
     
+    // MARK: - PUSH NOTIFICATIOINS CONFIGURATION
+    func updateOneSignalId() {
+        
+        if let pushId = UserDefaults.standard.string(forKey: "OneSignalId") {
+            
+            setOneSignalId(pushId: pushId)
+            
+        } else {
+            removeOneSignalId()
+        }
+    }
+    
+    
+    func setOneSignalId(pushId: String) {
+        
+        updateCurrentUserOneSignalId(newId: pushId)
+        
+    }
+    
+    
+    func removeOneSignalId() {
+        updateCurrentUserOneSignalId(newId: "")
+    }
+    
+    
+    func updateCurrentUserOneSignalId(newId: String) {
+        
+        let currentUser = self.currentUser
+        
+        currentUser.pushId = newId
+        
+        saveUserToUserDefaults(user: currentUser)
+        
+        currentUser.userRef.setValue(currentUser.toDictionary())
+        
+        
+    }
+    
+    
+    
+    func saveUserToUserDefaults(user: FRUser) {
+        
+        UserDefaults.standard.set(user.toDictionary(), forKey: "currentUser")
+        UserDefaults.standard.synchronize()
+        
+    }
   
     
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

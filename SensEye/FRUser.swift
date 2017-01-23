@@ -20,14 +20,18 @@ class FRUser {
     
     var avatarDownloadLink: String?
     
+    var pushId: String?
+    
     var userRef: FIRDatabaseReference
     
     // MARK: - INITIALIZERS
-    init(uid: String, username: String, avatarImage: UIImage?) {
+    init(uid: String, username: String, avatarImage: UIImage?, pushId: String?) {
         self.uid =      uid
         self.username = username
         
         self.avatarImage = avatarImage
+        
+        self.pushId = pushId
         
         userRef = FRDataManager.sharedManager.REF_USERS.child(self.uid)
     }
@@ -35,6 +39,8 @@ class FRUser {
     init(uid: String, dictionary: [String: Any]) {
         self.uid = uid
         self.username = dictionary["username"] as! String
+        
+        self.pushId = dictionary["pushId"] as? String
         
         userRef = FRDataManager.sharedManager.REF_USERS.child(self.uid)
         
@@ -71,7 +77,9 @@ class FRUser {
     
     func toDictionary() -> [String: Any] {
         return [
-            "username": username
+            "username": username,
+            "pushId": pushId
+            
         ]
     }
     
@@ -107,6 +115,62 @@ extension FRUser {
 }
 
 
+//// MARK: - PUSH NOTIFICATIONS CONFIGURATION
+//
+//extension FRUser {
+//   
+//    func updateOneSignalId() {
+//        
+//        if let pushId = UserDefaults.standard.string(forKey: "OneSignalId") {
+//            
+//            setOneSignalId(pushId: pushId)
+//            
+//        } else {
+//            
+//            removeOneSignalId()
+//            
+//        }
+//        
+//    }
+//    
+//    func setOneSignalId(pushId: String) {
+//        
+//        updateCurrentUserOneSignalId(newId: pushId)
+//        
+//    }
+//    
+//    func removeOneSignalId() {
+//        updateCurrentUserOneSignalId(newId: "")
+//    }
+//    
+//    
+//    func updateCurrentUserOneSignalId(newId: String) {
+//        
+//        let currentUser = FRAuthManager.sharedManager.currentUser
+//        
+//        currentUser.pushId = newId
+//        
+//        saveUserToUserDefaults(user: currentUser)
+//        userRef.setValue(toDictionary())
+//        
+//    }
+//    
+//    
+//    
+//    func saveUserToUserDefaults(user: FRUser) {
+//        
+//        UserDefaults.standard.set(toDictionary(), forKey: "currentUser")
+//        UserDefaults.standard.synchronize()
+//        
+//    }
+//    
+//    
+//}
+
+
+
+
+
 
 
 
@@ -116,6 +180,11 @@ extension FRUser: Equatable { }
 func ==(lhs: FRUser, rhs: FRUser) -> Bool {
     return lhs.uid == rhs.uid
 }
+
+
+
+
+
 
 
 
