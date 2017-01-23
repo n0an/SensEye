@@ -42,6 +42,7 @@ class ChatViewController: JSQMessagesViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
       
+        self.inputToolbar.contentView.leftBarButtonItem = nil
         
         if currentUser.uid != appOwnerUID {
             let logoutButton = UIBarButtonItem(title: "Logout", style: .done, target: self, action: #selector(logoutButtonTapped))
