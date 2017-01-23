@@ -114,7 +114,6 @@ class FRAuthManager {
         
         currentUser.userRef.child("pushId").setValue(newId)
         
-//        currentUser.userRef.setValue(currentUser.toDictionary())
         
         
     }
@@ -125,7 +124,7 @@ class FRAuthManager {
         
         UserDefaults.standard.set(user.toDictionary(), forKey: "currentUser")
         UserDefaults.standard.synchronize()
-        
+        print("saveUserToUserDefaults")
     }
   
     

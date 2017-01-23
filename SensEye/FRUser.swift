@@ -115,58 +115,6 @@ extension FRUser {
 }
 
 
-//// MARK: - PUSH NOTIFICATIONS CONFIGURATION
-//
-//extension FRUser {
-//   
-//    func updateOneSignalId() {
-//        
-//        if let pushId = UserDefaults.standard.string(forKey: "OneSignalId") {
-//            
-//            setOneSignalId(pushId: pushId)
-//            
-//        } else {
-//            
-//            removeOneSignalId()
-//            
-//        }
-//        
-//    }
-//    
-//    func setOneSignalId(pushId: String) {
-//        
-//        updateCurrentUserOneSignalId(newId: pushId)
-//        
-//    }
-//    
-//    func removeOneSignalId() {
-//        updateCurrentUserOneSignalId(newId: "")
-//    }
-//    
-//    
-//    func updateCurrentUserOneSignalId(newId: String) {
-//        
-//        let currentUser = FRAuthManager.sharedManager.currentUser
-//        
-//        currentUser.pushId = newId
-//        
-//        saveUserToUserDefaults(user: currentUser)
-//        userRef.setValue(toDictionary())
-//        
-//    }
-//    
-//    
-//    
-//    func saveUserToUserDefaults(user: FRUser) {
-//        
-//        UserDefaults.standard.set(toDictionary(), forKey: "currentUser")
-//        UserDefaults.standard.synchronize()
-//        
-//    }
-//    
-//    
-//}
-
 
 
 
