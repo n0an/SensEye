@@ -425,6 +425,8 @@ extension ChatViewController {
         self.finishSendingMessage()
         
         chat.send(message: newMessage)
+        
+        chat.sendPushNotification(self.chatUsers, messageText: newMessage.text)
     }
     
     // * LOAD EARLIER MESSAGES

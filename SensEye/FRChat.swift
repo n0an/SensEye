@@ -201,7 +201,7 @@ extension FRChat {
         
         OneSignal.postNotification([
             
-            "contents": ["en": "\(currentUser.username)\n \(messageText)"],
+            "contents": ["en": "\(currentUser.username)\n\(messageText)"],
             "ios_badgeType": "Increase",
             "ios_badgeCount": "1",
             "include_player_ids": pushIds
