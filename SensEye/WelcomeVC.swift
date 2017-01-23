@@ -100,8 +100,12 @@ class WelcomeVC: UIViewController {
         
         stopLogoAnimation()
         
-        self.activityIndicator.stopAnimating()
-        self.view.willRemoveSubview(self.activityIndicator)
+        if self.activityIndicator != nil {
+            self.activityIndicator.stopAnimating()
+            self.view.willRemoveSubview(self.activityIndicator)
+        }
+        
+        
     }
     
     deinit {
