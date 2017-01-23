@@ -14,6 +14,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>DGActivityIndicatorView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>GTMSessionFetcher.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -62,17 +67,27 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>24348F7576C9F94390F1CCAE7CB060B9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3814077B60A225441E135CD435F07186</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4686FE8E0A93C3845D6401FE4AA8FC27</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>88E9EC28B8B46C3631E6B242B50F4442</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>9EFE4C70245EE2857D336B8B9FA4E825</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>B697F73FD6186CF2AB64DBB816D380B5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -97,12 +112,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>ECFCC70722778B338ADE93E75D36423A</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>F13E66522D0E8CA5C7472A7D4AA4C243</key>
+		<key>EC205918EDBB589DDED60E06D5D3F145</key>
 		<dict>
 			<key>primary</key>
 			<true/>

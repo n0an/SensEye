@@ -9,6 +9,8 @@
 import UIKit
 import Firebase
 import Spring
+import DGActivityIndicatorView
+
 
 class WelcomeVC: UIViewController {
     
@@ -26,6 +28,8 @@ class WelcomeVC: UIViewController {
     }
     
     var animationTimer: Timer!
+    
+    var activityIndicator: DGActivityIndicatorView!
     
     var currentUser: FRUser!
     
@@ -48,7 +52,7 @@ class WelcomeVC: UIViewController {
                         
                         print("===NAG===: currentUser = \(FRAuthManager.sharedManager.currentUser.username)")
                         
-//                        self.goToMessenger()
+                        self.goToMessenger()
                     }
                     
                 })
@@ -80,6 +84,13 @@ class WelcomeVC: UIViewController {
         
         self.animationTimer.fire()
         
+        let rect = CGRect(x: self.view.frame.midX - 25, y: 100, width: 50, height: 50)
+        
+        self.activityIndicator = DGActivityIndicatorView(type: .nineDots, tintColor: UIColor.lightGray)
+        self.activityIndicator.frame = rect
+        
+        self.view.addSubview(self.activityIndicator)
+        self.activityIndicator.startAnimating()
         
         
     }
@@ -88,6 +99,9 @@ class WelcomeVC: UIViewController {
         super.viewWillDisappear(animated)
         
         stopLogoAnimation()
+        
+        self.activityIndicator.stopAnimating()
+        self.view.willRemoveSubview(self.activityIndicator)
     }
     
     deinit {
