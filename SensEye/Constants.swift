@@ -8,15 +8,7 @@
 
 import UIKit
 
-// MARK: - ====== FIREBASE ======
-
-public let appOwnerUID = "WHGetHIfSjRsWRnzyY6NEHWZso52"
-
 public let kNUMBEROFMESSAGES = 40
-
-// MARK: - ====== OneSignal ======
-public let kONESIGNALAPPID = "2e5c5eb6-e526-4a05-8c76-9c1e022692b1"
-
 
 // MARK: - ===== VK =====
 

@@ -145,7 +145,7 @@ extension FRChat {
         
         // Incrementing unread messages if current user IS NOT app owner
         
-        if FRAuthManager.sharedManager.currentUser.uid != appOwnerUID {
+        if FRAuthManager.sharedManager.currentUser.uid != GeneralHelper.sharedHelper.appOwnerUID {
             
             self.messagesCount += 1
         }
@@ -163,7 +163,7 @@ extension FRChat {
     func clearUnreadMessagesCount() {
         
         
-        if FRAuthManager.sharedManager.currentUser.uid == appOwnerUID {
+        if FRAuthManager.sharedManager.currentUser.uid == GeneralHelper.sharedHelper.appOwnerUID {
             self.messagesCount = 0
             self.chatRef.child("messagesCount").setValue(0)
         }

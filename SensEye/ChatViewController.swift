@@ -50,7 +50,7 @@ class ChatViewController: JSQMessagesViewController, UIGestureRecognizerDelegate
         self.collectionView.addGestureRecognizer(tapGesture)
         
         
-        if currentUser.uid != appOwnerUID {
+        if currentUser.uid != GeneralHelper.sharedHelper.appOwnerUID {
             let logoutButton = UIBarButtonItem(title: "Logout", style: .done, target: self, action: #selector(logoutButtonTapped))
             
             self.navigationItem.rightBarButtonItem = logoutButton
@@ -349,7 +349,7 @@ class ChatViewController: JSQMessagesViewController, UIGestureRecognizerDelegate
     
     func actionBackButtonTapped() {
         
-        if currentUser.uid == appOwnerUID {
+        if currentUser.uid == GeneralHelper.sharedHelper.appOwnerUID {
             let _ = self.navigationController?.popViewController(animated: true)
 
         } else {

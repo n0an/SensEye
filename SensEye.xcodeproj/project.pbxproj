@@ -11,6 +11,7 @@
 		180231C51E12FC1D00FA8322 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180231C41E12FC1D00FA8322 /* PhotoViewController.swift */; };
 		180231CE1E1456C600FA8322 /* AlbumsContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180231CC1E1456C600FA8322 /* AlbumsContentViewController.swift */; };
 		180231CF1E1456C600FA8322 /* AlbumsPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180231CD1E1456C600FA8322 /* AlbumsPageViewController.swift */; };
+		180610C51E37CE0A0074ED86 /* secretsFile.txt in Resources */ = {isa = PBXBuildFile; fileRef = 180610C41E37CE0A0074ED86 /* secretsFile.txt */; };
 		18251C461E2D5160000DBE57 /* RecetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18251C451E2D5160000DBE57 /* RecetPasswordViewController.swift */; };
 		18251C481E2D51A5000DBE57 /* UITextField+Placeholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18251C471E2D51A5000DBE57 /* UITextField+Placeholder.swift */; };
 		18251C4A1E2D53F4000DBE57 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18251C491E2D53F4000DBE57 /* SignUpViewController.swift */; };
@@ -81,6 +82,7 @@
 		180231C41E12FC1D00FA8322 /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		180231CC1E1456C600FA8322 /* AlbumsContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumsContentViewController.swift; sourceTree = "<group>"; };
 		180231CD1E1456C600FA8322 /* AlbumsPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumsPageViewController.swift; sourceTree = "<group>"; };
+		180610C41E37CE0A0074ED86 /* secretsFile.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = secretsFile.txt; sourceTree = "<group>"; };
 		18251C451E2D5160000DBE57 /* RecetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecetPasswordViewController.swift; sourceTree = "<group>"; };
 		18251C471E2D51A5000DBE57 /* UITextField+Placeholder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+Placeholder.swift"; sourceTree = "<group>"; };
 		18251C491E2D53F4000DBE57 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -271,6 +273,7 @@
 				18AA37DC1E1053F700D5BCB1 /* Info.plist */,
 				1899316A1E2D42B7006E00C6 /* GoogleService-Info.plist */,
 				18C3952F1E166D0100AE1867 /* SensEye-Bridging-Header.h */,
+				180610C41E37CE0A0074ED86 /* secretsFile.txt */,
 			);
 			path = SensEye;
 			sourceTree = "<group>";
@@ -461,6 +464,7 @@
 				18AA37D81E1053F700D5BCB1 /* Assets.xcassets in Resources */,
 				18D623781E215B9200138117 /* about.storyboard in Resources */,
 				18AA37D61E1053F700D5BCB1 /* Main.storyboard in Resources */,
+				180610C51E37CE0A0074ED86 /* secretsFile.txt in Resources */,
 				1899316B1E2D42B7006E00C6 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

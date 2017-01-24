@@ -125,7 +125,7 @@ class WelcomeVC: UIViewController {
         
         self.postOnLoginNotification()
         
-        if self.currentUser.uid == appOwnerUID {
+        if self.currentUser.uid == GeneralHelper.sharedHelper.appOwnerUID {
             // SUPER ADMIN USER - SEE ALL CHATS
             self.performSegue(withIdentifier: Storyboard.segueShowRecentChats, sender: nil)
             
@@ -148,7 +148,7 @@ class WelcomeVC: UIViewController {
                         
                         let chat = FRChat(uid: chatId, dictionary: snapshot.value as! [String: Any])
                         
-                        let ref = FRDataManager.sharedManager.REF_USERS.child(appOwnerUID)
+                        let ref = FRDataManager.sharedManager.REF_USERS.child(GeneralHelper.sharedHelper.appOwnerUID)
                         
                         
                         ref.observeSingleEvent(of: .value, with: { (snapshot) in
@@ -171,7 +171,7 @@ class WelcomeVC: UIViewController {
                 } else {
                     print("snapshot NOT exists(). CREATE NEW CHAT AND GO TO CHAT VIEW CONTROLLER")
                     
-                    let userIds = [self.currentUser.uid, appOwnerUID]
+                    let userIds = [self.currentUser.uid, GeneralHelper.sharedHelper.appOwnerUID]
                     
                     
                     let newChat = FRChat(userIds: userIds, withUserName: self.currentUser.username, withUserUID: self.currentUser.uid)
@@ -181,7 +181,7 @@ class WelcomeVC: UIViewController {
                     newChat.save()
                     
                     
-                    let refAppOwner = FRDataManager.sharedManager.REF_USERS.child(appOwnerUID)
+                    let refAppOwner = FRDataManager.sharedManager.REF_USERS.child(GeneralHelper.sharedHelper.appOwnerUID)
                     
                     
                     refAppOwner.observeSingleEvent(of: .value, with: { (snapshot) in

@@ -14,9 +14,11 @@ import OneSignal
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-
+    
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
+        readSecretsFile()
         
         FIRApp.configure()
         
@@ -41,7 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // oneSignal
         
-        OneSignal.initWithLaunchOptions(launchOptions, appId: kONESIGNALAPPID, handleNotificationReceived: nil, handleNotificationAction: nil, settings: [kOSSettingsKeyInAppAlerts: false])
+        OneSignal.initWithLaunchOptions(launchOptions, appId: GeneralHelper.sharedHelper.kONESIGNALAPPID, handleNotificationReceived: nil, handleNotificationAction: nil, settings: [kOSSettingsKeyInAppAlerts: false])
         
         
         OneSignal.setLogLevel(ONE_S_LOG_LEVEL.LL_NONE, visualLevel: ONE_S_LOG_LEVEL.LL_NONE)
@@ -109,6 +111,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         
+    }
+    
+    func readSecretsFile() {
+        
+        let filePath = Bundle.main.path(forResource: "secretsFile", ofType: "txt")
+        
+        var secretInfo = ""
+        
+        do {
+            secretInfo = try String(contentsOfFile: filePath!)
+            
+        } catch {
+            print(error.localizedDescription)
+        }
+        
+        guard secretInfo != "" else { return }
+        
+        let keys = secretInfo.components(separatedBy: "\n")
+        
+        GeneralHelper.sharedHelper.appOwnerUID = keys[0]
+        GeneralHelper.sharedHelper.kONESIGNALAPPID = keys[1]
+        
+        print("GeneralHelper.sharedHelper.appOwnerUID = \(GeneralHelper.sharedHelper.appOwnerUID)")
+        print("GeneralHelper.sharedHelper.kONESIGNALAPPID = \(GeneralHelper.sharedHelper.kONESIGNALAPPID)")
     }
     
 

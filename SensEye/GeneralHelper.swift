@@ -16,6 +16,10 @@ class GeneralHelper {
         return _sharedHelper
     }
     
+    public var kONESIGNALAPPID = ""
+    public var appOwnerUID = ""
+    
+    
     public func showAlertOnViewController(viewController: UIViewController, withTitle title: String, message: String, buttonTitle: String) {
         let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let action = UIAlertAction(title: buttonTitle, style: .default, handler: nil)
