@@ -31,4 +31,8 @@ target 'SensEye' do
   
   pod 'DGActivityIndicatorView'
 
+
+  # Facebook Authentication
+  pod 'FBSDKLoginKit'
+
 end

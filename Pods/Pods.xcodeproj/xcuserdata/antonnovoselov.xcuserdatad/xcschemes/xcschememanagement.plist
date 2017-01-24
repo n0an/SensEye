@@ -14,7 +14,22 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Bolts.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>DGActivityIndicatorView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>FBSDKCoreKit.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>FBSDKLoginKit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -67,17 +82,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>24348F7576C9F94390F1CCAE7CB060B9</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>3814077B60A225441E135CD435F07186</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4686FE8E0A93C3845D6401FE4AA8FC27</key>
+		<key>44CAD6CE523055ED339E87154473A254</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -88,6 +98,26 @@
 			<true/>
 		</dict>
 		<key>9EFE4C70245EE2857D336B8B9FA4E825</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B36733945BBD11BD8BFD552016BCC3F8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B58B1F5F45A48409813547CC82949E4A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BC5000D645EEAF961C85907CDC796FE1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BEF7E6E85DB5CDE5D7A18F4F2EB8494B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -112,7 +142,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>EC205918EDBB589DDED60E06D5D3F145</key>
+		<key>F9FD6782CD3BE8019C3A9E5C5BDD3276</key>
 		<dict>
 			<key>primary</key>
 			<true/>

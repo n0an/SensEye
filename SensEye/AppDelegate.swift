@@ -10,6 +10,8 @@ import UIKit
 import Firebase
 import OneSignal
 
+import FBSDKCoreKit
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -39,6 +41,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             
         }
+        
+        // FACEBOOK LOGIN
+        
+        FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         
         
         // oneSignal
@@ -128,6 +134,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         print("GeneralHelper.sharedHelper.appOwnerUID = \(GeneralHelper.sharedHelper.appOwnerUID)")
         print("GeneralHelper.sharedHelper.kONESIGNALAPPID = \(GeneralHelper.sharedHelper.kONESIGNALAPPID)")
+    }
+    
+    
+    
+    // MARK: - FACEBOOK LOGIN
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        
+        let result = FBSDKApplicationDelegate.sharedInstance().application(app, open: url, sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String, annotation: options[UIApplicationOpenURLOptionsKey.annotation])
+        
+        return result
     }
     
 
