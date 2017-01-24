@@ -332,7 +332,7 @@ class ChatViewController: JSQMessagesViewController, UIGestureRecognizerDelegate
             
             if success == true {
                 
-                let _ = self.navigationController?.popViewController(animated: false)
+                let _ = self.navigationController?.popToRootViewController(animated: false)
                 
                 FRAuthManager.sharedManager.logOut(onComplete: { (error) in
                     if let error = error {

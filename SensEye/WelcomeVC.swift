@@ -181,22 +181,29 @@ class WelcomeVC: UIViewController {
                     newChat.save()
                     
                     
-                    let ref = FRDataManager.sharedManager.REF_USERS.child(appOwnerUID)
+                    let refAppOwner = FRDataManager.sharedManager.REF_USERS.child(appOwnerUID)
                     
                     
-                    ref.observeSingleEvent(of: .value, with: { (snapshot) in
+                    refAppOwner.observeSingleEvent(of: .value, with: { (snapshot) in
                         
-                        let chatUser = FRUser(uid: snapshot.key, dictionary: snapshot.value as! [String: Any])
+                        let appOwnerUser = FRUser(uid: snapshot.key, dictionary: snapshot.value as! [String: Any])
                         
                         
-                        let chatUsers: [FRUser] = [self.currentUser, chatUser]
+                        let chatUsers: [FRUser] = [self.currentUser, appOwnerUser]
+                        
                         
                         for account in chatUsers {
                             account.saveNewChat(newChat)
                         }
                         
-                        self.performSegue(withIdentifier: Storyboard.segueShowChatVC, sender: (newChat, chatUsers))
+                        // Sending the first greeting message from appOwner "Hello, how can I help you?"
+                        let greetingMessage = FRMessage(chatId: newChat.uid, senderUID: appOwnerUser.uid, senderDisplayName: appOwnerUser.username, text: "Здравствуйте, я могу Вам чем-то помочь?")
                         
+                        greetingMessage.save()
+                        
+                        newChat.send(message: greetingMessage)
+                        
+                        self.performSegue(withIdentifier: Storyboard.segueShowChatVC, sender: (newChat, chatUsers))
                         
                     })
                 }
@@ -207,36 +214,14 @@ class WelcomeVC: UIViewController {
         }
         
     }
-    
-    
-    func fetchNewChatUser(forUserId userId: String) -> FRUser? {
-        
-        let ref = FRDataManager.sharedManager.REF_USERS.child(userId)
-        
-        var result: FRUser?
-        
-        ref.observeSingleEvent(of: .value, with: { (snapshot) in
-            
-            let chatUser = FRUser(uid: snapshot.key, dictionary: snapshot.value as! [String: Any])
-            
-            result = chatUser
-            
-            
-            
-        })
-        
-        return result
-        
-    }
+
     
     
    
     // MARK: - ANIMATIONS FOR WAITING
     func startLogoAnimation() {
         
-//        logoImageView.delay = 0.5
         logoImageView.animation = "zoomIn"
-//        logoImageView.animation = "fadeIn"
         logoImageView.curve = "easeOutQuint"
         logoImageView.force = 1.7
         logoImageView.duration = 1.7
