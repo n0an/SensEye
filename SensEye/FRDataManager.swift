@@ -28,5 +28,29 @@ class FRDataManager {
     var REF_MESSAGES    = DB_ROOT.child(MESSAGES_REF)
     var REF_CHATS       = DB_ROOT.child(CHATS_REF)
     
+    
+    
+    
+    func isUserRegistered(userId: String, withBlock: @escaping (_ result: Bool) -> Void) {
+        
+        self.REF_USERS.queryOrderedByKey().queryEqual(toValue: userId).observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            if snapshot.exists() {
+                
+                withBlock(true)
+                
+            } else {
+                
+                withBlock(false)
+            }
+
+            
+            
+        })
+        
+        
+        
+    }
+    
 }
 
