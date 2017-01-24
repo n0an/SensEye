@@ -117,14 +117,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let filePath = Bundle.main.path(forResource: "secretsFile", ofType: "txt")
         
-        var secretInfo = ""
-        
-        do {
-            secretInfo = try String(contentsOfFile: filePath!)
-            
-        } catch {
-            print(error.localizedDescription)
-        }
+        guard let secretInfo = try? String(contentsOfFile: filePath!) else { return }
         
         guard secretInfo != "" else { return }
         

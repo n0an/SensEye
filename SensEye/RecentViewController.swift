@@ -29,6 +29,8 @@ class RecentViewController: UIViewController {
     // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.tabBarController?.delegate = self
 
         self.currentUser = FRAuthManager.sharedManager.currentUser
         
@@ -176,8 +178,26 @@ extension RecentViewController: UITableViewDelegate {
     
 }
 
-
-
+// MARK: - UITabBarControllerDelegate
+extension RecentViewController: UITabBarControllerDelegate {
+    
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        
+        
+        if tabBarController.selectedIndex == 3 {
+            
+            
+            if let index = tabBarController.viewControllers?.index(of: viewController), index == 3 {
+                return false
+            }
+         
+        }
+        
+        return true
+        
+    }
+    
+}
 
 
 
