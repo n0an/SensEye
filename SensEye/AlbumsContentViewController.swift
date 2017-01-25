@@ -1,7 +1,7 @@
 
 
 import UIKit
-
+import SAMCache
 
 class AlbumsContentViewController: UIViewController {
     
@@ -32,6 +32,8 @@ class AlbumsContentViewController: UIViewController {
     var currentPage: Int!
     
     var album: PhotoAlbum!
+    
+    var cache = SAMCache.shared()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -99,7 +101,53 @@ class AlbumsContentViewController: UIViewController {
             
             let urlPhoto = URL(string: linkToNeededRes!)
             
-            self.contentImageView.af_setImage(withURL: urlPhoto!)
+            // OLD WAY:
+//            self.contentImageView.af_setImage(withURL: urlPhoto!)
+            
+            
+            // NEW WAY WITH CACHING:
+            let albumThumbCacheKey = "GalleryThumb-\(self.album.albumID!)"
+            
+            if let cachedImage = self.cache?.object(forKey: albumThumbCacheKey) as? UIImage {
+                self.contentImageView.image = cachedImage
+            } else {
+                
+                
+                let session = URLSession.shared
+                
+                let downloadTask = session.downloadTask(with: urlPhoto!) { [weak self] (localFile, response, error) -> Void in
+                    
+                    if error == nil && localFile != nil {
+                        
+                        if let data = try? Data(contentsOf: urlPhoto!) {
+                            
+                            if let downloadedImage = UIImage(data: data) {
+                                
+                                DispatchQueue.main.async {
+                                    if let strongSelf = self {
+                                        
+                                        strongSelf.cache?.setObject(downloadedImage, forKey: albumThumbCacheKey)
+                                        
+                                        strongSelf.contentImageView.image = downloadedImage
+                                        
+
+                                    }
+                                }
+                                
+                                
+                            }
+                        }
+                    }
+                }
+                
+                downloadTask.resume()
+                
+                
+              
+            }
+            
+            
+            
         }
         
     }
