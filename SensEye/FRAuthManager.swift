@@ -322,7 +322,7 @@ extension FRAuthManager: GIDSignInDelegate {
             let provider = credential.provider
             
             userRef.child("username").setValue(fullName)
-
+            
             
         })
     }

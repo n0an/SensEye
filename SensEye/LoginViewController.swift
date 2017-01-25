@@ -90,16 +90,25 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
         
         FRAuthManager.sharedManager.loginWithFacebook(viewController: self) { (errorString) in
             
-            guard errorString == errorString else {
-                
+            if let errorString = errorString {
                 self.alert(title: "Error", message: errorString)
-                return
+                
+                
+                
+            } else {
+                DispatchQueue.main.async {
+                    
+                    self.goToChatVC()
+                }
             }
             
-            DispatchQueue.main.async {
-                
-                self.goToChatVC()
-            }
+//            guard let errorString = errorString else {
+//                
+//                self.alert(title: "Error", message: errorString)
+//                return
+//            }
+            
+            
             
             
         }
