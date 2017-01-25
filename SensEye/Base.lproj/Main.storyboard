@@ -268,7 +268,7 @@
             <objects>
                 <navigationController storyboardIdentifier="PhotoNavViewController" automaticallyAdjustsScrollViewInsets="NO" id="Uuj-Kp-AHt" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="nf4-z0-1A8">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="nf4-z0-1A8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1220,7 +1220,7 @@
             <objects>
                 <navigationController storyboardIdentifier="WelcomeView" automaticallyAdjustsScrollViewInsets="NO" id="S8D-w0-bzI" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="X6N-kH-ZtH">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="X6N-kH-ZtH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1864,7 +1864,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ngm-NQ-1S7" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="34q-CL-Z1M">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="34q-CL-Z1M">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1883,7 +1883,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bln-RT-Wcb" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="e7a-ta-sOH"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="uO9-me-3qC">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="uO9-me-3qC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1917,7 +1917,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="65"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TB3-pv-MVj" id="ABA-jb-mok">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="64.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-defaultAvatar" translatesAutoresizingMaskIntoConstraints="NO" id="fzc-MQ-B7v">
@@ -2037,7 +2037,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="77"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kpM-nu-8gp" id="1xX-bb-0PO">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="76.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="76"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-defaultAvatar" translatesAutoresizingMaskIntoConstraints="NO" id="7X9-so-QQM">

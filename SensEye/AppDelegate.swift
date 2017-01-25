@@ -176,6 +176,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 
         print("Google credential = \(credential)")
         
+        FIRAuth.auth()?.signIn(with: credential, completion: { (firuser, error) in
+            
+            if let error = error {
+                print("Google SignIn Error: \(error.localizedDescription)")
+                return
+            }
+            
+            
+        })
+        
         
     }
     

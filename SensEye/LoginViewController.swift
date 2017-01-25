@@ -18,11 +18,15 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: DesignableButton!
+    
+//    @IBOutlet weak var googleSignInButton: GIDSignInButton!
 
     // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        GIDSignIn.sharedInstance().uiDelegate = self
+
         
         emailTextField.delegate = self
         passwordTextField.delegate = self
@@ -30,11 +34,7 @@ class LoginViewController: UIViewController {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(resignKeyboard))
         self.view.addGestureRecognizer(tapGesture)
         
-        // Google Login configuration
-        GIDSignIn.sharedInstance().uiDelegate = self
-        GIDSignIn.sharedInstance().signIn()
         
-        // TODO:(nag) Configure the sign-in button look/feel
 
     }
     
@@ -114,6 +114,9 @@ class LoginViewController: UIViewController {
     @IBAction func actionLoginGoogleTapped(_ sender: Any) {
         // Dismiss keyboard
         self.view.endEditing(true)
+        
+        GIDSignIn.sharedInstance().signIn()
+        
         
         
     }
