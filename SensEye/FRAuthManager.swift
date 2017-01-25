@@ -203,11 +203,7 @@ class FRAuthManager: NSObject {
             UserDefaults.standard.removeObject(forKey: "OneSignalId")
             self.removeOneSignalId()
             
-            
-            // TODO: - check if it's necessary to store currentUser in UserDefaults
-//            UserDefaults.standard.removeObject(forKey: "currentUser")
-//            UserDefaults.standard.synchronize()
-            
+          
             try FIRAuth.auth()?.signOut()
             
         } catch {
@@ -269,23 +265,13 @@ class FRAuthManager: NSObject {
         
         currentUser.pushId = newId
         
-//        saveUserToUserDefaults(user: currentUser)
-        
         currentUser.userRef.child("pushId").setValue(newId)
         
         
         
     }
     
-    
-    // TODO: - to delete this?
-//    func saveUserToUserDefaults(user: FRUser) {
-//        
-//        UserDefaults.standard.set(user.toDictionary(), forKey: "currentUser")
-//        UserDefaults.standard.synchronize()
-//        print("saveUserToUserDefaults")
-//    }
-  
+   
     
 }
 

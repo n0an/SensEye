@@ -126,7 +126,9 @@ class WelcomeVC: UIViewController {
     
     func postOnLoginNotification() {
         
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "FRUserDidLoginNotification"), object: nil, userInfo: ["userId" : FIRAuth.auth()!.currentUser!.uid])
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "FRUserDidLoginNotification"), object: nil)
+        
+        
         
     }
     

@@ -55,7 +55,7 @@ class SignUpViewController: UIViewController {
     
     // MARK: - HELPER METHODS
     func goToChatVC() {
-//        postOnLoginNotification()
+
         self.dismiss(animated: true, completion: nil)
    
     }
@@ -65,11 +65,6 @@ class SignUpViewController: UIViewController {
     }
     
     
-    func postOnLoginNotification() {
-        
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "FRUserDidLoginNotification"), object: nil, userInfo: ["userId" : FIRAuth.auth()!.currentUser!.uid])
-        
-    }
     
 
     // MARK: - ACTIONS
