@@ -34,5 +34,8 @@ target 'SensEye' do
 
   # Facebook Authentication
   pod 'FBSDKLoginKit'
+  
+  # Google Authentication
+  pod 'GoogleSignIn'
 
 end

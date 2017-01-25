@@ -10,6 +10,8 @@ import UIKit
 import Spring
 import Firebase
 
+import GoogleSignIn
+
 class LoginViewController: UIViewController {
     
     // MARK: - OUTLETS
