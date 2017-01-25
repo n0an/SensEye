@@ -150,10 +150,6 @@ extension FRChat {
             self.messagesCount += 1
         }
         
-//        if message.senderUID != FRAuthManager.sharedManager.currentUser.uid {
-//            self.messagesCount += 1
-//        }
-        
         self.chatRef.child("messagesCount").setValue(self.messagesCount)
         
         
@@ -178,42 +174,7 @@ extension FRChat {
 // MARK: - PUSH NOTIFICATIONS
 
 extension FRChat {
-    
-//    func sendPushNotification(_ chatMembers: [FRUser], messageText: String) {
-//        
-//        let currentUser = FRAuthManager.sharedManager.currentUser
-//        
-//        var pushIds: [String] = []
-//        
-//        for user in chatMembers {
-//            
-//            if user.uid == currentUser.uid {
-//                continue
-//            }
-//            
-//            pushIds.append(user.pushId!)
-//            
-//        }
-//        
-//        
-//        
-//        // TODO: user push ids
-//        
-//        OneSignal.postNotification([
-//            
-//            "contents": ["en": "\(currentUser.username)\n\(messageText)"],
-//            "ios_badgeType": "Increase",
-//            "ios_badgeCount": "1",
-//            "include_player_ids": pushIds
-//            ])
-//        
-//        
-//        
-//    }
-    
-    
-    
-    
+   
     func sendPushNotification(_ messageText: String) {
         
         let currentUser = FRAuthManager.sharedManager.currentUser
@@ -273,17 +234,6 @@ extension FRChat {
     
     
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 
