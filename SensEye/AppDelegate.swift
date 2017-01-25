@@ -30,14 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         customizeAppearance()
         
-        
-        // On login notification handle
-        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "FRUserDidLoginNotification"), object: nil, queue: nil) { (notification) in
-            
-            self.handleOnUserLogin()
-            
-        }
-        
+   
         // FACEBOOK LOGIN
         
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
@@ -94,9 +87,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         GeneralHelper.sharedHelper.appOwnerUID = keys[0]
         GeneralHelper.sharedHelper.kONESIGNALAPPID = keys[1]
-        
-        print("GeneralHelper.sharedHelper.appOwnerUID = \(GeneralHelper.sharedHelper.appOwnerUID)")
-        print("GeneralHelper.sharedHelper.kONESIGNALAPPID = \(GeneralHelper.sharedHelper.kONESIGNALAPPID)")
+       
     }
     
     
@@ -115,33 +106,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
     }
-    
-    // MARK: - One Signal Start/Stop
-    func handleOnUserLogin() {
-        
-        self.startOneSignal()
-        
-    }
-    
-    func startOneSignal() {
-        
-        OneSignal.idsAvailable { (userId, token) in
-            
-            if token != nil {
-                UserDefaults.standard.setValue(userId!, forKey: "OneSignalId")
-            } else {
-                UserDefaults.standard.removeObject(forKey: "OneSignalId")
-            }
-            
-            FRAuthManager.sharedManager.updateOneSignalId()
-            
-        }
-        
-        
-    }
-    
-    
-    
+ 
     
     
     // MARK: - FACEBOOK OR GOOGLE LOGIN

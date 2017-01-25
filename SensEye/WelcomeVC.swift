@@ -123,18 +123,13 @@ class WelcomeVC: UIViewController {
         try! FIRAuth.auth()?.signOut()
         return
     }
-    
-    func postOnLoginNotification() {
-        
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "FRUserDidLoginNotification"), object: nil)
-        
-        
-        
-    }
+   
     
     func goToMessenger() {
         
-        self.postOnLoginNotification()
+        // Configure OneSignal pushId before goToChat
+        FRAuthManager.sharedManager.handleOneSignalOnUserLogin()
+        
         
         if self.currentUser.uid == GeneralHelper.sharedHelper.appOwnerUID {
             // SUPER ADMIN USER - SEE ALL CHATS

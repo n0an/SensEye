@@ -12,6 +12,8 @@ import FBSDKLoginKit
 
 import GoogleSignIn
 
+import OneSignal
+
 typealias FRAuthCompletionHandler = (_ errorString: String?, _ firUser: Any?) -> Void
 
 class FRAuthManager: NSObject {
@@ -19,8 +21,11 @@ class FRAuthManager: NSObject {
     private static let _sharedManager = FRAuthManager()
     
     static var sharedManager: FRAuthManager {
+        
+        
         return _sharedManager
     }
+    
     
     private var _currentUser: FRUser!
     
@@ -31,6 +36,8 @@ class FRAuthManager: NSObject {
             return _currentUser
         }
     }
+    
+    
     
     // MARK: - Sign Up Method
     func signUp(withEmail email: String, username: String, password: String, avatarImage: UIImage?, onComplete: FRAuthCompletionHandler?) {
@@ -190,20 +197,14 @@ class FRAuthManager: NSObject {
         
     }
     
-    
-    
-    
-    
     // MARK: - Log Out Method
     
     func logOut(onComplete: (Error?) -> Void) {
         
         do {
             
-            UserDefaults.standard.removeObject(forKey: "OneSignalId")
-            self.removeOneSignalId()
+            self.updateCurrentUserOneSignalId(newId: "")
             
-          
             try FIRAuth.auth()?.signOut()
             
         } catch {
@@ -235,29 +236,26 @@ class FRAuthManager: NSObject {
     
     
     // MARK: - PUSH NOTIFICATIOINS CONFIGURATION
-    func updateOneSignalId() {
+    
+    func handleOneSignalOnUserLogin() {
         
-        if let pushId = UserDefaults.standard.string(forKey: "OneSignalId") {
+        OneSignal.idsAvailable { (userId, token) in
             
-            setOneSignalId(pushId: pushId)
+            var pushId = ""
             
-        } else {
-            removeOneSignalId()
+            if token != nil {
+                
+                pushId = userId!
+                
+            }
+            
+            self.updateCurrentUserOneSignalId(newId: pushId)
+            
         }
-    }
-    
-    
-    func setOneSignalId(pushId: String) {
-        
-        updateCurrentUserOneSignalId(newId: pushId)
         
     }
     
-    
-    func removeOneSignalId() {
-        updateCurrentUserOneSignalId(newId: "")
-    }
-    
+  
     
     func updateCurrentUserOneSignalId(newId: String) {
         
@@ -266,8 +264,6 @@ class FRAuthManager: NSObject {
         currentUser.pushId = newId
         
         currentUser.userRef.child("pushId").setValue(newId)
-        
-        
         
     }
     
