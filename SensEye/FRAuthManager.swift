@@ -150,10 +150,15 @@ class FRAuthManager: NSObject {
                     let userLastName = result["last_name"] as! String
                     let fullName = "\(userFirstName) \(userLastName)"
                     
+                    let email = firuser.email!
+                    
+                    let provider = credential.provider
+                    
                     let userRef = FRDataManager.sharedManager.REF_USERS.child(firuser.uid)
                     
                     userRef.child("username").setValue(fullName)
-                    
+                    userRef.child("email").setValue(email)
+                    userRef.child("provider").setValue(provider)
                     onComplete?(nil, firuser)
                     
  
@@ -317,12 +322,13 @@ extension FRAuthManager: GIDSignInDelegate {
             
             let fullName = user.profile.name
             
-            let email = user.profile.email
+            let email = firuser!.email!
             
             let provider = credential.provider
             
             userRef.child("username").setValue(fullName)
-            
+            userRef.child("email").setValue(email)
+            userRef.child("provider").setValue(provider)
             
         })
     }
