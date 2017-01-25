@@ -23,11 +23,18 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         emailTextField.delegate = self
         passwordTextField.delegate = self
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(resignKeyboard))
         self.view.addGestureRecognizer(tapGesture)
+        
+        // Google Login configuration
+        GIDSignIn.sharedInstance().uiDelegate = self
+        GIDSignIn.sharedInstance().signIn()
+        
+        // TODO:(nag) Configure the sign-in button look/feel
 
     }
     
@@ -170,7 +177,12 @@ extension LoginViewController: UITextFieldDelegate {
 
 
 
-
+extension LoginViewController: GIDSignInUIDelegate {
+    
+    
+    
+    
+}
 
 
 

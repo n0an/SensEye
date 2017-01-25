@@ -15,7 +15,7 @@ import FBSDKCoreKit
 import GoogleSignIn
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 
     var window: UIWindow?
     
@@ -47,6 +47,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // FACEBOOK LOGIN
         
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        
+        
+        // GOOGLE LOGIN
+        
+        GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
+        GIDSignIn.sharedInstance().delegate = self
         
         
         // oneSignal
@@ -140,14 +146,45 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     
-    // MARK: - FACEBOOK LOGIN
+    // MARK: - FACEBOOK OR GOOGLE LOGIN
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
         
-        let result = FBSDKApplicationDelegate.sharedInstance().application(app, open: url, sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String, annotation: options[UIApplicationOpenURLOptionsKey.annotation])
+        let fbResult = FBSDKApplicationDelegate.sharedInstance().application(app, open: url, sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String, annotation: options[UIApplicationOpenURLOptionsKey.annotation])
         
-        return result
+        let googleResult = GIDSignIn.sharedInstance().handle(url, sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String, annotation: [:])
+        
+        
+        return fbResult || googleResult
     }
+    
+    
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        
+        if let error = error {
+            print("Google SignIn Error: \(error.localizedDescription)")
+            return
+        }
+        
+        guard let authentication = user.authentication else { return }
+        
+        let credential = FIRGoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
+        
+        print("authentication = \(authentication)")
+        print("authentication.idToken = \(authentication.idToken)")
+        print("authentication.accessToken = \(authentication.accessToken)")
+
+        print("Google credential = \(credential)")
+        
+        
+    }
+    
+    
+    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
+        // TODO: - Perform any operations when the user disconnects from app here.
+
+    }
+    
     
 
     func applicationWillResignActive(_ application: UIApplication) {
