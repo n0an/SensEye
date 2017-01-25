@@ -37,5 +37,8 @@ target 'SensEye' do
   
   # Google Authentication
   pod 'GoogleSignIn'
+  
+  # Caching
+  pod 'SAMCache'
 
 end

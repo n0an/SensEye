@@ -14,6 +14,8 @@ import GoogleSignIn
 
 import OneSignal
 
+import SAMCache
+
 typealias FRAuthCompletionHandler = (_ errorString: String?, _ firUser: Any?) -> Void
 
 class FRAuthManager: NSObject {
@@ -202,6 +204,8 @@ class FRAuthManager: NSObject {
     func logOut(onComplete: (Error?) -> Void) {
         
         do {
+            
+            SAMCache.shared().removeAllObjects()
             
             self.updateCurrentUserOneSignalId(newId: "")
             

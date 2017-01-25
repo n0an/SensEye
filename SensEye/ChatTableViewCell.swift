@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import SAMCache
 
 class ChatTableViewCell: UITableViewCell {
 
@@ -27,7 +28,7 @@ class ChatTableViewCell: UITableViewCell {
         }
     }
     
-//    var cache = SAMCache.shared()
+    var cache = SAMCache.shared()
     
     // MARK: - HELPER METHODS
     func updateUI() {
@@ -43,40 +44,34 @@ class ChatTableViewCell: UITableViewCell {
         
         self.unreadMessagesLabel.text = "\(chat.messagesCount)"
         
-        FRImage.downloadAvatarImageFromFirebaseStorage(chat.withUserUID) { (image, error) in
-            
-            if let image = image {
-                self.featuredImageView.image = image
-            } else if let error = error {
-                print(error.localizedDescription)
-            }
-            
-            
-            
+        if chat.messagesCount > 0 {
+            self.unreadMessagesLabel.textColor = UIColor.red
         }
-        
-        
+     
         
         // Set featuredImage with caching
         
-//        self.featuredImageView.image = UIImage(named: "icon-defaultAvatar")
+        self.featuredImageView.image = UIImage(named: "icon-defaultAvatar")
         
+        let featuredImageCacheKey = chat.withUserUID
         
-//        let featuredImageCacheKey = chat.featuredImageUID
-        
-//        if let cachedImage = cache?.object(forKey: featuredImageCacheKey) as? UIImage {
-//            self.featuredImageView.image = cachedImage
-//        } else {
-//            
-//            self.chat.downloadFeaturedImage { [weak self] (image, error) in
-//                
-//                self?.featuredImageView.image = image
-//                
-//                self?.cache?.setObject(image, forKey: featuredImageCacheKey)
-//                
-//            }
-//            
-//        }
+        if let cachedImage = cache?.object(forKey: featuredImageCacheKey) as? UIImage {
+            self.featuredImageView.image = cachedImage
+        } else {
+            
+            self.chat.downloadWithUserImage { [weak self] (image, error) in
+                
+                
+                if let image = image {
+                    self?.featuredImageView.image = image
+                    
+                    self?.cache?.setObject(image, forKey: featuredImageCacheKey)
+                }
+                
+                
+            }
+            
+        }
         
         self.featuredImageView.layer.cornerRadius = self.featuredImageView.bounds.width / 2.0
         self.featuredImageView.layer.masksToBounds = true

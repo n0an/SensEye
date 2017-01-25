@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '167E9C6EC12269DF2FC8A6715C1A3764'
-               BlueprintName = 'SVPullToRefresh'
+               BlueprintIdentifier = '350B5772DCE641CE4060973F0E854B26'
+               BlueprintName = 'SAMCache'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'SVPullToRefresh.framework'>
+               BuildableName = 'SAMCache.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

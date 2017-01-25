@@ -69,6 +69,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SAMCache.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>SVPullToRefresh.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -87,12 +92,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3814077B60A225441E135CD435F07186</key>
+		<key>167E9C6EC12269DF2FC8A6715C1A3764</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3D560FEBE3D16E1BA2D51A91285243E6</key>
+		<key>350B5772DCE641CE4060973F0E854B26</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3814077B60A225441E135CD435F07186</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -103,11 +113,6 @@
 			<true/>
 		</dict>
 		<key>681BE6E3D02A43F9BA63777AC435C8FD</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>793F4AC631305325E6411CE00EA4A7A2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -147,12 +152,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>CB9A3C20581782B4610B52F73FE98E3A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>D0581AF7BF4A6DA140D280B19ECC7BFF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>DE7721E8EDC2E63AA6CC015A11CA8852</key>
+		<key>E69BD2242047C6E2CE5D5E13524321CA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
