@@ -31,11 +31,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         customizeAppearance()
         
         
-        // On login notification
+        // On login notification handle
         NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "FRUserDidLoginNotification"), object: nil, queue: nil) { (notification) in
             
             self.handleOnUserLogin()
-            
             
         }
         
@@ -50,7 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GIDSignIn.sharedInstance().delegate = FRAuthManager.sharedManager
         
         
-        // oneSignal
+        // OneSignal Configuration
         
         OneSignal.initWithLaunchOptions(launchOptions, appId: GeneralHelper.sharedHelper.kONESIGNALAPPID, handleNotificationReceived: nil, handleNotificationAction: nil, settings: [kOSSettingsKeyInAppAlerts: false])
         
@@ -61,6 +60,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
+    // MARK: - HELPER METHODS
     func customizeAppearance() {
         
         window!.tintColor = UIColor(red: 10/255, green: 80/255, blue: 80/255, alpha: 1)
@@ -82,6 +82,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
     }
     
+    func readSecretsFile() {
+        
+        let filePath = Bundle.main.path(forResource: "secretsFile", ofType: "txt")
+        
+        guard let secretInfo = try? String(contentsOfFile: filePath!) else { return }
+        
+        guard secretInfo != "" else { return }
+        
+        let keys = secretInfo.components(separatedBy: "\n")
+        
+        GeneralHelper.sharedHelper.appOwnerUID = keys[0]
+        GeneralHelper.sharedHelper.kONESIGNALAPPID = keys[1]
+        
+        print("GeneralHelper.sharedHelper.appOwnerUID = \(GeneralHelper.sharedHelper.appOwnerUID)")
+        print("GeneralHelper.sharedHelper.kONESIGNALAPPID = \(GeneralHelper.sharedHelper.kONESIGNALAPPID)")
+    }
+    
     
     // ** Getting current Top ViewController
     func viewControllerForShowingAlert() -> UIViewController {
@@ -99,6 +116,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
     }
     
+    // MARK: - One Signal Start/Stop
     func handleOnUserLogin() {
         
         self.startOneSignal()
@@ -122,22 +140,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
     }
     
-    func readSecretsFile() {
-        
-        let filePath = Bundle.main.path(forResource: "secretsFile", ofType: "txt")
-        
-        guard let secretInfo = try? String(contentsOfFile: filePath!) else { return }
-        
-        guard secretInfo != "" else { return }
-        
-        let keys = secretInfo.components(separatedBy: "\n")
-        
-        GeneralHelper.sharedHelper.appOwnerUID = keys[0]
-        GeneralHelper.sharedHelper.kONESIGNALAPPID = keys[1]
-        
-        print("GeneralHelper.sharedHelper.appOwnerUID = \(GeneralHelper.sharedHelper.appOwnerUID)")
-        print("GeneralHelper.sharedHelper.kONESIGNALAPPID = \(GeneralHelper.sharedHelper.kONESIGNALAPPID)")
-    }
+    
     
     
     
