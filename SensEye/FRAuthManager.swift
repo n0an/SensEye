@@ -65,6 +65,70 @@ class FRAuthManager {
     
     
     // MARK: - FACEBOOK LOGIN METHODS
+    
+    
+    func loginWithFacebook(viewController: UIViewController, onComplete: @escaping (String?) -> Void) {
+        
+        let fbLoginManager = FBSDKLoginManager()
+        
+        
+        fbLoginManager.logIn(withReadPermissions: ["public_profile", "email"], from: viewController) { (result, error) in
+            
+            
+            guard error == nil else {
+                print("===NAG=== Unable to authenticate with Facebook \(error!.localizedDescription)")
+                
+                viewController.alertError(error: error! as NSError)
+                
+                return
+            }
+            
+            
+            guard let result = result, result.isCancelled == false else { return }
+            
+            
+            if result.token != nil {
+                
+                print("===NAG=== Successfully authenticated with FB")
+                
+                print("FBSDKAccessToken.current() = \(FBSDKAccessToken.current())")
+                print("result.token = \(result.token)")
+                
+                
+                print("FBSDKAccessToken.current().tokenString = \(FBSDKAccessToken.current().tokenString)")
+                print("result.token.tokenString = \(result.token.tokenString)")
+                
+                
+                let credential = FIRFacebookAuthProvider.credential(withAccessToken: result.token.tokenString)
+                
+                
+                self.signInWithFacebook(withCredential: credential, onComplete: { (errorString, user) in
+                    
+                    
+                    if let errorString = errorString {
+                        onComplete(errorString)
+                    } else {
+                        onComplete(nil)
+                    }
+                    
+                    
+                    
+                })
+                
+                
+                
+            }
+            
+            
+            
+        }
+        
+    }
+    
+    
+    
+    
+    
     func signInWithFacebook(withCredential credential: FIRAuthCredential, onComplete: FRAuthCompletionHandler?) {
         
         FIRAuth.auth()?.signIn(with: credential, completion: { (firuser, error) in

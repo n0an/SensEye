@@ -10,8 +10,6 @@ import UIKit
 import Spring
 import Firebase
 
-import FBSDKLoginKit
-
 class LoginViewController: UIViewController {
     
     // MARK: - OUTLETS
@@ -76,63 +74,25 @@ class LoginViewController: UIViewController {
     
     
     // MARK: - ACTIONS
+    
+    // - Facebook Login
     @IBAction func actionLoginFacebookTapped(_ sender: Any) {
         
         // Dismiss keyboard
         self.view.endEditing(true)
         
-        let fbLoginManager = FBSDKLoginManager()
-        
-        fbLoginManager.logIn(withReadPermissions: ["public_profile", "email"], from: self) { (result, error) in
+        FRAuthManager.sharedManager.loginWithFacebook(viewController: self) { (errorString) in
             
-            
-            guard error == nil else {
-                print("===NAG=== Unable to authenticate with Facebook \(error!.localizedDescription)")
+            guard errorString == errorString else {
                 
-                self.alertError(error: error! as NSError)
-                
+                self.alert(title: "Error", message: errorString)
                 return
             }
             
-            
-            guard let result = result, result.isCancelled == false else { return }
-            
-            
-            if result.token != nil {
+            DispatchQueue.main.async {
                 
-                print("===NAG=== Successfully authenticated with FB")
-                
-                print("FBSDKAccessToken.current() = \(FBSDKAccessToken.current())")
-                print("result.token = \(result.token)")
-
-                
-                print("FBSDKAccessToken.current().tokenString = \(FBSDKAccessToken.current().tokenString)")
-                print("result.token.tokenString = \(result.token.tokenString)")
-
-                
-                let credential = FIRFacebookAuthProvider.credential(withAccessToken: result.token.tokenString)
-                
-                
-                FRAuthManager.sharedManager.signInWithFacebook(withCredential: credential, onComplete: { (errorString, user) in
-                    
-                    guard errorString == errorString else {
-                        
-                        self.alert(title: "Error", message: errorString)
-                        return
-                    }
-                    
-                    DispatchQueue.main.async {
-                        
-                        self.goToChatVC()
-                    }
-                    
-                    
-                })
-                
-                
-                
+                self.goToChatVC()
             }
-
             
             
         }
@@ -141,42 +101,16 @@ class LoginViewController: UIViewController {
     }
     
     
-    
-    
-//    func firebaseAuth(_ credential: FIRAuthCredential) {
-//        
-//        FIRAuth.auth()?.signIn(with: credential, completion: { (user, error) in
-//            
-//            if error != nil {
-//                print("===NAG=== Unable to authenticate with Firebase \(error?.localizedDescription)")
-//                
-//            } else {
-//                print("===NAG=== Successfully authenticated with Firebase")
-//                
-//                if let user = user {
-//                    let userData = ["provider": credential.provider]
-//                    self.completeSignInWith(id: user.uid, userData: userData)
-//                }
-//                
-//            }
-//            
-//            
-//        })
-//        
-//    }
-    
-//    func completeSignInWith(id: String, userData: [String: String]) {
-//        
-//        
-//        
-//        
-//    }
-    
-    
+    // - Google Login
     @IBAction func actionLoginGoogleTapped(_ sender: Any) {
+        // Dismiss keyboard
+        self.view.endEditing(true)
+        
+        
     }
     
     
+    // - Email/Password Login
     @IBAction func actionLoginButtonTapped(_ sender: Any) {
         
         guard let email = emailTextField.text, email != "",
@@ -187,7 +121,6 @@ class LoginViewController: UIViewController {
         
         // Dismiss keyboard
         self.view.endEditing(true)
-        
         
         FRAuthManager.sharedManager.loginToFireBase(withEmail: email, password: password, onComplete: { (errMsg, data) in
             
@@ -202,10 +135,6 @@ class LoginViewController: UIViewController {
                 self.goToChatVC()
             }
         })
-
-        
-
-        
         
     }
     
