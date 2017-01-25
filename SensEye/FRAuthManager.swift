@@ -10,9 +10,11 @@ import Foundation
 import Firebase
 import FBSDKLoginKit
 
+import GoogleSignIn
+
 typealias FRAuthCompletionHandler = (_ errorString: String?, _ firUser: Any?) -> Void
 
-class FRAuthManager {
+class FRAuthManager: NSObject {
     
     private static let _sharedManager = FRAuthManager()
     
@@ -283,8 +285,43 @@ class FRAuthManager {
 }
 
 
-
-
+// MARK: - GOOGLE LOGIN
+extension FRAuthManager: GIDSignInDelegate {
+    
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        
+        if let error = error {
+            print("Google SignIn Error: \(error.localizedDescription)")
+            return
+        }
+        
+        guard let authentication = user.authentication else { return }
+        
+        let credential = FIRGoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
+        
+        print("authentication = \(authentication)")
+        print("authentication.idToken = \(authentication.idToken)")
+        print("authentication.accessToken = \(authentication.accessToken)")
+        
+        print("Google credential = \(credential)")
+        
+        FIRAuth.auth()?.signIn(with: credential, completion: { (firuser, error) in
+            
+            if let error = error {
+                print("Google SignIn Error: \(error.localizedDescription)")
+                return
+            }
+        })
+    }
+    
+    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
+        // TODO: - Perform any operations when the user disconnects from app here.
+        
+        
+    }
+    
+    
+}
 
 
 

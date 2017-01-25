@@ -12,20 +12,17 @@ import Firebase
 
 import GoogleSignIn
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, GIDSignInUIDelegate {
     
     // MARK: - OUTLETS
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: DesignableButton!
-    
-//    @IBOutlet weak var googleSignInButton: GIDSignInButton!
 
     // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        GIDSignIn.sharedInstance().uiDelegate = self
 
         
         emailTextField.delegate = self
@@ -34,7 +31,8 @@ class LoginViewController: UIViewController {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(resignKeyboard))
         self.view.addGestureRecognizer(tapGesture)
         
-        
+        // Google Login
+        GIDSignIn.sharedInstance().uiDelegate = self
 
     }
     
@@ -179,13 +177,6 @@ extension LoginViewController: UITextFieldDelegate {
 }
 
 
-
-extension LoginViewController: GIDSignInUIDelegate {
-    
-    
-    
-    
-}
 
 
 
