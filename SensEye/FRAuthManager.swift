@@ -311,6 +311,19 @@ extension FRAuthManager: GIDSignInDelegate {
                 print("Google SignIn Error: \(error.localizedDescription)")
                 return
             }
+            
+            
+            let userRef = FRDataManager.sharedManager.REF_USERS.child(firuser!.uid)
+            
+            let fullName = user.profile.name
+            
+            let email = user.profile.email
+            
+            let provider = credential.provider
+            
+            userRef.child("username").setValue(fullName)
+
+            
         })
     }
     
