@@ -78,124 +78,67 @@ class LoginViewController: UIViewController {
     // MARK: - ACTIONS
     @IBAction func actionLoginFacebookTapped(_ sender: Any) {
         
+        // Dismiss keyboard
+        self.view.endEditing(true)
+        
         let fbLoginManager = FBSDKLoginManager()
         
         fbLoginManager.logIn(withReadPermissions: ["public_profile", "email"], from: self) { (result, error) in
             
-            if let error = error {
-                print("===NAG=== Unable to authenticate with Facebook \(error.localizedDescription)")
-
-                self.alertError(error: error as NSError)
+            
+            guard error == nil else {
+                print("===NAG=== Unable to authenticate with Facebook \(error!.localizedDescription)")
                 
+                self.alertError(error: error! as NSError)
                 
-            } else if result?.isCancelled == true {
-                print("===NAG=== User cancelled FB authentication")
-                
-            } else {
-                
-                if result?.token != nil {
-                    
-                    print("===NAG=== Successfully authenticated with FB")
-                    
-                    print("FBSDKAccessToken.current() = \(FBSDKAccessToken.current())")
-                    
-                    print("FBSDKAccessToken.current().tokenString = \(FBSDKAccessToken.current().tokenString)")
-                    
-                    let credential = FIRFacebookAuthProvider.credential(withAccessToken: result!.token.tokenString)
-                    
-                    
-                    FIRAuth.auth()?.signIn(with: credential, completion: { (firuser, error) in
-                        
-                        
-                        if let error = error {
-                            print("Error loging in with facebook \(error.localizedDescription)")
-                            return
-                        }
-                        
-                        FRDataManager.sharedManager.isUserRegistered(userId: firuser!.uid, withBlock: { (isRegistered) in
-                            
-                            
-                            if !isRegistered {
-                                // NEW FACEBOOK USER
-                                
-                                self.createFirebaseUserFromFacebook(withBlock: { (result) in
-                                    
-                                    
-                                    let fUser = FRUser(uid: firuser!.uid, username: result["first_name"] as! String, avatarImage: nil, pushId: "")
-                                    
-                                    fUser.save(completion: { (error) in
-                                        
-                                        if error == nil {
-                                            self.goToChatVC()
-                                        }
-                                        
-                                        
-                                    })
-                                    
-                                })
-                                
-                                
-                                
-                                
-                            } else {
-                                // ALREADY REGISTERED
-                                
-                                
-                                
-                                
-                            }
-                            
-                            
-                            
-                            
-                            
-                        })
-                        
-                        
-                        
-                        
-                    })
-                    
-                    
-                    
-                    
-                }
-                
-            }
-            
-            
-            
-            
-            
-            
-            
-        }
-        
-        
-        
-    }
-    
-    
-    
-    func createFirebaseUserFromFacebook(withBlock: @escaping ([String: Any]) -> Void) {
-        
-        FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "email, first_name, last_name"]).start { (connection, result, error) in
-            
-            if let error = error {
-                
-                print("Error facebook request \(error.localizedDescription)")
                 return
-                
             }
             
-            withBlock(result as! [String: Any])
             
+            guard let result = result, result.isCancelled == false else { return }
+            
+            
+            if result.token != nil {
+                
+                print("===NAG=== Successfully authenticated with FB")
+                
+                print("FBSDKAccessToken.current() = \(FBSDKAccessToken.current())")
+                print("result.token = \(result.token)")
+
+                
+                print("FBSDKAccessToken.current().tokenString = \(FBSDKAccessToken.current().tokenString)")
+                print("result.token.tokenString = \(result.token.tokenString)")
+
+                
+                let credential = FIRFacebookAuthProvider.credential(withAccessToken: result.token.tokenString)
+                
+                
+                FRAuthManager.sharedManager.signInWithFacebook(withCredential: credential, onComplete: { (errorString, user) in
+                    
+                    guard errorString == errorString else {
+                        
+                        self.alert(title: "Error", message: errorString)
+                        return
+                    }
+                    
+                    DispatchQueue.main.async {
+                        
+                        self.goToChatVC()
+                    }
+                    
+                    
+                })
+                
+                
+                
+            }
+
             
             
         }
         
+        
     }
-
     
     
     

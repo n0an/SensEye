@@ -8,7 +8,7 @@
 
 import Foundation
 import Firebase
-
+import FBSDKLoginKit
 
 typealias FRAuthCompletionHandler = (_ errorString: String?, _ firUser: Any?) -> Void
 
@@ -62,6 +62,64 @@ class FRAuthManager {
     func loginToFireBase(withEmail email: String, password: String, onComplete: FRAuthCompletionHandler?) {
         self.completeSignIn(withEmail: email, password: password, onComplete: onComplete)
     }
+    
+    
+    // MARK: - FACEBOOK LOGIN METHODS
+    func signInWithFacebook(withCredential credential: FIRAuthCredential, onComplete: FRAuthCompletionHandler?) {
+        
+        FIRAuth.auth()?.signIn(with: credential, completion: { (firuser, error) in
+            
+            if let error = error {
+                print("Error loging in with facebook \(error.localizedDescription)")
+                // report error
+                onComplete?(error.localizedDescription, nil)
+                
+                
+            } else if let firuser = firuser {
+                
+                
+                self.createFirebaseUserFromFacebook(withBlock: { (result) in
+                    
+                    let userFirstName = result["first_name"] as! String
+                    let userLastName = result["last_name"] as! String
+                    let fullName = "\(userFirstName) \(userLastName)"
+                    
+                    let userRef = FRDataManager.sharedManager.REF_USERS.child(firuser.uid)
+                    
+                    userRef.child("username").setValue(fullName)
+                    
+                    onComplete?(nil, firuser)
+                    
+ 
+                })
+                
+            }
+            
+        })
+        
+    }
+    
+    
+    func createFirebaseUserFromFacebook(withBlock: @escaping ([String: Any]) -> Void) {
+        
+        FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "email, first_name, last_name"]).start { (connection, result, error) in
+            
+            if let error = error {
+                
+                print("Error facebook request \(error.localizedDescription)")
+                return
+                
+            }
+            
+            withBlock(result as! [String: Any])
+            
+            
+            
+        }
+        
+    }
+    
+    
     
     
     
@@ -149,7 +207,7 @@ class FRAuthManager {
     }
     
     
-    
+    // TODO: - to delete this?
     func saveUserToUserDefaults(user: FRUser) {
         
         UserDefaults.standard.set(user.toDictionary(), forKey: "currentUser")

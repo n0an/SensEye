@@ -39,6 +39,8 @@ class WelcomeVC: UIViewController {
         
         super.viewDidLoad()
         
+//        forceLogout()
+        
         FIRAuth.auth()?.addStateDidChangeListener({ (auth, user) in
             
             if let user = user {
@@ -69,6 +71,8 @@ class WelcomeVC: UIViewController {
         
         
     }
+    
+    
     
     
     override func viewWillAppear(_ animated: Bool) {
@@ -114,6 +118,11 @@ class WelcomeVC: UIViewController {
     
     
     // MARK: - HELPER METHODS
+    
+    func forceLogout() {
+        try! FIRAuth.auth()?.signOut()
+        return
+    }
     
     func postOnLoginNotification() {
         
