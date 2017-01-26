@@ -19,6 +19,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>DACircularProgress.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>DGActivityIndicatorView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -49,6 +54,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>IDMPhotoBrowser.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>JSQMessagesViewController.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -74,12 +84,22 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SDWebImage.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>SVPullToRefresh.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
 		<key>Spring.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>pop.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -92,12 +112,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>167E9C6EC12269DF2FC8A6715C1A3764</key>
+		<key>17CEAD1B3EC4E80098DF5F8AA00BE966</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>350B5772DCE641CE4060973F0E854B26</key>
+		<key>247433E0CB5E592BB6A16A268EF9398A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -107,7 +127,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>3BBCAA78563B9999CCA3041130A09110</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3DCB6CC302698D8DD4961A051868BE25</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>44CAD6CE523055ED339E87154473A254</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5D36B86A60DFA81A54E2A17722E5B32D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -152,7 +187,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CB9A3C20581782B4610B52F73FE98E3A</key>
+		<key>CB453458E0389A16640B7A79015E84FD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -162,7 +197,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E69BD2242047C6E2CE5D5E13524321CA</key>
+		<key>D3D2DD8B9ADAF8860AF755651D5A2BAA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F51D9C5D70695EA91E30328D675F0F1B</key>
 		<dict>
 			<key>primary</key>
 			<true/>

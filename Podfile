@@ -40,5 +40,8 @@ target 'SensEye' do
   
   # Caching
   pod 'SAMCache'
+  
+  # PhotoDisplayer
+  pod 'IDMPhotoBrowser'
 
 end

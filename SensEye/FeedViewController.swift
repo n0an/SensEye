@@ -362,6 +362,15 @@ extension FeedViewController: FeedCellDelegate {
     
 
     func performJellyTransition(withPhotos photosArray: [Photo], indexOfPhoto: Int) {
+        
+        
+        
+        
+        
+        
+        
+        
+        
         if let photoDisplayerNavVC = self.createVC(withID: Storyboard.viewControllerIdPhotoDisplayer) as? UINavigationController {
             
             let photoDisplayerVC = photoDisplayerNavVC.topViewController as! PhotoViewController
