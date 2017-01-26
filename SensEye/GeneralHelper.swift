@@ -81,7 +81,72 @@ class GeneralHelper {
         viewController.present(optionMenu, animated: true, completion: nil)
         
     }
+    
+    
+    
+    public func downloadImage(withURL urlPhoto: URL, onComplete: @escaping (UIImage?) -> Void) {
+        
+        let session = URLSession.shared
+        
+        let downloadTask = session.downloadTask(with: urlPhoto) { (localFile, response, error) -> Void in
+            
+            if error == nil && localFile != nil {
+                
+                if let data = try? Data(contentsOf: urlPhoto) {
+                    
+                    if let downloadedImage = UIImage(data: data) {
+                        
+                        onComplete(downloadedImage)
+                        
+                        
+                        
+//                        DispatchQueue.main.async {
+//                            if let strongSelf = self {
+//                                
+//                                strongSelf.cache?.setObject(downloadedImage, forKey: albumThumbCacheKey)
+//                                
+//                                strongSelf.contentImageView.image = downloadedImage
+//                                
+//                                
+//                            }
+//                        }
+                        
+                        
+                    }
+                }
+            }
+        }
+        
+        downloadTask.resume()
+        
+        
+    }
+    
 
     
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

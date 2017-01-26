@@ -13,6 +13,8 @@ import SVPullToRefresh
 
 import Jelly
 
+import IDMPhotoBrowser
+
 class FeedViewController: UIViewController {
     
     // MARK: - OUTLETS
@@ -360,17 +362,70 @@ extension FeedViewController: FeedCellDelegate {
         
     }
     
+    
 
     func performJellyTransition(withPhotos photosArray: [Photo], indexOfPhoto: Int) {
         
+        var urlsArray: [URL] = []
+        
+        for photo in photosArray {
+            
+            var linkToNeededRes: String!
+            
+            if traitCollection.horizontalSizeClass == .regular && traitCollection.verticalSizeClass == .regular {
+                
+                linkToNeededRes = photo.maxRes
+                
+            } else {
+                
+                if photo.photo_1280 != nil {
+                    linkToNeededRes = photo.photo_1280
+                } else {
+                    linkToNeededRes = photo.maxRes
+                }
+                
+            }
+            
+            let imageURL = URL(string: linkToNeededRes)
+            urlsArray.append(imageURL!)
+        }
+        
+        
+        let photos = IDMPhoto.photos(withURLs: urlsArray)
+        
+        
+        let browser = IDMPhotoBrowser(photos: photos)
+        
+        browser?.displayDoneButton = true
+        browser?.displayActionButton = false
+        
+        browser?.setInitialPageIndex(UInt(indexOfPhoto))
+        
+        browser?.doneButtonImage = UIImage(named: "CloseButton")
+        
+        
+        let customBlurFadeInPresentation2 = JellyFadeInPresentation(dismissCurve: .easeInEaseOut,
+                                                                    presentationCurve: .easeInEaseOut,
+                                                                    cornerRadius: 0,
+                                                                    backgroundStyle: .blur(effectStyle: .light),
+                                                                    duration: .normal,
+                                                                    widthForViewController: .fullscreen,
+                                                                    heightForViewController: .fullscreen)
+        
+        
+        self.jellyAnimator = JellyAnimator(presentation: customBlurFadeInPresentation2)
+        
+        self.jellyAnimator?.prepare(viewController: browser!)
         
         
         
         
+        self.present(browser!, animated: true, completion: nil)
         
         
         
-        
+        // *** USING MY MANUAL PHOTO DISPLAYER
+        /*
         if let photoDisplayerNavVC = self.createVC(withID: Storyboard.viewControllerIdPhotoDisplayer) as? UINavigationController {
             
             let photoDisplayerVC = photoDisplayerNavVC.topViewController as! PhotoViewController
@@ -396,6 +451,7 @@ extension FeedViewController: FeedCellDelegate {
             
             self.present(photoDisplayerNavVC, animated: true, completion: nil)
         }
+        */
     }
     
     
