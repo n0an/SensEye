@@ -95,10 +95,14 @@ class GeneralHelper {
     
     public func hideDGSpinner(onView view: UIView) {
         
-        let dgSpinner = view.viewWithTag(1001) as! DGActivityIndicatorView
-        dgSpinner.stopAnimating()
+        if let dgSpinner = view.viewWithTag(1001) as? DGActivityIndicatorView {
+            
+            dgSpinner.stopAnimating()
+            
+            view.viewWithTag(1001)?.removeFromSuperview()
+        }
         
-        view.viewWithTag(1001)?.removeFromSuperview()
+        
     }
     
     
