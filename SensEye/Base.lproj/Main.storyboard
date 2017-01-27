@@ -12,12 +12,6 @@
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="AvenirNext.ttc">
-            <string>AvenirNext-Medium</string>
-            <string>AvenirNext-Regular</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--Feed View Controller-->
         <scene sceneID="EPC-vw-AUv">
@@ -289,7 +283,7 @@
             <objects>
                 <navigationController storyboardIdentifier="PhotoNavViewController" automaticallyAdjustsScrollViewInsets="NO" id="Uuj-Kp-AHt" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="nf4-z0-1A8">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="nf4-z0-1A8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -633,7 +627,7 @@
                                                                     </constraints>
                                                                 </imageView>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="p0z-kD-hot">
-                                                                    <rect key="frame" x="38" y="0.0" width="962" height="53.5"/>
+                                                                    <rect key="frame" x="38" y="0.0" width="962" height="73"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="751" text="User Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ir3-kM-xcT">
                                                                             <rect key="frame" x="0.0" y="0.0" width="962" height="19.5"/>
@@ -645,7 +639,7 @@
                                                                             </variation>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A small river named Duden flows by their place and supplies it with the necessary regelialia" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eeV-gM-bnl">
-                                                                            <rect key="frame" x="0.0" y="27.5" width="962" height="0.0"/>
+                                                                            <rect key="frame" x="0.0" y="27.5" width="962" height="19.5"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
@@ -654,7 +648,7 @@
                                                                             </variation>
                                                                         </label>
                                                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="BKn-Nd-Lkm">
-                                                                            <rect key="frame" x="0.0" y="35.5" width="962" height="18"/>
+                                                                            <rect key="frame" x="0.0" y="55" width="962" height="18"/>
                                                                             <subviews>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="16m ago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nE7-O6-Euj">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="55.5" height="18"/>
@@ -1276,7 +1270,7 @@
             <objects>
                 <navigationController storyboardIdentifier="WelcomeView" automaticallyAdjustsScrollViewInsets="NO" id="S8D-w0-bzI" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="X6N-kH-ZtH">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="X6N-kH-ZtH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1938,7 +1932,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ngm-NQ-1S7" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="34q-CL-Z1M">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="34q-CL-Z1M">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1957,7 +1951,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bln-RT-Wcb" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="e7a-ta-sOH"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="uO9-me-3qC">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="uO9-me-3qC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1982,54 +1976,72 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="65" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Mv5-Cg-OU3">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Mv5-Cg-OU3">
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="1317"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="separatorColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChatCell" rowHeight="65" id="TB3-pv-MVj" customClass="ChatTableViewCell" customModule="SensEye" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="1024" height="65"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChatCell" rowHeight="80" id="TB3-pv-MVj" customClass="ChatTableViewCell" customModule="SensEye" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="1024" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TB3-pv-MVj" id="ABA-jb-mok">
-                                            <rect key="frame" x="0.0" y="0.0" width="1024" height="64"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="1024" height="79"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-defaultAvatar" translatesAutoresizingMaskIntoConstraints="NO" id="fzc-MQ-B7v">
-                                                    <rect key="frame" x="8" y="8" width="48" height="48"/>
+                                                    <rect key="frame" x="8" y="8.5" width="60" height="60"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="48" id="N8r-h0-n0J"/>
-                                                        <constraint firstAttribute="height" constant="48" id="OSt-GW-uqA"/>
+                                                        <constraint firstAttribute="width" constant="48" id="N8r-h0-n0J">
+                                                            <variation key="heightClass=regular-widthClass=regular" constant="60"/>
+                                                        </constraint>
+                                                        <constraint firstAttribute="height" constant="48" id="OSt-GW-uqA">
+                                                            <variation key="heightClass=regular-widthClass=regular" constant="60"/>
+                                                        </constraint>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pCB-bY-Hdh">
-                                                    <rect key="frame" x="64" y="8" width="864" height="24"/>
-                                                    <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pCB-bY-Hdh">
+                                                    <rect key="frame" x="76" y="8.5" width="812" height="32.5"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="heightClass=regular-widthClass=regular">
+                                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                                    </variation>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="last message" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w0J-n7-IIs">
-                                                    <rect key="frame" x="64" y="34" width="864" height="21"/>
-                                                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
+                                                    <rect key="frame" x="76" y="47" width="852" height="21.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="heightClass=regular-widthClass=regular">
+                                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                    </variation>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="01.01.2017" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cv7-Qa-HIb">
-                                                    <rect key="frame" x="936" y="11" width="80" height="17"/>
+                                                    <rect key="frame" x="896" y="11.5" width="120" height="19.5"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="80" id="hx2-sL-N48"/>
+                                                        <constraint firstAttribute="width" constant="80" id="hx2-sL-N48">
+                                                            <variation key="heightClass=regular-widthClass=regular" constant="120"/>
+                                                        </constraint>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="12"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="heightClass=regular-widthClass=regular">
+                                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="16"/>
+                                                    </variation>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 New" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EaU-2R-Ztk">
-                                                    <rect key="frame" x="936" y="36" width="80" height="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="0 New" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EaU-2R-Ztk">
+                                                    <rect key="frame" x="936" y="47" width="80" height="19.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="80" id="XVj-j9-eyZ"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="12"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="heightClass=regular-widthClass=regular">
+                                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
+                                                    </variation>
                                                 </label>
                                             </subviews>
                                             <constraints>
@@ -2038,13 +2050,17 @@
                                                 <constraint firstItem="EaU-2R-Ztk" firstAttribute="leading" secondItem="w0J-n7-IIs" secondAttribute="trailing" constant="8" id="FYr-bM-MDz"/>
                                                 <constraint firstItem="fzc-MQ-B7v" firstAttribute="leading" secondItem="ABA-jb-mok" secondAttribute="leadingMargin" id="JrR-Fk-T63"/>
                                                 <constraint firstItem="cv7-Qa-HIb" firstAttribute="top" secondItem="ABA-jb-mok" secondAttribute="topMargin" constant="3" id="OtW-5U-ylQ"/>
-                                                <constraint firstItem="EaU-2R-Ztk" firstAttribute="top" secondItem="cv7-Qa-HIb" secondAttribute="bottom" constant="8" id="Rhc-eT-hRa"/>
+                                                <constraint firstItem="EaU-2R-Ztk" firstAttribute="top" secondItem="cv7-Qa-HIb" secondAttribute="bottom" constant="8" id="Rhc-eT-hRa">
+                                                    <variation key="heightClass=regular-widthClass=regular" constant="16"/>
+                                                </constraint>
                                                 <constraint firstItem="pCB-bY-Hdh" firstAttribute="top" secondItem="ABA-jb-mok" secondAttribute="topMargin" id="Tqs-H5-DOl"/>
                                                 <constraint firstItem="cv7-Qa-HIb" firstAttribute="trailing" secondItem="ABA-jb-mok" secondAttribute="trailingMargin" id="baR-0f-XKn"/>
                                                 <constraint firstItem="cv7-Qa-HIb" firstAttribute="leading" secondItem="pCB-bY-Hdh" secondAttribute="trailing" constant="8" id="ecr-NP-3Sa"/>
                                                 <constraint firstItem="fzc-MQ-B7v" firstAttribute="top" secondItem="ABA-jb-mok" secondAttribute="topMargin" id="sjJ-7R-6oh"/>
                                                 <constraint firstItem="pCB-bY-Hdh" firstAttribute="leading" secondItem="w0J-n7-IIs" secondAttribute="leading" id="waX-Mw-eWX"/>
-                                                <constraint firstItem="w0J-n7-IIs" firstAttribute="top" secondItem="pCB-bY-Hdh" secondAttribute="bottom" constant="2" id="xwh-qI-h1f"/>
+                                                <constraint firstItem="w0J-n7-IIs" firstAttribute="top" secondItem="pCB-bY-Hdh" secondAttribute="bottom" constant="2" id="xwh-qI-h1f">
+                                                    <variation key="heightClass=regular-widthClass=regular" constant="6"/>
+                                                </constraint>
                                                 <constraint firstAttribute="bottomMargin" secondItem="EaU-2R-Ztk" secondAttribute="bottom" constant="3" id="yTS-qW-XP8"/>
                                                 <constraint firstItem="w0J-n7-IIs" firstAttribute="leading" secondItem="fzc-MQ-B7v" secondAttribute="trailing" constant="8" id="yXK-ox-0sj"/>
                                                 <constraint firstItem="fzc-MQ-B7v" firstAttribute="bottom" secondItem="ABA-jb-mok" secondAttribute="bottomMargin" id="zBs-0T-Rv4"/>
@@ -2073,13 +2089,7 @@
                             <constraint firstItem="Mv5-Cg-OU3" firstAttribute="leading" secondItem="lWh-78-woH" secondAttribute="leading" id="yOg-zg-gZb"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Recent" id="qBe-x0-M56">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="hs1-rE-nxc">
-                            <connections>
-                                <action selector="addRecentBarButtonPressed:" destination="kYh-Og-K9s" id="nqy-Zz-ecy"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Recent" id="qBe-x0-M56"/>
                     <connections>
                         <outlet property="tableView" destination="Mv5-Cg-OU3" id="yRa-Gh-Tz5"/>
                         <segue destination="mNO-6t-EPg" kind="show" identifier="showChatViewController" id="4QP-vi-Xbs"/>
@@ -2128,6 +2138,6 @@
         <image name="space" width="1200" height="675"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="emx-kV-1YD"/>
+        <segue reference="4QP-vi-Xbs"/>
     </inferredMetricsTieBreakers>
 </document>

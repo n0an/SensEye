@@ -50,6 +50,17 @@ class RecentViewController: UIViewController {
         
         self.navigationItem.leftBarButtonItem = backButton
         
+        
+        
+        if traitCollection.horizontalSizeClass == .regular && traitCollection.verticalSizeClass == .regular {
+            self.tableView.estimatedRowHeight = 80
+        } else {
+            self.tableView.estimatedRowHeight = 65
+        }
+        
+        
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
