@@ -272,6 +272,12 @@ class PhotoViewController: UIViewController {
     
     // MARK: - UI METHODS
     func updateUI() {
+        
+        if scrollView != nil && (self.view.subviews.index(of: scrollView) != nil) {
+            scrollView.removeFromSuperview()
+            scrollView = nil
+        }
+        
         // take up the whole super view inner content
         scrollView = UIScrollView(frame: view.bounds)
         
