@@ -25,10 +25,21 @@ class RecentViewController: UIViewController {
     var chats: [FRChat] = []
     
     var currentUser: FRUser!
+    
+    
+    let searchController = UISearchController(searchResultsController: nil)
+    var filteredChats: [FRChat] = []
 
     // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
+        definesPresentationContext = false
+        self.tableView.tableHeaderView = searchController.searchBar
+        
         
         self.tabBarController?.delegate = self
 
@@ -45,7 +56,8 @@ class RecentViewController: UIViewController {
         super.viewDidAppear(animated)
         
         self.navigationController?.isNavigationBarHidden = false
-        
+        self.navigationController?.hidesBarsOnSwipe = false
+
         self.fetchChats()
     }
     
@@ -144,14 +156,27 @@ class RecentViewController: UIViewController {
 extension RecentViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.chats.count
+        
+        if searchController.isActive && searchController.searchBar.text != "" {
+            return filteredChats.count
+        } else {
+            return chats.count
+        }
+        
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let chatCell = tableView.dequeueReusableCell(withIdentifier: Storyboard.cellIdChat, for: indexPath) as! ChatTableViewCell
         
-        let chat = self.chats[indexPath.row]
+        var chat: FRChat
+        
+        if searchController.isActive && searchController.searchBar.text != "" {
+            chat = self.filteredChats[indexPath.row]
+        } else {
+            chat = self.chats[indexPath.row]
+        }
         
         chatCell.chat = chat
         
@@ -170,9 +195,21 @@ extension RecentViewController: UITableViewDelegate {
         
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let selectedChat = self.chats[indexPath.row]
+        
+        var selectedChat: FRChat
+        
+        if searchController.isActive && searchController.searchBar.text != "" {
+            selectedChat = self.filteredChats[indexPath.row]
+            self.searchController.isActive = false
+        } else {
+            selectedChat = self.chats[indexPath.row]
+        }
+        
+        
         
         performSegue(withIdentifier: Storyboard.segueShowChatVC, sender: selectedChat)
+        
+        
         
     }
     
@@ -200,8 +237,29 @@ extension RecentViewController: UITabBarControllerDelegate {
 }
 
 
-
-
+// MARK: - UISearchResultsUpdating
+extension RecentViewController: UISearchResultsUpdating {
+    
+    func filteredContentForSearchText(searchText: String) {
+        
+        filteredChats = chats.filter({ (chat) -> Bool in
+            
+            return chat.withUserName.lowercased().contains(searchText.lowercased())
+            
+        })
+        tableView.reloadData()
+    }
+    
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        
+        filteredContentForSearchText(searchText: searchController.searchBar.text!)
+        
+        
+    }
+    
+    
+}
 
 
 

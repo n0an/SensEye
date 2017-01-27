@@ -46,6 +46,8 @@ class ChatTableViewCell: UITableViewCell {
         
         if chat.messagesCount > 0 {
             self.unreadMessagesLabel.textColor = UIColor.red
+        } else {
+            self.unreadMessagesLabel.textColor = UIColor.black
         }
      
         
