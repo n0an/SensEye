@@ -52,6 +52,14 @@ class ServerManager {
         
     }
     
+    func postAuthCompleteNotification() {
+        
+        let center = NotificationCenter.default
+        let notification = Notification(name: Notification.Name(rawValue: "NotificationAuthorizationCompleted"))
+        
+        center.post(notification)
+    }
+    
     func renewAuthorization(completed: @escaping AuthoizationComplete) {
         let loginVC = VKLoginViewController { (accessToken) in
             if let token = accessToken {
@@ -70,6 +78,7 @@ class ServerManager {
                 UserDefaults.standard.synchronize()
                 
                 self.getUserFor(userID: token.userID, completed: { (user) in
+                    self.postAuthCompleteNotification()
                     completed(user)
                     
                 })
@@ -126,6 +135,8 @@ class ServerManager {
                 UserDefaults.standard.synchronize()
                 
                 self.getUserFor(userID: userID, completed: { (user) in
+                    self.postAuthCompleteNotification()
+
                     completed(user)
                 })
             }
