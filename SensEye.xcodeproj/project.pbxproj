@@ -28,6 +28,7 @@
 		1838C24B1E11362D00E02F88 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1838C24A1E11362D00E02F88 /* User.swift */; };
 		183E2A1E1E16A24A0099F775 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183E2A1D1E16A24A0099F775 /* PostView.swift */; };
 		183E2A201E16B5180099F775 /* RoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183E2A1F1E16B5180099F775 /* RoundedView.swift */; };
+		184A0BE81E3B404300EEAB4B /* RefreshContents.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184A0BE71E3B404300EEAB4B /* RefreshContents.xib */; };
 		184DE8A51E15A39900E98926 /* SlideRightTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184DE8A21E15A39900E98926 /* SlideRightTransitionAnimator.swift */; };
 		184DE8A61E15A39900E98926 /* PopTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184DE8A31E15A39900E98926 /* PopTransitionAnimator.swift */; };
 		184DE8A71E15A39900E98926 /* SlideRightThenPopTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184DE8A41E15A39900E98926 /* SlideRightThenPopTransitionAnimator.swift */; };
@@ -100,6 +101,7 @@
 		1838C24A1E11362D00E02F88 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		183E2A1D1E16A24A0099F775 /* PostView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
 		183E2A1F1E16B5180099F775 /* RoundedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedView.swift; sourceTree = "<group>"; };
+		184A0BE71E3B404300EEAB4B /* RefreshContents.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RefreshContents.xib; sourceTree = "<group>"; };
 		184DE8A21E15A39900E98926 /* SlideRightTransitionAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideRightTransitionAnimator.swift; sourceTree = "<group>"; };
 		184DE8A31E15A39900E98926 /* PopTransitionAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopTransitionAnimator.swift; sourceTree = "<group>"; };
 		184DE8A41E15A39900E98926 /* SlideRightThenPopTransitionAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideRightThenPopTransitionAnimator.swift; sourceTree = "<group>"; };
@@ -268,6 +270,7 @@
 				184DE8A81E15A3AE00E98926 /* Transition Animators */,
 				18C395341E166D2600AE1867 /* Helpers */,
 				18AA37D41E1053F700D5BCB1 /* Main.storyboard */,
+				184A0BE71E3B404300EEAB4B /* RefreshContents.xib */,
 				1871A7E61E218154004C532E /* gallery.storyboard */,
 				18D623761E215B9200138117 /* about.storyboard */,
 				18AA37D71E1053F700D5BCB1 /* Assets.xcassets */,
@@ -466,6 +469,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				18AA37DB1E1053F700D5BCB1 /* LaunchScreen.storyboard in Resources */,
+				184A0BE81E3B404300EEAB4B /* RefreshContents.xib in Resources */,
 				1871A7E71E218154004C532E /* gallery.storyboard in Resources */,
 				18AA37D81E1053F700D5BCB1 /* Assets.xcassets in Resources */,
 				18D623781E215B9200138117 /* about.storyboard in Resources */,

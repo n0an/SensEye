@@ -43,6 +43,10 @@ class FeedViewController: UIViewController {
     
     var observer: AnyObject!
     
+    var customRefreshView: UIView!
+    var logoImageView: UIImageView!
+    var isLogoAnimating = false
+    
     // MARK: - viewDidLoad
 
     override func viewDidLoad() {
@@ -71,8 +75,15 @@ class FeedViewController: UIViewController {
         
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(actionRefreshTableView), for: .valueChanged)
+        
+        refreshControl.backgroundColor = UIColor.clear
+        refreshControl.tintColor = UIColor.clear
+        
         self.tableView.refreshControl = refreshControl
         self.refreshControl = refreshControl
+        
+        loadCustomRefreshContents()
+        
         
         
         listenForBackgroundNotification()
@@ -193,10 +204,74 @@ class FeedViewController: UIViewController {
         }
     }
     
-    // MARK: - HELPER ACTIONS
+    // MARK: - HELPER METHODS
     
     fileprivate func createVC(withID identifier: String) -> UIViewController? {
         return self.storyboard?.instantiateViewController(withIdentifier: identifier)
+    }
+    
+    func loadCustomRefreshContents() {
+        
+        let refreshContents = Bundle.main.loadNibNamed("RefreshContents", owner: self, options: nil)
+        
+        self.customRefreshView = refreshContents?[0] as! UIView
+        self.customRefreshView.frame = self.refreshControl.bounds
+        
+        self.logoImageView = self.customRefreshView.subviews[0] as! UIImageView
+        
+        
+        self.refreshControl.addSubview(self.customRefreshView)
+        
+    }
+    
+    func animateRefresh() {
+        
+        isLogoAnimating = true
+        
+        UIView.animate(withDuration: 0.35, delay: 0.0, options: .curveLinear, animations: {
+            
+            let transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+            
+            self.logoImageView.transform = transform
+            self.logoImageView.alpha = 0.0
+            
+            
+        }) { (finished) in
+            
+            UIView.animate(withDuration: 0.25, delay: 0.0, options: .curveLinear, animations: { 
+                
+                self.logoImageView.transform = .identity
+                self.logoImageView.alpha = 1.0
+                
+            }, completion: { (finished) in
+                
+                if self.refreshControl.isRefreshing {
+                    
+                    self.animateRefresh()
+                    
+                    
+                } else {
+                    self.isLogoAnimating = false
+                    self.logoImageView.transform = .identity
+                    self.logoImageView.alpha = 0.0
+
+                }
+                
+            })
+            
+        }
+        
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        
+        if refreshControl.isRefreshing {
+            if !isLogoAnimating {
+                animateRefresh()
+            }
+        }
+        
+        
     }
     
     
