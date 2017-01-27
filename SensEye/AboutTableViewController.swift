@@ -51,6 +51,27 @@ class AboutTableViewController: UITableViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         
         tableView.tableFooterView = UIView(frame: CGRect.zero)
+        
+        let profileImage = UIImage(named: "me")
+        
+        var profileImageView: UIImageView!
+        
+        if traitCollection.verticalSizeClass == .regular && traitCollection.horizontalSizeClass == .regular {
+            
+            profileImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 300))
+            
+        } else {
+            
+            profileImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 190))
+
+        }
+        
+        profileImageView.image = profileImage
+        profileImageView.contentMode = .scaleAspectFill
+        profileImageView.clipsToBounds = true
+        
+        tableView.tableHeaderView = profileImageView
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -196,6 +217,8 @@ class AboutTableViewController: UITableViewController {
         
     }
     
+    
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         switch indexPath.section {
@@ -242,7 +265,7 @@ class AboutTableViewController: UITableViewController {
     
 }
 
-
+// MARK: - MFMailComposeViewControllerDelegate
 extension AboutTableViewController: MFMailComposeViewControllerDelegate {
     
     func showEmailComposer() {
@@ -287,7 +310,7 @@ extension AboutTableViewController: MFMailComposeViewControllerDelegate {
 
 
 
-
+// MARK: - MFMessageComposeViewControllerDelegate
 extension AboutTableViewController: MFMessageComposeViewControllerDelegate {
     
     func sendSMS() {
