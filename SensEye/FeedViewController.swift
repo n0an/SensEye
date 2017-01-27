@@ -54,8 +54,6 @@ class FeedViewController: UIViewController {
         
         view.tintColor = UIColor(red: 20/255, green: 160/255, blue: 160/255, alpha: 1)
         
-        self.loadingData = true
-        getPostsFromServer()
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -84,8 +82,6 @@ class FeedViewController: UIViewController {
         
         loadCustomRefreshContents()
         
-        
-        
         listenForBackgroundNotification()
         
         listenForAuthenticationNotification()
@@ -100,11 +96,23 @@ class FeedViewController: UIViewController {
         let userCancelAuth = UserDefaults.standard.bool(forKey: KEY_VK_USERCANCELAUTH)
         
         
-        if currentVKUser == nil && userDidAuth == true && userCancelAuth != true {
+        if currentVKUser == nil {
             
-            self.toAuthorize()
+            if userDidAuth && !userCancelAuth {
+                self.toAuthorize()
+                
+            } else {
+                
+                if self.wallPosts.count == 0 {
+                    self.loadingData = true
+                    getPostsFromServer()
+                }
+            }
+            
             
         }
+        
+      
 
     }
     
