@@ -228,7 +228,10 @@ class FeedViewController: UIViewController {
         
         isLogoAnimating = true
         
-        UIView.animate(withDuration: 0.35, delay: 0.0, options: .curveLinear, animations: {
+        
+        GeneralHelper.sharedHelper.showDGSpinnter(withType: .ballBeat, onView: self.customRefreshView, withPosition: .right, andColor: UIColor.brown)
+        
+        UIView.animate(withDuration: 0.6, delay: 0.0, options: .curveLinear, animations: {
             
             let transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
             
@@ -255,6 +258,7 @@ class FeedViewController: UIViewController {
                     self.logoImageView.transform = .identity
                     self.logoImageView.alpha = 0.0
 
+                    GeneralHelper.sharedHelper.hideDGSpinner(onView: self.customRefreshView)
                 }
                 
             })

@@ -10,6 +10,8 @@ import UIKit
 import AlamofireImage
 import Social
 
+import DGActivityIndicatorView
+
 class PhotoViewController: UIViewController {
     
     @IBOutlet weak var nextPhotoBarButton: UIBarButtonItem!

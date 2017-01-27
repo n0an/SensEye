@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import DGActivityIndicatorView
 
 class GeneralHelper {
     
@@ -14,6 +15,14 @@ class GeneralHelper {
     
     static var sharedHelper: GeneralHelper {
         return _sharedHelper
+    }
+    
+    public enum DGSpinnerPosition {
+        case left
+        case right
+        case center
+        case top
+        case bottom
     }
     
     public var kONESIGNALAPPID = ""
@@ -39,6 +48,64 @@ class GeneralHelper {
     public func hideSpinner(onView view: UIView) {
         view.viewWithTag(1000)?.removeFromSuperview()
     }
+    
+    
+//    public func showDGSpinnter(onView view: UIView, usingBoundsFromView viewForBounds: UIView) {
+//        
+//        let dgSpinner = DGActivityIndicatorView(type: .nineDots, tintColor: UIColor.lightGray, size: 50)
+//        
+//        dgSpinner?.center = CGPoint(x: viewForBounds.bounds.maxX - dgSpinner!.size/2, y: viewForBounds.bounds.midY)
+//        
+//        dgSpinner?.tag = 1001
+//        view.addSubview(dgSpinner!)
+//        dgSpinner?.startAnimating()
+//        
+//        
+//    }
+    
+    
+    public func showDGSpinnter(withType spinnerType: DGActivityIndicatorAnimationType, onView view: UIView, withPosition: DGSpinnerPosition, andColor: UIColor) {
+        
+        let dgSpinner = DGActivityIndicatorView(type: spinnerType, tintColor: andColor, size: 50)
+        
+        dgSpinner?.tag = 1001
+        
+        switch withPosition {
+        case .center:
+            dgSpinner?.center = CGPoint(x: view.bounds.midX, y: view.bounds.midY)
+            
+        case .left:
+            dgSpinner?.center = CGPoint(x: view.bounds.minX + dgSpinner!.size/2, y: view.bounds.midY)
+
+        case .right:
+            dgSpinner?.center = CGPoint(x: view.bounds.maxX - dgSpinner!.size/2, y: view.bounds.midY)
+
+        case .top:
+            dgSpinner?.center = CGPoint(x: view.bounds.midX, y: view.bounds.minY + dgSpinner!.size/2)
+
+        case .bottom:
+            dgSpinner?.center = CGPoint(x: view.bounds.midX, y: view.bounds.maxY - dgSpinner!.size/2)
+
+            
+        }
+        
+        view.addSubview(dgSpinner!)
+        dgSpinner?.startAnimating()
+        
+    }
+    
+    
+    
+    
+    public func hideDGSpinner(onView view: UIView) {
+        
+        let dgSpinner = view.viewWithTag(1001) as! DGActivityIndicatorView
+        dgSpinner.stopAnimating()
+        
+        view.viewWithTag(1001)?.removeFromSuperview()
+    }
+    
+    
     
     public func showVKAuthorizeActionSheetOnViewController(viewController: UIViewController, completion: @escaping (Bool) -> Void) {
         
