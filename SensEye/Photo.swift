@@ -111,6 +111,7 @@ class Photo {
             
         }
         
+        print("maxRes = \(self.maxRes)")
         
     }
     
