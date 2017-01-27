@@ -17,6 +17,8 @@ public let groupID = "-55347641"
 public let KEY_VK_DIDAUTH = "vkAuth"
 public let KEY_VK_USERCANCELAUTH = "vkUserCancelAuth"
 
+public let KEY_VK_TOKEN = "vkAuthToken"
+
 public let URL_BASE = "https://api.vk.com/method"
 public let URL_WALL_FEED = "/wall.get?"
 public let URL_PHOTOS = "/photos.get?"

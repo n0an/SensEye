@@ -40,23 +40,43 @@ class ServerManager {
     
     // MARK: - VK AUTHORIZATION
     
-    func authorize(completed: @escaping AuthoizationComplete) {
+    func tokenToDictionary(token: VKAccessToken) -> [String: Any] {
         
+        let tokenDictionary = [
+                    "tokenString"       : token.token,
+                    "expirationDate"    : token.expirationDate,
+                    "userID"            : token.userID
+        ] as [String : Any]
+        
+        return tokenDictionary
+        
+    }
+    
+    func renewAuthorization(completed: @escaping AuthoizationComplete) {
         let loginVC = VKLoginViewController { (accessToken) in
             if let token = accessToken {
                 
                 self.vkAccessToken = token
                 
+                print("token.expirationDate = \(token.expirationDate)")
+                print("NOW = \(Date())")
+                
+                let tokenDict = self.tokenToDictionary(token: token)
+                
+                UserDefaults.standard.set(tokenDict, forKey: KEY_VK_TOKEN)
+                
                 UserDefaults.standard.set(true, forKey: KEY_VK_DIDAUTH)
+                
                 UserDefaults.standard.synchronize()
                 
                 self.getUserFor(userID: token.userID, completed: { (user) in
                     completed(user)
+                    
                 })
                 
             }
         }
-
+        
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
@@ -66,12 +86,57 @@ class ServerManager {
         while (top?.presentedViewController != nil) {
             top = top?.presentedViewController
         }
-
+        
         
         let nav = UINavigationController(rootViewController: loginVC)
-
+        
         
         top?.present(nav, animated: true, completion: nil)
+
+    }
+    
+    func authorize(completed: @escaping AuthoizationComplete) {
+        
+        if let tokenDict = UserDefaults.standard.object(forKey: KEY_VK_TOKEN) as? [String: Any] {
+            
+            print("saved tokenDict = \(tokenDict)")
+            
+            let tokenString = tokenDict["tokenString"] as! String
+            let expirationDate = tokenDict["expirationDate"] as! Date
+            let userID = tokenDict["userID"] as! String
+            
+            print("expirationDate.timeIntervalSince(Date()) = \(expirationDate.timeIntervalSince(Date()))")
+            
+            
+            if expirationDate.timeIntervalSince(Date()) <= 3600 {
+                
+                self.renewAuthorization(completed: completed)
+                
+            } else {
+                
+                let vkAccessToken = VKAccessToken()
+                vkAccessToken.token = tokenString
+                vkAccessToken.expirationDate = expirationDate
+                vkAccessToken.userID = userID
+                
+                self.vkAccessToken = vkAccessToken
+                
+                UserDefaults.standard.set(true, forKey: KEY_VK_DIDAUTH)
+                
+                UserDefaults.standard.synchronize()
+                
+                self.getUserFor(userID: userID, completed: { (user) in
+                    completed(user)
+                })
+            }
+            
+            
+            
+        } else {
+            
+            self.renewAuthorization(completed: completed)
+        }
+        
         
         
     }
