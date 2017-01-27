@@ -297,7 +297,7 @@ class PhotoViewController: UIViewController {
         scrollView.addSubview(imageView)
         view.addSubview(scrollView)
         
-        GeneralHelper.sharedHelper.showDGSpinnter(withType: .rotatingSquares, onView: self.view, withPosition: .center, andColor: .lightGray)
+        GeneralHelper.sharedHelper.showDGSpinnter(withType: .ballClipRotateMultiple, onView: self.view, withPosition: .center, andColor: .lightGray)
         
         scrollView.contentOffset = CGPoint(x: 400.0, y: 400.0)
         

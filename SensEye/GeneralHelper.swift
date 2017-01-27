@@ -50,44 +50,40 @@ class GeneralHelper {
     }
     
     
-//    public func showDGSpinnter(onView view: UIView, usingBoundsFromView viewForBounds: UIView) {
-//        
-//        let dgSpinner = DGActivityIndicatorView(type: .nineDots, tintColor: UIColor.lightGray, size: 50)
-//        
-//        dgSpinner?.center = CGPoint(x: viewForBounds.bounds.maxX - dgSpinner!.size/2, y: viewForBounds.bounds.midY)
-//        
-//        dgSpinner?.tag = 1001
-//        view.addSubview(dgSpinner!)
-//        dgSpinner?.startAnimating()
-//        
-//        
-//    }
     
-    
-    public func showDGSpinnter(withType spinnerType: DGActivityIndicatorAnimationType, onView view: UIView, withPosition: DGSpinnerPosition, andColor: UIColor) {
+    public func showDGSpinnter(withType spinnerType: DGActivityIndicatorAnimationType, onView view: UIView, withPosition: DGSpinnerPosition, andColor: UIColor, offsetX: CGFloat = 0, offsetY: CGFloat = 0) {
         
         let dgSpinner = DGActivityIndicatorView(type: spinnerType, tintColor: andColor, size: 50)
         
         dgSpinner?.tag = 1001
         
+        var x: CGFloat
+        var y: CGFloat
+        
         switch withPosition {
         case .center:
-            dgSpinner?.center = CGPoint(x: view.bounds.midX, y: view.bounds.midY)
+            x = view.bounds.midX
+            y = view.bounds.midY
             
         case .left:
-            dgSpinner?.center = CGPoint(x: view.bounds.minX + dgSpinner!.size/2, y: view.bounds.midY)
+            x = view.bounds.minX + dgSpinner!.size/2
+            y = view.bounds.midY
 
         case .right:
-            dgSpinner?.center = CGPoint(x: view.bounds.maxX - dgSpinner!.size/2, y: view.bounds.midY)
+            x = view.bounds.maxX - dgSpinner!.size/2
+            y = view.bounds.midY
 
         case .top:
-            dgSpinner?.center = CGPoint(x: view.bounds.midX, y: view.bounds.minY + dgSpinner!.size/2)
+            x = view.bounds.midX
+            y = view.bounds.minY + dgSpinner!.size/2
 
         case .bottom:
-            dgSpinner?.center = CGPoint(x: view.bounds.midX, y: view.bounds.maxY - dgSpinner!.size/2)
+            x = view.bounds.midX
+            y = view.bounds.maxY - dgSpinner!.size/2
 
-            
         }
+        
+        dgSpinner?.center = CGPoint(x: x + offsetX, y: y + offsetY)
         
         view.addSubview(dgSpinner!)
         dgSpinner?.startAnimating()
@@ -135,7 +131,6 @@ class GeneralHelper {
             
             handler(true)
             
-//            self.logOut()
         }
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (alert: UIAlertAction!) in
@@ -164,20 +159,6 @@ class GeneralHelper {
                     if let downloadedImage = UIImage(data: data) {
                         
                         onComplete(downloadedImage)
-                        
-                        
-                        
-//                        DispatchQueue.main.async {
-//                            if let strongSelf = self {
-//                                
-//                                strongSelf.cache?.setObject(downloadedImage, forKey: albumThumbCacheKey)
-//                                
-//                                strongSelf.contentImageView.image = downloadedImage
-//                                
-//                                
-//                            }
-//                        }
-                        
                         
                     }
                 }

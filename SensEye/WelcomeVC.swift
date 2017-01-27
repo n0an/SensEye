@@ -9,7 +9,6 @@
 import UIKit
 import Firebase
 import Spring
-import DGActivityIndicatorView
 
 
 class WelcomeVC: UIViewController {
@@ -29,7 +28,6 @@ class WelcomeVC: UIViewController {
     
     var animationTimer: Timer!
     
-    var activityIndicator: DGActivityIndicatorView!
     
     var currentUser: FRUser!
     
@@ -88,13 +86,7 @@ class WelcomeVC: UIViewController {
         
         self.animationTimer.fire()
         
-        let rect = CGRect(x: self.view.frame.midX - 25, y: 100, width: 50, height: 50)
-        
-        self.activityIndicator = DGActivityIndicatorView(type: .nineDots, tintColor: UIColor.lightGray)
-        self.activityIndicator.frame = rect
-        
-        self.view.addSubview(self.activityIndicator)
-        self.activityIndicator.startAnimating()
+        GeneralHelper.sharedHelper.showDGSpinnter(withType: .nineDots, onView: self.view, withPosition: .top, andColor: .lightGray, offsetX: 0, offsetY: 100)
         
         
     }
@@ -102,13 +94,9 @@ class WelcomeVC: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
+        GeneralHelper.sharedHelper.hideDGSpinner(onView: self.view)
+        
         stopLogoAnimation()
-        
-        if self.activityIndicator != nil {
-            self.activityIndicator.stopAnimating()
-            self.view.willRemoveSubview(self.activityIndicator)
-        }
-        
         
     }
     
@@ -252,6 +240,7 @@ class WelcomeVC: UIViewController {
             self.animationTimer.invalidate()
 
         }
+        
         
         
     }
