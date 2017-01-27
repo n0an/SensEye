@@ -45,7 +45,7 @@ class PhotoViewController: UIViewController {
         
         self.navigationController?.hidesBarsOnTap = true
         
-        title = "TESt"
+        title = "Album"
         
         downloadAndSetImage()
         updateUI()
@@ -265,7 +265,7 @@ class PhotoViewController: UIViewController {
         
         imageView.af_setImage(withURL: imageURL!, placeholderImage: nil, filter: nil, progress: nil, progressQueue: DispatchQueue.main, imageTransition: UIImageView.ImageTransition.crossDissolve(0.3), runImageTransitionIfCached: true) { (response) in
             
-            
+            GeneralHelper.sharedHelper.hideDGSpinner(onView: self.view)
         }
         
     }
@@ -296,6 +296,8 @@ class PhotoViewController: UIViewController {
         // Set up the view hierarchy
         scrollView.addSubview(imageView)
         view.addSubview(scrollView)
+        
+        GeneralHelper.sharedHelper.showDGSpinnter(withType: .rotatingSquares, onView: self.view, withPosition: .center, andColor: .lightGray)
         
         scrollView.contentOffset = CGPoint(x: 400.0, y: 400.0)
         
