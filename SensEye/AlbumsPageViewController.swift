@@ -23,7 +23,38 @@ class AlbumsPageViewController: UIPageViewController, UIPageViewControllerDataSo
         
         getAlbumsFromServer()
         
+        
+        
+        
     }
+    
+    func ipadLandscape() {
+        landscapeViewController = storyboard!.instantiateViewController(withIdentifier: "LandscapeViewController") as? LandscapeViewController
+        
+        if let controller = landscapeViewController {
+            
+            // VIEW CONTROLLER CONTAINMENT
+            controller.albums = albums
+            
+            controller.view.frame = view.bounds
+            
+            controller.view.alpha = 1
+            
+            controller.albums = self.albums
+            
+            // Hide tabBar
+//            self.tabBarController?.tabBar.layer.zPosition = -1
+//            self.tabBarController?.tabBar.isUserInteractionEnabled = false
+            
+            view.addSubview(controller.view)
+            addChildViewController(controller)
+            
+            controller.didMove(toParentViewController: self)
+            
+        }
+    }
+    
+    
 
     // MARK: - API METHODS
     func getAlbumsFromServer() {
@@ -33,10 +64,19 @@ class AlbumsPageViewController: UIPageViewController, UIPageViewControllerDataSo
             
             self.albums = albums
             
-            // Create the first content screen
-            if let startingViewController = self.contentViewController(at: 0) {
-                self.setViewControllers([startingViewController], direction: .forward, animated: true, completion: nil)
+            if self.traitCollection.verticalSizeClass == .regular && self.traitCollection.horizontalSizeClass == .regular {
+                
+                self.ipadLandscape()
+                
+            } else {
+                // Create the first content screen
+                if let startingViewController = self.contentViewController(at: 0) {
+                    self.setViewControllers([startingViewController], direction: .forward, animated: true, completion: nil)
+                }
             }
+            
+            
+            
             
         }
     }
