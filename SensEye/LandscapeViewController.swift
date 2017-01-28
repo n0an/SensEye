@@ -158,7 +158,7 @@ class LandscapeViewController: UIViewController {
             imageViewHeight = 338
             
         case 1024:
-            // iPad
+            // iPad portrait
             itemWidth = 512
             itemHeight = 683
             
@@ -167,7 +167,19 @@ class LandscapeViewController: UIViewController {
 
             columnsPerPage = 2
             rowsPerPage = 2
+            
+        case 1366:
+            // iPad landscape
+            itemWidth = 455
+            itemHeight = 512
+            
+            imageViewWidth = 439
+            imageViewHeight = 531
+            
+            columnsPerPage = 3
+            rowsPerPage = 2
 
+            
         default:
             itemWidth = 222
             itemHeight = 375
@@ -293,13 +305,9 @@ class LandscapeViewController: UIViewController {
             }
 
             
-            
-//            x += itemWidth
-
-            
         }
         
-        let imagesPerPage = columnsPerPage
+        let imagesPerPage = columnsPerPage * rowsPerPage
         
         let numPages = 1 + (albums.count - 1) / imagesPerPage
         
