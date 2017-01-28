@@ -118,7 +118,8 @@ class LandscapeViewController: UIViewController {
     // MAIN METHOD. CREATING GALLERY
     private func tileAlbums(albums: [PhotoAlbum]) {
         
-        let columnsPerPage = 3
+        var columnsPerPage = 3
+        var rowsPerPage = 1
         
         var itemWidth: CGFloat!
         var itemHeight: CGFloat!
@@ -155,6 +156,17 @@ class LandscapeViewController: UIViewController {
 
             imageViewWidth = 229
             imageViewHeight = 338
+            
+        case 1024:
+            // iPad
+            itemWidth = 512
+            itemHeight = 683
+            
+            imageViewWidth = 496
+            imageViewHeight = 607
+
+            columnsPerPage = 2
+            rowsPerPage = 2
 
         default:
             itemWidth = 222
@@ -162,11 +174,14 @@ class LandscapeViewController: UIViewController {
             
             imageViewWidth = 206
             imageViewHeight = 300
+            
         }
         
         let paddingHorz = (itemWidth - imageViewWidth)/2
         let paddingVert = (itemHeight - imageViewHeight - contentLabelHeight/2)/2
         
+        var row = 0
+        var column = 0
         var x: CGFloat = 0
         
         for (index, album) in albums.enumerated() {
@@ -176,7 +191,7 @@ class LandscapeViewController: UIViewController {
             // 1. External WrapView for shadow
             
             let extWrapperRect = CGRect(x: x + paddingHorz,
-                                        y: paddingVert,
+                                        y: CGFloat(row)*itemHeight + paddingVert,
                                         width: imageViewWidth,
                                         height: imageViewHeight)
             
@@ -263,7 +278,23 @@ class LandscapeViewController: UIViewController {
             scrollView.addSubview(extWrapView)
             
             
-            x += itemWidth
+            row += 1
+            
+            if row == rowsPerPage {
+                
+                row = 0
+                x += itemWidth
+                column += 1
+                
+                if column == columnsPerPage {
+                    
+                    column = 0
+                }
+            }
+
+            
+            
+//            x += itemWidth
 
             
         }
