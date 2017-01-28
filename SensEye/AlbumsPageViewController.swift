@@ -40,6 +40,9 @@ class AlbumsPageViewController: UIPageViewController, UIPageViewControllerDataSo
             
             controller.view.alpha = 1
             
+            controller.isPad = true
+            
+            
             controller.albums = self.albums
             
             // Hide tabBar

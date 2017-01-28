@@ -27,6 +27,12 @@ class LandscapeViewController: UIViewController {
     
     public var albums: [PhotoAlbum] = []
     
+    var isPad = false
+    
+    var diffForPad: CGFloat {
+        return isPad ? 50 : 0
+    }
+    
     
     // MARK: - viewDidLoad
     override func viewDidLoad() {
@@ -55,10 +61,16 @@ class LandscapeViewController: UIViewController {
         
         scrollView.frame = view.bounds
         
+        
         pageControl.frame = CGRect(x: 0,
-                                   y: view.frame.size.height - pageControl.frame.size.height,
+                                   y: view.frame.size.height - pageControl.frame.size.height - diffForPad,
                                    width: view.frame.size.width,
                                    height: pageControl.frame.size.height)
+        
+        print("pageControl.frame = \(pageControl.frame)")
+        
+        
+        
         
         self.tileAlbums(albums: albums)
   
@@ -133,10 +145,12 @@ class LandscapeViewController: UIViewController {
         var imageViewWidth: CGFloat!
         var imageViewHeight: CGFloat!
         
+        var firstRowMarginY: CGFloat = 0
+        
         switch scrollViewWidth {
             
         case 568:
-            
+            // iPhone 5/5s
             itemWidth = 189
             itemHeight = 320
 
@@ -144,7 +158,7 @@ class LandscapeViewController: UIViewController {
             imageViewHeight = 260
             
         case 667:
-            
+            // iPhone 6/6s/7
             itemWidth = 222
             itemHeight = 375
 
@@ -152,7 +166,7 @@ class LandscapeViewController: UIViewController {
             imageViewHeight = 300
             
         case 736:
-            
+            // iPhone Plus
             itemWidth = 245
             itemHeight = 414
 
@@ -162,24 +176,28 @@ class LandscapeViewController: UIViewController {
         case 1024:
             // iPad portrait
             itemWidth = 512
-            itemHeight = 683
+            itemHeight = 623
             
             imageViewWidth = 496
-            imageViewHeight = 607
+            imageViewHeight = 611
 
             columnsPerPage = 2
             rowsPerPage = 2
             
+            firstRowMarginY = 30
+            
         case 1366:
             // iPad landscape
-            itemWidth = 455
-            itemHeight = 512
+            itemWidth = 341
+            itemHeight = 452
             
-            imageViewWidth = 439
-            imageViewHeight = 432
+            imageViewWidth = 329
+            imageViewHeight = 440
             
-            columnsPerPage = 3
+            columnsPerPage = 4
             rowsPerPage = 2
+            
+            firstRowMarginY = 30
 
             
         default:
@@ -192,11 +210,16 @@ class LandscapeViewController: UIViewController {
         }
         
         let paddingHorz = (itemWidth - imageViewWidth)/2
-        let paddingVert = (itemHeight - imageViewHeight - contentLabelHeight/2)/2
+//        let paddingVert = (itemHeight - imageViewHeight - contentLabelHeight/2)/2
+        let paddingVert = (itemHeight - imageViewHeight)/2
+
+        
         
         var row = 0
         var column = 0
         var x: CGFloat = 0
+        
+        
         
         for (index, album) in albums.enumerated() {
             
@@ -205,7 +228,7 @@ class LandscapeViewController: UIViewController {
             // 1. External WrapView for shadow
             
             let extWrapperRect = CGRect(x: x + paddingHorz,
-                                        y: CGFloat(row)*itemHeight + paddingVert,
+                                        y: firstRowMarginY + CGFloat(row)*itemHeight + paddingVert,
                                         width: imageViewWidth,
                                         height: imageViewHeight)
             
@@ -294,15 +317,18 @@ class LandscapeViewController: UIViewController {
             
             row += 1
             
+            
             if row == rowsPerPage {
                 
                 row = 0
+
                 x += itemWidth
                 column += 1
                 
                 if column == columnsPerPage {
                     
                     column = 0
+
                 }
             }
 
@@ -325,11 +351,6 @@ class LandscapeViewController: UIViewController {
         
     }
     
-    
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        
-        
-    }
     
     
     
