@@ -44,12 +44,14 @@ class LandscapeViewController: UIViewController {
         
         pageControl.numberOfPages = 0
         
-        
-        
     }
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
+        
+        for view in scrollView.subviews {
+            view.removeFromSuperview()
+        }
         
         scrollView.frame = view.bounds
         
@@ -174,7 +176,7 @@ class LandscapeViewController: UIViewController {
             itemHeight = 512
             
             imageViewWidth = 439
-            imageViewHeight = 531
+            imageViewHeight = 432
             
             columnsPerPage = 3
             rowsPerPage = 2
@@ -324,6 +326,10 @@ class LandscapeViewController: UIViewController {
     }
     
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        
+        
+    }
     
     
     
