@@ -50,7 +50,9 @@ class LandscapeViewController: UIViewController {
         
         pageControl.numberOfPages = 0
         
+        
     }
+    
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
@@ -66,10 +68,6 @@ class LandscapeViewController: UIViewController {
                                    y: view.frame.size.height - pageControl.frame.size.height - diffForPad,
                                    width: view.frame.size.width,
                                    height: pageControl.frame.size.height)
-        
-        print("pageControl.frame = \(pageControl.frame)")
-        
-        
         
         
         self.tileAlbums(albums: albums)
@@ -141,6 +139,7 @@ class LandscapeViewController: UIViewController {
         let contentLabelHeight: CGFloat = 40
         
         let scrollViewWidth = scrollView.bounds.size.width
+        let scrollViewHeight = scrollView.bounds.size.height
         
         var imageViewWidth: CGFloat!
         var imageViewHeight: CGFloat!
@@ -150,7 +149,7 @@ class LandscapeViewController: UIViewController {
         switch scrollViewWidth {
             
         case 568:
-            // iPhone 5/5s
+            // iPhone 5/5s (568 x 320)
             itemWidth = 189
             itemHeight = 320
 
@@ -158,7 +157,7 @@ class LandscapeViewController: UIViewController {
             imageViewHeight = 260
             
         case 667:
-            // iPhone 6/6s/7
+            // iPhone 6/6s/7 Landscape (667 x 375)
             itemWidth = 222
             itemHeight = 375
 
@@ -166,28 +165,60 @@ class LandscapeViewController: UIViewController {
             imageViewHeight = 300
             
         case 736:
-            // iPhone Plus
+            // iPhone Plus Landscape (736 x 414)
             itemWidth = 245
             itemHeight = 414
 
             imageViewWidth = 229
             imageViewHeight = 338
             
-        case 1024:
-            // iPad portrait
-            itemWidth = 512
-            itemHeight = 623
             
-            imageViewWidth = 496
-            imageViewHeight = 611
+        case 768:
+            // iPad Air Portrait (768 x 1024)
+            itemWidth = 384
+            itemHeight = 452
 
+            imageViewWidth = 360
+            imageViewHeight = 440
+            
             columnsPerPage = 2
             rowsPerPage = 2
             
             firstRowMarginY = 30
             
+            
+        case 1024:
+            if scrollViewHeight == 768 {
+                // iPad Air Landscape (1024 x 768)
+                itemWidth = 256
+                itemHeight = 338
+                
+                imageViewWidth = 244
+                imageViewHeight = 330
+                
+                columnsPerPage = 4
+                rowsPerPage = 2
+                
+                firstRowMarginY = 12
+
+            } else if scrollViewHeight == 1366 {
+                // iPad Pro 12.9" portrait (1024 x 1366)
+                
+                itemWidth = 512
+                itemHeight = 623
+                
+                imageViewWidth = 496
+                imageViewHeight = 611
+                
+                columnsPerPage = 2
+                rowsPerPage = 2
+                
+                firstRowMarginY = 30
+            }
+            
+            
         case 1366:
-            // iPad landscape
+            // iPad Pro 12.9" landscape (1366 x 1024)
             itemWidth = 341
             itemHeight = 452
             

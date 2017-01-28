@@ -28,6 +28,11 @@ class AlbumsPageViewController: UIPageViewController, UIPageViewControllerDataSo
         
     }
     
+    // Hide status bar on iPad and go to Landscape Gallery Mode
+    override var prefersStatusBarHidden: Bool {
+        return traitCollection.verticalSizeClass == .regular && traitCollection.horizontalSizeClass == .regular
+    }
+    
     func ipadLandscape() {
         landscapeViewController = storyboard!.instantiateViewController(withIdentifier: "LandscapeViewController") as? LandscapeViewController
         
