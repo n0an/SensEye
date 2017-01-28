@@ -116,8 +116,8 @@ class ServerManager {
             
             print("expirationDate.timeIntervalSince(Date()) = \(expirationDate.timeIntervalSince(Date()))")
             
-            // TODO: - REMOVE FALSE&& AFTER CHECKING
-            if false && expirationDate.timeIntervalSince(Date()) <= 90000 {
+            // Refresh token if it will expire in less than 1 hour
+            if expirationDate.timeIntervalSince(Date()) <= 3600 {
                 
                 self.renewAuthorization(completed: completed)
                 

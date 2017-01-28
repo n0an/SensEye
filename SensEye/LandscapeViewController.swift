@@ -174,7 +174,7 @@ class LandscapeViewController: UIViewController {
             
             
         case 768:
-            // iPad Air Portrait (768 x 1024)
+            // iPad Air/Air2/Retina/Pro9.7" Portrait (768 x 1024)
             itemWidth = 384
             itemHeight = 452
 
@@ -189,7 +189,7 @@ class LandscapeViewController: UIViewController {
             
         case 1024:
             if scrollViewHeight == 768 {
-                // iPad Air Landscape (1024 x 768)
+                // iPad Air/Air2/Retina/Pro9.7" Landscape (1024 x 768)
                 itemWidth = 256
                 itemHeight = 338
                 
@@ -202,7 +202,7 @@ class LandscapeViewController: UIViewController {
                 firstRowMarginY = 12
 
             } else if scrollViewHeight == 1366 {
-                // iPad Pro 12.9" portrait (1024 x 1366)
+                // iPad Pro12.9" portrait (1024 x 1366)
                 
                 itemWidth = 512
                 itemHeight = 623
@@ -218,7 +218,7 @@ class LandscapeViewController: UIViewController {
             
             
         case 1366:
-            // iPad Pro 12.9" landscape (1366 x 1024)
+            // iPad Pro12.9" landscape (1366 x 1024)
             itemWidth = 341
             itemHeight = 452
             
