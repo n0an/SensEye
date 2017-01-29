@@ -54,6 +54,16 @@ class LandscapeViewController: UIViewController {
     
     var isPad = false
     
+    var isPhonePlus: Bool {
+        
+        let rect = UIScreen.main.bounds
+        if (rect.width == 736 && rect.height == 414) || (rect.width == 414 && rect.height == 736)  {
+            return true
+        } else {
+            return false
+        }
+    }
+    
     var diffForPad: CGFloat {
         return isPad ? 50 : 0
     }
@@ -619,6 +629,14 @@ class LandscapeViewController: UIViewController {
         
     }
     
+    func hideMasterPanePhonePlus() {
+        UIView.animate(withDuration: 0.25, animations: {
+            self.splitViewController?.preferredDisplayMode = .primaryHidden
+        }) { (success) in
+            
+        }
+    }
+    
     
     
     // MARK: - ACTIONS
@@ -649,8 +667,13 @@ class LandscapeViewController: UIViewController {
                 
                 } else {
                     
-                    if self.splitViewController?.displayMode != .allVisible {
+                    if self.isPhonePlus {
+                        self.hideMasterPanePhonePlus()
+
+                    } else if self.splitViewController?.displayMode != .allVisible {
+                        
                         self.hideMasterPane()
+
                     }
                     
                     self.splitViewDetail?.currentPhoto = photos[0]
