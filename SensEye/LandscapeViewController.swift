@@ -73,9 +73,6 @@ class LandscapeViewController: UIViewController {
         }
     }
     
-    var diffForPad: CGFloat {
-        return isPad ? 50 : 0
-    }
     
     weak var splitViewDetail: PhotoViewController?
     
@@ -127,15 +124,24 @@ class LandscapeViewController: UIViewController {
         
         scrollView.frame = view.bounds
         
-        if isPhonePlus && isPortrait {
-            pageControl.isHidden = false
+        if isPhonePlus {
+            if isPortrait {
+                pageControl.isHidden = false
+            } else {
+                pageControl.isHidden = true
+            }
+        }
+        
+        var diff: CGFloat
+        
+        if isPortrait {
+            diff = (tabBarController?.tabBar.bounds.height)!
         } else {
-            pageControl.isHidden = true
-
+            diff = 0
         }
         
         pageControl.frame = CGRect(x: 0,
-                                   y: view.frame.size.height - pageControl.frame.size.height - (tabBarController?.tabBar.bounds.height)!,
+                                   y: view.frame.size.height - pageControl.frame.size.height - diff,
                                    width: view.frame.size.width,
                                    height: pageControl.frame.size.height)
         

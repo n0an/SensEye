@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SensEye/LandscapeViewController.swift"
-            timestampString = "507413545.967393"
+            timestampString = "507413972.421561"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "505"
-            endingLineNumber = "505"
+            startingLineNumber = "511"
+            endingLineNumber = "511"
             landmarkName = "tileAlbums(albums:)"
             landmarkType = "7">
          </BreakpointContent>
