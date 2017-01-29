@@ -136,8 +136,6 @@ class LandscapeViewController: UIViewController {
         var itemWidth: CGFloat!
         var itemHeight: CGFloat!
         
-        var contentLabelHeight: CGFloat = 40
-//        var titleLabelFontSize: CGFloat = 14
         
         var titleLabelFont = UIFont.systemFont(ofSize: 14.0)
         
@@ -187,6 +185,8 @@ class LandscapeViewController: UIViewController {
             columnsPerPage = 2
             rowsPerPage = 2
             
+            titleLabelFont = UIFont.boldSystemFont(ofSize: 16)
+            
             firstRowMarginY = 30
             
             
@@ -201,6 +201,8 @@ class LandscapeViewController: UIViewController {
                 
                 columnsPerPage = 4
                 rowsPerPage = 2
+                
+                titleLabelFont = UIFont.boldSystemFont(ofSize: 16)
                 
                 firstRowMarginY = 12
 
@@ -248,7 +250,7 @@ class LandscapeViewController: UIViewController {
         }
         
         let paddingHorz = (itemWidth - imageViewWidth)/2
-//        let paddingVert = (itemHeight - imageViewHeight - contentLabelHeight/2)/2
+
         let paddingVert = (itemHeight - imageViewHeight)/2
 
         
@@ -257,7 +259,7 @@ class LandscapeViewController: UIViewController {
         var column = 0
         var x: CGFloat = 0
         
-        contentLabelHeight = itemHeight * 0.12
+        let contentLabelHeight = itemHeight * 0.12
         
         for (index, album) in albums.enumerated() {
             
