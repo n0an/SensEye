@@ -120,7 +120,7 @@ class LandscapeViewController: UIViewController {
         
         
         pageControl.frame = CGRect(x: 0,
-                                   y: view.frame.size.height - pageControl.frame.size.height - diffForPad,
+                                   y: view.frame.size.height - pageControl.frame.size.height - (tabBarController?.tabBar.bounds.height)!,
                                    width: view.frame.size.width,
                                    height: pageControl.frame.size.height)
         
@@ -201,6 +201,24 @@ class LandscapeViewController: UIViewController {
         self.scrollViewParams.scrollViewHeight = scrollView.bounds.size.height
         
         switch self.scrollViewParams.scrollViewWidth {
+            
+        case 414:
+            // iPhone Plus Portrait (414 x 736)
+            
+            self.scrollViewParams.itemWidth = 207
+            
+            self.scrollViewParams.itemHeight = 318 // (1024 - 10 - 40 for pagecontrol - 50 for tabbar) /2
+
+            
+            self.scrollViewParams.imageViewWidth = 201
+            self.scrollViewParams.imageViewHeight = 308
+            
+            self.scrollViewParams.columnsPerPage = 2
+            self.scrollViewParams.rowsPerPage = 2
+            
+            self.scrollViewParams.firstRowMarginY = 10
+
+            
             
         case 568:
             // iPhone 5/5s (568 x 320)
