@@ -38,6 +38,17 @@ class LandscapeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if self.traitCollection.verticalSizeClass == .regular && self.traitCollection.horizontalSizeClass == .regular {
+            
+            self.isPad = true
+        }
+        
+        getAlbumsFromServer()
+
+        
+        
+        
+        
         // TURN OFF AUTO LAYOUT FOR DEDICATED VC
         view.removeConstraints(view.constraints)
         view.translatesAutoresizingMaskIntoConstraints = true
@@ -80,6 +91,18 @@ class LandscapeViewController: UIViewController {
     }
     
     // MARK: - API METHODS
+    
+    func getAlbumsFromServer() {
+        ServerManager.sharedManager.getPhotoAlbums(forGroupID: groupID) { (result) in
+            
+            guard let albums = result as? [PhotoAlbum] else { return }
+            
+            self.albums = albums
+            
+            self.view.layoutSubviews()
+            
+        }
+    }
 
     private func downloadThumb(forAlbum album: PhotoAlbum, andPlaceOnImageView imageView: UIImageView) {
         

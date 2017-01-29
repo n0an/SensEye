@@ -38,6 +38,7 @@ class AlbumsContentViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         pageControl.numberOfPages = totalAlbums
         
         updateUI()
@@ -55,6 +56,12 @@ class AlbumsContentViewController: UIViewController {
     }
     
     // MARK: - HELPER METHODS
+    
+    
+    
+    
+    
+    
     func updateUI() {
         
         pageControl.currentPage = index
