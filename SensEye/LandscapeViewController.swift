@@ -64,6 +64,15 @@ class LandscapeViewController: UIViewController {
         }
     }
     
+    var isPortrait: Bool {
+        let rect = UIScreen.main.bounds
+        if rect.width / rect.height < 1  {
+            return true
+        } else {
+            return false
+        }
+    }
+    
     var diffForPad: CGFloat {
         return isPad ? 50 : 0
     }
@@ -118,6 +127,12 @@ class LandscapeViewController: UIViewController {
         
         scrollView.frame = view.bounds
         
+        if isPhonePlus && isPortrait {
+            pageControl.isHidden = false
+        } else {
+            pageControl.isHidden = true
+
+        }
         
         pageControl.frame = CGRect(x: 0,
                                    y: view.frame.size.height - pageControl.frame.size.height - (tabBarController?.tabBar.bounds.height)!,
@@ -218,6 +233,23 @@ class LandscapeViewController: UIViewController {
             
             self.scrollViewParams.firstRowMarginY = 10
 
+            
+        case 295:
+            // iPhone Plus Landscape Split Mode (295 x 414)
+            
+            self.scrollViewParams.itemWidth = 295
+            
+            self.scrollViewParams.itemHeight = 414
+            
+            
+            self.scrollViewParams.imageViewWidth = 281
+            self.scrollViewParams.imageViewHeight = 390
+            
+            self.scrollViewParams.columnsPerPage = 1
+            self.scrollViewParams.rowsPerPage = 1
+            
+            self.scrollViewParams.firstRowMarginY = 0
+            
             
             
         case 568:
