@@ -10,45 +10,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SensEye/LandscapeViewController.swift"
-            timestampString = "507401984.137622"
+            timestampString = "507403593.855874"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "560"
-            endingLineNumber = "560"
+            startingLineNumber = "562"
+            endingLineNumber = "562"
             landmarkName = "tileAlbums(albums:)"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SensEye/LandscapeViewController.swift"
-            timestampString = "507401984.137622"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "680"
-            endingLineNumber = "680"
-            landmarkName = "pageChanged(sender:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SensEye/LandscapeViewController.swift"
-            timestampString = "507401984.137622"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "686"
-            endingLineNumber = "686"
-            landmarkName = "LandscapeViewController"
-            landmarkType = "4">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -58,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SensEye/LandscapeViewController.swift"
-            timestampString = "507401984.137622"
+            timestampString = "507403593.855874"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "827"
-            endingLineNumber = "827">
+            startingLineNumber = "854"
+            endingLineNumber = "854">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -72,11 +40,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SensEye/LandscapeViewController.swift"
-            timestampString = "507401984.137622"
+            timestampString = "507403593.855874"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "546"
-            endingLineNumber = "546"
+            startingLineNumber = "548"
+            endingLineNumber = "548"
             landmarkName = "tileAlbums(albums:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -88,11 +56,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SensEye/LandscapeViewController.swift"
-            timestampString = "507401984.137622"
+            timestampString = "507403593.855874"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "102"
-            endingLineNumber = "102"
+            startingLineNumber = "104"
+            endingLineNumber = "104"
             landmarkName = "viewWillLayoutSubviews()"
             landmarkType = "7">
          </BreakpointContent>
@@ -104,11 +72,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SensEye/LandscapeViewController.swift"
-            timestampString = "507401765.876499"
+            timestampString = "507403593.855874"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "652"
-            endingLineNumber = "652"
+            startingLineNumber = "644"
+            endingLineNumber = "644"
             landmarkName = "actionGestureTap(_:)"
             landmarkType = "7">
          </BreakpointContent>

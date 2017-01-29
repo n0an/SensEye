@@ -65,6 +65,8 @@ class LandscapeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        title = "Albums"
+        
         if self.traitCollection.verticalSizeClass == .regular && self.traitCollection.horizontalSizeClass == .regular {
             
             self.isPad = true
@@ -606,25 +608,15 @@ class LandscapeViewController: UIViewController {
         
     }
     
-    
-    
-    
-    // MARK: - NAVIGATION
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == Storyboard.seguePhotoDisplayer {
-            
-            let destinationNavVC = segue.destination as! UINavigationController
-//            destinationNavVC.transitioningDelegate = TransitionHelper.sharedHelper.acRotateTransition
-            
-            let destinationVC = destinationNavVC.topViewController as! PhotoViewController
-            
-            guard let photos = sender as? [Photo] else { return }
-            
-            destinationVC.currentPhoto = photos[0]
-            destinationVC.mediasArray = photos
-            destinationVC.currentIndex = 0
+    func hideMasterPane() {
+        
+        UIView.animate(withDuration: 0.25, animations: { 
+            self.splitViewController?.preferredDisplayMode = .primaryHidden
+        }) { (success) in
+            self.splitViewController?.preferredDisplayMode = .automatic
         }
+        
+        
     }
     
     
@@ -657,6 +649,10 @@ class LandscapeViewController: UIViewController {
                 
                 } else {
                     
+                    if self.splitViewController?.displayMode != .allVisible {
+                        self.hideMasterPane()
+                    }
+                    
                     self.splitViewDetail?.currentPhoto = photos[0]
                     self.splitViewDetail?.mediasArray = photos
                     self.splitViewDetail?.currentIndex = 0
@@ -665,6 +661,7 @@ class LandscapeViewController: UIViewController {
             })
         }
     }
+    
     
     @IBAction func pageChanged(sender: UIPageControl) {
         
@@ -682,6 +679,36 @@ class LandscapeViewController: UIViewController {
         
         
     }
+    
+    
+    
+    
+    
+    
+    // MARK: - NAVIGATION
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == Storyboard.seguePhotoDisplayer {
+            
+            let destinationNavVC = segue.destination as! UINavigationController
+            //            destinationNavVC.transitioningDelegate = TransitionHelper.sharedHelper.acRotateTransition
+            
+            let destinationVC = destinationNavVC.topViewController as! PhotoViewController
+            
+            guard let photos = sender as? [Photo] else { return }
+            
+            destinationVC.currentPhoto = photos[0]
+            destinationVC.mediasArray = photos
+            destinationVC.currentIndex = 0
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
 }
 
 extension LandscapeViewController: UIScrollViewDelegate {
