@@ -16,12 +16,14 @@ class PhotoViewController: UIViewController {
     
     @IBOutlet weak var nextPhotoBarButton: UIBarButtonItem!
     @IBOutlet weak var previousPhotoBarButton: UIBarButtonItem!
+    @IBOutlet weak var shareButton: UIBarButtonItem!
     
     // MARK: - PROPERTIES
     
     var currentPhoto: Photo! {
         didSet {
             if isViewLoaded {
+                shareButton.isEnabled = true
                 downloadAndSetImage()
                 updateUI()
             }
@@ -53,6 +55,8 @@ class PhotoViewController: UIViewController {
         self.navigationController?.hidesBarsOnTap = true
         
         title = "Album"
+        
+        shareButton.isEnabled = false
         
 //        downloadAndSetImage()
 //        updateUI()
@@ -225,6 +229,16 @@ class PhotoViewController: UIViewController {
     
     func gestureClose() {
         dismiss(animated: true, completion: nil)
+    }
+    
+    
+    // MARK: - NAVIGATION
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showMenu" {
+            let destinationVC = segue.destination as! ActionMenuViewController
+            destinationVC.delegate = self
+        }
     }
     
     
@@ -404,3 +418,129 @@ extension PhotoViewController : UIScrollViewDelegate {
     
     
 }
+
+
+
+extension PhotoViewController: ActionMenuViewControllerDelegate {
+    
+    func actionTwitterSelected() {
+        
+        dismiss(animated: true) { 
+            
+            let defaultText = "Фотограф Elena Senseye - vk.com/elena_senseye"
+            
+            guard let imageToShare = self.imageView.image else  { return }
+            
+            
+            // Check if Twitter is available. Otherwise, display an error message
+            guard SLComposeViewController.isAvailable(forServiceType: SLServiceTypeTwitter) else {
+                let alertMessage = UIAlertController(title: "Twitter недоступен", message: "Вы не вошли в учетную запись Twitter. Пожалуйста, войдите в свою учетную запись в Настройки > Twitter", preferredStyle: .alert)
+                alertMessage.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alertMessage, animated: true, completion: nil)
+                
+                return
+            }
+            
+            // Display Tweet Composer
+            if let tweetComposer = SLComposeViewController(forServiceType: SLServiceTypeTwitter) {
+                tweetComposer.setInitialText(defaultText)
+                tweetComposer.add(imageToShare)
+                self.present(tweetComposer, animated: true, completion: nil)
+            }
+            
+            
+        }
+        
+        
+
+    }
+    
+    func actionFacebookSelected() {
+        
+        dismiss(animated: true) { 
+            let defaultText = "Фотограф Elena Senseye - vk.com/elena_senseye"
+            
+            
+            guard let imageToShare = self.imageView.image else  { return }
+            
+            // Check if Facebook is available. Otherwise, display an error message
+            guard SLComposeViewController.isAvailable(forServiceType: SLServiceTypeFacebook) else {
+                let alertMessage = UIAlertController(title: "Facebook недоступен", message: "Вы не вошли в учетную запись Facebook. Пожалуйста, войдите в свою учетную запись в Настройки > Facebook", preferredStyle: .alert)
+                alertMessage.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alertMessage, animated: true, completion: nil)
+                
+                return
+            }
+            
+            // Display Tweet Composer
+            if let fbComposer = SLComposeViewController(forServiceType: SLServiceTypeFacebook) {
+                fbComposer.setInitialText("Фотограф Elena Senseye")
+                //                fbComposer.add(URL(string: "https://www.facebook.com/elena.senseye/"))
+                
+                fbComposer.add(imageToShare)
+                
+                self.present(fbComposer, animated: true, completion: nil)
+            }
+        }
+        
+        
+    }
+    
+    func actionOtherSelected() {
+        
+        
+        dismiss(animated: true) { 
+            let defaultText = "Фотограф Elena Senseye - vk.com/elena_senseye"
+            
+            guard let imageToShare = self.imageView.image else  { return }
+            
+            
+            let activityController = UIActivityViewController(activityItems: [defaultText, imageToShare], applicationActivities: nil)
+            
+            let excludedActivities = [
+                UIActivityType.postToWeibo,
+                .print,
+                .addToReadingList,
+                .postToVimeo,
+                .postToTencentWeibo,
+                .openInIBooks,
+                .assignToContact
+            ]
+            
+            activityController.excludedActivityTypes = excludedActivities
+            
+//            activityController.popoverPresentationController?.sourceView = self.view
+            activityController.popoverPresentationController?.barButtonItem = self.shareButton
+            
+            self.present(activityController, animated: true, completion: nil)
+            
+        }
+        
+    }
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

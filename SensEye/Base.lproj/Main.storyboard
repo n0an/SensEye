@@ -283,7 +283,7 @@
             <objects>
                 <navigationController storyboardIdentifier="PhotoNavViewController" automaticallyAdjustsScrollViewInsets="NO" id="Uuj-Kp-AHt" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="nf4-z0-1A8">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="nf4-z0-1A8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1286,7 +1286,7 @@
             <objects>
                 <navigationController storyboardIdentifier="WelcomeView" automaticallyAdjustsScrollViewInsets="NO" id="S8D-w0-bzI" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="X6N-kH-ZtH">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="X6N-kH-ZtH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1948,7 +1948,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ngm-NQ-1S7" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="34q-CL-Z1M">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="34q-CL-Z1M">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1967,7 +1967,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bln-RT-Wcb" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="contacts" id="e7a-ta-sOH"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="uO9-me-3qC">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="uO9-me-3qC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2256,16 +2256,17 @@
                     <connections>
                         <outlet property="nextPhotoBarButton" destination="WBK-Se-dfm" id="s1V-RX-uDq"/>
                         <outlet property="previousPhotoBarButton" destination="pmr-R4-ipa" id="UCS-zp-Jt7"/>
+                        <outlet property="shareButton" destination="Dkd-oa-jmK" id="bgB-y9-b5k"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="15c-Pt-TQP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2828" y="-732"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Action Menu View Controller-->
         <scene sceneID="Fwn-eL-9zV">
             <objects>
-                <tableViewController id="1Ij-M9-jaU" sceneMemberID="viewController">
+                <tableViewController id="1Ij-M9-jaU" customClass="ActionMenuViewController" customModule="SensEye" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="4qV-pa-w7T">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2343,7 +2344,7 @@
             <objects>
                 <navigationController storyboardIdentifier="PhotoNavViewController1" automaticallyAdjustsScrollViewInsets="NO" id="WdO-Um-wya" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="gPe-hg-aTC">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="gPe-hg-aTC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2365,7 +2366,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="t65-bA-HTI" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="GEt-Sg-DOa">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="GEt-Sg-DOa">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
