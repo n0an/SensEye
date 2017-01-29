@@ -58,6 +58,8 @@ class LandscapeViewController: UIViewController {
         return isPad ? 50 : 0
     }
     
+    weak var splitViewDetail: PhotoViewController?
+    
     
     // MARK: - viewDidLoad
     override func viewDidLoad() {
@@ -648,7 +650,18 @@ class LandscapeViewController: UIViewController {
                 
                 let photos = result as! [Photo]
                 
-                self.performSegue(withIdentifier: Storyboard.seguePhotoDisplayer, sender: photos)
+                
+                if self.view.window!.rootViewController!.traitCollection.horizontalSizeClass == .compact {
+                    
+                    self.performSegue(withIdentifier: Storyboard.seguePhotoDisplayer, sender: photos)
+                
+                } else {
+                    
+                    self.splitViewDetail?.currentPhoto = photos[0]
+                    self.splitViewDetail?.mediasArray = photos
+                    self.splitViewDetail?.currentIndex = 0
+                }
+                
             })
         }
     }

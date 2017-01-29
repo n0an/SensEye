@@ -19,6 +19,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
+    var splitViewController: MySplitViewController {
+        let rootTabController = window!.rootViewController as! UITabBarController
+        
+        let splitVC = rootTabController.viewControllers![4] as! MySplitViewController
+        
+        return splitVC
+    }
+    
+    var galleryMasterVC: LandscapeViewController {
+        return splitViewController.viewControllers.first as! LandscapeViewController
+    }
+    
+    var detailPhotoNavVC: UINavigationController {
+        return splitViewController.viewControllers.last as! UINavigationController
+    }
+    
+    var detailPhotoVC: PhotoViewController {
+        return detailPhotoNavVC.topViewController as! PhotoViewController
+    }
+    
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
@@ -48,6 +68,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         OneSignal.setLogLevel(ONE_S_LOG_LEVEL.LL_NONE, visualLevel: ONE_S_LOG_LEVEL.LL_NONE)
+        
+        // Split View Controller Configuration:
+        detailPhotoVC.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem
+        galleryMasterVC.splitViewDetail = detailPhotoVC
         
         
         return true

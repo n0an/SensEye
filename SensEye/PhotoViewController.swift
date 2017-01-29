@@ -19,7 +19,14 @@ class PhotoViewController: UIViewController {
     
     // MARK: - PROPERTIES
     
-    var currentPhoto: Photo!
+    var currentPhoto: Photo! {
+        didSet {
+            if isViewLoaded {
+                downloadAndSetImage()
+                updateUI()
+            }
+        }
+    }
     var mediasArray: [Photo]! {
         didSet {
             if mediasArray.count <= 1 {
@@ -47,20 +54,20 @@ class PhotoViewController: UIViewController {
         
         title = "Album"
         
-        downloadAndSetImage()
-        updateUI()
+//        downloadAndSetImage()
+//        updateUI()
 
         
     }
 
     override func viewWillDisappear(_ animated: Bool) {
-        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+//        self.navigationController?.setNavigationBarHidden(false, animated: animated)
         super.viewWillDisappear(animated)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         
-        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+//        self.navigationController?.setNavigationBarHidden(true, animated: animated)
         
         super.viewDidAppear(animated)
 
@@ -357,14 +364,19 @@ class PhotoViewController: UIViewController {
     
     // after the rotation
     override func viewWillLayoutSubviews() {
-        setZoomParametersForSize(scrollViewSize: scrollView.bounds.size)	// to determine landscape or portrait
         
-        // If the device is in landscape again
-        if scrollView.zoomScale < scrollView.minimumZoomScale {
-            scrollView.zoomScale = scrollView.minimumZoomScale
+        if currentPhoto != nil {
+            
+            setZoomParametersForSize(scrollViewSize: scrollView.bounds.size)	// to determine landscape or portrait
+            
+            // If the device is in landscape again
+            if scrollView.zoomScale < scrollView.minimumZoomScale {
+                scrollView.zoomScale = scrollView.minimumZoomScale
+            }
+            
+            recenterImage()
         }
         
-        recenterImage()
     }
 }
 

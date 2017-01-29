@@ -330,7 +330,7 @@
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
                         <segue destination="GPa-NQ-tH1" kind="relationship" relationship="masterViewController" id="CIl-6f-tUr"/>
-                        <segue destination="fMa-1t-whA" kind="relationship" relationship="detailViewController" id="Hcd-X4-DWy"/>
+                        <segue destination="WdO-Um-wya" kind="relationship" relationship="detailViewController" id="ab7-EX-XUD"/>
                     </connections>
                 </splitViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ihb-6U-0wo" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -953,7 +953,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xao-H5-e02">
-                                        <rect key="frame" x="482.5" y="40" width="60" height="60"/>
+                                        <rect key="frame" x="482" y="40" width="60" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="60" id="9oE-02-mxn"/>
                                             <constraint firstAttribute="width" constant="60" id="EJh-CN-Ned"/>
@@ -2146,10 +2146,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.1629481934" green="0.73162724580000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
+                    <navigationItem key="navigationItem" id="MMi-3a-yIq"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bug-F6-8ML" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="967" y="-2115"/>
+            <point key="canvasLocation" x="1691.015625" y="-2115.3733528550511"/>
         </scene>
         <!--Landscape View Controller-->
         <scene sceneID="R75-p0-V9k">
@@ -2190,7 +2191,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3aZ-i5-bG8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1918" y="-1692"/>
+            <point key="canvasLocation" x="2641.9921875" y="-1692.3865300146413"/>
         </scene>
         <!--Photo View Controller-->
         <scene sceneID="jfN-Hu-YGd">
@@ -2203,7 +2204,19 @@
                     <view key="view" contentMode="scaleToFill" id="Rpt-4f-b6X">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Album" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Id-2v-p6l">
+                                <rect key="frame" x="411.5" y="664" width="202" height="38.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="4Id-2v-p6l" firstAttribute="centerX" secondItem="Rpt-4f-b6X" secondAttribute="centerX" id="IYl-5n-oyl"/>
+                            <constraint firstItem="4Id-2v-p6l" firstAttribute="centerY" secondItem="Rpt-4f-b6X" secondAttribute="centerY" id="Qju-tQ-J2Q"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="mDV-W2-z1S">
                         <barButtonItem key="leftBarButtonItem" systemItem="done" id="HUM-ik-W1N">
@@ -2259,6 +2272,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OLq-ei-fmc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1919" y="-731"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="ReU-Zi-WCW">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="t65-bA-HTI" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="GEt-Sg-DOa">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="fMa-1t-whA" kind="relationship" relationship="rootViewController" id="f6b-DE-bJF"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WDj-Wv-T92" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="966.79687499999989" y="-2115.3733528550511"/>
         </scene>
     </scenes>
     <resources>
