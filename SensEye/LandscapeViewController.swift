@@ -136,7 +136,10 @@ class LandscapeViewController: UIViewController {
         var itemWidth: CGFloat!
         var itemHeight: CGFloat!
         
-        let contentLabelHeight: CGFloat = 40
+        var contentLabelHeight: CGFloat = 40
+//        var titleLabelFontSize: CGFloat = 14
+        
+        var titleLabelFont = UIFont.systemFont(ofSize: 14.0)
         
         let scrollViewWidth = scrollView.bounds.size.width
         let scrollViewHeight = scrollView.bounds.size.height
@@ -213,6 +216,8 @@ class LandscapeViewController: UIViewController {
                 columnsPerPage = 2
                 rowsPerPage = 2
                 
+                titleLabelFont = UIFont.boldSystemFont(ofSize: 21)
+                
                 firstRowMarginY = 30
             }
             
@@ -227,6 +232,8 @@ class LandscapeViewController: UIViewController {
             
             columnsPerPage = 4
             rowsPerPage = 2
+            
+            titleLabelFont = UIFont.boldSystemFont(ofSize: 21)
             
             firstRowMarginY = 30
 
@@ -250,7 +257,7 @@ class LandscapeViewController: UIViewController {
         var column = 0
         var x: CGFloat = 0
         
-        
+        contentLabelHeight = itemHeight * 0.12
         
         for (index, album) in albums.enumerated() {
             
@@ -309,15 +316,26 @@ class LandscapeViewController: UIViewController {
                                             height: contentLabelHeight)
             
             
+            
+            
+            
             let albumTitleLabel = UILabel()
+            
             
             albumTitleLabel.text = album.albumTitle
             albumTitleLabel.tag = 2000 + index
             
             albumTitleLabel.textColor = UIColor.black
             albumTitleLabel.textAlignment = .center
+
+            albumTitleLabel.font = titleLabelFont
             
-            albumTitleLabel.font = UIFont.systemFont(ofSize: 14.0)
+            
+            
+            
+            
+            
+            
             
             albumTitleLabel.numberOfLines = 2
             
