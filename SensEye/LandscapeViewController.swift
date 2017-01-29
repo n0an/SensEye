@@ -18,6 +18,30 @@ class LandscapeViewController: UIViewController {
     
     // MARK: - PROPERTIES
     
+    struct ScrollViewParameters {
+        
+        var columnsPerPage: Int
+        var rowsPerPage: Int
+        
+        var itemWidth: CGFloat
+        var itemHeight: CGFloat
+        
+        
+        var titleLabelFont = UIFont.systemFont(ofSize: 14.0)
+        
+        var scrollViewWidth: CGFloat
+        var scrollViewHeight: CGFloat
+        
+        var imageViewWidth: CGFloat
+        var imageViewHeight: CGFloat
+        
+        var firstRowMarginY: CGFloat
+        
+        
+    }
+    
+    var scrollViewParams = ScrollViewParameters(columnsPerPage: 3, rowsPerPage: 1, itemWidth: 222, itemHeight: 375, titleLabelFont: UIFont.systemFont(ofSize: 14.0), scrollViewWidth: 0, scrollViewHeight: 0, imageViewWidth: 206, imageViewHeight: 300, firstRowMarginY: 0)
+    
     fileprivate enum Storyboard {
         
         static let seguePhotoDisplayer = "showPhoto"
@@ -41,6 +65,10 @@ class LandscapeViewController: UIViewController {
         if self.traitCollection.verticalSizeClass == .regular && self.traitCollection.horizontalSizeClass == .regular {
             
             self.isPad = true
+            
+            self.pageControl.isHidden = true
+            
+            
         }
         
         getAlbumsFromServer()
@@ -150,131 +178,268 @@ class LandscapeViewController: UIViewController {
     
     // MARK: - HELPER METHODS
     
-    // MAIN METHOD. CREATING GALLERY
-    private func tileAlbums(albums: [PhotoAlbum]) {
+    func calculateImageParametersForPhone() {
         
-        var columnsPerPage = 3
-        var rowsPerPage = 1
+        self.scrollViewParams.scrollViewWidth = scrollView.bounds.size.width
+        self.scrollViewParams.scrollViewHeight = scrollView.bounds.size.height
         
-        var itemWidth: CGFloat!
-        var itemHeight: CGFloat!
-        
-        
-        var titleLabelFont = UIFont.systemFont(ofSize: 14.0)
-        
-        let scrollViewWidth = scrollView.bounds.size.width
-        let scrollViewHeight = scrollView.bounds.size.height
-        
-        var imageViewWidth: CGFloat!
-        var imageViewHeight: CGFloat!
-        
-        var firstRowMarginY: CGFloat = 0
-        
-        switch scrollViewWidth {
+        switch self.scrollViewParams.scrollViewWidth {
             
         case 568:
             // iPhone 5/5s (568 x 320)
-            itemWidth = 189
-            itemHeight = 320
-
-            imageViewWidth = 170
-            imageViewHeight = 260
+            
+            self.scrollViewParams.itemWidth = 189
+            self.scrollViewParams.itemHeight = 320
+            
+            self.scrollViewParams.imageViewWidth = 170
+            self.scrollViewParams.imageViewHeight = 260
+            
+            
             
         case 667:
             // iPhone 6/6s/7 Landscape (667 x 375)
-            itemWidth = 222
-            itemHeight = 375
-
-            imageViewWidth = 206
-            imageViewHeight = 300
+            
+            self.scrollViewParams.itemWidth = 222
+            self.scrollViewParams.itemHeight = 375
+            
+            self.scrollViewParams.imageViewWidth = 206
+            self.scrollViewParams.imageViewHeight = 300
+            
             
         case 736:
             // iPhone Plus Landscape (736 x 414)
-            itemWidth = 245
-            itemHeight = 414
-
-            imageViewWidth = 229
-            imageViewHeight = 338
             
+            self.scrollViewParams.itemWidth = 245
+            self.scrollViewParams.itemHeight = 414
+            
+            self.scrollViewParams.imageViewWidth = 229
+            self.scrollViewParams.imageViewHeight = 338
+            
+            
+        default:
+            break
+            
+        }
+        
+        
+    }
+    
+    func calculateImageParametersForPad() {
+        
+        self.scrollViewParams.scrollViewWidth = scrollView.bounds.size.width
+        self.scrollViewParams.scrollViewHeight = scrollView.bounds.size.height
+        
+        switch self.scrollViewParams.scrollViewWidth {
             
         case 768:
             // iPad Air/Air2/Retina/Pro9.7" Portrait (768 x 1024)
-            itemWidth = 384
-            itemHeight = 452
-
-            imageViewWidth = 360
-            imageViewHeight = 440
             
-            columnsPerPage = 2
-            rowsPerPage = 2
             
-            titleLabelFont = UIFont.boldSystemFont(ofSize: 16)
+            self.scrollViewParams.itemWidth = 384
+            self.scrollViewParams.itemHeight = 452
             
-            firstRowMarginY = 30
+            self.scrollViewParams.imageViewWidth = 360
+            self.scrollViewParams.imageViewHeight = 440
+            
+            self.scrollViewParams.columnsPerPage = 2
+            self.scrollViewParams.rowsPerPage = 2
+            
+            self.scrollViewParams.titleLabelFont = UIFont.boldSystemFont(ofSize: 16)
+            
+            self.scrollViewParams.firstRowMarginY = 30
             
             
         case 1024:
-            if scrollViewHeight == 768 {
+            if self.scrollViewParams.scrollViewHeight == 768 {
                 // iPad Air/Air2/Retina/Pro9.7" Landscape (1024 x 768)
-                itemWidth = 256
-                itemHeight = 338
+                self.scrollViewParams.itemWidth = 256
+                self.scrollViewParams.itemHeight = 338
                 
-                imageViewWidth = 244
-                imageViewHeight = 330
+                self.scrollViewParams.imageViewWidth = 244
+                self.scrollViewParams.imageViewHeight = 330
                 
-                columnsPerPage = 4
-                rowsPerPage = 2
+                self.scrollViewParams.columnsPerPage = 4
+                self.scrollViewParams.rowsPerPage = 2
                 
-                titleLabelFont = UIFont.boldSystemFont(ofSize: 16)
+                self.scrollViewParams.titleLabelFont = UIFont.boldSystemFont(ofSize: 16)
                 
-                firstRowMarginY = 12
-
-            } else if scrollViewHeight == 1366 {
+                self.scrollViewParams.firstRowMarginY = 12
+                
+            } else if self.scrollViewParams.scrollViewHeight == 1366 {
                 // iPad Pro12.9" portrait (1024 x 1366)
                 
-                itemWidth = 512
-                itemHeight = 623
+                self.scrollViewParams.itemWidth = 512
+                self.scrollViewParams.itemHeight = 623
                 
-                imageViewWidth = 496
-                imageViewHeight = 611
+                self.scrollViewParams.imageViewWidth = 496
+                self.scrollViewParams.imageViewHeight = 611
                 
-                columnsPerPage = 2
-                rowsPerPage = 2
+                self.scrollViewParams.columnsPerPage = 2
+                self.scrollViewParams.rowsPerPage = 2
                 
-                titleLabelFont = UIFont.boldSystemFont(ofSize: 21)
+                self.scrollViewParams.titleLabelFont = UIFont.boldSystemFont(ofSize: 21)
                 
-                firstRowMarginY = 30
+                self.scrollViewParams.firstRowMarginY = 30
             }
             
             
         case 1366:
             // iPad Pro12.9" landscape (1366 x 1024)
-            itemWidth = 341
-            itemHeight = 452
+            self.scrollViewParams.itemWidth = 341
+            self.scrollViewParams.itemHeight = 452
             
-            imageViewWidth = 329
-            imageViewHeight = 440
+            self.scrollViewParams.imageViewWidth = 329
+            self.scrollViewParams.imageViewHeight = 440
             
-            columnsPerPage = 4
-            rowsPerPage = 2
+            self.scrollViewParams.columnsPerPage = 4
+            self.scrollViewParams.rowsPerPage = 2
             
-            titleLabelFont = UIFont.boldSystemFont(ofSize: 21)
+            self.scrollViewParams.titleLabelFont = UIFont.boldSystemFont(ofSize: 21)
             
-            firstRowMarginY = 30
-
+            self.scrollViewParams.firstRowMarginY = 30
+            
             
         default:
-            itemWidth = 222
-            itemHeight = 375
-            
-            imageViewWidth = 206
-            imageViewHeight = 300
+            break
             
         }
         
-        let paddingHorz = (itemWidth - imageViewWidth)/2
+    }
+    
+    // MAIN METHOD. CREATING GALLERY
+    private func tileAlbums(albums: [PhotoAlbum]) {
+        
+//        var columnsPerPage = 3
+//        var rowsPerPage = 1
+//        
+//        var itemWidth: CGFloat!
+//        var itemHeight: CGFloat!
+//        
+//        
+//        var titleLabelFont = UIFont.systemFont(ofSize: 14.0)
+//        
+//        let scrollViewWidth = scrollView.bounds.size.width
+//        let scrollViewHeight = scrollView.bounds.size.height
+//        
+//        var imageViewWidth: CGFloat!
+//        var imageViewHeight: CGFloat!
+//        
+//        var firstRowMarginY: CGFloat = 0
+        
+        
+        if isPad {
+            self.calculateImageParametersForPad()
+        } else {
+            self.calculateImageParametersForPhone()
+        }
+        
+        
+        
+//        switch scrollViewWidth {
+//            
+//        case 568:
+//            // iPhone 5/5s (568 x 320)
+//            itemWidth = 189
+//            itemHeight = 320
+//
+//            imageViewWidth = 170
+//            imageViewHeight = 260
+//            
+//        case 667:
+//            // iPhone 6/6s/7 Landscape (667 x 375)
+//            itemWidth = 222
+//            itemHeight = 375
+//
+//            imageViewWidth = 206
+//            imageViewHeight = 300
+//            
+//        case 736:
+//            // iPhone Plus Landscape (736 x 414)
+//            itemWidth = 245
+//            itemHeight = 414
+//
+//            imageViewWidth = 229
+//            imageViewHeight = 338
+//            
+//            
+//        case 768:
+//            // iPad Air/Air2/Retina/Pro9.7" Portrait (768 x 1024)
+//            itemWidth = 384
+//            itemHeight = 452
+//
+//            imageViewWidth = 360
+//            imageViewHeight = 440
+//            
+//            columnsPerPage = 2
+//            rowsPerPage = 2
+//            
+//            titleLabelFont = UIFont.boldSystemFont(ofSize: 16)
+//            
+//            firstRowMarginY = 30
+//            
+//            
+//        case 1024:
+//            if scrollViewHeight == 768 {
+//                // iPad Air/Air2/Retina/Pro9.7" Landscape (1024 x 768)
+//                itemWidth = 256
+//                itemHeight = 338
+//                
+//                imageViewWidth = 244
+//                imageViewHeight = 330
+//                
+//                columnsPerPage = 4
+//                rowsPerPage = 2
+//                
+//                titleLabelFont = UIFont.boldSystemFont(ofSize: 16)
+//                
+//                firstRowMarginY = 12
+//
+//            } else if scrollViewHeight == 1366 {
+//                // iPad Pro12.9" portrait (1024 x 1366)
+//                
+//                itemWidth = 512
+//                itemHeight = 623
+//                
+//                imageViewWidth = 496
+//                imageViewHeight = 611
+//                
+//                columnsPerPage = 2
+//                rowsPerPage = 2
+//                
+//                titleLabelFont = UIFont.boldSystemFont(ofSize: 21)
+//                
+//                firstRowMarginY = 30
+//            }
+//            
+//            
+//        case 1366:
+//            // iPad Pro12.9" landscape (1366 x 1024)
+//            itemWidth = 341
+//            itemHeight = 452
+//            
+//            imageViewWidth = 329
+//            imageViewHeight = 440
+//            
+//            columnsPerPage = 4
+//            rowsPerPage = 2
+//            
+//            titleLabelFont = UIFont.boldSystemFont(ofSize: 21)
+//            
+//            firstRowMarginY = 30
+//
+//            
+//        default:
+//            itemWidth = 222
+//            itemHeight = 375
+//            
+//            imageViewWidth = 206
+//            imageViewHeight = 300
+//            
+//        }
+        
+        let paddingHorz = (self.scrollViewParams.itemWidth - self.scrollViewParams.imageViewWidth)/2
 
-        let paddingVert = (itemHeight - imageViewHeight)/2
+        let paddingVert = (self.scrollViewParams.itemHeight - self.scrollViewParams.imageViewHeight)/2
 
         
         
@@ -282,7 +447,7 @@ class LandscapeViewController: UIViewController {
         var column = 0
         var x: CGFloat = 0
         
-        let contentLabelHeight = itemHeight * 0.12
+        let contentLabelHeight = self.scrollViewParams.itemHeight * 0.12
         
         for (index, album) in albums.enumerated() {
             
@@ -291,9 +456,9 @@ class LandscapeViewController: UIViewController {
             // 1. External WrapView for shadow
             
             let extWrapperRect = CGRect(x: x + paddingHorz,
-                                        y: firstRowMarginY + CGFloat(row)*itemHeight + paddingVert,
-                                        width: imageViewWidth,
-                                        height: imageViewHeight)
+                                        y: self.scrollViewParams.firstRowMarginY + CGFloat(row)*self.scrollViewParams.itemHeight + paddingVert,
+                                        width: self.scrollViewParams.imageViewWidth,
+                                        height: self.scrollViewParams.imageViewHeight)
             
             let extWrapView = UIView(frame: extWrapperRect)
             
@@ -304,8 +469,8 @@ class LandscapeViewController: UIViewController {
             
             let innerWrapperRect = CGRect(x: 0,
                                           y: 0,
-                                          width: imageViewWidth,
-                                          height: imageViewHeight)
+                                          width: self.scrollViewParams.imageViewWidth,
+                                          height: self.scrollViewParams.imageViewHeight)
             
             let innerWrapView = UIView(frame: innerWrapperRect)
             
@@ -323,8 +488,8 @@ class LandscapeViewController: UIViewController {
             
             albumThumbImageView.frame = CGRect(x: 0,
                                                y: 0,
-                                               width: imageViewWidth,
-                                               height: imageViewHeight)
+                                               width: self.scrollViewParams.imageViewWidth,
+                                               height: self.scrollViewParams.imageViewHeight)
             
             albumThumbImageView.isUserInteractionEnabled = true
             
@@ -336,8 +501,8 @@ class LandscapeViewController: UIViewController {
             let visualEffectView = UIVisualEffectView(effect: blurEffect)
             
             visualEffectView.frame = CGRect(x: 0,
-                                            y: imageViewHeight - contentLabelHeight,
-                                            width: imageViewWidth,
+                                            y: self.scrollViewParams.imageViewHeight - contentLabelHeight,
+                                            width: self.scrollViewParams.imageViewWidth,
                                             height: contentLabelHeight)
             
             
@@ -353,7 +518,7 @@ class LandscapeViewController: UIViewController {
             albumTitleLabel.textColor = UIColor.black
             albumTitleLabel.textAlignment = .center
 
-            albumTitleLabel.font = titleLabelFont
+            albumTitleLabel.font = self.scrollViewParams.titleLabelFont
             
             
             
@@ -392,14 +557,14 @@ class LandscapeViewController: UIViewController {
             row += 1
             
             
-            if row == rowsPerPage {
+            if row == self.scrollViewParams.rowsPerPage {
                 
                 row = 0
 
-                x += itemWidth
+                x += self.scrollViewParams.itemWidth
                 column += 1
                 
-                if column == columnsPerPage {
+                if column == self.scrollViewParams.columnsPerPage {
                     
                     column = 0
 
@@ -409,12 +574,12 @@ class LandscapeViewController: UIViewController {
             
         }
         
-        let imagesPerPage = columnsPerPage * rowsPerPage
+        let imagesPerPage = self.scrollViewParams.columnsPerPage * self.scrollViewParams.rowsPerPage
         
         let numPages = 1 + (albums.count - 1) / imagesPerPage
         
         scrollView.contentSize = CGSize(
-            width: CGFloat(numPages)*scrollViewWidth,
+            width: CGFloat(numPages)*self.scrollViewParams.scrollViewWidth,
             height: scrollView.bounds.size.height)
         
         print("Number of pages: \(numPages)")
