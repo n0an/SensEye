@@ -15,10 +15,11 @@ import FBSDKCoreKit
 import GoogleSignIn
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate {
 
     var window: UIWindow?
     
+    // MARK: - SplitViewController configuration
     var splitViewController: MySplitViewController {
         let rootTabController = window!.rootViewController as! UITabBarController
         
@@ -40,6 +41,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     
+    func splitViewController(_ svc: UISplitViewController, willChangeTo displayMode: UISplitViewControllerDisplayMode) {
+        print(#function)
+        if displayMode == .primaryOverlay {
+            svc.dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    
+    // MARK: - didFinishLaunchingWithOptions
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         readSecretsFile()
@@ -72,7 +82,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Split View Controller Configuration:
         detailPhotoVC.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem
         galleryMasterVC.splitViewDetail = detailPhotoVC
-        
+        splitViewController.delegate = self
         
         return true
     }
