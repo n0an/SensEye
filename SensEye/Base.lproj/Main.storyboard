@@ -322,11 +322,12 @@
             </objects>
             <point key="canvasLocation" x="1088.8" y="911.69415292353835"/>
         </scene>
-        <!--Split View Controller-->
+        <!--My Split View Controller-->
         <scene sceneID="7Vf-tM-YaI">
             <objects>
-                <splitViewController id="4Yy-cx-Cyb" sceneMemberID="viewController">
+                <splitViewController id="4Yy-cx-Cyb" customClass="MySplitViewController" customModule="SensEye" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="featured" id="8mI-vu-jSd"/>
+                    <nil key="simulatedStatusBarMetrics"/>
                     <connections>
                         <segue destination="GPa-NQ-tH1" kind="relationship" relationship="masterViewController" id="CIl-6f-tUr"/>
                         <segue destination="fMa-1t-whA" kind="relationship" relationship="detailViewController" id="Hcd-X4-DWy"/>

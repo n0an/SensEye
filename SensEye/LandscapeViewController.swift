@@ -36,11 +36,12 @@ class LandscapeViewController: UIViewController {
         var imageViewHeight: CGFloat
         
         var firstRowMarginY: CGFloat
+        var lastRowMarginY: CGFloat
         
         
     }
     
-    var scrollViewParams = ScrollViewParameters(columnsPerPage: 3, rowsPerPage: 1, itemWidth: 222, itemHeight: 375, titleLabelFont: UIFont.systemFont(ofSize: 14.0), scrollViewWidth: 0, scrollViewHeight: 0, imageViewWidth: 206, imageViewHeight: 300, firstRowMarginY: 0)
+    var scrollViewParams = ScrollViewParameters(columnsPerPage: 3, rowsPerPage: 1, itemWidth: 222, itemHeight: 375, titleLabelFont: UIFont.systemFont(ofSize: 14.0), scrollViewWidth: 0, scrollViewHeight: 0, imageViewWidth: 206, imageViewHeight: 300, firstRowMarginY: 0, lastRowMarginY: 0)
     
     fileprivate enum Storyboard {
         
@@ -113,7 +114,7 @@ class LandscapeViewController: UIViewController {
         self.tileAlbums(albums: albums)
   
     }
-    
+   
     deinit {
         print("deinit \(self)")
         
@@ -234,21 +235,48 @@ class LandscapeViewController: UIViewController {
         switch self.scrollViewParams.scrollViewWidth {
             
         case 320:
-            // iPad Air/Air2/Retina/Pro9.7" Portrait Split (320 x 1024)
+            
+            if self.scrollViewParams.scrollViewHeight == 1024 {
+                // iPad Air/Air2/Retina/Pro9.7" Portrait Split (320 x 1024)
+                
+                self.scrollViewParams.itemWidth = 320
+                self.scrollViewParams.itemHeight = 492
+                
+                self.scrollViewParams.imageViewWidth = 310
+                self.scrollViewParams.imageViewHeight = 480
+                
+                self.scrollViewParams.columnsPerPage = 1
+                self.scrollViewParams.rowsPerPage = 2
+                
+                self.scrollViewParams.titleLabelFont = UIFont.boldSystemFont(ofSize: 16)
+                
+                self.scrollViewParams.firstRowMarginY = 20
+                self.scrollViewParams.lastRowMarginY = 20
+                
+            } else {
+                // iPad Air/Air2/Retina/Pro9.7" Landscape Split (320 x 768)
+                
+                self.scrollViewParams.itemWidth = 320
+                self.scrollViewParams.itemHeight = 349
+                
+                self.scrollViewParams.imageViewWidth = 310
+                self.scrollViewParams.imageViewHeight = 338
+                
+                self.scrollViewParams.columnsPerPage = 1
+                self.scrollViewParams.rowsPerPage = 2
+                
+                self.scrollViewParams.titleLabelFont = UIFont.boldSystemFont(ofSize: 16)
+                
+                self.scrollViewParams.firstRowMarginY = 20
+                self.scrollViewParams.lastRowMarginY = 50
+
+                
+            }
             
             
-            self.scrollViewParams.itemWidth = 320
-            self.scrollViewParams.itemHeight = 472
             
-            self.scrollViewParams.imageViewWidth = 310
-            self.scrollViewParams.imageViewHeight = 470
             
-            self.scrollViewParams.columnsPerPage = 1
-            self.scrollViewParams.rowsPerPage = 3
             
-            self.scrollViewParams.titleLabelFont = UIFont.boldSystemFont(ofSize: 16)
-            
-            self.scrollViewParams.firstRowMarginY = 30
             
             
         case 1024:
@@ -416,6 +444,9 @@ class LandscapeViewController: UIViewController {
         
         let contentLabelHeight = self.scrollViewParams.itemHeight * 0.12
         
+        var firstRowMarginY: CGFloat = self.scrollViewParams.firstRowMarginY
+        var lastRowMarginY: CGFloat = 0
+        
         for (index, album) in albums.enumerated() {
             
             // Create two WRAPPER UIViews to create shadow effect. Inside wrapper - for cornerRadius (masksToBounds = true). External wrapper - for shadow (masksToBounds = false)
@@ -424,7 +455,7 @@ class LandscapeViewController: UIViewController {
             
             
             let extWrapperRect = CGRect(x: x + paddingHorz,
-                                        y: self.scrollViewParams.firstRowMarginY + CGFloat(row)*self.scrollViewParams.itemHeight + paddingVert,
+                                        y: firstRowMarginY + lastRowMarginY + CGFloat(row)*self.scrollViewParams.itemHeight + paddingVert,
                                         width: self.scrollViewParams.imageViewWidth,
                                         height: self.scrollViewParams.imageViewHeight)
             
@@ -527,6 +558,11 @@ class LandscapeViewController: UIViewController {
                 
                 row += 1
                 
+                if row % self.scrollViewParams.rowsPerPage == 0 {
+                    firstRowMarginY += self.scrollViewParams.firstRowMarginY
+                    lastRowMarginY += self.scrollViewParams.lastRowMarginY
+                    
+                }
                 
                 
             } else {

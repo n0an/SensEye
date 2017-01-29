@@ -36,6 +36,7 @@
 		184DE8AC1E15A89300E98926 /* ACRotateTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184DE8AB1E15A89300E98926 /* ACRotateTransitionAnimator.swift */; };
 		184DE8AE1E15A8C500E98926 /* ACSlideRightTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184DE8AD1E15A8C500E98926 /* ACSlideRightTransitionAnimator.swift */; };
 		184DE8B01E15A90B00E98926 /* ACPopTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184DE8AF1E15A90B00E98926 /* ACPopTransitionAnimator.swift */; };
+		185456B91E3E4BAC006773C5 /* MySplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185456B81E3E4BAC006773C5 /* MySplitViewController.swift */; };
 		186E2A241E34A3540011AB88 /* WelcomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186E2A231E34A3540011AB88 /* WelcomeVC.swift */; };
 		186E2A261E34A5D60011AB88 /* RecentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186E2A251E34A5D60011AB88 /* RecentViewController.swift */; };
 		186E2A281E34A9400011AB88 /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186E2A271E34A9400011AB88 /* ChatTableViewCell.swift */; };
@@ -109,6 +110,7 @@
 		184DE8AB1E15A89300E98926 /* ACRotateTransitionAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACRotateTransitionAnimator.swift; sourceTree = "<group>"; };
 		184DE8AD1E15A8C500E98926 /* ACSlideRightTransitionAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACSlideRightTransitionAnimator.swift; sourceTree = "<group>"; };
 		184DE8AF1E15A90B00E98926 /* ACPopTransitionAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACPopTransitionAnimator.swift; sourceTree = "<group>"; };
+		185456B81E3E4BAC006773C5 /* MySplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MySplitViewController.swift; sourceTree = "<group>"; };
 		186E2A231E34A3540011AB88 /* WelcomeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeVC.swift; sourceTree = "<group>"; };
 		186E2A251E34A5D60011AB88 /* RecentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentViewController.swift; sourceTree = "<group>"; };
 		186E2A271E34A9400011AB88 /* ChatTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTableViewCell.swift; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 		1864A9E11E157E0B0058D2E2 /* Gallery */ = {
 			isa = PBXGroup;
 			children = (
+				185456B81E3E4BAC006773C5 /* MySplitViewController.swift */,
 				180231CC1E1456C600FA8322 /* AlbumsContentViewController.swift */,
 				180231CD1E1456C600FA8322 /* AlbumsPageViewController.swift */,
 				18DD2E2A1E1A484800451CE7 /* LandscapeViewController.swift */,
@@ -578,6 +581,7 @@
 				186E2A2C1E34B96F0011AB88 /* FRMessage.swift in Sources */,
 				1899316D1E2D4B7C006E00C6 /* LoginViewController.swift in Sources */,
 				18FC625E1E11439D00E25A18 /* PhotoAlbum.swift in Sources */,
+				185456B91E3E4BAC006773C5 /* MySplitViewController.swift in Sources */,
 				18D623641E1FCD0D00138117 /* VKAccessToken.swift in Sources */,
 				186E2A2A1E34A98B0011AB88 /* FRChat.swift in Sources */,
 				183E2A1E1E16A24A0099F775 /* PostView.swift in Sources */,
