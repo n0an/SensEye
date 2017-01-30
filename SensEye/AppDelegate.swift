@@ -14,6 +14,8 @@ import FBSDKCoreKit
 
 import GoogleSignIn
 
+import SwiftKeychainWrapper
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate {
 
@@ -52,6 +54,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     // MARK: - didFinishLaunchingWithOptions
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
+        if !UserDefaults.standard.bool(forKey: APP_FIRST_RUN) {
+            
+            clearKeychainOnFirstRun()
+            
+            UserDefaults.standard.set(true, forKey: APP_FIRST_RUN)
+            UserDefaults.standard.synchronize()
+            
+        }
+        
         readSecretsFile()
         
         FIRApp.configure()
@@ -88,6 +99,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     }
     
     // MARK: - HELPER METHODS
+    
+    func clearKeychainOnFirstRun() {
+        let _ = KeychainWrapper.standard.removeAllKeys()
+    }
+    
     func customizeAppearance() {
         
         window!.tintColor = UIColor(red: 10/255, green: 80/255, blue: 80/255, alpha: 1)

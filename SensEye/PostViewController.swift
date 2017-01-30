@@ -430,7 +430,6 @@ extension PostViewController: PostHeaderViewDelegate {
         
         ServerManager.sharedManager.deAuthorize { (success) in
             
-            print("\(success)")
             
         }
     }

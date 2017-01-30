@@ -8,7 +8,8 @@
 
 import UIKit
 
-public let kNUMBEROFMESSAGES = 40
+public let APP_FIRST_RUN = "appFirstRun"
+
 
 // MARK: - ===== VK =====
 
@@ -93,6 +94,8 @@ let kMAXDURATION: Double = 20.0
 
 
 // MARK: - ==== CHAT SETTINGS ===
+
+public let kNUMBEROFMESSAGES = 40
 
 public let KEY_CHAT_USER_UID = "chatUserUID"
 public let KEY_CHAT_USER = "chatCurrentUser"
