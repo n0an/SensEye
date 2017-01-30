@@ -298,6 +298,8 @@ class LandscapeViewController: UIViewController {
             self.scrollViewParams.columnsPerPage = 2
             self.scrollViewParams.rowsPerPage = 2
             
+            self.scrollViewParams.titleLabelFont = UIFont.systemFont(ofSize: 14.0)
+
             self.scrollViewParams.firstRowMarginY = 10
             
         case 295:
@@ -314,6 +316,8 @@ class LandscapeViewController: UIViewController {
             self.scrollViewParams.columnsPerPage = 1
             self.scrollViewParams.rowsPerPage = 1
             
+            self.scrollViewParams.titleLabelFont = UIFont.systemFont(ofSize: 16.0)
+
             self.scrollViewParams.firstRowMarginY = 0
             
             

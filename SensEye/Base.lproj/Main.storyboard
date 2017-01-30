@@ -2174,7 +2174,7 @@
                     <connections>
                         <outlet property="pageControl" destination="l2s-dw-hQS" id="U6S-tZ-PgV"/>
                         <outlet property="scrollView" destination="qDE-LA-CfZ" id="A69-kc-bLM"/>
-                        <segue destination="mKs-dy-tgj" kind="presentation" identifier="showPhoto" id="U2I-jb-BYc"/>
+                        <segue destination="WdO-Um-wya" kind="presentation" identifier="showPhoto" id="PaE-cb-taD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3aZ-i5-bG8" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2223,7 +2223,7 @@
                                     <action selector="actionPreviosPhotoTap" destination="mKs-dy-tgj" id="pgU-H9-fCQ"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem systemItem="action" id="Dkd-oa-jmK">
+                            <barButtonItem enabled="NO" systemItem="action" id="Dkd-oa-jmK">
                                 <connections>
                                     <action selector="actionShareTap" destination="mKs-dy-tgj" id="E6m-YJ-Rpd"/>
                                     <segue destination="1Ij-M9-jaU" kind="popoverPresentation" identifier="showMenu" popoverAnchorBarButtonItem="Dkd-oa-jmK" id="mcF-eh-8oB">
@@ -2362,7 +2362,7 @@
         <image name="space" width="1200" height="675"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="PaE-cb-taD"/>
         <segue reference="4QP-vi-Xbs"/>
-        <segue reference="U2I-jb-BYc"/>
     </inferredMetricsTieBreakers>
 </document>

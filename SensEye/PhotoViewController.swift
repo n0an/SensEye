@@ -22,11 +22,11 @@ class PhotoViewController: UIViewController {
     
     var currentPhoto: Photo! {
         didSet {
-            if isViewLoaded {
-                shareButton.isEnabled = true
-                downloadAndSetImage()
-                updateUI()
-            }
+            
+            shareButton.isEnabled = true
+            downloadAndSetImage()
+            updateUI()
+            
         }
     }
     var mediasArray: [Photo]! {
@@ -56,7 +56,8 @@ class PhotoViewController: UIViewController {
         
         title = "Album"
         
-        shareButton.isEnabled = false
+//        shareButton.isEnabled = false
+        
         
 //        downloadAndSetImage()
 //        updateUI()
