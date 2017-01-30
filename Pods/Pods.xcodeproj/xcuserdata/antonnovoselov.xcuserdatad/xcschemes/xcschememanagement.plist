@@ -99,6 +99,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SwiftKeychainWrapper.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>SwiftSpinner.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -127,6 +132,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>250EAB299637726652D742770813B781</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>3814077B60A225441E135CD435F07186</key>
 		<dict>
 			<key>primary</key>
@@ -137,7 +147,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>5AAF308D4518881DAA68F4FF46C21840</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>5D36B86A60DFA81A54E2A17722E5B32D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6162B18AA664E71EFAB4AB9BA65F859A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -147,7 +167,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>78DE5C326BE94F02B97B794D2BB82518</key>
+		<key>6DA85498939252B45C6F075A28B3B487</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -157,17 +177,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8B720B6F834426E8895C875C35A76B45</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>926BA79386CA779515C8F9A7E98B6309</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>9EFE4C70245EE2857D336B8B9FA4E825</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A859CAFA4ACB05E38DE676CEC6CF16D8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -187,6 +202,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>C295E540BE27179503EBCA24B8DDB250</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>C7DCF2B547F7871B9BFD74DE93B0E173</key>
 		<dict>
 			<key>primary</key>
@@ -202,17 +222,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CCE8E8B17AAB70FBC567ADED5C8F08EC</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>D0581AF7BF4A6DA140D280B19ECC7BFF</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>D7ED30CA362F69AF5A6F1AE170E5C131</key>
 		<dict>
 			<key>primary</key>
 			<true/>

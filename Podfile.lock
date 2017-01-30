@@ -89,6 +89,7 @@ PODS:
   - SDWebImage/Core (3.8.2)
   - Spring (1.0.3)
   - SVPullToRefresh (0.4.1)
+  - SwiftKeychainWrapper (3.0.1)
   - SwiftSpinner (1.1.0)
 
 DEPENDENCIES:
@@ -109,6 +110,7 @@ DEPENDENCIES:
   - SAMCache
   - Spring (from `https://github.com/MengTo/Spring.git`, branch `swift3`)
   - SVPullToRefresh
+  - SwiftKeychainWrapper
   - SwiftSpinner
 
 EXTERNAL SOURCES:
@@ -154,8 +156,9 @@ SPEC CHECKSUMS:
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   Spring: 3f02b5dc3308572ef177b3cad0fa7bbc4b0706f7
   SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
+  SwiftKeychainWrapper: 38952a3636320ae61bad3513cadd870929de7a4a
   SwiftSpinner: c03815614599b91eea46594bd52ba742849d0414
 
-PODFILE CHECKSUM: 9131e968dfd0a0b45c9e5d682b893577c1b4ff19
+PODFILE CHECKSUM: d8b38153105a4f323a490ab73f6dda7a8cf72772
 
 COCOAPODS: 1.1.1

@@ -9,6 +9,8 @@
 import Foundation
 import Alamofire
 
+import SwiftKeychainWrapper
+
 typealias SuccessHandler = ([Any]) -> Void
 typealias FailureHandler = (NSError, Int) -> Void
 
@@ -71,7 +73,10 @@ class ServerManager {
                 
                 let tokenDict = self.tokenToDictionary(token: token)
                 
-                UserDefaults.standard.set(tokenDict, forKey: KEY_VK_TOKEN)
+//                UserDefaults.standard.set(tokenDict, forKey: KEY_VK_TOKEN)
+                
+                KeychainWrapper.standard.set(tokenDict as NSDictionary, forKey: KEY_VK_TOKEN)
+                
                 
                 UserDefaults.standard.set(true, forKey: KEY_VK_DIDAUTH)
                 
@@ -106,7 +111,8 @@ class ServerManager {
     
     func authorize(completed: @escaping AuthoizationComplete) {
         
-        if let tokenDict = UserDefaults.standard.object(forKey: KEY_VK_TOKEN) as? [String: Any] {
+        
+        if let tokenDict = KeychainWrapper.standard.object(forKey: KEY_VK_TOKEN) as? [String: Any] {
             
             print("saved tokenDict = \(tokenDict)")
             
@@ -136,7 +142,7 @@ class ServerManager {
                 
                 self.getUserFor(userID: userID, completed: { (user) in
                     self.postAuthCompleteNotification()
-
+                    
                     completed(user)
                 })
             }
@@ -147,6 +153,51 @@ class ServerManager {
             
             self.renewAuthorization(completed: completed)
         }
+
+        
+        
+        
+//        if let tokenDict = UserDefaults.standard.object(forKey: KEY_VK_TOKEN) as? [String: Any] {
+//            
+//            print("saved tokenDict = \(tokenDict)")
+//            
+//            let tokenString = tokenDict["tokenString"] as! String
+//            let expirationDate = tokenDict["expirationDate"] as! Date
+//            let userID = tokenDict["userID"] as! String
+//            
+//            print("expirationDate.timeIntervalSince(Date()) = \(expirationDate.timeIntervalSince(Date()))")
+//            
+//            // Refresh token if it will expire in less than 1 hour
+//            if expirationDate.timeIntervalSince(Date()) <= 90000 {
+//                
+//                self.renewAuthorization(completed: completed)
+//                
+//            } else {
+//                
+//                let vkAccessToken = VKAccessToken()
+//                vkAccessToken.token = tokenString
+//                vkAccessToken.expirationDate = expirationDate
+//                vkAccessToken.userID = userID
+//                
+//                self.vkAccessToken = vkAccessToken
+//                
+//                UserDefaults.standard.set(true, forKey: KEY_VK_DIDAUTH)
+//                
+//                UserDefaults.standard.synchronize()
+//                
+//                self.getUserFor(userID: userID, completed: { (user) in
+//                    self.postAuthCompleteNotification()
+//
+//                    completed(user)
+//                })
+//            }
+//            
+//            
+//            
+//        } else {
+//            
+//            self.renewAuthorization(completed: completed)
+//        }
         
         
         

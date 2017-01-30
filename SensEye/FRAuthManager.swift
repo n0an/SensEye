@@ -16,6 +16,8 @@ import OneSignal
 
 import SAMCache
 
+import SwiftKeychainWrapper
+
 typealias FRAuthCompletionHandler = (_ errorString: String?, _ firUser: Any?) -> Void
 
 class FRAuthManager: NSObject {
@@ -168,6 +170,8 @@ class FRAuthManager: NSObject {
                     userRef.child("username").setValue(fullName)
                     userRef.child("email").setValue(email)
                     userRef.child("provider").setValue(provider)
+                    
+                    
                     onComplete?(nil, firuser)
                     
  
@@ -204,6 +208,8 @@ class FRAuthManager: NSObject {
     func logOut(onComplete: (Error?) -> Void) {
         
         do {
+            
+            KeychainWrapper.standard.removeObject(forKey: KEY_CHAT_USER_UID)
             
             SAMCache.shared().removeAllObjects()
             

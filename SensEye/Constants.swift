@@ -91,4 +91,21 @@ let cellSelectionColor = UIColor(white: 1.0, alpha: 0.2)
 let kMAXDURATION: Double = 20.0
 
 
+// MARK: - ==== CHAT SETTINGS ===
+
+public let KEY_CHAT_USER_UID = "chatUserUID"
+public let KEY_CHAT_USER = "chatCurrentUser"
+
+
+
+
+
+
+
+
+
+
+
+
+
 

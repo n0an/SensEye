@@ -46,5 +46,8 @@ target 'SensEye' do
   
   # SwiftSpinner
   pod 'SwiftSpinner'
+  
+  pod 'SwiftKeychainWrapper'
+
 
 end

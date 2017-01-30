@@ -14,6 +14,8 @@ import GoogleSignIn
 
 import SwiftSpinner
 
+import SwiftKeychainWrapper
+
 class LoginViewController: UIViewController, GIDSignInUIDelegate {
     
     // MARK: - OUTLETS
@@ -56,6 +58,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
                         
                         FRAuthManager.sharedManager.currentUser = FRUser(uid: user.uid, dictionary: userDict)
                         self.currentUser = FRAuthManager.sharedManager.currentUser
+                        
                         
                         print("===NAG===: currentUser = \(FRAuthManager.sharedManager.currentUser.username)")
                         
