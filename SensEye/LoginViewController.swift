@@ -34,10 +34,15 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     var currentUser: FRUser!
     
     
+    
+    
     // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        forceLogout()
+        
+       
         
         FIRAuth.auth()?.addStateDidChangeListener({ (auth, user) in
             
@@ -66,6 +71,9 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
                     
                     DispatchQueue.main.async {
                         
+                        print("===NAG=== GO TO CHAT FROM addStateDidChangeListener")
+
+                        
                         self.goToMessenger()
                     }
                     
@@ -92,6 +100,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
                             
                             DispatchQueue.main.async {
                                 
+
                                 self.goToMessenger()
                             }
                             
@@ -128,6 +137,32 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
         
 //        emailTextField.becomeFirstResponder()
         
+        if self.currentUser != nil {
+            return
+        }
+        
+        if let userDict = KeychainWrapper.standard.object(forKey: KEY_CHAT_USER) as? [String: Any] {
+
+            print("saved chat user = \(userDict)")
+            
+            let uid = userDict["uid"] as! String
+            
+            FRAuthManager.sharedManager.currentUser = FRUser(uid: uid, dictionary: userDict)
+            self.currentUser = FRAuthManager.sharedManager.currentUser
+            
+            print("===NAG===: KeyChain currentUser = \(FRAuthManager.sharedManager.currentUser.username)")
+            
+            DispatchQueue.main.async {
+                
+                print("===NAG=== GO TO CHAT FROM viewDidAppear")
+                
+                self.goToMessenger()
+            }
+            
+        }
+        
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -142,7 +177,10 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     
     // MARK: - HELPER METHODS
     
-    
+    func forceLogout() {
+        try! FIRAuth.auth()?.signOut()
+        return
+    }
     
     func goToMessenger() {
         
@@ -168,149 +206,52 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     
     
     
-    func customerChatOld() {
-        
-        
-        let userChatsIdsRef = FRDataManager.sharedManager.REF_USERS.child(currentUser.uid).child("chatIds")
-        
-        userChatsIdsRef.observeSingleEvent(of: .value, with: { (snapshot) in
-            
-            if snapshot.exists() {
-                print("snapshot.exists(). GO TO CHAT VIEW CONTROLLER")
-                
-                let chatsDict = snapshot.value as! [String: Any]
-                
-                let chatId = (chatsDict.keys.first)!
-                
-                FRDataManager.sharedManager.REF_CHATS.child(chatId).observeSingleEvent(of: .value, with: { (snapshot) in
-                    
-                    let chat = FRChat(uid: chatId, dictionary: snapshot.value as! [String: Any])
-                    
-                    let ref = FRDataManager.sharedManager.REF_USERS.child(GeneralHelper.sharedHelper.appOwnerUID)
-                    
-                    
-                    ref.observeSingleEvent(of: .value, with: { (snapshot) in
-                        
-                        let chatUser = FRUser(uid: snapshot.key, dictionary: snapshot.value as! [String: Any])
-                        
-                        
-                        let chatUsers: [FRUser] = [self.currentUser, chatUser]
-                        
-                        
-                        self.performSegue(withIdentifier: Storyboard.segueShowChatVC, sender: (chat, chatUsers))
-                        
-                        
-                    })
-                    
-                    
-                })
-                
-                
-            } else {
-                print("snapshot NOT exists(). CREATE NEW CHAT AND GO TO CHAT VIEW CONTROLLER")
-                
-                let userIds = [self.currentUser.uid, GeneralHelper.sharedHelper.appOwnerUID]
-                
-                
-                let newChat = FRChat(userIds: userIds, withUserName: self.currentUser.username, withUserUID: self.currentUser.uid)
-                
-                newChat.userIds = userIds
-                
-                newChat.save()
-                
-                
-                let refAppOwner = FRDataManager.sharedManager.REF_USERS.child(GeneralHelper.sharedHelper.appOwnerUID)
-                
-                
-                refAppOwner.observeSingleEvent(of: .value, with: { (snapshot) in
-                    
-                    let appOwnerUser = FRUser(uid: snapshot.key, dictionary: snapshot.value as! [String: Any])
-                    
-                    
-                    let chatUsers: [FRUser] = [self.currentUser, appOwnerUser]
-                    
-                    
-                    for account in chatUsers {
-                        account.saveNewChat(newChat)
-                    }
-                    
-                    // Sending the first greeting message from appOwner "Hello, how can I help you?"
-                    let greetingMessage = FRMessage(chatId: newChat.uid, senderUID: appOwnerUser.uid, senderDisplayName: appOwnerUser.username, text: "Здравствуйте, я могу Вам чем-то помочь?")
-                    
-                    greetingMessage.save()
-                    
-                    newChat.send(message: greetingMessage)
-                    
-                    self.performSegue(withIdentifier: Storyboard.segueShowChatVC, sender: (newChat, chatUsers))
-                    
-                })
-            }
-        })
-        
-
-    }
-    
-    
-    
-    
-    func customerChatVarQueryEqual1() {
-        
-        FRDataManager.sharedManager.REF_CHATS.child(currentUser.uid).observeSingleEvent(of: .value, with: { (snapshot) in
-            print("snapshot.exists(). GO TO CHAT VIEW CONTROLLER")
-
-            if snapshot.exists() {
-                
-                let chat = FRChat(uid: snapshot.key, dictionary: snapshot.value as! [String: Any])
-                
-                self.performSegue(withIdentifier: Storyboard.segueShowChatVC, sender: chat)
-                
-                
-//                let ref = FRDataManager.sharedManager.REF_USERS.child(GeneralHelper.sharedHelper.appOwnerUID)
+//    func customerChatOld() {
+//        
+//        let userChatsIdsRef = FRDataManager.sharedManager.REF_USERS.child(currentUser.uid).child("chatIds")
+//        
+//        userChatsIdsRef.observeSingleEvent(of: .value, with: { (snapshot) in
+//            
+//            if snapshot.exists() {
+//                print("snapshot.exists(). GO TO CHAT VIEW CONTROLLER")
 //                
+//                let chatsDict = snapshot.value as! [String: Any]
 //                
+//                let chatId = (chatsDict.keys.first)!
 //                
-//                
-//                ref.observeSingleEvent(of: .value, with: { (snapshot) in
+//                FRDataManager.sharedManager.REF_CHATS.child(chatId).observeSingleEvent(of: .value, with: { (snapshot) in
 //                    
-//                    let chatUser = FRUser(uid: snapshot.key, dictionary: snapshot.value as! [String: Any])
+//                    let chat = FRChat(uid: chatId, dictionary: snapshot.value as! [String: Any])
 //                    
-//                    
-//                    let chatUsers: [FRUser] = [self.currentUser, chatUser]
+//                    let ref = FRDataManager.sharedManager.REF_USERS.child(GeneralHelper.sharedHelper.appOwnerUID)
 //                    
 //                    
-//                    self.performSegue(withIdentifier: Storyboard.segueShowChatVC, sender: (chat, chatUsers))
-//                    
+//                    ref.observeSingleEvent(of: .value, with: { (snapshot) in
+//                        
+//                        let chatUser = FRUser(uid: snapshot.key, dictionary: snapshot.value as! [String: Any])
+//                        
+//                        let chatUsers: [FRUser] = [self.currentUser, chatUser]
+//                        
+//                        self.performSegue(withIdentifier: Storyboard.segueShowChatVC, sender: (chat, chatUsers))
+//                        
+//                    })
 //                    
 //                })
-                
-                
-                
-                
-            } else {
-                
-                print("snapshot NOT exists(). CREATE NEW CHAT AND GO TO CHAT VIEW CONTROLLER")
-                
-                let userIds = [self.currentUser.uid, GeneralHelper.sharedHelper.appOwnerUID]
-                
-                
-                let newChat = FRChat(userIds: userIds, withUserName: self.currentUser.username, withUserUID: self.currentUser.uid)
-                
-                newChat.userIds = userIds
-                
-                newChat.save()
-                
-                
-                let greetingMessage = FRMessage(chatId: newChat.uid, senderUID: GeneralHelper.sharedHelper.appOwnerUID, senderDisplayName: "Elena Senseye", text: "Здравствуйте, я могу Вам чем-то помочь?")
-                
-                greetingMessage.save()
-                
-                newChat.send(message: greetingMessage)
-                
-                self.performSegue(withIdentifier: Storyboard.segueShowChatVC, sender: newChat)
-                
-                
-                
-                
+//                
+//                
+//            } else {
+//                print("snapshot NOT exists(). CREATE NEW CHAT AND GO TO CHAT VIEW CONTROLLER")
+//                
+//                let userIds = [self.currentUser.uid, GeneralHelper.sharedHelper.appOwnerUID]
+//                
+//                
+//                let newChat = FRChat(userIds: userIds, withUserName: self.currentUser.username, withUserUID: self.currentUser.uid)
+//                
+//                newChat.userIds = userIds
+//                
+//                newChat.save()
+//                
+//                
 //                let refAppOwner = FRDataManager.sharedManager.REF_USERS.child(GeneralHelper.sharedHelper.appOwnerUID)
 //                
 //                
@@ -322,9 +263,9 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
 //                    let chatUsers: [FRUser] = [self.currentUser, appOwnerUser]
 //                    
 //                    
-////                    for account in chatUsers {
-////                        account.saveNewChat(newChat)
-////                    }
+//                    for account in chatUsers {
+//                        account.saveNewChat(newChat)
+//                    }
 //                    
 //                    // Sending the first greeting message from appOwner "Hello, how can I help you?"
 //                    let greetingMessage = FRMessage(chatId: newChat.uid, senderUID: appOwnerUser.uid, senderDisplayName: appOwnerUser.username, text: "Здравствуйте, я могу Вам чем-то помочь?")
@@ -336,116 +277,256 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
 //                    self.performSegue(withIdentifier: Storyboard.segueShowChatVC, sender: (newChat, chatUsers))
 //                    
 //                })
+//            }
+//        })
+//        
+//
+//    }
+    
+    
+    
+    
+    func customerChatVarQueryEqual1() {
+        
+        
+        if let chatDict = KeychainWrapper.standard.object(forKey: KEY_CHAT_OF_USER) as? [String: Any] {
 
+            print("saved chat = \(chatDict)")
+            
+            let uid = chatDict["chatUid"] as! String
+            
+            let userChat = FRChat(uid: uid, dictionary: chatDict)
+            
+            print("===NAG===: KeyChain chat = \(userChat.lastMessage)")
+            
+            self.performSegue(withIdentifier: Storyboard.segueShowChatVC, sender: userChat)
+            
+        } else {
+            
+            
+            FRDataManager.sharedManager.REF_CHATS.child(currentUser.uid).observeSingleEvent(of: .value, with: { (snapshot) in
                 
-            }
-            
-            
-            
-        })
-        
-        
-        
-        
-
-        
-    }
-    
-    
-    
-    func customerChatVarQueryEqual() {
-        let chatsRef = FRDataManager.sharedManager.REF_CHATS
-        
-        chatsRef.queryOrdered(byChild: "withUserUID").queryEqual(toValue: currentUser.uid).observeSingleEvent(of: .value, with: { (snapshot) in
-            
-            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                 
-                if snapshot.count > 0 {
+                if snapshot.exists() {
                     print("snapshot.exists(). GO TO CHAT VIEW CONTROLLER")
-                    for snap in snapshot {
-                        
-                        if let chatDict = snap.value as? [String: Any] {
-                            
-                            let key = snap.key
-                            
-                            let chat = FRChat(uid: key, dictionary: chatDict)
-                            
-                            
-                            let ref = FRDataManager.sharedManager.REF_USERS.child(GeneralHelper.sharedHelper.appOwnerUID)
-                            
-                            
-                            ref.observeSingleEvent(of: .value, with: { (snapshot) in
-                                
-                                let chatUser = FRUser(uid: snapshot.key, dictionary: snapshot.value as! [String: Any])
-                                
-                                
-                                let chatUsers: [FRUser] = [self.currentUser, chatUser]
-                                
-                                
-                                self.performSegue(withIdentifier: Storyboard.segueShowChatVC, sender: (chat, chatUsers))
-                                
-                                
-                            })
-                            
-                            
-                        }
-                        
-                        
-                    }
+
+                    let chat = FRChat(uid: snapshot.key, dictionary: snapshot.value as! [String: Any])
+                    
+                    
+                    let chatDictionary = [
+                        "chatUid": chat.uid,
+                        "lastMessage": chat.lastMessage,
+                        "withUserUID": chat.withUserUID,
+                        "withUserName": chat.withUserName,
+                        "messagesCount": chat.messagesCount,
+                        "lastUpdate": chat.lastUpdate
+                        ] as [String : Any]
+                    
+                    
+                    KeychainWrapper.standard.set(chatDictionary as NSDictionary, forKey: KEY_CHAT_OF_USER)
+                    
+                    
+                    self.performSegue(withIdentifier: Storyboard.segueShowChatVC, sender: chat)
+                    
                     
                     
                 } else {
+                    
                     print("snapshot NOT exists(). CREATE NEW CHAT AND GO TO CHAT VIEW CONTROLLER")
                     
-                    let userIds = [self.currentUser.uid, GeneralHelper.sharedHelper.appOwnerUID]
-                    
-                    
-                    let newChat = FRChat(userIds: userIds, withUserName: self.currentUser.username, withUserUID: self.currentUser.uid)
-                    
-                    newChat.userIds = userIds
+                    let newChat = FRChat(withUserName: self.currentUser.username, withUserUID: self.currentUser.uid)
                     
                     newChat.save()
                     
+                    let greetingMessage = FRMessage(chatId: newChat.uid, senderUID: GeneralHelper.sharedHelper.appOwnerUID, senderDisplayName: "Elena Senseye", text: "Здравствуйте, я могу Вам чем-то помочь?")
                     
-                    let refAppOwner = FRDataManager.sharedManager.REF_USERS.child(GeneralHelper.sharedHelper.appOwnerUID)
+                    greetingMessage.save()
+                    
+                    newChat.send(message: greetingMessage)
                     
                     
-                    refAppOwner.observeSingleEvent(of: .value, with: { (snapshot) in
-                        
-                        let appOwnerUser = FRUser(uid: snapshot.key, dictionary: snapshot.value as! [String: Any])
-                        
-                        
-                        let chatUsers: [FRUser] = [self.currentUser, appOwnerUser]
-                        
-                        
-                        for account in chatUsers {
-                            account.saveNewChat(newChat)
-                        }
-                        
-                        // Sending the first greeting message from appOwner "Hello, how can I help you?"
-                        let greetingMessage = FRMessage(chatId: newChat.uid, senderUID: appOwnerUser.uid, senderDisplayName: appOwnerUser.username, text: "Здравствуйте, я могу Вам чем-то помочь?")
-                        
-                        greetingMessage.save()
-                        
-                        newChat.send(message: greetingMessage)
-                        
-                        self.performSegue(withIdentifier: Storyboard.segueShowChatVC, sender: (newChat, chatUsers))
-                        
-                    })
- 
+                    let chatDictionary = [
+                        "chatUid": newChat.uid,
+                        "lastMessage": newChat.lastMessage,
+                        "withUserUID": newChat.withUserUID,
+                        "withUserName": newChat.withUserName,
+                        "messagesCount": newChat.messagesCount,
+                        "lastUpdate": Date().timeIntervalSince1970 * 1000
+                        ] as [String : Any]
+                    
+                    
+                    KeychainWrapper.standard.set(chatDictionary as NSDictionary, forKey: KEY_CHAT_OF_USER)
+                    
+                    
+                    self.performSegue(withIdentifier: Storyboard.segueShowChatVC, sender: newChat)
+                    
+                    
                 }
                 
                 
                 
-                
-            }
-            
-            
-            
-            
-        })
+            })
 
+            
+            
+            
+
+        }
+        
+        
+        
+        
+        
+        
+//        FRDataManager.sharedManager.REF_CHATS.child(currentUser.uid).observeSingleEvent(of: .value, with: { (snapshot) in
+//            print("snapshot.exists(). GO TO CHAT VIEW CONTROLLER")
+//
+//            if snapshot.exists() {
+//                
+//                let chat = FRChat(uid: snapshot.key, dictionary: snapshot.value as! [String: Any])
+//                
+//                self.performSegue(withIdentifier: Storyboard.segueShowChatVC, sender: chat)
+//                
+//                
+//                
+//            } else {
+//                
+//                print("snapshot NOT exists(). CREATE NEW CHAT AND GO TO CHAT VIEW CONTROLLER")
+//                
+//                let newChat = FRChat(withUserName: self.currentUser.username, withUserUID: self.currentUser.uid)
+//                
+//                newChat.save()
+//                
+//                let greetingMessage = FRMessage(chatId: newChat.uid, senderUID: GeneralHelper.sharedHelper.appOwnerUID, senderDisplayName: "Elena Senseye", text: "Здравствуйте, я могу Вам чем-то помочь?")
+//                
+//                greetingMessage.save()
+//                
+//                newChat.send(message: greetingMessage)
+//                
+//                
+//                let chatDictionary = [
+//                    "chatUid": newChat.uid,
+//                    "lastMessage": newChat.lastMessage,
+//                    "withUserUID": newChat.withUserUID,
+//                    "withUserName": newChat.withUserName,
+//                    "messagesCount": newChat.messagesCount
+//                    ] as [String : Any]
+//                
+//                
+//                KeychainWrapper.standard.set(chatDictionary as NSDictionary, forKey: KEY_CHAT_OF_USER)
+//                
+//                
+//                self.performSegue(withIdentifier: Storyboard.segueShowChatVC, sender: newChat)
+//                
+//                
+//            }
+//            
+//            
+//            
+//        })
+        
+        
+        
+        
+
+        
     }
+    
+    
+    
+//    func customerChatVarQueryEqual() {
+//        let chatsRef = FRDataManager.sharedManager.REF_CHATS
+//        
+//        chatsRef.queryOrdered(byChild: "withUserUID").queryEqual(toValue: currentUser.uid).observeSingleEvent(of: .value, with: { (snapshot) in
+//            
+//            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+//                
+//                if snapshot.count > 0 {
+//                    print("snapshot.exists(). GO TO CHAT VIEW CONTROLLER")
+//                    for snap in snapshot {
+//                        
+//                        if let chatDict = snap.value as? [String: Any] {
+//                            
+//                            let key = snap.key
+//                            
+//                            let chat = FRChat(uid: key, dictionary: chatDict)
+//                            
+//                            
+//                            let ref = FRDataManager.sharedManager.REF_USERS.child(GeneralHelper.sharedHelper.appOwnerUID)
+//                            
+//                            
+//                            ref.observeSingleEvent(of: .value, with: { (snapshot) in
+//                                
+//                                let chatUser = FRUser(uid: snapshot.key, dictionary: snapshot.value as! [String: Any])
+//                                
+//                                
+//                                let chatUsers: [FRUser] = [self.currentUser, chatUser]
+//                                
+//                                
+//                                self.performSegue(withIdentifier: Storyboard.segueShowChatVC, sender: (chat, chatUsers))
+//                                
+//                                
+//                            })
+//                            
+//                            
+//                        }
+//                        
+//                        
+//                    }
+//                    
+//                    
+//                } else {
+//                    print("snapshot NOT exists(). CREATE NEW CHAT AND GO TO CHAT VIEW CONTROLLER")
+//                    
+//                    let userIds = [self.currentUser.uid, GeneralHelper.sharedHelper.appOwnerUID]
+//                    
+//                    
+//                    let newChat = FRChat(userIds: userIds, withUserName: self.currentUser.username, withUserUID: self.currentUser.uid)
+//                    
+//                    newChat.userIds = userIds
+//                    
+//                    newChat.save()
+//                    
+//                    
+//                    let refAppOwner = FRDataManager.sharedManager.REF_USERS.child(GeneralHelper.sharedHelper.appOwnerUID)
+//                    
+//                    
+//                    refAppOwner.observeSingleEvent(of: .value, with: { (snapshot) in
+//                        
+//                        let appOwnerUser = FRUser(uid: snapshot.key, dictionary: snapshot.value as! [String: Any])
+//                        
+//                        
+//                        let chatUsers: [FRUser] = [self.currentUser, appOwnerUser]
+//                        
+//                        
+//                        for account in chatUsers {
+//                            account.saveNewChat(newChat)
+//                        }
+//                        
+//                        // Sending the first greeting message from appOwner "Hello, how can I help you?"
+//                        let greetingMessage = FRMessage(chatId: newChat.uid, senderUID: appOwnerUser.uid, senderDisplayName: appOwnerUser.username, text: "Здравствуйте, я могу Вам чем-то помочь?")
+//                        
+//                        greetingMessage.save()
+//                        
+//                        newChat.send(message: greetingMessage)
+//                        
+//                        self.performSegue(withIdentifier: Storyboard.segueShowChatVC, sender: (newChat, chatUsers))
+//                        
+//                    })
+// 
+//                }
+//                
+//                
+//                
+//                
+//            }
+//            
+//            
+//            
+//            
+//        })
+//
+//    }
     
     
     
@@ -556,19 +637,9 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
             
             let chatVC = segue.destination as! ChatViewController
             
-            
-//            guard let senderTuple = sender as? (FRChat, [FRUser]) else {
-//                return
-//            }
-//            
-//            let selectedChat = senderTuple.0
-//            let chatUsers = senderTuple.1
-            
+          
             let selectedChat = sender as! FRChat
 
-            
-//            chatVC.chatUsers = chatUsers
-            
             
             chatVC.currentUser = currentUser
             

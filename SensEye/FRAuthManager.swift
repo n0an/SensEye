@@ -210,6 +210,7 @@ class FRAuthManager: NSObject {
         do {
             
             KeychainWrapper.standard.removeObject(forKey: KEY_CHAT_USER)
+            KeychainWrapper.standard.removeObject(forKey: KEY_CHAT_OF_USER)
             
             SAMCache.shared().removeAllObjects()
             

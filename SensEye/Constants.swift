@@ -99,6 +99,7 @@ public let kNUMBEROFMESSAGES = 40
 
 public let KEY_CHAT_USER_UID = "chatUserUID"
 public let KEY_CHAT_USER = "chatCurrentUser"
+public let KEY_CHAT_OF_USER = "chatForCurrentUser"
 
 
 

@@ -15,7 +15,7 @@ class FRChat {
     
     // MARK: - PROPERTIES
     var uid: String
-    var userIds: [String]
+//    var userIds: [String]
     
     var lastMessage: String
     var lastUpdate: Double!
@@ -28,10 +28,10 @@ class FRChat {
     var chatRef: FIRDatabaseReference
     
     // MARK: - INITIALIZERS
-    init(userIds: [String], withUserName: String, withUserUID: String) {
+    init(withUserName: String, withUserUID: String) {
         
         self.uid = withUserUID
-        self.userIds = userIds
+//        self.userIds = userIds
         
         self.lastMessage = ""
         
@@ -61,15 +61,15 @@ class FRChat {
         
         // init users
         
-        self.userIds = []
-        
-        if let userIdsDict = dictionary["userIds"] as? [String: Any] {
-            
-            for user in userIdsDict.keys {
-                self.userIds.append(user)
-            }
-            
-        }
+//        self.userIds = []
+//        
+//        if let userIdsDict = dictionary["userIds"] as? [String: Any] {
+//            
+//            for user in userIdsDict.keys {
+//                self.userIds.append(user)
+//            }
+//            
+//        }
         
         
     }
@@ -179,14 +179,22 @@ extension FRChat {
         
         let currentUser = FRAuthManager.sharedManager.currentUser
         
-        let indexOfCurrentUser = self.userIds.index(of: currentUser.uid)
+//        let indexOfCurrentUser = self.userIds.index(of: currentUser.uid)
         
-        var recipientsUids = self.userIds
+//        var recipientsUids = self.userIds
         
-        recipientsUids.remove(at: indexOfCurrentUser!)
+        var recipientUid: String
+        
+        if currentUser.uid == GeneralHelper.sharedHelper.appOwnerUID {
+            recipientUid = self.withUserUID
+        } else {
+            recipientUid = GeneralHelper.sharedHelper.appOwnerUID
+        }
+        
+//        recipientsUids.remove(at: indexOfCurrentUser!)
         
         
-        self.fetchChatUsers(forUids: recipientsUids) { (pushIds) in
+        self.fetchChatUsers(forUids: [recipientUid]) { (pushIds) in
             
             OneSignal.postNotification([
                 

@@ -107,21 +107,21 @@ class ChatViewController: JSQMessagesViewController, UIGestureRecognizerDelegate
     
     // MARK: - FIREBASE METHODS
     
-    func fetchChatUsers() {
-        
-        for userId in self.chat.userIds {
-            
-            let ref = FRDataManager.sharedManager.REF_USERS.child(userId)
-            
-            ref.observeSingleEvent(of: .value, with: { (snapshot) in
-                
-                let chatUser = FRUser(uid: snapshot.key, dictionary: snapshot.value as! [String: Any])
-                
-                self.chatUsers.append(chatUser)
-                
-            })
-        }
-    }
+//    func fetchChatUsers() {
+//        
+//        for userId in self.chat.userIds {
+//            
+//            let ref = FRDataManager.sharedManager.REF_USERS.child(userId)
+//            
+//            ref.observeSingleEvent(of: .value, with: { (snapshot) in
+//                
+//                let chatUser = FRUser(uid: snapshot.key, dictionary: snapshot.value as! [String: Any])
+//                
+//                self.chatUsers.append(chatUser)
+//                
+//            })
+//        }
+//    }
     
     
     // * OBSERVERS
