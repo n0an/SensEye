@@ -48,6 +48,8 @@ class FRUser {
     }
     
     
+    
+    
     // MARK: - SAVE METHOD
     
     func save(completion: @escaping FRModelCompletion) {

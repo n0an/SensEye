@@ -52,24 +52,56 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
                 })
                 
                 
-                FRDataManager.sharedManager.REF_USERS.child(user.uid).observeSingleEvent(of: .value, with: { (snapshot) in
+                // ** Checking if there's CurrentUser in Keychain
+                if let userDict = KeychainWrapper.standard.object(forKey: KEY_CHAT_USER) as? [String: Any] {
                     
-                    if let userDict = snapshot.value as? [String: Any] {
+                    print("saved chat user = \(userDict)")
+                    
+                    let uid = userDict["uid"] as! String
+                    
+                    FRAuthManager.sharedManager.currentUser = FRUser(uid: uid, dictionary: userDict)
+                    self.currentUser = FRAuthManager.sharedManager.currentUser
+                    
+                    print("===NAG===: KeyChain currentUser = \(FRAuthManager.sharedManager.currentUser.username)")
+                    
+                    DispatchQueue.main.async {
                         
-                        FRAuthManager.sharedManager.currentUser = FRUser(uid: user.uid, dictionary: userDict)
-                        self.currentUser = FRAuthManager.sharedManager.currentUser
-                        
-                        
-                        print("===NAG===: currentUser = \(FRAuthManager.sharedManager.currentUser.username)")
-                        
-                        DispatchQueue.main.async {
-                            
-                            self.goToMessenger()
-                        }
-                        
+                        self.goToMessenger()
                     }
                     
-                })
+                    
+                } else {
+                    // ** Get user from Firebase, if not found in Keychain
+                    FRDataManager.sharedManager.REF_USERS.child(user.uid).observeSingleEvent(of: .value, with: { (snapshot) in
+                        
+                        if let userDict = snapshot.value as? [String: Any] {
+                            
+                            FRAuthManager.sharedManager.currentUser = FRUser(uid: user.uid, dictionary: userDict)
+                            self.currentUser = FRAuthManager.sharedManager.currentUser
+                            
+                            let userDictionary = [
+                                        "uid": self.currentUser.uid,
+                                        "username": self.currentUser.username,
+                                        "pushId": self.currentUser.pushId!
+                            ]
+                            
+                            
+                            KeychainWrapper.standard.set(userDictionary as NSDictionary, forKey: KEY_CHAT_USER)
+                            
+                            print("===NAG===: currentUser = \(FRAuthManager.sharedManager.currentUser.username)")
+                            
+                            DispatchQueue.main.async {
+                                
+                                self.goToMessenger()
+                            }
+                            
+                        }
+                        
+                    })
+                }
+                
+                
+                
                 
             } else {
      
@@ -109,6 +141,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     
     
     // MARK: - HELPER METHODS
+    
     
     
     func goToMessenger() {
