@@ -158,20 +158,117 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
         } else {
             // CUSTOMER USER - GO DIRECTLY TO OWN USER CHAT WITH APPOWNER
             
-            let userChatsIdsRef = FRDataManager.sharedManager.REF_USERS.child(currentUser.uid).child("chatIds")
             
-            userChatsIdsRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            customerChatVarQueryEqual()
+            
+            
+        }
+        
+    }
+    
+    
+    
+    func customerChatOld() {
+        
+        
+        let userChatsIdsRef = FRDataManager.sharedManager.REF_USERS.child(currentUser.uid).child("chatIds")
+        
+        userChatsIdsRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            if snapshot.exists() {
+                print("snapshot.exists(). GO TO CHAT VIEW CONTROLLER")
                 
-                if snapshot.exists() {
-                    print("snapshot.exists(). GO TO CHAT VIEW CONTROLLER")
+                let chatsDict = snapshot.value as! [String: Any]
+                
+                let chatId = (chatsDict.keys.first)!
+                
+                FRDataManager.sharedManager.REF_CHATS.child(chatId).observeSingleEvent(of: .value, with: { (snapshot) in
                     
-                    let chatsDict = snapshot.value as! [String: Any]
+                    let chat = FRChat(uid: chatId, dictionary: snapshot.value as! [String: Any])
                     
-                    let chatId = (chatsDict.keys.first)!
+                    let ref = FRDataManager.sharedManager.REF_USERS.child(GeneralHelper.sharedHelper.appOwnerUID)
                     
-                    FRDataManager.sharedManager.REF_CHATS.child(chatId).observeSingleEvent(of: .value, with: { (snapshot) in
+                    
+                    ref.observeSingleEvent(of: .value, with: { (snapshot) in
                         
-                        let chat = FRChat(uid: chatId, dictionary: snapshot.value as! [String: Any])
+                        let chatUser = FRUser(uid: snapshot.key, dictionary: snapshot.value as! [String: Any])
+                        
+                        
+                        let chatUsers: [FRUser] = [self.currentUser, chatUser]
+                        
+                        
+                        self.performSegue(withIdentifier: Storyboard.segueShowChatVC, sender: (chat, chatUsers))
+                        
+                        
+                    })
+                    
+                    
+                })
+                
+                
+            } else {
+                print("snapshot NOT exists(). CREATE NEW CHAT AND GO TO CHAT VIEW CONTROLLER")
+                
+                let userIds = [self.currentUser.uid, GeneralHelper.sharedHelper.appOwnerUID]
+                
+                
+                let newChat = FRChat(userIds: userIds, withUserName: self.currentUser.username, withUserUID: self.currentUser.uid)
+                
+                newChat.userIds = userIds
+                
+                newChat.save()
+                
+                
+                let refAppOwner = FRDataManager.sharedManager.REF_USERS.child(GeneralHelper.sharedHelper.appOwnerUID)
+                
+                
+                refAppOwner.observeSingleEvent(of: .value, with: { (snapshot) in
+                    
+                    let appOwnerUser = FRUser(uid: snapshot.key, dictionary: snapshot.value as! [String: Any])
+                    
+                    
+                    let chatUsers: [FRUser] = [self.currentUser, appOwnerUser]
+                    
+                    
+                    for account in chatUsers {
+                        account.saveNewChat(newChat)
+                    }
+                    
+                    // Sending the first greeting message from appOwner "Hello, how can I help you?"
+                    let greetingMessage = FRMessage(chatId: newChat.uid, senderUID: appOwnerUser.uid, senderDisplayName: appOwnerUser.username, text: "Здравствуйте, я могу Вам чем-то помочь?")
+                    
+                    greetingMessage.save()
+                    
+                    newChat.send(message: greetingMessage)
+                    
+                    self.performSegue(withIdentifier: Storyboard.segueShowChatVC, sender: (newChat, chatUsers))
+                    
+                })
+            }
+        })
+        
+
+    }
+    
+    
+    
+    func customerChatVarQueryEqual() {
+        let chatsRef = FRDataManager.sharedManager.REF_CHATS
+        
+        chatsRef.queryOrdered(byChild: "withUserUID").queryEqual(toValue: currentUser.uid).observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                
+                print("snapshot.exists(). GO TO CHAT VIEW CONTROLLER")
+                
+                for snap in snapshot {
+                    
+                    if let chatDict = snap.value as? [String: Any] {
+                        
+                        let key = snap.key
+                        
+                        let chat = FRChat(uid: key, dictionary: chatDict)
+                        
                         
                         let ref = FRDataManager.sharedManager.REF_USERS.child(GeneralHelper.sharedHelper.appOwnerUID)
                         
@@ -190,54 +287,19 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
                         })
                         
                         
-                    })
+                    }
                     
                     
-                } else {
-                    print("snapshot NOT exists(). CREATE NEW CHAT AND GO TO CHAT VIEW CONTROLLER")
-                    
-                    let userIds = [self.currentUser.uid, GeneralHelper.sharedHelper.appOwnerUID]
-                    
-                    
-                    let newChat = FRChat(userIds: userIds, withUserName: self.currentUser.username, withUserUID: self.currentUser.uid)
-                    
-                    newChat.userIds = userIds
-                    
-                    newChat.save()
-                    
-                    
-                    let refAppOwner = FRDataManager.sharedManager.REF_USERS.child(GeneralHelper.sharedHelper.appOwnerUID)
-                    
-                    
-                    refAppOwner.observeSingleEvent(of: .value, with: { (snapshot) in
-                        
-                        let appOwnerUser = FRUser(uid: snapshot.key, dictionary: snapshot.value as! [String: Any])
-                        
-                        
-                        let chatUsers: [FRUser] = [self.currentUser, appOwnerUser]
-                        
-                        
-                        for account in chatUsers {
-                            account.saveNewChat(newChat)
-                        }
-                        
-                        // Sending the first greeting message from appOwner "Hello, how can I help you?"
-                        let greetingMessage = FRMessage(chatId: newChat.uid, senderUID: appOwnerUser.uid, senderDisplayName: appOwnerUser.username, text: "Здравствуйте, я могу Вам чем-то помочь?")
-                        
-                        greetingMessage.save()
-                        
-                        newChat.send(message: greetingMessage)
-                        
-                        self.performSegue(withIdentifier: Storyboard.segueShowChatVC, sender: (newChat, chatUsers))
-                        
-                    })
                 }
-            })
+                
+                
+            }
             
             
             
-        }
-        
+            
+        })
+
     }
     
     
@@ -247,7 +309,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
 //
 //        let _ = self.navigationController?.popViewController(animated: false)
 //
-//        
+//
 //    }
     
     
