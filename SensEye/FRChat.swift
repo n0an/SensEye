@@ -30,9 +30,7 @@ class FRChat {
     // MARK: - INITIALIZERS
     init(userIds: [String], withUserName: String, withUserUID: String) {
         
-        self.chatRef = FRDataManager.sharedManager.REF_CHATS.childByAutoId()
-        
-        self.uid = chatRef.key
+        self.uid = withUserUID
         self.userIds = userIds
         
         self.lastMessage = ""
@@ -41,6 +39,8 @@ class FRChat {
         self.withUserUID = withUserUID
         
         self.messagesCount = 0
+        
+        self.chatRef = FRDataManager.sharedManager.REF_CHATS.child(self.uid)
         
     }
     
