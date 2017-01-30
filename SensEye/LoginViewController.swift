@@ -262,21 +262,26 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
                 
                 let chat = FRChat(uid: snapshot.key, dictionary: snapshot.value as! [String: Any])
                 
-                let ref = FRDataManager.sharedManager.REF_USERS.child(GeneralHelper.sharedHelper.appOwnerUID)
+                self.performSegue(withIdentifier: Storyboard.segueShowChatVC, sender: chat)
                 
                 
-                ref.observeSingleEvent(of: .value, with: { (snapshot) in
-                    
-                    let chatUser = FRUser(uid: snapshot.key, dictionary: snapshot.value as! [String: Any])
-                    
-                    
-                    let chatUsers: [FRUser] = [self.currentUser, chatUser]
-                    
-                    
-                    self.performSegue(withIdentifier: Storyboard.segueShowChatVC, sender: (chat, chatUsers))
-                    
-                    
-                })
+//                let ref = FRDataManager.sharedManager.REF_USERS.child(GeneralHelper.sharedHelper.appOwnerUID)
+//                
+//                
+//                
+//                
+//                ref.observeSingleEvent(of: .value, with: { (snapshot) in
+//                    
+//                    let chatUser = FRUser(uid: snapshot.key, dictionary: snapshot.value as! [String: Any])
+//                    
+//                    
+//                    let chatUsers: [FRUser] = [self.currentUser, chatUser]
+//                    
+//                    
+//                    self.performSegue(withIdentifier: Storyboard.segueShowChatVC, sender: (chat, chatUsers))
+//                    
+//                    
+//                })
                 
                 
                 
@@ -295,31 +300,42 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
                 newChat.save()
                 
                 
-                let refAppOwner = FRDataManager.sharedManager.REF_USERS.child(GeneralHelper.sharedHelper.appOwnerUID)
+                let greetingMessage = FRMessage(chatId: newChat.uid, senderUID: GeneralHelper.sharedHelper.appOwnerUID, senderDisplayName: "Elena Senseye", text: "Здравствуйте, я могу Вам чем-то помочь?")
+                
+                greetingMessage.save()
+                
+                newChat.send(message: greetingMessage)
+                
+                self.performSegue(withIdentifier: Storyboard.segueShowChatVC, sender: newChat)
                 
                 
-                refAppOwner.observeSingleEvent(of: .value, with: { (snapshot) in
-                    
-                    let appOwnerUser = FRUser(uid: snapshot.key, dictionary: snapshot.value as! [String: Any])
-                    
-                    
-                    let chatUsers: [FRUser] = [self.currentUser, appOwnerUser]
-                    
-                    
-                    for account in chatUsers {
-                        account.saveNewChat(newChat)
-                    }
-                    
-                    // Sending the first greeting message from appOwner "Hello, how can I help you?"
-                    let greetingMessage = FRMessage(chatId: newChat.uid, senderUID: appOwnerUser.uid, senderDisplayName: appOwnerUser.username, text: "Здравствуйте, я могу Вам чем-то помочь?")
-                    
-                    greetingMessage.save()
-                    
-                    newChat.send(message: greetingMessage)
-                    
-                    self.performSegue(withIdentifier: Storyboard.segueShowChatVC, sender: (newChat, chatUsers))
-                    
-                })
+                
+                
+//                let refAppOwner = FRDataManager.sharedManager.REF_USERS.child(GeneralHelper.sharedHelper.appOwnerUID)
+//                
+//                
+//                refAppOwner.observeSingleEvent(of: .value, with: { (snapshot) in
+//                    
+//                    let appOwnerUser = FRUser(uid: snapshot.key, dictionary: snapshot.value as! [String: Any])
+//                    
+//                    
+//                    let chatUsers: [FRUser] = [self.currentUser, appOwnerUser]
+//                    
+//                    
+////                    for account in chatUsers {
+////                        account.saveNewChat(newChat)
+////                    }
+//                    
+//                    // Sending the first greeting message from appOwner "Hello, how can I help you?"
+//                    let greetingMessage = FRMessage(chatId: newChat.uid, senderUID: appOwnerUser.uid, senderDisplayName: appOwnerUser.username, text: "Здравствуйте, я могу Вам чем-то помочь?")
+//                    
+//                    greetingMessage.save()
+//                    
+//                    newChat.send(message: greetingMessage)
+//                    
+//                    self.performSegue(withIdentifier: Storyboard.segueShowChatVC, sender: (newChat, chatUsers))
+//                    
+//                })
 
                 
             }
@@ -541,14 +557,17 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
             let chatVC = segue.destination as! ChatViewController
             
             
-            guard let senderTuple = sender as? (FRChat, [FRUser]) else {
-                return
-            }
+//            guard let senderTuple = sender as? (FRChat, [FRUser]) else {
+//                return
+//            }
+//            
+//            let selectedChat = senderTuple.0
+//            let chatUsers = senderTuple.1
             
-            let selectedChat = senderTuple.0
-            let chatUsers = senderTuple.1
+            let selectedChat = sender as! FRChat
+
             
-            chatVC.chatUsers = chatUsers
+//            chatVC.chatUsers = chatUsers
             
             
             chatVC.currentUser = currentUser

@@ -19,7 +19,7 @@ class ChatViewController: JSQMessagesViewController, UIGestureRecognizerDelegate
     var messagesRef = FRDataManager.sharedManager.REF_MESSAGES
     
     var chatUsers: [FRUser] = []
-        var initialLoadComplete: Bool = false
+    var initialLoadComplete: Bool = false
     
     var messages = [FRMessage]()
     var messagesLoaded = [FRMessage]()
@@ -73,10 +73,10 @@ class ChatViewController: JSQMessagesViewController, UIGestureRecognizerDelegate
         self.setupAvatarImages()
         
         
-        if self.chatUsers.isEmpty {
-            
-            self.fetchChatUsers()
-        }
+//        if self.chatUsers.isEmpty {
+//            
+//            self.fetchChatUsers()
+//        }
         
         
         self.observeNewMessages()

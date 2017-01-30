@@ -83,11 +83,11 @@ class FRChat {
         self.chatRef.setValue(toDictionary())
         
         // saving usersIds
-        let userIdsRef = self.chatRef.child("userIds")
+//        let userIdsRef = self.chatRef.child("userIds")
         
-        for userId in userIds {
-            userIdsRef.child(userId).setValue(true)
-        }
+//        for userId in userIds {
+//            userIdsRef.child(userId).setValue(true)
+//        }
  
     }
     
