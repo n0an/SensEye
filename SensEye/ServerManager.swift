@@ -109,6 +109,19 @@ class ServerManager {
 
     }
     
+    func deAuthorize(completed: @escaping (Bool) -> Void) {
+        
+        let removeSuccessful = KeychainWrapper.standard.removeObject(forKey: KEY_VK_TOKEN)
+        
+        UserDefaults.standard.set(false, forKey: KEY_VK_DIDAUTH)
+        UserDefaults.standard.set(false, forKey: KEY_VK_USERCANCELAUTH)
+
+        
+        
+        completed(removeSuccessful)
+        
+    }
+    
     func authorize(completed: @escaping AuthoizationComplete) {
         
         

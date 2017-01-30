@@ -381,6 +381,15 @@ extension PostViewController: PostHeaderViewDelegate {
         
         
     }
+    
+    func logoutFromVKButtonTapped() {
+        
+        ServerManager.sharedManager.deAuthorize { (success) in
+            
+            print("\(success)")
+            
+        }
+    }
 }
 
 

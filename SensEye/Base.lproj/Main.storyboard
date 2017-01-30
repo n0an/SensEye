@@ -283,7 +283,7 @@
             <objects>
                 <navigationController storyboardIdentifier="PhotoNavViewController" automaticallyAdjustsScrollViewInsets="NO" id="Uuj-Kp-AHt" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="nf4-z0-1A8">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="nf4-z0-1A8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -406,14 +406,23 @@
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         </variation>
                                                     </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o0h-dZ-Umm">
+                                                        <rect key="frame" x="8" y="8" width="108" height="30"/>
+                                                        <state key="normal" title="Logout from VK"/>
+                                                        <connections>
+                                                            <action selector="logoutFromVKButtonTapped" destination="nJF-K5-ybQ" eventType="touchUpInside" id="buR-i8-GgV"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                                 <constraints>
+                                                    <constraint firstItem="o0h-dZ-Umm" firstAttribute="leading" secondItem="JAA-YG-a4F" secondAttribute="leading" constant="8" id="4Lb-Ay-7bY"/>
                                                     <constraint firstItem="NSE-OF-Hyu" firstAttribute="top" secondItem="JAA-YG-a4F" secondAttribute="top" constant="8" id="6iv-pW-fSE"/>
                                                     <constraint firstItem="tR2-xe-mbi" firstAttribute="leading" secondItem="JAA-YG-a4F" secondAttribute="leading" id="7F4-Nu-Gpy"/>
                                                     <constraint firstAttribute="bottom" secondItem="tR2-xe-mbi" secondAttribute="bottom" id="Agx-JP-GFW"/>
                                                     <constraint firstItem="Zwq-Rg-GsE" firstAttribute="top" secondItem="JAA-YG-a4F" secondAttribute="top" constant="36" id="Wup-7p-QgS"/>
                                                     <constraint firstItem="NSE-OF-Hyu" firstAttribute="centerX" secondItem="JAA-YG-a4F" secondAttribute="centerX" id="Wx0-kL-oMB"/>
                                                     <constraint firstAttribute="trailing" secondItem="tR2-xe-mbi" secondAttribute="trailing" id="XJz-CR-5yP"/>
+                                                    <constraint firstItem="o0h-dZ-Umm" firstAttribute="top" secondItem="JAA-YG-a4F" secondAttribute="top" constant="8" id="YgF-vW-sno"/>
                                                     <constraint firstAttribute="trailing" secondItem="Zwq-Rg-GsE" secondAttribute="trailing" constant="5" id="aLO-Zh-hEi"/>
                                                     <constraint firstItem="tR2-xe-mbi" firstAttribute="top" secondItem="JAA-YG-a4F" secondAttribute="top" id="b86-Pq-YtY"/>
                                                 </constraints>
@@ -1949,7 +1958,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ngm-NQ-1S7" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="34q-CL-Z1M">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="34q-CL-Z1M">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1994,7 +2003,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Mv5-Cg-OU3">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="separatorColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
@@ -2285,8 +2294,8 @@
         <image name="space" width="1200" height="675"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="PaE-cb-taD"/>
         <segue reference="EBb-sR-AUb"/>
-        <segue reference="hci-Zb-C6g"/>
+        <segue reference="PaE-cb-taD"/>
+        <segue reference="gzW-Nu-nWk"/>
     </inferredMetricsTieBreakers>
 </document>

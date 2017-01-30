@@ -10,6 +10,7 @@ import UIKit
 
 protocol PostHeaderViewDelegate: class {
     func closeButtonTapped()
+    func logoutFromVKButtonTapped()
 }
 
 class PostHeaderView: UIView {
@@ -47,6 +48,10 @@ class PostHeaderView: UIView {
     
     @IBAction func closeButtonTapped(_ sender: UIButton) {
         delegate?.closeButtonTapped()
+    }
+    
+    @IBAction func logoutFromVKButtonTapped() {
+        delegate?.logoutFromVKButtonTapped()
     }
 
 }
