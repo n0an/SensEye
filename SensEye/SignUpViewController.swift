@@ -82,7 +82,9 @@ class SignUpViewController: UIViewController {
         self.view.endEditing(true)
         
         // Show spinner
-        SwiftSpinner.show("Registering new account")
+        SwiftSpinner.show("Registering new account").addTapHandler ({
+            SwiftSpinner.hide()
+        })
         
         FRAuthManager.sharedManager.signUp(withEmail: email, username: username, password: password, avatarImage: avatarImage, onComplete: { (errMsg, data) in
             guard errMsg == nil else {
@@ -90,10 +92,10 @@ class SignUpViewController: UIViewController {
                 self.alert(title: "Error", message: errMsg!)
                 return
             }
-            DispatchQueue.main.async {
-                SwiftSpinner.hide()
-                self.goToChatVC()
-            }
+            
+            SwiftSpinner.hide()
+            self.goToChatVC()
+            
         })
     }
     

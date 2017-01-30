@@ -21,10 +21,60 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: DesignableButton!
 
+    // MARK: - PROPERTIES
+    enum Storyboard {
+        static let segueShowRecentChats = "showRecentChatsViewController"
+        static let segueShowChatVC = "showChatViewController"
+        
+    }
+    
+    
+    var currentUser: FRUser!
+    
+    
     // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        FIRAuth.auth()?.addStateDidChangeListener({ (auth, user) in
+            
+            if let user = user {
+                
+                if self.currentUser != nil {
+                    return
+                }
+                
+                SwiftSpinner.show("Entering chat").addTapHandler({ 
+                    SwiftSpinner.hide()
+                })
+                
+                
+                FRDataManager.sharedManager.REF_USERS.child(user.uid).observeSingleEvent(of: .value, with: { (snapshot) in
+                    
+                    if let userDict = snapshot.value as? [String: Any] {
+                        
+                        FRAuthManager.sharedManager.currentUser = FRUser(uid: user.uid, dictionary: userDict)
+                        self.currentUser = FRAuthManager.sharedManager.currentUser
+                        
+                        print("===NAG===: currentUser = \(FRAuthManager.sharedManager.currentUser.username)")
+                        
+                        DispatchQueue.main.async {
+                            
+                            self.goToMessenger()
+                        }
+                        
+                    }
+                    
+                })
+                
+            } else {
+     
+                self.currentUser = nil
+            }
+            
+        })
+
 
         
         emailTextField.delegate = self
@@ -47,13 +97,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        if FIRAuth.auth()?.currentUser != nil {
-            
-            self.goToChatVC()
-        }
-        
-        self.navigationController?.isNavigationBarHidden = true
+
     }
     
     deinit {
@@ -63,12 +107,112 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     
     // MARK: - HELPER METHODS
     
-    func goToChatVC() {
-
-        let _ = self.navigationController?.popViewController(animated: false)
-
+    
+    func goToMessenger() {
+        
+        // Configure OneSignal pushId before goToChat
+        FRAuthManager.sharedManager.handleOneSignalOnUserLogin()
+        
+        
+        if self.currentUser.uid == GeneralHelper.sharedHelper.appOwnerUID {
+            // SUPER ADMIN USER - SEE ALL CHATS
+            self.performSegue(withIdentifier: Storyboard.segueShowRecentChats, sender: nil)
+            
+            
+        } else {
+            // CUSTOMER USER - GO DIRECTLY TO OWN USER CHAT WITH APPOWNER
+            
+            let userChatsIdsRef = FRDataManager.sharedManager.REF_USERS.child(currentUser.uid).child("chatIds")
+            
+            userChatsIdsRef.observeSingleEvent(of: .value, with: { (snapshot) in
+                
+                if snapshot.exists() {
+                    print("snapshot.exists(). GO TO CHAT VIEW CONTROLLER")
+                    
+                    let chatsDict = snapshot.value as! [String: Any]
+                    
+                    let chatId = (chatsDict.keys.first)!
+                    
+                    FRDataManager.sharedManager.REF_CHATS.child(chatId).observeSingleEvent(of: .value, with: { (snapshot) in
+                        
+                        let chat = FRChat(uid: chatId, dictionary: snapshot.value as! [String: Any])
+                        
+                        let ref = FRDataManager.sharedManager.REF_USERS.child(GeneralHelper.sharedHelper.appOwnerUID)
+                        
+                        
+                        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+                            
+                            let chatUser = FRUser(uid: snapshot.key, dictionary: snapshot.value as! [String: Any])
+                            
+                            
+                            let chatUsers: [FRUser] = [self.currentUser, chatUser]
+                            
+                            
+                            self.performSegue(withIdentifier: Storyboard.segueShowChatVC, sender: (chat, chatUsers))
+                            
+                            
+                        })
+                        
+                        
+                    })
+                    
+                    
+                } else {
+                    print("snapshot NOT exists(). CREATE NEW CHAT AND GO TO CHAT VIEW CONTROLLER")
+                    
+                    let userIds = [self.currentUser.uid, GeneralHelper.sharedHelper.appOwnerUID]
+                    
+                    
+                    let newChat = FRChat(userIds: userIds, withUserName: self.currentUser.username, withUserUID: self.currentUser.uid)
+                    
+                    newChat.userIds = userIds
+                    
+                    newChat.save()
+                    
+                    
+                    let refAppOwner = FRDataManager.sharedManager.REF_USERS.child(GeneralHelper.sharedHelper.appOwnerUID)
+                    
+                    
+                    refAppOwner.observeSingleEvent(of: .value, with: { (snapshot) in
+                        
+                        let appOwnerUser = FRUser(uid: snapshot.key, dictionary: snapshot.value as! [String: Any])
+                        
+                        
+                        let chatUsers: [FRUser] = [self.currentUser, appOwnerUser]
+                        
+                        
+                        for account in chatUsers {
+                            account.saveNewChat(newChat)
+                        }
+                        
+                        // Sending the first greeting message from appOwner "Hello, how can I help you?"
+                        let greetingMessage = FRMessage(chatId: newChat.uid, senderUID: appOwnerUser.uid, senderDisplayName: appOwnerUser.username, text: "Здравствуйте, я могу Вам чем-то помочь?")
+                        
+                        greetingMessage.save()
+                        
+                        newChat.send(message: greetingMessage)
+                        
+                        self.performSegue(withIdentifier: Storyboard.segueShowChatVC, sender: (newChat, chatUsers))
+                        
+                    })
+                }
+            })
+            
+            
+            
+        }
         
     }
+    
+    
+    
+    
+//    func goToChatVC() {
+//
+//        let _ = self.navigationController?.popViewController(animated: false)
+//
+//        
+//    }
     
     
     func resignKeyboard() {
@@ -85,7 +229,9 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
         // Dismiss keyboard
         self.view.endEditing(true)
         
-        SwiftSpinner.show("Logging in")
+        SwiftSpinner.show("Logging in").addTapHandler ({
+            SwiftSpinner.hide()
+        })
         
         FRAuthManager.sharedManager.loginWithFacebook(viewController: self) { (errorString) in
             
@@ -95,10 +241,10 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
                 return
                 
             } else {
-                DispatchQueue.main.async {
-                    SwiftSpinner.hide()
-                    self.goToChatVC()
-                }
+//                DispatchQueue.main.async {
+//                    SwiftSpinner.hide()
+//                    self.goToChatVC()
+//                }
             }
             
             
@@ -132,7 +278,9 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
         // Dismiss keyboard
         self.view.endEditing(true)
         
-        SwiftSpinner.show("Logging in")
+        SwiftSpinner.show("Logging in").addTapHandler ({
+            SwiftSpinner.hide()
+        })
         
         FRAuthManager.sharedManager.loginToFireBase(withEmail: email, password: password, onComplete: { (errMsg, data) in
             
@@ -142,10 +290,10 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
                 return
             }
             
-            DispatchQueue.main.async {
-                SwiftSpinner.hide()
-                self.goToChatVC()
-            }
+//            DispatchQueue.main.async {
+//                SwiftSpinner.hide()
+//                self.goToChatVC()
+//            }
         })
         
     }
@@ -155,6 +303,44 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
         
     }
     
+    
+    // MARK: - NAVIGATION
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        SwiftSpinner.hide()
+        
+        if segue.identifier == Storyboard.segueShowChatVC {
+            
+            let chatVC = segue.destination as! ChatViewController
+            
+            
+            guard let senderTuple = sender as? (FRChat, [FRUser]) else {
+                return
+            }
+            
+            let selectedChat = senderTuple.0
+            let chatUsers = senderTuple.1
+            
+            chatVC.chatUsers = chatUsers
+            
+            
+            chatVC.currentUser = currentUser
+            
+            chatVC.chat = selectedChat
+            
+            chatVC.senderId = currentUser.uid
+            
+            chatVC.senderDisplayName = currentUser.username
+            
+            chatVC.hidesBottomBarWhenPushed = true
+            
+            
+        }
+        
+        
+        
+    }
+
 
 }
 
