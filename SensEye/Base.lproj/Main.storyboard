@@ -756,6 +756,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="history" id="3dB-Ig-0MS"/>
                     <connections>
+                        <outlet property="logoutFromVKButton" destination="o0h-dZ-Umm" id="Ddi-fH-Dk3"/>
                         <outlet property="tableView" destination="rrm-pE-gnZ" id="q3o-c3-R2X"/>
                     </connections>
                 </viewController>

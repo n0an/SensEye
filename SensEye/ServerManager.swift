@@ -116,7 +116,10 @@ class ServerManager {
         UserDefaults.standard.set(false, forKey: KEY_VK_DIDAUTH)
         UserDefaults.standard.set(false, forKey: KEY_VK_USERCANCELAUTH)
 
+        self.vkAccessToken = nil
+        self.currentVKUser = nil
         
+        postAuthCompleteNotification()
         
         completed(removeSuccessful)
         
@@ -443,7 +446,7 @@ class ServerManager {
     
     // MARK: - LIKES FEATURE
     
-    func isLiked(forItemType itemType: FeedItemsType, ownerID: String, itemID: String, completed: @escaping LikeFeatureCompletion) {
+    func isLiked(forItemType itemType: FeedItemsType, ownerID: String, itemID: String, completed: @escaping ([String: Any]?) -> Void) {
         
         
         var url = "\(URL_BASE)\(URL_ISLIKED)" +
@@ -465,7 +468,12 @@ class ServerManager {
             
             guard let responseRoot = responseJson.result.value as? [String: Any] else {return}
             
-            guard let response = responseRoot["response"] as? [String:Any] else {return}
+            guard let response = responseRoot["response"] as? [String:Any] else {
+                
+                completed(nil)
+                
+                return
+            }
             
             completed(response)
             

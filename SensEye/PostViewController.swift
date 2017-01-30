@@ -18,6 +18,7 @@ class PostViewController: UIViewController {
     
     // MARK: - OUTLETS
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var logoutFromVKButton: UIButton!
     
     // MARK: - ENUMS
     
@@ -102,6 +103,20 @@ class PostViewController: UIViewController {
 
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        refreshLogoutButton()
+        
+    }
+    
+    
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         updateHeaderView()
@@ -122,8 +137,17 @@ class PostViewController: UIViewController {
         delegate?.postViewControllerWillDisappear(withPost: self.wallPost)
     }
     
-
+    
     // MARK: - API METHODS
+    
+    func refreshLogoutButton() {
+        
+        if ServerManager.sharedManager.currentVKUser != nil {
+            self.logoutFromVKButton.isHidden = false
+        } else {
+            self.logoutFromVKButton.isHidden = true
+        }
+    }
     
     func refreshMainPost() {
         
@@ -131,16 +155,35 @@ class PostViewController: UIViewController {
 
         ServerManager.sharedManager.isLiked(forItemType: .post, ownerID: groupID, itemID: self.wallPost.postID) { (resultDict) in
             
-            
-            if let liked = resultDict["liked"] as? Int {
-                self.wallPost.isLikedByCurrentUser = liked == 1 ? true : false
+            if let resultDict = resultDict {
+                
+                if let liked = resultDict["liked"] as? Int {
+                    self.wallPost.isLikedByCurrentUser = liked == 1 ? true : false
+                    
+                    
+                    let cell = self.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! FeedCell
+                    
+                    cell.wallPost = self.wallPost
+                    
+                } else {
+                    self.wallPost.isLikedByCurrentUser = false
+                    
+                    
+                    let cell = self.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! FeedCell
+                    
+                    cell.wallPost = self.wallPost
+                }
+                
+            } else {
+                self.wallPost.isLikedByCurrentUser = false
                 
                 
                 let cell = self.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! FeedCell
                 
                 cell.wallPost = self.wallPost
-                
             }
+            
+            
             
             GeneralHelper.sharedHelper.hideSpinner(onView: self.view)
             
@@ -272,7 +315,8 @@ class PostViewController: UIViewController {
     
     func vkAuthorizationCompleted() {
         
-        // TODO: - REFRESH ONLY ONE POST AND ALL COMMENTS
+        refreshLogoutButton()
+        
         refreshMainPost()
         refreshComments()
     }

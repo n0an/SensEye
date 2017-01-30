@@ -65,6 +65,7 @@ typealias AuthoizationComplete = (User) -> Void
 typealias LikeFeatureCompletion = ([String: Any]) -> Void
 
 
+
 // MARK: - ===== UI Settings ====
 
 //let mainShadowColor = UIColor(colorLiteralRed: 120/255, green: 120/255, blue: 120/255, alpha: 1.0)

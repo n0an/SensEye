@@ -110,6 +110,8 @@ class FeedCell: UITableViewCell {
         
         ServerManager.sharedManager.addLike(forItemType: .post, ownerID: groupID, itemID: self.wallPost.postID) { (resultDict) in
             
+            
+            
             if let postLikesCount = resultDict["likes"] as? Int {
                 self.wallPost.postLikesCount = postLikesCount
                 
