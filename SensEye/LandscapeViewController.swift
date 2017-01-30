@@ -228,7 +228,7 @@ class LandscapeViewController: UIViewController {
             
             self.scrollViewParams.itemWidth = 207
             
-            self.scrollViewParams.itemHeight = 318 // (1024 - 10 - 40 for pagecontrol - 50 for tabbar) /2
+            self.scrollViewParams.itemHeight = 318 // (736 - 10 - 40 for pagecontrol - 50 for tabbar) /2
 
             
             self.scrollViewParams.imageViewWidth = 201
@@ -268,6 +268,19 @@ class LandscapeViewController: UIViewController {
             self.scrollViewParams.imageViewHeight = 260
             
             
+        case 375:
+            // iPhone 6/6s/7 Portrait (375 x 667)
+            
+            self.scrollViewParams.itemWidth = 375
+            self.scrollViewParams.itemHeight = 577
+            
+            self.scrollViewParams.imageViewWidth = 326
+            self.scrollViewParams.imageViewHeight = 466
+            
+            self.scrollViewParams.titleLabelFont = UIFont.systemFont(ofSize: 16.0)
+
+            self.scrollViewParams.columnsPerPage = 1
+            
             
         case 667:
             // iPhone 6/6s/7 Landscape (667 x 375)
@@ -277,6 +290,11 @@ class LandscapeViewController: UIViewController {
             
             self.scrollViewParams.imageViewWidth = 206
             self.scrollViewParams.imageViewHeight = 300
+            
+            self.scrollViewParams.titleLabelFont = UIFont.systemFont(ofSize: 14.0)
+            
+            self.scrollViewParams.columnsPerPage = 3
+
             
             
         case 736:
@@ -381,10 +399,6 @@ class LandscapeViewController: UIViewController {
                 
             }
 
-            
-            
-            
-            
         default:
             break
             
@@ -393,87 +407,7 @@ class LandscapeViewController: UIViewController {
     }
     
     
-    func calculateImageParametersForPadFull() {
-        
-        self.scrollViewParams.scrollViewWidth = scrollView.bounds.size.width
-        self.scrollViewParams.scrollViewHeight = scrollView.bounds.size.height
-        
-        switch self.scrollViewParams.scrollViewWidth {
-            
-        case 768:
-            // iPad Air/Air2/Retina/Pro9.7" Portrait (768 x 1024)
-            
-            
-            self.scrollViewParams.itemWidth = 384
-            self.scrollViewParams.itemHeight = 452 // (1024 - 30 for status bar - 40 for pagecontrol - 50 for tabbar) /2
-            
-            self.scrollViewParams.imageViewWidth = 360
-            self.scrollViewParams.imageViewHeight = 440
-            
-            self.scrollViewParams.columnsPerPage = 2
-            self.scrollViewParams.rowsPerPage = 2
-            
-            self.scrollViewParams.titleLabelFont = UIFont.boldSystemFont(ofSize: 16)
-            
-            self.scrollViewParams.firstRowMarginY = 30
-            
-            
-        case 1024:
-            if self.scrollViewParams.scrollViewHeight == 768 {
-                // iPad Air/Air2/Retina/Pro9.7" Landscape (1024 x 768)
-                self.scrollViewParams.itemWidth = 256
-                self.scrollViewParams.itemHeight = 338
-                
-                self.scrollViewParams.imageViewWidth = 244
-                self.scrollViewParams.imageViewHeight = 330
-                
-                self.scrollViewParams.columnsPerPage = 4
-                self.scrollViewParams.rowsPerPage = 2
-                
-                self.scrollViewParams.titleLabelFont = UIFont.boldSystemFont(ofSize: 16)
-                
-                self.scrollViewParams.firstRowMarginY = 12
-                
-            } else if self.scrollViewParams.scrollViewHeight == 1366 {
-                // iPad Pro12.9" portrait (1024 x 1366)
-                
-                self.scrollViewParams.itemWidth = 512
-                self.scrollViewParams.itemHeight = 623
-                
-                self.scrollViewParams.imageViewWidth = 496
-                self.scrollViewParams.imageViewHeight = 611
-                
-                self.scrollViewParams.columnsPerPage = 2
-                self.scrollViewParams.rowsPerPage = 2
-                
-                self.scrollViewParams.titleLabelFont = UIFont.boldSystemFont(ofSize: 21)
-                
-                self.scrollViewParams.firstRowMarginY = 30
-            }
-            
-            
-        case 1366:
-            // iPad Pro12.9" landscape (1366 x 1024)
-            self.scrollViewParams.itemWidth = 341
-            self.scrollViewParams.itemHeight = 452
-            
-            self.scrollViewParams.imageViewWidth = 329
-            self.scrollViewParams.imageViewHeight = 440
-            
-            self.scrollViewParams.columnsPerPage = 4
-            self.scrollViewParams.rowsPerPage = 2
-            
-            self.scrollViewParams.titleLabelFont = UIFont.boldSystemFont(ofSize: 21)
-            
-            self.scrollViewParams.firstRowMarginY = 30
-            
-            
-        default:
-            break
-            
-        }
-        
-    }
+    
     
     // MAIN METHOD. CREATING GALLERY
     private func tileAlbums(albums: [PhotoAlbum]) {
@@ -811,7 +745,92 @@ extension LandscapeViewController: UIScrollViewDelegate {
 
 
 
-
+extension LandscapeViewController {
+    
+    // Optional if no Split View Controller used
+    func calculateImageParametersForPadFull() {
+        
+        self.scrollViewParams.scrollViewWidth = scrollView.bounds.size.width
+        self.scrollViewParams.scrollViewHeight = scrollView.bounds.size.height
+        
+        switch self.scrollViewParams.scrollViewWidth {
+            
+        case 768:
+            // iPad Air/Air2/Retina/Pro9.7" Portrait (768 x 1024)
+            
+            
+            self.scrollViewParams.itemWidth = 384
+            self.scrollViewParams.itemHeight = 452 // (1024 - 30 for status bar - 40 for pagecontrol - 50 for tabbar) /2
+            
+            self.scrollViewParams.imageViewWidth = 360
+            self.scrollViewParams.imageViewHeight = 440
+            
+            self.scrollViewParams.columnsPerPage = 2
+            self.scrollViewParams.rowsPerPage = 2
+            
+            self.scrollViewParams.titleLabelFont = UIFont.boldSystemFont(ofSize: 16)
+            
+            self.scrollViewParams.firstRowMarginY = 30
+            
+            
+        case 1024:
+            if self.scrollViewParams.scrollViewHeight == 768 {
+                // iPad Air/Air2/Retina/Pro9.7" Landscape (1024 x 768)
+                self.scrollViewParams.itemWidth = 256
+                self.scrollViewParams.itemHeight = 338
+                
+                self.scrollViewParams.imageViewWidth = 244
+                self.scrollViewParams.imageViewHeight = 330
+                
+                self.scrollViewParams.columnsPerPage = 4
+                self.scrollViewParams.rowsPerPage = 2
+                
+                self.scrollViewParams.titleLabelFont = UIFont.boldSystemFont(ofSize: 16)
+                
+                self.scrollViewParams.firstRowMarginY = 12
+                
+            } else if self.scrollViewParams.scrollViewHeight == 1366 {
+                // iPad Pro12.9" portrait (1024 x 1366)
+                
+                self.scrollViewParams.itemWidth = 512
+                self.scrollViewParams.itemHeight = 623
+                
+                self.scrollViewParams.imageViewWidth = 496
+                self.scrollViewParams.imageViewHeight = 611
+                
+                self.scrollViewParams.columnsPerPage = 2
+                self.scrollViewParams.rowsPerPage = 2
+                
+                self.scrollViewParams.titleLabelFont = UIFont.boldSystemFont(ofSize: 21)
+                
+                self.scrollViewParams.firstRowMarginY = 30
+            }
+            
+            
+        case 1366:
+            // iPad Pro12.9" landscape (1366 x 1024)
+            self.scrollViewParams.itemWidth = 341
+            self.scrollViewParams.itemHeight = 452
+            
+            self.scrollViewParams.imageViewWidth = 329
+            self.scrollViewParams.imageViewHeight = 440
+            
+            self.scrollViewParams.columnsPerPage = 4
+            self.scrollViewParams.rowsPerPage = 2
+            
+            self.scrollViewParams.titleLabelFont = UIFont.boldSystemFont(ofSize: 21)
+            
+            self.scrollViewParams.firstRowMarginY = 30
+            
+            
+        default:
+            break
+            
+        }
+        
+    }
+    
+}
 
 
 
