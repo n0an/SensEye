@@ -112,6 +112,8 @@ class SignUpViewController: UIViewController {
         optionMenu.addAction(sharePhoto)
         optionMenu.addAction(cancelAction)
         
+        optionMenu.popoverPresentationController?.sourceView = self.avatarImageView
+        
         self.present(optionMenu, animated: true, completion: nil)
         
     }

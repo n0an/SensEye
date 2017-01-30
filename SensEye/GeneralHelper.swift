@@ -123,13 +123,15 @@ class GeneralHelper {
         actionSheet.addAction(okAction)
         actionSheet.addAction(cancelAction)
         
+        actionSheet.popoverPresentationController?.sourceView = viewController.view
+        
         viewController.present(actionSheet, animated: true, completion: nil)
         
     }
     
     public func showLogoutView(onViewController viewController: UIViewController, withHandler handler: @escaping (_ success: Bool) -> Void) {
         
-        let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let optionMenu = UIAlertController(title: "Logout?", message: nil, preferredStyle: .actionSheet)
         
         let logOut = UIAlertAction(title: "Log Out", style: .destructive) { (alert: UIAlertAction!) in
             
@@ -143,6 +145,8 @@ class GeneralHelper {
         
         optionMenu.addAction(logOut)
         optionMenu.addAction(cancelAction)
+        
+        optionMenu.popoverPresentationController?.sourceView = viewController.view
         
         viewController.present(optionMenu, animated: true, completion: nil)
         
