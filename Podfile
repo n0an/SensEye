@@ -43,5 +43,8 @@ target 'SensEye' do
   
   # PhotoDisplayer
   pod 'IDMPhotoBrowser'
+  
+  # SwiftSpinner
+  pod 'SwiftSpinner'
 
 end

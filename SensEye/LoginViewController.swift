@@ -12,6 +12,8 @@ import Firebase
 
 import GoogleSignIn
 
+import SwiftSpinner
+
 class LoginViewController: UIViewController, GIDSignInUIDelegate {
     
     // MARK: - OUTLETS
@@ -83,27 +85,21 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
         // Dismiss keyboard
         self.view.endEditing(true)
         
+        SwiftSpinner.show("Logging in")
+        
         FRAuthManager.sharedManager.loginWithFacebook(viewController: self) { (errorString) in
             
             if let errorString = errorString {
+                SwiftSpinner.hide()
                 self.alert(title: "Error", message: errorString)
-                
-                
+                return
                 
             } else {
                 DispatchQueue.main.async {
-                    
+                    SwiftSpinner.hide()
                     self.goToChatVC()
                 }
             }
-            
-//            guard let errorString = errorString else {
-//                
-//                self.alert(title: "Error", message: errorString)
-//                return
-//            }
-            
-            
             
             
         }
@@ -136,16 +132,18 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
         // Dismiss keyboard
         self.view.endEditing(true)
         
+        SwiftSpinner.show("Logging in")
+        
         FRAuthManager.sharedManager.loginToFireBase(withEmail: email, password: password, onComplete: { (errMsg, data) in
             
             guard errMsg == nil else {
-                
+                SwiftSpinner.hide()
                 self.alert(title: "Error", message: errMsg!)
                 return
             }
             
             DispatchQueue.main.async {
-                
+                SwiftSpinner.hide()
                 self.goToChatVC()
             }
         })

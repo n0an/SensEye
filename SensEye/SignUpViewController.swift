@@ -9,6 +9,7 @@
 import UIKit
 import Spring
 import Firebase
+import SwiftSpinner
 
 class SignUpViewController: UIViewController {
 
@@ -80,12 +81,17 @@ class SignUpViewController: UIViewController {
         // Dismiss keyboard
         self.view.endEditing(true)
         
+        // Show spinner
+        SwiftSpinner.show("Registering new account")
+        
         FRAuthManager.sharedManager.signUp(withEmail: email, username: username, password: password, avatarImage: avatarImage, onComplete: { (errMsg, data) in
             guard errMsg == nil else {
+                SwiftSpinner.hide()
                 self.alert(title: "Error", message: errMsg!)
                 return
             }
             DispatchQueue.main.async {
+                SwiftSpinner.hide()
                 self.goToChatVC()
             }
         })

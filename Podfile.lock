@@ -89,6 +89,7 @@ PODS:
   - SDWebImage/Core (3.8.2)
   - Spring (1.0.3)
   - SVPullToRefresh (0.4.1)
+  - SwiftSpinner (1.1.0)
 
 DEPENDENCIES:
   - Alamofire
@@ -108,6 +109,7 @@ DEPENDENCIES:
   - SAMCache
   - Spring (from `https://github.com/MengTo/Spring.git`, branch `swift3`)
   - SVPullToRefresh
+  - SwiftSpinner
 
 EXTERNAL SOURCES:
   Spring:
@@ -152,7 +154,8 @@ SPEC CHECKSUMS:
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   Spring: 3f02b5dc3308572ef177b3cad0fa7bbc4b0706f7
   SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
+  SwiftSpinner: c03815614599b91eea46594bd52ba742849d0414
 
-PODFILE CHECKSUM: eaa30f94232df134e6a4929680d269cf41dea4fc
+PODFILE CHECKSUM: 9131e968dfd0a0b45c9e5d682b893577c1b4ff19
 
 COCOAPODS: 1.1.1
