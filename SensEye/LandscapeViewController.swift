@@ -132,13 +132,16 @@ class LandscapeViewController: UIViewController {
             }
         }
         
-        var diff: CGFloat
+        var diff: CGFloat = 0
         
-        if isPortrait {
-            diff = (tabBarController?.tabBar.bounds.height)!
-        } else {
-            diff = 0
+        if !isPad {
+            if isPortrait {
+                diff = (tabBarController?.tabBar.bounds.height)!
+            } else {
+                diff = 0
+            }
         }
+        
         
         pageControl.frame = CGRect(x: 0,
                                    y: view.frame.size.height - pageControl.frame.size.height - diff,
@@ -760,6 +763,49 @@ extension LandscapeViewController: UIScrollViewDelegate {
         
     }
 }
+
+
+
+
+extension LandscapeViewController {
+    
+    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
+        
+        super.willTransition(to: newCollection, with: coordinator)
+        
+        
+        if UIDevice.current.userInterfaceIdiom != .pad {
+            
+            let tabBarController = UIApplication.shared.keyWindow?.rootViewController as! UITabBarController
+            
+            switch newCollection.verticalSizeClass {
+                
+            case .compact:
+                // Hide TabBar
+                
+                if tabBarController.selectedIndex == 3 {
+                    self.tabBarController?.tabBar.layer.zPosition = -1
+                    self.tabBarController?.tabBar.isUserInteractionEnabled = false
+                }
+                
+            case .regular, .unspecified:
+                // Show TabBar
+                
+                if tabBarController.selectedIndex == 3 {
+                    self.tabBarController?.tabBar.layer.zPosition = 0
+                    self.tabBarController?.tabBar.isUserInteractionEnabled = true
+                }
+                
+                
+            }
+        }
+       
+        
+    }
+    
+}
+
+
 
 
 

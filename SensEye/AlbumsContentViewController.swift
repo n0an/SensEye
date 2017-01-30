@@ -58,10 +58,6 @@ class AlbumsContentViewController: UIViewController {
     // MARK: - HELPER METHODS
     
     
-    
-    
-    
-    
     func updateUI() {
         
         pageControl.currentPage = index

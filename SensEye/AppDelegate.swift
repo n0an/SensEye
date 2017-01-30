@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     var splitViewController: MySplitViewController {
         let rootTabController = window!.rootViewController as! UITabBarController
         
-        let splitVC = rootTabController.viewControllers![4] as! MySplitViewController
+        let splitVC = rootTabController.viewControllers![3] as! MySplitViewController
         
         return splitVC
     }
