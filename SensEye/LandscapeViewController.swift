@@ -223,13 +223,71 @@ class LandscapeViewController: UIViewController {
         
         switch self.scrollViewParams.scrollViewWidth {
             
+        // *** IPHONE 5/5s ***
+        case 320:
+            // iPhone 5/5s Portrait (320 x 568)
+            self.scrollViewParams.itemWidth = 320
+            self.scrollViewParams.itemHeight = 478
+            
+            self.scrollViewParams.imageViewWidth = 278
+            self.scrollViewParams.imageViewHeight = 398
+            
+            self.scrollViewParams.titleLabelFont = UIFont.systemFont(ofSize: 16.0)
+            
+            self.scrollViewParams.columnsPerPage = 1
+            
+            
+        case 568:
+            // iPhone 5/5s Landscape (568 x 320)
+            
+            self.scrollViewParams.itemWidth = 189
+            self.scrollViewParams.itemHeight = 320
+            
+            self.scrollViewParams.imageViewWidth = 170
+            self.scrollViewParams.imageViewHeight = 260
+            
+            self.scrollViewParams.titleLabelFont = UIFont.systemFont(ofSize: 14.0)
+
+            self.scrollViewParams.columnsPerPage = 3
+
+            
+            
+        // *** IPHONE 6/6s/7 ***
+        case 375:
+            // iPhone 6/6s/7 Portrait (375 x 667)
+            
+            self.scrollViewParams.itemWidth = 375
+            self.scrollViewParams.itemHeight = 577
+            
+            self.scrollViewParams.imageViewWidth = 326
+            self.scrollViewParams.imageViewHeight = 466
+            
+            self.scrollViewParams.titleLabelFont = UIFont.systemFont(ofSize: 16.0)
+
+            self.scrollViewParams.columnsPerPage = 1
+            
+        case 667:
+            // iPhone 6/6s/7 Landscape (667 x 375)
+            
+            self.scrollViewParams.itemWidth = 222
+            self.scrollViewParams.itemHeight = 375
+            
+            self.scrollViewParams.imageViewWidth = 206
+            self.scrollViewParams.imageViewHeight = 300
+            
+            self.scrollViewParams.titleLabelFont = UIFont.systemFont(ofSize: 14.0)
+            
+            self.scrollViewParams.columnsPerPage = 3
+
+            
+        // *** IPHONE PLUS ***
         case 414:
             // iPhone Plus Portrait (414 x 736)
             
             self.scrollViewParams.itemWidth = 207
             
             self.scrollViewParams.itemHeight = 318 // (736 - 10 - 40 for pagecontrol - 50 for tabbar) /2
-
+            
             
             self.scrollViewParams.imageViewWidth = 201
             self.scrollViewParams.imageViewHeight = 308
@@ -238,7 +296,6 @@ class LandscapeViewController: UIViewController {
             self.scrollViewParams.rowsPerPage = 2
             
             self.scrollViewParams.firstRowMarginY = 10
-
             
         case 295:
             // iPhone Plus Landscape Split Mode (295 x 414)
@@ -257,48 +314,8 @@ class LandscapeViewController: UIViewController {
             self.scrollViewParams.firstRowMarginY = 0
             
             
-            
-        case 568:
-            // iPhone 5/5s (568 x 320)
-            
-            self.scrollViewParams.itemWidth = 189
-            self.scrollViewParams.itemHeight = 320
-            
-            self.scrollViewParams.imageViewWidth = 170
-            self.scrollViewParams.imageViewHeight = 260
-            
-            
-        case 375:
-            // iPhone 6/6s/7 Portrait (375 x 667)
-            
-            self.scrollViewParams.itemWidth = 375
-            self.scrollViewParams.itemHeight = 577
-            
-            self.scrollViewParams.imageViewWidth = 326
-            self.scrollViewParams.imageViewHeight = 466
-            
-            self.scrollViewParams.titleLabelFont = UIFont.systemFont(ofSize: 16.0)
-
-            self.scrollViewParams.columnsPerPage = 1
-            
-            
-        case 667:
-            // iPhone 6/6s/7 Landscape (667 x 375)
-            
-            self.scrollViewParams.itemWidth = 222
-            self.scrollViewParams.itemHeight = 375
-            
-            self.scrollViewParams.imageViewWidth = 206
-            self.scrollViewParams.imageViewHeight = 300
-            
-            self.scrollViewParams.titleLabelFont = UIFont.systemFont(ofSize: 14.0)
-            
-            self.scrollViewParams.columnsPerPage = 3
-
-            
-            
         case 736:
-            // iPhone Plus Landscape (736 x 414)
+            // iPhone Plus Landscape WITHOUT SPLIT (736 x 414)
             
             self.scrollViewParams.itemWidth = 245
             self.scrollViewParams.itemHeight = 414
@@ -322,7 +339,8 @@ class LandscapeViewController: UIViewController {
         self.scrollViewParams.scrollViewHeight = scrollView.bounds.size.height
         
         switch self.scrollViewParams.scrollViewWidth {
-            
+          
+        // *** iPad Air/Air2/Retina/Pro9.7" ***
         case 320:
             
             if self.scrollViewParams.scrollViewHeight == 1024 {
@@ -361,6 +379,7 @@ class LandscapeViewController: UIViewController {
 
             }
             
+        // *** iPad Pro12.9" ***
         case 375:
             
             if self.scrollViewParams.scrollViewHeight == 1366 {
