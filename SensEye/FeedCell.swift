@@ -108,18 +108,29 @@ class FeedCell: UITableViewCell {
 
     func toLike() {
         
+        self.wallPost.postLikesCount += 1
+        
+        self.wallPost.isLikedByCurrentUser = true
+        
         ServerManager.sharedManager.addLike(forItemType: .post, ownerID: groupID, itemID: self.wallPost.postID) { (resultDict) in
             
-            
-            
             if let postLikesCount = resultDict["likes"] as? Int {
-                self.wallPost.postLikesCount = postLikesCount
                 
-                self.wallPost.isLikedByCurrentUser = true
+                // Double check and correct after server response if it differs from UI
                 
-                self.likeButton.setTitle("\(self.wallPost.postLikesCount)", for: [])
+                if self.wallPost.postLikesCount != postLikesCount {
+                    
+                    self.wallPost.postLikesCount = postLikesCount
+                    
+                    self.wallPost.isLikedByCurrentUser = true
+                    
+                    self.likeButton.setTitle("\(self.wallPost.postLikesCount)", for: [])
+                    
+                    self.changeLikeImage()
+                    
+                }
                 
-                self.changeLikeImage()
+                
             }
             
         }
@@ -127,17 +138,32 @@ class FeedCell: UITableViewCell {
     
     func toDislike() {
         
+        self.wallPost.postLikesCount -= 1
+        
+        self.wallPost.isLikedByCurrentUser = false
+        
+        
         ServerManager.sharedManager.deleteLike(forItemType: .post, ownerID: groupID, itemID: self.wallPost.postID) { (resultDict) in
             
+            
             if let postLikesCount = resultDict["likes"] as? Int {
-                self.wallPost.postLikesCount = postLikesCount
                 
-                self.wallPost.isLikedByCurrentUser = false
+                // Double check and correct after server response if it differs from UI
                 
-                self.likeButton.setTitle("\(self.wallPost.postLikesCount)", for: [])
+                if self.wallPost.postLikesCount != postLikesCount {
+                    
+                    self.wallPost.postLikesCount = postLikesCount
+                    
+                    self.wallPost.isLikedByCurrentUser = false
+                    
+                    self.likeButton.setTitle("\(self.wallPost.postLikesCount)", for: [])
+                    
+                    self.changeLikeImage()
+                    
+                }
                 
-                self.changeLikeImage()
-            }   
+              
+            }
         }
     }
     
@@ -180,6 +206,7 @@ class FeedCell: UITableViewCell {
     
     
     func currentUserLikes() -> Bool {
+        
         if self.wallPost.isLikedByCurrentUser == true {
             return true
         } else {
@@ -242,6 +269,10 @@ class FeedCell: UITableViewCell {
         } else {
             toLike()
         }
+        
+        self.likeButton.setTitle("\(self.wallPost.postLikesCount)", for: [])
+        
+        self.changeLikeImage()
 
         
         animateButton(sender)

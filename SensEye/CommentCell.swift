@@ -76,16 +76,27 @@ class CommentCell: UITableViewCell {
     
     func toLike() {
         
+        self.comment.commentLikesCount += 1
+        
+        self.comment.isLikedByCurrentUser = true
+        
         ServerManager.sharedManager.addLike(forItemType: .comment, ownerID: groupID, itemID: self.comment.commentID) { (resultDict) in
             
             if let commentLikesCount = resultDict["likes"] as? Int {
-                self.comment.commentLikesCount = commentLikesCount
                 
-                self.comment.isLikedByCurrentUser = true
+                // Double check and correct after server response if it differs from UI
+
+                if self.comment.commentLikesCount != commentLikesCount {
+                    
+                    self.comment.commentLikesCount = commentLikesCount
+                    
+                    self.comment.isLikedByCurrentUser = true
+                    
+                    self.likeButton.setTitle("\(self.comment.commentLikesCount)", for: [])
+                    
+                    self.changeLikeImage()
+                }
                 
-                self.likeButton.setTitle("\(self.comment.commentLikesCount)", for: [])
-                
-                self.changeLikeImage()
             }
             
         }
@@ -93,17 +104,28 @@ class CommentCell: UITableViewCell {
     
     func toDislike() {
         
+        self.comment.commentLikesCount -= 1
+        
+        self.comment.isLikedByCurrentUser = false
+        
         ServerManager.sharedManager.deleteLike(forItemType: .comment, ownerID: groupID, itemID: self.comment.commentID) { (resultDict) in
             
             if let commentLikesCount = resultDict["likes"] as? Int {
-                self.comment.commentLikesCount = commentLikesCount
                 
-                self.comment.isLikedByCurrentUser = false
+                // Double check and correct after server response if it differs from UI
+
+                if self.comment.commentLikesCount != commentLikesCount {
+                    
+                    self.comment.commentLikesCount = commentLikesCount
+                    
+                    self.comment.isLikedByCurrentUser = false
+                    
+                    self.likeButton.setTitle("\(self.comment.commentLikesCount)", for: [])
+                    
+                    self.changeLikeImage()
+                }
                 
-                self.likeButton.setTitle("\(self.comment.commentLikesCount)", for: [])
-                
-                self.changeLikeImage()
-            }   
+            }
         }
     }
     
@@ -142,6 +164,7 @@ class CommentCell: UITableViewCell {
     }
     
     func currentUserLikes() -> Bool {
+        
         if self.comment.isLikedByCurrentUser == true {
             return true
         } else {
@@ -191,6 +214,11 @@ class CommentCell: UITableViewCell {
         } else {
             toLike()
         }
+        
+        
+        self.likeButton.setTitle("\(self.comment.commentLikesCount)", for: [])
+        
+        self.changeLikeImage()
         
         
         animateButton(sender)
