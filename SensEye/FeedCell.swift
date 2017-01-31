@@ -259,6 +259,20 @@ class FeedCell: UITableViewCell {
     @IBAction func likeDidTap(_ sender: DesignableButton) {
         print("likeDidTap")
         
+        // ** Avoid multiple calls of method
+        
+        UIApplication.shared.beginIgnoringInteractionEvents()
+        
+        let deadLineTime = DispatchTime.now() + .milliseconds(300)
+        
+        DispatchQueue.main.asyncAfter(deadline: deadLineTime) { 
+            if UIApplication.shared.isIgnoringInteractionEvents {
+                UIApplication.shared.endIgnoringInteractionEvents()
+            }
+        }
+        
+        
+        
         guard ServerManager.sharedManager.currentVKUser != nil else {
             authorize()
             return
