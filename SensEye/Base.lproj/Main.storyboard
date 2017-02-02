@@ -540,7 +540,7 @@
                                                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                                     </variation>
                                                                     <connections>
-                                                                        <action selector="commentDidTap:" destination="fxZ-yW-dBd" eventType="touchUpInside" id="6pc-SN-RS5"/>
+                                                                        <action selector="commentDidTap:" destination="6fL-t2-rQp" eventType="touchUpInside" id="ahs-un-M39"/>
                                                                     </connections>
                                                                 </button>
                                                             </subviews>
@@ -758,6 +758,7 @@
                     <connections>
                         <outlet property="logoutFromVKButton" destination="o0h-dZ-Umm" id="Ddi-fH-Dk3"/>
                         <outlet property="tableView" destination="rrm-pE-gnZ" id="q3o-c3-R2X"/>
+                        <segue destination="LAf-Mz-8Ji" kind="presentation" identifier="ShowCommentComposer" id="XAA-BU-txL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gxp-TC-i8l" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2273,6 +2274,96 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OLq-ei-fmc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1919" y="-731"/>
+        </scene>
+        <!--Comment Composer View Controller-->
+        <scene sceneID="asa-bN-amA">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="pfa-H8-CeF" customClass="CommentComposerViewController" customModule="SensEye" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="YBX-t1-T2b"/>
+                        <viewControllerLayoutGuide type="bottom" id="XmR-fG-73U"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="947-sR-cDf">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Try-eD-5cp">
+                                <rect key="frame" x="16" y="121" width="343" height="538"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Userpic 40px" translatesAutoresizingMaskIntoConstraints="NO" id="ccm-2P-mAZ">
+                                <rect key="frame" x="16" y="72" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="8RZ-Q3-qGN"/>
+                                    <constraint firstAttribute="height" constant="40" id="ffV-AN-WNb"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="751" text="User Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sz3-RN-nZp">
+                                <rect key="frame" x="64" y="83" width="295" height="18"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                </variation>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="XmR-fG-73U" firstAttribute="top" secondItem="Try-eD-5cp" secondAttribute="bottom" constant="8" id="1wK-aj-oMA"/>
+                            <constraint firstItem="Try-eD-5cp" firstAttribute="top" secondItem="ccm-2P-mAZ" secondAttribute="bottom" constant="9" id="CGa-Qt-7td"/>
+                            <constraint firstItem="Try-eD-5cp" firstAttribute="trailing" secondItem="947-sR-cDf" secondAttribute="trailingMargin" id="Euu-93-xwW"/>
+                            <constraint firstItem="Sz3-RN-nZp" firstAttribute="centerY" secondItem="ccm-2P-mAZ" secondAttribute="centerY" id="acs-Jy-gsf"/>
+                            <constraint firstItem="Sz3-RN-nZp" firstAttribute="leading" secondItem="ccm-2P-mAZ" secondAttribute="trailing" constant="8" id="cjw-d7-q3X"/>
+                            <constraint firstItem="Try-eD-5cp" firstAttribute="leading" secondItem="ccm-2P-mAZ" secondAttribute="leading" id="oJf-aU-nXx"/>
+                            <constraint firstItem="Sz3-RN-nZp" firstAttribute="trailing" secondItem="947-sR-cDf" secondAttribute="trailingMargin" id="pqf-A5-MWX"/>
+                            <constraint firstItem="ccm-2P-mAZ" firstAttribute="top" secondItem="YBX-t1-T2b" secondAttribute="bottom" constant="8" id="qaG-mE-Ip8"/>
+                            <constraint firstItem="ccm-2P-mAZ" firstAttribute="leading" secondItem="947-sR-cDf" secondAttribute="leadingMargin" id="vTu-j4-vmC"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="a6G-a8-tFN">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Nbm-LC-n4e">
+                            <connections>
+                                <action selector="cancelDidTap" destination="pfa-H8-CeF" id="W3E-04-ESv"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Send" id="qaK-gh-nil">
+                            <connections>
+                                <action selector="sendDidTap" destination="pfa-H8-CeF" id="MYM-xd-qVe"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="commentTextView" destination="Try-eD-5cp" id="LVu-lK-0aR"/>
+                        <outlet property="profileImageVIew" destination="ccm-2P-mAZ" id="zSO-Ne-j9t"/>
+                        <outlet property="sendButton" destination="qaK-gh-nil" id="e6W-Lk-TtD"/>
+                        <outlet property="usernameLabel" destination="Sz3-RN-nZp" id="Uce-Sa-5zs"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="klm-hq-vsd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3640.8000000000002" y="74.212893553223395"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="x3u-yW-1bG">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LAf-Mz-8Ji" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="UGA-Rh-LEG">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="pfa-H8-CeF" kind="relationship" relationship="rootViewController" id="L58-S5-Adu"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3X9-4A-5Vc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2828" y="74.212893553223395"/>
         </scene>
     </scenes>
     <resources>

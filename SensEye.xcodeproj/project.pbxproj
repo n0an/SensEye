@@ -45,6 +45,7 @@
 		186E2A2E1E34BB940011AB88 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186E2A2D1E34BB940011AB88 /* ChatViewController.swift */; };
 		1871A7E71E218154004C532E /* gallery.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1871A7E61E218154004C532E /* gallery.storyboard */; };
 		1886A2941E3938F000C6F0A4 /* UIImage+DownloadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1886A2931E3938F000C6F0A4 /* UIImage+DownloadImage.swift */; };
+		18880A7C1E43C6A30083D0B4 /* CommentComposerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18880A7B1E43C6A30083D0B4 /* CommentComposerViewController.swift */; };
 		188C04F81E1074C8008B58EB /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188C04F71E1074C8008B58EB /* FeedViewController.swift */; };
 		188C04FA1E1074D6008B58EB /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188C04F91E1074D6008B58EB /* FeedCell.swift */; };
 		188C04FC1E10FCBC008B58EB /* ServerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188C04FB1E10FCBC008B58EB /* ServerManager.swift */; };
@@ -119,6 +120,7 @@
 		186E2A2D1E34BB940011AB88 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		1871A7E61E218154004C532E /* gallery.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = gallery.storyboard; sourceTree = "<group>"; };
 		1886A2931E3938F000C6F0A4 /* UIImage+DownloadImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+DownloadImage.swift"; sourceTree = "<group>"; };
+		18880A7B1E43C6A30083D0B4 /* CommentComposerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentComposerViewController.swift; sourceTree = "<group>"; };
 		188C04F71E1074C8008B58EB /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		188C04F91E1074D6008B58EB /* FeedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
 		188C04FB1E10FCBC008B58EB /* ServerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerManager.swift; sourceTree = "<group>"; };
@@ -373,6 +375,7 @@
 				182681901E1D7C9C00D96764 /* PostViewController.swift */,
 				180231C41E12FC1D00FA8322 /* PhotoViewController.swift */,
 				18D6236B1E213AE200138117 /* AboutTableViewController.swift */,
+				18880A7B1E43C6A30083D0B4 /* CommentComposerViewController.swift */,
 				1864A9E11E157E0B0058D2E2 /* Gallery */,
 				18A9FAE51E2E9DC4004C548B /* Chat Tab */,
 			);
@@ -561,6 +564,7 @@
 				18FC625C1E113E9C00E25A18 /* Photo.swift in Sources */,
 				188FD7951E34F532007CA1EE /* IncomingMessage.swift in Sources */,
 				18AEEC4D1E2FA64D00AB97B4 /* FRStorageManager.swift in Sources */,
+				18880A7C1E43C6A30083D0B4 /* CommentComposerViewController.swift in Sources */,
 				18251C4C1E2D5B92000DBE57 /* FRAuthManager.swift in Sources */,
 				188C04F81E1074C8008B58EB /* FeedViewController.swift in Sources */,
 				184DE8AC1E15A89300E98926 /* ACRotateTransitionAnimator.swift in Sources */,

@@ -10,6 +10,8 @@ import UIKit
 
 import Jelly
 
+import Spring
+
 protocol PostViewControllerDelegate: class {
     func postViewControllerWillDisappear(withPost post: WallPost)
 }
@@ -33,6 +35,7 @@ class PostViewController: UIViewController {
         static let tableHeaderCutAway: CGFloat = 50
         
         static let seguePhotoDisplayer = "showPhoto"
+        static let segueCommentComposer = "ShowCommentComposer"
         
         static let viewControllerIdPhotoDisplayer = "PhotoNavViewController"
     }
@@ -320,6 +323,34 @@ class PostViewController: UIViewController {
         refreshMainPost()
         refreshComments()
     }
+    
+    @IBAction func commentDidTap(_ sender: DesignableButton) {
+        print("commentDidTap")
+        
+        
+        performSegue(withIdentifier: Storyboard.segueCommentComposer, sender: self.wallPost)
+
+        
+//        animateButton(sender)
+    }
+
+    
+    
+    // MARK: - NAVIGATION
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == Storyboard.segueCommentComposer {
+            
+            let destinationNVC = segue.destination as! UINavigationController
+            
+            let destinationVC = destinationNVC.topViewController as! CommentComposerViewController
+            
+            destinationVC.wallPost = self.wallPost
+            
+            
+            
+        }
+    }
 }
 
 
@@ -349,7 +380,7 @@ extension PostViewController: UITableViewDataSource {
             postCell.wallPost = self.wallPost
             postCell.delegate = self
             
-            postCell.commentButton.isEnabled = false
+//            postCell.commentButton.isEnabled = false
             
             return postCell
             

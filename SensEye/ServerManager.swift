@@ -428,11 +428,9 @@ class ServerManager {
             
             self.networkActivityIndicatorVisible = false
             
-            guard let responseRoot = responseJson.result.value as? [String: Any] else {return}
             
-            guard let response = responseRoot["response"] as? [String:Any] else {return}
             
-            completed(response)
+            completed(responseJson)
             
         }
         
