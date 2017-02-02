@@ -25,6 +25,7 @@ public let URL_WALL_FEED = "/wall.get?"
 public let URL_PHOTOS = "/photos.get?"
 public let URL_PHOTO_ALBUMS = "/photos.getAlbums?"
 public let URL_COMMENTS = "/wall.getComments?"
+public let URL_CREATE_COMMENT = "/wall.createComment?"
 public let URL_USERS = "/users.get?"
 
 public let URL_LIKES_ADD = "/likes.add?"
@@ -55,6 +56,8 @@ public enum URL_PARAMS: String {
     
     case ITEM_TYPE = "type="
     case ITEM_ID = "item_id="
+    
+    case MESSAGE = "message="
     
 }
 

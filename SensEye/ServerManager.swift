@@ -407,6 +407,40 @@ class ServerManager {
         
     }
     
+    
+    
+    func createComment(ownerID: String, postID: String, message: String, completed: @escaping (Any) -> Void) {
+        
+        var url = "\(URL_BASE)\(URL_CREATE_COMMENT)" +
+                "\(URL_PARAMS.POST_ID.rawValue)\(postID)&" +
+                "\(URL_PARAMS.OWNER_ID.rawValue)\(ownerID)&" +
+                "\(URL_PARAMS.MESSAGE.rawValue)\(message)"
+        
+        if let accessToken = self.vkAccessToken {
+            url += "&\(URL_PARAMS.ACCESS_TOKEN.rawValue)\(accessToken.token!)"
+        }
+        
+        let finalUrl = url + "&v=5.62"
+        
+        self.networkActivityIndicatorVisible = true
+        
+        Alamofire.request(finalUrl, method: .post, parameters: [:], encoding: JSONEncoding.default, headers: nil).responseJSON { (responseJson) in
+            
+            self.networkActivityIndicatorVisible = false
+            
+            guard let responseRoot = responseJson.result.value as? [String: Any] else {return}
+            
+            guard let response = responseRoot["response"] as? [String:Any] else {return}
+            
+            completed(response)
+            
+        }
+        
+    }
+    
+    
+    
+    
     // MARK: - USER FEATURE
     
     func getUserFor(userID: String, completed: @escaping AuthoizationComplete) {
