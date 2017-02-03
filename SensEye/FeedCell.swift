@@ -271,6 +271,11 @@ class FeedCell: UITableViewCell {
     @IBAction func likeDidTap(_ sender: DesignableButton) {
         print("likeDidTap")
         
+        guard ServerManager.sharedManager.currentVKUser != nil else {
+            authorize()
+            return
+        }
+        
         likeButton.isUserInteractionEnabled = false
         
         // Force likeButton userInteraction ON after 2 sec if it's off yet
@@ -280,12 +285,6 @@ class FeedCell: UITableViewCell {
                 self.likeButton.isUserInteractionEnabled = true
             }
             
-        }
-        
-        
-        guard ServerManager.sharedManager.currentVKUser != nil else {
-            authorize()
-            return
         }
         
         if currentUserLikes() {
@@ -307,6 +306,11 @@ class FeedCell: UITableViewCell {
 
     @IBAction func commentDidTap(_ sender: DesignableButton) {
         print("commentDidTap")
+        
+        guard ServerManager.sharedManager.currentVKUser != nil else {
+            authorize()
+            return
+        }
         
         self.delegate?.commentDidTap(post: self.wallPost)
         

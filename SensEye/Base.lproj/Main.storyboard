@@ -541,7 +541,7 @@
                                                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                                     </variation>
                                                                     <connections>
-                                                                        <action selector="commentDidTap:" destination="6fL-t2-rQp" eventType="touchUpInside" id="ahs-un-M39"/>
+                                                                        <action selector="commentDidTap:" destination="fxZ-yW-dBd" eventType="touchUpInside" id="arY-x4-uvW"/>
                                                                     </connections>
                                                                 </button>
                                                             </subviews>
@@ -2365,7 +2365,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="EBb-sR-AUb"/>
-        <segue reference="CZM-yF-Ip1"/>
+        <segue reference="XAA-BU-txL"/>
         <segue reference="PaE-cb-taD"/>
         <segue reference="gzW-Nu-nWk"/>
     </inferredMetricsTieBreakers>

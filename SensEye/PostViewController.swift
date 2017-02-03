@@ -10,7 +10,6 @@ import UIKit
 
 import Jelly
 
-import Spring
 
 protocol PostViewControllerDelegate: class {
     func postViewControllerWillDisappear(withPost post: WallPost)
@@ -326,15 +325,15 @@ class PostViewController: UIViewController {
         refreshComments()
     }
     
-    @IBAction func commentDidTap(_ sender: DesignableButton) {
-        print("commentDidTap")
-        
-        
-        performSegue(withIdentifier: Storyboard.segueCommentComposer, sender: self.wallPost)
-
-        
+//    @IBAction func commentDidTap(_ sender: DesignableButton) {
+//        print("commentDidTap")
+//        
+//        
+//        performSegue(withIdentifier: Storyboard.segueCommentComposer, sender: self.wallPost)
+//
+//        
 //        animateButton(sender)
-    }
+//    }
 
     
     
@@ -502,6 +501,8 @@ extension PostViewController: FeedCellDelegate {
     }
     
     func commentDidTap(post: WallPost) {
+        
+        performSegue(withIdentifier: Storyboard.segueCommentComposer, sender: post)
         
     }
     

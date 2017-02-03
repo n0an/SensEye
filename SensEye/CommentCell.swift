@@ -216,6 +216,11 @@ class CommentCell: UITableViewCell {
     @IBAction func likeDidTap(_ sender: DesignableButton) {
         print("likeDidTap")
         
+        guard ServerManager.sharedManager.currentVKUser != nil else {
+            authorize()
+            return
+        }
+        
         likeButton.isUserInteractionEnabled = false
         
         // Force likeButton userInteraction ON after 2 sec if it's off yet
@@ -225,11 +230,6 @@ class CommentCell: UITableViewCell {
                 self.likeButton.isUserInteractionEnabled = true
             }
             
-        }
-        
-        guard ServerManager.sharedManager.currentVKUser != nil else {
-            authorize()
-            return
         }
         
         if currentUserLikes() {
