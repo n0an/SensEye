@@ -172,7 +172,7 @@ class FRAuthManager: NSObject {
                     userRef.child("username").setValue(fullName)
                     userRef.child("email").setValue(email)
                     userRef.child("provider").setValue(provider)
-                    
+                    userRef.child("pushId").setValue("")
                     
                     onComplete?(nil, firuser)
                     
@@ -324,7 +324,8 @@ extension FRAuthManager: GIDSignInDelegate {
             userRef.child("username").setValue(fullName)
             userRef.child("email").setValue(email)
             userRef.child("provider").setValue(provider)
-            
+            userRef.child("pushId").setValue("")
+
         })
     }
     
