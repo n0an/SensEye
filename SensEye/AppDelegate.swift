@@ -23,6 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     
     // MARK: - SplitViewController configuration
     var splitViewController: MySplitViewController {
+        
+
         let rootTabController = window!.rootViewController as! UITabBarController
         
         let splitVC = rootTabController.viewControllers![3] as! MySplitViewController

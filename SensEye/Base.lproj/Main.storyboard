@@ -304,7 +304,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="A3C-Wr-iaq">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="XUV-1z-m8F" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="mainTabBarController" automaticallyAdjustsScrollViewInsets="NO" id="XUV-1z-m8F" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="Vtb-kg-Jsv">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
@@ -1844,14 +1844,14 @@
                                 </constraints>
                             </stackView>
                             <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-defaultAvatar" translatesAutoresizingMaskIntoConstraints="NO" id="auM-bd-Jf6" customClass="CircleImageView" customModule="SensEye" customModuleProvider="target">
-                                <rect key="frame" x="147.5" y="80" width="80" height="80"/>
+                                <rect key="frame" x="148" y="80" width="80" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="Cgw-jw-W1V"/>
                                     <constraint firstAttribute="height" constant="80" id="JIj-y8-coc"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P0a-vy-Xiy">
-                                <rect key="frame" x="111.5" y="168" width="152" height="30"/>
+                                <rect key="frame" x="112" y="168" width="152" height="30"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                 <state key="normal" title="Change Profile Photo">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2342,6 +2342,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3X9-4A-5Vc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2828" y="74.212893553223395"/>
+        </scene>
+        <!--Splash Logo View Controller-->
+        <scene sceneID="zG8-xY-RbG">
+            <objects>
+                <viewController storyboardIdentifier="SplashLogoViewController" id="cIg-Ma-XCu" customClass="SplashLogoViewController" customModule="SensEye" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ExU-GD-20u"/>
+                        <viewControllerLayoutGuide type="bottom" id="qtO-vl-Rsf"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="UFL-TI-CCB">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="F0h-P4-gz5" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="31" y="912"/>
         </scene>
     </scenes>
     <resources>

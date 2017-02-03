@@ -22,6 +22,16 @@
 		1826818F1E1D79D300D96764 /* ServerObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1826818E1E1D79D300D96764 /* ServerObject.swift */; };
 		182681911E1D7C9C00D96764 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182681901E1D7C9C00D96764 /* PostViewController.swift */; };
 		182681931E1D822500D96764 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182681921E1D822500D96764 /* CommentCell.swift */; };
+		182C8AFC1E44839C00DDF748 /* SplashScreenUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 182C8AFA1E44839C00DDF748 /* SplashScreenUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		182C8AFF1E44839C00DDF748 /* SplashScreenUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 182C8AF81E44839C00DDF748 /* SplashScreenUI.framework */; };
+		182C8B001E44839C00DDF748 /* SplashScreenUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 182C8AF81E44839C00DDF748 /* SplashScreenUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		182C8B0A1E4483E300DDF748 /* AnimatedULogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182C8B051E4483E300DDF748 /* AnimatedULogoView.swift */; };
+		182C8B0B1E4483E300DDF748 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182C8B061E4483E300DDF748 /* SplashViewController.swift */; };
+		182C8B0C1E4483E300DDF748 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182C8B071E4483E300DDF748 /* Constants.swift */; };
+		182C8B0D1E4483E300DDF748 /* TileGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182C8B081E4483E300DDF748 /* TileGridView.swift */; };
+		182C8B0E1E4483E300DDF748 /* TileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182C8B091E4483E300DDF748 /* TileView.swift */; };
+		182C8B101E4483F200DDF748 /* Chimes.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 182C8B0F1E4483F200DDF748 /* Chimes.xcassets */; };
+		182C8B121E4485FD00DDF748 /* SplashLogoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182C8B111E4485FD00DDF748 /* SplashLogoViewController.swift */; };
 		1838C2411E110A7700E02F88 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1838C2401E110A7700E02F88 /* Constants.swift */; };
 		1838C2431E11193E00E02F88 /* WallPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1838C2421E11193E00E02F88 /* WallPost.swift */; };
 		1838C2471E112CA200E02F88 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1838C2461E112CA200E02F88 /* Group.swift */; };
@@ -82,6 +92,30 @@
 		18FC62631E11545D00E25A18 /* PostPhotoGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FC62621E11545D00E25A18 /* PostPhotoGallery.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		182C8AFD1E44839C00DDF748 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 18AA37C51E1053F700D5BCB1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 182C8AF71E44839C00DDF748;
+			remoteInfo = SplashScreenUI;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		182C8B041E44839C00DDF748 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				182C8B001E44839C00DDF748 /* SplashScreenUI.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		180231C41E12FC1D00FA8322 /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		180231CC1E1456C600FA8322 /* AlbumsContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumsContentViewController.swift; sourceTree = "<group>"; };
@@ -97,6 +131,16 @@
 		1826818E1E1D79D300D96764 /* ServerObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerObject.swift; sourceTree = "<group>"; };
 		182681901E1D7C9C00D96764 /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		182681921E1D822500D96764 /* CommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
+		182C8AF81E44839C00DDF748 /* SplashScreenUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SplashScreenUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		182C8AFA1E44839C00DDF748 /* SplashScreenUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SplashScreenUI.h; sourceTree = "<group>"; };
+		182C8AFB1E44839C00DDF748 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		182C8B051E4483E300DDF748 /* AnimatedULogoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedULogoView.swift; sourceTree = "<group>"; };
+		182C8B061E4483E300DDF748 /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		182C8B071E4483E300DDF748 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		182C8B081E4483E300DDF748 /* TileGridView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TileGridView.swift; sourceTree = "<group>"; };
+		182C8B091E4483E300DDF748 /* TileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TileView.swift; sourceTree = "<group>"; };
+		182C8B0F1E4483F200DDF748 /* Chimes.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Chimes.xcassets; sourceTree = "<group>"; };
+		182C8B111E4485FD00DDF748 /* SplashLogoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashLogoViewController.swift; sourceTree = "<group>"; };
 		1838C2401E110A7700E02F88 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		1838C2421E11193E00E02F88 /* WallPost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WallPost.swift; sourceTree = "<group>"; };
 		1838C2461E112CA200E02F88 /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
@@ -166,11 +210,19 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		182C8AF41E44839C00DDF748 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		18AA37CA1E1053F700D5BCB1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				09C1CA3DBDD28430D4747B49 /* Pods_SensEye.framework in Frameworks */,
+				182C8AFF1E44839C00DDF748 /* SplashScreenUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -196,6 +248,21 @@
 				18AEEC4C1E2FA64D00AB97B4 /* FRStorageManager.swift */,
 			);
 			name = Firebase;
+			sourceTree = "<group>";
+		};
+		182C8AF91E44839C00DDF748 /* SplashScreenUI */ = {
+			isa = PBXGroup;
+			children = (
+				182C8AFA1E44839C00DDF748 /* SplashScreenUI.h */,
+				182C8AFB1E44839C00DDF748 /* Info.plist */,
+				182C8B051E4483E300DDF748 /* AnimatedULogoView.swift */,
+				182C8B061E4483E300DDF748 /* SplashViewController.swift */,
+				182C8B071E4483E300DDF748 /* Constants.swift */,
+				182C8B081E4483E300DDF748 /* TileGridView.swift */,
+				182C8B091E4483E300DDF748 /* TileView.swift */,
+				182C8B0F1E4483F200DDF748 /* Chimes.xcassets */,
+			);
+			path = SplashScreenUI;
 			sourceTree = "<group>";
 		};
 		184DE8A81E15A3AE00E98926 /* Transition Animators */ = {
@@ -250,6 +317,7 @@
 			isa = PBXGroup;
 			children = (
 				18AA37CF1E1053F700D5BCB1 /* SensEye */,
+				182C8AF91E44839C00DDF748 /* SplashScreenUI */,
 				18AA37CE1E1053F700D5BCB1 /* Products */,
 				615055B3EAF5419CDCCB3084 /* Pods */,
 				1FD0F3EE1A61ED817B9FBE00 /* Frameworks */,
@@ -260,6 +328,7 @@
 			isa = PBXGroup;
 			children = (
 				18AA37CD1E1053F700D5BCB1 /* SensEye.app */,
+				182C8AF81E44839C00DDF748 /* SplashScreenUI.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -269,6 +338,7 @@
 			children = (
 				188FD7981E3544C4007CA1EE /* SensEye.entitlements */,
 				18AA37D01E1053F700D5BCB1 /* AppDelegate.swift */,
+				182C8B111E4485FD00DDF748 /* SplashLogoViewController.swift */,
 				18C395331E166D1D00AE1867 /* Extensions */,
 				18FC625F1E114C1700E25A18 /* Model */,
 				18FC62601E114C1F00E25A18 /* View */,
@@ -401,7 +471,36 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		182C8AF51E44839C00DDF748 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				182C8AFC1E44839C00DDF748 /* SplashScreenUI.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
+		182C8AF71E44839C00DDF748 /* SplashScreenUI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 182C8B031E44839C00DDF748 /* Build configuration list for PBXNativeTarget "SplashScreenUI" */;
+			buildPhases = (
+				182C8AF31E44839C00DDF748 /* Sources */,
+				182C8AF41E44839C00DDF748 /* Frameworks */,
+				182C8AF51E44839C00DDF748 /* Headers */,
+				182C8AF61E44839C00DDF748 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SplashScreenUI;
+			productName = SplashScreenUI;
+			productReference = 182C8AF81E44839C00DDF748 /* SplashScreenUI.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		18AA37CC1E1053F700D5BCB1 /* SensEye */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 18AA37DF1E1053F700D5BCB1 /* Build configuration list for PBXNativeTarget "SensEye" */;
@@ -412,10 +511,12 @@
 				18AA37CB1E1053F700D5BCB1 /* Resources */,
 				76D7A33ECF2ECE81501A08BA /* [CP] Embed Pods Frameworks */,
 				6DD31144CE27AC68FB96DF7F /* [CP] Copy Pods Resources */,
+				182C8B041E44839C00DDF748 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				182C8AFE1E44839C00DDF748 /* PBXTargetDependency */,
 			);
 			name = SensEye;
 			productName = SensEye;
@@ -432,6 +533,12 @@
 				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Anton Novoselov";
 				TargetAttributes = {
+					182C8AF71E44839C00DDF748 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 358V8FBM3U;
+						LastSwiftMigration = 0820;
+						ProvisioningStyle = Automatic;
+					};
 					18AA37CC1E1053F700D5BCB1 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 358V8FBM3U;
@@ -465,11 +572,20 @@
 			projectRoot = "";
 			targets = (
 				18AA37CC1E1053F700D5BCB1 /* SensEye */,
+				182C8AF71E44839C00DDF748 /* SplashScreenUI */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		182C8AF61E44839C00DDF748 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				182C8B101E4483F200DDF748 /* Chimes.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		18AA37CB1E1053F700D5BCB1 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -536,6 +652,18 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		182C8AF31E44839C00DDF748 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				182C8B0D1E4483E300DDF748 /* TileGridView.swift in Sources */,
+				182C8B0A1E4483E300DDF748 /* AnimatedULogoView.swift in Sources */,
+				182C8B0B1E4483E300DDF748 /* SplashViewController.swift in Sources */,
+				182C8B0E1E4483E300DDF748 /* TileView.swift in Sources */,
+				182C8B0C1E4483E300DDF748 /* Constants.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		18AA37C91E1053F700D5BCB1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -550,6 +678,7 @@
 				18D6236C1E213AE200138117 /* AboutTableViewController.swift in Sources */,
 				18251C511E2D5FCB000DBE57 /* FRDataManager.swift in Sources */,
 				18AEEC4B1E2FA30600AB97B4 /* UIImage+resize.swift in Sources */,
+				182C8B121E4485FD00DDF748 /* SplashLogoViewController.swift in Sources */,
 				1838C2471E112CA200E02F88 /* Group.swift in Sources */,
 				1826818D1E1D781000D96764 /* Comment.swift in Sources */,
 				18251C481E2D51A5000DBE57 /* UITextField+Placeholder.swift in Sources */,
@@ -609,6 +738,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		182C8AFE1E44839C00DDF748 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 182C8AF71E44839C00DDF748 /* SplashScreenUI */;
+			targetProxy = 182C8AFD1E44839C00DDF748 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		18AA37D41E1053F700D5BCB1 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -637,6 +774,53 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		182C8B011E44839C00DDF748 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 358V8FBM3U;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = SplashScreenUI/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.antonnovoselov.SplashScreenUI;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		182C8B021E44839C00DDF748 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 358V8FBM3U;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = SplashScreenUI/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.antonnovoselov.SplashScreenUI;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		18AA37DD1E1053F700D5BCB1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -734,6 +918,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 80BE74E4C44AE3ED1571EFE9 /* Pods-SensEye.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = SensEye/SensEye.entitlements;
@@ -752,6 +937,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 26E532DE5ABFA138EDDEDBB4 /* Pods-SensEye.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = SensEye/SensEye.entitlements;
@@ -768,6 +954,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		182C8B031E44839C00DDF748 /* Build configuration list for PBXNativeTarget "SplashScreenUI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				182C8B011E44839C00DDF748 /* Debug */,
+				182C8B021E44839C00DDF748 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		18AA37C81E1053F700D5BCB1 /* Build configuration list for PBXProject "SensEye" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

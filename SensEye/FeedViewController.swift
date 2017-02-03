@@ -48,6 +48,8 @@ class FeedViewController: UIViewController {
     var logoImageView: UIImageView!
     var isLogoAnimating = false
     
+    var splashAnimated = false
+    
     // MARK: - viewDidLoad
 
     override func viewDidLoad() {
@@ -87,9 +89,31 @@ class FeedViewController: UIViewController {
         
         listenForAuthenticationNotification()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        
+        
+    }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        
+        if splashAnimated == false {
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            
+            let splashLogoVC = storyboard.instantiateViewController(withIdentifier: "SplashLogoViewController") as! SplashLogoViewController
+            
+            
+            self.present(splashLogoVC, animated: false, completion: nil)
+            
+            self.splashAnimated = true
+            
+        }
+        
         
         let currentVKUser = ServerManager.sharedManager.currentVKUser
         

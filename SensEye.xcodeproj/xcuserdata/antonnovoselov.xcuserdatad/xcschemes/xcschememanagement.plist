@@ -9,9 +9,19 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>SplashScreenUI.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>23</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>182C8AF71E44839C00DDF748</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>18AA37CC1E1053F700D5BCB1</key>
 		<dict>
 			<key>primary</key>

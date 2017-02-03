@@ -196,12 +196,18 @@ class GeneralHelper {
         
     }
     
-    public func invoke(afterTimeInMs timeMs: Int, code: @escaping () -> Void) {
+    public func invoke(afterTimeInMs timeMs: Int, code: @escaping ()->()) {
         
         let deadLineTime = DispatchTime.now() + .milliseconds(timeMs)
 
         DispatchQueue.main.asyncAfter(deadline: deadLineTime, execute: code)
         
+    }
+    
+    
+    public func delay(_ delay:Double, closure:@escaping ()->()) {
+        DispatchQueue.main.asyncAfter(
+            deadline: DispatchTime.now() + Double(Int64(delay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: closure)
     }
     
 
