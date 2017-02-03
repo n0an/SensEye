@@ -288,6 +288,56 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     
     
     
+    
+    func sendGreetingMessage(_ newChat: FRChat) {
+        
+        let ref = FRDataManager.sharedManager.REF_USERS
+        
+        ref.queryOrdered(byChild: "email").queryEqual(toValue: GeneralHelper.sharedHelper.appOwnerEmail).observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                
+                if let snap = snapshot.first {
+                    
+                    let appOwnerUser = FRUser(uid: snap.key, dictionary: snap.value as! [String: Any])
+                    
+                    let greetingMessage = FRMessage(chatId: newChat.uid, senderUID: appOwnerUser.uid, senderDisplayName: "Elena Senseye", text: "Здравствуйте, я могу Вам чем-то помочь?")
+                    
+                    greetingMessage.save()
+                    
+                    newChat.send(message: greetingMessage)
+                    
+                    
+                    let chatDictionary = [
+                        "chatUid": newChat.uid,
+                        "lastMessage": newChat.lastMessage,
+                        "withUserUID": newChat.withUserUID,
+                        "withUserName": newChat.withUserName,
+                        "messagesCount": newChat.messagesCount,
+                        "lastUpdate": Date().timeIntervalSince1970 * 1000
+                        ] as [String : Any]
+                    
+                    
+                    KeychainWrapper.standard.set(chatDictionary as NSDictionary, forKey: KEY_CHAT_OF_USER)
+                    
+                    
+                    self.performSegue(withIdentifier: Storyboard.segueShowChatVC, sender: newChat)
+                    
+                    
+                    
+                }
+                
+            }
+            
+            
+            
+        })
+        
+    }
+    
+    
+    
+    
     func customerChatVarQueryEqual1() {
         
         
@@ -340,27 +390,29 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
                     
                     newChat.save()
                     
-                    let greetingMessage = FRMessage(chatId: newChat.uid, senderUID: GeneralHelper.sharedHelper.appOwnerEmail, senderDisplayName: "Elena Senseye", text: "Здравствуйте, я могу Вам чем-то помочь?")
+                    self.sendGreetingMessage(newChat)
                     
-                    greetingMessage.save()
-                    
-                    newChat.send(message: greetingMessage)
-                    
-                    
-                    let chatDictionary = [
-                        "chatUid": newChat.uid,
-                        "lastMessage": newChat.lastMessage,
-                        "withUserUID": newChat.withUserUID,
-                        "withUserName": newChat.withUserName,
-                        "messagesCount": newChat.messagesCount,
-                        "lastUpdate": Date().timeIntervalSince1970 * 1000
-                        ] as [String : Any]
-                    
-                    
-                    KeychainWrapper.standard.set(chatDictionary as NSDictionary, forKey: KEY_CHAT_OF_USER)
-                    
-                    
-                    self.performSegue(withIdentifier: Storyboard.segueShowChatVC, sender: newChat)
+//                    let greetingMessage = FRMessage(chatId: newChat.uid, senderUID: GeneralHelper.sharedHelper.appOwnerEmail, senderDisplayName: "Elena Senseye", text: "Здравствуйте, я могу Вам чем-то помочь?")
+//                    
+//                    greetingMessage.save()
+//                    
+//                    newChat.send(message: greetingMessage)
+//                    
+//                    
+//                    let chatDictionary = [
+//                        "chatUid": newChat.uid,
+//                        "lastMessage": newChat.lastMessage,
+//                        "withUserUID": newChat.withUserUID,
+//                        "withUserName": newChat.withUserName,
+//                        "messagesCount": newChat.messagesCount,
+//                        "lastUpdate": Date().timeIntervalSince1970 * 1000
+//                        ] as [String : Any]
+//                    
+//                    
+//                    KeychainWrapper.standard.set(chatDictionary as NSDictionary, forKey: KEY_CHAT_OF_USER)
+//                    
+//                    
+//                    self.performSegue(withIdentifier: Storyboard.segueShowChatVC, sender: newChat)
                     
                     
                 }
@@ -374,6 +426,9 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
             
 
         }
+        
+        
+        
         
         
         
