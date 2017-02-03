@@ -317,7 +317,6 @@
 			isa = PBXGroup;
 			children = (
 				18AA37CF1E1053F700D5BCB1 /* SensEye */,
-				182C8AF91E44839C00DDF748 /* SplashScreenUI */,
 				18AA37CE1E1053F700D5BCB1 /* Products */,
 				615055B3EAF5419CDCCB3084 /* Pods */,
 				1FD0F3EE1A61ED817B9FBE00 /* Frameworks */,
@@ -455,6 +454,7 @@
 		1FD0F3EE1A61ED817B9FBE00 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				182C8AF91E44839C00DDF748 /* SplashScreenUI */,
 				F1F6287F56849E930AFED5DA /* Pods_SensEye.framework */,
 			);
 			name = Frameworks;

@@ -57,6 +57,19 @@ class FeedViewController: UIViewController {
         
         view.tintColor = UIColor(red: 20/255, green: 160/255, blue: 160/255, alpha: 1)
         
+//        if splashAnimated == false {
+//            
+//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//            
+//            let splashLogoVC = storyboard.instantiateViewController(withIdentifier: "SplashLogoViewController") as! SplashLogoViewController
+//            
+//            
+//            self.present(splashLogoVC, animated: false, completion: nil)
+//            
+//            self.splashAnimated = true
+//            
+//        }
+        
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -93,26 +106,10 @@ class FeedViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        
-        
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        
-        if splashAnimated == false {
-            
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            
-            let splashLogoVC = storyboard.instantiateViewController(withIdentifier: "SplashLogoViewController") as! SplashLogoViewController
-            
-            
-            self.present(splashLogoVC, animated: false, completion: nil)
-            
-            self.splashAnimated = true
-            
-        }
         
         
         let currentVKUser = ServerManager.sharedManager.currentVKUser
@@ -148,7 +145,12 @@ class FeedViewController: UIViewController {
     }
     
     deinit {
-        NotificationCenter.default.removeObserver(observer)
+        
+        if observer != nil {
+            
+            NotificationCenter.default.removeObserver(observer)
+        }
+        
         NotificationCenter.default.removeObserver(self)
     }
 

@@ -55,7 +55,7 @@ class SplashLogoViewController: UIViewController {
     func showSplashViewController() {
         showSplashViewControllerNoPing()
         
-        GeneralHelper.sharedHelper.delay(5.00) {
+        GeneralHelper.sharedHelper.delay(4.00) {
             self.showMainTabBarController()
         }
     }
@@ -63,78 +63,74 @@ class SplashLogoViewController: UIViewController {
     
     func showMainTabBarController() {
         
-        self.dismiss(animated: false, completion: nil)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
-        
-//        guard !(rootViewController is UITabBarController) else { return }
-//
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        
-//        let mainTabBarController = storyboard.instantiateViewController(withIdentifier: "mainTabBarController") as! UITabBarController
-//        
-//        mainTabBarController.willMove(toParentViewController: self)
-//        
-//        addChildViewController(mainTabBarController)
-//        
-//        if let rootViewController = self.rootViewController {
-//            
-//            self.rootViewController = mainTabBarController
-//            
-//            rootViewController.willMove(toParentViewController: nil)
-//            
-//            transition(from: rootViewController, to: mainTabBarController, duration: 0.55, options: [.transitionCrossDissolve, .curveEaseOut], animations: { () -> Void in
-//                
-//            }, completion: { _ in
-//                mainTabBarController.didMove(toParentViewController: self)
-//                rootViewController.removeFromParentViewController()
-//                rootViewController.didMove(toParentViewController: nil)
-//            })
-//        } else {
-//            rootViewController = mainTabBarController
-//            view.addSubview(mainTabBarController.view)
-//            mainTabBarController.didMove(toParentViewController: self)
-//        }
+        let mainTabBarController = storyboard.instantiateViewController(withIdentifier: "mainTabBarController") as! UITabBarController
 
+
+        UIApplication.shared.keyWindow?.rootViewController = mainTabBarController
+        
+        
+//        let ad = UIApplication.shared.delegate as! AppDelegate
+//        
+//        ad.window?.rootViewController = mainTabBarController
+        
+        
+        
+        
+        
+        /* FANCY TRANSITION BUT TOO COMPLEX
+        guard !(rootViewController is UITabBarController) else { return }
+
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        let mainTabBarController = storyboard.instantiateViewController(withIdentifier: "mainTabBarController") as! UITabBarController
+        
+        mainTabBarController.willMove(toParentViewController: self)
+        
+        addChildViewController(mainTabBarController)
+        
+        if let rootViewController = self.rootViewController {
+            
+            self.rootViewController = mainTabBarController
+            
+            rootViewController.willMove(toParentViewController: nil)
+            
+            transition(from: rootViewController, to: mainTabBarController, duration: 0.55, options: [.transitionCrossDissolve, .curveEaseOut], animations: { () -> Void in
+                
+            }, completion: { _ in
+                mainTabBarController.didMove(toParentViewController: self)
+                rootViewController.removeFromParentViewController()
+                rootViewController.didMove(toParentViewController: nil)
+            })
+        } else {
+            rootViewController = mainTabBarController
+            view.addSubview(mainTabBarController.view)
+            mainTabBarController.didMove(toParentViewController: self)
+        }
+        
+        
+        */
+        
         
     }
     
     
-    /// Displays the MapViewController
-//    func showMenuNavigationViewController() {
-//        guard !(rootViewController is MenuNavigationViewController) else { return }
-//        
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        let nav =  storyboard.instantiateViewController(withIdentifier: "MenuNavigationController") as! UINavigationController
-//        nav.willMove(toParentViewController: self)
-//        addChildViewController(nav)
-//        
-//        if let rootViewController = self.rootViewController {
-//            self.rootViewController = nav
-//            rootViewController.willMove(toParentViewController: nil)
-//            
-//            transition(from: rootViewController, to: nav, duration: 0.55, options: [.transitionCrossDissolve, .curveEaseOut], animations: { () -> Void in
-//                
-//            }, completion: { _ in
-//                nav.didMove(toParentViewController: self)
-//                rootViewController.removeFromParentViewController()
-//                rootViewController.didMove(toParentViewController: nil)
-//            })
-//        } else {
-//            rootViewController = nav
-//            view.addSubview(nav.view)
-//            nav.didMove(toParentViewController: self)
-//        }
-//    }
+    
+    
     
     
     override var prefersStatusBarHidden : Bool {
-        switch rootViewController  {
-        case is SplashViewController:
-            return true
-        case is UITabBarController:
-            return false
-        default:
-            return false
-        }
+        
+        return true
+        
+//        switch rootViewController  {
+//        case is SplashViewController:
+//            return true
+//        case is UITabBarController:
+//            return false
+//        default:
+//            return false
+//        }
     }
 }
