@@ -17,11 +17,17 @@ class AboutTableViewController: UITableViewController {
     
     var sectionTitles = ["Связаться со мной", "Соцсети", "Обо мне"]
     
-    var connections = ["Напишите мне письмо", "Skype: elena.senseye"]
+//    var connections = ["Напишите мне письмо", "Skype: elena.senseye"]
+    
+    var connections = [
+                Contact(imageName: "about-icon-email", labelText: "Напишите мне письмо", link: ""),
+                Contact(imageName: "about-icon-skype", labelText: "Skype: elena.senseye", link: "")
+    
+    ]
     
     var socNet = [
-        Contact(imageName: "icon-facebook", labelText: "Facebook", link: "https://facebook.com/elena.senseye"),
-        Contact(imageName: "icon-twitter", labelText: "Instagram", link: "https://instagram.com/elena.senseye"),
+        Contact(imageName: "about-icon-facebook", labelText: "Facebook", link: "https://facebook.com/elena.senseye"),
+        Contact(imageName: "about-icon-instagram", labelText: "Instagram", link: "https://instagram.com/elena.senseye"),
         Contact(imageName: "vk", labelText: "VK", link: "https://vk.com/elena_senseye")
     ]
     
@@ -162,14 +168,25 @@ class AboutTableViewController: UITableViewController {
         switch indexPath.section {
         case TableViewSection.connections.rawValue:
             
-            let cell = tableView.dequeueReusableCell(withIdentifier: Storyboard.cellConnection, for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: Storyboard.cellIdSocNet, for: indexPath) as! AboutCellSocnet
             
             let connection = self.connections[indexPath.row]
             
-            cell.textLabel?.text = connection
+            cell.contactLabel.text = connection.labelText
+            cell.iconImageView.image = UIImage(named: connection.imageName)
             
             
             return cell
+            
+            
+//            let cell = tableView.dequeueReusableCell(withIdentifier: Storyboard.cellConnection, for: indexPath)
+//            
+//            let connection = self.connections[indexPath.row]
+//            
+//            cell.textLabel?.text = connection
+//            
+//            
+//            return cell
             
         case TableViewSection.socNet.rawValue:
             
