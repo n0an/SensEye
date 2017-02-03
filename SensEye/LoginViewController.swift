@@ -22,7 +22,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: DesignableButton!
-
+    
     // MARK: - PROPERTIES
     enum Storyboard {
         static let segueShowRecentChats = "showRecentChatsViewController"
@@ -36,7 +36,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        forceLogout()
+        //        forceLogout()
         
         FIRAuth.auth()?.addStateDidChangeListener({ (auth, user) in
             
@@ -46,7 +46,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
                     return
                 }
                 
-                SwiftSpinner.show("Entering chat").addTapHandler({ 
+                SwiftSpinner.show("Entering chat").addTapHandler({
                     SwiftSpinner.hide()
                 })
                 
@@ -66,7 +66,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
                     DispatchQueue.main.async {
                         
                         print("===NAG=== GO TO CHAT FROM addStateDidChangeListener")
-
+                        
                         
                         self.goToMessenger()
                     }
@@ -82,10 +82,10 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
                             self.currentUser = FRAuthManager.sharedManager.currentUser
                             
                             let userDictionary = [
-                                        "uid": self.currentUser.uid,
-                                        "username": self.currentUser.username,
-                                        "pushId": self.currentUser.pushId!,
-                                        "email": self.currentUser.email
+                                "uid": self.currentUser.uid,
+                                "username": self.currentUser.username,
+                                "pushId": self.currentUser.pushId!,
+                                "email": self.currentUser.email
                             ]
                             
                             
@@ -95,7 +95,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
                             
                             DispatchQueue.main.async {
                                 
-
+                                
                                 self.goToMessenger()
                             }
                         }
@@ -106,13 +106,13 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
                 
                 
             } else {
-     
+                
                 self.currentUser = nil
             }
             
         })
-
-
+        
+        
         
         emailTextField.delegate = self
         passwordTextField.delegate = self
@@ -122,20 +122,20 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
         
         // Google Login
         GIDSignIn.sharedInstance().uiDelegate = self
-
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-//        emailTextField.becomeFirstResponder()
+        //        emailTextField.becomeFirstResponder()
         
         if self.currentUser != nil {
             return
         }
         
         if let userDict = KeychainWrapper.standard.object(forKey: KEY_CHAT_USER) as? [String: Any] {
-
+            
             print("saved chat user = \(userDict)")
             
             let uid = userDict["uid"] as! String
@@ -232,10 +232,45 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     }
     
     
+    
     func goCustomerChat() {
         
+        FRDataManager.sharedManager.REF_CHATS.child(currentUser.uid).observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            
+            if snapshot.exists() {
+                print("snapshot.exists(). GO TO CHAT VIEW CONTROLLER")
+                
+                let chat = FRChat(uid: snapshot.key, dictionary: snapshot.value as! [String: Any])
+                
+                self.performSegue(withIdentifier: Storyboard.segueShowChatVC, sender: chat)
+                
+                
+                
+            } else {
+                
+                print("snapshot NOT exists(). CREATE NEW CHAT AND GO TO CHAT VIEW CONTROLLER")
+                
+                let newChat = FRChat(withUserName: self.currentUser.username, withUserUID: self.currentUser.uid)
+                
+                newChat.save()
+                
+                self.sendGreetingMessage(newChat)
+                
+                
+            }
+        })
+        
+        
+        
+    }
+    
+    
+    func goCustomerChatWithChatCaching() {
+        
+        
         if let chatDict = KeychainWrapper.standard.object(forKey: KEY_CHAT_OF_USER) as? [String: Any] {
-
+            
             print("saved chat = \(chatDict)")
             
             let uid = chatDict["chatUid"] as! String
@@ -253,7 +288,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
                 
                 if snapshot.exists() {
                     print("snapshot.exists(). GO TO CHAT VIEW CONTROLLER")
-
+                    
                     let chat = FRChat(uid: snapshot.key, dictionary: snapshot.value as! [String: Any])
                     
                     
@@ -283,7 +318,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
                     newChat.save()
                     
                     self.sendGreetingMessage(newChat)
-                
+                    
                     
                 }
             })
@@ -297,7 +332,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     func resignKeyboard() {
         self.view.endEditing(true)
     }
-
+    
     
     
     // MARK: - ACTIONS
@@ -308,9 +343,9 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
         // Dismiss keyboard
         self.view.endEditing(true)
         
-        SwiftSpinner.show("Logging in").addTapHandler ({
-            SwiftSpinner.hide()
-        })
+        //        SwiftSpinner.show("Logging in").addTapHandler ({
+        //            SwiftSpinner.hide()
+        //        })
         
         FRAuthManager.sharedManager.loginWithFacebook(viewController: self) { (errorString) in
             
@@ -349,8 +384,8 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
         
         guard let email = emailTextField.text, email != "",
             let password = passwordTextField.text, password != "" else {
-            self.alert(title: "Error", message: "Enter your email and password")
-            return
+                self.alert(title: "Error", message: "Enter your email and password")
+                return
         }
         
         // Dismiss keyboard
@@ -389,9 +424,9 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
             
             let chatVC = segue.destination as! ChatViewController
             
-          
+            
             let selectedChat = sender as! FRChat
-
+            
             
             chatVC.currentUser = currentUser
             
@@ -409,8 +444,8 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
         
         
     }
-
-
+    
+    
 }
 
 
