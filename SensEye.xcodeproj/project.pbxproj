@@ -961,6 +961,7 @@
 				182C8B021E44839C00DDF748 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		18AA37C81E1053F700D5BCB1 /* Build configuration list for PBXProject "SensEye" */ = {
 			isa = XCConfigurationList;
