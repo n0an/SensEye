@@ -22,7 +22,7 @@ class AboutTableViewController: UITableViewController {
     var socNet = [
         Contact(imageName: "icon-facebook", labelText: "Facebook", link: "https://facebook.com/elena.senseye"),
         Contact(imageName: "icon-twitter", labelText: "Instagram", link: "https://instagram.com/elena.senseye"),
-        Contact(imageName: "icon-twitter", labelText: "VK", link: "https://vk.com/elena_senseye")
+        Contact(imageName: "vk", labelText: "VK", link: "https://vk.com/elena_senseye")
     ]
     
     // MARK: - ENUMS

@@ -322,11 +322,11 @@
             </objects>
             <point key="canvasLocation" x="1088.8" y="911.69415292353835"/>
         </scene>
-        <!--My Split View Controller-->
+        <!--Gallery-->
         <scene sceneID="7Vf-tM-YaI">
             <objects>
                 <splitViewController id="4Yy-cx-Cyb" customClass="MySplitViewController" customModule="SensEye" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="featured" id="8mI-vu-jSd"/>
+                    <tabBarItem key="tabBarItem" title="Gallery" image="tabBarIcon-Gallery" selectedImage="tabBarIcon-Gallery-filled" id="8mI-vu-jSd"/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
                         <segue destination="GPa-NQ-tH1" kind="relationship" relationship="masterViewController" id="CIl-6f-tUr"/>
@@ -1977,11 +1977,11 @@
             </objects>
             <point key="canvasLocation" x="1182" y="3993"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Chat-->
         <scene sceneID="w8A-XE-ybG">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bln-RT-Wcb" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="contacts" id="e7a-ta-sOH"/>
+                    <tabBarItem key="tabBarItem" title="Chat" image="tabBarIcon-Chat" selectedImage="tabBarIcon-Chat-filled" id="e7a-ta-sOH"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="uO9-me-3qC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -2383,9 +2383,13 @@
         <image name="lock-1" width="20" height="27"/>
         <image name="nametag" width="24" height="20"/>
         <image name="space" width="1200" height="675"/>
+        <image name="tabBarIcon-Chat" width="30" height="20"/>
+        <image name="tabBarIcon-Chat-filled" width="30" height="20"/>
+        <image name="tabBarIcon-Gallery" width="30" height="28"/>
+        <image name="tabBarIcon-Gallery-filled" width="30" height="28"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="PaE-cb-taD"/>
+        <segue reference="ab7-EX-XUD"/>
         <segue reference="XAA-BU-txL"/>
         <segue reference="hci-Zb-C6g"/>
         <segue reference="EBb-sR-AUb"/>

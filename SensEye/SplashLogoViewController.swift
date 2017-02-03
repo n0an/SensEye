@@ -20,6 +20,10 @@ class SplashLogoViewController: UIViewController {
             showSplashViewController()
     }
     
+    override var shouldAutorotate: Bool {
+        return false
+    }
+    
     deinit {
         print("SplashLogoViewController deinit")
     }
