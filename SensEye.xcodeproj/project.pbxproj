@@ -12,7 +12,7 @@
 		180231CE1E1456C600FA8322 /* AlbumsContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180231CC1E1456C600FA8322 /* AlbumsContentViewController.swift */; };
 		180231CF1E1456C600FA8322 /* AlbumsPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180231CD1E1456C600FA8322 /* AlbumsPageViewController.swift */; };
 		180610C51E37CE0A0074ED86 /* secretsFile.txt in Resources */ = {isa = PBXBuildFile; fileRef = 180610C41E37CE0A0074ED86 /* secretsFile.txt */; };
-		18251C461E2D5160000DBE57 /* RecetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18251C451E2D5160000DBE57 /* RecetPasswordViewController.swift */; };
+		18251C461E2D5160000DBE57 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18251C451E2D5160000DBE57 /* ResetPasswordViewController.swift */; };
 		18251C481E2D51A5000DBE57 /* UITextField+Placeholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18251C471E2D51A5000DBE57 /* UITextField+Placeholder.swift */; };
 		18251C4A1E2D53F4000DBE57 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18251C491E2D53F4000DBE57 /* SignUpViewController.swift */; };
 		18251C4C1E2D5B92000DBE57 /* FRAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18251C4B1E2D5B92000DBE57 /* FRAuthManager.swift */; };
@@ -121,7 +121,7 @@
 		180231CC1E1456C600FA8322 /* AlbumsContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumsContentViewController.swift; sourceTree = "<group>"; };
 		180231CD1E1456C600FA8322 /* AlbumsPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumsPageViewController.swift; sourceTree = "<group>"; };
 		180610C41E37CE0A0074ED86 /* secretsFile.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = secretsFile.txt; sourceTree = "<group>"; };
-		18251C451E2D5160000DBE57 /* RecetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecetPasswordViewController.swift; sourceTree = "<group>"; };
+		18251C451E2D5160000DBE57 /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
 		18251C471E2D51A5000DBE57 /* UITextField+Placeholder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+Placeholder.swift"; sourceTree = "<group>"; };
 		18251C491E2D53F4000DBE57 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		18251C4B1E2D5B92000DBE57 /* FRAuthManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FRAuthManager.swift; sourceTree = "<group>"; };
@@ -304,7 +304,7 @@
 				186E2A231E34A3540011AB88 /* WelcomeVC.swift */,
 				1899316C1E2D4B7C006E00C6 /* LoginViewController.swift */,
 				18251C491E2D53F4000DBE57 /* SignUpViewController.swift */,
-				18251C451E2D5160000DBE57 /* RecetPasswordViewController.swift */,
+				18251C451E2D5160000DBE57 /* ResetPasswordViewController.swift */,
 				186E2A251E34A5D60011AB88 /* RecentViewController.swift */,
 				186E2A2D1E34BB940011AB88 /* ChatViewController.swift */,
 				188FD7941E34F532007CA1EE /* IncomingMessage.swift */,
@@ -709,7 +709,7 @@
 				189FC5101E1E778C00092D2F /* PostHeaderView.swift in Sources */,
 				1838C24B1E11362D00E02F88 /* User.swift in Sources */,
 				18BE87F11E16CF5A00B5837E /* CircleImageView.swift in Sources */,
-				18251C461E2D5160000DBE57 /* RecetPasswordViewController.swift in Sources */,
+				18251C461E2D5160000DBE57 /* ResetPasswordViewController.swift in Sources */,
 				18D623721E21469C00138117 /* Contact.swift in Sources */,
 				186E2A2C1E34B96F0011AB88 /* FRMessage.swift in Sources */,
 				1899316D1E2D4B7C006E00C6 /* LoginViewController.swift in Sources */,

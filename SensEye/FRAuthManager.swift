@@ -78,6 +78,21 @@ class FRAuthManager: NSObject {
     }
     
     
+    func resetPassword(emailAddress: String, completion: @escaping (Error?) -> Void) {
+        
+        // Send password reset email
+        
+        FIRAuth.auth()?.sendPasswordReset(withEmail: emailAddress, completion: { (error) in
+            
+            
+            completion(error)
+            
+            
+        })
+        
+    }
+    
+    
     // MARK: - FACEBOOK LOGIN METHODS
     
     
