@@ -29,9 +29,7 @@ class ResetPasswordViewController: UIViewController {
 
     }
 
-    deinit {
-        print("===NAG=== DEINIT RecetPasswordViewController")
-    }
+    
     
     @IBAction func actionResetPasswordButtonTapped(_ sender: Any) {
         
@@ -40,12 +38,7 @@ class ResetPasswordViewController: UIViewController {
             emailAddress != "" else {
                 
                 self.alert(title: "Input Error", message: "Please provide your email address for password reset.")
-                
-//                let alertController = UIAlertController(title: "Input Error", message: "Please provide your email address for password reset.", preferredStyle: .alert)
-//                let okayAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-//                alertController.addAction(okayAction)
-//                present(alertController, animated: true, completion: nil)
-                
+           
                 return
         }
         

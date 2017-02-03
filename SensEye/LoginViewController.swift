@@ -27,13 +27,9 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     enum Storyboard {
         static let segueShowRecentChats = "showRecentChatsViewController"
         static let segueShowChatVC = "showChatViewController"
-        
     }
     
-    
     var currentUser: FRUser!
-    
-    
     
     
     // MARK: - viewDidLoad
@@ -41,8 +37,6 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
         super.viewDidLoad()
         
 //        forceLogout()
-        
-       
         
         FIRAuth.auth()?.addStateDidChangeListener({ (auth, user) in
             
@@ -104,12 +98,10 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
 
                                 self.goToMessenger()
                             }
-                            
                         }
                         
                     })
                 }
-                
                 
                 
                 
@@ -159,17 +151,10 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
                 
                 self.goToMessenger()
             }
-            
         }
-        
-        
-        
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-    }
+    
     
     deinit {
         print("===NAG=== DEINIT LoginViewController")
@@ -188,8 +173,6 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
         // Configure OneSignal pushId before goToChat
         FRAuthManager.sharedManager.handleOneSignalOnUserLogin()
         
-        
-        
         if self.currentUser.email == GeneralHelper.sharedHelper.appOwnerEmail {
             // SUPER ADMIN USER - SEE ALL CHATS
             self.performSegue(withIdentifier: Storyboard.segueShowRecentChats, sender: nil)
@@ -198,17 +181,11 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
         } else {
             // CUSTOMER USER - GO DIRECTLY TO OWN USER CHAT WITH APPOWNER
             
-            
-            customerChatVarQueryEqual1()
-            
+            goCustomerChat()
             
         }
         
     }
-    
-    
-    
-    
     
     
     
@@ -246,23 +223,16 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
                     
                     self.performSegue(withIdentifier: Storyboard.segueShowChatVC, sender: newChat)
                     
-                    
-                    
                 }
                 
             }
-            
-            
             
         })
         
     }
     
     
-    
-    
-    func customerChatVarQueryEqual1() {
-        
+    func goCustomerChat() {
         
         if let chatDict = KeychainWrapper.standard.object(forKey: KEY_CHAT_OF_USER) as? [String: Any] {
 
@@ -277,7 +247,6 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
             self.performSegue(withIdentifier: Storyboard.segueShowChatVC, sender: userChat)
             
         } else {
-            
             
             FRDataManager.sharedManager.REF_CHATS.child(currentUser.uid).observeSingleEvent(of: .value, with: { (snapshot) in
                 
@@ -316,28 +285,9 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
                     self.sendGreetingMessage(newChat)
                 
                     
-                    
                 }
-                
-                
-                
             })
-
-            
-            
-            
-
         }
-        
-        
-        
-        
-        
-        
-      
-        
-        
-
         
     }
     
@@ -370,10 +320,9 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
                 return
                 
             } else {
-//                DispatchQueue.main.async {
-//                    SwiftSpinner.hide()
-//                    self.goToChatVC()
-//                }
+                
+                print("===NAG===: Login Successful Using Facebook Login")
+                
             }
             
             
@@ -419,10 +368,8 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
                 return
             }
             
-//            DispatchQueue.main.async {
-//                SwiftSpinner.hide()
-//                self.goToChatVC()
-//            }
+            print("===NAG===: Login Successful Using Firebase Email Login")
+            
         })
         
     }
