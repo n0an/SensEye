@@ -409,7 +409,7 @@ class ServerManager {
     
     
     
-    func createComment(ownerID: String, postID: String, message: String, completed: @escaping (Any) -> Void) {
+    func createComment(ownerID: String, postID: String, message: String, completed: @escaping (Bool) -> Void) {
         
         var url = "\(URL_BASE)\(URL_CREATE_COMMENT)" +
                 "\(URL_PARAMS.POST_ID.rawValue)\(postID)&" +
@@ -428,9 +428,14 @@ class ServerManager {
             
             self.networkActivityIndicatorVisible = false
             
+            guard let responseRoot = responseJson.result.value as? [String: Any] else {return}
+            
+            guard let response = responseRoot["response"] as? [String: Any] else {return}
+            
+            guard (response["comment_id"] as? Int) != nil else { return }
             
             
-            completed(responseJson)
+            completed(true)
             
         }
         

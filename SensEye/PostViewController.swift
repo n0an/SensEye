@@ -213,6 +213,8 @@ class PostViewController: UIViewController {
                     
                     self.comments.append(contentsOf: comments)
                     
+                    self.wallPost.postComments = String(comments.count)
+                    
                     self.tableView.reloadData()
                 }
             })

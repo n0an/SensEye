@@ -46,9 +46,14 @@ class CommentComposerViewController: UIViewController {
         
         ServerManager.sharedManager.createComment(ownerID: groupID, postID: wallPost.postID, message: commentTextView.text) { (success) in
             
-            self.dismiss(animated: true, completion: nil)
+            if success == true {
+                
+                self.dismiss(animated: true, completion: nil)
+                
+                self.delegate?.commentDidSend(withPost: self.wallPost)
+            }
             
-            self.delegate?.commentDidSend(withPost: self.wallPost)
+            
         }
         
         

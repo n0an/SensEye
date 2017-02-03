@@ -635,9 +635,14 @@ extension FeedViewController: CommentComposerViewControllerDelegate {
         if let index = self.wallPosts.index(of: post) {
             
             let indexPath = IndexPath(row: index, section: 0)
-            let cell = tableView.cellForRow(at: indexPath) as! FeedCell
             
-            cell.updateUI()
+            let commentedPost = self.wallPosts[index]
+            
+            let initialCommentsCount = Int(commentedPost.postComments)
+            
+            commentedPost.postComments = String(initialCommentsCount! + 1)
+            
+            tableView.reloadRows(at: [indexPath], with: .automatic)
             
         }
     }
