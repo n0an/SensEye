@@ -226,6 +226,7 @@
                         <outlet property="tableView" destination="dhK-hL-S59" id="AY8-4e-dcI"/>
                         <segue destination="Uuj-Kp-AHt" kind="presentation" identifier="showPhoto" id="9lc-HA-SpN"/>
                         <segue destination="6fL-t2-rQp" kind="show" identifier="showPost" id="qnn-43-2Ue"/>
+                        <segue destination="LAf-Mz-8Ji" kind="presentation" identifier="ShowCommentComposer" id="CZM-yF-Ip1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iE8-b9-jbn" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2288,40 +2289,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Try-eD-5cp">
-                                <rect key="frame" x="16" y="121" width="343" height="538"/>
+                                <rect key="frame" x="16" y="72" width="343" height="587"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Userpic 40px" translatesAutoresizingMaskIntoConstraints="NO" id="ccm-2P-mAZ">
-                                <rect key="frame" x="16" y="72" width="40" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="40" id="8RZ-Q3-qGN"/>
-                                    <constraint firstAttribute="height" constant="40" id="ffV-AN-WNb"/>
-                                </constraints>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="751" text="User Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sz3-RN-nZp">
-                                <rect key="frame" x="64" y="83" width="295" height="18"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular-widthClass=regular">
-                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
-                                </variation>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="XmR-fG-73U" firstAttribute="top" secondItem="Try-eD-5cp" secondAttribute="bottom" constant="8" id="1wK-aj-oMA"/>
-                            <constraint firstItem="Try-eD-5cp" firstAttribute="top" secondItem="ccm-2P-mAZ" secondAttribute="bottom" constant="9" id="CGa-Qt-7td"/>
+                            <constraint firstItem="Try-eD-5cp" firstAttribute="leading" secondItem="947-sR-cDf" secondAttribute="leadingMargin" id="DeX-Gh-hk1"/>
                             <constraint firstItem="Try-eD-5cp" firstAttribute="trailing" secondItem="947-sR-cDf" secondAttribute="trailingMargin" id="Euu-93-xwW"/>
-                            <constraint firstItem="Sz3-RN-nZp" firstAttribute="centerY" secondItem="ccm-2P-mAZ" secondAttribute="centerY" id="acs-Jy-gsf"/>
-                            <constraint firstItem="Sz3-RN-nZp" firstAttribute="leading" secondItem="ccm-2P-mAZ" secondAttribute="trailing" constant="8" id="cjw-d7-q3X"/>
-                            <constraint firstItem="Try-eD-5cp" firstAttribute="leading" secondItem="ccm-2P-mAZ" secondAttribute="leading" id="oJf-aU-nXx"/>
-                            <constraint firstItem="Sz3-RN-nZp" firstAttribute="trailing" secondItem="947-sR-cDf" secondAttribute="trailingMargin" id="pqf-A5-MWX"/>
-                            <constraint firstItem="ccm-2P-mAZ" firstAttribute="top" secondItem="YBX-t1-T2b" secondAttribute="bottom" constant="8" id="qaG-mE-Ip8"/>
-                            <constraint firstItem="ccm-2P-mAZ" firstAttribute="leading" secondItem="947-sR-cDf" secondAttribute="leadingMargin" id="vTu-j4-vmC"/>
+                            <constraint firstItem="Try-eD-5cp" firstAttribute="top" secondItem="YBX-t1-T2b" secondAttribute="bottom" constant="8" id="K3u-yy-oVB"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="a6G-a8-tFN">
@@ -2338,9 +2318,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="commentTextView" destination="Try-eD-5cp" id="LVu-lK-0aR"/>
-                        <outlet property="profileImageVIew" destination="ccm-2P-mAZ" id="zSO-Ne-j9t"/>
                         <outlet property="sendButton" destination="qaK-gh-nil" id="e6W-Lk-TtD"/>
-                        <outlet property="usernameLabel" destination="Sz3-RN-nZp" id="Uce-Sa-5zs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="klm-hq-vsd" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2387,6 +2365,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="EBb-sR-AUb"/>
+        <segue reference="CZM-yF-Ip1"/>
         <segue reference="PaE-cb-taD"/>
         <segue reference="gzW-Nu-nWk"/>
     </inferredMetricsTieBreakers>

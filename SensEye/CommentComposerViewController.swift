@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol CommentComposerViewControllerDelegate: class {
+    func commentDidSend(withPost post: WallPost)
+}
+
 class CommentComposerViewController: UIViewController {
     
     // MARK: - OUTLETS
@@ -19,6 +23,8 @@ class CommentComposerViewController: UIViewController {
     
     // MARK: - PROPERTIES
     var wallPost: WallPost!
+    
+    weak var delegate: CommentComposerViewControllerDelegate?
 
     // MARK: - viewDidLoad
     override func viewDidLoad() {
@@ -31,6 +37,8 @@ class CommentComposerViewController: UIViewController {
         
         commentTextView.delegate = self
         
+        commentTextView.becomeFirstResponder()
+        
     }
 
     // MARK: - ACTIONS
@@ -38,9 +46,9 @@ class CommentComposerViewController: UIViewController {
         
         ServerManager.sharedManager.createComment(ownerID: groupID, postID: wallPost.postID, message: commentTextView.text) { (success) in
             
-            self.navigationController?.popViewController(animated: true)
+            self.dismiss(animated: true, completion: nil)
             
-            
+            self.delegate?.commentDidSend(withPost: self.wallPost)
         }
         
         

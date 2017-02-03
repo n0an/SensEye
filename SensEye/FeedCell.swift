@@ -15,6 +15,8 @@ protocol FeedCellDelegate: class {
     
     func provideAuthorization()
     
+    func commentDidTap(post: WallPost)
+    
 }
 
 class FeedCell: UITableViewCell {
@@ -298,7 +300,7 @@ class FeedCell: UITableViewCell {
     @IBAction func commentDidTap(_ sender: DesignableButton) {
         print("commentDidTap")
         
-        
+        self.delegate?.commentDidTap(post: self.wallPost)
         
 
         animateButton(sender)

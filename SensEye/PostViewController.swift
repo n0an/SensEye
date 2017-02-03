@@ -345,6 +345,8 @@ class PostViewController: UIViewController {
             
             let destinationVC = destinationNVC.topViewController as! CommentComposerViewController
             
+            destinationVC.delegate = self
+            
             destinationVC.wallPost = self.wallPost
             
             
@@ -497,6 +499,10 @@ extension PostViewController: FeedCellDelegate {
         
     }
     
+    func commentDidTap(post: WallPost) {
+        
+    }
+    
     
     
     func performJellyTransition(withPhotos photosArray: [Photo], indexOfPhoto: Int) {
@@ -559,6 +565,49 @@ extension PostViewController: FeedCellDelegate {
         }
     }
 }
+
+
+
+
+// MARK: - === CommentComposerViewControllerDelegate ===
+extension PostViewController: CommentComposerViewControllerDelegate {
+    
+    
+    
+    func commentDidSend(withPost post: WallPost) {
+        refreshMainPost()
+        refreshComments()
+    }
+    
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

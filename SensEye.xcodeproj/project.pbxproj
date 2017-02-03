@@ -373,9 +373,9 @@
 				18D623611E1FCCC800138117 /* VKLoginViewController.swift */,
 				188C04F71E1074C8008B58EB /* FeedViewController.swift */,
 				182681901E1D7C9C00D96764 /* PostViewController.swift */,
+				18880A7B1E43C6A30083D0B4 /* CommentComposerViewController.swift */,
 				180231C41E12FC1D00FA8322 /* PhotoViewController.swift */,
 				18D6236B1E213AE200138117 /* AboutTableViewController.swift */,
-				18880A7B1E43C6A30083D0B4 /* CommentComposerViewController.swift */,
 				1864A9E11E157E0B0058D2E2 /* Gallery */,
 				18A9FAE51E2E9DC4004C548B /* Chat Tab */,
 			);

@@ -28,6 +28,7 @@ class FeedViewController: UIViewController {
         
         static let seguePhotoDisplayer = "showPhoto"
         static let seguePostVC = "showPost"
+        static let segueCommentComposer = "ShowCommentComposer"
 
         static let viewControllerIdPhotoDisplayer = "PhotoNavViewController"
     }
@@ -360,6 +361,17 @@ class FeedViewController: UIViewController {
             destinationVC.delegate = self
             destinationVC.wallPost = postCell.wallPost
             destinationVC.backgroundImage = postCell.galleryImageViews[0].image
+            
+        } else if segue.identifier == Storyboard.segueCommentComposer {
+            
+            let destinationNVC = segue.destination as! UINavigationController
+            
+            let destinationVC = destinationNVC.topViewController as! CommentComposerViewController
+            
+            destinationVC.delegate = self
+            
+            destinationVC.wallPost = sender as! WallPost
+            
         }
         
         
@@ -417,7 +429,7 @@ extension FeedViewController: UITableViewDelegate {
 
 
 
-// MARK: - ===FeedCellDelegate===
+// MARK: - === FeedCellDelegate ===
 
 extension FeedViewController: FeedCellDelegate {
     
@@ -448,6 +460,14 @@ extension FeedViewController: FeedCellDelegate {
         }
         
     }
+    
+    func commentDidTap(post: WallPost) {
+        
+        performSegue(withIdentifier: Storyboard.segueCommentComposer, sender: post)
+
+        
+    }
+    
     
     
 
@@ -604,6 +624,45 @@ extension FeedViewController: PostViewControllerDelegate {
   
     
 }
+
+
+
+// MARK: - === CommentComposerViewControllerDelegate ===
+extension FeedViewController: CommentComposerViewControllerDelegate {
+    
+    func commentDidSend(withPost post: WallPost) {
+        
+        if let index = self.wallPosts.index(of: post) {
+            
+            let indexPath = IndexPath(row: index, section: 0)
+            let cell = tableView.cellForRow(at: indexPath) as! FeedCell
+            
+            cell.updateUI()
+            
+        }
+    }
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
