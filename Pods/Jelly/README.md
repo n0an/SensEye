@@ -13,12 +13,12 @@
 <a href="https://developer.apple.com/swift"><img src="https://img.shields.io/badge/swift3-compatible-orange.svg?style=flat" alt="Swift 3 compatible" /></a>
 
 Jelly provides custom view controller transitions with just a few lines of code. 
-No need to create your own PresentationController or Animator-Objects.
+No need to create your own Presentation-Controller or Animator objects.
 A Jelly-Animator will do the heavy lifting for you.
 
 ## 📱 Example 
 
-You can use Jelly to build your own Alert-Views or Slidein-Menus using ViewControllers designed by yourself.
+You can use Jelly to build your own Alertviews or Slidein-Menus using ViewControllers designed by yourself.
 
 ![Jelly-Animators: Elegant Viewcontroller Animations in Swift](https://github.com/SebastianBoldt/Jelly/blob/master/Github/notification.gif?raw=true)   ![Jelly-Animators: Elegant Viewcontroller Animations in Swift](https://github.com/SebastianBoldt/Jelly/blob/master/Github/slideover.gif?raw=true) 
 
@@ -33,7 +33,7 @@ To run the example project, clone  the repo, and run `pod install` from the Exam
 
 Jelly is super easy to use. 
 
-1. Create a *JellyPresentation* Object
+1. Create a *JellyPresentation* Object (SlideIn, FadeIn or ShiftIn)
 2. Initialize a *JellyAnimator* using the *JellyPresentation* Object created in Step 1.
 3. Call the *prepare(viewController:UIViewController)* Function
 4. Finally call the native *UIViewController* presentation function.
@@ -42,9 +42,13 @@ Jelly is super easy to use.
 override func viewDidLoad() {
     super.viewDidLoad()
     let viewController = self.storyboard.instantiateViewController(withIdentifier: "someViewController")
+    //1.
     let presentation = JellySlideInPresentation()
+    //2.
     self.jellyAnimator = JellyAnimator(presentation:presentation)
+    //3.
     self.jellyAnimator?.prepare(viewController: viewController)
+    //4.
     self.present(viewController, animated: true, completion: nil)
 }
 
@@ -53,18 +57,16 @@ override func viewDidLoad() {
 ***DO NOT FORGET TO KEEP A STRONG 💪 REFERENCE***
 
 Because the *transitioningDelegate* of a *UIViewController* is weak, you need to 
-hold a strong reference to the *JellyAnimator* inside the *UIViewController* you are presenting from
+hold a strong reference to the *JellyAnimator* inside the *UIViewController* you are presenting from or the central object that maintains your presentations.
 
 ```swift 
 class CustomVC : UIViewController {
     var jellyAnimator: JellyAnimator?
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Setup your Animator here 
         var shiftInPresentation = JellyShiftInPresentation()
         shiftInPresentation.direction = .left
         let animator = JellyAnnimator(presentation:presentation)
-        // Assign it
         self.jellyAnimator = animator
     }
 }
@@ -79,7 +81,7 @@ Jelly offers 3 types of Presentations for you:
 * **JellyFadeInPresentation**
 
 Not every property is available for each animation. 
-Check outh the interfaces of each class to learn more about it.
+Check outh the interfaces of each class to learn more about them.
 
 * **duration:** JellyConstants.Duration (default: normal)
     * ultraSlow = 2.0
@@ -88,10 +90,10 @@ Check outh the interfaces of each class to learn more about it.
     * normal = 0.35
     * fast = 0.2
     * reallyFast = 0.1
-* **backgroundStyle:** JellyConstants.BackgroundStyle (default: dimmed)
-    * dimmed
-    * blur(effectStyle)
-    * none
+* **backgroundStyle:** JellyConstants.BackgroundStyle (default: .dimmed(0.5))
+    * dimmed(alpha: CGFloat)
+    * blur(effectStyle: UIBlurEffectStyle)
+    * if you want a transparent background use .dimmed(alpha:0.0)
 * **cornerRadius:** Double (default: 0)
 * **corners:** UIRectCorner (default: .allCorners)
     * define which corners the radius should be applied to
@@ -155,7 +157,7 @@ self.present(viewController, animated: true, completion: nil)
 
 ## ✅ Requirements
 
-Your Project at least needs a deployment target that is >= iOS 9.0
+Deployment target of your App is >= iOS 9.0
 
 ## 📲 Installation
 

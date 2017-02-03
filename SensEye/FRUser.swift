@@ -16,6 +16,9 @@ class FRUser {
     // MARK: - PROPERTIES
     var uid: String
     var username: String
+    var email: String
+    
+    
     var avatarImage: UIImage?
     
     var avatarDownloadLink: String?
@@ -25,9 +28,10 @@ class FRUser {
     var userRef: FIRDatabaseReference
     
     // MARK: - INITIALIZERS
-    init(uid: String, username: String, avatarImage: UIImage?, pushId: String?) {
+    init(uid: String, username: String, email: String, avatarImage: UIImage?, pushId: String?) {
         self.uid =      uid
         self.username = username
+        self.email = email
         
         self.avatarImage = avatarImage
         
@@ -39,6 +43,8 @@ class FRUser {
     init(uid: String, dictionary: [String: Any]) {
         self.uid = uid
         self.username = dictionary["username"] as! String
+        
+        self.email = dictionary["email"] as! String
         
         self.pushId = dictionary["pushId"] as? String
         
@@ -80,7 +86,8 @@ class FRUser {
     func toDictionary() -> [String: Any] {
         return [
             "username": username,
-            "pushId": pushId
+            "pushId": pushId,
+            "email": email
             
         ]
     }

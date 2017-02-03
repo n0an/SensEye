@@ -158,7 +158,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         
         let keys = secretInfo.components(separatedBy: "\n")
         
-        GeneralHelper.sharedHelper.appOwnerUID = keys[0]
+        GeneralHelper.sharedHelper.appOwnerEmail = keys[0]
         GeneralHelper.sharedHelper.kONESIGNALAPPID = keys[1]
        
     }

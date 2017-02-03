@@ -90,7 +90,8 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
                             let userDictionary = [
                                         "uid": self.currentUser.uid,
                                         "username": self.currentUser.username,
-                                        "pushId": self.currentUser.pushId!
+                                        "pushId": self.currentUser.pushId!,
+                                        "email": self.currentUser.email
                             ]
                             
                             
@@ -188,7 +189,8 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
         FRAuthManager.sharedManager.handleOneSignalOnUserLogin()
         
         
-        if self.currentUser.uid == GeneralHelper.sharedHelper.appOwnerUID {
+        
+        if self.currentUser.email == GeneralHelper.sharedHelper.appOwnerEmail {
             // SUPER ADMIN USER - SEE ALL CHATS
             self.performSegue(withIdentifier: Storyboard.segueShowRecentChats, sender: nil)
             
@@ -338,7 +340,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
                     
                     newChat.save()
                     
-                    let greetingMessage = FRMessage(chatId: newChat.uid, senderUID: GeneralHelper.sharedHelper.appOwnerUID, senderDisplayName: "Elena Senseye", text: "Здравствуйте, я могу Вам чем-то помочь?")
+                    let greetingMessage = FRMessage(chatId: newChat.uid, senderUID: GeneralHelper.sharedHelper.appOwnerEmail, senderDisplayName: "Elena Senseye", text: "Здравствуйте, я могу Вам чем-то помочь?")
                     
                     greetingMessage.save()
                     

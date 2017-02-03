@@ -54,7 +54,8 @@ class FRAuthManager: NSObject {
                 
             } else if let firCreatedUser = firCreatedUser {
                 
-                let newUser = FRUser(uid: firCreatedUser.uid, username: username, avatarImage: avatarImage, pushId: "")
+                
+                let newUser = FRUser(uid: firCreatedUser.uid, username: username, email: firCreatedUser.email!, avatarImage: avatarImage, pushId: "")
                 
                 newUser.save(completion: { (error) in
                     
@@ -159,6 +160,7 @@ class FRAuthManager: NSObject {
                     
                     let userFirstName = result["first_name"] as! String
                     let userLastName = result["last_name"] as! String
+                    
                     let fullName = "\(userFirstName) \(userLastName)"
                     
                     let email = firuser.email!

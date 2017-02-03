@@ -26,8 +26,9 @@ class GeneralHelper {
     }
     
     public var kONESIGNALAPPID = ""
-    public var appOwnerUID = ""
-    
+//    public var appOwnerUID = ""
+    public var appOwnerEmail = ""
+
     
     public func showAlertOnViewController(viewController: UIViewController, withTitle title: String, message: String, buttonTitle: String) {
         let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)

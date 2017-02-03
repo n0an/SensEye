@@ -145,7 +145,7 @@ extension FRChat {
         
         // Incrementing unread messages if current user IS NOT app owner
         
-        if FRAuthManager.sharedManager.currentUser.uid != GeneralHelper.sharedHelper.appOwnerUID {
+        if FRAuthManager.sharedManager.currentUser.email != GeneralHelper.sharedHelper.appOwnerEmail {
             
             self.messagesCount += 1
         }
@@ -159,7 +159,7 @@ extension FRChat {
     func clearUnreadMessagesCount() {
         
         
-        if FRAuthManager.sharedManager.currentUser.uid == GeneralHelper.sharedHelper.appOwnerUID {
+        if FRAuthManager.sharedManager.currentUser.email == GeneralHelper.sharedHelper.appOwnerEmail {
             self.messagesCount = 0
             self.chatRef.child("messagesCount").setValue(0)
         }
@@ -185,31 +185,67 @@ extension FRChat {
         
         var recipientUid: String
         
-        if currentUser.uid == GeneralHelper.sharedHelper.appOwnerUID {
+        if currentUser.email == GeneralHelper.sharedHelper.appOwnerEmail {
             recipientUid = self.withUserUID
+            
+            self.fetchChatUsers(forUids: [recipientUid]) { (pushIds) in
+                
+                OneSignal.postNotification([
+                    
+                    "contents": ["en": "\(currentUser.username)\n\(messageText)"],
+                    "ios_badgeType": "Increase",
+                    "ios_badgeCount": "1",
+                    "include_player_ids": pushIds
+                    ])
+                
+            }
+            
+            
         } else {
-            recipientUid = GeneralHelper.sharedHelper.appOwnerUID
+            
+            self.sendPushToAppOwner(currentUser: currentUser, messageText: messageText)
+            
+//            recipientUid = GeneralHelper.sharedHelper.appOwnerUID
         }
         
 //        recipientsUids.remove(at: indexOfCurrentUser!)
         
         
-        self.fetchChatUsers(forUids: [recipientUid]) { (pushIds) in
-            
-            OneSignal.postNotification([
-                
-                "contents": ["en": "\(currentUser.username)\n\(messageText)"],
-                "ios_badgeType": "Increase",
-                "ios_badgeCount": "1",
-                "include_player_ids": pushIds
-                ])
-            
-        }
+        
         
         
         
     }
     
+    func sendPushToAppOwner(currentUser: FRUser, messageText: String) {
+        
+        let ref = FRDataManager.sharedManager.REF_USERS
+        
+        ref.queryOrdered(byChild: "email").queryEqual(toValue: GeneralHelper.sharedHelper.appOwnerEmail).observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                
+                if let snap = snapshot.first {
+                    
+                    let chatUser = FRUser(uid: snap.key, dictionary: snap.value as! [String: Any])
+                    
+                    OneSignal.postNotification([
+                        
+                        "contents": ["en": "\(currentUser.username)\n\(messageText)"],
+                        "ios_badgeType": "Increase",
+                        "ios_badgeCount": "1",
+                        "include_player_ids": [chatUser.pushId]
+                        ])
+                    
+                }
+                
+            }
+            
+
+            
+        })
+        
+    }
     
     
     
