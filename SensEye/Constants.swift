@@ -66,7 +66,7 @@ public enum URL_PARAMS: String {
 
 typealias DownloadComplete = ([Any]) -> Void
 typealias AuthoizationComplete = (User) -> Void
-typealias LikeFeatureCompletion = ([String: Any]) -> Void
+typealias LikeFeatureCompletion = (Bool, [String: Any]?) -> Void
 
 
 

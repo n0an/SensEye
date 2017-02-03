@@ -80,21 +80,27 @@ class CommentCell: UITableViewCell {
         
         self.comment.isLikedByCurrentUser = true
         
-        ServerManager.sharedManager.addLike(forItemType: .comment, ownerID: groupID, itemID: self.comment.commentID) { (resultDict) in
+        ServerManager.sharedManager.addLike(forItemType: .comment, ownerID: groupID, itemID: self.comment.commentID) { (success, resultDict) in
             
-            if let commentLikesCount = resultDict["likes"] as? Int {
+            self.likeButton.isUserInteractionEnabled = true
+            
+            if success == true {
                 
-                // Double check and correct after server response if it differs from UI
-
-                if self.comment.commentLikesCount != commentLikesCount {
+                if let commentLikesCount = resultDict?["likes"] as? Int {
                     
-                    self.comment.commentLikesCount = commentLikesCount
+                    // Double check and correct after server response if it differs from UI
                     
-                    self.comment.isLikedByCurrentUser = true
+                    if self.comment.commentLikesCount != commentLikesCount {
+                        
+                        self.comment.commentLikesCount = commentLikesCount
+                        
+                        self.comment.isLikedByCurrentUser = true
+                        
+                        self.likeButton.setTitle("\(self.comment.commentLikesCount)", for: [])
+                        
+                        self.changeLikeImage()
+                    }
                     
-                    self.likeButton.setTitle("\(self.comment.commentLikesCount)", for: [])
-                    
-                    self.changeLikeImage()
                 }
                 
             }
@@ -108,24 +114,30 @@ class CommentCell: UITableViewCell {
         
         self.comment.isLikedByCurrentUser = false
         
-        ServerManager.sharedManager.deleteLike(forItemType: .comment, ownerID: groupID, itemID: self.comment.commentID) { (resultDict) in
+        ServerManager.sharedManager.deleteLike(forItemType: .comment, ownerID: groupID, itemID: self.comment.commentID) { (success, resultDict) in
             
-            if let commentLikesCount = resultDict["likes"] as? Int {
+            self.likeButton.isUserInteractionEnabled = true
+            
+            if success == true {
                 
-                // Double check and correct after server response if it differs from UI
-
-                if self.comment.commentLikesCount != commentLikesCount {
+                if let commentLikesCount = resultDict?["likes"] as? Int {
                     
-                    self.comment.commentLikesCount = commentLikesCount
+                    // Double check and correct after server response if it differs from UI
                     
-                    self.comment.isLikedByCurrentUser = false
+                    if self.comment.commentLikesCount != commentLikesCount {
+                        
+                        self.comment.commentLikesCount = commentLikesCount
+                        
+                        self.comment.isLikedByCurrentUser = false
+                        
+                        self.likeButton.setTitle("\(self.comment.commentLikesCount)", for: [])
+                        
+                        self.changeLikeImage()
+                    }
                     
-                    self.likeButton.setTitle("\(self.comment.commentLikesCount)", for: [])
-                    
-                    self.changeLikeImage()
                 }
-                
             }
+            
         }
     }
     
@@ -204,18 +216,16 @@ class CommentCell: UITableViewCell {
     @IBAction func likeDidTap(_ sender: DesignableButton) {
         print("likeDidTap")
         
-        // ** Avoid multiple calls of method
+        likeButton.isUserInteractionEnabled = false
         
-        UIApplication.shared.beginIgnoringInteractionEvents()
-        
-        let deadLineTime = DispatchTime.now() + .milliseconds(300)
-        
-        DispatchQueue.main.asyncAfter(deadline: deadLineTime) {
-            if UIApplication.shared.isIgnoringInteractionEvents {
-                UIApplication.shared.endIgnoringInteractionEvents()
+        // Force likeButton userInteraction ON after 2 sec if it's off yet
+        GeneralHelper.sharedHelper.invoke(afterTimeInMs: 3000) {
+            
+            if self.likeButton.isUserInteractionEnabled == false {
+                self.likeButton.isUserInteractionEnabled = true
             }
+            
         }
-        
         
         guard ServerManager.sharedManager.currentVKUser != nil else {
             authorize()

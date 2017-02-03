@@ -114,28 +114,34 @@ class FeedCell: UITableViewCell {
         
         self.wallPost.isLikedByCurrentUser = true
         
-        ServerManager.sharedManager.addLike(forItemType: .post, ownerID: groupID, itemID: self.wallPost.postID) { (resultDict) in
+        ServerManager.sharedManager.addLike(forItemType: .post, ownerID: groupID, itemID: self.wallPost.postID) { (success, resultDict) in
             
-            if let postLikesCount = resultDict["likes"] as? Int {
+            self.likeButton.isUserInteractionEnabled = true
+            
+            if success == true {
                 
-                // Double check and correct after server response if it differs from UI
-                
-                if self.wallPost.postLikesCount != postLikesCount {
+                if let postLikesCount = resultDict?["likes"] as? Int {
                     
-                    self.wallPost.postLikesCount = postLikesCount
+                    // Double check and correct after server response if it differs from UI
                     
-                    self.wallPost.isLikedByCurrentUser = true
-                    
-                    self.likeButton.setTitle("\(self.wallPost.postLikesCount)", for: [])
-                    
-                    self.changeLikeImage()
+                    if self.wallPost.postLikesCount != postLikesCount {
+                        
+                        self.wallPost.postLikesCount = postLikesCount
+                        
+                        self.wallPost.isLikedByCurrentUser = true
+                        
+                        self.likeButton.setTitle("\(self.wallPost.postLikesCount)", for: [])
+                        
+                        self.changeLikeImage()
+                        
+                    }
                     
                 }
-                
                 
             }
             
         }
+        
     }
     
     func toDislike() {
@@ -144,28 +150,32 @@ class FeedCell: UITableViewCell {
         
         self.wallPost.isLikedByCurrentUser = false
         
-        
-        ServerManager.sharedManager.deleteLike(forItemType: .post, ownerID: groupID, itemID: self.wallPost.postID) { (resultDict) in
+        ServerManager.sharedManager.deleteLike(forItemType: .post, ownerID: groupID, itemID: self.wallPost.postID) { (success, resultDict) in
             
+            self.likeButton.isUserInteractionEnabled = true
             
-            if let postLikesCount = resultDict["likes"] as? Int {
+            if success == true {
                 
-                // Double check and correct after server response if it differs from UI
-                
-                if self.wallPost.postLikesCount != postLikesCount {
+                if let postLikesCount = resultDict?["likes"] as? Int {
                     
-                    self.wallPost.postLikesCount = postLikesCount
+                    // Double check and correct after server response if it differs from UI
                     
-                    self.wallPost.isLikedByCurrentUser = false
-                    
-                    self.likeButton.setTitle("\(self.wallPost.postLikesCount)", for: [])
-                    
-                    self.changeLikeImage()
+                    if self.wallPost.postLikesCount != postLikesCount {
+                        
+                        self.wallPost.postLikesCount = postLikesCount
+                        
+                        self.wallPost.isLikedByCurrentUser = false
+                        
+                        self.likeButton.setTitle("\(self.wallPost.postLikesCount)", for: [])
+                        
+                        self.changeLikeImage()
+                        
+                    }
                     
                 }
                 
-              
             }
+            
         }
     }
     
@@ -261,18 +271,16 @@ class FeedCell: UITableViewCell {
     @IBAction func likeDidTap(_ sender: DesignableButton) {
         print("likeDidTap")
         
-        // ** Avoid multiple calls of method
+        likeButton.isUserInteractionEnabled = false
         
-        UIApplication.shared.beginIgnoringInteractionEvents()
-        
-        let deadLineTime = DispatchTime.now() + .milliseconds(300)
-        
-        DispatchQueue.main.asyncAfter(deadline: deadLineTime) { 
-            if UIApplication.shared.isIgnoringInteractionEvents {
-                UIApplication.shared.endIgnoringInteractionEvents()
+        // Force likeButton userInteraction ON after 2 sec if it's off yet
+        GeneralHelper.sharedHelper.invoke(afterTimeInMs: 3000) {
+            
+            if self.likeButton.isUserInteractionEnabled == false {
+                self.likeButton.isUserInteractionEnabled = true
             }
+            
         }
-        
         
         
         guard ServerManager.sharedManager.currentVKUser != nil else {
@@ -302,10 +310,10 @@ class FeedCell: UITableViewCell {
         
         self.delegate?.commentDidTap(post: self.wallPost)
         
-
+        
         animateButton(sender)
     }
-
+    
     
 }
 

@@ -539,12 +539,22 @@ class ServerManager {
             
             self.networkActivityIndicatorVisible = false
             
-            guard let responseRoot = responseJson.result.value as? [String: Any] else {return}
             
-            guard let response = responseRoot["response"] as? [String:Any] else {return}
+            guard let responseRoot = responseJson.result.value as? [String: Any] else {
+                
+                completed(false, nil)
+                
+                return
+            }
             
-            completed(response)
+            guard let response = responseRoot["response"] as? [String:Any] else {
+                
+                completed(false, nil)
+                
+                return
+            }
             
+            completed(true, response)
             
         }
         
@@ -572,11 +582,22 @@ class ServerManager {
             
             self.networkActivityIndicatorVisible = false
             
-            guard let responseRoot = responseJson.result.value as? [String: Any] else {return}
+            guard let responseRoot = responseJson.result.value as? [String: Any] else {
+                
+                completed(false, nil)
+
+                return
+            }
             
-            guard let response = responseRoot["response"] as? [String:Any] else {return}
+            guard let response = responseRoot["response"] as? [String:Any] else {
+                
+                completed(false, nil)
+                
+                return
+            }
             
-            completed(response)
+            completed(true, response)
+            
             
         }
         

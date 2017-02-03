@@ -178,6 +178,32 @@ class GeneralHelper {
         
     }
     
+    
+    public func pauseApp(forTimeInMs timeMs: Int) {
+        
+        // ** Avoid multiple calls of method
+        
+        UIApplication.shared.beginIgnoringInteractionEvents()
+        
+        let deadLineTime = DispatchTime.now() + .milliseconds(timeMs)
+        
+        DispatchQueue.main.asyncAfter(deadline: deadLineTime) {
+            if UIApplication.shared.isIgnoringInteractionEvents {
+                UIApplication.shared.endIgnoringInteractionEvents()
+            }
+        }
+        
+        
+    }
+    
+    public func invoke(afterTimeInMs timeMs: Int, code: @escaping () -> Void) {
+        
+        let deadLineTime = DispatchTime.now() + .milliseconds(timeMs)
+
+        DispatchQueue.main.asyncAfter(deadline: deadLineTime, execute: code)
+        
+    }
+    
 
     
 }
