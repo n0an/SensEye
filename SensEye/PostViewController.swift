@@ -324,18 +324,7 @@ class PostViewController: UIViewController {
         refreshMainPost()
         refreshComments()
     }
-    
-//    @IBAction func commentDidTap(_ sender: DesignableButton) {
-//        print("commentDidTap")
-//        
-//        
-//        performSegue(withIdentifier: Storyboard.segueCommentComposer, sender: self.wallPost)
-//
-//        
-//        animateButton(sender)
-//    }
-
-    
+   
     
     // MARK: - NAVIGATION
     
@@ -383,8 +372,6 @@ extension PostViewController: UITableViewDataSource {
             postCell.wallPost = self.wallPost
             postCell.delegate = self
             
-//            postCell.commentButton.isEnabled = false
-            
             return postCell
             
         } else {
@@ -398,8 +385,6 @@ extension PostViewController: UITableViewDataSource {
             
             return commentCell
         }
-        
-        
         
         
     }
@@ -419,8 +404,6 @@ extension PostViewController: UITableViewDelegate {
         }
         
     }
-    
-    
     
     
     
