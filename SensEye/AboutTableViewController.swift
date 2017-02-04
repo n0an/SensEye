@@ -17,18 +17,17 @@ class AboutTableViewController: UITableViewController {
     
     var sectionTitles = ["Связаться со мной", "Соцсети", "Обо мне"]
     
-//    var connections = ["Напишите мне письмо", "Skype: elena.senseye"]
-    
     var connections = [
+                Contact(imageName: "about-icon-chat", labelText: "Встроенный чат", link: ""),
                 Contact(imageName: "about-icon-email", labelText: "Напишите мне письмо", link: ""),
-                Contact(imageName: "about-icon-skype", labelText: "Skype: elena.senseye", link: "")
+                Contact(imageName: "about-icon-skypeColor", labelText: "Skype: elena.senseye", link: "")
     
     ]
     
     var socNet = [
-        Contact(imageName: "about-icon-facebook", labelText: "Facebook", link: "https://facebook.com/elena.senseye"),
-        Contact(imageName: "about-icon-instagram", labelText: "Instagram", link: "https://instagram.com/elena.senseye"),
-        Contact(imageName: "vk", labelText: "VK", link: "https://vk.com/elena_senseye")
+        Contact(imageName: "about-icon-facebookColor", labelText: "Facebook", link: "https://facebook.com/elena.senseye"),
+        Contact(imageName: "about-icon-instagramColor", labelText: "Instagram", link: "https://instagram.com/elena.senseye"),
+        Contact(imageName: "about-icon-vkColor", labelText: "ВКонтакте", link: "https://vk.com/elena_senseye")
     ]
     
     // MARK: - ENUMS
@@ -152,7 +151,7 @@ class AboutTableViewController: UITableViewController {
         
         switch section {
         case TableViewSection.connections.rawValue:
-            return 2
+            return self.connections.count
         case TableViewSection.socNet.rawValue:
             return self.socNet.count
         case TableViewSection.info.rawValue:
@@ -178,15 +177,7 @@ class AboutTableViewController: UITableViewController {
             
             return cell
             
-            
-//            let cell = tableView.dequeueReusableCell(withIdentifier: Storyboard.cellConnection, for: indexPath)
-//            
-//            let connection = self.connections[indexPath.row]
-//            
-//            cell.textLabel?.text = connection
-//            
-//            
-//            return cell
+         
             
         case TableViewSection.socNet.rawValue:
             
@@ -243,11 +234,16 @@ class AboutTableViewController: UITableViewController {
         // Connections section
         case TableViewSection.connections.rawValue:
             
+            
             if indexPath.row == 0 {
+                
+                // GO TO CHAT
+                
+            } else if indexPath.row == 1 {
                 self.showEmailComposer()
             } else {
                 self.showSkype()
-//                self.sendSMS()
+                //                self.sendSMS()
             }
             
             
