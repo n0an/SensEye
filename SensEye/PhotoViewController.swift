@@ -54,7 +54,7 @@ class PhotoViewController: UIViewController {
         
         self.navigationController?.hidesBarsOnTap = true
         
-        title = "Album"
+//        title = NSLocalizedString("Album", comment: "Album")
         
 //        shareButton.isEnabled = false
         

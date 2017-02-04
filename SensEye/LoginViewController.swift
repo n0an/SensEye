@@ -46,7 +46,9 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
                     return
                 }
                 
-                SwiftSpinner.show("Entering chat").addTapHandler({
+                
+                
+                SwiftSpinner.show(NSLocalizedString("Entering chat", comment: "SPINNER_ENTER_CHAT")).addTapHandler({
                     SwiftSpinner.hide()
                 })
                 
@@ -201,7 +203,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
                     
                     let appOwnerUser = FRUser(uid: snap.key, dictionary: snap.value as! [String: Any])
                     
-                    let greetingMessage = FRMessage(chatId: newChat.uid, senderUID: appOwnerUser.uid, senderDisplayName: "Elena Senseye", text: "Здравствуйте, я могу Вам чем-то помочь?")
+                    let greetingMessage = FRMessage(chatId: newChat.uid, senderUID: appOwnerUser.uid, senderDisplayName: "Elena Senseye", text: NSLocalizedString("Hello. How can I help you?", comment: "GREETIN_MESSAGE"))
                     
                     greetingMessage.save()
                     
@@ -384,14 +386,16 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
         
         guard let email = emailTextField.text, email != "",
             let password = passwordTextField.text, password != "" else {
-                self.alert(title: "Error", message: "Enter your email and password")
+                self.alert(title: NSLocalizedString("Error", comment: "Error"), message: NSLocalizedString("Enter your email and password", comment: ""))
                 return
         }
+        
+        
         
         // Dismiss keyboard
         self.view.endEditing(true)
         
-        SwiftSpinner.show("Logging in").addTapHandler ({
+        SwiftSpinner.show(NSLocalizedString("Logging In", comment: "")).addTapHandler ({
             SwiftSpinner.hide()
         })
         
@@ -399,7 +403,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
             
             guard errMsg == nil else {
                 SwiftSpinner.hide()
-                self.alert(title: "Error", message: errMsg!)
+                self.alert(title: NSLocalizedString("Error", comment: "Error"), message: errMsg!)
                 return
             }
             

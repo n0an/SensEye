@@ -16,7 +16,9 @@ class ResetPasswordViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = "Forgot Password"
+        self.title = NSLocalizedString("Forgot Password", comment: "Forgot Password")
+        
+        
         
     }
     
@@ -31,22 +33,27 @@ class ResetPasswordViewController: UIViewController {
 
     
     
+    
+    
     @IBAction func actionResetPasswordButtonTapped(_ sender: Any) {
         
         // Validate the input
         guard let emailAddress = emailTextField.text,
             emailAddress != "" else {
                 
-                self.alert(title: "Input Error", message: "Please provide your email address for password reset.")
+                self.alert(title: NSLocalizedString("Input Error", comment: "Input Error"), message: NSLocalizedString("Please provide your email address for password reset.", comment: "Please provide your email address for password reset."))
            
                 return
         }
         
         
+        
+        
         FRAuthManager.sharedManager.resetPassword(emailAddress: emailAddress) { (error) in
             
-            let title = (error == nil) ? "Password Reset Follow-up" : "Password Reset Error"
-            let message = (error == nil) ? "We have just sent you a password reset email. Please check your inbox and follow the instructions to reset your password." : error?.localizedDescription
+            let title = (error == nil) ? NSLocalizedString("Password Reset Follow-up", comment: "Password Reset Follow-up") : NSLocalizedString("Password Reset Error", comment: "Password Reset Error")
+            
+            let message = (error == nil) ? NSLocalizedString("We have just sent you a password reset email. Please check your inbox and follow the instructions to reset your password.", comment: "Password Reset Success") : error?.localizedDescription
             
             let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
             let okayAction = UIAlertAction(title: "OK", style: .cancel, handler: { (action) in

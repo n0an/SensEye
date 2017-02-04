@@ -55,7 +55,9 @@ class ChatViewController: JSQMessagesViewController, UIGestureRecognizerDelegate
             
             self.navigationItem.rightBarButtonItem = logoutButton
             
-            self.title = "Elena Senseye"
+            self.title = NSLocalizedString("Elena Senseye", comment: "Elena Senseye")
+            
+            
             
         } else {
             
@@ -99,9 +101,6 @@ class ChatViewController: JSQMessagesViewController, UIGestureRecognizerDelegate
 
     
     
-    deinit {
-        print("===NAG=== DEINIT ChatViewController")
-    }
     
     
     

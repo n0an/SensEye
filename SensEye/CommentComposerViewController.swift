@@ -30,7 +30,7 @@ class CommentComposerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = "New comment"
+        title =  NSLocalizedString("New comment", comment: "New comment")
         
         sendButton.isEnabled = false
         commentTextView.text = ""

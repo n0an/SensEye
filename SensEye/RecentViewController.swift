@@ -45,7 +45,8 @@ class RecentViewController: UIViewController {
 
         self.currentUser = FRAuthManager.sharedManager.currentUser
         
-        let backButton = UIBarButtonItem(title: "Logout", style: .done, target: self, action: #selector(logoutButtonTapped))
+        
+        let backButton = UIBarButtonItem(title: NSLocalizedString("Logout", comment: "Logout"), style: .done, target: self, action: #selector(logoutButtonTapped))
 
         
         self.navigationItem.leftBarButtonItem = backButton
@@ -72,9 +73,7 @@ class RecentViewController: UIViewController {
         self.fetchChats()
     }
     
-    deinit {
-        print("===NAG=== DEINIT RecentViewController")
-    }
+    
 
     
     // MARK: - HELPER METHODS

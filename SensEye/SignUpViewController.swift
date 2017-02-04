@@ -50,9 +50,7 @@ class SignUpViewController: UIViewController {
         nameTextField.becomeFirstResponder()
     }
     
-    deinit {
-        print("===NAG=== DEINIT SignUpViewController")
-    }
+    
     
     // MARK: - HELPER METHODS
     func goToChatVC() {
@@ -74,24 +72,33 @@ class SignUpViewController: UIViewController {
         guard let username = nameTextField.text, username != "",
             let email = emailTextField.text, email != "",
             let password = passwordTextField.text, password != "" else {
-                self.alert(title: "Sign Up Error", message: "Please make sure you provide your name, email address and password to complete the registration.", handler: nil)
+                
+                self.alert(
+                    title: NSLocalizedString("Sign Up Error", comment: "Sign Up Error"),
+                    message: NSLocalizedString("Please make sure you provided your name, email address and password to complete the registration.", comment: "SIGNUP_ERROR_MESSAGE"), handler: nil)
                 return
         }
+        
+        
         
         // Dismiss keyboard
         self.view.endEditing(true)
         
         // Show spinner
-        SwiftSpinner.show("Registering new account").addTapHandler ({
+        SwiftSpinner.show(NSLocalizedString("Registering new account", comment: "Registering new account")).addTapHandler ({
             SwiftSpinner.hide()
         })
+        
+        
         
         FRAuthManager.sharedManager.signUp(withEmail: email, username: username, password: password, avatarImage: avatarImage, onComplete: { (errMsg, data) in
             guard errMsg == nil else {
                 SwiftSpinner.hide()
-                self.alert(title: "Error", message: errMsg!)
+                self.alert(title: NSLocalizedString("Error", comment: "Error"), message: errMsg!)
                 return
             }
+            
+            
             
             SwiftSpinner.hide()
             self.goToChatVC()
@@ -105,15 +112,15 @@ class SignUpViewController: UIViewController {
         
         let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let camera = Camera(delegate: self)
-        let takePhoto = UIAlertAction(title: "Take Photo", style: .default) { (alert: UIAlertAction!) in
+        let takePhoto = UIAlertAction(title: NSLocalizedString("Take Photo", comment: "Take Photo"), style: .default) { (alert: UIAlertAction!) in
             camera.presentPhotoCamera(target: self, canEdit: true)
         }
         
-        let sharePhoto = UIAlertAction(title: "Photo Library", style: .default) { (alert: UIAlertAction!) in
+        let sharePhoto = UIAlertAction(title: NSLocalizedString("Photo Library", comment: "Photo Library"), style: .default) { (alert: UIAlertAction!) in
             camera.presentPhotoLibrary(target: self, canEdit: true)
         }
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (alert: UIAlertAction!) in
+        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel"), style: .cancel) { (alert: UIAlertAction!) in
         }
         
         optionMenu.addAction(takePhoto)
@@ -125,6 +132,12 @@ class SignUpViewController: UIViewController {
         self.present(optionMenu, animated: true, completion: nil)
         
     }
+    
+    
+    
+    
+
+    
 
 }
 

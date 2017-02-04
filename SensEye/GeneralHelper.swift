@@ -110,14 +110,23 @@ class GeneralHelper {
     
     public func showVKAuthorizeActionSheetOnViewController(viewController: UIViewController, completion: @escaping (Bool) -> Void) {
         
-        let actionSheet = UIAlertController(title: "You have to login to VK to get access to likes and comments feature", message: "You have to login just once", preferredStyle: .actionSheet)
+        
+        
+        
+        
+
+        
+        
+        let actionSheet = UIAlertController(title: NSLocalizedString("You have to login to VK to get access to likes and comments feature", comment: "VK Login"), message: NSLocalizedString("You have to login just once", comment: "VK Login"), preferredStyle: .actionSheet)
         
         let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
             
             completion(true)
         }
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
+        
+        
+        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel"), style: .cancel) { (action) in
             completion(false)
         }
         
@@ -132,15 +141,19 @@ class GeneralHelper {
     
     public func showLogoutView(onViewController viewController: UIViewController, withHandler handler: @escaping (_ success: Bool) -> Void) {
         
-        let optionMenu = UIAlertController(title: "Logout?", message: nil, preferredStyle: .actionSheet)
         
-        let logOut = UIAlertAction(title: "Log Out", style: .destructive) { (alert: UIAlertAction!) in
+        
+        let optionMenu = UIAlertController(title: NSLocalizedString("Logout?", comment: "Logout?"), message: nil, preferredStyle: .actionSheet)
+        
+        let logOut = UIAlertAction(title: NSLocalizedString("Log Out", comment: "Log Out"), style: .destructive) { (alert: UIAlertAction!) in
             
             handler(true)
             
         }
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (alert: UIAlertAction!) in
+        
+        
+        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel"), style: .cancel) { (alert: UIAlertAction!) in
             
         }
         

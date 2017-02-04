@@ -15,19 +15,23 @@ class AboutTableViewController: UITableViewController {
     
     // MARK: - PROPERTIES
     
-    var sectionTitles = ["Connect with me", "Social Networks", "About me"]
+    
+    var sectionTitles = [NSLocalizedString("Contacts", comment: "Contacts"), NSLocalizedString("Social Networks", comment: "Social Networks"), NSLocalizedString("About me", comment: "About me")]
+    
     
     var connections = [
-                Contact(imageName: "about-icon-chat", labelText: "InApp Chat", link: ""),
-                Contact(imageName: "about-icon-email", labelText: "Email to me", link: ""),
+                Contact(imageName: "about-icon-chat", labelText: NSLocalizedString("InApp Chat", comment: "InApp Chat"), link: ""),
+                Contact(imageName: "about-icon-email", labelText: NSLocalizedString("Email to me", comment: "Email to me"), link: ""),
                 Contact(imageName: "about-icon-skypeColor", labelText: "Skype: elena.senseye", link: "")
     
     ]
     
+    
+    
     var socNet = [
         Contact(imageName: "about-icon-facebookColor", labelText: "Facebook", link: "https://facebook.com/elena.senseye"),
         Contact(imageName: "about-icon-instagramColor", labelText: "Instagram", link: "https://instagram.com/elena.senseye"),
-        Contact(imageName: "about-icon-vkColor", labelText: "VK", link: "https://vk.com/elena_senseye")
+        Contact(imageName: "about-icon-vkColor", labelText: NSLocalizedString("VK", comment: "Vkontakte"), link: "https://vk.com/elena_senseye")
     ]
     
     // MARK: - ENUMS
@@ -288,7 +292,9 @@ extension AboutTableViewController: MFMailComposeViewControllerDelegate {
             return
         }
         
-        let messageSubject = "Hello"
+        
+        let messageSubject = NSLocalizedString("Hello", comment: "Hello Zdravstv")
+        
         let toRecipients = ["senseye.ru@gmail.com"]
         
         let mailComposer = MFMailComposeViewController()
@@ -331,7 +337,7 @@ extension AboutTableViewController: MFMessageComposeViewControllerDelegate {
         
         guard MFMessageComposeViewController.canSendText() else {
             
-            self.alert(title: "SMS Unavailable", message: "Your device is not capable of sending SMS")
+            self.alert(title: NSLocalizedString("SMS Unavailable", comment: "SMS Unavailable"), message: NSLocalizedString("Your device is not capable of sending SMS", comment: "SMS Unavailable"))
             
             return
         }
@@ -347,12 +353,19 @@ extension AboutTableViewController: MFMessageComposeViewControllerDelegate {
     
     func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
         
+        
+        
+        
+        
+        
         switch result {
         case .cancelled:
-            print("SMS cancelled")
+            print(NSLocalizedString("SMS cancelled", comment: "SMS cancelled"))
+        
         case .failed:
-            print("SMS failed")
-            self.alert(title: "Failure", message: "Failed to send the message")
+            print(NSLocalizedString("SMS failed", comment: "SMS failed"))
+            self.alert(title: NSLocalizedString("Failure", comment: "Failure"), message: NSLocalizedString("Failed to send the message", comment: "Failed to send the message"))
+            
         case .sent:
             print("SMS sent")
             
