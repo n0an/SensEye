@@ -45,7 +45,7 @@ class VKLoginViewController: UIViewController {
          
          self.navigationItem.setRightBarButton(cancelButton, animated: false)
          
-         self.navigationItem.title = NSLocalizedString("Login", comment: "Login")
+         self.navigationItem.title = NSLocalizedString("Login", comment: "VK Login")
         
         
         let urlString = "https://oauth.vk.com/authorize?" +

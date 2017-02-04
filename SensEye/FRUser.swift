@@ -86,7 +86,7 @@ class FRUser {
     func toDictionary() -> [String: Any] {
         return [
             "username": username,
-            "pushId": pushId,
+            "pushId": pushId ?? "",
             "email": email
             
         ]

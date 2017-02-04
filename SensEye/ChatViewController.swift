@@ -55,7 +55,7 @@ class ChatViewController: JSQMessagesViewController, UIGestureRecognizerDelegate
             
             self.navigationItem.rightBarButtonItem = logoutButton
             
-            self.title = NSLocalizedString("Elena Senseye", comment: "Elena Senseye")
+            self.title = NSLocalizedString("Elena Senseye", comment: "Elena Senseye Title")
             
             
             
@@ -139,7 +139,7 @@ class ChatViewController: JSQMessagesViewController, UIGestureRecognizerDelegate
                     let incoming = self.insertMessage(message)
                     
                     if incoming {
-                        JSQSystemSoundPlayer.jsq_playMessageReceivedAlert()
+                        JSQSystemSoundPlayer.jsq_playMessageReceivedSound()
                     }
                     
                     self.finishReceivingMessage()
@@ -245,9 +245,9 @@ class ChatViewController: JSQMessagesViewController, UIGestureRecognizerDelegate
         let incomingMessage = IncomingMessage(collectionView: self.collectionView)
         
         
-        if self.currentUser.uid == message.senderUID {
-            self.chat.updateChatStatus(message)
-        }
+//        if self.currentUser.uid == message.senderUID {
+//            self.chat.updateChatStatus(message)
+//        }
         
         
         let jsqMessage = incomingMessage.createJSQMessage(fromFRMessage: message)

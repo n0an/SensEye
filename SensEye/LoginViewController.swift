@@ -47,7 +47,6 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
                 }
                 
                 
-                
                 SwiftSpinner.show(NSLocalizedString("Entering chat", comment: "SPINNER_ENTER_CHAT")).addTapHandler({
                     SwiftSpinner.hide()
                 })
@@ -158,9 +157,6 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     
     
     
-    deinit {
-        print("===NAG=== DEINIT LoginViewController")
-    }
     
     
     // MARK: - HELPER METHODS
@@ -353,7 +349,8 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
             
             if let errorString = errorString {
                 SwiftSpinner.hide()
-                self.alert(title: "Error", message: errorString)
+                
+                self.alert(title: NSLocalizedString("Error", comment: "Error"), message: errorString)
                 return
                 
             } else {

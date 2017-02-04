@@ -30,7 +30,8 @@ class PostHeaderView: UIView {
     
     public func updateUI(withPost wallPost: WallPost, andImage image: UIImage?) {
         
-        pullDownToCloseLabel.text! = "Pull down to close"
+        pullDownToCloseLabel.text! = NSLocalizedString("Pull down to close", comment: "Pull down to close")
+        
         
         pullDownToCloseLabel.isHidden = true
         

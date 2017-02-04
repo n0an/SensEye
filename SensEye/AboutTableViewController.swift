@@ -293,7 +293,7 @@ extension AboutTableViewController: MFMailComposeViewControllerDelegate {
         }
         
         
-        let messageSubject = NSLocalizedString("Hello", comment: "Hello Zdravstv")
+        let messageSubject = NSLocalizedString("Hello", comment: "Hello mailSubject")
         
         let toRecipients = ["senseye.ru@gmail.com"]
         

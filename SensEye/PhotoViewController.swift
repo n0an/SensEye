@@ -150,25 +150,29 @@ class PhotoViewController: UIViewController {
     @IBAction func actionShareTap() {
         
         
-        let defaultText = "Photo by Elena Senseye - vk.com/elena_senseye"
+        let defaultText = NSLocalizedString("Photo by Elena Senseye - vk.com/elena_senseye", comment: "defaultTextShare")
         
         
         
         guard let imageToShare = self.imageView.image else  { return }
         
         
+        
+        
         // Display the share menu
-        let shareMenu = UIAlertController(title: nil, message: "Share using", preferredStyle: .actionSheet)
+        let shareMenu = UIAlertController(title: nil, message: NSLocalizedString("Share using", comment: "Share using"), preferredStyle: .actionSheet)
         let twitterAction = UIAlertAction(title: "Twitter", style: UIAlertActionStyle.default) { (action) in
             
             // Check if Twitter is available. Otherwise, display an error message
             guard SLComposeViewController.isAvailable(forServiceType: SLServiceTypeTwitter) else {
-                let alertMessage = UIAlertController(title: "Twitter Unavailable", message: "You haven't registered your Twitter account. Please go to Settings > Twitter to create one.", preferredStyle: .alert)
+                let alertMessage = UIAlertController(title: NSLocalizedString("Twitter Unavailable", comment: "Twitter Unavailable message"), message: NSLocalizedString("You haven't registered your Twitter account. Please go to Settings > Twitter to create one.", comment: "Twitter Unavailable message"), preferredStyle: .alert)
                 alertMessage.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                 self.present(alertMessage, animated: true, completion: nil)
                 
                 return
             }
+            
+            
             
             // Display Tweet Composer
             if let tweetComposer = SLComposeViewController(forServiceType: SLServiceTypeTwitter) {
@@ -180,18 +184,27 @@ class PhotoViewController: UIViewController {
         
         let facebookAction = UIAlertAction(title: "Facebook", style: UIAlertActionStyle.default) { (action) in
             
+            
+            
+            
             // Check if Facebook is available. Otherwise, display an error message
             guard SLComposeViewController.isAvailable(forServiceType: SLServiceTypeFacebook) else {
-                let alertMessage = UIAlertController(title: "Facebook Unavailable", message: "You haven't registered your Facebook account. Please go to Settings > Facebook to create one.", preferredStyle: .alert)
+                let alertMessage = UIAlertController(title: NSLocalizedString("Facebook Unavailable", comment: "Facebook Unavailable"), message: NSLocalizedString("You haven't registered your Facebook account. Please go to Settings > Facebook to create one.", comment: "Facebook Unavailable"), preferredStyle: .alert)
                 alertMessage.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                 self.present(alertMessage, animated: true, completion: nil)
                 
                 return
             }
             
+            
+            
+            
             // Display Tweet Composer
             if let fbComposer = SLComposeViewController(forServiceType: SLServiceTypeFacebook) {
-                fbComposer.setInitialText("Photo by Elena Senseye")
+                
+                
+                fbComposer.setInitialText(NSLocalizedString("Photo by Elena Senseye", comment: "Photo by Elena Senseye"))
+                
 //                fbComposer.add(URL(string: "https://www.facebook.com/elena.senseye/"))
                 
                 fbComposer.add(imageToShare)
@@ -200,13 +213,14 @@ class PhotoViewController: UIViewController {
             }
         }
         
-        let otherAction = UIAlertAction(title: "Other", style: .default) { (action) in
+        let otherAction = UIAlertAction(title: NSLocalizedString("Other", comment: "Share Other"), style: .default) { (action) in
             
             self.showActivityVC(withItems: [defaultText, imageToShare])
             
         }
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil)
+        
+        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel"), style: UIAlertActionStyle.cancel, handler: nil)
         
         shareMenu.addAction(facebookAction)
         shareMenu.addAction(twitterAction)
@@ -222,8 +236,6 @@ class PhotoViewController: UIViewController {
         
         self.present(shareMenu, animated: true, completion: nil)
 
-        
-        
         
         
     }

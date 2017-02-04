@@ -17,9 +17,10 @@ extension NSDate {
         var dateString = ""
         
         if interval == 0 {
-            dateString = "Today"
+            dateString = NSLocalizedString("Today", comment: "Today")
         } else if interval == 1 {
-            dateString = "Yesterday"
+            dateString = NSLocalizedString("Yesterday", comment: "Yesterday")
+            
         } else if interval > 1 {
             let dateFormat = DateFormatter()
             dateFormat.dateFormat = "dd MMMM yyyy"
@@ -105,11 +106,14 @@ extension UIAlertController {
     
     public static func confirm(title: String?, message: String?, handler: @escaping (UIAlertAction) -> Void) -> UIAlertController {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: handler))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("No", comment: "No"), style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Yes", comment: "Yes"), style: .default, handler: handler))
         return alert
     }
     
+    
+    
+
     
 }
 

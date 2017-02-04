@@ -81,7 +81,7 @@ class LandscapeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = NSLocalizedString("Albums", comment: "ALBUMS")
+        title = NSLocalizedString("Albums", comment: "Gallery Albums")
         
         if self.traitCollection.verticalSizeClass == .regular && self.traitCollection.horizontalSizeClass == .regular {
             
