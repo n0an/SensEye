@@ -282,7 +282,7 @@
             <objects>
                 <navigationController storyboardIdentifier="PhotoNavViewController" automaticallyAdjustsScrollViewInsets="NO" id="Uuj-Kp-AHt" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="nf4-z0-1A8">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="nf4-z0-1A8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -637,10 +637,10 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pag-Uz-5Of">
-                                                    <rect key="frame" x="8" y="0.0" width="359" height="100"/>
+                                                    <rect key="frame" x="8" y="0.0" width="651" height="100"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Fgk-mF-5OW">
-                                                            <rect key="frame" x="4" y="4" width="351" height="92"/>
+                                                            <rect key="frame" x="4" y="4" width="643" height="92"/>
                                                             <subviews>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="253" verticalHuggingPriority="253" horizontalCompressionResistancePriority="752" verticalCompressionResistancePriority="752" image="Userpic 40px" translatesAutoresizingMaskIntoConstraints="NO" id="g6O-d1-TBc" customClass="CircleImageView" customModule="SensEye" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
@@ -650,10 +650,10 @@
                                                                     </constraints>
                                                                 </imageView>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="p0z-kD-hot">
-                                                                    <rect key="frame" x="38" y="0.0" width="313" height="76.5"/>
+                                                                    <rect key="frame" x="38" y="0.0" width="605" height="60"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="751" text="User Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ir3-kM-xcT">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="313" height="17"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="605" height="17"/>
                                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
@@ -662,7 +662,7 @@
                                                                             </variation>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A small river named Duden flows by their place and supplies it with the necessary regelialia" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eeV-gM-bnl">
-                                                                            <rect key="frame" x="0.0" y="21" width="313" height="33.5"/>
+                                                                            <rect key="frame" x="0.0" y="21" width="605" height="17"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
@@ -671,7 +671,7 @@
                                                                             </variation>
                                                                         </label>
                                                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="BKn-Nd-Lkm">
-                                                                            <rect key="frame" x="0.0" y="58.5" width="313" height="18"/>
+                                                                            <rect key="frame" x="0.0" y="42" width="605" height="18"/>
                                                                             <subviews>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="16m ago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nE7-O6-Euj">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="48.5" height="18"/>
@@ -683,7 +683,7 @@
                                                                                     </variation>
                                                                                 </label>
                                                                                 <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EUW-hB-zXr" customClass="DesignableButton" customModule="Spring">
-                                                                                    <rect key="frame" x="275" y="0.0" width="38" height="18"/>
+                                                                                    <rect key="frame" x="567" y="0.0" width="38" height="18"/>
                                                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                                     <state key="normal" title=" 20" image="LikeNo">
                                                                                         <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -703,7 +703,7 @@
                                                             </subviews>
                                                         </stackView>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q6d-HW-x5b" userLabel="separatorView">
-                                                            <rect key="frame" x="0.0" y="99" width="359" height="1"/>
+                                                            <rect key="frame" x="0.0" y="99" width="651" height="1"/>
                                                             <color key="backgroundColor" white="0.66666666666666663" alpha="0.49591023489932884" colorSpace="calibratedWhite"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="1" id="eZD-S8-dGq"/>
@@ -814,6 +814,12 @@
                                         <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <variation key="heightClass=compact">
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                    <mask key="constraints">
+                                        <exclude reference="Lrd-zm-ppG"/>
+                                    </mask>
+                                </variation>
                                 <connections>
                                     <segue destination="ngm-NQ-1S7" kind="presentation" id="ge0-xf-CNc"/>
                                 </connections>
@@ -956,7 +962,7 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <state key="normal" title="SIGN IN WITH FACEBOOK" image="facebook-1">
+                                        <state key="normal" title="FACEBOOK" image="facebook-1">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
@@ -967,6 +973,9 @@
                                                 <real key="value" value="-10"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <variation key="heightClass=compact">
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                        </variation>
                                         <connections>
                                             <action selector="actionLoginFacebookTapped:" destination="Vhv-ND-M4d" eventType="touchUpInside" id="QbT-zj-Exz"/>
                                         </connections>
@@ -979,7 +988,7 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <state key="normal" title="SIGN IN WITH GOOGLE" image="google">
+                                        <state key="normal" title="GOOGLE+" image="google">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
@@ -990,6 +999,9 @@
                                                 <real key="value" value="-10"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <variation key="heightClass=compact">
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                        </variation>
                                         <connections>
                                             <action selector="actionLoginGoogleTapped:" destination="Vhv-ND-M4d" eventType="touchUpInside" id="2GW-Dl-nZF"/>
                                         </connections>
@@ -1000,26 +1012,62 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Eo0-YZ-3aD" secondAttribute="trailing" id="023-bo-YCK"/>
+                            <constraint firstItem="8Yr-uS-WZE" firstAttribute="centerX" secondItem="QHq-iX-28O" secondAttribute="centerX" id="7JI-TH-8UN"/>
+                            <constraint firstItem="j4U-JT-Z4w" firstAttribute="width" secondItem="pPe-wI-kG6" secondAttribute="width" id="A3r-xZ-p04"/>
                             <constraint firstItem="ZqM-mE-34i" firstAttribute="leading" secondItem="QbA-Uh-rep" secondAttribute="leadingMargin" id="GG7-Ha-b4p"/>
                             <constraint firstItem="Swd-3J-Fem" firstAttribute="top" secondItem="pPe-wI-kG6" secondAttribute="bottom" constant="20" id="GIt-4f-CmQ"/>
                             <constraint firstItem="j4U-JT-Z4w" firstAttribute="top" relation="greaterThanOrEqual" secondItem="QHq-iX-28O" secondAttribute="bottom" constant="20" id="IJU-4a-ASx"/>
+                            <constraint firstItem="j4U-JT-Z4w" firstAttribute="leading" secondItem="ZqM-mE-34i" secondAttribute="trailing" constant="-80" id="Jfx-8p-LDG">
+                                <variation key="heightClass=compact" constant="8"/>
+                            </constraint>
+                            <constraint firstItem="j4U-JT-Z4w" firstAttribute="top" secondItem="8z6-uB-atu" secondAttribute="bottom" constant="8" id="Jmw-v9-ZRo"/>
                             <constraint firstItem="Q59-rV-VAg" firstAttribute="leading" secondItem="QbA-Uh-rep" secondAttribute="leading" id="M59-7p-8YW"/>
                             <constraint firstAttribute="trailing" secondItem="Q59-rV-VAg" secondAttribute="trailing" id="Ucr-cH-6Tq"/>
                             <constraint firstItem="QHq-iX-28O" firstAttribute="centerX" secondItem="QbA-Uh-rep" secondAttribute="centerX" id="YZX-t9-8ML"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="ZqM-mE-34i" secondAttribute="trailing" id="Zwt-zM-BOv"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ZqM-mE-34i" secondAttribute="trailing" id="Zwt-zM-BOv">
+                                <variation key="heightClass=compact" constant="150"/>
+                            </constraint>
                             <constraint firstAttribute="trailingMargin" secondItem="j4U-JT-Z4w" secondAttribute="trailing" id="bQb-mg-eXO"/>
-                            <constraint firstItem="ZqM-mE-34i" firstAttribute="top" secondItem="8z6-uB-atu" secondAttribute="bottom" constant="40" id="bhU-hU-Xqh"/>
+                            <constraint firstItem="ZqM-mE-34i" firstAttribute="top" secondItem="8z6-uB-atu" secondAttribute="bottom" constant="40" id="bhU-hU-Xqh">
+                                <variation key="heightClass=compact" constant="16"/>
+                            </constraint>
+                            <constraint firstItem="Eo0-YZ-3aD" firstAttribute="top" secondItem="j4U-JT-Z4w" secondAttribute="bottom" constant="-207" id="fyu-vv-zRD"/>
                             <constraint firstItem="Q59-rV-VAg" firstAttribute="top" secondItem="QbA-Uh-rep" secondAttribute="top" id="iQZ-wq-xwq"/>
                             <constraint firstItem="Swd-3J-Fem" firstAttribute="top" secondItem="Q59-rV-VAg" secondAttribute="bottom" id="j5m-Ee-MgG"/>
                             <constraint firstItem="j4U-JT-Z4w" firstAttribute="leading" secondItem="QbA-Uh-rep" secondAttribute="leadingMargin" id="jcs-lv-E9x"/>
                             <constraint firstItem="pPe-wI-kG6" firstAttribute="top" secondItem="j4U-JT-Z4w" secondAttribute="bottom" priority="750" constant="20" id="ln4-B8-8qA"/>
                             <constraint firstItem="Swd-3J-Fem" firstAttribute="top" secondItem="Eo0-YZ-3aD" secondAttribute="bottom" id="lp3-WT-QGG"/>
-                            <constraint firstItem="QHq-iX-28O" firstAttribute="top" secondItem="ZqM-mE-34i" secondAttribute="bottom" constant="20" id="n4h-Zd-FPL"/>
+                            <constraint firstItem="QHq-iX-28O" firstAttribute="top" secondItem="ZqM-mE-34i" secondAttribute="bottom" constant="20" id="n4h-Zd-FPL">
+                                <variation key="heightClass=compact" constant="8"/>
+                            </constraint>
                             <constraint firstItem="Eo0-YZ-3aD" firstAttribute="leading" secondItem="QbA-Uh-rep" secondAttribute="leading" id="nbJ-Hb-7kB"/>
                             <constraint firstItem="Eo0-YZ-3aD" firstAttribute="top" secondItem="QbA-Uh-rep" secondAttribute="top" id="pnG-JX-m6r"/>
                             <constraint firstItem="pPe-wI-kG6" firstAttribute="leading" secondItem="QbA-Uh-rep" secondAttribute="leadingMargin" id="wfI-wc-UhV"/>
                             <constraint firstAttribute="trailingMargin" secondItem="pPe-wI-kG6" secondAttribute="trailing" id="yN8-ph-Zo9"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="fyu-vv-zRD"/>
+                                <exclude reference="7JI-TH-8UN"/>
+                                <exclude reference="A3r-xZ-p04"/>
+                                <exclude reference="Jfx-8p-LDG"/>
+                                <exclude reference="Jmw-v9-ZRo"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact">
+                            <mask key="constraints">
+                                <exclude reference="fyu-vv-zRD"/>
+                                <include reference="7JI-TH-8UN"/>
+                                <exclude reference="YZX-t9-8ML"/>
+                                <include reference="A3r-xZ-p04"/>
+                                <exclude reference="IJU-4a-ASx"/>
+                                <include reference="Jfx-8p-LDG"/>
+                                <include reference="Jmw-v9-ZRo"/>
+                                <exclude reference="jcs-lv-E9x"/>
+                                <exclude reference="ln4-B8-8qA"/>
+                                <exclude reference="wfI-wc-UhV"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Log In" id="7FI-AP-yKW"/>
                     <connections>
@@ -1311,14 +1359,14 @@
                                 </constraints>
                             </stackView>
                             <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-defaultAvatar" translatesAutoresizingMaskIntoConstraints="NO" id="auM-bd-Jf6" customClass="CircleImageView" customModule="SensEye" customModuleProvider="target">
-                                <rect key="frame" x="148" y="80" width="80" height="80"/>
+                                <rect key="frame" x="147.5" y="80" width="80" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="Cgw-jw-W1V"/>
                                     <constraint firstAttribute="height" constant="80" id="JIj-y8-coc"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P0a-vy-Xiy">
-                                <rect key="frame" x="112" y="168" width="152" height="30"/>
+                                <rect key="frame" x="111.5" y="168" width="152" height="30"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                 <state key="normal" title="Change Profile Photo">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1373,7 +1421,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ngm-NQ-1S7" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="34q-CL-Z1M">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="34q-CL-Z1M">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1392,7 +1440,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bln-RT-Wcb" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Chat" image="tabBarIcon-Chat" selectedImage="tabBarIcon-Chat-filled" id="e7a-ta-sOH"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="uO9-me-3qC">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="uO9-me-3qC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1620,7 +1668,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Album" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Id-2v-p6l">
-                                <rect key="frame" x="87" y="314" width="202" height="39"/>
+                                <rect key="frame" x="86.5" y="314" width="202" height="39"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -1671,7 +1719,7 @@
             <objects>
                 <navigationController storyboardIdentifier="PhotoNavViewController1" automaticallyAdjustsScrollViewInsets="NO" id="WdO-Um-wya" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="gPe-hg-aTC">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="gPe-hg-aTC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1742,7 +1790,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LAf-Mz-8Ji" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="UGA-Rh-LEG">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="UGA-Rh-LEG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
