@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		09C1CA3DBDD28430D4747B49 /* Pods_SensEye.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1F6287F56849E930AFED5DA /* Pods_SensEye.framework */; };
 		180231C51E12FC1D00FA8322 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180231C41E12FC1D00FA8322 /* PhotoViewController.swift */; };
-		180231CE1E1456C600FA8322 /* AlbumsContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180231CC1E1456C600FA8322 /* AlbumsContentViewController.swift */; };
-		180231CF1E1456C600FA8322 /* AlbumsPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180231CD1E1456C600FA8322 /* AlbumsPageViewController.swift */; };
 		180610C51E37CE0A0074ED86 /* secretsFile.txt in Resources */ = {isa = PBXBuildFile; fileRef = 180610C41E37CE0A0074ED86 /* secretsFile.txt */; };
 		18251C461E2D5160000DBE57 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18251C451E2D5160000DBE57 /* ResetPasswordViewController.swift */; };
 		18251C481E2D51A5000DBE57 /* UITextField+Placeholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18251C471E2D51A5000DBE57 /* UITextField+Placeholder.swift */; };
@@ -47,7 +45,6 @@
 		184DE8AE1E15A8C500E98926 /* ACSlideRightTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184DE8AD1E15A8C500E98926 /* ACSlideRightTransitionAnimator.swift */; };
 		184DE8B01E15A90B00E98926 /* ACPopTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184DE8AF1E15A90B00E98926 /* ACPopTransitionAnimator.swift */; };
 		185456B91E3E4BAC006773C5 /* MySplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185456B81E3E4BAC006773C5 /* MySplitViewController.swift */; };
-		186E2A241E34A3540011AB88 /* WelcomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186E2A231E34A3540011AB88 /* WelcomeVC.swift */; };
 		186E2A261E34A5D60011AB88 /* RecentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186E2A251E34A5D60011AB88 /* RecentViewController.swift */; };
 		186E2A281E34A9400011AB88 /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186E2A271E34A9400011AB88 /* ChatTableViewCell.swift */; };
 		186E2A2A1E34A98B0011AB88 /* FRChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186E2A291E34A98B0011AB88 /* FRChat.swift */; };
@@ -117,8 +114,6 @@
 
 /* Begin PBXFileReference section */
 		180231C41E12FC1D00FA8322 /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
-		180231CC1E1456C600FA8322 /* AlbumsContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumsContentViewController.swift; sourceTree = "<group>"; };
-		180231CD1E1456C600FA8322 /* AlbumsPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumsPageViewController.swift; sourceTree = "<group>"; };
 		180610C41E37CE0A0074ED86 /* secretsFile.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = secretsFile.txt; sourceTree = "<group>"; };
 		18251C451E2D5160000DBE57 /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
 		18251C471E2D51A5000DBE57 /* UITextField+Placeholder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+Placeholder.swift"; sourceTree = "<group>"; };
@@ -155,7 +150,6 @@
 		184DE8AD1E15A8C500E98926 /* ACSlideRightTransitionAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACSlideRightTransitionAnimator.swift; sourceTree = "<group>"; };
 		184DE8AF1E15A90B00E98926 /* ACPopTransitionAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACPopTransitionAnimator.swift; sourceTree = "<group>"; };
 		185456B81E3E4BAC006773C5 /* MySplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MySplitViewController.swift; sourceTree = "<group>"; };
-		186E2A231E34A3540011AB88 /* WelcomeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeVC.swift; sourceTree = "<group>"; };
 		186E2A251E34A5D60011AB88 /* RecentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentViewController.swift; sourceTree = "<group>"; };
 		186E2A271E34A9400011AB88 /* ChatTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTableViewCell.swift; sourceTree = "<group>"; };
 		186E2A291E34A98B0011AB88 /* FRChat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FRChat.swift; sourceTree = "<group>"; };
@@ -281,8 +275,6 @@
 			isa = PBXGroup;
 			children = (
 				185456B81E3E4BAC006773C5 /* MySplitViewController.swift */,
-				180231CC1E1456C600FA8322 /* AlbumsContentViewController.swift */,
-				180231CD1E1456C600FA8322 /* AlbumsPageViewController.swift */,
 				18DD2E2A1E1A484800451CE7 /* LandscapeViewController.swift */,
 			);
 			name = Gallery;
@@ -299,7 +291,6 @@
 		18A9FAE51E2E9DC4004C548B /* Chat Tab */ = {
 			isa = PBXGroup;
 			children = (
-				186E2A231E34A3540011AB88 /* WelcomeVC.swift */,
 				1899316C1E2D4B7C006E00C6 /* LoginViewController.swift */,
 				18251C491E2D53F4000DBE57 /* SignUpViewController.swift */,
 				18251C451E2D5160000DBE57 /* ResetPasswordViewController.swift */,
@@ -409,6 +400,26 @@
 			name = VK;
 			sourceTree = "<group>";
 		};
+		18E3F91A1E464DEB00BC95C3 /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				18D623611E1FCCC800138117 /* VKLoginViewController.swift */,
+				188C04F71E1074C8008B58EB /* FeedViewController.swift */,
+				182681901E1D7C9C00D96764 /* PostViewController.swift */,
+				18880A7B1E43C6A30083D0B4 /* CommentComposerViewController.swift */,
+				180231C41E12FC1D00FA8322 /* PhotoViewController.swift */,
+			);
+			name = Feed;
+			sourceTree = "<group>";
+		};
+		18E3F91B1E464DF300BC95C3 /* About */ = {
+			isa = PBXGroup;
+			children = (
+				18D6236B1E213AE200138117 /* AboutTableViewController.swift */,
+			);
+			name = About;
+			sourceTree = "<group>";
+		};
 		18FC625F1E114C1700E25A18 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -436,14 +447,10 @@
 		18FC62611E114C2300E25A18 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				18D623611E1FCCC800138117 /* VKLoginViewController.swift */,
-				188C04F71E1074C8008B58EB /* FeedViewController.swift */,
-				182681901E1D7C9C00D96764 /* PostViewController.swift */,
-				18880A7B1E43C6A30083D0B4 /* CommentComposerViewController.swift */,
-				180231C41E12FC1D00FA8322 /* PhotoViewController.swift */,
-				18D6236B1E213AE200138117 /* AboutTableViewController.swift */,
+				18E3F91A1E464DEB00BC95C3 /* Feed */,
 				1864A9E11E157E0B0058D2E2 /* Gallery */,
 				18A9FAE51E2E9DC4004C548B /* Chat Tab */,
+				18E3F91B1E464DF300BC95C3 /* About */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -697,10 +704,8 @@
 				184DE8A71E15A39900E98926 /* SlideRightThenPopTransitionAnimator.swift in Sources */,
 				180231C51E12FC1D00FA8322 /* PhotoViewController.swift in Sources */,
 				1826818F1E1D79D300D96764 /* ServerObject.swift in Sources */,
-				180231CF1E1456C600FA8322 /* AlbumsPageViewController.swift in Sources */,
 				184DE8AE1E15A8C500E98926 /* ACSlideRightTransitionAnimator.swift in Sources */,
 				1886A2941E3938F000C6F0A4 /* UIImage+DownloadImage.swift in Sources */,
-				186E2A241E34A3540011AB88 /* WelcomeVC.swift in Sources */,
 				18251C4F1E2D5E7A000DBE57 /* FRUser.swift in Sources */,
 				189FC5101E1E778C00092D2F /* PostHeaderView.swift in Sources */,
 				1838C24B1E11362D00E02F88 /* User.swift in Sources */,
@@ -715,7 +720,6 @@
 				186E2A2A1E34A98B0011AB88 /* FRChat.swift in Sources */,
 				183E2A1E1E16A24A0099F775 /* PostView.swift in Sources */,
 				18AA37D11E1053F700D5BCB1 /* AppDelegate.swift in Sources */,
-				180231CE1E1456C600FA8322 /* AlbumsContentViewController.swift in Sources */,
 				18AEEC491E2FA01B00AB97B4 /* FRImage.swift in Sources */,
 				18AEEC4F1E2FAB1100AB97B4 /* Camera.swift in Sources */,
 				188C04FA1E1074D6008B58EB /* FeedCell.swift in Sources */,

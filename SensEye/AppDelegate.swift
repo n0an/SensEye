@@ -37,22 +37,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     }()
     
     
-    
-//    var splitViewController: MySplitViewController {
-//        
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        
-//        let rootTabController = storyboard.instantiateViewController(withIdentifier: "mainTabBarController") as! UITabBarController
-//        
-////        let rootTabController = window!.rootViewController as! UITabBarController
-//        
-//        let splitVC = rootTabController.viewControllers![3] as! MySplitViewController
-//        
-//        return splitVC
-//    }
-    
-    
-    
     var galleryMasterVC: LandscapeViewController {
         return splitViewController.viewControllers.first as! LandscapeViewController
     }
@@ -132,19 +116,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         window!.tintColor = UIColor(red: 10/255, green: 80/255, blue: 80/255, alpha: 1)
         
         // NavigationBar Customization
-        UINavigationBar.appearance().barTintColor = UIColor.black
-
-        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
-        UINavigationBar.appearance().tintColor = UIColor.white
+//        UINavigationBar.appearance().barTintColor = UIColor.black
+//
+//        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+//        UINavigationBar.appearance().tintColor = UIColor.white
         
         
         // TabBar Customization
 
-        UITabBar.appearance().barTintColor = UIColor.black
+        // UITabBar.appearance().barTintColor = UIColor.black
         
-        let tintColor = UIColor(red: 255/255.0, green: 238/255.0, blue: 136/255.0, alpha: 1.0)
+        // let tintColor = UIColor(red: 255/255.0, green: 238/255.0, blue: 136/255.0, alpha: 1.0)
         
-        UITabBar.appearance().tintColor = tintColor
+        // UITabBar.appearance().tintColor = tintColor
         
     }
     

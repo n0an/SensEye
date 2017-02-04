@@ -150,7 +150,7 @@ class PhotoViewController: UIViewController {
     @IBAction func actionShareTap() {
         
         
-        let defaultText = "Фотограф Elena Senseye - vk.com/elena_senseye"
+        let defaultText = "Photo by Elena Senseye - vk.com/elena_senseye"
         
         
         
@@ -158,12 +158,12 @@ class PhotoViewController: UIViewController {
         
         
         // Display the share menu
-        let shareMenu = UIAlertController(title: nil, message: "Поделиться с помощью", preferredStyle: .actionSheet)
+        let shareMenu = UIAlertController(title: nil, message: "Share using", preferredStyle: .actionSheet)
         let twitterAction = UIAlertAction(title: "Twitter", style: UIAlertActionStyle.default) { (action) in
             
             // Check if Twitter is available. Otherwise, display an error message
             guard SLComposeViewController.isAvailable(forServiceType: SLServiceTypeTwitter) else {
-                let alertMessage = UIAlertController(title: "Twitter недоступен", message: "Вы не вошли в учетную запись Twitter. Пожалуйста, войдите в свою учетную запись в Настройки > Twitter", preferredStyle: .alert)
+                let alertMessage = UIAlertController(title: "Twitter Unavailable", message: "You haven't registered your Twitter account. Please go to Settings > Twitter to create one.", preferredStyle: .alert)
                 alertMessage.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                 self.present(alertMessage, animated: true, completion: nil)
                 
@@ -182,7 +182,7 @@ class PhotoViewController: UIViewController {
             
             // Check if Facebook is available. Otherwise, display an error message
             guard SLComposeViewController.isAvailable(forServiceType: SLServiceTypeFacebook) else {
-                let alertMessage = UIAlertController(title: "Facebook недоступен", message: "Вы не вошли в учетную запись Facebook. Пожалуйста, войдите в свою учетную запись в Настройки > Facebook", preferredStyle: .alert)
+                let alertMessage = UIAlertController(title: "Facebook Unavailable", message: "You haven't registered your Facebook account. Please go to Settings > Facebook to create one.", preferredStyle: .alert)
                 alertMessage.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                 self.present(alertMessage, animated: true, completion: nil)
                 
@@ -191,7 +191,7 @@ class PhotoViewController: UIViewController {
             
             // Display Tweet Composer
             if let fbComposer = SLComposeViewController(forServiceType: SLServiceTypeFacebook) {
-                fbComposer.setInitialText("Фотограф Elena Senseye")
+                fbComposer.setInitialText("Photo by Elena Senseye")
 //                fbComposer.add(URL(string: "https://www.facebook.com/elena.senseye/"))
                 
                 fbComposer.add(imageToShare)
@@ -200,13 +200,13 @@ class PhotoViewController: UIViewController {
             }
         }
         
-        let otherAction = UIAlertAction(title: "Другое", style: .default) { (action) in
+        let otherAction = UIAlertAction(title: "Other", style: .default) { (action) in
             
             self.showActivityVC(withItems: [defaultText, imageToShare])
             
         }
         
-        let cancelAction = UIAlertAction(title: "Отмена", style: UIAlertActionStyle.cancel, handler: nil)
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil)
         
         shareMenu.addAction(facebookAction)
         shareMenu.addAction(twitterAction)

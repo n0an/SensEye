@@ -28,9 +28,8 @@ class SplashLogoViewController: UIViewController {
         print("SplashLogoViewController deinit")
     }
     
-    /// Does not transition to any other UIViewControllers, SplashViewController only FOR TEST
+    // Does not transition to any other UIViewControllers, SplashViewController only FOR TEST
     func showSplashViewControllerNoPing() {
-        
         
         if rootViewController is SplashViewController {
             return
@@ -42,9 +41,6 @@ class SplashLogoViewController: UIViewController {
         rootViewController?.didMove(toParentViewController: nil)
         
         let splashViewController = SplashViewController(tileViewFileName: "Chimes2")
-        //    let splashViewController = SplashViewController(tileViewFileName: "dark_crop_1000")
-        //    let splashViewController = SplashViewController(tileViewFileName: "float_logo")
-        
         
         rootViewController = splashViewController
         splashViewController.pulsing = true
@@ -55,7 +51,7 @@ class SplashLogoViewController: UIViewController {
         splashViewController.didMove(toParentViewController: self)
     }
     
-    /// Simulates an API handshake success and transitions to MainApp ViewController
+    // transitions to FeedVC
     func showSplashViewController() {
         showSplashViewControllerNoPing()
         
@@ -73,49 +69,7 @@ class SplashLogoViewController: UIViewController {
 
 
         UIApplication.shared.keyWindow?.rootViewController = mainTabBarController
-        
-        
-//        let ad = UIApplication.shared.delegate as! AppDelegate
-//        
-//        ad.window?.rootViewController = mainTabBarController
-        
-        
-        
-        
-        
-        /* FANCY TRANSITION BUT TOO COMPLEX
-        guard !(rootViewController is UITabBarController) else { return }
-
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        
-        let mainTabBarController = storyboard.instantiateViewController(withIdentifier: "mainTabBarController") as! UITabBarController
-        
-        mainTabBarController.willMove(toParentViewController: self)
-        
-        addChildViewController(mainTabBarController)
-        
-        if let rootViewController = self.rootViewController {
-            
-            self.rootViewController = mainTabBarController
-            
-            rootViewController.willMove(toParentViewController: nil)
-            
-            transition(from: rootViewController, to: mainTabBarController, duration: 0.55, options: [.transitionCrossDissolve, .curveEaseOut], animations: { () -> Void in
-                
-            }, completion: { _ in
-                mainTabBarController.didMove(toParentViewController: self)
-                rootViewController.removeFromParentViewController()
-                rootViewController.didMove(toParentViewController: nil)
-            })
-        } else {
-            rootViewController = mainTabBarController
-            view.addSubview(mainTabBarController.view)
-            mainTabBarController.didMove(toParentViewController: self)
-        }
-        
-        
-        */
-        
+     
         
     }
     

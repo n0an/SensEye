@@ -222,82 +222,13 @@
                     <tabBarItem key="tabBarItem" title="Feed" image="tabBarIcon-Home" selectedImage="tabBarIcon-Home-filled" id="guo-4U-tIH"/>
                     <connections>
                         <outlet property="tableView" destination="dhK-hL-S59" id="AY8-4e-dcI"/>
-                        <segue destination="Uuj-Kp-AHt" kind="presentation" identifier="showPhoto" id="9lc-HA-SpN"/>
                         <segue destination="6fL-t2-rQp" kind="show" identifier="showPost" id="qnn-43-2Ue"/>
                         <segue destination="LAf-Mz-8Ji" kind="presentation" identifier="ShowCommentComposer" id="CZM-yF-Ip1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iE8-b9-jbn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1968.8" y="911.69415292353835"/>
-        </scene>
-        <!--Photo View Controller-->
-        <scene sceneID="ilZ-KP-C3b">
-            <objects>
-                <viewController storyboardIdentifier="PhotoViewController" id="FSA-lg-zHa" customClass="PhotoViewController" customModule="SensEye" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="VFg-m2-qhR"/>
-                        <viewControllerLayoutGuide type="bottom" id="s52-sr-484"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="K0K-yn-051">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="9ol-yE-rwC">
-                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="H5k-KP-EIl">
-                            <connections>
-                                <action selector="actionCloseButtonTapped" destination="FSA-lg-zHa" id="Qka-DW-vJn"/>
-                            </connections>
-                        </barButtonItem>
-                        <rightBarButtonItems>
-                            <barButtonItem title="→" id="Vel-uF-2Du">
-                                <connections>
-                                    <action selector="actionNextPhotoTap" destination="FSA-lg-zHa" id="mkb-Ci-HAL"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem title="←" id="yh0-fe-PWX">
-                                <connections>
-                                    <action selector="actionPreviosPhotoTap" destination="FSA-lg-zHa" id="vfe-y3-A4T"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem systemItem="action" id="V9g-YT-ZmX">
-                                <connections>
-                                    <action selector="actionShareTap" destination="FSA-lg-zHa" id="RKS-bA-i3R"/>
-                                </connections>
-                            </barButtonItem>
-                        </rightBarButtonItems>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="nextPhotoBarButton" destination="Vel-uF-2Du" id="3QQ-aF-7wN"/>
-                        <outlet property="previousPhotoBarButton" destination="yh0-fe-PWX" id="mCp-a4-chy"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="V5K-mF-HhF" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3574" y="912"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="DLy-Dc-2Pc">
-            <objects>
-                <navigationController storyboardIdentifier="PhotoNavViewController" automaticallyAdjustsScrollViewInsets="NO" id="Uuj-Kp-AHt" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="nf4-z0-1A8">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="hdm-gS-k53">
-                        <rect key="frame" x="0.0" y="623" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </toolbar>
-                    <connections>
-                        <segue destination="FSA-lg-zHa" kind="relationship" relationship="rootViewController" id="os7-BU-ph4"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bki-uX-bOi" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2760.8000000000002" y="911.69415292353835"/>
+            <point key="canvasLocation" x="2881" y="1140"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="A3C-Wr-iaq">
@@ -318,7 +249,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Vu-px-Sac" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1088.8" y="911.69415292353835"/>
+            <point key="canvasLocation" x="1558" y="912"/>
         </scene>
         <!--Gallery-->
         <scene sceneID="7Vf-tM-YaI">
@@ -333,7 +264,7 @@
                 </splitViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ihb-6U-0wo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1734" y="-1197"/>
+            <point key="canvasLocation" x="2990" y="-661"/>
         </scene>
         <!--Post View Controller-->
         <scene sceneID="aIY-Z6-VhS">
@@ -762,7 +693,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gxp-TC-i8l" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1886" y="74"/>
+            <point key="canvasLocation" x="2881" y="422"/>
         </scene>
         <!--about-->
         <scene sceneID="f4I-dI-dWQ">
@@ -1682,7 +1613,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3aZ-i5-bG8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2698" y="-1567"/>
+            <point key="canvasLocation" x="3953" y="-1030"/>
         </scene>
         <!--Photo View Controller-->
         <scene sceneID="jfN-Hu-YGd">
@@ -1741,7 +1672,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="15c-Pt-TQP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3574" y="-740"/>
+            <point key="canvasLocation" x="4830" y="-204"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="QPa-vr-5X1">
@@ -1763,7 +1694,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OLq-ei-fmc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2698" y="-741"/>
+            <point key="canvasLocation" x="3953" y="-205"/>
         </scene>
         <!--Comment Composer View Controller-->
         <scene sceneID="asa-bN-amA">
@@ -1812,7 +1743,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="klm-hq-vsd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3574" y="73"/>
+            <point key="canvasLocation" x="4634" y="798"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="x3u-yW-1bG">
@@ -1830,7 +1761,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3X9-4A-5Vc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2761" y="74"/>
+            <point key="canvasLocation" x="3822" y="798"/>
         </scene>
         <!--Splash Logo View Controller-->
         <scene sceneID="zG8-xY-RbG">
@@ -1848,7 +1779,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F0h-P4-gz5" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="31" y="912"/>
+            <point key="canvasLocation" x="666" y="912"/>
         </scene>
     </scenes>
     <resources>

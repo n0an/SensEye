@@ -110,14 +110,14 @@ class GeneralHelper {
     
     public func showVKAuthorizeActionSheetOnViewController(viewController: UIViewController, completion: @escaping (Bool) -> Void) {
         
-        let actionSheet = UIAlertController(title: "Необходима авторизация", message: "Для доступа к функционалу лайков и комментариев, необходимо авторизоваться в Вконтакте. Действие нужно выполнить один раз", preferredStyle: .actionSheet)
+        let actionSheet = UIAlertController(title: "You have to login to VK to get access to likes and comments feature", message: "You have to login just once", preferredStyle: .actionSheet)
         
         let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
             
             completion(true)
         }
         
-        let cancelAction = UIAlertAction(title: "Отмена", style: .cancel) { (action) in
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
             completion(false)
         }
         

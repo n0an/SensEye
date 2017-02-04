@@ -15,11 +15,11 @@ class AboutTableViewController: UITableViewController {
     
     // MARK: - PROPERTIES
     
-    var sectionTitles = ["Связаться со мной", "Соцсети", "Обо мне"]
+    var sectionTitles = ["Connect with me", "Social Networks", "About me"]
     
     var connections = [
-                Contact(imageName: "about-icon-chat", labelText: "Встроенный чат", link: ""),
-                Contact(imageName: "about-icon-email", labelText: "Напишите мне письмо", link: ""),
+                Contact(imageName: "about-icon-chat", labelText: "InApp Chat", link: ""),
+                Contact(imageName: "about-icon-email", labelText: "Email to me", link: ""),
                 Contact(imageName: "about-icon-skypeColor", labelText: "Skype: elena.senseye", link: "")
     
     ]
@@ -27,7 +27,7 @@ class AboutTableViewController: UITableViewController {
     var socNet = [
         Contact(imageName: "about-icon-facebookColor", labelText: "Facebook", link: "https://facebook.com/elena.senseye"),
         Contact(imageName: "about-icon-instagramColor", labelText: "Instagram", link: "https://instagram.com/elena.senseye"),
-        Contact(imageName: "about-icon-vkColor", labelText: "ВКонтакте", link: "https://vk.com/elena_senseye")
+        Contact(imageName: "about-icon-vkColor", labelText: "VK", link: "https://vk.com/elena_senseye")
     ]
     
     // MARK: - ENUMS
@@ -288,7 +288,7 @@ extension AboutTableViewController: MFMailComposeViewControllerDelegate {
             return
         }
         
-        let messageSubject = "Здравствуйте"
+        let messageSubject = "Hello"
         let toRecipients = ["senseye.ru@gmail.com"]
         
         let mailComposer = MFMailComposeViewController()

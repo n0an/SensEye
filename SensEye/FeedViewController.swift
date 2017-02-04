@@ -56,20 +56,7 @@ class FeedViewController: UIViewController {
         super.viewDidLoad()
         
         view.tintColor = UIColor(red: 20/255, green: 160/255, blue: 160/255, alpha: 1)
-        
-//        if splashAnimated == false {
-//            
-//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//            
-//            let splashLogoVC = storyboard.instantiateViewController(withIdentifier: "SplashLogoViewController") as! SplashLogoViewController
-//            
-//            
-//            self.present(splashLogoVC, animated: false, completion: nil)
-//            
-//            self.splashAnimated = true
-//            
-//        }
-        
+     
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -556,35 +543,6 @@ extension FeedViewController: FeedCellDelegate {
         self.present(browser!, animated: true, completion: nil)
         
         
-        
-        // *** USING MY MANUAL PHOTO DISPLAYER
-        /*
-        if let photoDisplayerNavVC = self.createVC(withID: Storyboard.viewControllerIdPhotoDisplayer) as? UINavigationController {
-            
-            let photoDisplayerVC = photoDisplayerNavVC.topViewController as! PhotoViewController
-            
-            photoDisplayerVC.currentPhoto = photosArray[indexOfPhoto]
-            photoDisplayerVC.mediasArray = photosArray
-            photoDisplayerVC.currentIndex = indexOfPhoto
-            
-
-            
-            let customBlurFadeInPresentation2 = JellyFadeInPresentation(dismissCurve: .easeInEaseOut,
-                                                                        presentationCurve: .easeInEaseOut,
-                                                                        cornerRadius: 0,
-                                                                        backgroundStyle: .blur(effectStyle: .light),
-                                                                        duration: .normal,
-                                                                        widthForViewController: .fullscreen,
-                                                                        heightForViewController: .fullscreen)
-
-            
-            self.jellyAnimator = JellyAnimator(presentation: customBlurFadeInPresentation2)
-            
-            self.jellyAnimator?.prepare(viewController: photoDisplayerNavVC)
-            
-            self.present(photoDisplayerNavVC, animated: true, completion: nil)
-        }
-        */
     }
     
     

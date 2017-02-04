@@ -121,31 +121,7 @@ class RecentViewController: UIViewController {
             
         })
         
-        
-//        let userChatIdsRef = currentUser.userRef.child("chatIds")
-        
-//        userChatIdsRef.observe(.childAdded, with: { (snapshot) in
-//            
-//            let chatId = snapshot.key
-//            
-//            FRDataManager.sharedManager.REF_CHATS.child(chatId).observeSingleEvent(of: .value, with: { (snapshot) in
-//                
-//                let chat = FRChat(uid: chatId, dictionary: snapshot.value as! [String: Any])
-//                
-//                if !self.alreadyAddedChat(chat) {
-//                    // adding new chat
-//                    
-//                    self.chats.append(chat)
-//                    
-//                    let indexPath = IndexPath(row: self.chats.count - 1, section: 0)
-//                    
-//                    self.tableView.insertRows(at: [indexPath], with: .automatic)
-//                    
-//                } else {
-//                    self.tableView.reloadData()
-//                }
-//            })
-//        })
+    
     }
     
     func alreadyAddedChat(_ chat: FRChat) -> Bool {
