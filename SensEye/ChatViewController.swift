@@ -50,8 +50,9 @@ class ChatViewController: JSQMessagesViewController, UIGestureRecognizerDelegate
         self.collectionView.addGestureRecognizer(tapGesture)
         
         
+        
         if currentUser.email != GeneralHelper.sharedHelper.appOwnerEmail {
-            let logoutButton = UIBarButtonItem(title: "Logout", style: .done, target: self, action: #selector(logoutButtonTapped))
+            let logoutButton = UIBarButtonItem(title: NSLocalizedString("Logout", comment: ""), style: .done, target: self, action: #selector(logoutButtonTapped))
             
             self.navigationItem.rightBarButtonItem = logoutButton
             
