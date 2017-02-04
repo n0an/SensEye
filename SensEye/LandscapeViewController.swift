@@ -787,7 +787,7 @@ extension LandscapeViewController {
             case .compact:
                 // Hide TabBar
                 
-                if tabBarController.selectedIndex == 3 {
+                if tabBarController.selectedIndex == TabBarIndex.gallery.rawValue {
                     self.tabBarController?.tabBar.layer.zPosition = -1
                     self.tabBarController?.tabBar.isUserInteractionEnabled = false
                 }
@@ -795,7 +795,7 @@ extension LandscapeViewController {
             case .regular, .unspecified:
                 // Show TabBar
                 
-                if tabBarController.selectedIndex == 3 {
+                if tabBarController.selectedIndex == TabBarIndex.gallery.rawValue {
                     self.tabBarController?.tabBar.layer.zPosition = 0
                     self.tabBarController?.tabBar.isUserInteractionEnabled = true
                 }

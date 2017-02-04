@@ -10,6 +10,14 @@ import UIKit
 
 public let APP_FIRST_RUN = "appFirstRun"
 
+public enum TabBarIndex: Int {
+    case wallFeed   = 0
+    case gallery    = 1
+    case chat       = 2
+    case about      = 3
+    
+}
+
 
 // MARK: - ===== VK =====
 

@@ -237,7 +237,8 @@ class AboutTableViewController: UITableViewController {
             
             if indexPath.row == 0 {
                 
-                // GO TO CHAT
+                let tabBarController = UIApplication.shared.keyWindow?.rootViewController as! UITabBarController
+                tabBarController.selectedIndex = TabBarIndex.chat.rawValue
                 
             } else if indexPath.row == 1 {
                 self.showEmailComposer()

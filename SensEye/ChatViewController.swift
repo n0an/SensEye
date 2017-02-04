@@ -355,7 +355,7 @@ class ChatViewController: JSQMessagesViewController, UIGestureRecognizerDelegate
         } else {
             
             let tabBarController = UIApplication.shared.keyWindow?.rootViewController as! UITabBarController
-            tabBarController.selectedIndex = 0
+            tabBarController.selectedIndex = TabBarIndex.wallFeed.rawValue
             
         }
         

@@ -29,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         
         let rootTabController = storyboard.instantiateViewController(withIdentifier: "mainTabBarController") as! UITabBarController
         
-        let splitVC = rootTabController.viewControllers![3] as! MySplitViewController
+        let splitVC = rootTabController.viewControllers![TabBarIndex.gallery.rawValue] as! MySplitViewController
         
         return splitVC
     

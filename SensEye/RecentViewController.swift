@@ -273,10 +273,9 @@ extension RecentViewController: UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         
         
-        if tabBarController.selectedIndex == 3 {
+        if tabBarController.selectedIndex == TabBarIndex.chat.rawValue {
             
-            
-            if let index = tabBarController.viewControllers?.index(of: viewController), index == 3 {
+            if let index = tabBarController.viewControllers?.index(of: viewController), index == TabBarIndex.chat.rawValue {
                 return false
             }
          
