@@ -53,7 +53,6 @@
 		186E2A2A1E34A98B0011AB88 /* FRChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186E2A291E34A98B0011AB88 /* FRChat.swift */; };
 		186E2A2C1E34B96F0011AB88 /* FRMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186E2A2B1E34B96F0011AB88 /* FRMessage.swift */; };
 		186E2A2E1E34BB940011AB88 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186E2A2D1E34BB940011AB88 /* ChatViewController.swift */; };
-		1871A7E71E218154004C532E /* gallery.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1871A7E61E218154004C532E /* gallery.storyboard */; };
 		1886A2941E3938F000C6F0A4 /* UIImage+DownloadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1886A2931E3938F000C6F0A4 /* UIImage+DownloadImage.swift */; };
 		18880A7C1E43C6A30083D0B4 /* CommentComposerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18880A7B1E43C6A30083D0B4 /* CommentComposerViewController.swift */; };
 		188C04F81E1074C8008B58EB /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188C04F71E1074C8008B58EB /* FeedViewController.swift */; };
@@ -162,7 +161,6 @@
 		186E2A291E34A98B0011AB88 /* FRChat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FRChat.swift; sourceTree = "<group>"; };
 		186E2A2B1E34B96F0011AB88 /* FRMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FRMessage.swift; sourceTree = "<group>"; };
 		186E2A2D1E34BB940011AB88 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
-		1871A7E61E218154004C532E /* gallery.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = gallery.storyboard; sourceTree = "<group>"; };
 		1886A2931E3938F000C6F0A4 /* UIImage+DownloadImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+DownloadImage.swift"; sourceTree = "<group>"; };
 		18880A7B1E43C6A30083D0B4 /* CommentComposerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentComposerViewController.swift; sourceTree = "<group>"; };
 		188C04F71E1074C8008B58EB /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
@@ -345,7 +343,6 @@
 				184DE8A81E15A3AE00E98926 /* Transition Animators */,
 				18C395341E166D2600AE1867 /* Helpers */,
 				18AA37D41E1053F700D5BCB1 /* Main.storyboard */,
-				1871A7E61E218154004C532E /* gallery.storyboard */,
 				18D623761E215B9200138117 /* about.storyboard */,
 				18AA37D71E1053F700D5BCB1 /* Assets.xcassets */,
 				184A0BE71E3B404300EEAB4B /* RefreshContents.xib */,
@@ -592,7 +589,6 @@
 			files = (
 				18AA37DB1E1053F700D5BCB1 /* LaunchScreen.storyboard in Resources */,
 				184A0BE81E3B404300EEAB4B /* RefreshContents.xib in Resources */,
-				1871A7E71E218154004C532E /* gallery.storyboard in Resources */,
 				18AA37D81E1053F700D5BCB1 /* Assets.xcassets in Resources */,
 				18D623781E215B9200138117 /* about.storyboard in Resources */,
 				18AA37D61E1053F700D5BCB1 /* Main.storyboard in Resources */,

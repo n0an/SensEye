@@ -88,19 +88,17 @@
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LsJ-Zz-xQR" customClass="DesignableLabel" customModule="Spring">
                                             <rect key="frame" x="8" y="8" width="398" height="83"/>
-                                            <string key="text">Здравствуйте! Меня зовут Елена.
-Я фотограф из Москвы, по договоренности выезжаю и в другие города.
-Если Вы ищете фотографа, с которым будет легко и интересно работать — Вам сюда 🙂
+                                            <mutableString key="text">Hello! My name is Elena.
+I am a photographer from Moscow, Russia.
 
-В свадебной фотосессии я стараюсь добиться искренности в кадре.
-Отвлечь молодоженов от суеты, дать возможность насладиться происходящим здесь и сейчас, совместным творчеством, раскрыться.
-Чтобы эти моменты остались и красивым кадром в фотоальбоме, и живым воспоминанием!
+In the wedding photo shoot, I try to achieve sincerity in every shot.
+To distract newlyweds from the bustle, to give the opportunity to enjoy what is happening here and now, co-creation, openness, flow.
+To make these moments beautiful in photos, and in a living memory!
 
-— помогу с позированием
-— с составлением плана прогулки
-— с выбором места свадебной прогулки
-— дам контакты хорошего свадебного ведущего и визажистов
-— при заказе свадебной фотосессии- съемка лав стори в подарок!</string>
+- I will help with posturing
+- With the planning and finding nice locations for walking
+- Will provide good contacts of wedding and make-up artists
+- When ordering a wedding photo shoot - shooting love story for free!</mutableString>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" red="0.071640625000000013" green="0.071640625000000013" blue="0.071640625000000013" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
@@ -138,7 +136,7 @@
                 <navigationController id="Zjf-gM-u2V" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="About" image="tabBarIcon-About" selectedImage="tabBarIcon-About-filled" id="ckM-gn-hP4"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="8Cc-Sp-woK">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8Cc-Sp-woK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
