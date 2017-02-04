@@ -282,7 +282,7 @@
             <objects>
                 <navigationController storyboardIdentifier="PhotoNavViewController" automaticallyAdjustsScrollViewInsets="NO" id="Uuj-Kp-AHt" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="nf4-z0-1A8">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="nf4-z0-1A8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -397,7 +397,7 @@
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     </imageView>
                                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pull down to close" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NSE-OF-Hyu">
-                                                        <rect key="frame" x="137" y="8" width="103" height="15"/>
+                                                        <rect key="frame" x="136" y="8" width="103" height="15"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <color key="textColor" red="0.11147167444229122" green="0.11147167444229122" blue="0.11147167444229122" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -405,9 +405,9 @@
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         </variation>
                                                     </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o0h-dZ-Umm">
-                                                        <rect key="frame" x="8" y="8" width="108" height="30"/>
-                                                        <state key="normal" title="Logout from VK"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o0h-dZ-Umm">
+                                                        <rect key="frame" x="8" y="8" width="57" height="30"/>
+                                                        <state key="normal" image="postVC-VKLogout"/>
                                                         <connections>
                                                             <action selector="logoutFromVKButtonTapped" destination="nJF-K5-ybQ" eventType="touchUpInside" id="buR-i8-GgV"/>
                                                         </connections>
@@ -1427,7 +1427,6 @@
                     </view>
                     <navigationItem key="navigationItem" title="Sign Up" id="a6C-am-DTM">
                         <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="6PB-EO-Y9G">
-                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <segue destination="gXp-Qt-25D" kind="unwind" unwindAction="unwindToLoginVCWithSegue:" id="QbX-PA-P6O"/>
                             </connections>
@@ -1451,7 +1450,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ngm-NQ-1S7" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="34q-CL-Z1M">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="34q-CL-Z1M">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1470,7 +1469,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bln-RT-Wcb" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Chat" image="tabBarIcon-Chat" selectedImage="tabBarIcon-Chat-filled" id="e7a-ta-sOH"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="uO9-me-3qC">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="uO9-me-3qC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1749,7 +1748,7 @@
             <objects>
                 <navigationController storyboardIdentifier="PhotoNavViewController1" automaticallyAdjustsScrollViewInsets="NO" id="WdO-Um-wya" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="gPe-hg-aTC">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="gPe-hg-aTC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1820,7 +1819,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LAf-Mz-8Ji" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="UGA-Rh-LEG">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="UGA-Rh-LEG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1864,6 +1863,7 @@
         <image name="icon-defaultAvatar" width="120" height="120"/>
         <image name="lock-1" width="20" height="27"/>
         <image name="nametag" width="24" height="20"/>
+        <image name="postVC-VKLogout" width="57" height="30"/>
         <image name="tabBarIcon-Chat" width="30" height="20"/>
         <image name="tabBarIcon-Chat-filled" width="30" height="20"/>
         <image name="tabBarIcon-Gallery" width="30" height="28"/>
@@ -1876,7 +1876,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="PaE-cb-taD"/>
-        <segue reference="CZM-yF-Ip1"/>
+        <segue reference="XAA-BU-txL"/>
         <segue reference="EBb-sR-AUb"/>
     </inferredMetricsTieBreakers>
 </document>
