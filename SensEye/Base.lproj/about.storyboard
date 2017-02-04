@@ -154,7 +154,7 @@
     <resources>
         <image name="icon-facebook" width="96" height="96"/>
         <image name="me" width="500" height="400"/>
-        <image name="tabBarIcon-About" width="24" height="30"/>
-        <image name="tabBarIcon-About-filled" width="24" height="30"/>
+        <image name="tabBarIcon-About" width="24" height="24"/>
+        <image name="tabBarIcon-About-filled" width="24" height="24"/>
     </resources>
 </document>
