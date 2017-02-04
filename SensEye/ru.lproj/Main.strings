@@ -1,0 +1,72 @@
+/* Class = "UILabel"; text = "Select Album"; ObjectID = "4Id-2v-p6l"; */
+"4Id-2v-p6l.text" = "Выберите Альбом";
+
+/* Class = "UINavigationItem"; title = "Log In"; ObjectID = "7FI-AP-yKW"; */
+"7FI-AP-yKW.title" = "Войти";
+
+/* Class = "UITabBarItem"; title = "Gallery"; ObjectID = "8mI-vu-jSd"; */
+"8mI-vu-jSd.title" = "Галерея";
+
+/* Class = "UILabel"; text = "User Name"; ObjectID = "B0e-1z-kq7"; */
+"B0e-1z-kq7.text" = "Имя пользователя";
+
+/* Class = "UIButton"; normalTitle = "LOG IN"; ObjectID = "Bo5-LE-gRK"; */
+"Bo5-LE-gRK.normalTitle" = "Войти";
+
+/* Class = "UILabel"; text = "User Name"; ObjectID = "Ir3-kM-xcT"; */
+"Ir3-kM-xcT.text" = "Имя пользователя";
+
+/* Class = "UIButton"; normalTitle = "SIGN UP"; ObjectID = "NRm-re-aAe"; */
+"NRm-re-aAe.normalTitle" = "Регистрация";
+
+/* Class = "UILabel"; text = "Pull down to close"; ObjectID = "NSE-OF-Hyu"; */
+"NSE-OF-Hyu.text" = "Потяните вниз, чтобы закрыть";
+
+/* Class = "UILabel"; text = "User Name"; ObjectID = "NdZ-Ew-1Iw"; */
+"NdZ-Ew-1Iw.text" = "Имя пользователя";
+
+/* Class = "UIButton"; normalTitle = "Change Profile Photo"; ObjectID = "P0a-vy-Xiy"; */
+"P0a-vy-Xiy.normalTitle" = "Выбрать фото";
+
+/* Class = "UIButton"; normalTitle = "FORGOT PASSWORD?"; ObjectID = "QHq-iX-28O"; */
+"QHq-iX-28O.normalTitle" = "Восстановить пароль?";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "QPq-so-NCn"; */
+"QPq-so-NCn.placeholder" = "Пароль";
+
+/* Class = "UIButton"; normalTitle = "RESET MY PASSWORD"; ObjectID = "YMl-9r-RN6"; */
+"YMl-9r-RN6.normalTitle" = "Восстановить пароль";
+
+/* Class = "UINavigationItem"; title = "Sign Up"; ObjectID = "a6C-am-DTM"; */
+"a6C-am-DTM.title" = "Регистрация";
+
+/* Class = "UITabBarItem"; title = "Chat"; ObjectID = "e7a-ta-sOH"; */
+"e7a-ta-sOH.title" = "Чат";
+
+/* Class = "UITabBarItem"; title = "Feed"; ObjectID = "guo-4U-tIH"; */
+"guo-4U-tIH.title" = "Новости";
+
+/* Class = "UITextField"; placeholder = "Name"; ObjectID = "kpb-D4-vS1"; */
+"kpb-D4-vS1.placeholder" = "Имя пользователя";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "mNF-no-yKE"; */
+"mNF-no-yKE.placeholder" = "Пароль";
+
+/* Class = "UINavigationItem"; title = "Reset Password"; ObjectID = "p4Q-JZ-ljV"; */
+"p4Q-JZ-ljV.title" = "Восстановить пароль";
+
+/* Class = "UILabel"; text = "username"; ObjectID = "pCB-bY-Hdh"; */
+"pCB-bY-Hdh.text" = "Имя пользователя";
+
+/* Class = "UIButton"; normalTitle = "CREATE ACCOUNT"; ObjectID = "pPe-wI-kG6"; */
+"pPe-wI-kG6.normalTitle" = "Создать Аккаунт";
+
+/* Class = "UINavigationItem"; title = "Recent"; ObjectID = "qBe-x0-M56"; */
+"qBe-x0-M56.title" = "Чаты";
+
+/* Class = "UIBarButtonItem"; title = "Send"; ObjectID = "qaK-gh-nil"; */
+"qaK-gh-nil.title" = "Отправить";
+
+/* Class = "UILabel"; text = "last message"; ObjectID = "w0J-n7-IIs"; */
+"w0J-n7-IIs.text" = "Последнее сообщение";
+

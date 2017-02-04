@@ -1,0 +1,159 @@
+/* About me */
+"About me" = "Обо мне";
+
+/* Album */
+"Album" = "Альбом";
+
+/* Gallery Albums */
+"Albums" = "Альбомы";
+
+/* Cancel */
+"Cancel" = "Отмена";
+
+/* Contacts */
+"Contacts" = "Контакты";
+
+/* Elena Senseye Title */
+"Elena Senseye" = "Елена";
+
+/* Email to me */
+"Email to me" = "Напишите мне письмо";
+
+/* No comment provided by engineer. */
+"Enter your email and password" = "Введите email и пароль";
+
+/* SPINNER_ENTER_CHAT */
+"Entering chat" = "Входим в чат";
+
+/* Error */
+"Error" = "Ошибка";
+
+/* Facebook Unavailable */
+"Facebook Unavailable" = "Facebook недоступен";
+
+/* Failed to send the message */
+"Failed to send the message" = "Не удалось отправить сообщение";
+
+/* Failure */
+"Failure" = "Ошибка";
+
+/* Forgot Password */
+"Forgot Password" = "Восстановить пароль";
+
+/* Hello mailSubject */
+"Hello" = "Здравствуйте";
+
+/* GREETIN_MESSAGE */
+"Hello. How can I help you?" = "Здравствуйте, я могу Вам чем-то помочь?";
+
+/* InApp Chat */
+"InApp Chat" = "Встроенный чат";
+
+/* Input Error */
+"Input Error" = "Ошибка входа";
+
+/* Log Out */
+"Log Out" = "Выйти";
+
+/* No comment provided by engineer. */
+"Logging In" = "Заходим";
+
+/* VK Login */
+"Login" = "Логин в ВК";
+
+/* Logout */
+"Logout" = "Выйти";
+
+/* Logout? */
+"Logout?" = "Выйти?";
+
+/* New comment */
+"New comment" = "Новый комментарий";
+
+/* No */
+"No" = "Нет";
+
+/* Share Other */
+"Other" = "Другое";
+
+/* Password Reset Error */
+"Password Reset Error" = "Ошибка восстановления пароля";
+
+/* Password Reset Follow-up */
+"Password Reset Follow-up" = "Восстановление пароля произведено";
+
+/* Photo Library */
+"Photo Library" = "Фотографии";
+
+/* Photo by Elena Senseye */
+"Photo by Elena Senseye" = "Фотограф - Elena Senseye";
+
+/* defaultTextShare */
+"Photo by Elena Senseye - vk.com/elena_senseye" = "Фотограф Elena Senseye - vk.com/elena_senseye";
+
+/* SIGNUP_ERROR_MESSAGE */
+"Please make sure you provided your name, email address and password to complete the registration." = "Пожалуйста, убедитесь, что вы ввели ваши имя пользователя, email адрес и пароль";
+
+/* Please provide your email address for password reset. */
+"Please provide your email address for password reset." = "Пожалуйста, введите ваш email адрес для восстановления пароля";
+
+/* Pull down to close */
+"Pull down to close" = "Потяните вниз, чтобы закрыть";
+
+/* Registering new account */
+"Registering new account" = "Создаем аккаунт";
+
+/* SMS Unavailable */
+"SMS Unavailable" = "Сервис сообщений недоступен";
+
+/* SMS cancelled */
+"SMS cancelled" = "Отправка сообщения отменена";
+
+/* SMS failed */
+"SMS failed" = "Ошибка отправки сообщения";
+
+/* Share using */
+"Share using" = "Поделиться с помощью";
+
+/* Sign Up Error */
+"Sign Up Error" = "Ошибка регистрации";
+
+/* Social Networks */
+"Social Networks" = "Социальные сети";
+
+/* Take Photo */
+"Take Photo" = "Сделать снимок";
+
+/* Today */
+"Today" = "Сегодня";
+
+/* Twitter Unavailable message */
+"Twitter Unavailable" = "Twitter недоступен";
+
+/* Vkontakte */
+"VK" = "ВКонтакте";
+
+/* Password Reset Success */
+"We have just sent you a password reset email. Please check your inbox and follow the instructions to reset your password." = "На ваш email был отправлен новый пароль. Пожалуйста, проверьте электронную почту и проследуйте инструкциям в полученном письме";
+
+/* Yes */
+"Yes" = "Да";
+
+/* Yesterday */
+"Yesterday" = "Вчера";
+
+/* VK Login */
+"You have to login just once" = "Для доступа к функционалу лайков и комментариев, необходимо авторизоваться в Вконтакте. Действие нужно выполнить один раз";
+
+/* VK Login */
+"You have to login to VK to get access to likes and comments feature" = "Необходима авторизация";
+
+/* Facebook Unavailable */
+"You haven't registered your Facebook account. Please go to Settings > Facebook to create one." = "Вы не вошли в учетную запись Facebook. Пожалуйста, войдите в свою учетную запись в Настройки > Facebook";
+
+/* Twitter Unavailable message */
+"You haven't registered your Twitter account. Please go to Settings > Twitter to create one." = "Вы не вошли в учетную запись Twitter. Пожалуйста, войдите в свою учетную запись в Настройки > Twitter";
+
+/* SMS Unavailable */
+"Your device is not capable of sending SMS" = "Сервис сообщений недоступен";
+
