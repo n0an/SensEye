@@ -23,6 +23,10 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: DesignableButton!
     
+    @IBOutlet weak var containerView: DesignableView!
+    
+    
+    
     // MARK: - PROPERTIES
     enum Storyboard {
         static let segueShowRecentChats = "showRecentChatsViewController"
@@ -332,6 +336,14 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     }
     
     
+    func shake() {
+        containerView.animation = "shake"
+        containerView.curve = "spring"
+        containerView.duration = 1.0
+        containerView.animate()
+    }
+    
+    
     
     // MARK: - ACTIONS
     
@@ -384,6 +396,9 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
         guard let email = emailTextField.text, email != "",
             let password = passwordTextField.text, password != "" else {
                 self.alert(title: NSLocalizedString("Error", comment: "Error"), message: NSLocalizedString("Enter your email and password", comment: ""))
+                
+                self.shake()
+                
                 return
         }
         
