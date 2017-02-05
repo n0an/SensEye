@@ -34,14 +34,6 @@ class CommentCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        // *** CREATING GESTURE RECOGNIZER FOR HANDLE AUTHOR IMAGEVIEW TAP
-        
-        self.profileImageVIew.isUserInteractionEnabled = true
-        
-        let tapProfileImageViewGesture = UITapGestureRecognizer(target: self, action: #selector(actionProfileImageViewDidTap))
-        
-        self.profileImageVIew.addGestureRecognizer(tapProfileImageViewGesture)
-        
         // ADDING CUSTOM COLOR FOR SELECTION FOR CELL
         
         let selectedView = UIView(frame: CGRect.zero)
@@ -206,15 +198,9 @@ class CommentCell: UITableViewCell {
     }
     
     
-    // MARK: - GESTURES
-    func actionProfileImageViewDidTap(sender: UITapGestureRecognizer) {
-        print("===NAG=== actionProfileImageViewDidTap")
-    }
     
-
     // MARK: - ACTIONS
     @IBAction func likeDidTap(_ sender: DesignableButton) {
-        print("likeDidTap")
         
         guard ServerManager.sharedManager.currentVKUser != nil else {
             authorize()
@@ -250,7 +236,6 @@ class CommentCell: UITableViewCell {
     
     
     @IBAction func commentDidTap(_ sender: DesignableButton) {
-        print("commentDidTap")
         
         animateButton(sender)
     }

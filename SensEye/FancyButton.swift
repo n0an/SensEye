@@ -81,11 +81,8 @@ class FancyButton: UIButton {
     }
     
     @IBInspectable var enableImageRightAligned: Bool = false
-    
     @IBInspectable var enableGradientBackground: Bool = false
-    
     @IBInspectable var gradientColor1: UIColor = UIColor.black
-    
     @IBInspectable var gradientColor2: UIColor = UIColor.white
     
     
@@ -95,12 +92,6 @@ class FancyButton: UIButton {
         
         if enableImageRightAligned,
             let imageView = imageView {
-            
-            print("image view width = \(imageView.bounds.size.width)")
-            print("frame = \(self.frame.size.width)")
-            print("image view width = \(imageView.frame.size.width)")
-            
-            print("image left padding = \(imageLeftPadding)")
             
             imageEdgeInsets.left = self.bounds.width - imageView.bounds.width - CGFloat(imageLeftPadding)
         }

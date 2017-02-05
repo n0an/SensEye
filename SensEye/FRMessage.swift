@@ -57,8 +57,6 @@ class FRMessage {
 
         self.text = dictionary["text"] as! String
         
-        
-        
     }
     
     
@@ -80,9 +78,6 @@ class FRMessage {
         ]
         
     }
-    
-    
-    
     
 }
 

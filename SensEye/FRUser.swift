@@ -68,14 +68,7 @@ class FRUser {
             
             firImage.saveAvatarImageToFirebaseStorage(self.uid, completion: { (meta, error) in
                 
-                
-                // TODO: - delete if not needed to set downloadLink to Firebase Database
-//                let downloadURLString = meta?.downloadURL()?.absoluteString
-//                
-//                if let urlString = downloadURLString {
-//                    self.avatarDownloadLink = urlString
-//                }
-                
+               
                 completion(error)
             })
         } else {
@@ -118,7 +111,6 @@ extension FRUser {
         
         self.userRef.child("chatIds/\(chat.uid)").setValue(true)
 
-        
         
     }
 }

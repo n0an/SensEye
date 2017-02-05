@@ -15,7 +15,6 @@ class FRChat {
     
     // MARK: - PROPERTIES
     var uid: String
-//    var userIds: [String]
     
     var lastMessage: String
     var lastUpdate: Double!
@@ -31,7 +30,6 @@ class FRChat {
     init(withUserName: String, withUserUID: String) {
         
         self.uid = withUserUID
-//        self.userIds = userIds
         
         self.lastMessage = ""
         
@@ -59,21 +57,7 @@ class FRChat {
         
         self.messagesCount = dictionary["messagesCount"] as! Int
         
-        // init users
-        
-//        self.userIds = []
-//        
-//        if let userIdsDict = dictionary["userIds"] as? [String: Any] {
-//            
-//            for user in userIdsDict.keys {
-//                self.userIds.append(user)
-//            }
-//            
-//        }
-        
-        
     }
-    
     
     
     // MARK: - SAVE METHODS
@@ -82,13 +66,6 @@ class FRChat {
         
         self.chatRef.setValue(toDictionary())
         
-        // saving usersIds
-//        let userIdsRef = self.chatRef.child("userIds")
-        
-//        for userId in userIds {
-//            userIdsRef.child(userId).setValue(true)
-//        }
- 
     }
     
     func toDictionary() -> [String: Any] {
@@ -170,10 +147,6 @@ extension FRChat {
         
         let currentUser = FRAuthManager.sharedManager.currentUser
         
-//        let indexOfCurrentUser = self.userIds.index(of: currentUser.uid)
-        
-//        var recipientsUids = self.userIds
-        
         var recipientUid: String
         
         if currentUser.email == GeneralHelper.sharedHelper.appOwnerEmail {
@@ -188,23 +161,12 @@ extension FRChat {
                     "ios_badgeCount": "1",
                     "include_player_ids": pushIds
                     ])
-                
             }
-            
             
         } else {
             
             self.sendPushToAppOwner(currentUser: currentUser, messageText: messageText)
-            
-//            recipientUid = GeneralHelper.sharedHelper.appOwnerUID
         }
-        
-//        recipientsUids.remove(at: indexOfCurrentUser!)
-        
-        
-        
-        
-        
         
     }
     
@@ -227,17 +189,12 @@ extension FRChat {
                         "ios_badgeCount": "1",
                         "include_player_ids": [chatUser.pushId]
                         ])
-                    
                 }
                 
             }
             
-
-            
         })
-        
     }
-    
     
     
     func fetchChatUsers(forUids userUids: [String], result: @escaping ([String]) -> Void) {
@@ -269,10 +226,6 @@ extension FRChat {
     
     
 }
-
-
-
-
 
 
 

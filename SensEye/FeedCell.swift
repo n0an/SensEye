@@ -57,13 +57,6 @@ class FeedCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        // *** CREATING GESTURE RECOGNIZER FOR HANDLE AUTHOR IMAGEVIEW TAP
-        
-        self.profileImageVIew.isUserInteractionEnabled = true
-        
-        let tapProfileImageViewGesture = UITapGestureRecognizer(target: self, action: #selector(actionProfileImageViewDidTap))
-        
-        self.profileImageVIew.addGestureRecognizer(tapProfileImageViewGesture)
         
         // Colors customizations
         
@@ -75,7 +68,6 @@ class FeedCell: UITableViewCell {
         selectedView.backgroundColor = cellSelectionColor
         
         selectedBackgroundView = selectedView
-        
         
     }
     
@@ -98,7 +90,6 @@ class FeedCell: UITableViewCell {
     // MARK: - API METHODS
     
     func authorize() {
-        
         
         delegate?.provideAuthorization()
         
@@ -250,9 +241,6 @@ class FeedCell: UITableViewCell {
     
     
     // MARK: - GESTURES
-    func actionProfileImageViewDidTap(sender: UITapGestureRecognizer) {
-        print("===NAG=== actionProfileImageViewDidTap")
-    }
     
     func actionGlryImageViewDidTap(sender: UITapGestureRecognizer) {
         
@@ -269,7 +257,6 @@ class FeedCell: UITableViewCell {
     
     // MARK: - ACTIONS
     @IBAction func likeDidTap(_ sender: DesignableButton) {
-        print("likeDidTap")
         
         guard ServerManager.sharedManager.currentVKUser != nil else {
             authorize()
@@ -305,7 +292,6 @@ class FeedCell: UITableViewCell {
     
 
     @IBAction func commentDidTap(_ sender: DesignableButton) {
-        print("commentDidTap")
         
         guard ServerManager.sharedManager.currentVKUser != nil else {
             authorize()

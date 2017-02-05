@@ -24,8 +24,6 @@ class FRImage {
     // MARK: - UPLOAD METHODS
     func saveAvatarImageToFirebaseStorage(_ userUID: String, completion: @escaping (FIRStorageMetadata?, Error?) -> Void) {
         
-//        let imageUid = NSUUID().uuidString
-        
         let resizedImage = self.image.resized(forHeight: 480)
     
         let imageData = UIImageJPEGRepresentation(resizedImage, 0.5)
