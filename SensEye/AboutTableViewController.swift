@@ -95,16 +95,19 @@ class AboutTableViewController: UITableViewController {
         
         let skypeURL = URL(string: "skype:elena.senseye?chat")
         
-        let skypeInstalled = UIApplication.shared.canOpenURL(URL(string: "skype:")!)
+        UIApplication.shared.open(skypeURL!, options: [:], completionHandler: nil)
         
-        if skypeInstalled {
-            
-            UIApplication.shared.open(skypeURL!, options: [:], completionHandler: nil)
-        } else {
-            
-            UIApplication.shared.open(URL(string: "https://appsto.re/ru/Uobls.i")!, options: [:], completionHandler: nil)
-            
-        }
+//        let skypeInstalled = UIApplication.shared.canOpenURL(skypeURL!)
+//        
+//        
+//        if true || skypeInstalled {
+//            
+//            UIApplication.shared.open(skypeURL!, options: [:], completionHandler: nil)
+//        } else {
+//            
+//            UIApplication.shared.open(URL(string: "https://appsto.re/ru/Uobls.i")!, options: [:], completionHandler: nil)
+//            
+//        }
         
 
     }
