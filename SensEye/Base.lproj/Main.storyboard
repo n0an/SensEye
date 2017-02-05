@@ -785,7 +785,7 @@
                                                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                         <state key="normal" image="email-1"/>
                                                                     </button>
-                                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="BBX-p4-NUa">
+                                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="BBX-p4-NUa" customClass="DesignableTextField" customModule="Spring">
                                                                         <rect key="frame" x="34" y="0.0" width="309" height="31"/>
                                                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -823,7 +823,7 @@
                                                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                         <state key="normal" image="lock-1"/>
                                                                     </button>
-                                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="15" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="QPq-so-NCn">
+                                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="15" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="QPq-so-NCn" customClass="DesignableTextField" customModule="Spring">
                                                                         <rect key="frame" x="34" y="0.0" width="309" height="27"/>
                                                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -1008,6 +1008,7 @@
                     <connections>
                         <outlet property="containerView" destination="ycz-Es-1Lw" id="XjA-8q-6yk"/>
                         <outlet property="emailTextField" destination="BBX-p4-NUa" id="isP-06-RwF"/>
+                        <outlet property="hideKeyboardInputAccessoryView" destination="kGK-3g-Mcb" id="X31-hs-8VC"/>
                         <outlet property="loginButton" destination="Bo5-LE-gRK" id="9VT-pK-1V2"/>
                         <outlet property="passwordTextField" destination="QPq-so-NCn" id="F7z-qa-SnY"/>
                         <segue destination="kYh-Og-K9s" kind="show" identifier="showRecentChatsViewController" id="hci-Zb-C6g"/>
@@ -1015,6 +1016,23 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QJV-Mv-Or6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="kGK-3g-Mcb">
+                    <rect key="frame" x="0.0" y="0.0" width="480" height="40"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UTb-hW-mOD">
+                            <rect key="frame" x="430" y="9" width="30" height="22"/>
+                            <state key="normal" image="hideKeyboardButton"/>
+                            <connections>
+                                <action selector="hideKeyboard" destination="Vhv-ND-M4d" eventType="touchUpInside" id="UHf-7i-3DM"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="UTb-hW-mOD" secondAttribute="bottom" constant="9" id="F3U-to-moA"/>
+                        <constraint firstAttribute="trailing" secondItem="UTb-hW-mOD" secondAttribute="trailing" constant="20" id="bD9-Uw-5Un"/>
+                    </constraints>
+                </view>
             </objects>
             <point key="canvasLocation" x="2881" y="1957"/>
         </scene>
@@ -1823,6 +1841,7 @@
         <image name="email-1" width="24" height="16"/>
         <image name="facebook-1" width="21" height="20"/>
         <image name="google" width="21" height="21"/>
+        <image name="hideKeyboardButton" width="30" height="22"/>
         <image name="icon-defaultAvatar" width="120" height="120"/>
         <image name="lock-1" width="20" height="27"/>
         <image name="nametag" width="24" height="20"/>

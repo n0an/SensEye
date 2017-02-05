@@ -19,12 +19,13 @@ import SwiftKeychainWrapper
 class LoginViewController: UIViewController, GIDSignInUIDelegate {
     
     // MARK: - OUTLETS
-    @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var emailTextField: DesignableTextField!
+    @IBOutlet weak var passwordTextField: DesignableTextField!
     @IBOutlet weak var loginButton: DesignableButton!
     
     @IBOutlet weak var containerView: DesignableView!
     
+    @IBOutlet weak var hideKeyboardInputAccessoryView: UIView!
     
     
     // MARK: - PROPERTIES
@@ -41,7 +42,9 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
         super.viewDidLoad()
         
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-
+        
+        emailTextField.inputAccessoryView = hideKeyboardInputAccessoryView
+        passwordTextField.inputAccessoryView = hideKeyboardInputAccessoryView
         
         //        forceLogout()
         
@@ -425,6 +428,12 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
             print("===NAG===: Login Successful Using Firebase Email Login")
             
         })
+        
+    }
+    
+    @IBAction func hideKeyboard() {
+        emailTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
         
     }
     
