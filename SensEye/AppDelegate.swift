@@ -25,16 +25,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     var window: UIWindow?
     
     // MARK: - SplitViewController configuration
-    
-    lazy var splitViewController: MySplitViewController = { () -> MySplitViewController in
-    
-        let rootTabController = self.window?.rootViewController as! UITabBarController
+ 
+    var splitViewController: MySplitViewController {
+        let rootTabController = window!.rootViewController as! UITabBarController
         
         let splitVC = rootTabController.viewControllers![TabBarIndex.gallery.rawValue] as! MySplitViewController
         
         return splitVC
-    
-    }()
+    }
     
     
     var galleryMasterVC: LandscapeViewController {
