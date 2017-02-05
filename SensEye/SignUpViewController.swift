@@ -14,14 +14,17 @@ import SwiftSpinner
 class SignUpViewController: UIViewController {
 
     // MARK: - OUTLETS
-    @IBOutlet weak var nameTextField: UITextField!
-    @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var nameTextField: DesignableTextField!
+    @IBOutlet weak var emailTextField: DesignableTextField!
+    @IBOutlet weak var passwordTextField: DesignableTextField!
     @IBOutlet weak var signUpButton: DesignableButton!
     
     @IBOutlet weak var avatarImageView: UIImageView!
     
     @IBOutlet weak var containerView: DesignableView!
+    
+    @IBOutlet weak var hideKeyboardInputAccessoryView: UIView!
+
     
     // MARK: - PROPERTIES
     
@@ -33,11 +36,16 @@ class SignUpViewController: UIViewController {
         
         self.navigationController?.isNavigationBarHidden = false
 
-        nameTextField.becomeFirstResponder()
 
         nameTextField.delegate = self
         emailTextField.delegate = self
         passwordTextField.delegate = self
+        
+        nameTextField.inputAccessoryView = hideKeyboardInputAccessoryView
+        emailTextField.inputAccessoryView = hideKeyboardInputAccessoryView
+        passwordTextField.inputAccessoryView = hideKeyboardInputAccessoryView
+        
+        
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(resignKeyboard))
         self.view.addGestureRecognizer(tapGesture)
@@ -139,6 +147,13 @@ class SignUpViewController: UIViewController {
         optionMenu.popoverPresentationController?.sourceView = self.avatarImageView
         
         self.present(optionMenu, animated: true, completion: nil)
+        
+    }
+    
+    @IBAction func hideKeyboard() {
+        nameTextField.resignFirstResponder()
+        emailTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
         
     }
     

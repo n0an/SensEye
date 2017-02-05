@@ -1197,7 +1197,7 @@
                                                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                         <state key="normal" image="nametag"/>
                                                                     </button>
-                                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" textAlignment="natural" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="kpb-D4-vS1">
+                                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" textAlignment="natural" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="kpb-D4-vS1" customClass="DesignableTextField" customModule="Spring">
                                                                         <rect key="frame" x="34" y="0.0" width="289" height="25"/>
                                                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -1235,7 +1235,7 @@
                                                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                         <state key="normal" image="email-1"/>
                                                                     </button>
-                                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="2Bp-NF-Por">
+                                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="2Bp-NF-Por" customClass="DesignableTextField" customModule="Spring">
                                                                         <rect key="frame" x="34" y="0.0" width="289" height="25"/>
                                                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -1273,7 +1273,7 @@
                                                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                         <state key="normal" image="lock-1"/>
                                                                     </button>
-                                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="mNF-no-yKE">
+                                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="mNF-no-yKE" customClass="DesignableTextField" customModule="Spring">
                                                                         <rect key="frame" x="34" y="0.0" width="289" height="25"/>
                                                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -1413,12 +1413,31 @@
                         <outlet property="avatarImageView" destination="auM-bd-Jf6" id="qfO-D2-Plf"/>
                         <outlet property="containerView" destination="mXd-4F-cPO" id="Q9Y-mc-LDt"/>
                         <outlet property="emailTextField" destination="2Bp-NF-Por" id="GcE-b4-Nhb"/>
+                        <outlet property="hideKeyboardInputAccessoryView" destination="DOx-xv-1g1" id="SkH-5l-eEZ"/>
                         <outlet property="nameTextField" destination="kpb-D4-vS1" id="NPC-eJ-gG0"/>
                         <outlet property="passwordTextField" destination="mNF-no-yKE" id="kUM-I9-Baj"/>
                         <outlet property="signUpButton" destination="NRm-re-aAe" id="UFP-zA-HtD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oxp-yo-u1U" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="DOx-xv-1g1">
+                    <rect key="frame" x="0.0" y="0.0" width="480" height="40"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4XT-wi-qhi">
+                            <rect key="frame" x="430" y="9" width="30" height="22"/>
+                            <state key="normal" image="hideKeyboardButton"/>
+                            <connections>
+                                <action selector="hideKeyboard" destination="J8o-x7-7cn" eventType="touchUpInside" id="6J1-Tg-KR4"/>
+                                <action selector="hideKeyboard" destination="Vhv-ND-M4d" eventType="touchUpInside" id="8tM-ke-Ed5"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="4XT-wi-qhi" secondAttribute="bottom" constant="9" id="IlN-dt-1Wl"/>
+                        <constraint firstAttribute="trailing" secondItem="4XT-wi-qhi" secondAttribute="trailing" constant="20" id="wem-fq-zK7"/>
+                    </constraints>
+                </view>
                 <exit id="gXp-Qt-25D" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3809" y="2730"/>
