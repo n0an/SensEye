@@ -111,7 +111,7 @@ class GeneralHelper {
     public func showVKAuthorizeActionSheetOnViewController(viewController: UIViewController, completion: @escaping (Bool) -> Void) {
         
         
-        let actionSheet = UIAlertController(title: NSLocalizedString("You have to login to VK to get access to likes and comments feature", comment: "VK Login"), message: NSLocalizedString("You have to login just once", comment: "VK Login"), preferredStyle: .actionSheet)
+        let actionSheet = UIAlertController(title: NSLocalizedString("Authorization to VK required", comment: "VK Login"), message: NSLocalizedString("You have to login to VK to get access to likes and comments features. You have to login just once", comment: "VK Login"), preferredStyle: .actionSheet)
         
         let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
             

@@ -143,10 +143,13 @@
 "Yesterday" = "Вчера";
 
 /* VK Login */
-"You have to login just once" = "Для доступа к функционалу лайков и комментариев, необходимо авторизоваться в Вконтакте. Действие нужно выполнить один раз";
+
+"You have to login to VK to get access to likes and comments features. You have to login just once" = "Для доступа к функционалу лайков и комментариев, необходимо авторизоваться в Вконтакте. Действие нужно выполнить один раз";
+
 
 /* VK Login */
-"You have to login to VK to get access to likes and comments feature" = "Необходима авторизация";
+
+"Authorization to VK required" = "Необходима авторизация";
 
 /* Facebook Unavailable */
 "You haven't registered your Facebook account. Please go to Settings > Facebook to create one." = "Вы не вошли в учетную запись Facebook. Пожалуйста, войдите в свою учетную запись в Настройки > Facebook";
