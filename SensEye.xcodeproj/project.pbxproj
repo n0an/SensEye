@@ -286,6 +286,7 @@
 			children = (
 				185456B81E3E4BAC006773C5 /* MySplitViewController.swift */,
 				18DD2E2A1E1A484800451CE7 /* LandscapeViewController.swift */,
+				180231C41E12FC1D00FA8322 /* PhotoViewController.swift */,
 			);
 			name = Gallery;
 			sourceTree = "<group>";
@@ -419,7 +420,6 @@
 				188C04F71E1074C8008B58EB /* FeedViewController.swift */,
 				182681901E1D7C9C00D96764 /* PostViewController.swift */,
 				18880A7B1E43C6A30083D0B4 /* CommentComposerViewController.swift */,
-				180231C41E12FC1D00FA8322 /* PhotoViewController.swift */,
 			);
 			name = Feed;
 			sourceTree = "<group>";

@@ -52,11 +52,24 @@ class PhotoViewController: UIViewController {
     fileprivate var imageView: UIImageView!
     fileprivate var scrollView: UIScrollView!
     
+
     // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.navigationController?.hidesBarsOnTap = true
+        
+        let closeButton = UIBarButtonItem(image: UIImage(named: "CloseButton"), style: .plain, target: self, action: #selector(self.actionCloseButtonTapped))
+        
+        if UIDevice.current.userInterfaceIdiom != .pad {
+            
+            if self.traitCollection.horizontalSizeClass != .regular {
+                self.navigationItem.leftBarButtonItem = closeButton
+
+            }
+        }
+        
+        
         
 //        title = NSLocalizedString("Album", comment: "Album")
         
