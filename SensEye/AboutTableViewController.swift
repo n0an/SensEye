@@ -133,9 +133,10 @@ class AboutTableViewController: UITableViewController {
     func animateInfoLabel(infoLabel: DesignableLabel) {
         infoLabel.animation = "fadeIn"
         infoLabel.curve = "easeIn"
-        infoLabel.duration = 1.7
-        infoLabel.delay = 1.2
+        infoLabel.duration = 1.2
+        infoLabel.delay = 0.5
         infoLabel.animate()
+        
     }
     
     

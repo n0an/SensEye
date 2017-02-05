@@ -46,7 +46,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
         emailTextField.inputAccessoryView = hideKeyboardInputAccessoryView
         passwordTextField.inputAccessoryView = hideKeyboardInputAccessoryView
         
-        //        forceLogout()
+//                forceLogout()
         
         FIRAuth.auth()?.addStateDidChangeListener({ (auth, user) in
             
