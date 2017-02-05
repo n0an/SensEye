@@ -40,6 +40,9 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+
+        
         //        forceLogout()
         
         FIRAuth.auth()?.addStateDidChangeListener({ (auth, user) in

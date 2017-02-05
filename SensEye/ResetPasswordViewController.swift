@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import Spring
 
 class ResetPasswordViewController: UIViewController {
 
     @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var containerView: DesignableView!
     
     
     override func viewDidLoad() {
@@ -18,7 +20,7 @@ class ResetPasswordViewController: UIViewController {
 
         self.title = NSLocalizedString("Forgot Password", comment: "Forgot Password")
         
-        
+
         
     }
     
@@ -31,7 +33,12 @@ class ResetPasswordViewController: UIViewController {
 
     }
 
-    
+    func shake() {
+        containerView.animation = "shake"
+        containerView.curve = "spring"
+        containerView.duration = 1.0
+        containerView.animate()
+    }
     
     
     
@@ -43,10 +50,10 @@ class ResetPasswordViewController: UIViewController {
                 
                 self.alert(title: NSLocalizedString("Input Error", comment: "Input Error"), message: NSLocalizedString("Please provide your email address for password reset.", comment: "Please provide your email address for password reset."))
            
+                self.shake()
+                
                 return
         }
-        
-        
         
         
         FRAuthManager.sharedManager.resetPassword(emailAddress: emailAddress) { (error) in
