@@ -148,10 +148,12 @@
                                                     <constraints>
                                                         <constraint firstItem="fLS-bB-xEt" firstAttribute="top" secondItem="LoC-81-1IA" secondAttribute="bottom" constant="16" id="6Fw-CS-VdS"/>
                                                         <constraint firstAttribute="trailing" secondItem="QFZ-tc-GFa" secondAttribute="trailing" constant="16" id="9Qe-v7-bbR"/>
+                                                        <constraint firstItem="fLS-bB-xEt" firstAttribute="top" relation="greaterThanOrEqual" secondItem="8rI-e1-ila" secondAttribute="bottom" constant="16" id="9kg-71-dyx"/>
                                                         <constraint firstItem="LoC-81-1IA" firstAttribute="top" secondItem="9ra-EJ-3ca" secondAttribute="bottom" priority="999" constant="212" id="9tW-AU-mT3"/>
                                                         <constraint firstItem="9ra-EJ-3ca" firstAttribute="top" secondItem="QFZ-tc-GFa" secondAttribute="bottom" constant="16" id="E7J-LD-wVW"/>
                                                         <constraint firstItem="8rI-e1-ila" firstAttribute="leading" secondItem="Wah-v8-nqQ" secondAttribute="trailing" id="J2k-0v-fr1"/>
                                                         <constraint firstAttribute="trailing" secondItem="9ra-EJ-3ca" secondAttribute="trailing" constant="16" id="LHa-4I-1ih"/>
+                                                        <constraint firstItem="fLS-bB-xEt" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Wah-v8-nqQ" secondAttribute="bottom" constant="16" id="QMf-mn-prC"/>
                                                         <constraint firstAttribute="bottom" secondItem="fLS-bB-xEt" secondAttribute="bottom" constant="20" id="YFp-ti-1be"/>
                                                         <constraint firstItem="LoC-81-1IA" firstAttribute="top" secondItem="Wah-v8-nqQ" secondAttribute="top" id="Z0b-1e-5Qx"/>
                                                         <constraint firstItem="QFZ-tc-GFa" firstAttribute="leading" secondItem="pb3-av-m2d" secondAttribute="leading" constant="16" id="Zg3-It-UXy"/>
@@ -503,6 +505,7 @@
                                                             <variation key="heightClass=regular-widthClass=regular" constant="16"/>
                                                         </constraint>
                                                         <constraint firstItem="Wes-1Q-PAO" firstAttribute="top" secondItem="exg-bG-ksE" secondAttribute="top" id="EcQ-23-aib"/>
+                                                        <constraint firstItem="bUK-XX-xGI" firstAttribute="top" relation="greaterThanOrEqual" secondItem="exg-bG-ksE" secondAttribute="bottom" constant="16" id="GXR-MM-fbM"/>
                                                         <constraint firstItem="cl8-3l-uwQ" firstAttribute="leading" secondItem="1xL-KO-7lo" secondAttribute="leading" id="Jvz-iL-ugy"/>
                                                         <constraint firstItem="exg-bG-ksE" firstAttribute="leading" secondItem="Wes-1Q-PAO" secondAttribute="trailing" id="LOb-cp-rqb"/>
                                                         <constraint firstItem="39A-P6-6Df" firstAttribute="top" secondItem="Wes-1Q-PAO" secondAttribute="top" id="Nxm-kx-uUq"/>
@@ -513,6 +516,7 @@
                                                         <constraint firstItem="bUK-XX-xGI" firstAttribute="top" secondItem="39A-P6-6Df" secondAttribute="bottom" constant="16" id="eId-iB-TPM"/>
                                                         <constraint firstAttribute="trailing" secondItem="Xgx-re-xfk" secondAttribute="trailing" constant="16" id="gBX-I2-vve"/>
                                                         <constraint firstItem="39A-P6-6Df" firstAttribute="top" secondItem="fmg-kZ-9cX" secondAttribute="bottom" priority="999" constant="212" id="jkE-rW-0eQ"/>
+                                                        <constraint firstItem="bUK-XX-xGI" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Wes-1Q-PAO" secondAttribute="bottom" constant="16" id="n05-tJ-WQS"/>
                                                         <constraint firstItem="Xgx-re-xfk" firstAttribute="top" secondItem="1xL-KO-7lo" secondAttribute="top" constant="16" id="pez-bY-GXU"/>
                                                         <constraint firstAttribute="bottom" secondItem="bUK-XX-xGI" secondAttribute="bottom" constant="20" id="sPf-UO-Bb4"/>
                                                         <constraint firstItem="fmg-kZ-9cX" firstAttribute="top" secondItem="Xgx-re-xfk" secondAttribute="bottom" constant="16" id="suh-da-BgW"/>
@@ -1446,7 +1450,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ngm-NQ-1S7" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="34q-CL-Z1M">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="34q-CL-Z1M">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1465,7 +1469,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bln-RT-Wcb" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Chat" image="tabBarIcon-Chat" selectedImage="tabBarIcon-Chat-filled" id="e7a-ta-sOH"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="uO9-me-3qC">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="uO9-me-3qC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1737,7 +1741,7 @@
             <objects>
                 <navigationController storyboardIdentifier="PhotoNavViewController1" automaticallyAdjustsScrollViewInsets="NO" id="WdO-Um-wya" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="gPe-hg-aTC">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="gPe-hg-aTC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1808,7 +1812,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LAf-Mz-8Ji" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="UGA-Rh-LEG">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="UGA-Rh-LEG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

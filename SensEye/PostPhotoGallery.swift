@@ -103,16 +103,16 @@ class PostPhotoGallery {
         if post.postAttachments.count <= firstRowCount {
             // If we have only 1 photo - use only first row
             
-            maxRequiredSizeOfImageInFirstRow = min(800, maxAvailableSpaceToOperate) // Limit to 800
+            maxRequiredSizeOfImageInFirstRow = min(640, maxAvailableSpaceToOperate) // Limit to 800
             
         } else {
             // If we have more than 2 photos - use both rows of Gallery
             
-            maxRequiredSizeOfImageInFirstRow = min(800, maxAvailableSpaceToOperate)
+            maxRequiredSizeOfImageInFirstRow = min(640, maxAvailableSpaceToOperate)
 
             maxRequiredSizeOfImageInSecondRow = (maxAvailableSpaceToOperate) / CGFloat(min(maxPhotos, post.postAttachments.count - firstRowCount))
             
-            maxRequiredSizeOfImageInSecondRow = min(800, maxRequiredSizeOfImageInSecondRow) // Limit to 800
+            maxRequiredSizeOfImageInSecondRow = min(640, maxRequiredSizeOfImageInSecondRow) // Limit to 800
         }
         
         
