@@ -83,7 +83,6 @@ PODS:
   - JSQSystemSoundPlayer (2.0.1)
   - OneSignal (2.3.5)
   - pop (1.0.9)
-  - Reveal-SDK (6)
   - SAMCache (0.3.3)
   - SDWebImage (4.0.0):
     - SDWebImage/Core (= 4.0.0)
@@ -107,7 +106,6 @@ DEPENDENCIES:
   - Jelly
   - JSQMessagesViewController
   - OneSignal
-  - Reveal-SDK
   - SAMCache
   - Spring (from `https://github.com/MengTo/Spring.git`, branch `swift3`)
   - SVPullToRefresh
@@ -152,7 +150,6 @@ SPEC CHECKSUMS:
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
   OneSignal: 4cb42948ebc141bd5deb54d3fda25105db94f6d4
   pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
-  Reveal-SDK: 67460e58f93711c7b18631d12c2b5de7740e48b5
   SAMCache: 790b2623a3e087c903daff872c90c248726c4c82
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
   Spring: 3f02b5dc3308572ef177b3cad0fa7bbc4b0706f7
@@ -160,6 +157,6 @@ SPEC CHECKSUMS:
   SwiftKeychainWrapper: 38952a3636320ae61bad3513cadd870929de7a4a
   SwiftSpinner: c03815614599b91eea46594bd52ba742849d0414
 
-PODFILE CHECKSUM: d8b38153105a4f323a490ab73f6dda7a8cf72772
+PODFILE CHECKSUM: 00d973377e76b35a18a62145d2a40cf8591fbb36
 
 COCOAPODS: 1.1.1
