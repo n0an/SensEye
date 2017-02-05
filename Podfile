@@ -52,5 +52,8 @@ target 'SensEye' do
   # SwiftKeychainWrapper
   pod 'SwiftKeychainWrapper'
 
+  # Fabric
+  pod 'Fabric'
+  pod 'Crashlytics'
 
 end
