@@ -165,11 +165,13 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
         }
     }
     
-    override func viewWillLayoutSubviews() {
+    
+    
+    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
+        
         self.resignKeyboard()
+        
     }
-    
-    
     
     // MARK: - HELPER METHODS
     

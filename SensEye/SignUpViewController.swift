@@ -60,8 +60,10 @@ class SignUpViewController: UIViewController {
         nameTextField.becomeFirstResponder()
     }
     
-    override func viewWillLayoutSubviews() {
+    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
+        
         self.resignKeyboard()
+        
     }
     
     // MARK: - HELPER METHODS
