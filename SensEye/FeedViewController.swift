@@ -80,7 +80,12 @@ class FeedViewController: UIViewController {
         refreshControl.backgroundColor = UIColor.clear
         refreshControl.tintColor = UIColor.clear
         
-        self.tableView.refreshControl = refreshControl
+        if #available(iOS 10.0, *) {
+            self.tableView.refreshControl = refreshControl
+        } else {
+            // Fallback on earlier versions
+            self.tableView.addSubview(refreshControl)
+        }
         self.refreshControl = refreshControl
         
         loadCustomRefreshContents()
