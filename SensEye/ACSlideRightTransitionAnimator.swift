@@ -52,7 +52,7 @@ class ACSlideRightTransitionAnimator: NSObject, UIViewControllerAnimatedTransiti
         let container = transitionContext.containerView
         
         let offScreenLeft = CGAffineTransform(translationX: -container.frame.width, y: 0)
-        let offScreenRight = CGAffineTransform(translationX: container.frame.width, y: 0)
+//        let offScreenRight = CGAffineTransform(translationX: container.frame.width, y: 0)
         
         // Make the toView off screen if it is transition from main to detail view
         if isPresenting {

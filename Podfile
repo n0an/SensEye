@@ -8,17 +8,20 @@ target 'SensEye' do
   # Pods for SensEye
   pod 'Alamofire'
   pod 'AlamofireImage'
+  
+  # SVPullToRefresh
   pod 'SVPullToRefresh'
-  #pod 'iCarousel'
   
+  # Jelly
   pod 'Jelly'
-  #pod 'SwifterSwift'
   
-  pod 'Reveal-SDK', :configurations => ['Debug']
+  # Reveal
+  # pod 'Reveal-SDK', :configurations => ['Debug']
   
+  # Spring
   pod 'Spring', :git => 'https://github.com/MengTo/Spring.git', :branch => 'swift3'
 
-
+  # Firebase
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
@@ -28,9 +31,8 @@ target 'SensEye' do
   pod 'JSQMessagesViewController'
   pod 'OneSignal'
   
-  
+  # DGActivityIndicatorView
   pod 'DGActivityIndicatorView'
-
 
   # Facebook Authentication
   pod 'FBSDKLoginKit'
@@ -47,6 +49,7 @@ target 'SensEye' do
   # SwiftSpinner
   pod 'SwiftSpinner'
   
+  # SwiftKeychainWrapper
   pod 'SwiftKeychainWrapper'
 
 

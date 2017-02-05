@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
@@ -1644,14 +1643,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qDE-LA-CfZ">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="600"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qDE-LA-CfZ">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                                 <connections>
                                     <outlet property="delegate" destination="GPa-NQ-tH1" id="8An-3r-1PB"/>
                                 </connections>
                             </scrollView>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="l2s-dw-hQS">
-                                <rect key="frame" x="150" y="282" width="94" height="37"/>
+                                <rect key="frame" x="150" y="282" width="39" height="37"/>
                                 <color key="pageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="currentPageIndicatorTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
@@ -1662,13 +1661,11 @@
                         <color key="backgroundColor" red="0.88619667290000004" green="0.88632434609999999" blue="0.88616871829999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="qDE-LA-CfZ" firstAttribute="top" secondItem="qqE-hX-vVm" secondAttribute="bottom" id="6eK-0T-Pis"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="l2s-dw-hQS" secondAttribute="trailing" constant="115" id="Aez-F0-Zs6"/>
                             <constraint firstItem="l2s-dw-hQS" firstAttribute="top" secondItem="qqE-hX-vVm" secondAttribute="bottom" constant="282" id="GQD-ET-zdx"/>
-                            <constraint firstItem="ndO-dq-iD4" firstAttribute="top" secondItem="l2s-dw-hQS" secondAttribute="bottom" constant="998" id="Mub-tz-zn9"/>
                             <constraint firstItem="qDE-LA-CfZ" firstAttribute="leading" secondItem="Sfx-LS-unf" secondAttribute="leading" id="f3Q-Wn-9ZL"/>
-                            <constraint firstAttribute="trailing" secondItem="qDE-LA-CfZ" secondAttribute="trailing" constant="-55" id="k9l-S2-2BG"/>
+                            <constraint firstAttribute="trailing" secondItem="qDE-LA-CfZ" secondAttribute="trailing" id="k9l-S2-2BG"/>
                             <constraint firstItem="l2s-dw-hQS" firstAttribute="leading" secondItem="Sfx-LS-unf" secondAttribute="leadingMargin" constant="134" id="qjo-SM-XDx"/>
-                            <constraint firstItem="ndO-dq-iD4" firstAttribute="top" secondItem="qDE-LA-CfZ" secondAttribute="bottom" constant="717" id="ytp-KY-FxK"/>
+                            <constraint firstItem="ndO-dq-iD4" firstAttribute="top" secondItem="qDE-LA-CfZ" secondAttribute="bottom" id="ytp-KY-FxK"/>
                         </constraints>
                     </view>
                     <connections>

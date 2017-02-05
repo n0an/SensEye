@@ -106,24 +106,7 @@ class ChatViewController: JSQMessagesViewController, UIGestureRecognizerDelegate
     
     
     // MARK: - FIREBASE METHODS
-    
-//    func fetchChatUsers() {
-//        
-//        for userId in self.chat.userIds {
-//            
-//            let ref = FRDataManager.sharedManager.REF_USERS.child(userId)
-//            
-//            ref.observeSingleEvent(of: .value, with: { (snapshot) in
-//                
-//                let chatUser = FRUser(uid: snapshot.key, dictionary: snapshot.value as! [String: Any])
-//                
-//                self.chatUsers.append(chatUser)
-//                
-//            })
-//        }
-//    }
-    
-    
+  
     // * OBSERVERS
     func observeNewMessages() {
         
@@ -217,7 +200,7 @@ class ChatViewController: JSQMessagesViewController, UIGestureRecognizerDelegate
         for i in (min ... max).reversed() {
             
             let message = self.messagesLoaded[i]
-            self.insertNewMessage(message)
+            let _ = self.insertNewMessage(message)
             loadCount += 1
         }
         
@@ -274,7 +257,7 @@ class ChatViewController: JSQMessagesViewController, UIGestureRecognizerDelegate
         for i in min ..< max {
             
             let message = messagesLoaded[i]
-            self.insertMessage(message)
+            let _ = self.insertMessage(message)
             loadCount += 1
         }
         
