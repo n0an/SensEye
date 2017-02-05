@@ -53,6 +53,10 @@ class PhotoViewController: UIViewController {
     fileprivate var scrollView: UIScrollView!
     
 
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+    
     // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
