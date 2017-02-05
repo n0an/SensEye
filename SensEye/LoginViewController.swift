@@ -48,6 +48,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
         
 //                forceLogout()
         
+       
         FIRAuth.auth()?.addStateDidChangeListener({ (auth, user) in
             
             if let user = user {
@@ -55,6 +56,8 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
                 if self.currentUser != nil {
                     return
                 }
+                
+                
                 
                 
                 SwiftSpinner.show(NSLocalizedString("Entering chat", comment: "SPINNER_ENTER_CHAT")).addTapHandler({
@@ -412,7 +415,8 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
                 return
         }
         
-        
+        emailTextField.text = ""
+        passwordTextField.text = ""
         
         // Dismiss keyboard
         self.view.endEditing(true)
