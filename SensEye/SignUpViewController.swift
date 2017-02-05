@@ -60,7 +60,9 @@ class SignUpViewController: UIViewController {
         nameTextField.becomeFirstResponder()
     }
     
-    
+    override func viewWillLayoutSubviews() {
+        self.resignKeyboard()
+    }
     
     // MARK: - HELPER METHODS
     func goToChatVC() {

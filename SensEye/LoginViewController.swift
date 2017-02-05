@@ -165,7 +165,9 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
         }
     }
     
-    
+    override func viewWillLayoutSubviews() {
+        self.resignKeyboard()
+    }
     
     
     
