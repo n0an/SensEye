@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="cIg-Ma-XCu">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="XUV-1z-m8F">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -1694,7 +1694,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Album" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Id-2v-p6l">
-                                <rect key="frame" x="86.5" y="314" width="202" height="39"/>
+                                <rect key="frame" x="87" y="314" width="202" height="39"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -1707,18 +1707,13 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="mDV-W2-z1S">
-                        <barButtonItem key="leftBarButtonItem" image="CloseButton" id="HUM-ik-W1N">
-                            <connections>
-                                <action selector="actionCloseButtonTapped" destination="mKs-dy-tgj" id="Ncl-Zl-0vq"/>
-                            </connections>
-                        </barButtonItem>
                         <rightBarButtonItems>
-                            <barButtonItem image="PhotoDisplayer-ArrowRight" id="WBK-Se-dfm">
+                            <barButtonItem enabled="NO" image="PhotoDisplayer-ArrowRight" id="WBK-Se-dfm">
                                 <connections>
                                     <action selector="actionNextPhotoTap" destination="mKs-dy-tgj" id="dKE-fx-gs2"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem image="PhotoDisplayer-ArrowLeft" id="pmr-R4-ipa">
+                            <barButtonItem enabled="NO" image="PhotoDisplayer-ArrowLeft" id="pmr-R4-ipa">
                                 <connections>
                                     <action selector="actionPreviosPhotoTap" destination="mKs-dy-tgj" id="pgU-H9-fCQ"/>
                                 </connections>
@@ -1850,7 +1845,6 @@
     </scenes>
     <resources>
         <image name="Close" width="10" height="10"/>
-        <image name="CloseButton" width="17" height="17"/>
         <image name="Comment" width="21" height="19"/>
         <image name="LikeNo" width="19" height="18"/>
         <image name="PhotoDisplayer-ArrowLeft" width="12" height="24"/>
@@ -1876,8 +1870,8 @@
         <image name="wp-lens08" width="645" height="432"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="PaE-cb-taD"/>
-        <segue reference="XAA-BU-txL"/>
         <segue reference="EBb-sR-AUb"/>
+        <segue reference="XAA-BU-txL"/>
+        <segue reference="PaE-cb-taD"/>
     </inferredMetricsTieBreakers>
 </document>

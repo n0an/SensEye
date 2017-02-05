@@ -183,8 +183,24 @@ class LandscapeViewController: UIViewController {
             
             let firstPhotoOfAlbum = photos.first
             
-            var linkToNeededRes = firstPhotoOfAlbum?.photo_604
-            let neededRes: PhotoResolution = .res604
+            print("===NAG=== self.scrollViewParams.imageViewWidth = \(self.scrollViewParams.imageViewWidth)")
+            print("===NAG=== self.scrollViewParams.imageViewHeight = \(self.scrollViewParams.imageViewHeight)")
+
+            
+            var linkToNeededRes: String?
+            var neededRes: PhotoResolution!
+            
+            if self.scrollViewParams.imageViewHeight < 320 {
+                linkToNeededRes = firstPhotoOfAlbum?.photo_604
+                neededRes = .res604
+            } else {
+                linkToNeededRes = firstPhotoOfAlbum?.photo_807
+                neededRes = .res807
+                
+            }
+            
+//            var linkToNeededRes = firstPhotoOfAlbum?.photo_807
+//            let neededRes: PhotoResolution = .res807
             
             // Looking for max resolution, if not found yet
             if linkToNeededRes == nil {
@@ -208,7 +224,13 @@ class LandscapeViewController: UIViewController {
                 if linkToNeededRes == nil {
                     linkToNeededRes = firstPhotoOfAlbum?.maxRes
                 }
+                
+                print("===NAG=== linkToNeededRes was NIL. Found neededRes = \(neededRes)")
+                print("===NAG=== linkToNeededRes was NIL. Found linkToNeededRes = \(linkToNeededRes)")
             }
+            
+            print("===NAG=== neededRes = \(neededRes)")
+            print("===NAG=== linkToNeededRes = \(linkToNeededRes)")
             
             let urlPhoto = URL(string: linkToNeededRes!)
             

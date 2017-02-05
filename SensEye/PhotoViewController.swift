@@ -24,6 +24,10 @@ class PhotoViewController: UIViewController {
         didSet {
             
             shareButton.isEnabled = true
+            
+            nextPhotoBarButton.isEnabled = true
+            previousPhotoBarButton.isEnabled = true
+            
             downloadAndSetImage()
             updateUI()
             

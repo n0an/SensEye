@@ -25,11 +25,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     
     lazy var splitViewController: MySplitViewController = { () -> MySplitViewController in
     
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        
+//        let rootTabController = storyboard.instantiateViewController(withIdentifier: "mainTabBarController") as! UITabBarController
         
-        let rootTabController = storyboard.instantiateViewController(withIdentifier: "mainTabBarController") as! UITabBarController
+//        let splitVC = rootTabController.viewControllers![TabBarIndex.gallery.rawValue] as! MySplitViewController
+        
+        
+        let rootTabController = self.window?.rootViewController as! UITabBarController
         
         let splitVC = rootTabController.viewControllers![TabBarIndex.gallery.rawValue] as! MySplitViewController
+        
         
         return splitVC
     
