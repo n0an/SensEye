@@ -21,6 +21,8 @@ class SignUpViewController: UIViewController {
     
     @IBOutlet weak var avatarImageView: UIImageView!
     
+    @IBOutlet weak var containerView: DesignableView!
+    
     // MARK: - PROPERTIES
     
     var avatarImage: UIImage?
@@ -63,6 +65,12 @@ class SignUpViewController: UIViewController {
         self.view.endEditing(true)
     }
     
+    func shake() {
+        containerView.animation = "shake"
+        containerView.curve = "spring"
+        containerView.duration = 1.0
+        containerView.animate()
+    }
     
     
 
@@ -76,6 +84,7 @@ class SignUpViewController: UIViewController {
                 self.alert(
                     title: NSLocalizedString("Sign Up Error", comment: "Sign Up Error"),
                     message: NSLocalizedString("Please make sure you provided your name, email address and password to complete the registration.", comment: "SIGNUP_ERROR_MESSAGE"), handler: nil)
+                self.shake()
                 return
         }
         
