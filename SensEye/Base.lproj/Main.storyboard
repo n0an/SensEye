@@ -733,7 +733,7 @@
                                     <constraint firstAttribute="width" priority="750" constant="343" id="Lrd-zm-ppG"/>
                                     <constraint firstAttribute="height" constant="50" id="xyD-hR-tad"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                 <state key="normal" title="CREATE ACCOUNT">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -749,27 +749,32 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <variation key="heightClass=compact">
-                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                     <mask key="constraints">
                                         <exclude reference="Lrd-zm-ppG"/>
                                     </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 </variation>
                                 <connections>
                                     <segue destination="ngm-NQ-1S7" kind="presentation" id="ge0-xf-CNc"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QHq-iX-28O">
-                                <rect key="frame" x="112.5" y="304" width="150" height="29"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                                <rect key="frame" x="122.5" y="268" width="130" height="27"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
                                 <state key="normal" title="FORGOT PASSWORD?">
                                     <color key="titleColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                                </variation>
                                 <connections>
                                     <segue destination="Hp7-HZ-rMV" kind="show" id="5h9-F7-uX0"/>
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="8Yr-uS-WZE">
-                                <rect key="frame" x="16" y="104" width="343" height="180"/>
+                                <rect key="frame" x="16" y="80" width="343" height="180"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ycz-Es-1Lw" userLabel="ContainerView" customClass="DesignableView" customModule="Spring">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="100"/>
@@ -778,32 +783,35 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="343" height="100"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="nmW-gy-TjI">
-                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="42"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="54"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="1QR-JK-kgA">
-                                                                <rect key="frame" x="0.0" y="0.0" width="343" height="31"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="343" height="43"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CLJ-3Y-yJd">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="24" height="31"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="24" height="43"/>
                                                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                         <state key="normal" image="email-1"/>
                                                                     </button>
                                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="BBX-p4-NUa" customClass="DesignableTextField" customModule="Spring">
-                                                                        <rect key="frame" x="34" y="0.0" width="309" height="31"/>
+                                                                        <rect key="frame" x="34" y="0.0" width="309" height="43"/>
                                                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next"/>
                                                                         <userDefinedRuntimeAttributes>
                                                                             <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
                                                                                 <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                             </userDefinedRuntimeAttribute>
                                                                         </userDefinedRuntimeAttributes>
+                                                                        <variation key="heightClass=regular-widthClass=regular">
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                                        </variation>
                                                                     </textField>
                                                                 </subviews>
                                                             </stackView>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QC5-t0-ufZ" userLabel="Divider">
-                                                                <rect key="frame" x="0.0" y="41" width="343" height="1"/>
+                                                                <rect key="frame" x="0.0" y="53" width="343" height="1"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="1" id="vgS-sy-ilC"/>
@@ -830,13 +838,16 @@
                                                                         <rect key="frame" x="34" y="0.0" width="309" height="27"/>
                                                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" secureTextEntry="YES"/>
                                                                         <userDefinedRuntimeAttributes>
                                                                             <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
                                                                                 <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                             </userDefinedRuntimeAttribute>
                                                                         </userDefinedRuntimeAttributes>
+                                                                        <variation key="heightClass=regular-widthClass=regular">
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                                        </variation>
                                                                     </textField>
                                                                 </subviews>
                                                             </stackView>
@@ -857,6 +868,7 @@
                                                 <constraints>
                                                     <constraint firstItem="8kE-Ab-B4P" firstAttribute="top" secondItem="KTF-im-cP5" secondAttribute="top" constant="62" id="MSB-hV-gYR"/>
                                                 </constraints>
+                                                <variation key="heightClass=regular-widthClass=compact" spacing="8"/>
                                             </stackView>
                                         </subviews>
                                         <constraints>
@@ -872,7 +884,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="dYv-Fh-nR5"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <state key="normal" title="LOG IN">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -882,6 +894,9 @@
                                                 <real key="value" value="25"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        </variation>
                                         <connections>
                                             <action selector="actionLoginButtonTapped:" destination="Vhv-ND-M4d" eventType="touchUpInside" id="ex2-k5-KgQ"/>
                                         </connections>
@@ -892,15 +907,15 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="j4U-JT-Z4w">
-                                <rect key="frame" x="16" y="421" width="343" height="107"/>
+                                <rect key="frame" x="16" y="478" width="343" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="42s-Q1-YmL" customClass="FancyButton" customModule="SensEye" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="343" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="168" height="50"/>
                                         <color key="backgroundColor" red="0.23137254900000001" green="0.34901960780000002" blue="0.59215686270000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="4uf-AK-APX"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <state key="normal" title="FACEBOOK" image="facebook-1">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -913,22 +928,22 @@
                                                 <real key="value" value="-10"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
-                                        <variation key="heightClass=compact">
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         </variation>
                                         <connections>
                                             <action selector="actionLoginFacebookTapped:" destination="Vhv-ND-M4d" eventType="touchUpInside" id="QbT-zj-Exz"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cTG-tc-2yg" customClass="FancyButton" customModule="SensEye" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="57" width="343" height="50"/>
+                                        <rect key="frame" x="175" y="0.0" width="168" height="50"/>
                                         <color key="backgroundColor" red="0.82745098039999998" green="0.28235294119999998" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="4Zg-HI-ltc"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <state key="normal" title="GOOGLE+" image="google">
+                                        <state key="normal" title="GOOGLE" image="google">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
@@ -939,14 +954,16 @@
                                                 <real key="value" value="-10"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
-                                        <variation key="heightClass=compact">
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         </variation>
                                         <connections>
                                             <action selector="actionLoginGoogleTapped:" destination="Vhv-ND-M4d" eventType="touchUpInside" id="2GW-Dl-nZF"/>
                                         </connections>
                                     </button>
                                 </subviews>
+                                <variation key="widthClass=compact" distribution="fillEqually"/>
+                                <variation key="heightClass=regular-widthClass=compact" axis="horizontal"/>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -957,12 +974,13 @@
                             </constraint>
                             <constraint firstItem="j4U-JT-Z4w" firstAttribute="width" secondItem="pPe-wI-kG6" secondAttribute="width" id="A3r-xZ-p04"/>
                             <constraint firstItem="Swd-3J-Fem" firstAttribute="top" secondItem="pPe-wI-kG6" secondAttribute="bottom" constant="20" id="GIt-4f-CmQ"/>
-                            <constraint firstItem="j4U-JT-Z4w" firstAttribute="top" relation="greaterThanOrEqual" secondItem="QHq-iX-28O" secondAttribute="bottom" constant="20" id="IJU-4a-ASx"/>
+                            <constraint firstItem="j4U-JT-Z4w" firstAttribute="top" relation="greaterThanOrEqual" secondItem="QHq-iX-28O" secondAttribute="bottom" constant="8" id="IJU-4a-ASx"/>
                             <constraint firstItem="j4U-JT-Z4w" firstAttribute="top" secondItem="8z6-uB-atu" secondAttribute="bottom" constant="8" id="Jmw-v9-ZRo"/>
                             <constraint firstItem="Q59-rV-VAg" firstAttribute="leading" secondItem="QbA-Uh-rep" secondAttribute="leading" id="M59-7p-8YW"/>
                             <constraint firstAttribute="leadingMargin" secondItem="8Yr-uS-WZE" secondAttribute="leading" id="No5-kJ-IzP"/>
                             <constraint firstItem="QHq-iX-28O" firstAttribute="top" secondItem="8Yr-uS-WZE" secondAttribute="bottom" constant="20" id="Sr5-Ya-JXy">
                                 <variation key="heightClass=compact" constant="8"/>
+                                <variation key="widthClass=compact" constant="8"/>
                             </constraint>
                             <constraint firstItem="j4U-JT-Z4w" firstAttribute="leading" secondItem="8Yr-uS-WZE" secondAttribute="trailing" constant="8" id="TXx-9m-Kef"/>
                             <constraint firstAttribute="trailing" secondItem="Q59-rV-VAg" secondAttribute="trailing" id="Ucr-cH-6Tq"/>
@@ -972,6 +990,7 @@
                             <constraint firstItem="Eo0-YZ-3aD" firstAttribute="top" secondItem="j4U-JT-Z4w" secondAttribute="bottom" constant="-207" id="fyu-vv-zRD"/>
                             <constraint firstItem="8Yr-uS-WZE" firstAttribute="top" secondItem="8z6-uB-atu" secondAttribute="bottom" constant="40" id="gRa-0m-RSS">
                                 <variation key="heightClass=compact" constant="16"/>
+                                <variation key="heightClass=regular-widthClass=compact" constant="16"/>
                             </constraint>
                             <constraint firstItem="Q59-rV-VAg" firstAttribute="top" secondItem="QbA-Uh-rep" secondAttribute="top" id="iQZ-wq-xwq"/>
                             <constraint firstItem="Swd-3J-Fem" firstAttribute="top" secondItem="Q59-rV-VAg" secondAttribute="bottom" id="j5m-Ee-MgG"/>
@@ -1079,13 +1098,16 @@
                                                                 <rect key="frame" x="34" y="0.0" width="289" height="24"/>
                                                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next"/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
                                                                         <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
+                                                                <variation key="heightClass=regular-widthClass=regular">
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                                </variation>
                                                             </textField>
                                                         </subviews>
                                                     </stackView>
@@ -1116,7 +1138,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="jbb-aG-uoz"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <state key="normal" title="RESET MY PASSWORD">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1126,6 +1148,9 @@
                                                 <real key="value" value="25"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        </variation>
                                         <connections>
                                             <action selector="actionResetPasswordButtonTapped:" destination="Hp7-HZ-rMV" eventType="touchUpInside" id="1tw-wt-jf7"/>
                                         </connections>
@@ -1181,7 +1206,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="e8o-o7-HvS">
-                                <rect key="frame" x="26" y="218" width="323" height="228"/>
+                                <rect key="frame" x="26" y="217" width="323" height="228"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mXd-4F-cPO" userLabel="ContainerView" customClass="DesignableView" customModule="Spring">
                                         <rect key="frame" x="0.0" y="0.0" width="323" height="148"/>
@@ -1204,13 +1229,16 @@
                                                                         <rect key="frame" x="34" y="0.0" width="289" height="25"/>
                                                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
                                                                         <userDefinedRuntimeAttributes>
                                                                             <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
                                                                                 <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                             </userDefinedRuntimeAttribute>
                                                                         </userDefinedRuntimeAttributes>
+                                                                        <variation key="heightClass=regular-widthClass=regular">
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                                        </variation>
                                                                     </textField>
                                                                 </subviews>
                                                             </stackView>
@@ -1242,13 +1270,16 @@
                                                                         <rect key="frame" x="34" y="0.0" width="289" height="25"/>
                                                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next"/>
                                                                         <userDefinedRuntimeAttributes>
                                                                             <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
                                                                                 <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                             </userDefinedRuntimeAttribute>
                                                                         </userDefinedRuntimeAttributes>
+                                                                        <variation key="heightClass=regular-widthClass=regular">
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                                        </variation>
                                                                     </textField>
                                                                 </subviews>
                                                             </stackView>
@@ -1280,13 +1311,16 @@
                                                                         <rect key="frame" x="34" y="0.0" width="289" height="25"/>
                                                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" secureTextEntry="YES"/>
                                                                         <userDefinedRuntimeAttributes>
                                                                             <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
                                                                                 <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                             </userDefinedRuntimeAttribute>
                                                                         </userDefinedRuntimeAttributes>
+                                                                        <variation key="heightClass=regular-widthClass=regular">
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                                        </variation>
                                                                     </textField>
                                                                 </subviews>
                                                             </stackView>
@@ -1320,7 +1354,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="MKM-tN-PCc"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <state key="normal" title="SIGN UP">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1330,6 +1364,9 @@
                                                 <real key="value" value="25"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        </variation>
                                         <connections>
                                             <action selector="actionSignUpButtonTapped:" destination="J8o-x7-7cn" eventType="touchUpInside" id="F1e-fF-2c2"/>
                                         </connections>
@@ -1348,11 +1385,14 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P0a-vy-Xiy">
-                                <rect key="frame" x="111.5" y="168" width="152" height="30"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                <rect key="frame" x="116" y="168" width="143" height="29"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                                 <state key="normal" title="Change Profile Photo">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                </variation>
                                 <connections>
                                     <action selector="actionAvatarImageTapped" destination="J8o-x7-7cn" eventType="touchUpInside" id="JkL-7V-ENv"/>
                                 </connections>
@@ -1695,7 +1735,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Album" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Id-2v-p6l">
-                                <rect key="frame" x="87" y="314" width="202" height="39"/>
+                                <rect key="frame" x="86.5" y="314" width="202" height="39"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
