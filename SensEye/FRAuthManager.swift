@@ -231,7 +231,11 @@ class FRAuthManager: NSObject {
             
             SAMCache.shared().removeAllObjects()
             
-            self.updateCurrentUserOneSignalId(newId: "")
+            if self._currentUser != nil {
+                
+                self.updateCurrentUserOneSignalId(newId: "")
+            }
+            
             
             try FIRAuth.auth()?.signOut()
             

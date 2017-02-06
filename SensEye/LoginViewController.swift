@@ -41,6 +41,15 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        GeneralHelper.sharedHelper.invoke(afterTimeInMs: 4000) {
+//            
+//            
+//            
+//            FRAuthManager.sharedManager.logOut(onComplete: { (error) in
+//                print("FORCED LOGOUT")
+//            })
+//        }
+        
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
         emailTextField.inputAccessoryView = hideKeyboardInputAccessoryView
