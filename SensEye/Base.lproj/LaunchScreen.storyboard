@@ -4,8 +4,9 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -20,7 +21,34 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dark_crop_1000" translatesAutoresizingMaskIntoConstraints="NO" id="9zc-yl-X6L">
+                                <rect key="frame" x="62.5" y="266.5" width="249.5" height="133"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="9zc-yl-X6L" secondAttribute="height" multiplier="15:8" id="1QL-R1-ziw"/>
+                                </constraints>
+                            </imageView>
+                            <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5P6-w7-30x">
+                                <rect key="frame" x="0.0" y="618" width="375" height="49"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <items>
+                                    <tabBarItem image="tabBarIcon-Home" id="pHt-8n-tdA"/>
+                                    <tabBarItem title="" image="tabBarIcon-Gallery" id="Olk-ik-IUh"/>
+                                    <tabBarItem title="" image="tabBarIcon-Chat" id="ZjM-PR-X8V"/>
+                                    <tabBarItem image="tabBarIcon-About" id="yGW-nu-Ixu"/>
+                                </items>
+                                <color key="tintColor" red="0.039215686274509803" green="0.31372549019607843" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </tabBar>
+                        </subviews>
                         <color key="backgroundColor" red="0.88627450980392153" green="0.88627450980392153" blue="0.88627450980392153" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="5P6-w7-30x" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="2cY-ie-a0c"/>
+                            <constraint firstItem="9zc-yl-X6L" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="Bg4-ou-aBl"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="5P6-w7-30x" secondAttribute="bottom" id="JxY-Wr-4dc"/>
+                            <constraint firstAttribute="trailing" secondItem="5P6-w7-30x" secondAttribute="trailing" id="TQ5-5a-cn7"/>
+                            <constraint firstItem="9zc-yl-X6L" firstAttribute="height" secondItem="Ze5-6b-2t3" secondAttribute="height" multiplier="0.2" id="aon-0S-IWw"/>
+                            <constraint firstItem="9zc-yl-X6L" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="tJZ-1q-LV6"/>
+                        </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
@@ -31,4 +59,11 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="dark_crop_1000" width="367" height="218"/>
+        <image name="tabBarIcon-About" width="24" height="24"/>
+        <image name="tabBarIcon-Chat" width="30" height="20"/>
+        <image name="tabBarIcon-Gallery" width="30" height="28"/>
+        <image name="tabBarIcon-Home" width="23" height="22"/>
+    </resources>
 </document>
