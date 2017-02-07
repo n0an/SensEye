@@ -1217,13 +1217,13 @@
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mXd-4F-cPO" userLabel="ContainerView" customClass="DesignableView" customModule="Spring">
-                                <rect key="frame" x="26" y="80" width="323" height="130"/>
+                                <rect key="frame" x="26" y="72" width="323" height="124"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="4K5-RO-QPx">
-                                        <rect key="frame" x="0.0" y="0.0" width="323" height="130"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="323" height="124"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="BGb-WT-N7M">
-                                                <rect key="frame" x="0.0" y="0.0" width="323" height="38"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="BGb-WT-N7M">
+                                                <rect key="frame" x="0.0" y="0.0" width="323" height="36"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="maN-aZ-Lfb">
                                                         <rect key="frame" x="0.0" y="0.0" width="323" height="27"/>
@@ -1251,7 +1251,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u3M-Sb-ky6" userLabel="Divider">
-                                                        <rect key="frame" x="0.0" y="37" width="323" height="1"/>
+                                                        <rect key="frame" x="0.0" y="35" width="323" height="1"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="1" id="Ieh-lN-vZF"/>
@@ -1262,9 +1262,10 @@
                                                     <constraint firstAttribute="trailing" secondItem="maN-aZ-Lfb" secondAttribute="trailing" id="HMw-lO-MHL"/>
                                                     <constraint firstAttribute="trailing" secondItem="u3M-Sb-ky6" secondAttribute="trailing" id="xFL-1T-PtZ"/>
                                                 </constraints>
+                                                <variation key="heightClass=regular-widthClass=regular" spacing="10"/>
                                             </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="frw-Se-HQ9">
-                                                <rect key="frame" x="0.0" y="46" width="323" height="38"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="frw-Se-HQ9">
+                                                <rect key="frame" x="0.0" y="44" width="323" height="36"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="hqh-WN-zpO">
                                                         <rect key="frame" x="0.0" y="0.0" width="323" height="27"/>
@@ -1292,7 +1293,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CTc-Qm-Spp" userLabel="Divider">
-                                                        <rect key="frame" x="0.0" y="37" width="323" height="1"/>
+                                                        <rect key="frame" x="0.0" y="35" width="323" height="1"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="1" id="W3C-pW-8fN"/>
@@ -1303,9 +1304,10 @@
                                                     <constraint firstAttribute="trailing" secondItem="hqh-WN-zpO" secondAttribute="trailing" id="1dz-wy-66g"/>
                                                     <constraint firstAttribute="trailing" secondItem="CTc-Qm-Spp" secondAttribute="trailing" id="PXf-Op-xEd"/>
                                                 </constraints>
+                                                <variation key="heightClass=regular-widthClass=regular" spacing="10"/>
                                             </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="eXo-lf-A3q">
-                                                <rect key="frame" x="0.0" y="92" width="323" height="38"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="eXo-lf-A3q">
+                                                <rect key="frame" x="0.0" y="88" width="323" height="36"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="s23-z3-Slb">
                                                         <rect key="frame" x="0.0" y="0.0" width="323" height="27"/>
@@ -1333,7 +1335,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="otb-22-M48" userLabel="Divider">
-                                                        <rect key="frame" x="0.0" y="37" width="323" height="1"/>
+                                                        <rect key="frame" x="0.0" y="35" width="323" height="1"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="1" id="UkO-S2-DKX"/>
@@ -1344,6 +1346,7 @@
                                                     <constraint firstAttribute="trailing" secondItem="s23-z3-Slb" secondAttribute="trailing" id="6vo-La-9iA"/>
                                                     <constraint firstAttribute="trailing" secondItem="otb-22-M48" secondAttribute="trailing" id="k9u-hF-ud3"/>
                                                 </constraints>
+                                                <variation key="heightClass=regular-widthClass=regular" spacing="10"/>
                                             </stackView>
                                         </subviews>
                                         <variation key="heightClass=regular-widthClass=regular" spacing="20"/>
@@ -1418,7 +1421,9 @@
                             <constraint firstAttribute="trailing" secondItem="eni-Zh-cDu" secondAttribute="trailing" id="Hx2-aC-631"/>
                             <constraint firstItem="2GH-j4-CG9" firstAttribute="top" secondItem="toT-H1-jDH" secondAttribute="bottom" id="Jvx-nt-gkY"/>
                             <constraint firstItem="P0a-vy-Xiy" firstAttribute="top" secondItem="auM-bd-Jf6" secondAttribute="bottom" constant="8" id="KTJ-xi-UTy"/>
-                            <constraint firstItem="mXd-4F-cPO" firstAttribute="top" secondItem="2sl-xe-QY1" secondAttribute="bottom" constant="16" id="Ma9-x3-Sj1"/>
+                            <constraint firstItem="mXd-4F-cPO" firstAttribute="top" secondItem="2sl-xe-QY1" secondAttribute="bottom" constant="8" id="Ma9-x3-Sj1">
+                                <variation key="heightClass=regular-widthClass=regular" constant="16"/>
+                            </constraint>
                             <constraint firstItem="2GH-j4-CG9" firstAttribute="top" secondItem="NRm-re-aAe" secondAttribute="bottom" constant="20" id="UiF-Xz-ba8"/>
                             <constraint firstItem="eni-Zh-cDu" firstAttribute="leading" secondItem="TKZ-Xg-WVu" secondAttribute="leading" id="b2z-UQ-Wqw"/>
                             <constraint firstItem="auM-bd-Jf6" firstAttribute="top" secondItem="2sl-xe-QY1" secondAttribute="bottom" constant="16" id="ceD-o5-yw1"/>
