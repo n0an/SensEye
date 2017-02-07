@@ -1216,152 +1216,146 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="e8o-o7-HvS">
-                                <rect key="frame" x="26" y="80" width="323" height="154"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mXd-4F-cPO" userLabel="ContainerView" customClass="DesignableView" customModule="Spring">
+                                <rect key="frame" x="26" y="80" width="323" height="130"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mXd-4F-cPO" userLabel="ContainerView" customClass="DesignableView" customModule="Spring">
-                                        <rect key="frame" x="0.0" y="0.0" width="323" height="154"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="4K5-RO-QPx">
+                                        <rect key="frame" x="0.0" y="0.0" width="323" height="130"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="4K5-RO-QPx">
-                                                <rect key="frame" x="0.0" y="0.0" width="323" height="154"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="BGb-WT-N7M">
+                                                <rect key="frame" x="0.0" y="0.0" width="323" height="38"/>
                                                 <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="BGb-WT-N7M">
-                                                        <rect key="frame" x="0.0" y="0.0" width="323" height="48.5"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="maN-aZ-Lfb">
+                                                        <rect key="frame" x="0.0" y="0.0" width="323" height="27"/>
                                                         <subviews>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="maN-aZ-Lfb">
-                                                                <rect key="frame" x="0.0" y="0.0" width="323" height="37.5"/>
-                                                                <subviews>
-                                                                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BlU-eb-cwI">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="24" height="37.5"/>
-                                                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                        <state key="normal" image="nametag"/>
-                                                                    </button>
-                                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" textAlignment="natural" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="kpb-D4-vS1" customClass="DesignableTextField" customModule="Spring">
-                                                                        <rect key="frame" x="34" y="0.0" width="289" height="37.5"/>
-                                                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
-                                                                        <userDefinedRuntimeAttributes>
-                                                                            <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
-                                                                                <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                            </userDefinedRuntimeAttribute>
-                                                                        </userDefinedRuntimeAttributes>
-                                                                        <variation key="heightClass=regular-widthClass=regular">
-                                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                                        </variation>
-                                                                    </textField>
-                                                                </subviews>
-                                                            </stackView>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u3M-Sb-ky6" userLabel="Divider">
-                                                                <rect key="frame" x="0.0" y="47.5" width="323" height="1"/>
-                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="1" id="Ieh-lN-vZF"/>
-                                                                </constraints>
-                                                            </view>
+                                                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BlU-eb-cwI">
+                                                                <rect key="frame" x="0.0" y="0.0" width="24" height="27"/>
+                                                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <state key="normal" image="nametag"/>
+                                                            </button>
+                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" textAlignment="natural" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="kpb-D4-vS1" customClass="DesignableTextField" customModule="Spring">
+                                                                <rect key="frame" x="34" y="0.0" width="289" height="27"/>
+                                                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
+                                                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                                <variation key="heightClass=regular-widthClass=regular">
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                                </variation>
+                                                            </textField>
                                                         </subviews>
-                                                        <constraints>
-                                                            <constraint firstAttribute="trailing" secondItem="maN-aZ-Lfb" secondAttribute="trailing" id="HMw-lO-MHL"/>
-                                                            <constraint firstAttribute="trailing" secondItem="u3M-Sb-ky6" secondAttribute="trailing" id="xFL-1T-PtZ"/>
-                                                        </constraints>
                                                     </stackView>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="frw-Se-HQ9">
-                                                        <rect key="frame" x="0.0" y="52.5" width="323" height="49"/>
-                                                        <subviews>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="hqh-WN-zpO">
-                                                                <rect key="frame" x="0.0" y="0.0" width="323" height="38"/>
-                                                                <subviews>
-                                                                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Z7-io-SIN">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="24" height="38"/>
-                                                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                        <state key="normal" image="email-1"/>
-                                                                    </button>
-                                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="2Bp-NF-Por" customClass="DesignableTextField" customModule="Spring">
-                                                                        <rect key="frame" x="34" y="0.0" width="289" height="38"/>
-                                                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next"/>
-                                                                        <userDefinedRuntimeAttributes>
-                                                                            <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
-                                                                                <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                            </userDefinedRuntimeAttribute>
-                                                                        </userDefinedRuntimeAttributes>
-                                                                        <variation key="heightClass=regular-widthClass=regular">
-                                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                                        </variation>
-                                                                    </textField>
-                                                                </subviews>
-                                                            </stackView>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CTc-Qm-Spp" userLabel="Divider">
-                                                                <rect key="frame" x="0.0" y="48" width="323" height="1"/>
-                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="1" id="W3C-pW-8fN"/>
-                                                                </constraints>
-                                                            </view>
-                                                        </subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u3M-Sb-ky6" userLabel="Divider">
+                                                        <rect key="frame" x="0.0" y="37" width="323" height="1"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="trailing" secondItem="hqh-WN-zpO" secondAttribute="trailing" id="1dz-wy-66g"/>
-                                                            <constraint firstAttribute="trailing" secondItem="CTc-Qm-Spp" secondAttribute="trailing" id="PXf-Op-xEd"/>
+                                                            <constraint firstAttribute="height" constant="1" id="Ieh-lN-vZF"/>
                                                         </constraints>
-                                                    </stackView>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="eXo-lf-A3q">
-                                                        <rect key="frame" x="0.0" y="105.5" width="323" height="48.5"/>
-                                                        <subviews>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="s23-z3-Slb">
-                                                                <rect key="frame" x="0.0" y="0.0" width="323" height="37.5"/>
-                                                                <subviews>
-                                                                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tEJ-Oy-Q8y">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="20" height="37.5"/>
-                                                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                        <state key="normal" image="lock-1"/>
-                                                                    </button>
-                                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="mNF-no-yKE" customClass="DesignableTextField" customModule="Spring">
-                                                                        <rect key="frame" x="34" y="0.0" width="289" height="37.5"/>
-                                                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" secureTextEntry="YES"/>
-                                                                        <userDefinedRuntimeAttributes>
-                                                                            <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
-                                                                                <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                            </userDefinedRuntimeAttribute>
-                                                                        </userDefinedRuntimeAttributes>
-                                                                        <variation key="heightClass=regular-widthClass=regular">
-                                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                                        </variation>
-                                                                    </textField>
-                                                                </subviews>
-                                                            </stackView>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="otb-22-M48" userLabel="Divider">
-                                                                <rect key="frame" x="0.0" y="47.5" width="323" height="1"/>
-                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="1" id="UkO-S2-DKX"/>
-                                                                </constraints>
-                                                            </view>
-                                                        </subviews>
-                                                        <constraints>
-                                                            <constraint firstAttribute="trailing" secondItem="s23-z3-Slb" secondAttribute="trailing" id="6vo-La-9iA"/>
-                                                            <constraint firstAttribute="trailing" secondItem="otb-22-M48" secondAttribute="trailing" id="k9u-hF-ud3"/>
-                                                        </constraints>
-                                                    </stackView>
+                                                    </view>
                                                 </subviews>
-                                                <variation key="heightClass=compact" spacing="4"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="maN-aZ-Lfb" secondAttribute="trailing" id="HMw-lO-MHL"/>
+                                                    <constraint firstAttribute="trailing" secondItem="u3M-Sb-ky6" secondAttribute="trailing" id="xFL-1T-PtZ"/>
+                                                </constraints>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="frw-Se-HQ9">
+                                                <rect key="frame" x="0.0" y="46" width="323" height="38"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="hqh-WN-zpO">
+                                                        <rect key="frame" x="0.0" y="0.0" width="323" height="27"/>
+                                                        <subviews>
+                                                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Z7-io-SIN">
+                                                                <rect key="frame" x="0.0" y="0.0" width="24" height="27"/>
+                                                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <state key="normal" image="email-1"/>
+                                                            </button>
+                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="2Bp-NF-Por" customClass="DesignableTextField" customModule="Spring">
+                                                                <rect key="frame" x="34" y="0.0" width="289" height="27"/>
+                                                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
+                                                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                                <variation key="heightClass=regular-widthClass=regular">
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                                </variation>
+                                                            </textField>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CTc-Qm-Spp" userLabel="Divider">
+                                                        <rect key="frame" x="0.0" y="37" width="323" height="1"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="1" id="W3C-pW-8fN"/>
+                                                        </constraints>
+                                                    </view>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="hqh-WN-zpO" secondAttribute="trailing" id="1dz-wy-66g"/>
+                                                    <constraint firstAttribute="trailing" secondItem="CTc-Qm-Spp" secondAttribute="trailing" id="PXf-Op-xEd"/>
+                                                </constraints>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="eXo-lf-A3q">
+                                                <rect key="frame" x="0.0" y="92" width="323" height="38"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="s23-z3-Slb">
+                                                        <rect key="frame" x="0.0" y="0.0" width="323" height="27"/>
+                                                        <subviews>
+                                                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tEJ-Oy-Q8y">
+                                                                <rect key="frame" x="0.0" y="0.0" width="20" height="27"/>
+                                                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <state key="normal" image="lock-1"/>
+                                                            </button>
+                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="mNF-no-yKE" customClass="DesignableTextField" customModule="Spring">
+                                                                <rect key="frame" x="34" y="0.0" width="289" height="27"/>
+                                                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" secureTextEntry="YES"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
+                                                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                                <variation key="heightClass=regular-widthClass=regular">
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                                </variation>
+                                                            </textField>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="otb-22-M48" userLabel="Divider">
+                                                        <rect key="frame" x="0.0" y="37" width="323" height="1"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="1" id="UkO-S2-DKX"/>
+                                                        </constraints>
+                                                    </view>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="s23-z3-Slb" secondAttribute="trailing" id="6vo-La-9iA"/>
+                                                    <constraint firstAttribute="trailing" secondItem="otb-22-M48" secondAttribute="trailing" id="k9u-hF-ud3"/>
+                                                </constraints>
                                             </stackView>
                                         </subviews>
-                                        <constraints>
-                                            <constraint firstItem="4K5-RO-QPx" firstAttribute="leading" secondItem="mXd-4F-cPO" secondAttribute="leading" id="W9A-uW-yGD"/>
-                                            <constraint firstItem="4K5-RO-QPx" firstAttribute="top" secondItem="mXd-4F-cPO" secondAttribute="top" id="Wgd-gS-nvP"/>
-                                            <constraint firstAttribute="trailing" secondItem="4K5-RO-QPx" secondAttribute="trailing" id="gN3-r6-wTR"/>
-                                            <constraint firstAttribute="bottom" secondItem="4K5-RO-QPx" secondAttribute="bottom" id="pfi-hl-pua"/>
-                                        </constraints>
-                                    </view>
+                                        <variation key="heightClass=regular-widthClass=regular" spacing="20"/>
+                                    </stackView>
                                 </subviews>
-                                <variation key="heightClass=compact" spacing="4"/>
-                            </stackView>
+                                <constraints>
+                                    <constraint firstItem="4K5-RO-QPx" firstAttribute="leading" secondItem="mXd-4F-cPO" secondAttribute="leading" id="W9A-uW-yGD"/>
+                                    <constraint firstItem="4K5-RO-QPx" firstAttribute="top" secondItem="mXd-4F-cPO" secondAttribute="top" id="Wgd-gS-nvP"/>
+                                    <constraint firstAttribute="trailing" secondItem="4K5-RO-QPx" secondAttribute="trailing" id="gN3-r6-wTR"/>
+                                    <constraint firstAttribute="bottom" secondItem="4K5-RO-QPx" secondAttribute="bottom" id="pfi-hl-pua"/>
+                                </constraints>
+                            </view>
                             <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-defaultAvatar" translatesAutoresizingMaskIntoConstraints="NO" id="auM-bd-Jf6" customClass="CircleImageView" customModule="SensEye" customModuleProvider="target">
                                 <rect key="frame" x="147.5" y="460" width="80" height="80"/>
                                 <constraints>
@@ -1409,30 +1403,29 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="auM-bd-Jf6" firstAttribute="centerX" secondItem="TKZ-Xg-WVu" secondAttribute="centerX" id="0sB-nU-9QK"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="mXd-4F-cPO" secondAttribute="trailing" constant="10" id="16h-K6-oLE">
+                                <variation key="heightClass=compact" constant="150"/>
+                            </constraint>
                             <constraint firstItem="eni-Zh-cDu" firstAttribute="top" secondItem="TKZ-Xg-WVu" secondAttribute="top" id="3Bk-NS-24t"/>
+                            <constraint firstItem="auM-bd-Jf6" firstAttribute="top" relation="greaterThanOrEqual" secondItem="mXd-4F-cPO" secondAttribute="bottom" constant="8" id="54w-Ae-4dH"/>
                             <constraint firstItem="NRm-re-aAe" firstAttribute="top" secondItem="P0a-vy-Xiy" secondAttribute="bottom" constant="20" id="59L-9o-b90"/>
                             <constraint firstAttribute="trailingMargin" secondItem="P0a-vy-Xiy" secondAttribute="trailing" constant="237.5" id="A6B-9o-9ba">
                                 <variation key="heightClass=compact" constant="8"/>
                             </constraint>
-                            <constraint firstItem="auM-bd-Jf6" firstAttribute="top" relation="greaterThanOrEqual" secondItem="e8o-o7-HvS" secondAttribute="bottom" constant="8" id="E17-06-Ga6"/>
+                            <constraint firstItem="mXd-4F-cPO" firstAttribute="leading" secondItem="TKZ-Xg-WVu" secondAttribute="leadingMargin" constant="10" id="D5q-pj-nMB"/>
                             <constraint firstAttribute="trailing" secondItem="toT-H1-jDH" secondAttribute="trailing" id="EPY-rq-47M"/>
                             <constraint firstItem="toT-H1-jDH" firstAttribute="top" secondItem="TKZ-Xg-WVu" secondAttribute="top" id="F01-kM-goN"/>
                             <constraint firstAttribute="trailing" secondItem="eni-Zh-cDu" secondAttribute="trailing" id="Hx2-aC-631"/>
                             <constraint firstItem="2GH-j4-CG9" firstAttribute="top" secondItem="toT-H1-jDH" secondAttribute="bottom" id="Jvx-nt-gkY"/>
                             <constraint firstItem="P0a-vy-Xiy" firstAttribute="top" secondItem="auM-bd-Jf6" secondAttribute="bottom" constant="8" id="KTJ-xi-UTy"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="e8o-o7-HvS" secondAttribute="trailing" constant="10" id="L3U-E5-z5L">
-                                <variation key="heightClass=compact" constant="200"/>
-                            </constraint>
+                            <constraint firstItem="mXd-4F-cPO" firstAttribute="top" secondItem="2sl-xe-QY1" secondAttribute="bottom" constant="16" id="Ma9-x3-Sj1"/>
                             <constraint firstItem="2GH-j4-CG9" firstAttribute="top" secondItem="NRm-re-aAe" secondAttribute="bottom" constant="20" id="UiF-Xz-ba8"/>
                             <constraint firstItem="eni-Zh-cDu" firstAttribute="leading" secondItem="TKZ-Xg-WVu" secondAttribute="leading" id="b2z-UQ-Wqw"/>
                             <constraint firstItem="auM-bd-Jf6" firstAttribute="top" secondItem="2sl-xe-QY1" secondAttribute="bottom" constant="16" id="ceD-o5-yw1"/>
-                            <constraint firstItem="e8o-o7-HvS" firstAttribute="leading" secondItem="TKZ-Xg-WVu" secondAttribute="leadingMargin" constant="10" id="dCK-bH-lDP"/>
                             <constraint firstItem="P0a-vy-Xiy" firstAttribute="centerX" secondItem="auM-bd-Jf6" secondAttribute="centerX" id="iYH-hE-35A"/>
-                            <constraint firstItem="NRm-re-aAe" firstAttribute="top" relation="greaterThanOrEqual" secondItem="e8o-o7-HvS" secondAttribute="bottom" constant="8" id="jhi-Md-enE"/>
                             <constraint firstItem="NRm-re-aAe" firstAttribute="leading" secondItem="TKZ-Xg-WVu" secondAttribute="leadingMargin" id="mSC-jT-4cA"/>
                             <constraint firstItem="2GH-j4-CG9" firstAttribute="top" secondItem="eni-Zh-cDu" secondAttribute="bottom" id="pEt-6o-xWk"/>
                             <constraint firstAttribute="trailingMargin" secondItem="NRm-re-aAe" secondAttribute="trailing" id="sjJ-pg-n3Y"/>
-                            <constraint firstItem="e8o-o7-HvS" firstAttribute="top" secondItem="2sl-xe-QY1" secondAttribute="bottom" constant="16" id="vdB-3N-GEj"/>
                             <constraint firstItem="toT-H1-jDH" firstAttribute="leading" secondItem="TKZ-Xg-WVu" secondAttribute="leading" id="xgc-xl-ycR"/>
                             <constraint firstAttribute="trailingMargin" secondItem="auM-bd-Jf6" secondAttribute="trailing" constant="273.5" id="zJU-zX-a2T">
                                 <variation key="heightClass=compact" constant="10"/>
@@ -1440,25 +1433,19 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="jhi-Md-enE"/>
-                                <exclude reference="A6B-9o-9ba"/>
+                                <exclude reference="ceD-o5-yw1"/>
                                 <exclude reference="zJU-zX-a2T"/>
+                                <exclude reference="A6B-9o-9ba"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact">
                             <mask key="constraints">
-                                <exclude reference="59L-9o-b90"/>
-                                <include reference="jhi-Md-enE"/>
-                                <include reference="A6B-9o-9ba"/>
-                                <include reference="iYH-hE-35A"/>
                                 <exclude reference="0sB-nU-9QK"/>
-                                <exclude reference="E17-06-Ga6"/>
+                                <exclude reference="54w-Ae-4dH"/>
+                                <include reference="ceD-o5-yw1"/>
                                 <exclude reference="zJU-zX-a2T"/>
-                            </mask>
-                        </variation>
-                        <variation key="heightClass=regular-widthClass=compact">
-                            <mask key="constraints">
-                                <exclude reference="ceD-o5-yw1"/>
+                                <include reference="A6B-9o-9ba"/>
+                                <exclude reference="59L-9o-b90"/>
                             </mask>
                         </variation>
                     </view>
