@@ -248,18 +248,48 @@ class LandscapeViewController: UIViewController {
         
         switch self.scrollViewParams.scrollViewWidth {
             
-        // *** IPHONE 5/5s ***
+        // *** IPHONE 4s & 5/5s ***
         case 320:
-            // iPhone 5/5s Portrait (320 x 568)
-            self.scrollViewParams.itemWidth = 320
-            self.scrollViewParams.itemHeight = 478
             
-            self.scrollViewParams.imageViewWidth = 278
-            self.scrollViewParams.imageViewHeight = 398
+            if self.scrollViewParams.scrollViewHeight == 480 {
+                // iPhone 4s Portrait (320 x 480)
+                self.scrollViewParams.itemWidth = 320
+                self.scrollViewParams.itemHeight = 420
+                
+                self.scrollViewParams.imageViewWidth = 278
+                self.scrollViewParams.imageViewHeight = 370
+                
+                self.scrollViewParams.titleLabelFont = UIFont.systemFont(ofSize: 16.0)
+                
+                self.scrollViewParams.columnsPerPage = 1
+                
+
+            } else {
+                // iPhone 5/5s Portrait (320 x 568)
+                self.scrollViewParams.itemWidth = 320
+                self.scrollViewParams.itemHeight = 478
+                
+                self.scrollViewParams.imageViewWidth = 278
+                self.scrollViewParams.imageViewHeight = 398
+                
+                self.scrollViewParams.titleLabelFont = UIFont.systemFont(ofSize: 16.0)
+                
+                self.scrollViewParams.columnsPerPage = 1
+            }
             
-            self.scrollViewParams.titleLabelFont = UIFont.systemFont(ofSize: 16.0)
             
-            self.scrollViewParams.columnsPerPage = 1
+        case 480:
+            // iPhone 4s Landscape (480 x 320)
+
+            self.scrollViewParams.itemWidth = 160
+            self.scrollViewParams.itemHeight = 320
+            
+            self.scrollViewParams.imageViewWidth = 146
+            self.scrollViewParams.imageViewHeight = 240
+            
+            self.scrollViewParams.titleLabelFont = UIFont.systemFont(ofSize: 12.0)
+            
+            self.scrollViewParams.columnsPerPage = 3
             
             
         case 568:
