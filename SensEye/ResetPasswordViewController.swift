@@ -20,7 +20,7 @@ class ResetPasswordViewController: UIViewController {
 
         self.title = NSLocalizedString("Forgot Password", comment: "Forgot Password")
         
-
+        emailTextField.delegate = self
         
     }
     
@@ -87,3 +87,40 @@ class ResetPasswordViewController: UIViewController {
     }
 
 }
+
+
+
+extension ResetPasswordViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        actionResetPasswordButtonTapped(self)
+        return true
+        
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        if textField == emailTextField {
+            
+            let checkResult = TextFieldsChecker.sharedChecker.handleEmailTextField(textField, inRange: range, withReplacementString: string)
+            
+            return checkResult
+            
+        }
+        
+        return true
+        
+    }
+    
+}
+
+
+
+
+
+
+
+
+
+

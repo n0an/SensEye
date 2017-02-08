@@ -495,7 +495,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
 
 
 
-
+// MARK: - UITextFieldDelegate
 extension LoginViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -509,6 +509,21 @@ extension LoginViewController: UITextFieldDelegate {
         
         return true
         
+        
+    }
+    
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        if textField == emailTextField {
+            
+            let checkResult = TextFieldsChecker.sharedChecker.handleEmailTextField(textField, inRange: range, withReplacementString: string)
+            
+            return checkResult
+            
+        }
+        
+        return true
         
     }
 }
