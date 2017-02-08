@@ -32,8 +32,11 @@ class Comment: ServerObject {
         
         if let postText = responseObject["text"] as? String {
             
-            self.commentText = postText
-            
+            if postText.hasPrefix("[id") {
+                self.commentText = refineAuthor(rawText: postText)
+            } else {
+                self.commentText = postText
+            }
         }
         
         if let postDate = responseObject["date"] as? Int {
@@ -60,7 +63,31 @@ class Comment: ServerObject {
         
     }
     
+    func refineAuthor(rawText: String) -> String {
+        
+        var resultString = rawText
+        
+        let nsRawText = rawText as NSString
+        
+        let range1 = nsRawText.range(of: "|")
+        let range2 = nsRawText.range(of: "],")
+        
+        let range = NSMakeRange(range1.location + 1, range2.location - range1.location - 1)
+        
+        let rawAuthor = nsRawText.substring(with: range)
+        
+        let finedAuthor = rawAuthor + ","
+        
+        let otherText = nsRawText.substring(from: range2.location + range2.length)
+        
+        resultString = finedAuthor + otherText
+        
+        return resultString
+    }
+    
 }
+
+
 
 
 // MARK: - Equatable protocol
