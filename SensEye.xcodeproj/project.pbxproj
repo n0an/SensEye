@@ -59,6 +59,7 @@
 		18AEEC4B1E2FA30600AB97B4 /* UIImage+resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AEEC4A1E2FA30600AB97B4 /* UIImage+resize.swift */; };
 		18AEEC4D1E2FA64D00AB97B4 /* FRStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AEEC4C1E2FA64D00AB97B4 /* FRStorageManager.swift */; };
 		18AEEC4F1E2FAB1100AB97B4 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AEEC4E1E2FAB1100AB97B4 /* Camera.swift */; };
+		18B19E971E4D067000F6F8C3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 18B19E991E4D067000F6F8C3 /* InfoPlist.strings */; };
 		18BA342A1E4B8CBB00EE6CF1 /* TextFieldsChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BA34291E4B8CBB00EE6CF1 /* TextFieldsChecker.swift */; };
 		18BE87F11E16CF5A00B5837E /* CircleImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BE87F01E16CF5A00B5837E /* CircleImageView.swift */; };
 		18C3952E1E16608700AE1867 /* TransitionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C3952D1E16608700AE1867 /* TransitionHelper.swift */; };
@@ -136,6 +137,8 @@
 		18AEEC4A1E2FA30600AB97B4 /* UIImage+resize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+resize.swift"; sourceTree = "<group>"; };
 		18AEEC4C1E2FA64D00AB97B4 /* FRStorageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FRStorageManager.swift; sourceTree = "<group>"; };
 		18AEEC4E1E2FAB1100AB97B4 /* Camera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
+		18B19E981E4D067000F6F8C3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		18B19E9A1E4D06E200F6F8C3 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		18BA34291E4B8CBB00EE6CF1 /* TextFieldsChecker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldsChecker.swift; sourceTree = "<group>"; };
 		18BE87F01E16CF5A00B5837E /* CircleImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleImageView.swift; sourceTree = "<group>"; };
 		18C3952D1E16608700AE1867 /* TransitionHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionHelper.swift; sourceTree = "<group>"; };
@@ -282,6 +285,7 @@
 				184A0BE71E3B404300EEAB4B /* RefreshContents.xib */,
 				18AA37D91E1053F700D5BCB1 /* LaunchScreen.storyboard */,
 				18AA37DC1E1053F700D5BCB1 /* Info.plist */,
+				18B19E991E4D067000F6F8C3 /* InfoPlist.strings */,
 				1899316A1E2D42B7006E00C6 /* GoogleService-Info.plist */,
 				18C3952F1E166D0100AE1867 /* SensEye-Bridging-Header.h */,
 				180610C41E37CE0A0074ED86 /* secretsFile.txt */,
@@ -500,6 +504,7 @@
 				18AA37D61E1053F700D5BCB1 /* Main.storyboard in Resources */,
 				180610C51E37CE0A0074ED86 /* secretsFile.txt in Resources */,
 				1899316B1E2D42B7006E00C6 /* GoogleService-Info.plist in Resources */,
+				18B19E971E4D067000F6F8C3 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -655,6 +660,15 @@
 				18E3F9281E466B6300BC95C3 /* ru */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		18B19E991E4D067000F6F8C3 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				18B19E981E4D067000F6F8C3 /* Base */,
+				18B19E9A1E4D06E200F6F8C3 /* ru */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 		18D623761E215B9200138117 /* about.storyboard */ = {
