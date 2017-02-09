@@ -41,14 +41,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        GeneralHelper.sharedHelper.invoke(afterTimeInMs: 4000) {
-//            
-//            
-//            
-//            FRAuthManager.sharedManager.logOut(onComplete: { (error) in
-//                print("FORCED LOGOUT")
-//            })
-//        }
+
         
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
@@ -66,6 +59,8 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
                     return
                 }
                 
+                // IF DIDN'T ENTER CHAT AFTER 60 SEC - FORCE LOGOUT
+                self.forceLogoutAfter(time: 60)
                 
                 
                 
@@ -190,6 +185,24 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     func forceLogout() {
         try! FIRAuth.auth()?.signOut()
         return
+    }
+    
+    func forceLogoutAfter(time seconds: Int) {
+        
+        // IF DIDN'T ENTER CHAT AFTER 60 SEC - FORCE LOGOUT
+        GeneralHelper.sharedHelper.invoke(afterTimeInMs: seconds * 1000) {
+            
+            if self.navigationController?.viewControllers.count == 1 {
+                SwiftSpinner.hide()
+                
+                if FIRAuth.auth()?.currentUser != nil {
+                    
+                    FRAuthManager.sharedManager.logOut(onComplete: { (error) in
+                        print("FORCED LOGOUT")
+                    })
+                }
+            }
+        }
     }
     
     func goToMessenger() {

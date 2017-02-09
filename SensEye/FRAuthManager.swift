@@ -349,7 +349,7 @@ extension FRAuthManager: GIDSignInDelegate {
     }
     
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
-        // TODO: - Perform any operations when the user disconnects from app here.
+        
         
         
     }
