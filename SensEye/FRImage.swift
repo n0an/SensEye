@@ -9,7 +9,6 @@
 import Foundation
 import Firebase
 
-
 class FRImage {
     
     // MARK: - PROPERTIES
@@ -23,9 +22,7 @@ class FRImage {
     
     // MARK: - UPLOAD METHODS
     func saveAvatarImageToFirebaseStorage(_ userUID: String, completion: @escaping (FIRStorageMetadata?, Error?) -> Void) {
-        
         let resizedImage = self.image.resized(forHeight: 480)
-    
         let imageData = UIImageJPEGRepresentation(resizedImage, 0.5)
         
         let metaData = FIRStorageMetadata()
@@ -34,14 +31,9 @@ class FRImage {
         ref = FRStorageManager.sharedManager.REF_STORAGE_AVATARS.child(userUID)
         
         ref.put(imageData!, metadata: metaData) { (meta, error) in
-            
             completion(meta, error)
-            
         }
     }
-    
-    
-    
 }
 
 extension FRImage {
@@ -51,20 +43,12 @@ extension FRImage {
         let ref = FRStorageManager.sharedManager.REF_STORAGE_AVATARS.child(userUID)
         
         ref.data(withMaxSize: 1 * 1024 * 1024) { (imageData, error) in
-            
             if let imageData = imageData {
                 let image = UIImage(data: imageData)
                 completion(image, nil)
             } else {
                 completion(nil, error)
             }
-            
-            
         }
-        
-        
     }
-    
-    
-    
 }

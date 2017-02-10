@@ -17,58 +17,37 @@ class FRUser {
     var uid: String
     var username: String
     var email: String
-    
-    
     var avatarImage: UIImage?
-    
     var avatarDownloadLink: String?
-    
     var pushId: String?
-    
     var userRef: FIRDatabaseReference
     
     // MARK: - INITIALIZERS
     init(uid: String, username: String, email: String, avatarImage: UIImage?, pushId: String?) {
-        self.uid =      uid
-        self.username = username
-        self.email = email
-        
-        self.avatarImage = avatarImage
-        
-        self.pushId = pushId
-        
-        userRef = FRDataManager.sharedManager.REF_USERS.child(self.uid)
+        self.uid            = uid
+        self.username       = username
+        self.email          = email
+        self.avatarImage    = avatarImage
+        self.pushId         = pushId
+        self.userRef        = FRDataManager.sharedManager.REF_USERS.child(self.uid)
     }
     
     init(uid: String, dictionary: [String: Any]) {
-        self.uid = uid
-        self.username = dictionary["username"] as! String
-        
-        self.email = dictionary["email"] as! String
-        
-        self.pushId = dictionary["pushId"] as? String
-        
-        userRef = FRDataManager.sharedManager.REF_USERS.child(self.uid)
-        
-        
+        self.uid        = uid
+        self.username   = dictionary["username"] as! String
+        self.email      = dictionary["email"] as! String
+        self.pushId     = dictionary["pushId"] as? String
+        self.userRef    = FRDataManager.sharedManager.REF_USERS.child(self.uid)
     }
     
-    
-    
-    
     // MARK: - SAVE METHOD
-    
     func save(completion: @escaping FRModelCompletion) {
         userRef.setValue(toDictionary())
         
         // save avatar image
         if let avatarImage = self.avatarImage {
-            
             let firImage = FRImage(image: avatarImage)
-            
             firImage.saveAvatarImageToFirebaseStorage(self.uid, completion: { (meta, error) in
-                
-               
                 completion(error)
             })
         } else {
@@ -81,45 +60,17 @@ class FRUser {
             "username": username,
             "pushId": pushId ?? "",
             "email": email
-            
         ]
     }
     
-    
-    
     // MARK: - DOWNLOAD AVATAR
     func downloadAvatarImage(completion: @escaping (UIImage?, Error?) -> Void) {
-        
         FRImage.downloadAvatarImageFromFirebaseStorage(self.uid) { (image, error) in
-            
             self.avatarImage = image
-            
             completion(image, error)
-            
         }
-        
-    }
-    
-    
-}
-
-
-// MARK: - CHAT METHODS
-
-extension FRUser {
-    func saveNewChat(_ chat: FRChat) {
-        
-        self.userRef.child("chatIds/\(chat.uid)").setValue(true)
-
-        
     }
 }
-
-
-
-
-
-
 
 
 
@@ -129,25 +80,6 @@ extension FRUser: Equatable { }
 func ==(lhs: FRUser, rhs: FRUser) -> Bool {
     return lhs.uid == rhs.uid
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -8,8 +8,6 @@
 
 import UIKit
 
-
-
 // MARK: - NSDATE EXTENSION
 extension NSDate {
     func stringFromDate() -> String {
@@ -31,9 +29,7 @@ extension NSDate {
     }
 }
 
-// MARK: - UIColor Extenstion
-/** extension to UIColor to allow setting the color
- value by hex value */
+// MARK: - UIColor Extenstions
 extension UIColor {
     convenience init(red: Int, green: Int, blue: Int) {
         /** Verify that we have valid values */
@@ -48,19 +44,12 @@ extension UIColor {
     convenience init(netHex:Int) {
         self.init(red:(netHex >> 16) & 0xff, green:(netHex >> 8) & 0xff, blue:netHex & 0xff)
     }
-    
-    
-    
-    
-    
 }
 
 // MARK: - UIView Shadow Extension
-
 private var shadowEnable = false
 
 extension UIView {
-    
     @IBInspectable var shadowDesign: Bool {
         get {
             return shadowEnable
@@ -79,20 +68,16 @@ extension UIView {
                 layer.shadowRadius = shadowRadius
                 
             } else {
-                
                 self.layer.shadowOpacity = 0.0
                 self.layer.shadowRadius = 0.0
                 self.layer.shadowColor = nil
-                
             }
         }
     }
     
-    
 }
 
 // MARK: - UIAlertController Extension
-
 extension UIAlertController {
     public static func alert(title: String?, message: String?, handler: ((UIAlertAction) -> Void)? = nil) -> UIAlertController {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -110,11 +95,6 @@ extension UIAlertController {
         alert.addAction(UIAlertAction(title: NSLocalizedString("Yes", comment: "Yes"), style: .default, handler: handler))
         return alert
     }
-    
-    
-    
-
-    
 }
 
 extension UIViewController {

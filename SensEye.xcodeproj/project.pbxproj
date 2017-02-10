@@ -40,7 +40,6 @@
 		186E2A2A1E34A98B0011AB88 /* FRChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186E2A291E34A98B0011AB88 /* FRChat.swift */; };
 		186E2A2C1E34B96F0011AB88 /* FRMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186E2A2B1E34B96F0011AB88 /* FRMessage.swift */; };
 		186E2A2E1E34BB940011AB88 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186E2A2D1E34BB940011AB88 /* ChatViewController.swift */; };
-		1886A2941E3938F000C6F0A4 /* UIImage+DownloadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1886A2931E3938F000C6F0A4 /* UIImage+DownloadImage.swift */; };
 		18880A7C1E43C6A30083D0B4 /* CommentComposerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18880A7B1E43C6A30083D0B4 /* CommentComposerViewController.swift */; };
 		188C04F81E1074C8008B58EB /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188C04F71E1074C8008B58EB /* FeedViewController.swift */; };
 		188C04FA1E1074D6008B58EB /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188C04F91E1074D6008B58EB /* FeedCell.swift */; };
@@ -115,7 +114,6 @@
 		186E2A291E34A98B0011AB88 /* FRChat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FRChat.swift; sourceTree = "<group>"; };
 		186E2A2B1E34B96F0011AB88 /* FRMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FRMessage.swift; sourceTree = "<group>"; };
 		186E2A2D1E34BB940011AB88 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
-		1886A2931E3938F000C6F0A4 /* UIImage+DownloadImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+DownloadImage.swift"; sourceTree = "<group>"; };
 		18880A7B1E43C6A30083D0B4 /* CommentComposerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentComposerViewController.swift; sourceTree = "<group>"; };
 		188C04F71E1074C8008B58EB /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		188C04F91E1074D6008B58EB /* FeedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
@@ -312,7 +310,6 @@
 				18C395371E1676F200AE1867 /* Extensions.swift */,
 				18251C471E2D51A5000DBE57 /* UITextField+Placeholder.swift */,
 				18AEEC4A1E2FA30600AB97B4 /* UIImage+resize.swift */,
-				1886A2931E3938F000C6F0A4 /* UIImage+DownloadImage.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -610,7 +607,6 @@
 				18BA342A1E4B8CBB00EE6CF1 /* TextFieldsChecker.swift in Sources */,
 				1826818F1E1D79D300D96764 /* ServerObject.swift in Sources */,
 				184DE8AE1E15A8C500E98926 /* ACSlideRightTransitionAnimator.swift in Sources */,
-				1886A2941E3938F000C6F0A4 /* UIImage+DownloadImage.swift in Sources */,
 				18251C4F1E2D5E7A000DBE57 /* FRUser.swift in Sources */,
 				189FC5101E1E778C00092D2F /* PostHeaderView.swift in Sources */,
 				1838C24B1E11362D00E02F88 /* User.swift in Sources */,
