@@ -8,14 +8,10 @@
 
 import Foundation
 
-
 class VKAccessToken {
     
     // MARK: - PROPERTIES
-    
     var token: String!
     var expirationDate: Date!
     var userID: String!
-    
-    
 }

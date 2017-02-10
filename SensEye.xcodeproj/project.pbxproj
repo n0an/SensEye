@@ -73,7 +73,6 @@
 		18D623721E21469C00138117 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D623711E21469C00138117 /* Contact.swift */; };
 		18D623781E215B9200138117 /* about.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18D623761E215B9200138117 /* about.storyboard */; };
 		18DD2E2B1E1A484800451CE7 /* LandscapeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DD2E2A1E1A484800451CE7 /* LandscapeViewController.swift */; };
-		18DD2E2D1E1A499C00451CE7 /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DD2E2C1E1A499C00451CE7 /* Search.swift */; };
 		18E3F91E1E466B6100BC95C3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 18E3F9201E466B6100BC95C3 /* InfoPlist.strings */; };
 		18E3F92B1E466B6300BC95C3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 18E3F92D1E466B6300BC95C3 /* Localizable.strings */; };
 		18FC625C1E113E9C00E25A18 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FC625B1E113E9C00E25A18 /* Photo.swift */; };
@@ -153,7 +152,6 @@
 		18D623711E21469C00138117 /* Contact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		18D623771E215B9200138117 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/about.storyboard; sourceTree = "<group>"; };
 		18DD2E2A1E1A484800451CE7 /* LandscapeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandscapeViewController.swift; sourceTree = "<group>"; };
-		18DD2E2C1E1A499C00451CE7 /* Search.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
 		18E3F91F1E466B6100BC95C3 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		18E3F9211E466B6200BC95C3 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
 		18E3F9271E466B6300BC95C3 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/about.strings; sourceTree = "<group>"; };
@@ -339,7 +337,6 @@
 				18FC625D1E11439D00E25A18 /* PhotoAlbum.swift */,
 				1838C2461E112CA200E02F88 /* Group.swift */,
 				1838C24A1E11362D00E02F88 /* User.swift */,
-				18DD2E2C1E1A499C00451CE7 /* Search.swift */,
 				18D623631E1FCD0D00138117 /* VKAccessToken.swift */,
 			);
 			name = VK;
@@ -574,7 +571,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				182681911E1D7C9C00D96764 /* PostViewController.swift in Sources */,
-				18DD2E2D1E1A499C00451CE7 /* Search.swift in Sources */,
 				184DE8A51E15A39900E98926 /* SlideRightTransitionAnimator.swift in Sources */,
 				184DE8B01E15A90B00E98926 /* ACPopTransitionAnimator.swift in Sources */,
 				18DD2E2B1E1A484800451CE7 /* LandscapeViewController.swift in Sources */,

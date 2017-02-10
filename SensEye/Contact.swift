@@ -8,30 +8,10 @@
 
 import Foundation
 
-
-
 struct Contact {
     
     let imageName: String
     let labelText: String
     let link: String
-    
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
