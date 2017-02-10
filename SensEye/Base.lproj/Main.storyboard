@@ -761,7 +761,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QHq-iX-28O">
-                                <rect key="frame" x="122.5" y="229" width="130" height="27"/>
+                                <rect key="frame" x="123" y="229" width="130" height="27"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
                                 <state key="normal" title="FORGOT PASSWORD?">
                                     <color key="titleColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -1357,7 +1357,7 @@
                                 </constraints>
                             </view>
                             <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-defaultAvatar" translatesAutoresizingMaskIntoConstraints="NO" id="auM-bd-Jf6" customClass="CircleImageView" customModule="SensEye" customModuleProvider="target">
-                                <rect key="frame" x="147.5" y="460" width="80" height="80"/>
+                                <rect key="frame" x="148" y="460" width="80" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="Cgw-jw-W1V"/>
                                     <constraint firstAttribute="height" constant="80" id="JIj-y8-coc"/>
@@ -1496,7 +1496,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ngm-NQ-1S7" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="34q-CL-Z1M">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="34q-CL-Z1M">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1515,7 +1515,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bln-RT-Wcb" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Chat" image="tabBarIcon-Chat" selectedImage="tabBarIcon-Chat-filled" id="e7a-ta-sOH"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="uO9-me-3qC">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="uO9-me-3qC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1741,7 +1741,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Album" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Id-2v-p6l">
-                                <rect key="frame" x="86.5" y="314" width="202" height="39"/>
+                                <rect key="frame" x="87" y="314" width="202" height="39"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -1787,7 +1787,7 @@
             <objects>
                 <navigationController storyboardIdentifier="PhotoNavViewController1" automaticallyAdjustsScrollViewInsets="NO" id="WdO-Um-wya" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="gPe-hg-aTC">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="gPe-hg-aTC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1858,7 +1858,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LAf-Mz-8Ji" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="UGA-Rh-LEG">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="UGA-Rh-LEG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

@@ -9,23 +9,18 @@
 import UIKit
 import Firebase
 import OneSignal
-
 import FBSDKCoreKit
-
 import GoogleSignIn
-
 import SwiftKeychainWrapper
-
 import Fabric
 import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate {
-
+    
     var window: UIWindow?
     
     // MARK: - SplitViewController configuration
- 
     var splitViewController: MySplitViewController {
         let rootTabController = window!.rootViewController as! UITabBarController
         
@@ -33,7 +28,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         
         return splitVC
     }
-    
     
     var galleryMasterVC: LandscapeViewController {
         return splitViewController.viewControllers.first as! LandscapeViewController
@@ -47,9 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         return detailPhotoNavVC.topViewController as! PhotoViewController
     }
     
-    
     func splitViewController(_ svc: UISplitViewController, willChangeTo displayMode: UISplitViewControllerDisplayMode) {
-//        print(#function)
         if displayMode == .primaryOverlay {
             svc.dismiss(animated: true, completion: nil)
         }
@@ -60,12 +52,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         if !UserDefaults.standard.bool(forKey: APP_FIRST_RUN) {
-            
             clearKeychainOnFirstRun()
             
             UserDefaults.standard.set(true, forKey: APP_FIRST_RUN)
             UserDefaults.standard.synchronize()
-            
         }
         
         readSecretsFile()
@@ -74,28 +64,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         
         Fabric.with([Crashlytics.self])
         
-        window?.backgroundColor = mainThemeColor
-        
         customizeAppearance()
         
-   
         // FACEBOOK LOGIN
-        
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         
-        
         // GOOGLE LOGIN
-        
         GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
         GIDSignIn.sharedInstance().delegate = FRAuthManager.sharedManager
         
-        
         // OneSignal Configuration
-        
         OneSignal.initWithLaunchOptions(launchOptions, appId: GeneralHelper.sharedHelper.kONESIGNALAPPID, handleNotificationReceived: nil, handleNotificationAction: nil, settings: [kOSSettingsKeyInAppAlerts: false])
-        
-        
         OneSignal.setLogLevel(ONE_S_LOG_LEVEL.LL_NONE, visualLevel: ONE_S_LOG_LEVEL.LL_NONE)
+        
         
         // Split View Controller Configuration:
         detailPhotoVC.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem
@@ -112,28 +93,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     }
     
     func customizeAppearance() {
-        
-        window!.tintColor = UIColor(red: 10/255, green: 80/255, blue: 80/255, alpha: 1)
-        
-        // NavigationBar Customization
-//        UINavigationBar.appearance().barTintColor = UIColor.black
-//
-//        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
-//        UINavigationBar.appearance().tintColor = UIColor.white
-        
-        
-        // TabBar Customization
-
-        // UITabBar.appearance().barTintColor = UIColor.black
-        
-        // let tintColor = UIColor(red: 255/255.0, green: 238/255.0, blue: 136/255.0, alpha: 1.0)
-        
-        // UITabBar.appearance().tintColor = tintColor
-        
+        window?.backgroundColor = mainThemeColor
+        window?.tintColor = mainTintColor
     }
     
     func readSecretsFile() {
-        
         let filePath = Bundle.main.path(forResource: "secretsFile", ofType: "txt")
         
         guard let secretInfo = try? String(contentsOfFile: filePath!) else { return }
@@ -144,39 +108,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         
         GeneralHelper.sharedHelper.appOwnerEmail = keys[0]
         GeneralHelper.sharedHelper.kONESIGNALAPPID = keys[1]
-       
     }
-    
-    
-    // ** Getting current Top ViewController
-    func viewControllerForShowingAlert() -> UIViewController {
-        
-        let rootViewController = self.window!.rootViewController!
-        
-        if let presentedViewController = rootViewController.presentedViewController {
-            
-            return presentedViewController
-            
-        } else {
-            
-            return rootViewController
-        }
-        
-    }
- 
-    
-    
-    // MARK: - FACEBOOK OR GOOGLE LOGIN
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
-        
-//        let fbResult = FBSDKApplicationDelegate.sharedInstance().application(app, open: url, sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String, annotation: options[UIApplicationOpenURLOptionsKey.annotation])
-//        
-//        let googleResult = GIDSignIn.sharedInstance().handle(url, sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String, annotation: [:])
-//        
-//        
-//        return fbResult || googleResult
-        
         var handled = false
         
         if url.absoluteString.contains("fb") {
@@ -186,13 +120,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         }
         
         return handled
-        
-        
     }
     
     
-    
-
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
