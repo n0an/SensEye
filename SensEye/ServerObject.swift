@@ -10,10 +10,11 @@ import Foundation
 
 protocol ServerObject {
     
+    // MARK: - PROPERTIES
     var postAuthorID: String! { get set }
     var postAuthor: User? { get set }
     var postGroupAuthor: Group? { get set }
     
+    // MARK: - INITIALIZERS
     init(responseObject: [String: Any])
-    
 }

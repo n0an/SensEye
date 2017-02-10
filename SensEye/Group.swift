@@ -11,40 +11,29 @@ import Foundation
 
 class Group {
     
+    // MARK: - PROPERTIES
     var groupID: String!
-    
     var groupName: String!
     var screenName: String!
     var imageURL: String!
     
-    
+    // MARK: - INITIALIZERS
     init(responseObject: [String: Any]) {
         
         if let groupID = responseObject["id"] as? Int {
-            
             self.groupID = String(groupID)
-            
         }
         
         if let groupName = responseObject["name"] as? String {
-            
             self.groupName = groupName
-            
         }
         
         if let screenName = responseObject["screen_name"] as? String {
-            
             self.screenName = screenName
-            
         }
         
         if let url50 = responseObject["photo_50"] as? String {
             self.imageURL = url50
         }
-        
-        
-        
-        
     }
-    
 }

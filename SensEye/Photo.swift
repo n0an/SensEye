@@ -8,6 +8,7 @@
 
 import Foundation
 
+// MARK: - PHOTO CONSTANTS
 let kPhoto_75 = "photo_75";
 let kPhoto_130 = "photo_130";
 let kPhoto_604 = "photo_604";
@@ -26,6 +27,7 @@ enum PhotoResolution: Int {
 
 class Photo {
     
+    // MARK: - PROPERTIES
     var photoID: String!
     var width: Int!
     var height: Int!
@@ -42,7 +44,7 @@ class Photo {
     var keysResArray: [String]
     var resolutionDictionary: [String: String?]!
 
-    
+    // MARK: - INITIALIZERS
     init(responseObject: [String: Any]) {
         
         if let photoID = responseObject["id"] as? String {
@@ -92,29 +94,21 @@ class Photo {
             kPhoto_2560 :   self.photo_2560
         ]
         
-        
         self.keysResArray = [kPhoto_75, kPhoto_130, kPhoto_604, kPhoto_807, kPhoto_1280, kPhoto_2560]
-        
         
         var index = PhotoResolution.res2560.rawValue
         
         while index >= PhotoResolution.res130.rawValue {
-            
             let res = self.keysResArray[index]
            
             if let currentRes = resolutionDictionary[res], currentRes != nil {
-                
                 self.maxRes = currentRes
-                
                 break
             }
             
             index -= 1
-            
         }
-    
     }
-    
 }
 
 
@@ -124,16 +118,6 @@ extension Photo: Equatable { }
 func ==(lhs: Photo, rhs: Photo) -> Bool {
     return lhs.photoID == rhs.photoID
 }
-
-
-
-
-
-
-
-
-
-
 
 
 

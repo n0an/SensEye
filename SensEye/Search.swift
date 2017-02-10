@@ -27,12 +27,4 @@ class Search {
     private var dataTask: URLSessionDataTask? = nil
 
     
-    
-    
-    
-    
-    
-    
-    
-    
 }
