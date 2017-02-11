@@ -27,13 +27,6 @@
 		183E2A1E1E16A24A0099F775 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183E2A1D1E16A24A0099F775 /* PostView.swift */; };
 		183E2A201E16B5180099F775 /* RoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183E2A1F1E16B5180099F775 /* RoundedView.swift */; };
 		184A0BE81E3B404300EEAB4B /* RefreshContents.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184A0BE71E3B404300EEAB4B /* RefreshContents.xib */; };
-		184DE8A51E15A39900E98926 /* SlideRightTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184DE8A21E15A39900E98926 /* SlideRightTransitionAnimator.swift */; };
-		184DE8A61E15A39900E98926 /* PopTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184DE8A31E15A39900E98926 /* PopTransitionAnimator.swift */; };
-		184DE8A71E15A39900E98926 /* SlideRightThenPopTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184DE8A41E15A39900E98926 /* SlideRightThenPopTransitionAnimator.swift */; };
-		184DE8AA1E15A84700E98926 /* ACSlideDownTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184DE8A91E15A84700E98926 /* ACSlideDownTransitionAnimator.swift */; };
-		184DE8AC1E15A89300E98926 /* ACRotateTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184DE8AB1E15A89300E98926 /* ACRotateTransitionAnimator.swift */; };
-		184DE8AE1E15A8C500E98926 /* ACSlideRightTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184DE8AD1E15A8C500E98926 /* ACSlideRightTransitionAnimator.swift */; };
-		184DE8B01E15A90B00E98926 /* ACPopTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184DE8AF1E15A90B00E98926 /* ACPopTransitionAnimator.swift */; };
 		185456B91E3E4BAC006773C5 /* MySplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185456B81E3E4BAC006773C5 /* MySplitViewController.swift */; };
 		186E2A261E34A5D60011AB88 /* RecentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186E2A251E34A5D60011AB88 /* RecentViewController.swift */; };
 		186E2A281E34A9400011AB88 /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186E2A271E34A9400011AB88 /* ChatTableViewCell.swift */; };
@@ -60,7 +53,6 @@
 		18B19E971E4D067000F6F8C3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 18B19E991E4D067000F6F8C3 /* InfoPlist.strings */; };
 		18BA342A1E4B8CBB00EE6CF1 /* TextFieldsChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BA34291E4B8CBB00EE6CF1 /* TextFieldsChecker.swift */; };
 		18BE87F11E16CF5A00B5837E /* CircleImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BE87F01E16CF5A00B5837E /* CircleImageView.swift */; };
-		18C3952E1E16608700AE1867 /* TransitionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C3952D1E16608700AE1867 /* TransitionHelper.swift */; };
 		18C395321E166D0200AE1867 /* NSDate+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C395301E166D0200AE1867 /* NSDate+Utilities.m */; };
 		18C395361E16768F00AE1867 /* GeneralHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C395351E16768F00AE1867 /* GeneralHelper.swift */; };
 		18C395381E1676F200AE1867 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C395371E1676F200AE1867 /* Extensions.swift */; };
@@ -99,13 +91,6 @@
 		183E2A1D1E16A24A0099F775 /* PostView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
 		183E2A1F1E16B5180099F775 /* RoundedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedView.swift; sourceTree = "<group>"; };
 		184A0BE71E3B404300EEAB4B /* RefreshContents.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RefreshContents.xib; sourceTree = "<group>"; };
-		184DE8A21E15A39900E98926 /* SlideRightTransitionAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideRightTransitionAnimator.swift; sourceTree = "<group>"; };
-		184DE8A31E15A39900E98926 /* PopTransitionAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopTransitionAnimator.swift; sourceTree = "<group>"; };
-		184DE8A41E15A39900E98926 /* SlideRightThenPopTransitionAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideRightThenPopTransitionAnimator.swift; sourceTree = "<group>"; };
-		184DE8A91E15A84700E98926 /* ACSlideDownTransitionAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACSlideDownTransitionAnimator.swift; sourceTree = "<group>"; };
-		184DE8AB1E15A89300E98926 /* ACRotateTransitionAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACRotateTransitionAnimator.swift; sourceTree = "<group>"; };
-		184DE8AD1E15A8C500E98926 /* ACSlideRightTransitionAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACSlideRightTransitionAnimator.swift; sourceTree = "<group>"; };
-		184DE8AF1E15A90B00E98926 /* ACPopTransitionAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACPopTransitionAnimator.swift; sourceTree = "<group>"; };
 		185456B81E3E4BAC006773C5 /* MySplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MySplitViewController.swift; sourceTree = "<group>"; };
 		186E2A251E34A5D60011AB88 /* RecentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentViewController.swift; sourceTree = "<group>"; };
 		186E2A271E34A9400011AB88 /* ChatTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTableViewCell.swift; sourceTree = "<group>"; };
@@ -136,7 +121,6 @@
 		18B19E9A1E4D06E200F6F8C3 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		18BA34291E4B8CBB00EE6CF1 /* TextFieldsChecker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldsChecker.swift; sourceTree = "<group>"; };
 		18BE87F01E16CF5A00B5837E /* CircleImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleImageView.swift; sourceTree = "<group>"; };
-		18C3952D1E16608700AE1867 /* TransitionHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionHelper.swift; sourceTree = "<group>"; };
 		18C3952F1E166D0100AE1867 /* SensEye-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SensEye-Bridging-Header.h"; sourceTree = "<group>"; };
 		18C395301E166D0200AE1867 /* NSDate+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Utilities.m"; sourceTree = "<group>"; };
 		18C395311E166D0200AE1867 /* NSDate+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Utilities.h"; sourceTree = "<group>"; };
@@ -194,20 +178,6 @@
 				18AEEC4C1E2FA64D00AB97B4 /* FRStorageManager.swift */,
 			);
 			name = Firebase;
-			sourceTree = "<group>";
-		};
-		184DE8A81E15A3AE00E98926 /* Transition Animators */ = {
-			isa = PBXGroup;
-			children = (
-				184DE8A21E15A39900E98926 /* SlideRightTransitionAnimator.swift */,
-				184DE8A31E15A39900E98926 /* PopTransitionAnimator.swift */,
-				184DE8A41E15A39900E98926 /* SlideRightThenPopTransitionAnimator.swift */,
-				184DE8A91E15A84700E98926 /* ACSlideDownTransitionAnimator.swift */,
-				184DE8AB1E15A89300E98926 /* ACRotateTransitionAnimator.swift */,
-				184DE8AD1E15A8C500E98926 /* ACSlideRightTransitionAnimator.swift */,
-				184DE8AF1E15A90B00E98926 /* ACPopTransitionAnimator.swift */,
-			);
-			name = "Transition Animators";
 			sourceTree = "<group>";
 		};
 		1864A9E11E157E0B0058D2E2 /* Gallery */ = {
@@ -270,7 +240,6 @@
 				18FC625F1E114C1700E25A18 /* Model */,
 				18FC62601E114C1F00E25A18 /* View */,
 				18FC62611E114C2300E25A18 /* Controller */,
-				184DE8A81E15A3AE00E98926 /* Transition Animators */,
 				18C395341E166D2600AE1867 /* Helpers */,
 				18AA37D41E1053F700D5BCB1 /* Main.storyboard */,
 				18D623761E215B9200138117 /* about.storyboard */,
@@ -315,7 +284,6 @@
 				18251C521E2D5FCF000DBE57 /* Firebase */,
 				188C04FB1E10FCBC008B58EB /* ServerManager.swift */,
 				18C395351E16768F00AE1867 /* GeneralHelper.swift */,
-				18C3952D1E16608700AE1867 /* TransitionHelper.swift */,
 				18FC62621E11545D00E25A18 /* PostPhotoGallery.swift */,
 				1838C2401E110A7700E02F88 /* Constants.swift */,
 				18AEEC4E1E2FAB1100AB97B4 /* Camera.swift */,
@@ -568,8 +536,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				182681911E1D7C9C00D96764 /* PostViewController.swift in Sources */,
-				184DE8A51E15A39900E98926 /* SlideRightTransitionAnimator.swift in Sources */,
-				184DE8B01E15A90B00E98926 /* ACPopTransitionAnimator.swift in Sources */,
 				18DD2E2B1E1A484800451CE7 /* LandscapeViewController.swift in Sources */,
 				18D623701E21423D00138117 /* AboutCellSocnet.swift in Sources */,
 				18251C4A1E2D53F4000DBE57 /* SignUpViewController.swift in Sources */,
@@ -579,7 +545,6 @@
 				1838C2471E112CA200E02F88 /* Group.swift in Sources */,
 				1826818D1E1D781000D96764 /* Comment.swift in Sources */,
 				18251C481E2D51A5000DBE57 /* UITextField+Placeholder.swift in Sources */,
-				184DE8AA1E15A84700E98926 /* ACSlideDownTransitionAnimator.swift in Sources */,
 				18D6236E1E21422E00138117 /* AboutCellInfo.swift in Sources */,
 				186E2A2E1E34BB940011AB88 /* ChatViewController.swift in Sources */,
 				1838C2411E110A7700E02F88 /* Constants.swift in Sources */,
@@ -592,13 +557,10 @@
 				18880A7C1E43C6A30083D0B4 /* CommentComposerViewController.swift in Sources */,
 				18251C4C1E2D5B92000DBE57 /* FRAuthManager.swift in Sources */,
 				188C04F81E1074C8008B58EB /* FeedViewController.swift in Sources */,
-				184DE8AC1E15A89300E98926 /* ACRotateTransitionAnimator.swift in Sources */,
 				189931701E2D4E23006E00C6 /* FancyButton.swift in Sources */,
-				184DE8A71E15A39900E98926 /* SlideRightThenPopTransitionAnimator.swift in Sources */,
 				180231C51E12FC1D00FA8322 /* PhotoViewController.swift in Sources */,
 				18BA342A1E4B8CBB00EE6CF1 /* TextFieldsChecker.swift in Sources */,
 				1826818F1E1D79D300D96764 /* ServerObject.swift in Sources */,
-				184DE8AE1E15A8C500E98926 /* ACSlideRightTransitionAnimator.swift in Sources */,
 				18251C4F1E2D5E7A000DBE57 /* FRUser.swift in Sources */,
 				189FC5101E1E778C00092D2F /* PostHeaderView.swift in Sources */,
 				1838C24B1E11362D00E02F88 /* User.swift in Sources */,
@@ -619,10 +581,8 @@
 				186E2A261E34A5D60011AB88 /* RecentViewController.swift in Sources */,
 				182681931E1D822500D96764 /* CommentCell.swift in Sources */,
 				1838C2431E11193E00E02F88 /* WallPost.swift in Sources */,
-				18C3952E1E16608700AE1867 /* TransitionHelper.swift in Sources */,
 				18C395361E16768F00AE1867 /* GeneralHelper.swift in Sources */,
 				18FC62631E11545D00E25A18 /* PostPhotoGallery.swift in Sources */,
-				184DE8A61E15A39900E98926 /* PopTransitionAnimator.swift in Sources */,
 				186E2A281E34A9400011AB88 /* ChatTableViewCell.swift in Sources */,
 				18D623621E1FCCC800138117 /* VKLoginViewController.swift in Sources */,
 				18C395381E1676F200AE1867 /* Extensions.swift in Sources */,

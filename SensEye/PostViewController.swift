@@ -32,7 +32,6 @@ class PostViewController: UIViewController {
         static let tableHeaderHeight: CGFloat       = 100
         static let tableHeaderCutAway: CGFloat      = 50
         
-        static let seguePhotoDisplayer              = "showPhoto"
         static let segueCommentComposer             = "ShowCommentComposer"
     }
     

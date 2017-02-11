@@ -22,7 +22,6 @@ class FeedViewController: UIViewController {
     enum Storyboard {
         static let cellId               = "FeedCell"
         static let rowHeight: CGFloat   = 370.0
-        static let seguePhotoDisplayer  = "showPhoto"
         static let seguePostVC          = "showPost"
         static let segueCommentComposer = "ShowCommentComposer"
     }
@@ -263,25 +262,7 @@ class FeedViewController: UIViewController {
     // MARK: - NAVIGATION
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if segue.identifier == Storyboard.seguePhotoDisplayer {
-            let destinationNavVC = segue.destination as! UINavigationController
-
-            destinationNavVC.transitioningDelegate = TransitionHelper.sharedHelper.acPopTransition
-     
-            let destinationVC = destinationNavVC.topViewController as! PhotoViewController
-
-            guard let senderTuple = sender as? ([Photo], Int) else {
-                return
-            }
-            
-            let photosArray = senderTuple.0
-            let indexOfPhoto = senderTuple.1
-            
-            destinationVC.currentPhoto = photosArray[indexOfPhoto]
-            destinationVC.mediasArray = photosArray
-            destinationVC.currentIndex = indexOfPhoto
-            
-        } else if segue.identifier == Storyboard.seguePostVC {
+        if segue.identifier == Storyboard.seguePostVC {
             let destinationVC = segue.destination as! PostViewController
             
             guard let postCell = sender as? FeedCell else {
