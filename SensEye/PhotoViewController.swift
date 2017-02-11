@@ -147,14 +147,18 @@ class PhotoViewController: UIViewController {
         
         guard let imageToShare = self.imageView.image else  { return }
         
-        let shareMenu = UIAlertController(title: nil, message: NSLocalizedString("Share using", comment: "Share using"), preferredStyle: .actionSheet)
+        let shareMenu = UIAlertController(title: nil,
+                                          message: NSLocalizedString("Share using", comment: "Share using"), preferredStyle: .actionSheet)
         
         // TWITTER ACTION
         let twitterAction = UIAlertAction(title: "Twitter", style: UIAlertActionStyle.default) { (action) in
             
             // Check if Twitter is available. Otherwise, display an error message
             guard SLComposeViewController.isAvailable(forServiceType: SLServiceTypeTwitter) else {
-                let alertMessage = UIAlertController(title: NSLocalizedString("Twitter Unavailable", comment: "Twitter Unavailable message"), message: NSLocalizedString("You haven't registered your Twitter account. Please go to Settings > Twitter to create one.", comment: "Twitter Unavailable message"), preferredStyle: .alert)
+                let alertMessage = UIAlertController(title: NSLocalizedString("Twitter Unavailable", comment: "Twitter Unavailable message"),
+                                                     message: NSLocalizedString("You haven't registered your Twitter account. Please go to Settings > Twitter to create one.", comment: "Twitter Unavailable message"),
+                                                     preferredStyle: .alert)
+                
                 alertMessage.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                 self.present(alertMessage, animated: true, completion: nil)
                 
@@ -174,7 +178,10 @@ class PhotoViewController: UIViewController {
             
             // Check if Facebook is available. Otherwise, display an error message
             guard SLComposeViewController.isAvailable(forServiceType: SLServiceTypeFacebook) else {
-                let alertMessage = UIAlertController(title: NSLocalizedString("Facebook Unavailable", comment: "Facebook Unavailable"), message: NSLocalizedString("You haven't registered your Facebook account. Please go to Settings > Facebook to create one.", comment: "Facebook Unavailable"), preferredStyle: .alert)
+                let alertMessage = UIAlertController(title: NSLocalizedString("Facebook Unavailable", comment: "Facebook Unavailable"),
+                                                     message: NSLocalizedString("You haven't registered your Facebook account. Please go to Settings > Facebook to create one.", comment: "Facebook Unavailable"),
+                                                     preferredStyle: .alert)
+                
                 alertMessage.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                 self.present(alertMessage, animated: true, completion: nil)
                 

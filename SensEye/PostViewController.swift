@@ -70,7 +70,6 @@ class PostViewController: UIViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         
         self.tableView.addInfiniteScrolling {
-            print("InfiniteScrolling GO")
             self.getCommentsFromServer()
         }
         
@@ -415,13 +414,13 @@ extension PostViewController: FeedCellDelegate {
         
         let browser = IDMPhotoBrowser(photos: photos)
         
-        browser?.displayDoneButton = true
-        browser?.displayActionButton = false
+        browser?.displayDoneButton      = true
+        browser?.displayActionButton    = false
+        browser?.doneButtonImage        = UIImage(named: "CloseButton")
         browser?.setInitialPageIndex(UInt(indexOfPhoto))
-        browser?.doneButtonImage = UIImage(named: "CloseButton")
         
         
-        let customBlurFadeInPresentation2 =
+        let customBlurFadeInPresentation =
             JellyFadeInPresentation(dismissCurve: .easeInEaseOut,
                                     presentationCurve: .easeInEaseOut,
                                     cornerRadius: 0,
@@ -430,7 +429,7 @@ extension PostViewController: FeedCellDelegate {
                                     widthForViewController: .fullscreen,
                                     heightForViewController: .fullscreen)
         
-        self.jellyAnimator = JellyAnimator(presentation: customBlurFadeInPresentation2)
+        self.jellyAnimator = JellyAnimator(presentation: customBlurFadeInPresentation)
         self.jellyAnimator?.prepare(viewController: browser!)
         
         self.present(browser!, animated: true, completion: nil)
