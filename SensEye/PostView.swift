@@ -10,7 +10,6 @@ import UIKit
 
 @IBDesignable
 class PostView: UIView {
-    
     @IBInspectable var cornerRadius: CGFloat = 4.0 {
         didSet {
             layer.cornerRadius = cornerRadius

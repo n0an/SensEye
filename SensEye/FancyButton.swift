@@ -11,6 +11,7 @@ import UIKit
 @IBDesignable
 class FancyButton: UIButton {
 
+    // MARK: - IBInspectable PROPERTIES
     @IBInspectable var cornerRadius: Double = 0.0 {
         didSet {
             layer.cornerRadius = CGFloat(cornerRadius)
@@ -85,14 +86,12 @@ class FancyButton: UIButton {
     @IBInspectable var gradientColor1: UIColor = UIColor.black
     @IBInspectable var gradientColor2: UIColor = UIColor.white
     
-    
+    // MARK: - layoutSubviews
     override func layoutSubviews() {
-        
         super.layoutSubviews()
         
         if enableImageRightAligned,
             let imageView = imageView {
-            
             imageEdgeInsets.left = self.bounds.width - imageView.bounds.width - CGFloat(imageLeftPadding)
         }
         
@@ -109,8 +108,4 @@ class FancyButton: UIButton {
             self.layer.insertSublayer(gradientLayer, at: 0)
         }
     }
-
-    
-    
-
 }
