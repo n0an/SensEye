@@ -84,7 +84,6 @@ extension VKLoginViewController: UIWebViewDelegate {
     func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         
         if (request.url?.description.range(of: "#access_token=")) != nil {
-            
             let accessToken = VKAccessToken()
             
             var query = request.url?.description
@@ -97,7 +96,6 @@ extension VKLoginViewController: UIWebViewDelegate {
             let pairsArray = query!.components(separatedBy: "&")
             
             for pair in pairsArray {
-                
                 let values = pair.components(separatedBy: "=")
                 
                 if values.count == 2 {

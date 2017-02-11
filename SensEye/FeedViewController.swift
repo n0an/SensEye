@@ -184,10 +184,6 @@ class FeedViewController: UIViewController {
     }
     
     // MARK: - HELPER METHODS
-    fileprivate func createVC(withID identifier: String) -> UIViewController? {
-        return self.storyboard?.instantiateViewController(withIdentifier: identifier)
-    }
-    
     func loadCustomRefreshContents() {
         let refreshContents = Bundle.main.loadNibNamed("RefreshContents", owner: self, options: nil)
         self.customRefreshView = refreshContents?[0] as! UIView
@@ -215,23 +211,18 @@ class FeedViewController: UIViewController {
         GeneralHelper.sharedHelper.showDGSpinnter(withType: .ballBeat, onView: self.customRefreshView, withPosition: .right, andColor: UIColor.brown)
         
         UIView.animate(withDuration: 0.6, delay: 0.0, options: .curveLinear, animations: {
-            
             let transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
             
             self.logoImageView.transform = transform
             self.logoImageView.alpha = 0.0
             
         }) { (finished) in
-            
-            UIView.animate(withDuration: 0.25, delay: 0.0, options: .curveLinear, animations: { 
-                
+            UIView.animate(withDuration: 0.25, delay: 0.0, options: .curveLinear, animations: {
                 self.logoImageView.transform = .identity
                 self.logoImageView.alpha = 1.0
                 
             }, completion: { (finished) in
-                
                 if self.refreshControl.isRefreshing {
-                    
                     self.animateRefresh()
                     
                 } else {
@@ -261,7 +252,6 @@ class FeedViewController: UIViewController {
     }
 
     func listenForAuthenticationNotification() {
-        
         NotificationCenter.default.addObserver(self, selector: #selector(vkAuthorizationCompleted), name: Notification.Name(rawValue: "NotificationAuthorizationCompleted"), object: nil)
     }
     
@@ -389,7 +379,6 @@ extension FeedViewController: FeedCellDelegate {
             var linkToNeededRes: String!
             
             if traitCollection.horizontalSizeClass == .regular && traitCollection.verticalSizeClass == .regular {
-                
                 linkToNeededRes = photo.maxRes
                 
             } else {
