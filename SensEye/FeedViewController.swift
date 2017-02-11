@@ -20,12 +20,11 @@ class FeedViewController: UIViewController {
     
     // MARK: - PROPERTIES
     enum Storyboard {
-        static let cellId = "FeedCell"
-        static let rowHeight: CGFloat = 370
-        static let seguePhotoDisplayer = "showPhoto"
-        static let seguePostVC = "showPost"
+        static let cellId               = "FeedCell"
+        static let rowHeight: CGFloat   = 370.0
+        static let seguePhotoDisplayer  = "showPhoto"
+        static let seguePostVC          = "showPost"
         static let segueCommentComposer = "ShowCommentComposer"
-        static let viewControllerIdPhotoDisplayer = "PhotoNavViewController"
     }
     
     var wallPosts: [WallPost] = []

@@ -17,7 +17,6 @@ class LandscapeViewController: UIViewController {
     
     
     // MARK: - PROPERTIES
-    
     struct ScrollViewParameters {
         
         var columnsPerPage: Int
@@ -25,7 +24,6 @@ class LandscapeViewController: UIViewController {
         
         var itemWidth: CGFloat
         var itemHeight: CGFloat
-        
         
         var titleLabelFont = UIFont.systemFont(ofSize: 14.0)
         
@@ -37,17 +35,23 @@ class LandscapeViewController: UIViewController {
         
         var firstRowMarginY: CGFloat
         var lastRowMarginY: CGFloat
-        
-        
     }
     
-    var scrollViewParams = ScrollViewParameters(columnsPerPage: 3, rowsPerPage: 1, itemWidth: 222, itemHeight: 375, titleLabelFont: UIFont.systemFont(ofSize: 14.0), scrollViewWidth: 0, scrollViewHeight: 0, imageViewWidth: 206, imageViewHeight: 300, firstRowMarginY: 0, lastRowMarginY: 0)
+    var scrollViewParams = ScrollViewParameters(columnsPerPage: 3,
+                                                rowsPerPage: 1,
+                                                itemWidth: 222,
+                                                itemHeight: 375,
+                                                titleLabelFont: UIFont.systemFont(ofSize: 14.0),
+                                                scrollViewWidth: 0,
+                                                scrollViewHeight: 0,
+                                                imageViewWidth: 206,
+                                                imageViewHeight: 300,
+                                                firstRowMarginY: 0,
+                                                lastRowMarginY: 0)
     
     fileprivate enum Storyboard {
-        
-        static let seguePhotoDisplayer = "showPhoto"
-        
-        static let viewControllerIdPhotoDisplayer = "PhotoNavViewController"
+        static let seguePhotoDisplayer              = "showPhoto"
+        static let viewControllerIdPhotoDisplayer   = "PhotoNavViewController"
     }
     
     public var albums: [PhotoAlbum] = []

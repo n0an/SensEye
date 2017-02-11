@@ -8,6 +8,7 @@
 
 import UIKit
 import Jelly
+import IDMPhotoBrowser
 
 // MARK: - DELEGATE
 protocol PostViewControllerDelegate: class {
@@ -22,19 +23,17 @@ class PostViewController: UIViewController {
     
     // MARK: - ENUMS
     enum Storyboard {
-        static let cellIdPost = "FeedCell"
-        static let cellIdComment = "CommentCell"
+        static let cellIdPost                       = "FeedCell"
+        static let cellIdComment                    = "CommentCell"
         
-        static let rowHeightPostCell: CGFloat = 370
-        static let rowHeightCommentCell: CGFloat = 100
+        static let rowHeightPostCell: CGFloat       = 370
+        static let rowHeightCommentCell: CGFloat    = 100
         
-        static let tableHeaderHeight: CGFloat = 100
-        static let tableHeaderCutAway: CGFloat = 50
+        static let tableHeaderHeight: CGFloat       = 100
+        static let tableHeaderCutAway: CGFloat      = 50
         
-        static let seguePhotoDisplayer = "showPhoto"
-        static let segueCommentComposer = "ShowCommentComposer"
-        
-        static let viewControllerIdPhotoDisplayer = "PhotoNavViewController"
+        static let seguePhotoDisplayer              = "showPhoto"
+        static let segueCommentComposer             = "ShowCommentComposer"
     }
     
     enum TableViewSectionType: Int {
@@ -57,11 +56,11 @@ class PostViewController: UIViewController {
     
     fileprivate var headerView: PostHeaderView!
     fileprivate var headerMaskLayer: CAShapeLayer!
-
+    
     // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.loadingData = true
         getCommentsFromServer()
         
@@ -77,7 +76,7 @@ class PostViewController: UIViewController {
         
         headerView = tableView.tableHeaderView as! PostHeaderView
         headerView.delegate = self
-
+        
         headerView.updateUI(withPost: wallPost, andImage: backgroundImage)
         
         tableView.allowsSelection = false
@@ -139,7 +138,7 @@ class PostViewController: UIViewController {
     func refreshMainPost() {
         
         GeneralHelper.sharedHelper.showSpinner(onView: self.view, usingBoundsFromView: self.tableView)
-
+        
         ServerManager.sharedManager.isLiked(forItemType: .post, ownerID: groupID, itemID: self.wallPost.postID) { (resultDict) in
             
             if let resultDict = resultDict {
@@ -171,7 +170,7 @@ class PostViewController: UIViewController {
             self.loadingData = true
             
             GeneralHelper.sharedHelper.showSpinner(onView: self.view, usingBoundsFromView: self.tableView)
-
+            
             ServerManager.sharedManager.getFeed(forType: .comment, ownerID: groupID, postID: wallPost.postID, offset: 0, count: max(commentsInRequest, self.comments.count), completed: { (comments) in
                 
                 if comments.count > 0 {
@@ -250,7 +249,7 @@ class PostViewController: UIViewController {
         path.addLine(to: CGPoint(x: 0, y: headerRect.height - Storyboard.tableHeaderCutAway))
         headerMaskLayer?.path = path.cgPath
     }
-
+    
     // MARK: - NOTIFICATIONS
     func listenForAuthenticationNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(vkAuthorizationCompleted), name: Notification.Name(rawValue: "NotificationAuthorizationCompleted"), object: nil)
@@ -262,7 +261,7 @@ class PostViewController: UIViewController {
         refreshMainPost()
         refreshComments()
     }
-   
+    
     // MARK: - NAVIGATION
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
@@ -391,27 +390,50 @@ extension PostViewController: FeedCellDelegate {
     }
     
     func performJellyTransition(withPhotos photosArray: [Photo], indexOfPhoto: Int) {
-        if let photoDisplayerNavVC = self.createVC(withID: Storyboard.viewControllerIdPhotoDisplayer) as? UINavigationController {
+        
+        var urlsArray: [URL] = []
+        
+        for photo in photosArray {
+            var linkToNeededRes: String!
             
-            let photoDisplayerVC = photoDisplayerNavVC.topViewController as! PhotoViewController
+            if traitCollection.horizontalSizeClass == .regular && traitCollection.verticalSizeClass == .regular {
+                linkToNeededRes = photo.maxRes
+                
+            } else {
+                if photo.photo_1280 != nil {
+                    linkToNeededRes = photo.photo_1280
+                } else {
+                    linkToNeededRes = photo.maxRes
+                }
+            }
             
-            photoDisplayerVC.currentPhoto = photosArray[indexOfPhoto]
-            photoDisplayerVC.mediasArray = photosArray
-            photoDisplayerVC.currentIndex = indexOfPhoto
-            
-            let customBlurFadeInPresentation2 = JellyFadeInPresentation(dismissCurve: .easeInEaseOut,
-                                                                        presentationCurve: .easeInEaseOut,
-                                                                        cornerRadius: 0,
-                                                                        backgroundStyle: .blur(effectStyle: .light),
-                                                                        duration: .normal,
-                                                                        widthForViewController: .fullscreen,
-                                                                        heightForViewController: .fullscreen)
-            
-            self.jellyAnimator = JellyAnimator(presentation: customBlurFadeInPresentation2)
-            self.jellyAnimator?.prepare(viewController: photoDisplayerNavVC)
-            
-            self.present(photoDisplayerNavVC, animated: true, completion: nil)
+            let imageURL = URL(string: linkToNeededRes)
+            urlsArray.append(imageURL!)
         }
+        
+        let photos = IDMPhoto.photos(withURLs: urlsArray)
+        
+        let browser = IDMPhotoBrowser(photos: photos)
+        
+        browser?.displayDoneButton = true
+        browser?.displayActionButton = false
+        browser?.setInitialPageIndex(UInt(indexOfPhoto))
+        browser?.doneButtonImage = UIImage(named: "CloseButton")
+        
+        
+        let customBlurFadeInPresentation2 =
+            JellyFadeInPresentation(dismissCurve: .easeInEaseOut,
+                                    presentationCurve: .easeInEaseOut,
+                                    cornerRadius: 0,
+                                    backgroundStyle: .blur(effectStyle: .light),
+                                    duration: .normal,
+                                    widthForViewController: .fullscreen,
+                                    heightForViewController: .fullscreen)
+        
+        self.jellyAnimator = JellyAnimator(presentation: customBlurFadeInPresentation2)
+        self.jellyAnimator?.prepare(viewController: browser!)
+        
+        self.present(browser!, animated: true, completion: nil)
     }
     
     func galleryImageViewDidTap(wallPost: WallPost, clickedPhotoIndex: Int) {
