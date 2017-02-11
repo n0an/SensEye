@@ -21,9 +21,21 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var containerView: DesignableView!
     @IBOutlet weak var hideKeyboardInputAccessoryView: UIView!
+    @IBOutlet weak var cancelBarButton: UIBarButtonItem!
 
     // MARK: - PROPERTIES
     var avatarImage: UIImage?
+    
+    var isUILocked = false {
+        willSet {
+            nameTextField.isEnabled         = !newValue
+            emailTextField.isEnabled        = !newValue
+            passwordTextField.isEnabled     = !newValue
+            signUpButton.isEnabled          = !newValue
+            cancelBarButton.isEnabled       = !newValue
+            avatarImageView.isUserInteractionEnabled = !newValue
+        }
+    }
     
     // MARK: - viewDidLoad
     override func viewDidLoad() {
@@ -94,12 +106,20 @@ class SignUpViewController: UIViewController {
             SwiftSpinner.hide()
         })
         
+        print("***** actionSignUpButtonTapped isUILocked = true")
+        self.isUILocked = true
+        
         FRAuthManager.sharedManager.signUp(withEmail: email, username: username, password: password, avatarImage: avatarImage, onComplete: { (errMsg, data) in
             guard errMsg == nil else {
                 SwiftSpinner.hide()
                 self.alert(title: NSLocalizedString("Error", comment: "Error"), message: errMsg!)
+                print("***** actionSignUpButtonTapped signUP ERROR isUILocked = false")
+                self.isUILocked = false
                 return
             }
+            
+            print("***** actionSignUpButtonTapped signUP success isUILocked = false")
+            self.isUILocked = false
             
             SwiftSpinner.hide()
             self.goToChatVC()

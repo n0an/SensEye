@@ -1465,6 +1465,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="avatarImageView" destination="auM-bd-Jf6" id="qfO-D2-Plf"/>
+                        <outlet property="cancelBarButton" destination="6PB-EO-Y9G" id="D6W-iA-qAU"/>
                         <outlet property="containerView" destination="mXd-4F-cPO" id="Q9Y-mc-LDt"/>
                         <outlet property="emailTextField" destination="2Bp-NF-Por" id="GcE-b4-Nhb"/>
                         <outlet property="hideKeyboardInputAccessoryView" destination="DOx-xv-1g1" id="SkH-5l-eEZ"/>
@@ -1792,7 +1793,7 @@
             <objects>
                 <navigationController storyboardIdentifier="PhotoNavViewController1" automaticallyAdjustsScrollViewInsets="NO" id="WdO-Um-wya" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="gPe-hg-aTC">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="gPe-hg-aTC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1863,7 +1864,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LAf-Mz-8Ji" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="UGA-Rh-LEG">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="UGA-Rh-LEG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
