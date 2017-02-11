@@ -1900,7 +1900,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="EBb-sR-AUb"/>
-        <segue reference="XAA-BU-txL"/>
         <segue reference="PaE-cb-taD"/>
+        <segue reference="XAA-BU-txL"/>
     </inferredMetricsTieBreakers>
 </document>
