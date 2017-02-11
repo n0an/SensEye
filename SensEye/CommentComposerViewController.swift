@@ -8,6 +8,7 @@
 
 import UIKit
 
+// MARK: - DELEGATE
 protocol CommentComposerViewControllerDelegate: class {
     func commentDidSend(withPost post: WallPost)
 }
@@ -15,10 +16,7 @@ protocol CommentComposerViewControllerDelegate: class {
 class CommentComposerViewController: UIViewController {
     
     // MARK: - OUTLETS
-    @IBOutlet weak var profileImageVIew: UIImageView!
-    @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var commentTextView: UITextView!
-    
     @IBOutlet weak var sendButton: UIBarButtonItem!
     
     // MARK: - PROPERTIES
@@ -34,11 +32,8 @@ class CommentComposerViewController: UIViewController {
         
         sendButton.isEnabled = false
         commentTextView.text = ""
-        
         commentTextView.delegate = self
-        
         commentTextView.becomeFirstResponder()
-        
     }
 
     // MARK: - ACTIONS
@@ -47,23 +42,15 @@ class CommentComposerViewController: UIViewController {
         ServerManager.sharedManager.createComment(ownerID: groupID, postID: wallPost.postID, message: commentTextView.text) { (success) in
             
             if success == true {
-                
                 self.dismiss(animated: true, completion: nil)
-                
                 self.delegate?.commentDidSend(withPost: self.wallPost)
             }
-            
-            
         }
-        
-        
     }
     
     @IBAction func cancelDidTap() {
         self.dismiss(animated: true, completion: nil)
     }
-
-
 }
 
 // MARK: - UITextViewDelegate
@@ -76,10 +63,7 @@ extension CommentComposerViewController: UITextViewDelegate {
         } else {
             sendButton.isEnabled = true
         }
-        
     }
-    
-    
 }
 
 

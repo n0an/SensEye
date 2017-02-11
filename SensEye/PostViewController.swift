@@ -7,10 +7,9 @@
 //
 
 import UIKit
-
 import Jelly
 
-
+// MARK: - DELEGATE
 protocol PostViewControllerDelegate: class {
     func postViewControllerWillDisappear(withPost post: WallPost)
 }
@@ -22,7 +21,6 @@ class PostViewController: UIViewController {
     @IBOutlet weak var logoutFromVKButton: UIButton!
     
     // MARK: - ENUMS
-    
     enum Storyboard {
         static let cellIdPost = "FeedCell"
         static let cellIdComment = "CommentCell"
@@ -44,10 +42,7 @@ class PostViewController: UIViewController {
         case comment
     }
     
-    
     // MARK: - PROPERTIES
-    
-
     public var wallPost: WallPost!
     public var backgroundImage: UIImage?
     
@@ -63,9 +58,7 @@ class PostViewController: UIViewController {
     fileprivate var headerView: PostHeaderView!
     fileprivate var headerMaskLayer: CAShapeLayer!
 
-    
     // MARK: - viewDidLoad
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -102,25 +95,18 @@ class PostViewController: UIViewController {
         updateHeaderView()
         
         listenForAuthenticationNotification()
-
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         refreshLogoutButton()
-        
     }
     
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
+        
         updateHeaderView()
     }
     
@@ -141,7 +127,6 @@ class PostViewController: UIViewController {
     
     
     // MARK: - API METHODS
-    
     func refreshLogoutButton() {
         
         if ServerManager.sharedManager.currentVKUser != nil {
@@ -161,38 +146,23 @@ class PostViewController: UIViewController {
                 
                 if let liked = resultDict["liked"] as? Int {
                     self.wallPost.isLikedByCurrentUser = liked == 1 ? true : false
-                    
-                    
                     let cell = self.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! FeedCell
-                    
                     cell.wallPost = self.wallPost
                     
                 } else {
                     self.wallPost.isLikedByCurrentUser = false
-                    
-                    
                     let cell = self.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! FeedCell
-                    
                     cell.wallPost = self.wallPost
                 }
                 
             } else {
                 self.wallPost.isLikedByCurrentUser = false
-                
-                
                 let cell = self.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! FeedCell
-                
                 cell.wallPost = self.wallPost
             }
             
-            
-            
             GeneralHelper.sharedHelper.hideSpinner(onView: self.view)
-            
-            
         }
-        
-        
     }
     
     func refreshComments() {
@@ -205,25 +175,18 @@ class PostViewController: UIViewController {
             ServerManager.sharedManager.getFeed(forType: .comment, ownerID: groupID, postID: wallPost.postID, offset: 0, count: max(commentsInRequest, self.comments.count), completed: { (comments) in
                 
                 if comments.count > 0 {
-                    
                     guard let comments = comments as? [Comment] else { return }
-                    
                     self.comments.removeAll()
-                    
                     self.comments.append(contentsOf: comments)
-                    
                     self.wallPost.postComments = String(comments.count)
-                    
                     self.tableView.reloadData()
                 }
             })
             
             self.loadingData = false
-            
             GeneralHelper.sharedHelper.hideSpinner(onView: self.view)
         }
     }
-    
     
     func getCommentsFromServer() {
         
@@ -232,17 +195,12 @@ class PostViewController: UIViewController {
         ServerManager.sharedManager.getFeed(forType: .comment, ownerID: groupID, postID: wallPost.postID, offset: self.comments.count, count: commentsInRequest) { (comments) in
             
             if comments.count > 0 {
-                
                 guard let comments = comments as? [Comment] else { return }
-                
                 self.comments.append(contentsOf: comments)
-                
                 var newPaths = [IndexPath]()
-                
                 var index = self.comments.count - comments.count
                 
                 while index < self.comments.count {
-                    
                     let newIndPath = IndexPath(row: index, section: TableViewSectionType.comment.rawValue)
                     newPaths.append(newIndPath)
                     
@@ -252,20 +210,13 @@ class PostViewController: UIViewController {
                 self.tableView.beginUpdates()
                 self.tableView.insertRows(at: newPaths, with: .fade)
                 self.tableView.endUpdates()
-                
-                
             }
             
             self.loadingData = false
             GeneralHelper.sharedHelper.hideSpinner(onView: self.view)
             self.tableView.infiniteScrollingView.stopAnimating()
-            
-            
         }
-        
-        
     }
-    
     
     // MARK: - HELPER METHODS
     
@@ -285,11 +236,8 @@ class PostViewController: UIViewController {
             headerRect.size.height = -tableView.contentOffset.y + Storyboard.tableHeaderCutAway/2
             
             let final: CGFloat = -100
-            
             let alpha =  min((tableView.contentOffset.y + effectiveHeight) / final, 1)
-            
             headerView.logoImageView.alpha = alpha
-
         }
         
         headerView.frame = headerRect
@@ -301,46 +249,28 @@ class PostViewController: UIViewController {
         path.addLine(to: CGPoint(x: headerRect.width, y: headerRect.height))
         path.addLine(to: CGPoint(x: 0, y: headerRect.height - Storyboard.tableHeaderCutAway))
         headerMaskLayer?.path = path.cgPath
-        
     }
 
-    
-    
     // MARK: - NOTIFICATIONS
-
     func listenForAuthenticationNotification() {
-        
         NotificationCenter.default.addObserver(self, selector: #selector(vkAuthorizationCompleted), name: Notification.Name(rawValue: "NotificationAuthorizationCompleted"), object: nil)
-        
     }
-    
     
     // MARK: - ACTIONS
-    
     func vkAuthorizationCompleted() {
-        
         refreshLogoutButton()
-        
         refreshMainPost()
         refreshComments()
     }
    
-    
     // MARK: - NAVIGATION
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         if segue.identifier == Storyboard.segueCommentComposer {
-            
             let destinationNVC = segue.destination as! UINavigationController
-            
             let destinationVC = destinationNVC.topViewController as! CommentComposerViewController
-            
             destinationVC.delegate = self
-            
             destinationVC.wallPost = self.wallPost
-            
-            
-            
         }
     }
 }
@@ -360,13 +290,11 @@ extension PostViewController: UITableViewDataSource {
         } else {
             return 1
         }
-        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if indexPath.section == TableViewSectionType.post.rawValue {
-            
             let postCell = tableView.dequeueReusableCell(withIdentifier: Storyboard.cellIdPost, for: indexPath) as! FeedCell
             
             postCell.wallPost = self.wallPost
@@ -375,7 +303,6 @@ extension PostViewController: UITableViewDataSource {
             return postCell
             
         } else {
-            
             let commentCell = tableView.dequeueReusableCell(withIdentifier: Storyboard.cellIdComment, for: indexPath) as! CommentCell
             
             let comment = self.comments[indexPath.row]
@@ -385,33 +312,22 @@ extension PostViewController: UITableViewDataSource {
             
             return commentCell
         }
-        
-        
     }
-    
 }
 
 // MARK: - UITableViewDelegate
-
 extension PostViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        
         if indexPath.section == TableViewSectionType.post.rawValue {
             return Storyboard.rowHeightPostCell
         } else {
             return Storyboard.rowHeightCommentCell
         }
-        
     }
-    
-    
-    
 }
 
-
 // MARK: - UIScrollViewDelegate
-
 extension PostViewController: UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -419,7 +335,6 @@ extension PostViewController: UIScrollViewDelegate {
         
         let offsetY = scrollView.contentOffset.y
         let adjustment: CGFloat = 100
-        
         
         if (-offsetY) > (Storyboard.tableHeaderHeight + adjustment) {
             self.dismiss(animated: true, completion: nil)
@@ -436,17 +351,13 @@ extension PostViewController: UIScrollViewDelegate {
 
 // MARK: - === PostHeaderViewDelegate ===
 extension PostViewController: PostHeaderViewDelegate {
+    
     func closeButtonTapped() {
-        
         self.dismiss(animated: true, completion: nil)
-        
-        
     }
     
     func logoutFromVKButtonTapped() {
-        
         ServerManager.sharedManager.deAuthorize { (success) in
-            
             
         }
     }
@@ -454,22 +365,15 @@ extension PostViewController: PostHeaderViewDelegate {
 
 
 // MARK: - === FeedCellDelegate ===
-
 extension PostViewController: FeedCellDelegate {
     
     func toAuthorize() {
-        
         ServerManager.sharedManager.authorize { (user) in
-            
             ServerManager.sharedManager.currentVKUser = user
-            
         }
-        
     }
     
-    
     func provideAuthorization() {
-        
         UserDefaults.standard.set(false, forKey: KEY_VK_USERCANCELAUTH)
         UserDefaults.standard.synchronize()
         
@@ -478,18 +382,13 @@ extension PostViewController: FeedCellDelegate {
             if selected == true {
                 self.toAuthorize()
             }
-            
         }
-        
     }
     
     func commentDidTap(post: WallPost) {
-        
         performSegue(withIdentifier: Storyboard.segueCommentComposer, sender: post)
         
     }
-    
-    
     
     func performJellyTransition(withPhotos photosArray: [Photo], indexOfPhoto: Int) {
         if let photoDisplayerNavVC = self.createVC(withID: Storyboard.viewControllerIdPhotoDisplayer) as? UINavigationController {
@@ -500,8 +399,6 @@ extension PostViewController: FeedCellDelegate {
             photoDisplayerVC.mediasArray = photosArray
             photoDisplayerVC.currentIndex = indexOfPhoto
             
-            
-            
             let customBlurFadeInPresentation2 = JellyFadeInPresentation(dismissCurve: .easeInEaseOut,
                                                                         presentationCurve: .easeInEaseOut,
                                                                         cornerRadius: 0,
@@ -510,9 +407,7 @@ extension PostViewController: FeedCellDelegate {
                                                                         widthForViewController: .fullscreen,
                                                                         heightForViewController: .fullscreen)
             
-            
             self.jellyAnimator = JellyAnimator(presentation: customBlurFadeInPresentation2)
-            
             self.jellyAnimator?.prepare(viewController: photoDisplayerNavVC)
             
             self.present(photoDisplayerNavVC, animated: true, completion: nil)
@@ -522,16 +417,7 @@ extension PostViewController: FeedCellDelegate {
     func galleryImageViewDidTap(wallPost: WallPost, clickedPhotoIndex: Int) {
         
         if let photosArray = wallPost.postAttachments as? [Photo] {
-            
-            
-            // ** UNCOMMENT IF USE SEGUE WITH CUSTOM TRANSITIONING ANIMATOR
-            //            performSegue(withIdentifier: Storyboard.seguePhotoDisplayer, sender: (wallPost.postAttachments as! [Photo], clickedPhotoIndex))
-            //
-            
-            // ** COMMENT IF NOT USE JELLY TRANSITION
-            
             performJellyTransition(withPhotos: photosArray, indexOfPhoto: clickedPhotoIndex)
-            
             
         } else if let albumAttach = wallPost.postAttachments[0] as? PhotoAlbum {
             
@@ -540,11 +426,7 @@ extension PostViewController: FeedCellDelegate {
                 let photos = result as! [Photo]
                 
                 // Calculating index of clicked photo in album
-                
                 let indexOfClickedPhotoInAlbum = photos.index(of: albumAttach.albumThumbPhoto!)
-                
-                // ** UNCOMMENT IF USE SEGUE WITH CUSTOM TRANSITIONING ANIMATOR
-                //                self.performSegue(withIdentifier: Storyboard.seguePhotoDisplayer, sender: (photos, indexOfClickedPhotoInAlbum ?? clickedPhotoIndex))
                 
                 self.performJellyTransition(withPhotos: photos, indexOfPhoto: indexOfClickedPhotoInAlbum ?? clickedPhotoIndex)
             })
@@ -553,51 +435,12 @@ extension PostViewController: FeedCellDelegate {
 }
 
 
-
-
 // MARK: - === CommentComposerViewControllerDelegate ===
 extension PostViewController: CommentComposerViewControllerDelegate {
-    
-    
-    
     func commentDidSend(withPost post: WallPost) {
         refreshMainPost()
         refreshComments()
     }
-    
-    
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

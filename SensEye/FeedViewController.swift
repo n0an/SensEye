@@ -10,9 +10,7 @@ import UIKit
 import Alamofire
 import AlamofireImage
 import SVPullToRefresh
-
 import Jelly
-
 import IDMPhotoBrowser
 
 class FeedViewController: UIViewController {
@@ -307,9 +305,6 @@ class FeedViewController: UIViewController {
         }
     }
     
-    @IBAction func unwindToFeedVC(segue: UIStoryboardSegue) {
-        // TODO: - check if no need - delete
-    }
 }
 
 
