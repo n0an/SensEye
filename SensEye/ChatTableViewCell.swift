@@ -36,7 +36,7 @@ class ChatTableViewCell: UITableViewCell {
         let timeInterval = chat.lastUpdate / 1000
         let lastUpdateDate = NSDate(timeIntervalSince1970: timeInterval)
         
-        self.lastUpdateLabel.text = lastUpdateDate.stringFromDate()
+        self.lastUpdateLabel.text = lastUpdateDate.stringFromDate(short: true)
         self.unreadMessagesLabel.text = "\(chat.messagesCount)"
         
         if chat.messagesCount > 0 {
@@ -46,7 +46,7 @@ class ChatTableViewCell: UITableViewCell {
         }
      
         // Set featuredImage with caching
-        self.featuredImageView.image = UIImage(named: "icon-defaultAvatar")
+        self.featuredImageView.image = UIImage(named: "defaultProfileImage")
         
         let featuredImageCacheKey = chat.withUserUID
         

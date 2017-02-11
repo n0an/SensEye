@@ -1552,7 +1552,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="79"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-defaultAvatar" translatesAutoresizingMaskIntoConstraints="NO" id="fzc-MQ-B7v">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultProfileImage" translatesAutoresizingMaskIntoConstraints="NO" id="fzc-MQ-B7v">
                                                     <rect key="frame" x="8" y="8" width="48" height="48"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="48" id="N8r-h0-n0J">
@@ -1880,6 +1880,7 @@
         <image name="PhotoDisplayer-ArrowRight" width="12" height="24"/>
         <image name="Userpic 40px" width="40" height="40"/>
         <image name="dark_crop_1000" width="367" height="218"/>
+        <image name="defaultProfileImage" width="600" height="600"/>
         <image name="email-1" width="24" height="16"/>
         <image name="facebook-1" width="21" height="20"/>
         <image name="google" width="21" height="21"/>
@@ -1899,7 +1900,7 @@
         <image name="wp-lens08" width="645" height="432"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="EBb-sR-AUb"/>
+        <segue reference="4QP-vi-Xbs"/>
         <segue reference="PaE-cb-taD"/>
         <segue reference="XAA-BU-txL"/>
     </inferredMetricsTieBreakers>

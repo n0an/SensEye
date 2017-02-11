@@ -10,7 +10,7 @@ import UIKit
 
 // MARK: - NSDATE EXTENSION
 extension NSDate {
-    func stringFromDate() -> String {
+    func stringFromDate(short: Bool) -> String {
         let interval = NSDate().days(after: self as Date!)
         var dateString = ""
         
@@ -21,7 +21,8 @@ extension NSDate {
             
         } else if interval > 1 {
             let dateFormat = DateFormatter()
-            dateFormat.dateFormat = "dd MMMM yyyy"
+            
+            dateFormat.dateFormat = short ? "dd.MM.yyyy" : "dd MMMM yyyy"
             dateString = dateFormat.string(from: self as Date)
         }
         

@@ -139,7 +139,7 @@ class FeedCell: UITableViewCell {
         let timeInterval = TimeInterval(wallPost.postDate)
         let createdDate = NSDate(timeIntervalSince1970: timeInterval)
         
-        self.timestampLabel.text = createdDate.stringFromDate()
+        self.timestampLabel.text = createdDate.stringFromDate(short: false)
         
         if let postAuthor = wallPost.postAuthor {
             self.usernameLabel.text = "\(postAuthor.firstName!) \(postAuthor.lastName!)"

@@ -106,7 +106,7 @@ class CommentCell: UITableViewCell {
         self.likeButton.setTitle("\(self.comment.commentLikesCount)", for: [])
         let timeInterval = TimeInterval(comment.commentDate)
         let createdDate = NSDate(timeIntervalSince1970: timeInterval)
-        self.timestampLabel.text = createdDate.stringFromDate()
+        self.timestampLabel.text = createdDate.stringFromDate(short: false)
         
         changeLikeImage()
         
