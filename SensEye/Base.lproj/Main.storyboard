@@ -1040,7 +1040,11 @@
                         <outlet property="emailTextField" destination="BBX-p4-NUa" id="isP-06-RwF"/>
                         <outlet property="hideKeyboardInputAccessoryView" destination="kGK-3g-Mcb" id="X31-hs-8VC"/>
                         <outlet property="loginButton" destination="Bo5-LE-gRK" id="9VT-pK-1V2"/>
+                        <outlet property="loginFacebookButton" destination="42s-Q1-YmL" id="eED-8V-JUz"/>
+                        <outlet property="loginGoogleButton" destination="cTG-tc-2yg" id="Ogw-dp-ifa"/>
                         <outlet property="passwordTextField" destination="QPq-so-NCn" id="F7z-qa-SnY"/>
+                        <outlet property="resetPasswordButton" destination="QHq-iX-28O" id="Auq-gy-I6m"/>
+                        <outlet property="signUpButton" destination="pPe-wI-kG6" id="yrP-Lu-6qy"/>
                         <segue destination="kYh-Og-K9s" kind="show" identifier="showRecentChatsViewController" id="hci-Zb-C6g"/>
                         <segue destination="mNO-6t-EPg" kind="show" identifier="showChatViewController" id="EBb-sR-AUb"/>
                     </connections>

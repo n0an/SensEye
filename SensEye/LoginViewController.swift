@@ -19,6 +19,10 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     @IBOutlet weak var emailTextField: DesignableTextField!
     @IBOutlet weak var passwordTextField: DesignableTextField!
     @IBOutlet weak var loginButton: DesignableButton!
+    @IBOutlet weak var loginFacebookButton: FancyButton!
+    @IBOutlet weak var loginGoogleButton: FancyButton!
+    @IBOutlet weak var signUpButton: FancyButton!
+    @IBOutlet weak var resetPasswordButton: UIButton!
     @IBOutlet weak var containerView: DesignableView!
     @IBOutlet weak var hideKeyboardInputAccessoryView: UIView!
     
@@ -40,6 +44,18 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
         }
     }
     
+    var isMessengerLoading = false {
+        willSet {
+            emailTextField.isEnabled        = !newValue
+            passwordTextField.isEnabled     = !newValue
+            loginButton.isEnabled           = !newValue
+            signUpButton.isEnabled          = !newValue
+            resetPasswordButton.isEnabled   = !newValue
+            loginFacebookButton.isEnabled   = !newValue
+            loginGoogleButton.isEnabled     = !newValue
+        }
+    }
+    
     // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,6 +72,8 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
                 if self.currentUser != nil {
                     return
                 }
+                
+                self.isMessengerLoading = true
                 
                 // IF DIDN'T ENTER CHAT AFTER 60 SEC - FORCE LOGOUT
                 self.forceLogoutAfter(time: 60)
@@ -155,6 +173,8 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
         GeneralHelper.sharedHelper.invoke(afterTimeInMs: seconds * 1000) {
             if self.navigationController?.viewControllers.count == 1 {
                 SwiftSpinner.hide()
+                self.isMessengerLoading = false
+                
                 if FIRAuth.auth()?.currentUser != nil {
                     FRAuthManager.sharedManager.logOut(onComplete: { (error) in
                         
@@ -208,6 +228,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
                         ] as [String : Any]
                     
                     KeychainWrapper.standard.set(chatDictionary as NSDictionary, forKey: KEY_CHAT_OF_USER)
+                    
                     
                     self.performSegue(withIdentifier: Storyboard.segueShowChatVC, sender: newChat)
                 }
@@ -289,6 +310,8 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
                 SwiftSpinner.hide()
                 
                 self.alert(title: NSLocalizedString("Error", comment: "Error"), message: errorString)
+                self.isMessengerLoading = false
+                
                 return
             }
         }
@@ -310,6 +333,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
             let password = passwordTextField.text, password != "" else {
                 self.alert(title: NSLocalizedString("Error", comment: "Error"),
                            message: NSLocalizedString("Enter your email and password", comment: ""))
+                
                 self.shake()
                 return
         }
@@ -323,11 +347,14 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
             SwiftSpinner.hide()
         })
         
+        self.isMessengerLoading = true
+        
         FRAuthManager.sharedManager.loginToFireBase(withEmail: email, password: password, onComplete: { (errMsg, data) in
             
             guard errMsg == nil else {
                 SwiftSpinner.hide()
                 self.alert(title: NSLocalizedString("Error", comment: "Error"), message: errMsg!)
+                self.isMessengerLoading = false
                 return
             }
             // Login Successful Using Firebase Email Login
@@ -348,6 +375,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         SwiftSpinner.hide()
+        self.isMessengerLoading = false
         
         if segue.identifier == Storyboard.segueShowChatVC {
             let chatVC = segue.destination as! ChatViewController
