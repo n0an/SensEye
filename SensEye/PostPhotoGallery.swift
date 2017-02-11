@@ -11,6 +11,7 @@ import AlamofireImage
 
 class PostPhotoGallery {
     
+    // MARK: - PROPERTIES
     private static let _sharedGalleryManager = PostPhotoGallery()
     
     static var sharedGalleryManager: PostPhotoGallery {
@@ -22,7 +23,7 @@ class PostPhotoGallery {
     var firstRowCount = 1
     var maxPhotos = 4
     
-
+    // MARK: - GALLERY METHODS
     func clearGallery(forPost post: WallPost, fromCell postCell: FeedCell) {
         
         for imageView in postCell.galleryImageViews {
@@ -40,13 +41,11 @@ class PostPhotoGallery {
         for widthOfImageView in postCell.photoWidths {
             widthOfImageView.constant = 0
         }
-        
     }
     
     func insertGallery(forPost post: WallPost, toCell postCell: FeedCell) {
         
         // === PART 1. CHECKINGS
-        
         //  If post contains no photos - set all ImageViews height to 0 (collapsing all Gallery ImageViews), and return cell immediately
         
         if post.postAttachments.isEmpty {
@@ -58,7 +57,6 @@ class PostPhotoGallery {
             }
             
             return
-            
         }
         
         //  Check of attachments array before start main loop. If occasionally, there's photo with width or height equals to 0 - remove this photo from attachments array
@@ -70,15 +68,13 @@ class PostPhotoGallery {
             var photoObject: Photo!
             
             if let albumAttachment = post.postAttachments[index] as? PhotoAlbum {
-                
                 photoObject = albumAttachment.albumThumbPhoto
                 
             } else if let photoAttachment = post.postAttachments[index] as? Photo {
-                
                 photoObject = photoAttachment
             }
+            
             if photoObject.width == 0 || photoObject.height == 0 {
-                
                 post.postAttachments.remove(at: 0)
                 continue
             }
@@ -86,24 +82,18 @@ class PostPhotoGallery {
             index += 1
         }
         
-        
-        
         // === PART 2. CALCULATIONS OF MAXIMUM SIZES FOR SQUARE GALLERY IMAGEVIEWS
-        
         //  Calculation of Gallery ImageViews Maximum Sizes (depending on count of photos)
 
         var maxRequiredSizeOfImageInFirstRow: CGFloat = 0
         var maxRequiredSizeOfImageInSecondRow: CGFloat = 0
         
         let maxAvailableSpaceToOperate = min(UIScreen.main.bounds.width - marginSpace, 1300)
-
-        
-        
         
         if post.postAttachments.count <= firstRowCount {
             // If we have only 1 photo - use only first row
             
-            maxRequiredSizeOfImageInFirstRow = min(640, maxAvailableSpaceToOperate) // Limit to 800
+            maxRequiredSizeOfImageInFirstRow = min(640, maxAvailableSpaceToOperate) // Limit to 640
             
         } else {
             // If we have more than 2 photos - use both rows of Gallery
@@ -112,9 +102,8 @@ class PostPhotoGallery {
 
             maxRequiredSizeOfImageInSecondRow = (maxAvailableSpaceToOperate) / CGFloat(min(maxPhotos, post.postAttachments.count - firstRowCount))
             
-            maxRequiredSizeOfImageInSecondRow = min(640, maxRequiredSizeOfImageInSecondRow) // Limit to 800
+            maxRequiredSizeOfImageInSecondRow = min(640, maxRequiredSizeOfImageInSecondRow) // Limit to 640
         }
-        
         
         // === PART 3. LOOP THROUGH PHOTOS IN ATTACHMENTS ARRAY AND HANDLE EACH PHOTO
         
@@ -131,7 +120,6 @@ class PostPhotoGallery {
             var photoObject: Photo!
 
             if let albumAttachment = post.postAttachments[index] as? PhotoAlbum {
-                
                 if let photoAlbumThumb = albumAttachment.albumThumbPhoto {
                     photoObject = photoAlbumThumb
                 }
@@ -152,7 +140,6 @@ class PostPhotoGallery {
                 
                 if index < firstRowCount {
                     // First Row of Gallery
-                    
                     heightOfCurrentPhoto = maxRequiredSizeOfImageInFirstRow
                     
                     widthOfCurrentPhoto = heightOfCurrentPhoto * CGFloat(ratio)
@@ -160,34 +147,26 @@ class PostPhotoGallery {
                     
                 } else {
                     // Second Row Gallery
-                    
                     heightOfCurrentPhoto = maxRequiredSizeOfImageInSecondRow
                     widthOfCurrentPhoto = heightOfCurrentPhoto * CGFloat(ratio)
                     
                     fullWidthSecondRow += widthOfCurrentPhoto
-                    
                 }
                 
             } else {
                 // ** Landscape oriented photo
-                
                 if index < firstRowCount {
-                    
                     // First Row of Gallery
-                    
                     widthOfCurrentPhoto = maxRequiredSizeOfImageInFirstRow
                     fullWidthFirstRow += widthOfCurrentPhoto
                     
                 } else {
                     // Second Row Gallery
-                    
                     widthOfCurrentPhoto = maxRequiredSizeOfImageInSecondRow
                     fullWidthSecondRow += widthOfCurrentPhoto
-                    
                 }
                 
                 heightOfCurrentPhoto = widthOfCurrentPhoto / CGFloat(ratio)
-                
             }
             
             // * 2. Calculating height of FirstRow to get know value for gallerySecondRowTopConstraint
@@ -209,13 +188,10 @@ class PostPhotoGallery {
             currentImageView.frame = CGRect(x: currentImageViewOrigin.x, y: currentImageViewOrigin.y, width: widthOfCurrentPhoto, height: heightOfCurrentPhoto)
             
             // * 4. Loading and setting image
-            
             var linkToNeededRes: String?
             var neededRes: PhotoResolution
             
-            
             if index < firstRowCount {
-                
                 if maxRequiredSizeOfImageInFirstRow > 600 {
                     linkToNeededRes = photoObject.photo_807
                     neededRes = .res807
@@ -223,7 +199,6 @@ class PostPhotoGallery {
                     linkToNeededRes = photoObject.photo_604
                     neededRes = .res604
                 }
-                
                 
             } else {
                 if maxRequiredSizeOfImageInSecondRow > 600 {
@@ -242,9 +217,7 @@ class PostPhotoGallery {
                 var index = neededRes.rawValue - 1
                 
                 while index >= PhotoResolution.res75.rawValue {
-                    
                     let lessResKey = photoObject.keysResArray[index]
-                    
                     let lessResolution = photoObject.resolutionDictionary[lessResKey]
                     
                     if lessResolution != nil {
@@ -258,25 +231,17 @@ class PostPhotoGallery {
                 if linkToNeededRes == nil {
                     linkToNeededRes = photoObject.maxRes
                 }
-                
             }
-            
             
             let urlPhoto = URL(string: linkToNeededRes!)
             
             currentImageView.af_setImage(withURL: urlPhoto!)
             
-            
-
-            
             index += 1
         }
         // *********$$$$$$$$ MAIN LOOP FOR ENDS HERE $$$$$$$****************
 
-        
-        
         // === PART 4. LAST PREPARATIONS, SETTING GLOBAL GALLERY INSETS, COLLAPSING UNUSED IMAGEVIEWS
-
         //  Setting top constraint for second row
 
         postCell.gallerySecondRowTopConstraint.constant = maxHeightFirstRow + 10
@@ -319,9 +284,7 @@ class PostPhotoGallery {
         
         postCell.galleryFirstRowLeadingConstraint.constant = (UIScreen.main.bounds.width - marginSpace - 2 * indentsCountFirstRow - fullWidthFirstRow) / 2
         
-        
         postCell.layoutIfNeeded()
-        
         
         // ADDING GESTURE RECOGNIZERS FOR GALLERY
         
@@ -331,30 +294,9 @@ class PostPhotoGallery {
             let tapGesture = UITapGestureRecognizer(target: postCell, action: #selector(postCell.actionGlryImageViewDidTap))
             
             photoImageView.addGestureRecognizer(tapGesture)
-            
         }
-
-        
     }
-    
-    
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

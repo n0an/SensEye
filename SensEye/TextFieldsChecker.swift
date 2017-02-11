@@ -10,8 +10,10 @@ import UIKit
 
 class TextFieldsChecker {
     
+    // MARK: - PROPERTIES
     static let sharedChecker = TextFieldsChecker()
     
+    // MARK: - handleEmailTextField
     func handleEmailTextField(_ textField: UITextField, inRange range: NSRange, withReplacementString replacementString: String) -> Bool {
         
         var illegalCharactersSet = CharacterSet.init(charactersIn: "?><,\\/|`~\'\"[]{}±#$%^&*()=+")
@@ -27,6 +29,7 @@ class TextFieldsChecker {
         if currentString.contains("@") {
             illegalCharactersSet = CharacterSet.init(charactersIn: "?><,\\/|`~\'\"[]{}±#$%^&*()=+@")
         }
+        
         let components = replacementString.components(separatedBy: illegalCharactersSet)
         if components.count > 1 {
             return false
@@ -35,25 +38,5 @@ class TextFieldsChecker {
         return newString.characters.count <= 40
     }
     
-    
-    
-    
-    
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
