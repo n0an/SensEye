@@ -359,7 +359,7 @@ extension ChatViewController {
     
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout!, heightForCellTopLabelAt indexPath: IndexPath!) -> CGFloat {
         
-        if indexPath.item % 3 == 0 {
+        if indexPath.item % 6 == 0 {
             return kJSQMessagesCollectionViewCellLabelHeightDefault
         }
         

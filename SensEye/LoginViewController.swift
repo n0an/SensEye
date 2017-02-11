@@ -74,6 +74,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
                     self.currentUser = FRAuthManager.sharedManager.currentUser
                     
                     DispatchQueue.main.async {
+                        print("GO FROM Listener")
                         self.goToMessenger()
                     }
                     
@@ -124,7 +125,12 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
             return
         }
         
+        
         if let userDict = KeychainWrapper.standard.object(forKey: KEY_CHAT_USER) as? [String: Any] {
+            
+            SwiftSpinner.show(NSLocalizedString("Entering chat", comment: "SPINNER_ENTER_CHAT")).addTapHandler({
+                SwiftSpinner.hide()
+            })
             
             let uid = userDict["uid"] as! String
             
@@ -132,6 +138,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
             self.currentUser = FRAuthManager.sharedManager.currentUser
             
             DispatchQueue.main.async {
+                print("GO FROM viewDidAppear")
                 self.goToMessenger()
             }
         }
