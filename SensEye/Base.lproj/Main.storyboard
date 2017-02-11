@@ -1356,8 +1356,9 @@
                                     <constraint firstAttribute="bottom" secondItem="4K5-RO-QPx" secondAttribute="bottom" id="pfi-hl-pua"/>
                                 </constraints>
                             </view>
-                            <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-defaultAvatar" translatesAutoresizingMaskIntoConstraints="NO" id="auM-bd-Jf6" customClass="CircleImageView" customModule="SensEye" customModuleProvider="target">
+                            <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultProfileImage" translatesAutoresizingMaskIntoConstraints="NO" id="auM-bd-Jf6" customClass="CircleImageView" customModule="SensEye" customModuleProvider="target">
                                 <rect key="frame" x="148" y="460" width="80" height="80"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="Cgw-jw-W1V"/>
                                     <constraint firstAttribute="height" constant="80" id="JIj-y8-coc"/>
@@ -1885,7 +1886,6 @@
         <image name="facebook-1" width="21" height="20"/>
         <image name="google" width="21" height="21"/>
         <image name="hideKeyboardButton" width="30" height="22"/>
-        <image name="icon-defaultAvatar" width="120" height="120"/>
         <image name="lock-1" width="20" height="27"/>
         <image name="nametag" width="24" height="20"/>
         <image name="postVC-VKLogout" width="57" height="30"/>
@@ -1900,7 +1900,7 @@
         <image name="wp-lens08" width="645" height="432"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="4QP-vi-Xbs"/>
+        <segue reference="EBb-sR-AUb"/>
         <segue reference="PaE-cb-taD"/>
         <segue reference="XAA-BU-txL"/>
     </inferredMetricsTieBreakers>
