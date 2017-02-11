@@ -8,7 +8,6 @@
 
 import Foundation
 import Alamofire
-
 import SwiftKeychainWrapper
 
 typealias SuccessHandler = ([Any]) -> Void
@@ -16,34 +15,30 @@ typealias FailureHandler = (NSError, Int) -> Void
 
 class ServerManager {
     
+    // MARK: - PROPERTIES
+    enum FeedItemsType: String {
+        case post = "post"
+        case comment = "comment"
+    }
+    
     static let sharedManager = ServerManager()
     
     private var vkAccessToken: VKAccessToken?
     
     var currentVKUser: User?
     
-    enum FeedItemsType: String {
-        case post = "post"
-        case comment = "comment"
-    }
-    
     var networkActivityIndicatorVisible: Bool = false {
         didSet {
             if networkActivityIndicatorVisible == true {
-                
                 UIApplication.shared.isNetworkActivityIndicatorVisible = true
             } else {
                 UIApplication.shared.isNetworkActivityIndicatorVisible = false
             }
-            
         }
     }
     
-    
     // MARK: - VK AUTHORIZATION
-    
     func tokenToDictionary(token: VKAccessToken) -> [String: Any] {
-        
         let tokenDictionary = [
                     "tokenString"       : token.token,
                     "expirationDate"    : token.expirationDate,
@@ -51,11 +46,9 @@ class ServerManager {
         ] as [String : Any]
         
         return tokenDictionary
-        
     }
     
     func postAuthCompleteNotification() {
-        
         let center = NotificationCenter.default
         let notification = Notification(name: Notification.Name(rawValue: "NotificationAuthorizationCompleted"))
         
@@ -63,37 +56,27 @@ class ServerManager {
     }
     
     func renewAuthorization(completed: @escaping AuthoizationComplete) {
+        
         let loginVC = VKLoginViewController { (accessToken) in
+            
             if let token = accessToken {
-                
                 self.vkAccessToken = token
-                
-                print("token.expirationDate = \(token.expirationDate)")
-                print("NOW = \(Date())")
                 
                 let tokenDict = self.tokenToDictionary(token: token)
                 
-//                UserDefaults.standard.set(tokenDict, forKey: KEY_VK_TOKEN)
-                
                 KeychainWrapper.standard.set(tokenDict as NSDictionary, forKey: KEY_VK_TOKEN)
                 
-                
                 UserDefaults.standard.set(true, forKey: KEY_VK_DIDAUTH)
-                
                 UserDefaults.standard.synchronize()
                 
                 self.getUserFor(userID: token.userID, completed: { (user) in
                     self.postAuthCompleteNotification()
                     completed(user)
-                    
                 })
-                
             }
         }
         
-        
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        
         var top = appDelegate.window?.rootViewController
         
         // Peel Off presented view controllers from rootViewController
@@ -101,12 +84,8 @@ class ServerManager {
             top = top?.presentedViewController
         }
         
-        
         let nav = UINavigationController(rootViewController: loginVC)
-        
-        
         top?.present(nav, animated: true, completion: nil)
-
     }
     
     func deAuthorize(completed: @escaping (Bool) -> Void) {
@@ -122,29 +101,21 @@ class ServerManager {
         postAuthCompleteNotification()
         
         completed(removeSuccessful)
-        
     }
     
     func authorize(completed: @escaping AuthoizationComplete) {
         
-        
         if let tokenDict = KeychainWrapper.standard.object(forKey: KEY_VK_TOKEN) as? [String: Any] {
-            
-            print("saved tokenDict = \(tokenDict)")
             
             let tokenString = tokenDict["tokenString"] as! String
             let expirationDate = tokenDict["expirationDate"] as! Date
             let userID = tokenDict["userID"] as! String
             
-            print("expirationDate.timeIntervalSince(Date()) = \(expirationDate.timeIntervalSince(Date()))")
-            
             // Refresh token if it will expire in less than 1 hour
             if expirationDate.timeIntervalSince(Date()) <= 3600 {
-                
                 self.renewAuthorization(completed: completed)
                 
             } else {
-                
                 let vkAccessToken = VKAccessToken()
                 vkAccessToken.token = tokenString
                 vkAccessToken.expirationDate = expirationDate
@@ -153,7 +124,6 @@ class ServerManager {
                 self.vkAccessToken = vkAccessToken
                 
                 UserDefaults.standard.set(true, forKey: KEY_VK_DIDAUTH)
-                
                 UserDefaults.standard.synchronize()
                 
                 self.getUserFor(userID: userID, completed: { (user) in
@@ -163,65 +133,14 @@ class ServerManager {
                 })
             }
             
-            
-            
         } else {
-            
             self.renewAuthorization(completed: completed)
         }
-
-        
-        
-        
-//        if let tokenDict = UserDefaults.standard.object(forKey: KEY_VK_TOKEN) as? [String: Any] {
-//            
-//            print("saved tokenDict = \(tokenDict)")
-//            
-//            let tokenString = tokenDict["tokenString"] as! String
-//            let expirationDate = tokenDict["expirationDate"] as! Date
-//            let userID = tokenDict["userID"] as! String
-//            
-//            print("expirationDate.timeIntervalSince(Date()) = \(expirationDate.timeIntervalSince(Date()))")
-//            
-//            // Refresh token if it will expire in less than 1 hour
-//            if expirationDate.timeIntervalSince(Date()) <= 90000 {
-//                
-//                self.renewAuthorization(completed: completed)
-//                
-//            } else {
-//                
-//                let vkAccessToken = VKAccessToken()
-//                vkAccessToken.token = tokenString
-//                vkAccessToken.expirationDate = expirationDate
-//                vkAccessToken.userID = userID
-//                
-//                self.vkAccessToken = vkAccessToken
-//                
-//                UserDefaults.standard.set(true, forKey: KEY_VK_DIDAUTH)
-//                
-//                UserDefaults.standard.synchronize()
-//                
-//                self.getUserFor(userID: userID, completed: { (user) in
-//                    self.postAuthCompleteNotification()
-//
-//                    completed(user)
-//                })
-//            }
-//            
-//            
-//            
-//        } else {
-//            
-//            self.renewAuthorization(completed: completed)
-//        }
-        
-        
-        
+   
     }
     
     
     // MARK: - PHOTOS FEATURE
-    
     func getPhotos(forAlbumID albumID: String, ownerID: String, offset: Int? = nil, count: Int? = nil, completed: @escaping DownloadComplete) {
         
         var url = "\(URL_BASE)\(URL_PHOTOS)" +
@@ -248,28 +167,19 @@ class ServerManager {
             self.networkActivityIndicatorVisible = false
             
             guard let responseRoot = responseJson.result.value as? [String: Any] else {return}
-            
             guard let response = responseRoot["response"] as? [String: Any] else {return}
-            
-            guard let photoItemsArray = response["items"] as? [Any] else {
-                return
-            }
+            guard let photoItemsArray = response["items"] as? [Any] else {return}
             
             var photosArray: [Photo] = []
             
             for item in photoItemsArray {
-                
                 let photoItem = item as! [String: Any]
-                
                 let photo = Photo(responseObject: photoItem)
-                
                 photosArray.append(photo)
             }
             
             completed(photosArray)
-            
         }
-        
     }
     
     
@@ -288,32 +198,22 @@ class ServerManager {
             self.networkActivityIndicatorVisible = false
             
             guard let responseRoot = responseJson.result.value as? [String: Any] else {return}
-            
             guard let response = responseRoot["response"] as? [String: Any] else {return}
-            
-            guard let albumItemsArray = response["items"] as? [Any] else {
-                return
-            }
+            guard let albumItemsArray = response["items"] as? [Any] else {return}
             
             var albumsArray: [PhotoAlbum] = []
             
             for item in albumItemsArray {
                 let albumItem = item as! [String: Any]
-                
                 let photoAlbum = PhotoAlbum(responseObject: albumItem)
-                
                 albumsArray.append(photoAlbum)
             }
             
             completed(albumsArray)
-            
         }
-        
     }
     
-    
     // MARK: - POSTS/COMMENTS FEATURE
-    
     func getFeed(forType feedType: FeedItemsType, ownerID: String, postID: String? = nil, offset: Int, count: Int, completed: @escaping DownloadComplete) {
         
         var url = ""
@@ -329,8 +229,6 @@ class ServerManager {
                 "\(URL_PARAMS.OFFSET.rawValue)\(offset)&" +
                 "\(URL_PARAMS.LANG.rawValue)ru&" +
                 "\(URL_PARAMS.EXTENDED.rawValue)1"
-        
-        
         
         if feedType == .comment {
             url += "&\(URL_PARAMS.POST_ID.rawValue)\(postID!)&" +
@@ -350,24 +248,12 @@ class ServerManager {
             self.networkActivityIndicatorVisible = false
             
             guard let responseRoot = responseJson.result.value as? [String: Any] else {return}
-            
             guard let response = responseRoot["response"] as? [String: Any] else {return}
-            
-            guard let itemsArray = response["items"] as? [Any] else {
-                return
-            }
-            
-            guard let profilesArray = response["profiles"] as? [Any] else {
-                return
-            }
-            
-            guard let groupsArray = response["groups"] as? [Any] else {
-                return
-            }
-            
+            guard let itemsArray = response["items"] as? [Any] else {return}
+            guard let profilesArray = response["profiles"] as? [Any] else {return}
+            guard let groupsArray = response["groups"] as? [Any] else {return}
             
             // Parsing Group object
-            
             var group: Group?
             
             if groupsArray.count > 0 {
@@ -375,38 +261,27 @@ class ServerManager {
             }
          
             // Parsing Profiles
-            
             var authorsArray = [User]()
             
             for item in profilesArray {
-                
                 let profileItem = item as! [String: Any]
-                
                 let profile = User(responseObject: profileItem)
-                
                 authorsArray.append(profile)
-                
             }
             
             // Parsing posts or comments objects
-            
             if feedType == .post {
-                
                 let parsedObjects: [WallPost] = self.parseFeedObjects(forArray: itemsArray, authorsArray: authorsArray, group: group)
                 
                 completed(parsedObjects)
                 
             } else {
-                
                 let parsedObjects: [Comment] = self.parseFeedObjects(forArray: itemsArray, authorsArray: authorsArray, group: group)
                 
                 completed(parsedObjects)
             }
-            
         }
-        
     }
-    
     
     
     func createComment(ownerID: String, postID: String, message: String, completed: @escaping (Bool) -> Void) {
@@ -429,23 +304,14 @@ class ServerManager {
             self.networkActivityIndicatorVisible = false
             
             guard let responseRoot = responseJson.result.value as? [String: Any] else {return}
-            
             guard let response = responseRoot["response"] as? [String: Any] else {return}
-            
             guard (response["comment_id"] as? Int) != nil else { return }
             
-            
             completed(true)
-            
         }
-        
     }
     
-    
-    
-    
     // MARK: - USER FEATURE
-    
     func getUserFor(userID: String, completed: @escaping AuthoizationComplete) {
         
         let url = "\(URL_BASE)\(URL_USERS)" +
@@ -462,29 +328,18 @@ class ServerManager {
             self.networkActivityIndicatorVisible = false
             
             guard let responseRoot = responseJson.result.value as? [String: Any] else {return}
-            
             guard let response = responseRoot["response"] as? [Any] else {return}
-            
-            
             
             if response.count > 0 {
                 let userItem = response[0] as! [String: Any]
-                
                 let user = User(responseObject: userItem)
-                
                 completed(user)
             }
-            
-            
-            
         }
-        
     }
     
     // MARK: - LIKES FEATURE
-    
     func isLiked(forItemType itemType: FeedItemsType, ownerID: String, itemID: String, completed: @escaping ([String: Any]?) -> Void) {
-        
         
         var url = "\(URL_BASE)\(URL_ISLIKED)" +
                     "\(URL_PARAMS.ITEM_TYPE.rawValue)\(itemType.rawValue)&" +
@@ -504,23 +359,16 @@ class ServerManager {
             self.networkActivityIndicatorVisible = false
             
             guard let responseRoot = responseJson.result.value as? [String: Any] else {return}
-            
             guard let response = responseRoot["response"] as? [String:Any] else {
-                
                 completed(nil)
-                
                 return
             }
             
             completed(response)
-            
         }
-        
-        
     }
     
     func addLike(forItemType itemType: FeedItemsType, ownerID: String, itemID: String, completed: @escaping LikeFeatureCompletion) {
-        
         
         var url = "\(URL_BASE)\(URL_LIKES_ADD)" +
                     "\(URL_PARAMS.ITEM_TYPE.rawValue)\(itemType.rawValue)&" +
@@ -539,31 +387,21 @@ class ServerManager {
             
             self.networkActivityIndicatorVisible = false
             
-            
             guard let responseRoot = responseJson.result.value as? [String: Any] else {
-                
                 completed(false, nil)
-                
                 return
             }
             
             guard let response = responseRoot["response"] as? [String:Any] else {
-                
                 completed(false, nil)
-                
                 return
             }
             
             completed(true, response)
-            
         }
-        
-        
     }
     
-    
     func deleteLike(forItemType itemType: FeedItemsType, ownerID: String, itemID: String, completed: @escaping LikeFeatureCompletion) {
-        
         
         var url = "\(URL_BASE)\(URL_LIKES_DELETE)" +
                     "\(URL_PARAMS.ITEM_TYPE.rawValue)\(itemType.rawValue)&" +
@@ -583,37 +421,26 @@ class ServerManager {
             self.networkActivityIndicatorVisible = false
             
             guard let responseRoot = responseJson.result.value as? [String: Any] else {
-                
                 completed(false, nil)
-
                 return
             }
             
             guard let response = responseRoot["response"] as? [String:Any] else {
-                
                 completed(false, nil)
-                
                 return
             }
             
             completed(true, response)
-            
-            
         }
-        
-        
     }
     
     
-    
     // MARK: - HELPER METHODS
-    
     func parseFeedObjects<T: ServerObject>(forArray array: [Any], authorsArray: [User], group: Group?) -> [T] {
         
         var feedObjectsArray = [T]()
         
         for item in array {
-            
             let postItem = item as! [String: Any]
             
             var post = T(responseObject: postItem)
@@ -621,9 +448,7 @@ class ServerManager {
             feedObjectsArray.append(post)
             
             // Iterating through array of authors - looking for author for this post
-            
             for author in authorsArray {
-                
                 if post.postAuthorID.hasPrefix("-") {
                     post.postGroupAuthor = group
                     break
@@ -634,24 +459,11 @@ class ServerManager {
                     break
                 }
             }
-            
         }
     
         return feedObjectsArray
     }
-    
- 
-    
 }
-
-
-
-
-
-
-
-
-
 
 
 
