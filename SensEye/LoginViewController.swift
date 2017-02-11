@@ -36,6 +36,15 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     
     var currentUser: FRUser!
     
+    var isCurrentVC: Bool {
+        let tabBarController = UIApplication.shared.keyWindow?.rootViewController as! UITabBarController
+        
+        if tabBarController.selectedIndex == TabBarIndex.chat.rawValue {
+            return true
+        } else {
+            return false
+        }
+    }
     
     // MARK: - viewDidLoad
     override func viewDidLoad() {
@@ -63,10 +72,11 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
                 self.forceLogoutAfter(time: 60)
                 
                 
-                
-                SwiftSpinner.show(NSLocalizedString("Entering chat", comment: "SPINNER_ENTER_CHAT")).addTapHandler({
-                    SwiftSpinner.hide()
-                })
+                if self.isCurrentVC {
+                    SwiftSpinner.show(NSLocalizedString("Entering chat", comment: "SPINNER_ENTER_CHAT")).addTapHandler({
+                        SwiftSpinner.hide()
+                    })
+                }
                 
                 
                 // ** Checking if there's CurrentUser in Keychain
