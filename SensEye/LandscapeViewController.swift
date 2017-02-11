@@ -15,10 +15,8 @@ class LandscapeViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
     
-    
     // MARK: - PROPERTIES
     struct ScrollViewParameters {
-        
         var columnsPerPage: Int
         var rowsPerPage: Int
         
@@ -59,7 +57,6 @@ class LandscapeViewController: UIViewController {
     var isPad = false
     
     var isPhonePlus: Bool {
-        
         let rect = UIScreen.main.bounds
         if (rect.width == 736 && rect.height == 414) || (rect.width == 414 && rect.height == 736)  {
             return true
@@ -77,7 +74,6 @@ class LandscapeViewController: UIViewController {
         }
     }
     
-    
     weak var splitViewDetail: PhotoViewController?
     
     
@@ -88,22 +84,13 @@ class LandscapeViewController: UIViewController {
         title = NSLocalizedString("Albums", comment: "Gallery Albums")
         
         if self.traitCollection.verticalSizeClass == .regular && self.traitCollection.horizontalSizeClass == .regular {
-            
             self.isPad = true
-            
             self.pageControl.isHidden = true
-            
-            
-            
         }
         
         getAlbumsFromServer()
-
         
-        
-        
-        
-        // TURN OFF AUTO LAYOUT FOR DEDICATED VC
+        // TURN OFF AUTO LAYOUT FOR THIS VC
         view.removeConstraints(view.constraints)
         view.translatesAutoresizingMaskIntoConstraints = true
         
@@ -114,10 +101,7 @@ class LandscapeViewController: UIViewController {
         scrollView.translatesAutoresizingMaskIntoConstraints = true
         
         pageControl.numberOfPages = 0
-        
-        
     }
-    
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
@@ -146,7 +130,6 @@ class LandscapeViewController: UIViewController {
             }
         }
         
-        
         pageControl.frame = CGRect(x: 0,
                                    y: view.frame.size.height - pageControl.frame.size.height - diff,
                                    width: view.frame.size.width,
@@ -155,28 +138,45 @@ class LandscapeViewController: UIViewController {
         scrollView.contentOffset = .zero
         
         self.tileAlbums(albums: albums)
-  
     }
-   
-    deinit {
-        print("deinit \(self)")
+    
+    
+    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
         
-    }
-    
-    // MARK: - API METHODS
-    
-    func getAlbumsFromServer() {
-        ServerManager.sharedManager.getPhotoAlbums(forGroupID: groupID) { (result) in
+        super.willTransition(to: newCollection, with: coordinator)
+        
+        if UIDevice.current.userInterfaceIdiom != .pad {
+            let tabBarController = UIApplication.shared.keyWindow?.rootViewController as! UITabBarController
             
-            guard let albums = result as? [PhotoAlbum] else { return }
-            
-            self.albums = albums
-            
-            self.view.layoutSubviews()
-            
+            switch newCollection.verticalSizeClass {
+            case .compact:
+                // Hide TabBar
+                if tabBarController.selectedIndex == TabBarIndex.gallery.rawValue {
+                    self.tabBarController?.tabBar.layer.zPosition = -1
+                    self.tabBarController?.tabBar.isUserInteractionEnabled = false
+                }
+                
+            case .regular, .unspecified:
+                // Show TabBar
+                if tabBarController.selectedIndex == TabBarIndex.gallery.rawValue {
+                    self.tabBarController?.tabBar.layer.zPosition = 0
+                    self.tabBarController?.tabBar.isUserInteractionEnabled = true
+                }
+            }
         }
     }
-
+    
+    
+    // MARK: - API METHODS
+    func getAlbumsFromServer() {
+        
+        ServerManager.sharedManager.getPhotoAlbums(forGroupID: groupID) { (result) in
+            guard let albums = result as? [PhotoAlbum] else { return }
+            self.albums = albums
+            self.view.layoutSubviews()
+        }
+    }
+    
     private func downloadThumb(forAlbum album: PhotoAlbum, andPlaceOnImageView imageView: UIImageView) {
         
         ServerManager.sharedManager.getPhotos(forAlbumID: album.albumID, ownerID: groupID, offset: 0, count: 1) { (result) in
@@ -187,10 +187,6 @@ class LandscapeViewController: UIViewController {
             
             let firstPhotoOfAlbum = photos.first
             
-            print("===NAG=== self.scrollViewParams.imageViewWidth = \(self.scrollViewParams.imageViewWidth)")
-            print("===NAG=== self.scrollViewParams.imageViewHeight = \(self.scrollViewParams.imageViewHeight)")
-
-            
             var linkToNeededRes: String?
             var neededRes: PhotoResolution!
             
@@ -200,21 +196,14 @@ class LandscapeViewController: UIViewController {
             } else {
                 linkToNeededRes = firstPhotoOfAlbum?.photo_807
                 neededRes = .res807
-                
             }
-            
-//            var linkToNeededRes = firstPhotoOfAlbum?.photo_807
-//            let neededRes: PhotoResolution = .res807
             
             // Looking for max resolution, if not found yet
             if linkToNeededRes == nil {
-                
                 var index = neededRes.rawValue - 1
                 
                 while index >= PhotoResolution.res75.rawValue {
-                    
                     let lessResKey = firstPhotoOfAlbum?.keysResArray[index]
-                    
                     let lessResolution = firstPhotoOfAlbum?.resolutionDictionary[lessResKey!]
                     
                     if lessResolution != nil {
@@ -228,13 +217,7 @@ class LandscapeViewController: UIViewController {
                 if linkToNeededRes == nil {
                     linkToNeededRes = firstPhotoOfAlbum?.maxRes
                 }
-                
-                print("===NAG=== linkToNeededRes was NIL. Found neededRes = \(neededRes)")
-                print("===NAG=== linkToNeededRes was NIL. Found linkToNeededRes = \(linkToNeededRes)")
             }
-            
-            print("===NAG=== neededRes = \(neededRes)")
-            print("===NAG=== linkToNeededRes = \(linkToNeededRes)")
             
             let urlPhoto = URL(string: linkToNeededRes!)
             
@@ -244,7 +227,7 @@ class LandscapeViewController: UIViewController {
     
     
     // MARK: - HELPER METHODS
-    
+    // MARK: - ScrollViewParams Calculations
     func calculateImageParametersForPhone() {
         
         self.scrollViewParams.scrollViewWidth = scrollView.bounds.size.width
@@ -254,9 +237,8 @@ class LandscapeViewController: UIViewController {
             
         // *** IPHONE 4s & 5/5s ***
         case 320:
-            
+            // iPhone 4s Portrait (320 x 480)
             if self.scrollViewParams.scrollViewHeight == 480 {
-                // iPhone 4s Portrait (320 x 480)
                 self.scrollViewParams.itemWidth = 320
                 self.scrollViewParams.itemHeight = 420
                 
@@ -267,7 +249,6 @@ class LandscapeViewController: UIViewController {
                 
                 self.scrollViewParams.columnsPerPage = 1
                 
-
             } else {
                 // iPhone 5/5s Portrait (320 x 568)
                 self.scrollViewParams.itemWidth = 320
@@ -281,10 +262,8 @@ class LandscapeViewController: UIViewController {
                 self.scrollViewParams.columnsPerPage = 1
             }
             
-            
+        // iPhone 4s Landscape (480 x 320)
         case 480:
-            // iPhone 4s Landscape (480 x 320)
-
             self.scrollViewParams.itemWidth = 160
             self.scrollViewParams.itemHeight = 320
             
@@ -295,10 +274,8 @@ class LandscapeViewController: UIViewController {
             
             self.scrollViewParams.columnsPerPage = 3
             
-            
+        // iPhone 5/5s Landscape (568 x 320)
         case 568:
-            // iPhone 5/5s Landscape (568 x 320)
-            
             self.scrollViewParams.itemWidth = 189
             self.scrollViewParams.itemHeight = 320
             
@@ -306,15 +283,12 @@ class LandscapeViewController: UIViewController {
             self.scrollViewParams.imageViewHeight = 260
             
             self.scrollViewParams.titleLabelFont = UIFont.systemFont(ofSize: 14.0)
-
+            
             self.scrollViewParams.columnsPerPage = 3
-
             
-            
-        // *** IPHONE 6/6s/7 ***
+            // *** IPHONE 6/6s/7 ***
+        // iPhone 6/6s/7 Portrait (375 x 667)
         case 375:
-            // iPhone 6/6s/7 Portrait (375 x 667)
-            
             self.scrollViewParams.itemWidth = 375
             self.scrollViewParams.itemHeight = 577
             
@@ -322,12 +296,11 @@ class LandscapeViewController: UIViewController {
             self.scrollViewParams.imageViewHeight = 466
             
             self.scrollViewParams.titleLabelFont = UIFont.systemFont(ofSize: 16.0)
-
+            
             self.scrollViewParams.columnsPerPage = 1
             
+        // iPhone 6/6s/7 Landscape (667 x 375)
         case 667:
-            // iPhone 6/6s/7 Landscape (667 x 375)
-            
             self.scrollViewParams.itemWidth = 222
             self.scrollViewParams.itemHeight = 375
             
@@ -337,16 +310,12 @@ class LandscapeViewController: UIViewController {
             self.scrollViewParams.titleLabelFont = UIFont.systemFont(ofSize: 14.0)
             
             self.scrollViewParams.columnsPerPage = 3
-
             
-        // *** IPHONE PLUS ***
+            // *** IPHONE PLUS ***
+        // iPhone Plus Portrait (414 x 736)
         case 414:
-            // iPhone Plus Portrait (414 x 736)
-            
             self.scrollViewParams.itemWidth = 207
-            
             self.scrollViewParams.itemHeight = 318 // (736 - 10 - 40 for pagecontrol - 50 for tabbar) /2
-            
             
             self.scrollViewParams.imageViewWidth = 201
             self.scrollViewParams.imageViewHeight = 308
@@ -355,16 +324,13 @@ class LandscapeViewController: UIViewController {
             self.scrollViewParams.rowsPerPage = 2
             
             self.scrollViewParams.titleLabelFont = UIFont.systemFont(ofSize: 14.0)
-
+            
             self.scrollViewParams.firstRowMarginY = 10
             
+        // iPhone Plus Landscape Split Mode (295 x 414)
         case 295:
-            // iPhone Plus Landscape Split Mode (295 x 414)
-            
             self.scrollViewParams.itemWidth = 295
-            
             self.scrollViewParams.itemHeight = 414
-            
             
             self.scrollViewParams.imageViewWidth = 281
             self.scrollViewParams.imageViewHeight = 390
@@ -373,28 +339,21 @@ class LandscapeViewController: UIViewController {
             self.scrollViewParams.rowsPerPage = 1
             
             self.scrollViewParams.titleLabelFont = UIFont.systemFont(ofSize: 16.0)
-
+            
             self.scrollViewParams.firstRowMarginY = 0
             
-            
+        // iPhone Plus Landscape WITHOUT SPLIT (736 x 414)
         case 736:
-            // iPhone Plus Landscape WITHOUT SPLIT (736 x 414)
-            
             self.scrollViewParams.itemWidth = 245
             self.scrollViewParams.itemHeight = 414
             
             self.scrollViewParams.imageViewWidth = 229
             self.scrollViewParams.imageViewHeight = 338
             
-            
         default:
             break
-            
         }
-        
-        
     }
-    
     
     func calculateImageParametersForPad() {
         
@@ -402,13 +361,11 @@ class LandscapeViewController: UIViewController {
         self.scrollViewParams.scrollViewHeight = scrollView.bounds.size.height
         
         switch self.scrollViewParams.scrollViewWidth {
-          
+            
         // *** iPad Air/Air2/Retina/Pro9.7" ***
         case 320:
-            
+            // iPad Air/Air2/Retina/Pro9.7" Portrait Split (320 x 1024)
             if self.scrollViewParams.scrollViewHeight == 1024 {
-                // iPad Air/Air2/Retina/Pro9.7" Portrait Split (320 x 1024)
-                
                 self.scrollViewParams.itemWidth = 320
                 self.scrollViewParams.itemHeight = 492
                 
@@ -423,9 +380,8 @@ class LandscapeViewController: UIViewController {
                 self.scrollViewParams.firstRowMarginY = 20
                 self.scrollViewParams.lastRowMarginY = 20
                 
-            } else {
                 // iPad Air/Air2/Retina/Pro9.7" Landscape Split (320 x 768)
-                
+            } else {
                 self.scrollViewParams.itemWidth = 320
                 self.scrollViewParams.itemHeight = 349
                 
@@ -439,15 +395,12 @@ class LandscapeViewController: UIViewController {
                 
                 self.scrollViewParams.firstRowMarginY = 20
                 self.scrollViewParams.lastRowMarginY = 50
-
             }
             
         // *** iPad Pro12.9" ***
         case 375:
-            
+            // iPad Pro12.9" Portrait Split (375 x 1366)
             if self.scrollViewParams.scrollViewHeight == 1366 {
-                // iPad Pro12.9" Portrait Split (375 x 1366)
-                
                 self.scrollViewParams.itemWidth = 375
                 self.scrollViewParams.itemHeight = 442
                 
@@ -462,9 +415,8 @@ class LandscapeViewController: UIViewController {
                 self.scrollViewParams.firstRowMarginY = 20
                 self.scrollViewParams.lastRowMarginY = 20
                 
-            } else {
                 // iPad Pro12.9" Landscape Split (375 x 1024)
-                
+            } else {
                 self.scrollViewParams.itemWidth = 375
                 self.scrollViewParams.itemHeight = 477
                 
@@ -478,37 +430,24 @@ class LandscapeViewController: UIViewController {
                 
                 self.scrollViewParams.firstRowMarginY = 20
                 self.scrollViewParams.lastRowMarginY = 50
-                
             }
-
+            
         default:
             break
-            
         }
-        
     }
     
-    
-    
-    
-    // MAIN METHOD. CREATING GALLERY
+    // MARK: - MAIN METHOD. CREATING GALLERY
     private func tileAlbums(albums: [PhotoAlbum]) {
-      
-        
         if isPad {
             self.calculateImageParametersForPad()
         } else {
             self.calculateImageParametersForPhone()
         }
         
-        
-       
-        
         let paddingHorz = (self.scrollViewParams.itemWidth - self.scrollViewParams.imageViewWidth)/2
-
-        let paddingVert = (self.scrollViewParams.itemHeight - self.scrollViewParams.imageViewHeight)/2
-
         
+        let paddingVert = (self.scrollViewParams.itemHeight - self.scrollViewParams.imageViewHeight)/2
         
         var row = 0
         var column = 0
@@ -525,7 +464,6 @@ class LandscapeViewController: UIViewController {
             
             // 1. External WrapView for shadow
             
-            
             let extWrapperRect = CGRect(x: x + paddingHorz,
                                         y: firstRowMarginY + lastRowMarginY + CGFloat(row)*self.scrollViewParams.itemHeight + paddingVert,
                                         width: self.scrollViewParams.imageViewWidth,
@@ -534,7 +472,6 @@ class LandscapeViewController: UIViewController {
             let extWrapView = UIView(frame: extWrapperRect)
             
             extWrapView.shadowDesign = true
-            
             
             // 2. Internal WrapView for cornerRadius
             
@@ -576,27 +513,15 @@ class LandscapeViewController: UIViewController {
                                             width: self.scrollViewParams.imageViewWidth,
                                             height: contentLabelHeight)
             
-            
-            
-            
-            
             let albumTitleLabel = UILabel()
-            
             
             albumTitleLabel.text = album.albumTitle
             albumTitleLabel.tag = 2000 + index
             
             albumTitleLabel.textColor = UIColor.black
             albumTitleLabel.textAlignment = .center
-
+            
             albumTitleLabel.font = self.scrollViewParams.titleLabelFont
-            
-            
-            
-            
-            
-            
-            
             
             albumTitleLabel.numberOfLines = 2
             
@@ -607,16 +532,13 @@ class LandscapeViewController: UIViewController {
             visualEffectView.contentView.addSubview(albumTitleLabel)
             
             // 5. Adding Tap Gesture Recognizers for albumThumbImageView and albumTitleLabel
-            
             let tapOnImageViewGesture = UITapGestureRecognizer(target: self, action: #selector(self.actionGestureTap))
             let tapOnLabelGesture = UITapGestureRecognizer(target: self, action: #selector(actionGestureTap))
             
             albumThumbImageView.addGestureRecognizer(tapOnImageViewGesture)
             albumTitleLabel.addGestureRecognizer(tapOnLabelGesture)
             
-            
             // 6. Constructing all together.
-            
             innerWrapView.addSubview(albumThumbImageView)
             innerWrapView.addSubview(visualEffectView)
             
@@ -624,22 +546,17 @@ class LandscapeViewController: UIViewController {
             
             scrollView.addSubview(extWrapView)
             
-            
             // Handling iPad SplitVC - scroll view vertical mode
             if isPad {
-                
                 row += 1
                 
                 if row % self.scrollViewParams.rowsPerPage == 0 {
                     firstRowMarginY += self.scrollViewParams.firstRowMarginY
                     lastRowMarginY += self.scrollViewParams.lastRowMarginY
-                    
                 }
-                
                 
             } else {
                 row += 1
-                
                 
                 if row == self.scrollViewParams.rowsPerPage {
                     
@@ -649,56 +566,39 @@ class LandscapeViewController: UIViewController {
                     column += 1
                     
                     if column == self.scrollViewParams.columnsPerPage {
-                        
                         column = 0
-                        
                     }
                 }
             }
-            
-          
-            
         }
         
         let imagesPerPage = self.scrollViewParams.columnsPerPage * self.scrollViewParams.rowsPerPage
         
         let numPages = 1 + (albums.count - 1) / imagesPerPage
         
-        
         // Handling iPad SplitVC - scroll view vertical mode
         if isPad {
-            
             scrollView.contentSize = CGSize(
                 width: scrollView.bounds.size.width,
                 height: CGFloat(numPages)*self.scrollViewParams.scrollViewHeight)
-
             
         } else {
-            
-            
             scrollView.contentSize = CGSize(
                 width: CGFloat(numPages)*self.scrollViewParams.scrollViewWidth,
                 height: scrollView.bounds.size.height)
         }
         
-        
-        print("Number of pages: \(numPages)")
-        
-        
         pageControl.numberOfPages = numPages
         pageControl.currentPage = 0
-        
     }
     
+    // MARK: - SPLIT VIEW METHODS
     func hideMasterPane() {
-        
-        UIView.animate(withDuration: 0.25, animations: { 
+        UIView.animate(withDuration: 0.25, animations: {
             self.splitViewController?.preferredDisplayMode = .primaryHidden
         }) { (success) in
             self.splitViewController?.preferredDisplayMode = .automatic
         }
-        
-        
     }
     
     func hideMasterPanePhonePlus() {
@@ -710,19 +610,15 @@ class LandscapeViewController: UIViewController {
     }
     
     
-    
     // MARK: - ACTIONS
-    
     func actionGestureTap(_ sender: UITapGestureRecognizer) {
         
         var tappedAlbum: PhotoAlbum?
         
         if let tappedImageView = sender.view as? UIImageView {
-            
             tappedAlbum = self.albums[tappedImageView.tag - 2000]
             
         } else if let tappedLabel = sender.view as? UILabel {
-            
             tappedAlbum = self.albums[tappedLabel.tag - 2000]
         }
         
@@ -732,34 +628,27 @@ class LandscapeViewController: UIViewController {
                 
                 let photos = result as! [Photo]
                 
-                
                 if self.view.window!.rootViewController!.traitCollection.horizontalSizeClass == .compact {
                     
                     self.performSegue(withIdentifier: Storyboard.seguePhotoDisplayer, sender: photos)
-                
-                } else {
                     
+                } else {
                     if self.isPhonePlus {
                         self.hideMasterPanePhonePlus()
-
-                    } else if self.splitViewController?.displayMode != .allVisible {
                         
+                    } else if self.splitViewController?.displayMode != .allVisible {
                         self.hideMasterPane()
-
                     }
                     
                     self.splitViewDetail?.currentPhoto = photos[0]
                     self.splitViewDetail?.mediasArray = photos
                     self.splitViewDetail?.currentIndex = 0
                 }
-                
             })
         }
     }
     
-    
     @IBAction func pageChanged(sender: UIPageControl) {
-        
         
         // iPhone case only
         UIView.animate(withDuration: 0.3,
@@ -771,20 +660,12 @@ class LandscapeViewController: UIViewController {
                             y: 0)
         }, completion: nil)
         
-        
-        
     }
     
-    
-    
-    
-    
-    
     // MARK: - NAVIGATION
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         if segue.identifier == Storyboard.seguePhotoDisplayer {
-            
             let destinationNavVC = segue.destination as! UINavigationController
             //            destinationNavVC.transitioningDelegate = TransitionHelper.sharedHelper.acRotateTransition
             
@@ -797,194 +678,20 @@ class LandscapeViewController: UIViewController {
             destinationVC.currentIndex = 0
         }
     }
-    
-    
-    
-    
-    
-    
-    
 }
 
+// MARK: - UIScrollViewDelegate
 extension LandscapeViewController: UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
         if !isPad {
-            
             let width = scrollView.bounds.width
-            
             let currentPage = Int((scrollView.contentOffset.x + width / 2) / width)
-            
             pageControl.currentPage = currentPage
-            
-            
         }
-        
     }
 }
-
-
-
-
-extension LandscapeViewController {
-    
-    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
-        
-        super.willTransition(to: newCollection, with: coordinator)
-        
-        
-        if UIDevice.current.userInterfaceIdiom != .pad {
-            
-            let tabBarController = UIApplication.shared.keyWindow?.rootViewController as! UITabBarController
-            
-            switch newCollection.verticalSizeClass {
-                
-            case .compact:
-                // Hide TabBar
-                
-                if tabBarController.selectedIndex == TabBarIndex.gallery.rawValue {
-                    self.tabBarController?.tabBar.layer.zPosition = -1
-                    self.tabBarController?.tabBar.isUserInteractionEnabled = false
-                }
-                
-            case .regular, .unspecified:
-                // Show TabBar
-                
-                if tabBarController.selectedIndex == TabBarIndex.gallery.rawValue {
-                    self.tabBarController?.tabBar.layer.zPosition = 0
-                    self.tabBarController?.tabBar.isUserInteractionEnabled = true
-                }
-                
-                
-            }
-        }
-       
-        
-    }
-    
-}
-
-
-
-
-
-
-extension LandscapeViewController {
-    
-    // Optional if no Split View Controller used
-    func calculateImageParametersForPadFull() {
-        
-        self.scrollViewParams.scrollViewWidth = scrollView.bounds.size.width
-        self.scrollViewParams.scrollViewHeight = scrollView.bounds.size.height
-        
-        switch self.scrollViewParams.scrollViewWidth {
-            
-        case 768:
-            // iPad Air/Air2/Retina/Pro9.7" Portrait (768 x 1024)
-            
-            
-            self.scrollViewParams.itemWidth = 384
-            self.scrollViewParams.itemHeight = 452 // (1024 - 30 for status bar - 40 for pagecontrol - 50 for tabbar) /2
-            
-            self.scrollViewParams.imageViewWidth = 360
-            self.scrollViewParams.imageViewHeight = 440
-            
-            self.scrollViewParams.columnsPerPage = 2
-            self.scrollViewParams.rowsPerPage = 2
-            
-            self.scrollViewParams.titleLabelFont = UIFont.boldSystemFont(ofSize: 16)
-            
-            self.scrollViewParams.firstRowMarginY = 30
-            
-            
-        case 1024:
-            if self.scrollViewParams.scrollViewHeight == 768 {
-                // iPad Air/Air2/Retina/Pro9.7" Landscape (1024 x 768)
-                self.scrollViewParams.itemWidth = 256
-                self.scrollViewParams.itemHeight = 338
-                
-                self.scrollViewParams.imageViewWidth = 244
-                self.scrollViewParams.imageViewHeight = 330
-                
-                self.scrollViewParams.columnsPerPage = 4
-                self.scrollViewParams.rowsPerPage = 2
-                
-                self.scrollViewParams.titleLabelFont = UIFont.boldSystemFont(ofSize: 16)
-                
-                self.scrollViewParams.firstRowMarginY = 12
-                
-            } else if self.scrollViewParams.scrollViewHeight == 1366 {
-                // iPad Pro12.9" portrait (1024 x 1366)
-                
-                self.scrollViewParams.itemWidth = 512
-                self.scrollViewParams.itemHeight = 623
-                
-                self.scrollViewParams.imageViewWidth = 496
-                self.scrollViewParams.imageViewHeight = 611
-                
-                self.scrollViewParams.columnsPerPage = 2
-                self.scrollViewParams.rowsPerPage = 2
-                
-                self.scrollViewParams.titleLabelFont = UIFont.boldSystemFont(ofSize: 21)
-                
-                self.scrollViewParams.firstRowMarginY = 30
-            }
-            
-            
-        case 1366:
-            // iPad Pro12.9" landscape (1366 x 1024)
-            self.scrollViewParams.itemWidth = 341
-            self.scrollViewParams.itemHeight = 452
-            
-            self.scrollViewParams.imageViewWidth = 329
-            self.scrollViewParams.imageViewHeight = 440
-            
-            self.scrollViewParams.columnsPerPage = 4
-            self.scrollViewParams.rowsPerPage = 2
-            
-            self.scrollViewParams.titleLabelFont = UIFont.boldSystemFont(ofSize: 21)
-            
-            self.scrollViewParams.firstRowMarginY = 30
-            
-            
-        default:
-            break
-            
-        }
-        
-    }
-    
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
