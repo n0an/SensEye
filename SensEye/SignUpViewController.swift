@@ -18,16 +18,11 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var emailTextField: DesignableTextField!
     @IBOutlet weak var passwordTextField: DesignableTextField!
     @IBOutlet weak var signUpButton: DesignableButton!
-    
     @IBOutlet weak var avatarImageView: UIImageView!
-    
     @IBOutlet weak var containerView: DesignableView!
-    
     @IBOutlet weak var hideKeyboardInputAccessoryView: UIView!
 
-    
     // MARK: - PROPERTIES
-    
     var avatarImage: UIImage?
     
     // MARK: - viewDidLoad
@@ -36,16 +31,13 @@ class SignUpViewController: UIViewController {
         
         self.navigationController?.isNavigationBarHidden = false
 
-
-        nameTextField.delegate = self
-        emailTextField.delegate = self
-        passwordTextField.delegate = self
+        nameTextField.delegate      = self
+        emailTextField.delegate     = self
+        passwordTextField.delegate  = self
         
-        nameTextField.inputAccessoryView = hideKeyboardInputAccessoryView
-        emailTextField.inputAccessoryView = hideKeyboardInputAccessoryView
-        passwordTextField.inputAccessoryView = hideKeyboardInputAccessoryView
-        
-        
+        nameTextField.inputAccessoryView        = hideKeyboardInputAccessoryView
+        emailTextField.inputAccessoryView       = hideKeyboardInputAccessoryView
+        passwordTextField.inputAccessoryView    = hideKeyboardInputAccessoryView
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(resignKeyboard))
         self.view.addGestureRecognizer(tapGesture)
@@ -63,14 +55,11 @@ class SignUpViewController: UIViewController {
     override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
         super.willTransition(to: newCollection, with: coordinator)
         self.resignKeyboard()
-        
     }
     
     // MARK: - HELPER METHODS
     func goToChatVC() {
-
         self.dismiss(animated: true, completion: nil)
-   
     }
     
     func resignKeyboard() {
@@ -78,39 +67,32 @@ class SignUpViewController: UIViewController {
     }
     
     func shake() {
-        containerView.animation = "shake"
-        containerView.curve = "spring"
-        containerView.duration = 1.0
+        containerView.animation     = "shake"
+        containerView.curve         = "spring"
+        containerView.duration      = 1.0
         containerView.animate()
     }
     
-    
-
     // MARK: - ACTIONS
     @IBAction func actionSignUpButtonTapped(_ sender: Any) {
-        // Validate the input
+        
         guard let username = nameTextField.text, username != "",
             let email = emailTextField.text, email != "",
             let password = passwordTextField.text, password != "" else {
                 
                 self.alert(
                     title: NSLocalizedString("Sign Up Error", comment: "Sign Up Error"),
-                    message: NSLocalizedString("Please make sure you provided your name, email address and password to complete the registration.", comment: "SIGNUP_ERROR_MESSAGE"), handler: nil)
+                    message: NSLocalizedString("Please make sure you provided your name, email address and password to complete the registration.", comment: "SIGNUP_ERROR_MESSAGE"),
+                    handler: nil)
                 self.shake()
                 return
         }
         
-        
-        
-        // Dismiss keyboard
         self.view.endEditing(true)
         
-        // Show spinner
         SwiftSpinner.show(NSLocalizedString("Registering new account", comment: "Registering new account")).addTapHandler ({
             SwiftSpinner.hide()
         })
-        
-        
         
         FRAuthManager.sharedManager.signUp(withEmail: email, username: username, password: password, avatarImage: avatarImage, onComplete: { (errMsg, data) in
             guard errMsg == nil else {
@@ -119,11 +101,8 @@ class SignUpViewController: UIViewController {
                 return
             }
             
-            
-            
             SwiftSpinner.hide()
             self.goToChatVC()
-            
         })
     }
     
@@ -147,33 +126,22 @@ class SignUpViewController: UIViewController {
         optionMenu.addAction(takePhoto)
         optionMenu.addAction(sharePhoto)
         optionMenu.addAction(cancelAction)
-        
         optionMenu.popoverPresentationController?.sourceView = self.avatarImageView
         
         self.present(optionMenu, animated: true, completion: nil)
-        
     }
     
     @IBAction func hideKeyboard() {
         nameTextField.resignFirstResponder()
         emailTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
-        
     }
-    
-    
-    
-    
-
-    
-
 }
 
 // MARK: - UITextFieldDelegate
 extension SignUpViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
         if textField == nameTextField {
             emailTextField.becomeFirstResponder()
         } else if textField == emailTextField {
@@ -184,59 +152,33 @@ extension SignUpViewController: UITextFieldDelegate {
         }
         
         return true
-        
-        
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
         if textField == emailTextField {
-            
             let checkResult = TextFieldsChecker.sharedChecker.handleEmailTextField(textField, inRange: range, withReplacementString: string)
             
             return checkResult
-            
         }
         
         return true
-        
     }
-    
-    
 }
-
 
 // MARK: - UIImagePickerControllerDelegate
 extension SignUpViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        
         let editedImage = info[UIImagePickerControllerEditedImage] as! UIImage
-        
         self.avatarImage = editedImage
-        
         self.avatarImageView.image = editedImage
-        
-        
         picker.dismiss(animated: true, completion: nil)
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
     }
-    
-    
 }
-
-
-
-
-
-
-
-
-
-
-
 
 

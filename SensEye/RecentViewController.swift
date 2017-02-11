@@ -15,17 +15,15 @@ class RecentViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     // MARK: - PROPERTIES
-    
     enum Storyboard {
-        static let cellIdChat = "ChatCell"
-        static let segueShowChatVC = "showChatViewController"
-        static let segueUsersVC = "showUsersViewController"
+        static let cellIdChat       = "ChatCell"
+        static let segueShowChatVC  = "showChatViewController"
+        static let segueUsersVC     = "showUsersViewController"
     }
     
     var chats: [FRChat] = []
     
     var currentUser: FRUser!
-    
     
     let searchController = UISearchController(searchResultsController: nil)
     var filteredChats: [FRChat] = []
@@ -34,24 +32,21 @@ class RecentViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = false
         self.tableView.tableHeaderView = searchController.searchBar
         
-        
         self.tabBarController?.delegate = self
 
         self.currentUser = FRAuthManager.sharedManager.currentUser
         
-        
-        let backButton = UIBarButtonItem(title: NSLocalizedString("Logout", comment: "Logout"), style: .done, target: self, action: #selector(logoutButtonTapped))
+        let backButton = UIBarButtonItem(title: NSLocalizedString("Logout", comment: "Logout"),
+                                         style: .done,
+                                         target: self,
+                                         action: #selector(logoutButtonTapped))
 
-        
         self.navigationItem.leftBarButtonItem = backButton
-        
-        
         
         if traitCollection.horizontalSizeClass == .regular && traitCollection.verticalSizeClass == .regular {
             self.tableView.estimatedRowHeight = 80
@@ -59,9 +54,7 @@ class RecentViewController: UIViewController {
             self.tableView.estimatedRowHeight = 65
         }
         
-        
         self.tableView.rowHeight = UITableViewAutomaticDimension
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -74,70 +67,40 @@ class RecentViewController: UIViewController {
     }
     
     
-
-    
     // MARK: - HELPER METHODS
-    
     func fetchChats() {
-        
-        
         
         let chatRef = FRDataManager.sharedManager.REF_CHATS
         
-        
         chatRef.observe(.childAdded, with: { (snapshot) in
-            
             let chatId = snapshot.key
             
             let chat = FRChat(uid: chatId, dictionary: snapshot.value as! [String: Any])
             
             if !self.alreadyAddedChat(chat) {
-                // adding new chat
-                
                 self.chats.append(chat)
-                
                 let indexPath = IndexPath(row: self.chats.count - 1, section: 0)
-                
                 self.tableView.insertRows(at: [indexPath], with: .automatic)
                 
-                
             } else {
-                
                 if let index = self.chats.index(of: chat) {
-                    
                     self.chats[index] = chat
-                    
                     let indexPath = IndexPath(row: index, section: 0)
-                    
                     self.tableView.reloadRows(at: [indexPath], with: .automatic)
-                    
                 }
-                
-//                self.tableView.reloadData()
             }
-
-            
-            
         })
-        
-    
     }
     
     func alreadyAddedChat(_ chat: FRChat) -> Bool {
-        
         return self.chats.contains(chat)
-        
     }
     
-    
     // MARK: - ACTIONS
-    
     func logoutButtonTapped() {
         
         GeneralHelper.sharedHelper.showLogoutView(onViewController: self) { (success) in
-            
             if success == true {
-                
                 let _ = self.navigationController?.popToRootViewController(animated: false)
                 
                 FRAuthManager.sharedManager.logOut(onComplete: { (error) in
@@ -145,52 +108,33 @@ class RecentViewController: UIViewController {
                         self.alertError(error: error as NSError)
                     }
                 })
-     
             }
-            
         }
-        
     }
-    
     
     // MARK: - NAVIGATION
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == Storyboard.segueShowChatVC {
-            
             let chatVC = segue.destination as! ChatViewController
-            
             let selectedChat = sender as! FRChat
-            
             chatVC.currentUser = currentUser
-            
             chatVC.chat = selectedChat
-            
             chatVC.senderId = currentUser.uid
-            
             chatVC.senderDisplayName = currentUser.username
-            
             chatVC.hidesBottomBarWhenPushed = true
-            
         }
     }
-
 }
-
-
 
 // MARK: - UITableViewDataSource
 extension RecentViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         if searchController.isActive && searchController.searchBar.text != "" {
             return filteredChats.count
         } else {
             return chats.count
         }
-        
-        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -208,20 +152,14 @@ extension RecentViewController: UITableViewDataSource {
         chatCell.chat = chat
         
         return chatCell
-        
     }
-    
 }
-
-
 
 // MARK: - UITableViewDelegate
 extension RecentViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         tableView.deselectRow(at: indexPath, animated: true)
-        
         
         var selectedChat: FRChat
         
@@ -232,14 +170,8 @@ extension RecentViewController: UITableViewDelegate {
             selectedChat = self.chats[indexPath.row]
         }
         
-        
-        
         performSegue(withIdentifier: Storyboard.segueShowChatVC, sender: selectedChat)
-        
-        
-        
     }
-    
 }
 
 // MARK: - UITabBarControllerDelegate
@@ -247,60 +179,30 @@ extension RecentViewController: UITabBarControllerDelegate {
     
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         
-        
         if tabBarController.selectedIndex == TabBarIndex.chat.rawValue {
-            
             if let index = tabBarController.viewControllers?.index(of: viewController), index == TabBarIndex.chat.rawValue {
                 return false
             }
-         
         }
         
         return true
-        
     }
-    
 }
-
 
 // MARK: - UISearchResultsUpdating
 extension RecentViewController: UISearchResultsUpdating {
-    
     func filteredContentForSearchText(searchText: String) {
-        
         filteredChats = chats.filter({ (chat) -> Bool in
-            
             return chat.withUserName.lowercased().contains(searchText.lowercased())
-            
         })
+        
         tableView.reloadData()
     }
     
-    
     func updateSearchResults(for searchController: UISearchController) {
-        
         filteredContentForSearchText(searchText: searchController.searchBar.text!)
-        
-        
     }
-    
-    
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

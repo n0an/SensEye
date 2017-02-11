@@ -11,50 +11,43 @@ import Spring
 
 class ResetPasswordViewController: UIViewController {
 
+    // MARK: - OUTLETS
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var containerView: DesignableView!
     
-    
+    // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.title = NSLocalizedString("Forgot Password", comment: "Forgot Password")
-        
         emailTextField.delegate = self
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         self.navigationController?.isNavigationBarHidden = false
-        
         emailTextField.becomeFirstResponder()
-
     }
 
+    // MARK: - HELPER METHODS
     func shake() {
-        containerView.animation = "shake"
-        containerView.curve = "spring"
-        containerView.duration = 1.0
+        containerView.animation     = "shake"
+        containerView.curve         = "spring"
+        containerView.duration      = 1.0
         containerView.animate()
     }
     
-    
-    
+    // MARK: - ACTIONS
     @IBAction func actionResetPasswordButtonTapped(_ sender: Any) {
         
-        // Validate the input
         guard let emailAddress = emailTextField.text,
             emailAddress != "" else {
-                
-                self.alert(title: NSLocalizedString("Input Error", comment: "Input Error"), message: NSLocalizedString("Please provide your email address for password reset.", comment: "Please provide your email address for password reset."))
-           
+                self.alert(title: NSLocalizedString("Input Error", comment: "Input Error"),
+                           message: NSLocalizedString("Please provide your email address for password reset.", comment: "Please provide your email address for password reset."))
                 self.shake()
-                
                 return
         }
-        
         
         FRAuthManager.sharedManager.resetPassword(emailAddress: emailAddress) { (error) in
             
@@ -63,10 +56,10 @@ class ResetPasswordViewController: UIViewController {
             let message = (error == nil) ? NSLocalizedString("We have just sent you a password reset email. Please check your inbox and follow the instructions to reset your password.", comment: "Password Reset Success") : error?.localizedDescription
             
             let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            
             let okayAction = UIAlertAction(title: "OK", style: .cancel, handler: { (action) in
                 
                 if error == nil {
-                    
                     // Dismiss keyboard
                     self.view.endEditing(true)
                     
@@ -76,50 +69,33 @@ class ResetPasswordViewController: UIViewController {
                     }
                 }
             })
+            
             alertController.addAction(okayAction)
             
             self.present(alertController, animated: true, completion: nil)
-            
-            
         }
-        
-        
     }
-
 }
 
-
-
+// MARK: - UITextFieldDelegate
 extension ResetPasswordViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
         actionResetPasswordButtonTapped(self)
         return true
-        
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
         if textField == emailTextField {
-            
             let checkResult = TextFieldsChecker.sharedChecker.handleEmailTextField(textField, inRange: range, withReplacementString: string)
             
             return checkResult
-            
         }
         
         return true
-        
     }
-    
 }
-
-
-
-
-
-
 
 
 
