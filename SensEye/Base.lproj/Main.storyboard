@@ -1188,10 +1188,18 @@
                             <constraint firstAttribute="trailing" secondItem="4up-8w-emU" secondAttribute="trailing" id="waa-f2-7bt"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Reset Password" id="p4Q-JZ-ljV"/>
+                    <navigationItem key="navigationItem" title="Reset Password" id="p4Q-JZ-ljV">
+                        <barButtonItem key="leftBarButtonItem" image="icon-back" id="P8L-mZ-BpM">
+                            <connections>
+                                <action selector="actionBackTapped" destination="Hp7-HZ-rMV" id="3ah-mg-bJf"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="backBarButton" destination="P8L-mZ-BpM" id="3mb-Ct-HEx"/>
                         <outlet property="containerView" destination="O71-zc-L3E" id="Sg8-WO-VIA"/>
                         <outlet property="emailTextField" destination="TVb-eS-hWm" id="iVg-kO-XC5"/>
+                        <outlet property="resetPasswordButton" destination="YMl-9r-RN6" id="GB3-G5-n45"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xg3-Pt-Cgf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1793,7 +1801,7 @@
             <objects>
                 <navigationController storyboardIdentifier="PhotoNavViewController1" automaticallyAdjustsScrollViewInsets="NO" id="WdO-Um-wya" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="gPe-hg-aTC">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="gPe-hg-aTC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1864,7 +1872,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LAf-Mz-8Ji" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="UGA-Rh-LEG">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="UGA-Rh-LEG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1891,6 +1899,7 @@
         <image name="facebook-1" width="21" height="20"/>
         <image name="google" width="21" height="21"/>
         <image name="hideKeyboardButton" width="30" height="22"/>
+        <image name="icon-back" width="13" height="23"/>
         <image name="lock-1" width="20" height="27"/>
         <image name="nametag" width="24" height="20"/>
         <image name="postVC-VKLogout" width="57" height="30"/>

@@ -13,7 +13,19 @@ class ResetPasswordViewController: UIViewController {
 
     // MARK: - OUTLETS
     @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var resetPasswordButton: FancyButton!
     @IBOutlet weak var containerView: DesignableView!
+    @IBOutlet weak var backBarButton: UIBarButtonItem!
+    
+    // MARK: - PROPERTIES
+    
+    var isUILocked = false {
+        willSet {
+            emailTextField.isEnabled        = !newValue
+            resetPasswordButton.isEnabled   = !newValue
+            self.backBarButton.isEnabled    = !newValue
+        }
+    }
     
     // MARK: - viewDidLoad
     override func viewDidLoad() {
@@ -49,6 +61,8 @@ class ResetPasswordViewController: UIViewController {
                 return
         }
         
+        self.isUILocked = true
+        
         FRAuthManager.sharedManager.resetPassword(emailAddress: emailAddress) { (error) in
             
             let title = (error == nil) ? NSLocalizedString("Password Reset Follow-up", comment: "Password Reset Follow-up") : NSLocalizedString("Password Reset Error", comment: "Password Reset Error")
@@ -72,8 +86,14 @@ class ResetPasswordViewController: UIViewController {
             
             alertController.addAction(okayAction)
             
+            self.isUILocked = false
+            
             self.present(alertController, animated: true, completion: nil)
         }
+    }
+    
+    @IBAction func actionBackTapped() {
+        let _ = self.navigationController?.popViewController(animated: true)
     }
 }
 
