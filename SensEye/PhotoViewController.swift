@@ -9,30 +9,27 @@
 import UIKit
 import AlamofireImage
 import Social
-
 import DGActivityIndicatorView
 
 class PhotoViewController: UIViewController {
     
+    // MARK: - OUTLETS
     @IBOutlet weak var nextPhotoBarButton: UIBarButtonItem!
     @IBOutlet weak var previousPhotoBarButton: UIBarButtonItem!
     @IBOutlet weak var shareButton: UIBarButtonItem!
     
     // MARK: - PROPERTIES
-    
     var currentPhoto: Photo! {
         didSet {
-            
             shareButton.isEnabled = true
-            
             nextPhotoBarButton.isEnabled = true
             previousPhotoBarButton.isEnabled = true
             
             downloadAndSetImage()
             updateUI()
-            
         }
     }
+    
     var mediasArray: [Photo]! {
         didSet {
             if mediasArray.count <= 1 {
@@ -52,7 +49,6 @@ class PhotoViewController: UIViewController {
     fileprivate var imageView: UIImageView!
     fileprivate var scrollView: UIScrollView!
     
-
     override var prefersStatusBarHidden: Bool {
         return true
     }
@@ -69,38 +65,21 @@ class PhotoViewController: UIViewController {
             
             if self.traitCollection.horizontalSizeClass != .regular {
                 self.navigationItem.leftBarButtonItem = closeButton
-
             }
         }
-        
-        
-        
-//        title = NSLocalizedString("Album", comment: "Album")
-        
-//        shareButton.isEnabled = false
-        
-        
-//        downloadAndSetImage()
-//        updateUI()
-
-        
     }
 
     override func viewWillDisappear(_ animated: Bool) {
-//        self.navigationController?.setNavigationBarHidden(false, animated: animated)
         super.viewWillDisappear(animated)
+        //        self.navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        
-//        self.navigationController?.setNavigationBarHidden(true, animated: animated)
-        
         super.viewDidAppear(animated)
-
+//        self.navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
     // MARK: - HELPER METHODS
-    
     func iterateAndSetPhoto(forDirection direction: PhotoIteractionDirection) -> Photo {
         
         var iteratedPhoto: Photo!
@@ -127,23 +106,6 @@ class PhotoViewController: UIViewController {
         return iteratedPhoto
     }
     
-    // MARK: - ACTIONS
-    
-    @IBAction func actionNextPhotoTap() {
-        self.currentPhoto = iterateAndSetPhoto(forDirection: .next)
-        imageView.image = nil
-        downloadAndSetImage()
-        updateUI()
-    }
-    
-    @IBAction func actionPreviosPhotoTap() {
-        self.currentPhoto = iterateAndSetPhoto(forDirection: .previous)
-        imageView.image = nil
-
-        downloadAndSetImage()
-        updateUI()
-    }
-    
     func showActivityVC(withItems items: [Any]) {
         
         let activityController = UIActivityViewController(activityItems: items, applicationActivities: nil)
@@ -159,29 +121,35 @@ class PhotoViewController: UIViewController {
         ]
         
         activityController.excludedActivityTypes = excludedActivities
-        
         activityController.popoverPresentationController?.barButtonItem = self.shareButton
-
-        
         self.present(activityController, animated: true, completion: nil)
-        
-        
+    }
+    
+    // MARK: - ACTIONS
+    @IBAction func actionNextPhotoTap() {
+        self.currentPhoto = iterateAndSetPhoto(forDirection: .next)
+        imageView.image = nil
+        downloadAndSetImage()
+        updateUI()
+    }
+    
+    @IBAction func actionPreviosPhotoTap() {
+        self.currentPhoto = iterateAndSetPhoto(forDirection: .previous)
+        imageView.image = nil
+
+        downloadAndSetImage()
+        updateUI()
     }
     
     @IBAction func actionShareTap() {
         
-        
         let defaultText = NSLocalizedString("Photo by Elena Senseye - vk.com/elena_senseye", comment: "defaultTextShare")
-        
-        
         
         guard let imageToShare = self.imageView.image else  { return }
         
-        
-        
-        
-        // Display the share menu
         let shareMenu = UIAlertController(title: nil, message: NSLocalizedString("Share using", comment: "Share using"), preferredStyle: .actionSheet)
+        
+        // TWITTER ACTION
         let twitterAction = UIAlertAction(title: "Twitter", style: UIAlertActionStyle.default) { (action) in
             
             // Check if Twitter is available. Otherwise, display an error message
@@ -193,8 +161,6 @@ class PhotoViewController: UIViewController {
                 return
             }
             
-            
-            
             // Display Tweet Composer
             if let tweetComposer = SLComposeViewController(forServiceType: SLServiceTypeTwitter) {
                 tweetComposer.setInitialText(defaultText)
@@ -203,10 +169,8 @@ class PhotoViewController: UIViewController {
             }
         }
         
+        // FACEBOOK ACTION
         let facebookAction = UIAlertAction(title: "Facebook", style: UIAlertActionStyle.default) { (action) in
-            
-            
-            
             
             // Check if Facebook is available. Otherwise, display an error message
             guard SLComposeViewController.isAvailable(forServiceType: SLServiceTypeFacebook) else {
@@ -217,30 +181,24 @@ class PhotoViewController: UIViewController {
                 return
             }
             
-            
-            
-            
-            // Display Tweet Composer
+            // Display Facebook Composer
             if let fbComposer = SLComposeViewController(forServiceType: SLServiceTypeFacebook) {
-                
-                
                 fbComposer.setInitialText(NSLocalizedString("Photo by Elena Senseye", comment: "Photo by Elena Senseye"))
                 
 //                fbComposer.add(URL(string: "https://www.facebook.com/elena.senseye/"))
                 
                 fbComposer.add(imageToShare)
-                
                 self.present(fbComposer, animated: true, completion: nil)
             }
         }
         
+        // OTHER ACTION
         let otherAction = UIAlertAction(title: NSLocalizedString("Other", comment: "Share Other"), style: .default) { (action) in
             
             self.showActivityVC(withItems: [defaultText, imageToShare])
-            
         }
         
-        
+        // CANCEL ACTION
         let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel"), style: UIAlertActionStyle.cancel, handler: nil)
         
         shareMenu.addAction(facebookAction)
@@ -250,17 +208,8 @@ class PhotoViewController: UIViewController {
         
         shareMenu.popoverPresentationController?.barButtonItem = self.shareButton
         
-        
-//        activityController.popoverPresentationController?.sourceView = self.view
-//        activityController.popoverPresentationController?.barButtonItem = self.shareButton
-        
-        
         self.present(shareMenu, animated: true, completion: nil)
-
-        
-        
     }
-    
     
     
     @IBAction func actionCloseButtonTapped() {
@@ -271,29 +220,21 @@ class PhotoViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    
-    
-    
     // MARK: - DOWNLOAD METHODS
-
     func downloadAndSetImage() {
         
         // Checking device - iPad or iPhone, to select best resolution
-        
         var linkToNeededRes: String!
         
         if traitCollection.horizontalSizeClass == .regular && traitCollection.verticalSizeClass == .regular {
-            
             linkToNeededRes = currentPhoto.maxRes
             
         } else {
-            
             if currentPhoto.photo_1280 != nil {
                 linkToNeededRes = currentPhoto.photo_1280
             } else {
                 linkToNeededRes = currentPhoto.maxRes
             }
-            
         }
         
         let imageURL = URL(string: linkToNeededRes)
@@ -303,7 +244,6 @@ class PhotoViewController: UIViewController {
         var rect: CGRect!
         
         if ratio > 1 {
-            
             rect = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.width/ratio)
             
         } else {
@@ -311,14 +251,12 @@ class PhotoViewController: UIViewController {
         }
         
         imageView = UIImageView(frame: rect)
-        
         imageView.contentMode = .scaleAspectFit
         
         imageView.af_setImage(withURL: imageURL!, placeholderImage: nil, filter: nil, progress: nil, progressQueue: DispatchQueue.main, imageTransition: UIImageView.ImageTransition.crossDissolve(0.3), runImageTransitionIfCached: true) { (response) in
             
             GeneralHelper.sharedHelper.hideDGSpinner(onView: self.view)
         }
-        
     }
     
     // MARK: - UI METHODS
@@ -373,7 +311,6 @@ class PhotoViewController: UIViewController {
         upSwipeGesture.direction = .up
         downSwipeGesture.direction = .down
         
-        
         scrollView.isUserInteractionEnabled = true
         scrollView.addGestureRecognizer(rightSwipeGesture)
         scrollView.addGestureRecognizer(leftSwipeGesture)
@@ -403,77 +340,38 @@ class PhotoViewController: UIViewController {
         
         scrollView.minimumZoomScale = minScale
         scrollView.maximumZoomScale = 3.0
-        
     }
     
     // after the rotation
     override func viewWillLayoutSubviews() {
         
         if currentPhoto != nil {
-            
             setZoomParametersForSize(scrollViewSize: scrollView.bounds.size)	// to determine landscape or portrait
             
             // If the device is in landscape again
             if scrollView.zoomScale < scrollView.minimumZoomScale {
                 scrollView.zoomScale = scrollView.minimumZoomScale
             }
-            
             recenterImage()
         }
-        
     }
 }
-
-
-
 
 extension PhotoViewController : UIScrollViewDelegate {
     
     // ZOOMING
-    
     func scrollViewDidZoom(_ scrollView: UIScrollView) {
         // when the user finish zooming, we would want to check if we want to recenter
         // the image or not
         
-
         recenterImage()
     }
     
     // The image view is the subview of the scroll view that it should zoom
-    
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
-
         return imageView
     }
-    
-    
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
