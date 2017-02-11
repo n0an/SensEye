@@ -147,6 +147,9 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
         
         if let userDict = KeychainWrapper.standard.object(forKey: KEY_CHAT_USER) as? [String: Any] {
             
+            print("===== viewDidAppear isMessengerLoading = true")
+            self.isMessengerLoading = true
+            
             SwiftSpinner.show(NSLocalizedString("Entering chat", comment: "SPINNER_ENTER_CHAT")).addTapHandler({
                 SwiftSpinner.hide()
             })
