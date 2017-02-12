@@ -132,7 +132,6 @@ class FRAuthManager: NSObject {
                         
                         let avatarUrl = "https://graph.facebook.com/\(facebookId)/picture?type=normal"
                         
-                        
                         GeneralHelper.sharedHelper.getImageFromURL(urlString: avatarUrl, withBlock: { (image) in
                             
                             let firImage = FRImage(image: image!)
@@ -170,25 +169,6 @@ class FRAuthManager: NSObject {
         }
     }
     
-    func getImageFromURL(url: String, withBlock: @escaping (_ image: UIImage?) -> Void) {
-        
-        let url = NSURL(string: url)
-        
-        let downloadQueue = DispatchQueue(label: "imageDownloadQueue")
-        
-        downloadQueue.async {
-            let data = NSData(contentsOf: url! as URL)
-            let image: UIImage!
-            
-            if data != nil {
-                image = UIImage(data: data! as Data)
-                
-                DispatchQueue.main.async {
-                    withBlock(image!)
-                }
-            }
-        }
-    }
     
     // MARK: - LOG OUT
     func logOut(onComplete: (Error?) -> Void) {
@@ -265,15 +245,33 @@ extension FRAuthManager: GIDSignInDelegate {
                 return
             }
             
-            let userRef = FRDataManager.sharedManager.REF_USERS.child(firuser!.uid)
-            let fullName = user.profile.name
-            let email = firuser!.email!
-            let provider = credential.provider
+            let userRef     = FRDataManager.sharedManager.REF_USERS.child(firuser!.uid)
+            let fullName    = user.profile.name
+            let email       = firuser!.email!
+            let provider    = credential.provider
+            
             
             userRef.child("username").setValue(fullName)
             userRef.child("email").setValue(email)
             userRef.child("provider").setValue(provider)
             userRef.child("pushId").setValue("")
+            
+            // Saving google profile image to Firebase storage
+            if let avatarUrl = user.profile.imageURL(withDimension: UInt(120)) {
+                
+                GeneralHelper.sharedHelper.getImageFromURL(urlString: avatarUrl.absoluteString, withBlock: { (image) in
+                    
+                    let firImage = FRImage(image: image!)
+                    firImage.saveAvatarImageToFirebaseStorage(firuser!.uid, completion: { (meta, error) in
+                        
+                        if let error = error {
+                            print("firImage saveAvatar error: \(error.localizedDescription)")
+                        }
+                        
+                    })
+                })
+            }
+            
         })
     }
     
