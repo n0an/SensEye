@@ -106,19 +106,18 @@ class SignUpViewController: UIViewController {
             SwiftSpinner.hide()
         })
         
-        print("***** actionSignUpButtonTapped isUILocked = true")
         self.isUILocked = true
         
         FRAuthManager.sharedManager.signUp(withEmail: email, username: username, password: password, avatarImage: avatarImage, onComplete: { (errMsg, data) in
             guard errMsg == nil else {
                 SwiftSpinner.hide()
                 self.alert(title: NSLocalizedString("Error", comment: "Error"), message: errMsg!)
-                print("***** actionSignUpButtonTapped signUP ERROR isUILocked = false")
+                
                 self.isUILocked = false
                 return
             }
             
-            print("***** actionSignUpButtonTapped signUP success isUILocked = false")
+            
             self.isUILocked = false
             
             SwiftSpinner.hide()

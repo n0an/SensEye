@@ -73,11 +73,10 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
                     return
                 }
                 
-                print("===== addStateDidChangeListener isMessengerLoading = true")
                 self.isMessengerLoading = true
                 
                 // IF DIDN'T ENTER CHAT AFTER 60 SEC - FORCE LOGOUT
-//                self.forceLogoutAfter(time: 100)
+                self.forceLogoutAfter(time: 60)
                 
                 if self.isCurrentVC {
                     SwiftSpinner.show(NSLocalizedString("Entering chat", comment: "SPINNER_ENTER_CHAT")).addTapHandler({
@@ -93,7 +92,6 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
                     self.currentUser = FRAuthManager.sharedManager.currentUser
                     
                     DispatchQueue.main.async {
-                        print("GO FROM Listener")
                         self.goToMessenger()
                     }
                     
@@ -147,7 +145,6 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
         
         if let userDict = KeychainWrapper.standard.object(forKey: KEY_CHAT_USER) as? [String: Any] {
             
-            print("===== viewDidAppear isMessengerLoading = true")
             self.isMessengerLoading = true
             
             SwiftSpinner.show(NSLocalizedString("Entering chat", comment: "SPINNER_ENTER_CHAT")).addTapHandler({
@@ -160,7 +157,6 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
             self.currentUser = FRAuthManager.sharedManager.currentUser
             
             DispatchQueue.main.async {
-                print("GO FROM viewDidAppear")
                 self.goToMessenger()
             }
         }
@@ -178,8 +174,6 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
             if self.navigationController?.viewControllers.count == 1 {
                 SwiftSpinner.hide()
                 self.isMessengerLoading = false
-                
-                print("==!! forceLogoutAfter !!==")
                 
                 if FIRAuth.auth()?.currentUser != nil {
                     FRAuthManager.sharedManager.logOut(onComplete: { (error) in
@@ -353,7 +347,6 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
             SwiftSpinner.hide()
         })
         
-        print("===== actionLoginButtonTapped isMessengerLoading = true")
         self.isMessengerLoading = true
         
         FRAuthManager.sharedManager.loginToFireBase(withEmail: email, password: password, onComplete: { (errMsg, data) in
@@ -361,7 +354,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
             guard errMsg == nil else {
                 SwiftSpinner.hide()
                 self.alert(title: NSLocalizedString("Error", comment: "Error"), message: errMsg!)
-                print("=====  loginToFireBase ERROR isMessengerLoading = false")
+                
                 self.isMessengerLoading = false
                 return
             }
@@ -383,7 +376,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         SwiftSpinner.hide()
-        print("===== prepareForSegue isMessengerLoading = false")
+        
         self.isMessengerLoading = false
         
         if segue.identifier == Storyboard.segueShowChatVC {

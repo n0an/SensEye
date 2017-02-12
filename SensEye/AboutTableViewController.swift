@@ -249,17 +249,21 @@ extension AboutTableViewController: MFMailComposeViewControllerDelegate {
     
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         
-        switch result {
-        case .cancelled:
-            print("cancelled")
-        case .saved:
-            print("saved")
-        case .failed:
-            print("failed")
-        case .sent:
-            print("sent")
+        
+        if let error = error {
+            self.alertError(error: error as NSError)
         }
         
         dismiss(animated: true, completion: nil)
     }
 }
+
+
+
+
+
+
+
+
+
+
