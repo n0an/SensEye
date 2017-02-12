@@ -127,7 +127,32 @@ class FRAuthManager: NSObject {
                     userRef.child("provider").setValue(provider)
                     userRef.child("pushId").setValue("")
                     
-                    onComplete?(nil, firuser)
+                    if let facebookId = result["id"] as? String {
+                        // Saving Facebook avatar to Firebase Storage
+                        
+                        let avatarUrl = "https://graph.facebook.com/\(facebookId)/picture?type=normal"
+                        
+                        
+                        GeneralHelper.sharedHelper.getImageFromURL(urlString: avatarUrl, withBlock: { (image) in
+                            
+                            let firImage = FRImage(image: image!)
+                            firImage.saveAvatarImageToFirebaseStorage(firuser.uid, completion: { (meta, error) in
+                                
+                                if let error = error {
+                                    print("firImage saveAvatar error: \(error.localizedDescription)")
+                                }
+                                
+                                onComplete?(nil, firuser)
+                                
+                            })
+                            
+                        })
+                        
+                    } else {
+                        // Complete method without avatar
+                        onComplete?(nil, firuser)
+                    }
+                    
                 })
             }
         })
@@ -141,7 +166,27 @@ class FRAuthManager: NSObject {
                 return
             }
             
-            withBlock(result as! [String: Any])
+            withBlock(result as! [String : Any])
+        }
+    }
+    
+    func getImageFromURL(url: String, withBlock: @escaping (_ image: UIImage?) -> Void) {
+        
+        let url = NSURL(string: url)
+        
+        let downloadQueue = DispatchQueue(label: "imageDownloadQueue")
+        
+        downloadQueue.async {
+            let data = NSData(contentsOf: url! as URL)
+            let image: UIImage!
+            
+            if data != nil {
+                image = UIImage(data: data! as Data)
+                
+                DispatchQueue.main.async {
+                    withBlock(image!)
+                }
+            }
         }
     }
     

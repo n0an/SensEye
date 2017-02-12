@@ -77,7 +77,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
                 self.isMessengerLoading = true
                 
                 // IF DIDN'T ENTER CHAT AFTER 60 SEC - FORCE LOGOUT
-                self.forceLogoutAfter(time: 60)
+//                self.forceLogoutAfter(time: 100)
                 
                 if self.isCurrentVC {
                     SwiftSpinner.show(NSLocalizedString("Entering chat", comment: "SPINNER_ENTER_CHAT")).addTapHandler({
@@ -178,6 +178,8 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
             if self.navigationController?.viewControllers.count == 1 {
                 SwiftSpinner.hide()
                 self.isMessengerLoading = false
+                
+                print("==!! forceLogoutAfter !!==")
                 
                 if FIRAuth.auth()?.currentUser != nil {
                     FRAuthManager.sharedManager.logOut(onComplete: { (error) in

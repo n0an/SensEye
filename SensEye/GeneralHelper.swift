@@ -173,24 +173,36 @@ class GeneralHelper {
         viewController.present(alertVC, animated: true, completion: nil)
     }
     
-    public func downloadImage(withURL urlPhoto: URL, onComplete: @escaping (UIImage?) -> Void) {
+    
+    func getImageFromURL(urlString: String, withBlock: @escaping (_ image: UIImage?) -> Void) {
         
-        let session = URLSession.shared
-
-        let downloadTask = session.downloadTask(with: urlPhoto) { (localFile, response, error) -> Void in
+        let url = URL(string: urlString)
+        
+        let downloadQueue = DispatchQueue(label: "imageDownloadQueue")
+        
+        downloadQueue.async {
             
-            if error == nil && localFile != nil {
-                if let data = try? Data(contentsOf: urlPhoto) {
-                    if let downloadedImage = UIImage(data: data) {
-                        onComplete(downloadedImage)
+            if let data = try? Data(contentsOf: url!) {
+                
+                if let downloadedImage = UIImage(data: data) {
+                    
+                    DispatchQueue.main.async {
+                        withBlock(downloadedImage)
                     }
+                    
                 }
+                
             }
-        }
         
-        downloadTask.resume()
+        }
     }
 }
+
+
+
+
+
+
 
 
 
