@@ -19,7 +19,7 @@ class WallPost: ServerObject {
     var postAuthor: User?
     var postGroupAuthor: Group?
     
-    var postAttachments: [Any]!
+    var postAttachments: [Any]?
     
     var postComments: String!
     var postLikesCount: Int = 0
@@ -67,6 +67,7 @@ class WallPost: ServerObject {
             return
         }
         
+        
         var attachmentsArray = [Any]()
         
         for item in attachments {
@@ -92,6 +93,8 @@ class WallPost: ServerObject {
         }
         
         self.postAttachments = attachmentsArray
+        
+        
     }
 }
 

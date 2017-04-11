@@ -48,7 +48,9 @@ class PostPhotoGallery {
         // === PART 1. CHECKINGS
         //  If post contains no photos - set all ImageViews height to 0 (collapsing all Gallery ImageViews), and return cell immediately
         
-        if post.postAttachments.isEmpty {
+        guard var postAttachments = post.postAttachments else { return }
+        
+        if postAttachments.isEmpty {
             
             postCell.gallerySecondRowTopConstraint.constant = 0
             
@@ -63,19 +65,19 @@ class PostPhotoGallery {
 
         var index = 0
         
-        while index < post.postAttachments.count {
+        while index < postAttachments.count {
             
             var photoObject: Photo!
             
-            if let albumAttachment = post.postAttachments[index] as? PhotoAlbum {
+            if let albumAttachment = postAttachments[index] as? PhotoAlbum {
                 photoObject = albumAttachment.albumThumbPhoto
                 
-            } else if let photoAttachment = post.postAttachments[index] as? Photo {
+            } else if let photoAttachment = postAttachments[index] as? Photo {
                 photoObject = photoAttachment
             }
             
             if photoObject.width == 0 || photoObject.height == 0 {
-                post.postAttachments.remove(at: 0)
+                postAttachments.remove(at: 0)
                 continue
             }
             
@@ -90,7 +92,7 @@ class PostPhotoGallery {
         
         let maxAvailableSpaceToOperate = min(UIScreen.main.bounds.width - marginSpace, 1300)
         
-        if post.postAttachments.count <= firstRowCount {
+        if postAttachments.count <= firstRowCount {
             // If we have only 1 photo - use only first row
             
             maxRequiredSizeOfImageInFirstRow = min(640, maxAvailableSpaceToOperate) // Limit to 640
@@ -100,7 +102,7 @@ class PostPhotoGallery {
             
             maxRequiredSizeOfImageInFirstRow = min(640, maxAvailableSpaceToOperate)
 
-            maxRequiredSizeOfImageInSecondRow = (maxAvailableSpaceToOperate) / CGFloat(min(maxPhotos, post.postAttachments.count - firstRowCount))
+            maxRequiredSizeOfImageInSecondRow = (maxAvailableSpaceToOperate) / CGFloat(min(maxPhotos, postAttachments.count - firstRowCount))
             
             maxRequiredSizeOfImageInSecondRow = min(640, maxRequiredSizeOfImageInSecondRow) // Limit to 640
         }
@@ -115,16 +117,16 @@ class PostPhotoGallery {
         
         // *********^^^^^^^ MAIN LOOP FOR STARTS HERE ^^^^^^^****************
 
-        while index < min(maxPhotos, post.postAttachments.count) {
+        while index < min(maxPhotos, postAttachments.count) {
             
             var photoObject: Photo!
 
-            if let albumAttachment = post.postAttachments[index] as? PhotoAlbum {
+            if let albumAttachment = postAttachments[index] as? PhotoAlbum {
                 if let photoAlbumThumb = albumAttachment.albumThumbPhoto {
                     photoObject = photoAlbumThumb
                 }
                 
-            } else if let photoAttachment = post.postAttachments[index] as? Photo {
+            } else if let photoAttachment = postAttachments[index] as? Photo {
                 photoObject = photoAttachment
             }
             
@@ -248,7 +250,7 @@ class PostPhotoGallery {
         
         //  For unused Gallery Image Views - setting widhts and heights to 0. Collapsing unused imageviews.
         
-        index = post.postAttachments.count
+        index = postAttachments.count
         
         while index < postCell.photoWidths.count {
             
@@ -270,13 +272,13 @@ class PostPhotoGallery {
         var indentsCountFirstRow: CGFloat
         var indentsCountSecondRow: CGFloat
         
-        if post.postAttachments.count <= firstRowCount {
-            indentsCountFirstRow = CGFloat(post.postAttachments.count - 1)
+        if postAttachments.count <= firstRowCount {
+            indentsCountFirstRow = CGFloat(postAttachments.count - 1)
             postCell.gallerySecondRowLeadingConstraint.constant = 0
         
         } else {
             indentsCountFirstRow = CGFloat(firstRowCount - 1)
-            indentsCountSecondRow = CGFloat(min(maxPhotos, post.postAttachments.count) - firstRowCount - 1)
+            indentsCountSecondRow = CGFloat(min(maxPhotos, postAttachments.count) - firstRowCount - 1)
             
             postCell.gallerySecondRowLeadingConstraint.constant = (UIScreen.main.bounds.width - marginSpace - 2 * indentsCountSecondRow - fullWidthSecondRow) / 2
             

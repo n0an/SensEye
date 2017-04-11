@@ -273,7 +273,15 @@ class ServerManager {
             if feedType == .post {
                 let parsedObjects: [WallPost] = self.parseFeedObjects(forArray: itemsArray, authorsArray: authorsArray, group: group)
                 
-                completed(parsedObjects)
+                var cleanedParsedObjects = [WallPost]()
+                
+                for post in parsedObjects {
+                    if post.postText != "" || post.postAttachments != nil {
+                        cleanedParsedObjects.append(post)
+                    }
+                }
+                
+                completed(cleanedParsedObjects)
                 
             } else {
                 let parsedObjects: [Comment] = self.parseFeedObjects(forArray: itemsArray, authorsArray: authorsArray, group: group)
