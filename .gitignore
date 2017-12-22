@@ -1,1 +1,3 @@
 secretsFile.txt
+*.xcuserstate
+xcuserdata/
