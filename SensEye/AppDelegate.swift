@@ -108,6 +108,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         
         GeneralHelper.sharedHelper.appOwnerEmail = keys[0]
         GeneralHelper.sharedHelper.kONESIGNALAPPID = keys[1]
+        GeneralHelper.sharedHelper.serviceVKToken = keys[2]
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {

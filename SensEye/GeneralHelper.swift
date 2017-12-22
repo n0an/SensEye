@@ -28,6 +28,7 @@ class GeneralHelper {
     
     public var kONESIGNALAPPID = ""
     public var appOwnerEmail = ""
+    public var serviceVKToken = ""
     
     // MARK: - SPINNERS
     public func showSpinner(onView view: UIView, usingBoundsFromView viewForBounds: UIView) {

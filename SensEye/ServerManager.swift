@@ -237,6 +237,8 @@ class ServerManager {
         
         if let accessToken = self.vkAccessToken {
             url += "&\(URL_PARAMS.ACCESS_TOKEN.rawValue)\(accessToken.token!)"
+        } else {
+            url += "&\(URL_PARAMS.ACCESS_TOKEN.rawValue)\(GeneralHelper.sharedHelper.serviceVKToken)"
         }
         
         let finalUrl = url + "&v=5.60"
