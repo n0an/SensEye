@@ -20,7 +20,7 @@ class FRUser {
     var avatarImage: UIImage?
     var avatarDownloadLink: String?
     var pushId: String?
-    var userRef: FIRDatabaseReference
+    var userRef: DatabaseReference
     
     // MARK: - INITIALIZERS
     init(uid: String, username: String, email: String, avatarImage: UIImage?, pushId: String?) {
@@ -76,11 +76,11 @@ class FRUser {
 
 // MARK: - Equatable
 // COMPARE METHOD (FOR "CONTAINS" FEATURE) - for checking if array constains current User
-extension FRUser: Equatable { }
-func ==(lhs: FRUser, rhs: FRUser) -> Bool {
-    return lhs.uid == rhs.uid
+extension FRUser: Equatable {
+    static func ==(lhs: FRUser, rhs: FRUser) -> Bool {
+        return lhs.uid == rhs.uid
+    }
 }
-
 
 
 

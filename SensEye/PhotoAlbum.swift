@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 class PhotoAlbum {
     
@@ -23,42 +24,39 @@ class PhotoAlbum {
     var albumThumbPhoto: Photo?
     
     // MARK: - INITIALIZERS
-    init(responseObject: [String: Any]) {
+    init(responseObject: JSON) {
         
-        if let albumID = responseObject["id"] as? String {
+        if let albumID = responseObject["id"].string {
             self.albumID = albumID
-        } else if let albumID = responseObject["id"] as? Int {
+        } else if let albumID = responseObject["id"].int {
             self.albumID = String(albumID)
         }
         
-        if let ownderID = responseObject["owner_id"] as? Int {
-            self.ownerID = String(ownderID)
-        }
+        self.ownerID = String(responseObject["owner_id"].intValue)
         
-        if let albumTitle = responseObject["title"] as? String {
-            self.albumTitle = albumTitle
-        }
+        self.albumTitle = responseObject["title"].stringValue
         
-        if let albumDescription = responseObject["description"] as? String {
-            self.albumDescription = albumDescription
-        }
+        self.albumDescription = responseObject["description"].stringValue
+
+        self.albumSize = responseObject["size"].intValue
+
+        self.albumThumbID = String(responseObject["thumb_id"].intValue)
+
+        self.albumThumbImageURL = responseObject["thumb_src"].stringValue
+
         
-        if let albumSize = responseObject["size"] as? Int {
-            self.albumSize = albumSize
-        }
-        
-        if let albumThumbID = responseObject["thumb_id"] as? Int {
-            self.albumThumbID = String(albumThumbID)
-        }
-        
-        if let albumThumbImageURL = responseObject["thumb_src"] as? String {
-            self.albumThumbImageURL = albumThumbImageURL
-        }
-        
-        if let thumbDict = responseObject["thumb"] as? [String: Any] {
-            let albumThumbPhoto = Photo(responseObject: thumbDict)
+        if responseObject["thumb"].dictionary != nil {
+            let albumThumbPhoto = Photo(responseObject: responseObject["thumb"])
             self.albumThumbPhoto = albumThumbPhoto
         }
+        
+//        let albumThumbPhoto = Photo(responseObject: responseObject["thumb"])
+//        self.albumThumbPhoto = albumThumbPhoto
+        
+//        if let thumbDict = responseObject["thumb"] {
+//            let albumThumbPhoto = Photo(responseObject: thumbDict)
+//            self.albumThumbPhoto = albumThumbPhoto
+//        }
     }
 }
 

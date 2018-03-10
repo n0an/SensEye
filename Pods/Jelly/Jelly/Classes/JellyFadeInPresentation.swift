@@ -11,7 +11,7 @@ public struct JellyFadeInPresentation: JellyPresentation, AlignablePresentation,
     public var dismissCurve: JellyConstants.JellyCurve = .linear
     public var presentationCurve: JellyConstants.JellyCurve = .linear
     public var cornerRadius: Double = 0.0
-  public var backgroundStyle: JellyConstants.BackgroundStyle = .dimmed(alpha: 0.5)
+    public var backgroundStyle: JellyConstants.BackgroundStyle = .dimmed(alpha: 0.5)
     public var duration : JellyConstants.Duration = .normal // Duration the ViewController needs to kick in
     public var widthForViewController: JellyConstants.Size = .halfscreen
     public var heightForViewController: JellyConstants.Size = .halfscreen
@@ -30,6 +30,8 @@ public struct JellyFadeInPresentation: JellyPresentation, AlignablePresentation,
                 duration: JellyConstants.Duration = .normal,
                 widthForViewController: JellyConstants.Size = .fullscreen,
                 heightForViewController: JellyConstants.Size = .fullscreen,
+                horizontalAlignment: JellyConstants.HorizontalAlignment = .center,
+                verticalAlignment: JellyConstants.VerticalAlignment = .center,
                 marginGuards: UIEdgeInsets = .zero,
                 corners: UIRectCorner = [.topLeft, .topRight, .bottomLeft, .bottomRight]) {
         
@@ -40,6 +42,8 @@ public struct JellyFadeInPresentation: JellyPresentation, AlignablePresentation,
         self.duration = duration
         self.widthForViewController = widthForViewController
         self.heightForViewController = heightForViewController
+        self.horizontalAlignment = horizontalAlignment
+        self.verticalAlignemt = verticalAlignment
         self.marginGuards = marginGuards
         self.corners = corners
     }

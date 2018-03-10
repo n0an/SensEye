@@ -55,5 +55,7 @@ target 'SensEye' do
   # Fabric
   pod 'Fabric'
   pod 'Crashlytics'
+  
+  pod 'SwiftyJSON'
 
 end

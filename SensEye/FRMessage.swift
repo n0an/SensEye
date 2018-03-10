@@ -9,7 +9,6 @@
 import Foundation
 import Firebase
 
-
 class FRMessage {
     
     // MARK: - PROPERTIES
@@ -19,7 +18,7 @@ class FRMessage {
     var senderUID: String
     var lastUpdate: Double!
     var text: String
-    var messageRef: FIRDatabaseReference
+    var messageRef: DatabaseReference
     
     // MARK: - INITIALIZERS
     init(chatId: String, senderUID: String, senderDisplayName: String, text: String) {
@@ -50,7 +49,7 @@ class FRMessage {
         return [
             "senderDisplayName"     :   senderDisplayName,
             "senderUID"             :   senderUID,
-            "lastUpdate"            :   FIRServerValue.timestamp(),
+            "lastUpdate"            :   ServerValue.timestamp(),
             "text"                  :   text
         ]
     }
@@ -58,11 +57,11 @@ class FRMessage {
 
 
 // MARK: - Equatable
-extension FRMessage: Equatable { }
-func ==(lhs: FRMessage, rhs: FRMessage) ->Bool {
-    return lhs.uid == rhs.uid
+extension FRMessage: Equatable {
+    static func ==(lhs: FRMessage, rhs: FRMessage) ->Bool {
+        return lhs.uid == rhs.uid
+    }
 }
-
 
 
 

@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import SwiftyJSON
 
 class Group {
     
@@ -18,22 +18,15 @@ class Group {
     var imageURL: String!
     
     // MARK: - INITIALIZERS
-    init(responseObject: [String: Any]) {
+    init(responseObject: JSON) {
         
-        if let groupID = responseObject["id"] as? Int {
-            self.groupID = String(groupID)
-        }
+        self.groupID = String(responseObject["id"].intValue)
         
-        if let groupName = responseObject["name"] as? String {
-            self.groupName = groupName
-        }
+        self.groupName = responseObject["name"].stringValue
         
-        if let screenName = responseObject["screen_name"] as? String {
-            self.screenName = screenName
-        }
+        self.screenName = responseObject["screen_name"].stringValue
         
-        if let url50 = responseObject["photo_50"] as? String {
-            self.imageURL = url50
-        }
+        self.imageURL = responseObject["photo_50"].stringValue
+      
     }
 }

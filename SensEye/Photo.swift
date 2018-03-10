@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 // MARK: - PHOTO CONSTANTS
 let kPhoto_75 = "photo_75";
@@ -45,45 +46,25 @@ class Photo {
     var resolutionDictionary: [String: String?]!
 
     // MARK: - INITIALIZERS
-    init(responseObject: [String: Any]) {
+    init(responseObject: JSON) {
         
-        if let photoID = responseObject["id"] as? String {
+        if let photoID = responseObject["id"].string {
             self.photoID = photoID
-        } else if let photoID = responseObject["id"] as? Int {
+        } else if let photoID = responseObject["id"].int {
             self.photoID = String(photoID)
         }
         
-        if let width = responseObject["width"] as? Int {
-            self.width = width
-        }
+        self.width = responseObject["width"].intValue
         
-        if let height = responseObject["height"] as? Int {
-            self.height = height
-        }
+        self.height = responseObject["height"].intValue
         
-        if let photo_75 = responseObject[kPhoto_75] as? String {
-            self.photo_75 = photo_75
-        }
-        
-        if let photo_130 = responseObject[kPhoto_130] as? String {
-            self.photo_130 = photo_130
-        }
-        
-        if let photo_604 = responseObject[kPhoto_604] as? String {
-            self.photo_604 = photo_604
-        }
-        
-        if let photo_807 = responseObject[kPhoto_807] as? String {
-            self.photo_807 = photo_807
-        }
-        
-        if let photo_1280 = responseObject[kPhoto_1280] as? String {
-            self.photo_1280 = photo_1280
-        }
-        
-        if let photo_2560 = responseObject[kPhoto_2560] as? String {
-            self.photo_2560 = photo_2560
-        }
+        self.photo_75 = responseObject[kPhoto_75].stringValue
+        self.photo_130 = responseObject[kPhoto_130].stringValue
+        self.photo_604 = responseObject[kPhoto_604].stringValue
+        self.photo_807 = responseObject[kPhoto_807].stringValue
+        self.photo_1280 = responseObject[kPhoto_1280].stringValue
+        self.photo_2560 = responseObject[kPhoto_2560].stringValue
+
         
         self.resolutionDictionary = [
             kPhoto_75   :   self.photo_75,

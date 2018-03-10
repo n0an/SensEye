@@ -28,7 +28,9 @@ class AboutTableViewController: UITableViewController {
     }
     
     // MARK: - PROPERTIES
-    var sectionTitles = [NSLocalizedString("Contacts", comment: "Contacts"), NSLocalizedString("Social Networks", comment: "Social Networks"), NSLocalizedString("About me", comment: "About me")]
+    var sectionTitles = [NSLocalizedString("Contacts", comment: "Contacts"),
+                         NSLocalizedString("Social Networks", comment: "Social Networks"),
+                         NSLocalizedString("About me", comment: "About me")]
     
     var connections = [
                 Contact(imageName: "about-icon-chat", labelText: NSLocalizedString("InApp Chat", comment: "InApp Chat"), link: ""),
@@ -107,9 +109,7 @@ class AboutTableViewController: UITableViewController {
         infoLabel.animate()
     }
     
-    
     // MARK: - UITableViewDataSource
-    
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return sectionTitles[section]
     }

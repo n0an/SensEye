@@ -13,13 +13,11 @@ class Camera {
     
     var delegate: UIImagePickerControllerDelegate & UINavigationControllerDelegate
     
-    
     // MARK: - INITIALIZER
     init(delegate: UIImagePickerControllerDelegate & UINavigationControllerDelegate) {
         
         self.delegate = delegate
     }
-    
     
     // MARK: - PRESENT PHOTO LIBRARY
     func presentPhotoLibrary(target: UIViewController, canEdit: Bool) {
@@ -109,9 +107,7 @@ class Camera {
         return
     }
     
-    
     // MARK: - PRESENT MULTI CAMERA (Photo or Video)
-    
     func presentMultiCamera(target: UIViewController,  canEdit: Bool) {
         
         if !UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera) {
@@ -149,7 +145,6 @@ class Camera {
         imagePicker.delegate = delegate
         target.present(imagePicker, animated: true, completion: nil) // presents the imagepicker to the user
     }
-    
     
     // MARK: - PRESENT PHOTO CAMERA
     func presentPhotoCamera(target: UIViewController,  canEdit: Bool) {
@@ -189,7 +184,6 @@ class Camera {
         target.present(imagePicker, animated: true, completion: nil) // presents the imagepicker to the user
     }
     
-    
     // MARK: - PRESENT VIDEO CAMERA
     func presentVideoCamera(target: UIViewController,  canEdit: Bool) {
         
@@ -228,9 +222,4 @@ class Camera {
         imagePicker.delegate = delegate
         target.present(imagePicker, animated: true, completion: nil) // presents the imagepicker to the user
     }
-    
-    
-    
-    
 }
-
