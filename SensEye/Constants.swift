@@ -52,39 +52,14 @@ public let URL_PHOTOS               = "/photos.get"
 public let URL_PHOTO_ALBUMS         = "/photos.getAlbums"
 public let URL_COMMENTS             = "/wall.getComments"
 public let URL_CREATE_COMMENT       = "/wall.createComment"
-public let URL_USERS                = "/users.get?"
+public let URL_USERS                = "/users.get"
 
-public let URL_LIKES_ADD            = "/likes.add?"
-public let URL_LIKES_DELETE         = "/likes.delete?"
-public let URL_ISLIKED              = "/likes.isLiked?"
+public let URL_LIKES_ADD            = "/likes.add"
+public let URL_LIKES_DELETE         = "/likes.delete"
+public let URL_ISLIKED              = "/likes.isLiked"
 
 
 public enum URL_PARAMS: String {
-    case OWNER_ID       = "owner_id="
-    case COUNT          = "count="
-    case OFFSET         = "offset="
-    case EXTENDED       = "extended="
-    
-    case ALBUM_ID       = "album_id="
-    case NEED_COVERS    = "need_covers="
-    
-    case POST_ID        = "post_id="
-    case NEED_LIKES     = "need_likes="
-    
-    case USER_IDS       = "user_ids="
-    case USER_FIELDS    = "fields="
-    
-    case ITEM_TYPE      = "type="
-    case ITEM_ID        = "item_id="
-    
-    case MESSAGE        = "message="
-    
-    case ACCESS_TOKEN   = "access_token="
-    case LANG           = "lang="
-    case REV            = "rev="
-}
-
-public enum URL_PARAMS_T: String {
     case OWNER_ID       = "owner_id"
     case COUNT          = "count"
     case OFFSET         = "offset"

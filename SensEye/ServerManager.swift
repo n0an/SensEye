@@ -24,8 +24,8 @@ class ServerManager {
     
     static let sharedManager = ServerManager()
     
-    static var standartParams: [String: Any] =
-        [URL_PARAMS_T.VER.rawValue: "5.60"]
+    static let standartParams: [String: Any] =
+        [URL_PARAMS.VER.rawValue: "5.60"]
     
     private var vkAccessToken: VKAccessToken?
     
@@ -140,7 +140,6 @@ class ServerManager {
         } else {
             self.renewAuthorization(completed: completed)
         }
-   
     }
     
     // MARK: - PHOTOS FEATURE
@@ -150,18 +149,18 @@ class ServerManager {
         
         var params = ServerManager.standartParams
         
-        params[URL_PARAMS_T.OWNER_ID.rawValue] = ownerID
-        params[URL_PARAMS_T.ALBUM_ID.rawValue] = albumID
-        params[URL_PARAMS_T.REV.rawValue] = 0
-        params[URL_PARAMS_T.EXTENDED.rawValue] = 1
+        params[URL_PARAMS.OWNER_ID.rawValue] = ownerID
+        params[URL_PARAMS.ALBUM_ID.rawValue] = albumID
+        params[URL_PARAMS.REV.rawValue] = 0
+        params[URL_PARAMS.EXTENDED.rawValue] = 1
 
         if let offset = offset {
             
-            params[URL_PARAMS_T.OFFSET.rawValue] = offset
+            params[URL_PARAMS.OFFSET.rawValue] = offset
         }
         
         if let count = count {
-            params[URL_PARAMS_T.COUNT.rawValue] = count
+            params[URL_PARAMS.COUNT.rawValue] = count
         }
         
         self.networkActivityIndicatorVisible = true
@@ -200,8 +199,8 @@ class ServerManager {
         
         var params = ServerManager.standartParams
         
-        params[URL_PARAMS_T.OWNER_ID.rawValue] = groupID
-        params[URL_PARAMS_T.NEED_COVERS.rawValue] = 1
+        params[URL_PARAMS.OWNER_ID.rawValue] = groupID
+        params[URL_PARAMS.NEED_COVERS.rawValue] = 1
         
         self.networkActivityIndicatorVisible = true
         
@@ -242,21 +241,21 @@ class ServerManager {
         
         var params = ServerManager.standartParams
         
-        params[URL_PARAMS_T.OWNER_ID.rawValue] = ownerID
-        params[URL_PARAMS_T.COUNT.rawValue] = count
-        params[URL_PARAMS_T.OFFSET.rawValue] = offset
-        params[URL_PARAMS_T.LANG.rawValue] = "ru"
-        params[URL_PARAMS_T.EXTENDED.rawValue] = 1
+        params[URL_PARAMS.OWNER_ID.rawValue] = ownerID
+        params[URL_PARAMS.COUNT.rawValue] = count
+        params[URL_PARAMS.OFFSET.rawValue] = offset
+        params[URL_PARAMS.LANG.rawValue] = "ru"
+        params[URL_PARAMS.EXTENDED.rawValue] = 1
 
         if feedType == .comment {
-            params[URL_PARAMS_T.POST_ID.rawValue] = postID!
-            params[URL_PARAMS_T.NEED_LIKES.rawValue] = 1
+            params[URL_PARAMS.POST_ID.rawValue] = postID!
+            params[URL_PARAMS.NEED_LIKES.rawValue] = 1
         }
         
         if let accessToken = self.vkAccessToken {
-            params[URL_PARAMS_T.ACCESS_TOKEN.rawValue] = accessToken.token!
+            params[URL_PARAMS.ACCESS_TOKEN.rawValue] = accessToken.token!
         } else {
-            params[URL_PARAMS_T.ACCESS_TOKEN.rawValue] = GeneralHelper.sharedHelper.serviceVKToken
+            params[URL_PARAMS.ACCESS_TOKEN.rawValue] = GeneralHelper.sharedHelper.serviceVKToken
         }
         
         self.networkActivityIndicatorVisible = true
@@ -317,22 +316,20 @@ class ServerManager {
         }
     }
     
-    
     func createComment(ownerID: String, postID: String, message: String, completed: @escaping (Bool) -> Void) {
-        
         
         let url = URL(string: URL_BASE)?.appendingPathComponent(URL_CREATE_COMMENT)
         
         var params = ServerManager.standartParams
         
-        params[URL_PARAMS_T.OWNER_ID.rawValue] = ownerID
-        params[URL_PARAMS_T.POST_ID.rawValue] = postID
-        params[URL_PARAMS_T.MESSAGE.rawValue] = message
+        params[URL_PARAMS.OWNER_ID.rawValue] = ownerID
+        params[URL_PARAMS.POST_ID.rawValue] = postID
+        params[URL_PARAMS.MESSAGE.rawValue] = message
         
         if let accessToken = self.vkAccessToken {
-            params[URL_PARAMS_T.ACCESS_TOKEN.rawValue] = accessToken.token!
+            params[URL_PARAMS.ACCESS_TOKEN.rawValue] = accessToken.token!
         } else {
-            params[URL_PARAMS_T.ACCESS_TOKEN.rawValue] = GeneralHelper.sharedHelper.serviceVKToken
+            params[URL_PARAMS.ACCESS_TOKEN.rawValue] = GeneralHelper.sharedHelper.serviceVKToken
         }
         
         self.networkActivityIndicatorVisible = true
@@ -352,7 +349,6 @@ class ServerManager {
                 
             case .failure(let error):
                 print("error: \(error.localizedDescription)")
-                
             }
         }
     }
@@ -360,26 +356,34 @@ class ServerManager {
     // MARK: - USER FEATURE
     func getUserFor(userID: String, completed: @escaping AuthoizationComplete) {
         
-        let url = "\(URL_BASE)\(URL_USERS)" +
-                    "\(URL_PARAMS.USER_IDS.rawValue)\(userID)&" +
-                    "\(URL_PARAMS.USER_FIELDS.rawValue)photo_50&" +
-                    "\(URL_PARAMS.LANG.rawValue)ru"
+        let url = URL(string: URL_BASE)?.appendingPathComponent(URL_USERS)
         
-        let finalUrl = url + "&v=5.60"
-
+        var params = ServerManager.standartParams
+        
+        params[URL_PARAMS.USER_IDS.rawValue] = userID
+        params[URL_PARAMS.USER_FIELDS.rawValue] = "photo_50"
+        params[URL_PARAMS.LANG.rawValue] = "ru"
+        
         self.networkActivityIndicatorVisible = true
         
-        Alamofire.request(finalUrl).responseJSON { (responseJson) in
+        Alamofire.request(url!, method: .post, parameters: params, encoding: URLEncoding(), headers: nil).responseJSON { (responseJson) in
             
             self.networkActivityIndicatorVisible = false
             
-            guard let responseRoot = responseJson.result.value as? [String: Any] else {return}
-            guard let response = responseRoot["response"] as? [Any] else {return}
-            
-            if response.count > 0 {
-                let userItem = response[0] as! [String: Any]
-                let user = User(responseObject: userItem)
-                completed(user)
+            switch responseJson.result {
+            case .success(let jsonValue):
+                
+                guard let responseRoot = jsonValue as? [String: Any] else {return}
+                guard let response = responseRoot["response"] as? [Any] else {return}
+                
+                if response.count > 0 {
+                    let userItem = response[0] as! [String: Any]
+                    let user = User(responseObject: userItem)
+                    completed(user)
+                }
+                
+            case .failure(let error):
+                print("error: \(error.localizedDescription)")
             }
         }
     }
@@ -387,99 +391,93 @@ class ServerManager {
     // MARK: - LIKES FEATURE
     func isLiked(forItemType itemType: FeedItemsType, ownerID: String, itemID: String, completed: @escaping ([String: Any]?) -> Void) {
         
-        var url = "\(URL_BASE)\(URL_ISLIKED)" +
-                    "\(URL_PARAMS.ITEM_TYPE.rawValue)\(itemType.rawValue)&" +
-                    "\(URL_PARAMS.ITEM_ID.rawValue)\(itemID)&" +
-                    "\(URL_PARAMS.OWNER_ID.rawValue)\(ownerID)"
+        let url = URL(string: URL_BASE)?.appendingPathComponent(URL_ISLIKED)
+        
+        var params = ServerManager.standartParams
+        
+        params[URL_PARAMS.ITEM_TYPE.rawValue] = itemType.rawValue
+        params[URL_PARAMS.ITEM_ID.rawValue]   = itemID
+        params[URL_PARAMS.OWNER_ID.rawValue]  = ownerID
         
         if let accessToken = self.vkAccessToken {
-            url += "&\(URL_PARAMS.ACCESS_TOKEN.rawValue)\(accessToken.token!)"
+            params[URL_PARAMS.ACCESS_TOKEN.rawValue] = accessToken.token!
         }
         
-        let finalUrl = url + "&v=5.60"
-        
         self.networkActivityIndicatorVisible = true
-
-        Alamofire.request(finalUrl).responseJSON { (responseJson) in
+        
+        Alamofire.request(url!, method: .post, parameters: params, encoding: URLEncoding(), headers: nil).responseJSON { (responseJson) in
             
             self.networkActivityIndicatorVisible = false
             
-            guard let responseRoot = responseJson.result.value as? [String: Any] else {return}
-            guard let response = responseRoot["response"] as? [String:Any] else {
-                completed(nil)
-                return
+            switch responseJson.result {
+            case .success(let jsonValue):
+                
+                guard let responseRoot = jsonValue as? [String: Any] else {return}
+                guard let response = responseRoot["response"] as? [String:Any] else {
+                    completed(nil)
+                    return
+                }
+                
+                completed(response)
+                
+            case .failure(let error):
+                print("error: \(error.localizedDescription)")
             }
+        }
+    }
+    
+    func modifyLike(addLike: Bool, forItemType itemType: FeedItemsType, ownerID: String, itemID: String, completed: @escaping LikeFeatureCompletion) {
+        
+        let pathComponent = addLike ? URL_LIKES_ADD : URL_LIKES_DELETE
+        
+        let url = URL(string: URL_BASE)?.appendingPathComponent(pathComponent)
+        
+        var params = ServerManager.standartParams
+        
+        params[URL_PARAMS.ITEM_TYPE.rawValue] = itemType.rawValue
+        params[URL_PARAMS.ITEM_ID.rawValue]   = itemID
+        params[URL_PARAMS.OWNER_ID.rawValue]  = ownerID
+        
+        if let accessToken = self.vkAccessToken {
+            params[URL_PARAMS.ACCESS_TOKEN.rawValue] = accessToken.token!
+        }
+        
+        self.networkActivityIndicatorVisible = true
+        
+        Alamofire.request(url!, method: .post, parameters: params, encoding: URLEncoding(), headers: nil).responseJSON { (responseJson) in
             
-            completed(response)
+            self.networkActivityIndicatorVisible = false
+            
+            switch responseJson.result {
+            case .success(let jsonValue):
+                
+                guard let responseRoot = jsonValue as? [String: Any] else {
+                    completed(false, nil)
+                    return
+                }
+                
+                guard let response = responseRoot["response"] as? [String:Any] else {
+                    completed(false, nil)
+                    return
+                }
+                
+                completed(true, response)
+                
+            case .failure(let error):
+                print("error: \(error.localizedDescription)")
+            }
         }
     }
     
     func addLike(forItemType itemType: FeedItemsType, ownerID: String, itemID: String, completed: @escaping LikeFeatureCompletion) {
         
-        var url = "\(URL_BASE)\(URL_LIKES_ADD)" +
-                    "\(URL_PARAMS.ITEM_TYPE.rawValue)\(itemType.rawValue)&" +
-                    "\(URL_PARAMS.ITEM_ID.rawValue)\(itemID)&" +
-                    "\(URL_PARAMS.OWNER_ID.rawValue)\(ownerID)"
-        
-        if let accessToken = self.vkAccessToken {
-            url += "&\(URL_PARAMS.ACCESS_TOKEN.rawValue)\(accessToken.token!)"
-        }
-        
-        let finalUrl = url + "&v=5.60"
-        
-        self.networkActivityIndicatorVisible = true
-
-        Alamofire.request(finalUrl, method: .post, parameters: [:], encoding: JSONEncoding.default, headers: nil).responseJSON { (responseJson) in
-            
-            self.networkActivityIndicatorVisible = false
-            
-            guard let responseRoot = responseJson.result.value as? [String: Any] else {
-                completed(false, nil)
-                return
-            }
-            
-            guard let response = responseRoot["response"] as? [String:Any] else {
-                completed(false, nil)
-                return
-            }
-            
-            completed(true, response)
-        }
+        modifyLike(addLike: true, forItemType: itemType, ownerID: ownerID, itemID: itemID, completed: completed)
     }
     
     func deleteLike(forItemType itemType: FeedItemsType, ownerID: String, itemID: String, completed: @escaping LikeFeatureCompletion) {
         
-        var url = "\(URL_BASE)\(URL_LIKES_DELETE)" +
-                    "\(URL_PARAMS.ITEM_TYPE.rawValue)\(itemType.rawValue)&" +
-                    "\(URL_PARAMS.ITEM_ID.rawValue)\(itemID)&" +
-                    "\(URL_PARAMS.OWNER_ID.rawValue)\(ownerID)"
-        
-        if let accessToken = self.vkAccessToken {
-            url += "&\(URL_PARAMS.ACCESS_TOKEN.rawValue)\(accessToken.token!)"
-        }
-        
-        let finalUrl = url + "&v=5.60"
-        
-        self.networkActivityIndicatorVisible = true
-        
-        Alamofire.request(finalUrl, method: .post, parameters: [:], encoding: JSONEncoding.default, headers: nil).responseJSON { (responseJson) in
-            
-            self.networkActivityIndicatorVisible = false
-            
-            guard let responseRoot = responseJson.result.value as? [String: Any] else {
-                completed(false, nil)
-                return
-            }
-            
-            guard let response = responseRoot["response"] as? [String:Any] else {
-                completed(false, nil)
-                return
-            }
-            
-            completed(true, response)
-        }
+        modifyLike(addLike: false, forItemType: itemType, ownerID: ownerID, itemID: itemID, completed: completed)
     }
-    
     
     // MARK: - HELPER METHODS
     func parseFeedObjects<T: ServerObject>(forArray array: [Any], authorsArray: [User], group: Group?) -> [T] {
