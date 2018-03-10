@@ -237,7 +237,6 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     }
     
     func goCustomerChat() {
-        
         FRDataManager.sharedManager.REF_CHATS.child(currentUser.uid).observeSingleEvent(of: .value, with: { (snapshot) in
             if snapshot.exists() {
                 let chat = FRChat(uid: snapshot.key, dictionary: snapshot.value as! [String: Any])

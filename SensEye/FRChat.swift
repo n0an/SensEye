@@ -10,7 +10,6 @@ import Foundation
 import Firebase
 import OneSignal
 
-
 class FRChat {
     
     // MARK: - PROPERTIES
@@ -58,7 +57,6 @@ class FRChat {
     }
 }
 
-
 extension FRChat {
     
     // MARK: - DOWNLOAD IMAGE
@@ -91,7 +89,6 @@ extension FRChat {
         }
     }
 }
-
 
 extension FRChat {
     
@@ -140,7 +137,6 @@ extension FRChat {
                         ])
                 }
             }
-            
         })
     }
     
@@ -167,18 +163,9 @@ extension FRChat {
     }
 }
 
-
-
-
 // MARK: - Equatable
-extension FRChat: Equatable { }
-func ==(lhs: FRChat, rhs: FRChat) ->Bool {
-    return lhs.uid == rhs.uid
+extension FRChat: Equatable {
+    static func ==(lhs: FRChat, rhs: FRChat) ->Bool {
+        return lhs.uid == rhs.uid
+    }
 }
-
-
-
-
-
-
-

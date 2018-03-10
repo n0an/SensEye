@@ -49,7 +49,7 @@ class VKLoginViewController: UIViewController {
             "scope=405526&" +
             "redirect_uri=https://oauth.vk.com/blank.html&" +
             "display=mobile&" +
-        "response_type=token"
+            "response_type=token"
         
         let url = URL(string: urlString)
         let request = URLRequest(url: url!)
@@ -76,7 +76,6 @@ class VKLoginViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
 }
-
 
 // MARK: - UIWebViewDelegate
 extension VKLoginViewController: UIWebViewDelegate {

@@ -283,9 +283,7 @@ class FeedViewController: UIViewController {
             destinationVC.wallPost = sender as! WallPost
         }
     }
-    
 }
-
 
 // MARK: - UITableViewDataSource
 extension FeedViewController: UITableViewDataSource {
@@ -306,7 +304,6 @@ extension FeedViewController: UITableViewDataSource {
     }
 }
 
-
 // MARK: - UITableViewDelegate
 extension FeedViewController: UITableViewDelegate {
     
@@ -318,7 +315,6 @@ extension FeedViewController: UITableViewDelegate {
         performSegue(withIdentifier: Storyboard.seguePostVC, sender: cell)
     }
 }
-
 
 // MARK: - === FeedCellDelegate ===
 extension FeedViewController: FeedCellDelegate {
@@ -332,7 +328,6 @@ extension FeedViewController: FeedCellDelegate {
         
         UserDefaults.standard.set(false, forKey: KEY_VK_USERCANCELAUTH)
         UserDefaults.standard.synchronize()
-
         GeneralHelper.sharedHelper.showVKAuthorizeActionSheetOnViewController(viewController: self) { (selected) in
             
             if selected == true {

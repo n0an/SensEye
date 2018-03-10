@@ -206,6 +206,8 @@ class FRAuthManager: NSObject {
     
     // MARK: - PUSH NOTIFICATIOINS CONFIGURATION
     func handleOneSignalOnUserLogin() {
+        
+        
         OneSignal.idsAvailable { (userId, token) in
             var pushId = ""
             if token != nil {

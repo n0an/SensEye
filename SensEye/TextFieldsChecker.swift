@@ -35,7 +35,7 @@ class TextFieldsChecker {
             return false
         }
         
-        return newString.characters.count <= 40
+        return newString.count <= 40
     }
     
 }

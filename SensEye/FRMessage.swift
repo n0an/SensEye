@@ -9,7 +9,6 @@
 import Foundation
 import Firebase
 
-
 class FRMessage {
     
     // MARK: - PROPERTIES
@@ -58,11 +57,11 @@ class FRMessage {
 
 
 // MARK: - Equatable
-extension FRMessage: Equatable { }
-func ==(lhs: FRMessage, rhs: FRMessage) ->Bool {
-    return lhs.uid == rhs.uid
+extension FRMessage: Equatable {
+    static func ==(lhs: FRMessage, rhs: FRMessage) ->Bool {
+        return lhs.uid == rhs.uid
+    }
 }
-
 
 
 

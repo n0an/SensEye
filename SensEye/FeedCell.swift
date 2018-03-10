@@ -125,7 +125,6 @@ class FeedCell: UITableViewCell {
         }
     }
     
-    
     // MARK: - HELPER METHODS
     func updateUI() {
         
@@ -180,7 +179,6 @@ class FeedCell: UITableViewCell {
         button.animate()
     }
     
-    
     // MARK: - GESTURES
     func actionGlryImageViewDidTap(sender: UITapGestureRecognizer) {
         guard let tappedImageView = sender.view as? UIImageView else {
@@ -219,7 +217,6 @@ class FeedCell: UITableViewCell {
 
         animateButton(sender)
     }
-    
     
     @IBAction func commentDidTap(_ sender: DesignableButton) {
         
