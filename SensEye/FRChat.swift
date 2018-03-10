@@ -20,7 +20,7 @@ class FRChat {
     var withUserName: String
     var withUserUID: String
     var messagesCount: Int
-    var chatRef: FIRDatabaseReference
+    var chatRef: DatabaseReference
     
     // MARK: - INITIALIZERS
     init(withUserName: String, withUserUID: String) {
@@ -50,7 +50,7 @@ class FRChat {
     func toDictionary() -> [String: Any] {
         return [
             "lastMessage": lastMessage,
-            "lastUpdate": FIRServerValue.timestamp(),
+            "lastUpdate": ServerValue.timestamp(),
             "withUserName": withUserName,
             "withUserUID": withUserUID,
             "messagesCount": messagesCount
@@ -74,7 +74,7 @@ extension FRChat {
         
         // Partially saving when sending a message
         self.chatRef.child("lastMessage").setValue(self.lastMessage)
-        self.chatRef.child("lastUpdate").setValue(FIRServerValue.timestamp())
+        self.chatRef.child("lastUpdate").setValue(ServerValue.timestamp())
         
         // Incrementing unread messages if current user IS NOT app owner
         if FRAuthManager.sharedManager.currentUser.email != GeneralHelper.sharedHelper.appOwnerEmail {
@@ -125,7 +125,7 @@ extension FRChat {
         
         ref.queryOrdered(byChild: "email").queryEqual(toValue: GeneralHelper.sharedHelper.appOwnerEmail).observeSingleEvent(of: .value, with: { (snapshot) in
             
-            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+            if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
                 
                 if let snap = snapshot.first {
                     

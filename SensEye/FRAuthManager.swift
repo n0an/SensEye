@@ -38,7 +38,7 @@ class FRAuthManager: NSObject {
     // MARK: - SIGN UP
     func signUp(withEmail email: String, username: String, password: String, avatarImage: UIImage?, onComplete: FRAuthCompletionHandler?) {
         
-        FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (firCreatedUser, error) in
+        Auth.auth().createUser(withEmail: email, password: password, completion: { (firCreatedUser, error) in
             
             if let error = error {
                 // report error
@@ -70,7 +70,7 @@ class FRAuthManager: NSObject {
     
     // MARK: - RESET PASSWORD
     func resetPassword(emailAddress: String, completion: @escaping (Error?) -> Void) {
-        FIRAuth.auth()?.sendPasswordReset(withEmail: emailAddress, completion: { (error) in
+        Auth.auth().sendPasswordReset(withEmail: emailAddress, completion: { (error) in
             completion(error)
         })
     }
@@ -90,7 +90,7 @@ class FRAuthManager: NSObject {
             guard let result = result, result.isCancelled == false else { return }
             
             if result.token != nil {
-                let credential = FIRFacebookAuthProvider.credential(withAccessToken: result.token.tokenString)
+                let credential = FacebookAuthProvider.credential(withAccessToken: result.token.tokenString)
                 
                 self.signInWithFacebook(withCredential: credential, onComplete: { (errorString, user) in
                     
@@ -104,9 +104,9 @@ class FRAuthManager: NSObject {
         }
     }
     
-    func signInWithFacebook(withCredential credential: FIRAuthCredential, onComplete: FRAuthCompletionHandler?) {
+    func signInWithFacebook(withCredential credential: AuthCredential, onComplete: FRAuthCompletionHandler?) {
         
-        FIRAuth.auth()?.signIn(with: credential, completion: { (firuser, error) in
+        Auth.auth().signIn(with: credential, completion: { (firuser, error) in
             
             if let error = error {
                 onComplete?(error.localizedDescription, nil)
@@ -182,7 +182,7 @@ class FRAuthManager: NSObject {
                 self.updateCurrentUserOneSignalId(newId: "")
             }
             
-            try FIRAuth.auth()?.signOut()
+            try Auth.auth().signOut()
             
         } catch {
             onComplete(error)
@@ -192,7 +192,7 @@ class FRAuthManager: NSObject {
     // MARK: - HELPER METHODS
     func completeSignIn(withEmail email: String, password: String, onComplete: FRAuthCompletionHandler?) {
         
-        FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (firSignedUser, error) in
+        Auth.auth().signIn(withEmail: email, password: password, completion: { (firSignedUser, error) in
             
             if let error = error {
                 onComplete?(error.localizedDescription, nil)
@@ -236,9 +236,9 @@ extension FRAuthManager: GIDSignInDelegate {
         
         guard let authentication = user.authentication else { return }
         
-        let credential = FIRGoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
+        let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
         
-        FIRAuth.auth()?.signIn(with: credential, completion: { (firuser, error) in
+        Auth.auth().signIn(with: credential, completion: { (firuser, error) in
             
             if let error = error {
                 print("Google SignIn Error: \(error.localizedDescription)")
@@ -279,6 +279,3 @@ extension FRAuthManager: GIDSignInDelegate {
         
     }
 }
-
-
-

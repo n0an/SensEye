@@ -19,7 +19,7 @@ class FRMessage {
     var senderUID: String
     var lastUpdate: Double!
     var text: String
-    var messageRef: FIRDatabaseReference
+    var messageRef: DatabaseReference
     
     // MARK: - INITIALIZERS
     init(chatId: String, senderUID: String, senderDisplayName: String, text: String) {
@@ -50,7 +50,7 @@ class FRMessage {
         return [
             "senderDisplayName"     :   senderDisplayName,
             "senderUID"             :   senderUID,
-            "lastUpdate"            :   FIRServerValue.timestamp(),
+            "lastUpdate"            :   ServerValue.timestamp(),
             "text"                  :   text
         ]
     }

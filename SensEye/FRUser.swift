@@ -20,7 +20,7 @@ class FRUser {
     var avatarImage: UIImage?
     var avatarDownloadLink: String?
     var pushId: String?
-    var userRef: FIRDatabaseReference
+    var userRef: DatabaseReference
     
     // MARK: - INITIALIZERS
     init(uid: String, username: String, email: String, avatarImage: UIImage?, pushId: String?) {

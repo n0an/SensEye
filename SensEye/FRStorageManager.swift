@@ -10,7 +10,7 @@ import Foundation
 import Firebase
 
 // MARK: - CONSTANTS
-let STORAGE_ROOT        = FIRStorage.storage().reference()
+let STORAGE_ROOT        = Storage.storage().reference()
 let IMAGES_REF          = "images"
 let IMAGES_AVATAR_REF   = "avatars"
 let VIDEOS_REF          = "videos"
@@ -29,7 +29,3 @@ class FRStorageManager {
     var REF_STORAGE_VIDEOS = STORAGE_ROOT.child(VIDEOS_REF)
     var REF_STORAGE_AVATARS = STORAGE_ROOT.child(IMAGES_AVATAR_REF)
 }
-
-
-
-

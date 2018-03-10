@@ -65,7 +65,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
         emailTextField.inputAccessoryView = hideKeyboardInputAccessoryView
         passwordTextField.inputAccessoryView = hideKeyboardInputAccessoryView
        
-        FIRAuth.auth()?.addStateDidChangeListener({ (auth, user) in
+        Auth.auth().addStateDidChangeListener({ (auth, user) in
             
             if let user = user {
                 
@@ -175,7 +175,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
                 SwiftSpinner.hide()
                 self.isMessengerLoading = false
                 
-                if FIRAuth.auth()?.currentUser != nil {
+                if Auth.auth().currentUser != nil {
                     FRAuthManager.sharedManager.logOut(onComplete: { (error) in
                         
                     })
@@ -204,7 +204,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
         
         ref.queryOrdered(byChild: "email").queryEqual(toValue: GeneralHelper.sharedHelper.appOwnerEmail).observeSingleEvent(of: .value, with: { (snapshot) in
             
-            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+            if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
                 
                 if let snap = snapshot.first {
                     
