@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '45FE8952D2A4CAB9EB0968C82ADA5D69'
+               BlueprintIdentifier = '381A40EA4D35ABBCDA3625D0F2C9D2DB'
                BlueprintName = 'SwiftSpinner'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'SwiftSpinner.framework'>

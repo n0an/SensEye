@@ -96,6 +96,7 @@ PODS:
   - SVPullToRefresh (0.4.1)
   - SwiftKeychainWrapper (3.0.1)
   - SwiftSpinner (1.5.0)
+  - SwiftyJSON (4.0.0)
 
 DEPENDENCIES:
   - Alamofire
@@ -118,6 +119,7 @@ DEPENDENCIES:
   - SVPullToRefresh
   - SwiftKeychainWrapper
   - SwiftSpinner
+  - SwiftyJSON
 
 EXTERNAL SOURCES:
   Spring:
@@ -164,7 +166,8 @@ SPEC CHECKSUMS:
   SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
   SwiftKeychainWrapper: 38952a3636320ae61bad3513cadd870929de7a4a
   SwiftSpinner: 4c058c7a1d6b444dd2e1d70988ead40783097133
+  SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
 
-PODFILE CHECKSUM: c9a64084fb05c8464fe8299e7f1e0fe591194b45
+PODFILE CHECKSUM: de19d657c85d461e0c7ca64c861939cc25fa2b3a
 
 COCOAPODS: 1.4.0.rc.1

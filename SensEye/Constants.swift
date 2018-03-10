@@ -13,9 +13,9 @@ public let APP_FIRST_RUN = "appFirstRun"
 
 public enum TabBarIndex: Int {
     case wallFeed   = 0
-    case gallery    = 1
-    case chat       = 2
-    case about      = 3
+    case gallery
+    case chat
+    case about
 }
 
 // MARK: - ===== TYPE ALIASES ====
@@ -47,11 +47,11 @@ public let KEY_VK_USERCANCELAUTH    = "vkUserCancelAuth"
 public let KEY_VK_TOKEN             = "vkAuthToken"
 
 public let URL_BASE                 = "https://api.vk.com/method"
-public let URL_WALL_FEED            = "/wall.get?"
-public let URL_PHOTOS               = "/photos.get?"
-public let URL_PHOTO_ALBUMS         = "/photos.getAlbums?"
-public let URL_COMMENTS             = "/wall.getComments?"
-public let URL_CREATE_COMMENT       = "/wall.createComment?"
+public let URL_WALL_FEED            = "/wall.get"
+public let URL_PHOTOS               = "/photos.get"
+public let URL_PHOTO_ALBUMS         = "/photos.getAlbums"
+public let URL_COMMENTS             = "/wall.getComments"
+public let URL_CREATE_COMMENT       = "/wall.createComment"
 public let URL_USERS                = "/users.get?"
 
 public let URL_LIKES_ADD            = "/likes.add?"
@@ -82,6 +82,33 @@ public enum URL_PARAMS: String {
     case ACCESS_TOKEN   = "access_token="
     case LANG           = "lang="
     case REV            = "rev="
+}
+
+public enum URL_PARAMS_T: String {
+    case OWNER_ID       = "owner_id"
+    case COUNT          = "count"
+    case OFFSET         = "offset"
+    case EXTENDED       = "extended"
+    
+    case ALBUM_ID       = "album_id"
+    case NEED_COVERS    = "need_covers"
+    
+    case POST_ID        = "post_id"
+    case NEED_LIKES     = "need_likes"
+    
+    case USER_IDS       = "user_ids"
+    case USER_FIELDS    = "fields"
+    
+    case ITEM_TYPE      = "type"
+    case ITEM_ID        = "item_id"
+    
+    case MESSAGE        = "message"
+    
+    case ACCESS_TOKEN   = "access_token"
+    case LANG           = "lang"
+    case REV            = "rev"
+    
+    case VER            = "v"
 }
 
 
