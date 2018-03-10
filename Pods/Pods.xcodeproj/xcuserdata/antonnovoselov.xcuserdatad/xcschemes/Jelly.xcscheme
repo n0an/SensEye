@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'CB3F286D26C8B91B032CFF2FBB9D40EC'
+               BlueprintIdentifier = '95E8C31CC69BDDA0F4E33D5DCDF3C16A'
                BlueprintName = 'Jelly'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'Jelly.framework'>
