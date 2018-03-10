@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 class Comment: ServerObject {
     
@@ -24,13 +25,16 @@ class Comment: ServerObject {
     var isLikedByCurrentUser = false
     
     // MARK: - INITIALIZERS
-    required init(responseObject: [String: Any]) {
+    required init(responseObject: JSON) {
         
-        if let commentID = responseObject["id"] as? Int {
-            self.commentID = String(commentID)
-        }
+        self.commentID = String(responseObject["id"].intValue)
         
-        if let postText = responseObject["text"] as? String {
+//        if let commentID = responseObject["id"] as? Int {
+//            self.commentID = String(commentID)
+//        }
+        
+        
+        if let postText = responseObject["text"].string {
             if postText.hasPrefix("[id") {
                 self.commentText = refineAuthor(rawText: postText)
             } else {
@@ -38,23 +42,33 @@ class Comment: ServerObject {
             }
         }
         
-        if let postDate = responseObject["date"] as? Int {
-            self.commentDate = postDate
-        }
+        self.commentDate = responseObject["date"].intValue
         
-        if let postAuthorID = responseObject["from_id"] as? Int {
-            self.postAuthorID = String(postAuthorID)
-        }
+//        if let postDate = responseObject["date"] as? Int {
+//            self.commentDate = postDate
+//        }
         
-        let likesDict = responseObject["likes"] as! [String: Any]
+        self.postAuthorID = String(responseObject["from_id"].intValue)
         
-        if let commentLikesCount = likesDict["count"] as? Int {
-            self.commentLikesCount = commentLikesCount
-        }
+//        if let postAuthorID = responseObject["from_id"] as? Int {
+//            self.postAuthorID = String(postAuthorID)
+//        }
         
-        if let isLikedByCurrentUser = likesDict["can_like"] as? Int {
-            self.isLikedByCurrentUser = isLikedByCurrentUser == 0 ? true : false
-        }
+        self.commentLikesCount = responseObject["likes"]["count"].intValue
+        
+//        let likesDict = responseObject["likes"] as! [String: Any]
+//
+//        if let commentLikesCount = likesDict["count"] as? Int {
+//            self.commentLikesCount = commentLikesCount
+//        }
+        
+        let isLikedByCurrentUser = responseObject["likes"]["can_like"].intValue
+        
+        self.isLikedByCurrentUser = isLikedByCurrentUser == 0 ? true : false
+        
+//        if let isLikedByCurrentUser = likesDict["can_like"] as? Int {
+//            self.isLikedByCurrentUser = isLikedByCurrentUser == 0 ? true : false
+//        }
     }
     
     // MARK: - HELPER METHODS

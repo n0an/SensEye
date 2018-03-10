@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 class WallPost: ServerObject {
     
@@ -27,56 +28,74 @@ class WallPost: ServerObject {
     var isLikedByCurrentUser = false
     
     // MARK: - INITIALIZERS
-    required init(responseObject: [String: Any]) {
+    required init(responseObject: JSON) {
         
-        if let postID = responseObject["id"] as? Int {
-            self.postID = String(postID)
-        }
+        self.postID = String(responseObject["id"].intValue)
         
-        if let postText = responseObject["text"] as? String {
-            self.postText = postText
-        }
+//        if let postID = responseObject["id"] as? Int {
+//            self.postID = String(postID)
+//        }
         
-        if let postDate = responseObject["date"] as? Int {
-            self.postDate = postDate
-        }
+        self.postText = responseObject["text"].stringValue
         
-        if let postAuthorID = responseObject["from_id"] as? Int {
-            self.postAuthorID = String(postAuthorID)
-        }
+//        if let postText = responseObject["text"] as? String {
+//            self.postText = postText
+//        }
         
-        let commentsDict = responseObject["comments"] as! [String: Any]
+        self.postDate = responseObject["date"].intValue
         
-        if let postComments = commentsDict["count"] as? Int {
-            self.postComments = String(postComments)
-        }
+//        if let postDate = responseObject["date"] as? Int {
+//            self.postDate = postDate
+//        }
+        
+        self.postAuthorID = String(responseObject["from_id"].intValue)
+        
+//        if let postAuthorID = responseObject["from_id"] as? Int {
+//            self.postAuthorID = String(postAuthorID)
+//        }
+        
+//        let commentsDict = responseObject["comments"] as! [String: Any]
+        
+        self.postComments = String(responseObject["comments"]["count"].intValue)
+        
+//        if let postComments = commentsDict["count"] as? Int {
+//            self.postComments = String(postComments)
+//        }
 
-        let likesDict = responseObject["likes"] as! [String: Any]
+//        let likesDict = responseObject["likes"] as! [String: Any]
         
-        if let postLikesCount = likesDict["count"] as? Int {
-            self.postLikesCount = postLikesCount
-        }
+        self.postLikesCount = responseObject["likes"]["count"].intValue
         
-        if let isLikedByCurrentUser = likesDict["can_like"] as? Int {
-            self.isLikedByCurrentUser = isLikedByCurrentUser == 0 ? true : false
-        }
+//        if let postLikesCount = likesDict["count"] as? Int {
+//            self.postLikesCount = postLikesCount
+//        }
+        
+        let isLikedByCurrentUser = responseObject["likes"]["can_like"].intValue
+        
+        self.isLikedByCurrentUser = isLikedByCurrentUser == 0 ? true : false
+        
+//        if let isLikedByCurrentUser = likesDict["can_like"] as? Int {
+//            self.isLikedByCurrentUser = isLikedByCurrentUser == 0 ? true : false
+//        }
         
         
         // Attachments
-        guard let attachments = responseObject["attachments"] as? [Any] else {
-            return
-        }
+//        guard let attachments = responseObject["attachments"] as? [Any] else {
+//            return
+//        }
+        
+        let attachments = responseObject["attachments"].arrayValue
         
         
         var attachmentsArray = [Any]()
         
         for item in attachments {
-            let attachmentItem = item as! [String: Any]
-            let attachmentType = attachmentItem["type"] as! String
+//            let attachmentItem = item as! [String: Any]
+            let attachmentType = item["type"].stringValue
             
             if attachmentType == "photo" {
                 // Parse Photo Attachment
-                let attachmentDict = attachmentItem["photo"] as! [String: Any]
+                let attachmentDict = item["photo"]
                 
                 let photoAttachment = Photo(responseObject: attachmentDict)
                 
@@ -84,7 +103,7 @@ class WallPost: ServerObject {
                 
             } else if attachmentType == "album" {
                 // Parse Album Attachment
-                let attachmentDict = attachmentItem["album"] as! [String: Any]
+                let attachmentDict = item["album"]
                 
                 let albumAttachment = PhotoAlbum(responseObject: attachmentDict)
                 

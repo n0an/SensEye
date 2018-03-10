@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 protocol ServerObject {
     
@@ -16,5 +17,5 @@ protocol ServerObject {
     var postGroupAuthor: Group? { get set }
     
     // MARK: - INITIALIZERS
-    init(responseObject: [String: Any])
+    init(responseObject: JSON)
 }

@@ -37,7 +37,6 @@ let mainTintColor           = UIColor(red: 10/255, green: 80/255, blue: 80/255, 
 
 let cellSelectionColor      = UIColor(white: 1.0, alpha: 0.2)
 
-
 // MARK: - ===== VK CONSTANTS =====
 
 public let groupID                  = "-55347641"
@@ -92,11 +91,7 @@ let kMAXDURATION: Double    = 20.0
 
 
 // MARK: - ==== CHAT SETTINGS ===
-
 public let kNUMBEROFMESSAGES = 40
 
 public let KEY_CHAT_USER        = "chatCurrentUser"
 public let KEY_CHAT_OF_USER     = "chatForCurrentUser"
-
-
-

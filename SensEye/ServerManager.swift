@@ -44,10 +44,10 @@ class ServerManager {
     // MARK: - VK AUTHORIZATION
     func tokenToDictionary(token: VKAccessToken) -> [String: Any] {
         let tokenDictionary = [
-                    "tokenString"       : token.token,
-                    "expirationDate"    : token.expirationDate,
-                    "userID"            : token.userID
-        ] as [String : Any]
+            "tokenString"       : token.token,
+            "expirationDate"    : token.expirationDate,
+            "userID"            : token.userID
+            ] as [String : Any]
         
         return tokenDictionary
     }
@@ -98,7 +98,7 @@ class ServerManager {
         
         UserDefaults.standard.set(false, forKey: KEY_VK_DIDAUTH)
         UserDefaults.standard.set(false, forKey: KEY_VK_USERCANCELAUTH)
-
+        
         self.vkAccessToken = nil
         self.currentVKUser = nil
         
@@ -153,7 +153,7 @@ class ServerManager {
         params[URL_PARAMS.ALBUM_ID.rawValue] = albumID
         params[URL_PARAMS.REV.rawValue] = 0
         params[URL_PARAMS.EXTENDED.rawValue] = 1
-
+        
         if let offset = offset {
             
             params[URL_PARAMS.OFFSET.rawValue] = offset
@@ -165,22 +165,22 @@ class ServerManager {
         
         self.networkActivityIndicatorVisible = true
         
-        Alamofire.request(url!, method: .get, parameters: params, encoding: URLEncoding(), headers: nil).responseJSON { (responseJson) in
+        Alamofire.request(url!, method: .get, parameters: params, encoding: URLEncoding(), headers: nil).responseData { (response) in
             
             self.networkActivityIndicatorVisible = false
             
-            switch responseJson.result {
-            case .success(let jsonValue):
-              
-                guard let responseRoot = jsonValue as? [String: Any] else {return}
-                guard let response = responseRoot["response"] as? [String: Any] else {return}
-                guard let photoItemsArray = response["items"] as? [Any] else {return}
+            switch response.result {
+            case .success(let data):
+                
+                guard let json = try? JSON(data: data) else { return }
+                
+                let photoItemsArray = json["response"]["items"].arrayValue
                 
                 var photosArray: [Photo] = []
                 
                 for item in photoItemsArray {
-                    let photoItem = item as! [String: Any]
-                    let photo = Photo(responseObject: photoItem)
+
+                    let photo = Photo(responseObject: item)
                     photosArray.append(photo)
                 }
                 
@@ -204,22 +204,22 @@ class ServerManager {
         
         self.networkActivityIndicatorVisible = true
         
-        Alamofire.request(url!, method: .get, parameters: params, encoding: URLEncoding(), headers: nil).responseJSON { (responseJson) in
+        Alamofire.request(url!, method: .get, parameters: params, encoding: URLEncoding(), headers: nil).responseData { (response) in
             
             self.networkActivityIndicatorVisible = false
             
-            switch responseJson.result {
-            case .success(let jsonValue):
+            switch response.result {
+            case .success(let data):
                 
-                guard let responseRoot = jsonValue as? [String: Any] else {return}
-                guard let response = responseRoot["response"] as? [String: Any] else {return}
-                guard let albumItemsArray = response["items"] as? [Any] else {return}
+                guard let json = try? JSON(data: data) else { return }
+               
+                let albumItemsArray = json["response"]["items"].arrayValue
                 
                 var albumsArray: [PhotoAlbum] = []
                 
                 for item in albumItemsArray {
-                    let albumItem = item as! [String: Any]
-                    let photoAlbum = PhotoAlbum(responseObject: albumItem)
+                    
+                    let photoAlbum = PhotoAlbum(responseObject: item)
                     albumsArray.append(photoAlbum)
                 }
                 
@@ -246,7 +246,7 @@ class ServerManager {
         params[URL_PARAMS.OFFSET.rawValue] = offset
         params[URL_PARAMS.LANG.rawValue] = "ru"
         params[URL_PARAMS.EXTENDED.rawValue] = 1
-
+        
         if feedType == .comment {
             params[URL_PARAMS.POST_ID.rawValue] = postID!
             params[URL_PARAMS.NEED_LIKES.rawValue] = 1
@@ -260,58 +260,51 @@ class ServerManager {
         
         self.networkActivityIndicatorVisible = true
         
-        Alamofire.request(url!, method: .get, parameters: params, encoding: URLEncoding(), headers: nil).responseJSON { (responseJson) in
+        Alamofire.request(url!, method: .get, parameters: params, encoding: URLEncoding(), headers: nil).responseData { (response) in
             
             self.networkActivityIndicatorVisible = false
             
-            switch responseJson.result {
-            case .success(let jsonValue):
+            guard let data = response.data,
+                let json = try? JSON(data: data) else { return }
+            
+            let itemsArray      = json["response"]["items"].arrayValue
+            let profilesArray   = json["response"]["profiles"].arrayValue
+            let groupsArray     = json["response"]["groups"].arrayValue
+            
+            
+            // Parsing Group object
+            var group: Group?
+            
+            if groupsArray.count > 0 {
+                group = Group(responseObject: groupsArray[0])
+            }
+            
+            // Parsing Profiles
+            var authorsArray = [User]()
+            
+            for item in profilesArray {
+                let profile = User(responseObject: item)
+                authorsArray.append(profile)
+            }
+            
+            // Parsing posts or comments objects
+            if feedType == .post {
+                let parsedObjects: [WallPost] = self.parseFeedObjects(forArray: itemsArray, authorsArray: authorsArray, group: group)
                 
-                guard let responseRoot = jsonValue as? [String: Any] else {return}
-                guard let response = responseRoot["response"] as? [String: Any] else {return}
-                guard let itemsArray = response["items"] as? [Any] else {return}
-                guard let profilesArray = response["profiles"] as? [Any] else {return}
-                guard let groupsArray = response["groups"] as? [Any] else {return}
+                var cleanedParsedObjects = [WallPost]()
                 
-                // Parsing Group object
-                var group: Group?
-                
-                if groupsArray.count > 0 {
-                    group = Group(responseObject: groupsArray[0] as! [String : Any])
-                }
-                
-                // Parsing Profiles
-                var authorsArray = [User]()
-                
-                for item in profilesArray {
-                    let profileItem = item as! [String: Any]
-                    let profile = User(responseObject: profileItem)
-                    authorsArray.append(profile)
-                }
-                
-                // Parsing posts or comments objects
-                if feedType == .post {
-                    let parsedObjects: [WallPost] = self.parseFeedObjects(forArray: itemsArray, authorsArray: authorsArray, group: group)
-                    
-                    var cleanedParsedObjects = [WallPost]()
-                    
-                    for post in parsedObjects {
-                        if post.postText != "" || post.postAttachments != nil {
-                            cleanedParsedObjects.append(post)
-                        }
+                for post in parsedObjects {
+                    if post.postText != "" || post.postAttachments != nil {
+                        cleanedParsedObjects.append(post)
                     }
-                    
-                    completed(cleanedParsedObjects)
-                    
-                } else {
-                    let parsedObjects: [Comment] = self.parseFeedObjects(forArray: itemsArray, authorsArray: authorsArray, group: group)
-                    
-                    completed(parsedObjects)
                 }
                 
-            case .failure(let error):
-                print("error: \(error.localizedDescription)")
+                completed(cleanedParsedObjects)
                 
+            } else {
+                let parsedObjects: [Comment] = self.parseFeedObjects(forArray: itemsArray, authorsArray: authorsArray, group: group)
+                
+                completed(parsedObjects)
             }
         }
     }
@@ -366,18 +359,19 @@ class ServerManager {
         
         self.networkActivityIndicatorVisible = true
         
-        Alamofire.request(url!, method: .post, parameters: params, encoding: URLEncoding(), headers: nil).responseJSON { (responseJson) in
+        Alamofire.request(url!, method: .post, parameters: params, encoding: URLEncoding(), headers: nil).responseData { (response) in
             
             self.networkActivityIndicatorVisible = false
             
-            switch responseJson.result {
-            case .success(let jsonValue):
+            switch response.result {
+            case .success(let data):
                 
-                guard let responseRoot = jsonValue as? [String: Any] else {return}
-                guard let response = responseRoot["response"] as? [Any] else {return}
+                guard let json = try? JSON(data: data) else { return }
+                
+                let response = json["response"].arrayValue
                 
                 if response.count > 0 {
-                    let userItem = response[0] as! [String: Any]
+                    let userItem = response[0]
                     let user = User(responseObject: userItem)
                     completed(user)
                 }
@@ -480,14 +474,13 @@ class ServerManager {
     }
     
     // MARK: - HELPER METHODS
-    func parseFeedObjects<T: ServerObject>(forArray array: [Any], authorsArray: [User], group: Group?) -> [T] {
+    func parseFeedObjects<T: ServerObject>(forArray array: [JSON], authorsArray: [User], group: Group?) -> [T] {
         
         var feedObjectsArray = [T]()
         
         for item in array {
-            let postItem = item as! [String: Any]
             
-            var post = T(responseObject: postItem)
+            var post = T.init(responseObject: item)
             
             feedObjectsArray.append(post)
             
@@ -504,9 +497,10 @@ class ServerManager {
                 }
             }
         }
-    
+        
         return feedObjectsArray
     }
+    
 }
 
 

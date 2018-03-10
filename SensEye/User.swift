@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 class User {
     
@@ -17,22 +18,31 @@ class User {
     var imageURL: String!
     
     // MARK: - INITIALIZERS
-    init(responseObject: [String: Any]) {
+    init(responseObject: JSON) {
         
-        if let userID = responseObject["id"] as? Int {
-            self.userID = String(userID)
-        }
+        self.userID = String(responseObject["id"].intValue)
         
-        if let firstName = responseObject["first_name"] as? String {
-            self.firstName = firstName
-        }
+//        if let userID = responseObject["id"] as? Int {
+//            self.userID = String(userID)
+//        }
         
-        if let lastName = responseObject["last_name"] as? String {
-            self.lastName = lastName
-        }
+        self.firstName = responseObject["first_name"].stringValue
         
-        if let url50 = responseObject["photo_50"] as? String {
-            self.imageURL = url50
-        }
+//        if let firstName = responseObject["first_name"] as? String {
+//            self.firstName = firstName
+//        }
+        
+        self.lastName = responseObject["last_name"].stringValue
+        
+//        if let lastName = responseObject["last_name"] as? String {
+//            self.lastName = lastName
+//        }
+
+        
+        self.imageURL = responseObject["photo_50"].stringValue
+
+//        if let url50 = responseObject["photo_50"] as? String {
+//            self.imageURL = url50
+//        }
     }
 }
