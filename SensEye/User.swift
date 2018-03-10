@@ -22,27 +22,10 @@ class User {
         
         self.userID = String(responseObject["id"].intValue)
         
-//        if let userID = responseObject["id"] as? Int {
-//            self.userID = String(userID)
-//        }
-        
         self.firstName = responseObject["first_name"].stringValue
-        
-//        if let firstName = responseObject["first_name"] as? String {
-//            self.firstName = firstName
-//        }
         
         self.lastName = responseObject["last_name"].stringValue
         
-//        if let lastName = responseObject["last_name"] as? String {
-//            self.lastName = lastName
-//        }
-
-        
         self.imageURL = responseObject["photo_50"].stringValue
-
-//        if let url50 = responseObject["photo_50"] as? String {
-//            self.imageURL = url50
-//        }
     }
 }

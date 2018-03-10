@@ -390,7 +390,7 @@ extension FeedViewController: FeedCellDelegate {
         if let photosArray = wallPost.postAttachments as? [Photo] {
             performJellyTransition(withPhotos: photosArray, indexOfPhoto: clickedPhotoIndex)
 
-        } else if let albumAttach = wallPost.postAttachments?[0] as? PhotoAlbum {
+        } else if let albumAttach = wallPost.postAttachments[0] as? PhotoAlbum {
             
             ServerManager.sharedManager.getPhotos(forAlbumID: albumAttach.albumID, ownerID: albumAttach.ownerID, completed: { (result) in
                 

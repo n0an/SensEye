@@ -34,48 +34,24 @@ class PhotoAlbum {
         
         self.ownerID = String(responseObject["owner_id"].intValue)
         
-//        if let ownderID = responseObject["owner_id"] as? Int {
-//            self.ownerID = String(ownderID)
-//        }
-        
         self.albumTitle = responseObject["title"].stringValue
-        
-//        if let albumTitle = responseObject["title"] as? String {
-//            self.albumTitle = albumTitle
-//        }
-        
         
         self.albumDescription = responseObject["description"].stringValue
 
-        
-//        if let albumDescription = responseObject["description"] as? String {
-//            self.albumDescription = albumDescription
-//        }
-        
         self.albumSize = responseObject["size"].intValue
-
-        
-//        if let albumSize = responseObject["size"] as? Int {
-//            self.albumSize = albumSize
-//        }
 
         self.albumThumbID = String(responseObject["thumb_id"].intValue)
 
-        
-//        if let albumThumbID = responseObject["thumb_id"] as? Int {
-//            self.albumThumbID = String(albumThumbID)
-//        }
-        
         self.albumThumbImageURL = responseObject["thumb_src"].stringValue
 
         
-//        if let albumThumbImageURL = responseObject["thumb_src"] as? String {
-//            self.albumThumbImageURL = albumThumbImageURL
-//        }
+        if responseObject["thumb"].dictionary != nil {
+            let albumThumbPhoto = Photo(responseObject: responseObject["thumb"])
+            self.albumThumbPhoto = albumThumbPhoto
+        }
         
-        
-        let albumThumbPhoto = Photo(responseObject: responseObject["thumb"])
-        self.albumThumbPhoto = albumThumbPhoto
+//        let albumThumbPhoto = Photo(responseObject: responseObject["thumb"])
+//        self.albumThumbPhoto = albumThumbPhoto
         
 //        if let thumbDict = responseObject["thumb"] {
 //            let albumThumbPhoto = Photo(responseObject: thumbDict)

@@ -56,15 +56,7 @@ class Photo {
         
         self.width = responseObject["width"].intValue
         
-//        if let width = responseObject["width"] as? Int {
-//            self.width = width
-//        }
-        
         self.height = responseObject["height"].intValue
-        
-//        if let height = responseObject["height"] as? Int {
-//            self.height = height
-//        }
         
         self.photo_75 = responseObject[kPhoto_75].stringValue
         self.photo_130 = responseObject[kPhoto_130].stringValue

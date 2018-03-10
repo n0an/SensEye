@@ -294,7 +294,7 @@ class ServerManager {
                 var cleanedParsedObjects = [WallPost]()
                 
                 for post in parsedObjects {
-                    if post.postText != "" || post.postAttachments != nil {
+                    if post.postText != "" || !post.postAttachments.isEmpty {
                         cleanedParsedObjects.append(post)
                     }
                 }

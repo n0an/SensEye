@@ -48,7 +48,7 @@ class PostPhotoGallery {
         // === PART 1. CHECKINGS
         //  If post contains no photos - set all ImageViews height to 0 (collapsing all Gallery ImageViews), and return cell immediately
         
-        guard var postAttachments = post.postAttachments else { return }
+        var postAttachments = post.postAttachments
         
         if postAttachments.isEmpty {
             
