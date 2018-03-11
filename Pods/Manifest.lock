@@ -88,6 +88,7 @@ PODS:
   - nanopb/encode (0.3.8)
   - OneSignal (2.7.2)
   - pop (1.0.10)
+  - RevealingSplashView (0.4.0)
   - SAMCache (0.3.3)
   - SDWebImage (4.0.0):
     - SDWebImage/Core (= 4.0.0)
@@ -114,6 +115,7 @@ DEPENDENCIES:
   - Jelly
   - JSQMessagesViewController
   - OneSignal
+  - RevealingSplashView
   - SAMCache
   - Spring (from `https://github.com/MengTo/Spring.git`, branch `swift3`)
   - SVPullToRefresh
@@ -160,6 +162,7 @@ SPEC CHECKSUMS:
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   OneSignal: 02166aa47052b5c339a4231d6ee0bb8cbaf4f9be
   pop: 82ca6b068ce9278fd350fd9dd09482a0ce9492e6
+  RevealingSplashView: 72be158ad5e1bc72713e8f78383dc3e1803ce4d1
   SAMCache: 790b2623a3e087c903daff872c90c248726c4c82
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
   Spring: 3f02b5dc3308572ef177b3cad0fa7bbc4b0706f7
@@ -168,6 +171,6 @@ SPEC CHECKSUMS:
   SwiftSpinner: 4c058c7a1d6b444dd2e1d70988ead40783097133
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
 
-PODFILE CHECKSUM: de19d657c85d461e0c7ca64c861939cc25fa2b3a
+PODFILE CHECKSUM: 8d4df2d4dd52203187c6ea6587adf663e2d277d1
 
-COCOAPODS: 1.4.0.rc.1
+COCOAPODS: 1.4.0
