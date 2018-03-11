@@ -57,5 +57,7 @@ target 'SensEye' do
   pod 'Crashlytics'
   
   pod 'SwiftyJSON'
+  
+  pod 'RevealingSplashView'
 
 end

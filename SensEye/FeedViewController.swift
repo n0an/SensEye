@@ -12,6 +12,7 @@ import AlamofireImage
 import SVPullToRefresh
 import Jelly
 import IDMPhotoBrowser
+import RevealingSplashView
 
 class FeedViewController: UIViewController {
     
@@ -25,6 +26,8 @@ class FeedViewController: UIViewController {
         static let seguePostVC          = "showPost"
         static let segueCommentComposer = "ShowCommentComposer"
     }
+    
+    let revealingSplashView = RevealingSplashView(iconImage: UIImage(named: "dark_crop_1000")!, iconInitialSize: CGSize.init(width: 249, height: 133), backgroundColor: UIColor.white)
     
     var wallPosts: [WallPost] = []
     let postsInRequest = 10
@@ -69,6 +72,11 @@ class FeedViewController: UIViewController {
             // Fallback on earlier versions
             self.tableView.addSubview(refreshControl)
         }
+        
+        self.view.addSubview(revealingSplashView)
+        revealingSplashView.animationType = .heartBeat
+        revealingSplashView.startAnimation()
+        
         self.refreshControl = refreshControl
         
         loadCustomRefreshContents()
@@ -153,6 +161,8 @@ class FeedViewController: UIViewController {
             self.loadingData = false
             GeneralHelper.sharedHelper.hideSpinner(onView: self.view)
             self.tableView.infiniteScrollingView.stopAnimating()
+            
+            self.revealingSplashView.heartAttack = true
         }
     }
     
