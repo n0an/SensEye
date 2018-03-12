@@ -60,4 +60,6 @@ target 'SensEye' do
   
   pod 'RevealingSplashView'
 
+  pod 'R.swift'
+
 end
