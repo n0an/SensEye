@@ -20,6 +20,7 @@
 		1826818F1E1D79D300D96764 /* ServerObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1826818E1E1D79D300D96764 /* ServerObject.swift */; };
 		182681911E1D7C9C00D96764 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182681901E1D7C9C00D96764 /* PostViewController.swift */; };
 		182681931E1D822500D96764 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182681921E1D822500D96764 /* CommentCell.swift */; };
+		1835A7EF2063D53900BA4AF8 /* FeedDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1835A7EE2063D53900BA4AF8 /* FeedDataSource.swift */; };
 		1838C2411E110A7700E02F88 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1838C2401E110A7700E02F88 /* Constants.swift */; };
 		1838C2431E11193E00E02F88 /* WallPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1838C2421E11193E00E02F88 /* WallPost.swift */; };
 		1838C2471E112CA200E02F88 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1838C2461E112CA200E02F88 /* Group.swift */; };
@@ -85,6 +86,7 @@
 		1826818E1E1D79D300D96764 /* ServerObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerObject.swift; sourceTree = "<group>"; };
 		182681901E1D7C9C00D96764 /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		182681921E1D822500D96764 /* CommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
+		1835A7EE2063D53900BA4AF8 /* FeedDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedDataSource.swift; sourceTree = "<group>"; };
 		1838C2401E110A7700E02F88 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		1838C2421E11193E00E02F88 /* WallPost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WallPost.swift; sourceTree = "<group>"; };
 		1838C2461E112CA200E02F88 /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
@@ -315,6 +317,7 @@
 			children = (
 				18D623611E1FCCC800138117 /* VKLoginViewController.swift */,
 				188C04F71E1074C8008B58EB /* FeedViewController.swift */,
+				1835A7EE2063D53900BA4AF8 /* FeedDataSource.swift */,
 				182681901E1D7C9C00D96764 /* PostViewController.swift */,
 				18880A7B1E43C6A30083D0B4 /* CommentComposerViewController.swift */,
 			);
@@ -664,6 +667,7 @@
 				186E2A281E34A9400011AB88 /* ChatTableViewCell.swift in Sources */,
 				18D623621E1FCCC800138117 /* VKLoginViewController.swift in Sources */,
 				18C395381E1676F200AE1867 /* Extensions.swift in Sources */,
+				1835A7EF2063D53900BA4AF8 /* FeedDataSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

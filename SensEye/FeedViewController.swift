@@ -14,22 +14,23 @@ import Jelly
 import IDMPhotoBrowser
 import RevealingSplashView
 
+enum Storyboard {
+    static let feedCellId               = "FeedCell"
+    static let feedRowHeight: CGFloat   = 370.0
+    static let seguePostVC              = "showPost"
+    static let segueCommentComposer     = "ShowCommentComposer"
+}
+
 class FeedViewController: UIViewController {
     
     // MARK: - OUTLETS
     @IBOutlet weak var tableView: UITableView!
     
     // MARK: - PROPERTIES
-    enum Storyboard {
-        static let cellId               = "FeedCell"
-        static let rowHeight: CGFloat   = 370.0
-        static let seguePostVC          = "showPost"
-        static let segueCommentComposer = "ShowCommentComposer"
-    }
     
     let revealingSplashView = RevealingSplashView(iconImage: UIImage(named: "dark_crop_1000")!, iconInitialSize: CGSize.init(width: 249, height: 133), backgroundColor: UIColor.white)
     
-    var wallPosts: [WallPost] = []
+//    var wallPosts: [WallPost] = []
     let postsInRequest = 10
 
     var loadingData = false
@@ -46,14 +47,18 @@ class FeedViewController: UIViewController {
     
     var splashAnimated = false
     
+    var feedDataSource: FeedDataSource!
+    
     // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.delegate = self
-        tableView.dataSource = self
+        feedDataSource = FeedDataSource(vc: self)
         
-        tableView.estimatedRowHeight = Storyboard.rowHeight
+        tableView.delegate = self
+        tableView.dataSource = feedDataSource
+        
+        tableView.estimatedRowHeight = Storyboard.feedRowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
         
         self.tableView.addInfiniteScrolling { 
@@ -103,7 +108,7 @@ class FeedViewController: UIViewController {
                 self.toAuthorize()
                 
             } else {
-                if self.wallPosts.count == 0 {
+                if feedDataSource.wallPosts.count == 0 {
                     self.loadingData = true
                     getPostsFromServer()
                 }
@@ -131,21 +136,21 @@ class FeedViewController: UIViewController {
         
         GeneralHelper.sharedHelper.showSpinner(onView: self.view, usingBoundsFromView: self.tableView)
         
-        ServerManager.sharedManager.getFeed(forType: .post, ownerID: groupID, offset: self.wallPosts.count, count: postsInRequest) { (posts) in
+        ServerManager.sharedManager.getFeed(forType: .post, ownerID: groupID, offset: self.feedDataSource.wallPosts.count, count: postsInRequest) { (posts) in
             
             if posts.count > 0 {
                 guard let posts = posts as? [WallPost] else { return }
                 
-                if self.wallPosts.count == 0 {
-                    self.wallPosts = posts
+                if self.feedDataSource.wallPosts.count == 0 {
+                    self.feedDataSource.wallPosts = posts
                     self.tableView.reloadData()
                     
                 } else {
-                    self.wallPosts.append(contentsOf: posts)
+                    self.feedDataSource.wallPosts.append(contentsOf: posts)
                     var newPaths = [IndexPath]()
-                    var index = self.wallPosts.count - posts.count
+                    var index = self.feedDataSource.wallPosts.count - posts.count
                     
-                    while index < self.wallPosts.count {
+                    while index < self.feedDataSource.wallPosts.count {
                         let newIndPath = IndexPath(row: index, section: 0)
                         newPaths.append(newIndPath)
                         
@@ -172,12 +177,12 @@ class FeedViewController: UIViewController {
             
             GeneralHelper.sharedHelper.showSpinner(onView: self.view, usingBoundsFromView: self.tableView)
             
-            ServerManager.sharedManager.getFeed(forType: .post, ownerID: groupID, offset: 0, count: max(postsInRequest, self.wallPosts.count)) { (posts) in
+            ServerManager.sharedManager.getFeed(forType: .post, ownerID: groupID, offset: 0, count: max(postsInRequest, feedDataSource.wallPosts.count)) { (posts) in
                 
                 if posts.count > 0 {
                     guard let posts = posts as? [WallPost] else { return }
-                    self.wallPosts.removeAll()
-                    self.wallPosts.append(contentsOf: posts)
+                    self.feedDataSource.wallPosts.removeAll()
+                    self.feedDataSource.wallPosts.append(contentsOf: posts)
                     self.tableView.reloadData()
                 }
                 
@@ -295,25 +300,6 @@ class FeedViewController: UIViewController {
     }
 }
 
-// MARK: - UITableViewDataSource
-extension FeedViewController: UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return wallPosts.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Storyboard.cellId, for: indexPath) as! FeedCell
-        
-        let wallPost = self.wallPosts[indexPath.row]
-        
-        cell.wallPost = wallPost
-        cell.delegate = self
-        
-        return cell
-    }
-}
-
 // MARK: - UITableViewDelegate
 extension FeedViewController: UITableViewDelegate {
     
@@ -420,7 +406,7 @@ extension FeedViewController: FeedCellDelegate {
 extension FeedViewController: PostViewControllerDelegate {
     
     func postViewControllerWillDisappear(withPost post: WallPost) {
-        if let index = self.wallPosts.index(of: post) {
+        if let index = self.feedDataSource.wallPosts.index(of: post) {
             
             let indexPath = IndexPath(row: index, section: 0)
             let cell = tableView.cellForRow(at: indexPath) as! FeedCell
@@ -436,9 +422,9 @@ extension FeedViewController: CommentComposerViewControllerDelegate {
     
     func commentDidSend(withPost post: WallPost) {
         
-        if let index = self.wallPosts.index(of: post) {
+        if let index = self.feedDataSource.wallPosts.index(of: post) {
             let indexPath = IndexPath(row: index, section: 0)
-            let commentedPost = self.wallPosts[index]
+            let commentedPost = self.feedDataSource.wallPosts[index]
             let initialCommentsCount = Int(commentedPost.postComments)
             
             commentedPost.postComments = String(initialCommentsCount! + 1)
