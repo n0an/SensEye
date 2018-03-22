@@ -30,12 +30,11 @@ class FeedViewController: UIViewController {
     
     let revealingSplashView = RevealingSplashView(iconImage: UIImage(named: "dark_crop_1000")!, iconInitialSize: CGSize.init(width: 249, height: 133), backgroundColor: UIColor.white)
     
-//    var wallPosts: [WallPost] = []
     let postsInRequest = 10
 
     var loadingData = false
     
-    fileprivate var jellyAnimator: JellyAnimator?
+//    fileprivate var jellyAnimator: JellyAnimator?
     
     private var refreshControl: UIRefreshControl!
     
@@ -48,14 +47,16 @@ class FeedViewController: UIViewController {
     var splashAnimated = false
     
     var feedDataSource: FeedDataSource!
+    var cellDelegate: CellDelegate!
     
     // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         
         feedDataSource = FeedDataSource(vc: self)
+        cellDelegate = CellDelegate(vc: self)
         
-        tableView.delegate = self
+        tableView.delegate = feedDataSource
         tableView.dataSource = feedDataSource
         
         tableView.estimatedRowHeight = Storyboard.feedRowHeight
@@ -194,6 +195,12 @@ class FeedViewController: UIViewController {
     }
     
     // MARK: - HELPER METHODS
+    func toAuthorize() {
+        ServerManager.sharedManager.authorize { (user) in
+            ServerManager.sharedManager.currentVKUser = user
+        }
+    }
+    
     func loadCustomRefreshContents() {
         let refreshContents = Bundle.main.loadNibNamed("RefreshContents", owner: self, options: nil)
         self.customRefreshView = refreshContents?[0] as! UIView
@@ -296,107 +303,6 @@ class FeedViewController: UIViewController {
             destinationVC.delegate = self
             
             destinationVC.wallPost = sender as! WallPost
-        }
-    }
-}
-
-// MARK: - UITableViewDelegate
-extension FeedViewController: UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        
-        let cell = tableView.cellForRow(at: indexPath) as! FeedCell
-        
-        performSegue(withIdentifier: Storyboard.seguePostVC, sender: cell)
-    }
-}
-
-// MARK: - === FeedCellDelegate ===
-extension FeedViewController: FeedCellDelegate {
-    func toAuthorize() {
-        ServerManager.sharedManager.authorize { (user) in
-            ServerManager.sharedManager.currentVKUser = user
-        }
-    }
-    
-    func provideAuthorization() {
-        
-        UserDefaults.standard.set(false, forKey: KEY_VK_USERCANCELAUTH)
-        UserDefaults.standard.synchronize()
-        GeneralHelper.sharedHelper.showVKAuthorizeActionSheetOnViewController(viewController: self) { (selected) in
-            
-            if selected == true {
-                self.toAuthorize()
-            }
-        }
-    }
-    
-    func commentDidTap(post: WallPost) {
-        performSegue(withIdentifier: Storyboard.segueCommentComposer, sender: post)
-    }
-    
-    func performJellyTransition(withPhotos photosArray: [Photo], indexOfPhoto: Int) {
-        
-        var urlsArray: [URL] = []
-        
-        for photo in photosArray {
-            var linkToNeededRes: String!
-            
-            if traitCollection.horizontalSizeClass == .regular && traitCollection.verticalSizeClass == .regular {
-                linkToNeededRes = photo.maxRes
-                
-            } else {
-                if photo.photo_1280 != nil {
-                    linkToNeededRes = photo.photo_1280
-                } else {
-                    linkToNeededRes = photo.maxRes
-                }
-            }
-            
-            let imageURL = URL(string: linkToNeededRes)
-            urlsArray.append(imageURL!)
-        }
-        
-        let photos = IDMPhoto.photos(withURLs: urlsArray)
-        
-        let browser = IDMPhotoBrowser(photos: photos)
-        
-        browser?.displayDoneButton      = true
-        browser?.displayActionButton    = false
-        browser?.doneButtonImage        = UIImage(named: "CloseButton")
-        browser?.setInitialPageIndex(UInt(indexOfPhoto))
-
-        let customBlurFadeInPresentation = JellyFadeInPresentation(dismissCurve: .easeInEaseOut,
-                                                                    presentationCurve: .easeInEaseOut,
-                                                                    cornerRadius: 0,
-                                                                    backgroundStyle: .blur(effectStyle: .light),
-                                                                    duration: .normal,
-                                                                    widthForViewController: .fullscreen,
-                                                                    heightForViewController: .fullscreen)
-        
-        
-        self.jellyAnimator = JellyAnimator(presentation: customBlurFadeInPresentation)
-        self.jellyAnimator?.prepare(viewController: browser!)
-        self.present(browser!, animated: true, completion: nil)
-    }
-    
-    func galleryImageViewDidTap(wallPost: WallPost, clickedPhotoIndex: Int) {
-        
-        if let photosArray = wallPost.postAttachments as? [Photo] {
-            performJellyTransition(withPhotos: photosArray, indexOfPhoto: clickedPhotoIndex)
-
-        } else if let albumAttach = wallPost.postAttachments[0] as? PhotoAlbum {
-            
-            ServerManager.sharedManager.getPhotos(forAlbumID: albumAttach.albumID, ownerID: albumAttach.ownerID, completed: { (result) in
-                
-                let photos = result as! [Photo]
-                
-                // Calculating index of clicked photo in album
-                let indexOfClickedPhotoInAlbum = photos.index(of: albumAttach.albumThumbPhoto!)
-                
-                self.performJellyTransition(withPhotos: photos, indexOfPhoto: indexOfClickedPhotoInAlbum ?? clickedPhotoIndex)
-            })
         }
     }
 }

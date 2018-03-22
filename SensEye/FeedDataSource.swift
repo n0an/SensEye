@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FeedDataSource: NSObject, UITableViewDataSource {
+class FeedDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     
     var wallPosts: [WallPost] = []
     
@@ -28,9 +28,17 @@ class FeedDataSource: NSObject, UITableViewDataSource {
         let wallPost = self.wallPosts[indexPath.row]
         
         cell.wallPost = wallPost
-        cell.delegate = vc
+        cell.delegate = vc?.cellDelegate
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let cell = tableView.cellForRow(at: indexPath) as! FeedCell
+        
+        vc?.performSegue(withIdentifier: Storyboard.seguePostVC, sender: cell)
     }
     
 }
