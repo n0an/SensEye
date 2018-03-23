@@ -11,6 +11,16 @@ import IDMPhotoBrowser
 import Jelly
 
 class CellDelegate: FeedCellDelegate {
+    
+    weak var vc: FeedViewController?
+    
+    fileprivate var jellyAnimator: JellyAnimator?
+    
+    
+    init(vc: FeedViewController) {
+        self.vc = vc
+    }
+    
     func feedCell(_ feedCell: FeedCell, didTapGalleryImageWith post: WallPost, withPhotoIndex index: Int) {
         if let photosArray = post.postAttachments as? [Photo] {
             performJellyTransition(withPhotos: photosArray, indexOfPhoto: index)
@@ -45,16 +55,6 @@ class CellDelegate: FeedCellDelegate {
     func feedCell(_ feedCell: FeedCell, didTapCommentFor post: WallPost) {
         vc?.performSegue(withIdentifier: Storyboard.segueCommentComposer, sender: post)
 
-    }
-    
-    
-    weak var vc: FeedViewController?
-    
-    fileprivate var jellyAnimator: JellyAnimator?
-
-    
-    init(vc: FeedViewController) {
-        self.vc = vc
     }
     
     

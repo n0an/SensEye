@@ -22,6 +22,8 @@
 		182681931E1D822500D96764 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182681921E1D822500D96764 /* CommentCell.swift */; };
 		1835A7EF2063D53900BA4AF8 /* FeedDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1835A7EE2063D53900BA4AF8 /* FeedDataSource.swift */; };
 		1835A7F32063DEED00BA4AF8 /* CellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1835A7F22063DEED00BA4AF8 /* CellDelegate.swift */; };
+		1835A83320652C6300BA4AF8 /* FeedCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1835A83220652C6300BA4AF8 /* FeedCellDelegate.swift */; };
+		1835A83520652C9D00BA4AF8 /* PostHeaderViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1835A83420652C9D00BA4AF8 /* PostHeaderViewDelegate.swift */; };
 		1838C2411E110A7700E02F88 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1838C2401E110A7700E02F88 /* Constants.swift */; };
 		1838C2431E11193E00E02F88 /* WallPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1838C2421E11193E00E02F88 /* WallPost.swift */; };
 		1838C2471E112CA200E02F88 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1838C2461E112CA200E02F88 /* Group.swift */; };
@@ -59,6 +61,8 @@
 		18C395321E166D0200AE1867 /* NSDate+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C395301E166D0200AE1867 /* NSDate+Utilities.m */; };
 		18C395361E16768F00AE1867 /* GeneralHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C395351E16768F00AE1867 /* GeneralHelper.swift */; };
 		18C395381E1676F200AE1867 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C395371E1676F200AE1867 /* Extensions.swift */; };
+		18D3704020652E31000553D3 /* CommentComposerViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D3703F20652E31000553D3 /* CommentComposerViewControllerDelegate.swift */; };
+		18D3704220652E98000553D3 /* PostViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D3704120652E98000553D3 /* PostViewControllerDelegate.swift */; };
 		18D623621E1FCCC800138117 /* VKLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D623611E1FCCC800138117 /* VKLoginViewController.swift */; };
 		18D623641E1FCD0D00138117 /* VKAccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D623631E1FCD0D00138117 /* VKAccessToken.swift */; };
 		18D6236C1E213AE200138117 /* AboutTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D6236B1E213AE200138117 /* AboutTableViewController.swift */; };
@@ -89,6 +93,8 @@
 		182681921E1D822500D96764 /* CommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		1835A7EE2063D53900BA4AF8 /* FeedDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedDataSource.swift; sourceTree = "<group>"; };
 		1835A7F22063DEED00BA4AF8 /* CellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellDelegate.swift; sourceTree = "<group>"; };
+		1835A83220652C6300BA4AF8 /* FeedCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCellDelegate.swift; sourceTree = "<group>"; };
+		1835A83420652C9D00BA4AF8 /* PostHeaderViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostHeaderViewDelegate.swift; sourceTree = "<group>"; };
 		1838C2401E110A7700E02F88 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		1838C2421E11193E00E02F88 /* WallPost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WallPost.swift; sourceTree = "<group>"; };
 		1838C2461E112CA200E02F88 /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
@@ -132,6 +138,8 @@
 		18C395311E166D0200AE1867 /* NSDate+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Utilities.h"; sourceTree = "<group>"; };
 		18C395351E16768F00AE1867 /* GeneralHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralHelper.swift; sourceTree = "<group>"; };
 		18C395371E1676F200AE1867 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		18D3703F20652E31000553D3 /* CommentComposerViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentComposerViewControllerDelegate.swift; sourceTree = "<group>"; };
+		18D3704120652E98000553D3 /* PostViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewControllerDelegate.swift; sourceTree = "<group>"; };
 		18D623611E1FCCC800138117 /* VKLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKLoginViewController.swift; sourceTree = "<group>"; };
 		18D623631E1FCD0D00138117 /* VKAccessToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKAccessToken.swift; sourceTree = "<group>"; };
 		18D6236B1E213AE200138117 /* AboutTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutTableViewController.swift; sourceTree = "<group>"; };
@@ -243,6 +251,7 @@
 				188FD7981E3544C4007CA1EE /* SensEye.entitlements */,
 				18AA37D01E1053F700D5BCB1 /* AppDelegate.swift */,
 				1842EE0620571396007055C0 /* R.generated.swift */,
+				18D3704320652F3F000553D3 /* Protocols */,
 				18C395331E166D1D00AE1867 /* Extensions */,
 				18FC625F1E114C1700E25A18 /* Model */,
 				18FC62601E114C1F00E25A18 /* View */,
@@ -299,10 +308,21 @@
 			name = Helpers;
 			sourceTree = "<group>";
 		};
+		18D3704320652F3F000553D3 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				1835A83220652C6300BA4AF8 /* FeedCellDelegate.swift */,
+				1835A83420652C9D00BA4AF8 /* PostHeaderViewDelegate.swift */,
+				18D3704120652E98000553D3 /* PostViewControllerDelegate.swift */,
+				18D3703F20652E31000553D3 /* CommentComposerViewControllerDelegate.swift */,
+				1826818E1E1D79D300D96764 /* ServerObject.swift */,
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
 		18D623731E214B5500138117 /* VK */ = {
 			isa = PBXGroup;
 			children = (
-				1826818E1E1D79D300D96764 /* ServerObject.swift */,
 				1838C2421E11193E00E02F88 /* WallPost.swift */,
 				1826818C1E1D781000D96764 /* Comment.swift */,
 				18FC625B1E113E9C00E25A18 /* Photo.swift */,
@@ -618,6 +638,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18D3704220652E98000553D3 /* PostViewControllerDelegate.swift in Sources */,
 				182681911E1D7C9C00D96764 /* PostViewController.swift in Sources */,
 				18DD2E2B1E1A484800451CE7 /* LandscapeViewController.swift in Sources */,
 				18D623701E21423D00138117 /* AboutCellSocnet.swift in Sources */,
@@ -627,6 +648,7 @@
 				18AEEC4B1E2FA30600AB97B4 /* UIImage+resize.swift in Sources */,
 				1838C2471E112CA200E02F88 /* Group.swift in Sources */,
 				1826818D1E1D781000D96764 /* Comment.swift in Sources */,
+				18D3704020652E31000553D3 /* CommentComposerViewControllerDelegate.swift in Sources */,
 				18251C481E2D51A5000DBE57 /* UITextField+Placeholder.swift in Sources */,
 				18D6236E1E21422E00138117 /* AboutCellInfo.swift in Sources */,
 				186E2A2E1E34BB940011AB88 /* ChatViewController.swift in Sources */,
@@ -654,6 +676,7 @@
 				18D623721E21469C00138117 /* Contact.swift in Sources */,
 				186E2A2C1E34B96F0011AB88 /* FRMessage.swift in Sources */,
 				1899316D1E2D4B7C006E00C6 /* LoginViewController.swift in Sources */,
+				1835A83520652C9D00BA4AF8 /* PostHeaderViewDelegate.swift in Sources */,
 				18FC625E1E11439D00E25A18 /* PhotoAlbum.swift in Sources */,
 				185456B91E3E4BAC006773C5 /* MySplitViewController.swift in Sources */,
 				18D623641E1FCD0D00138117 /* VKAccessToken.swift in Sources */,
@@ -661,6 +684,7 @@
 				183E2A1E1E16A24A0099F775 /* PostView.swift in Sources */,
 				18AA37D11E1053F700D5BCB1 /* AppDelegate.swift in Sources */,
 				18AEEC491E2FA01B00AB97B4 /* FRImage.swift in Sources */,
+				1835A83320652C6300BA4AF8 /* FeedCellDelegate.swift in Sources */,
 				18AEEC4F1E2FAB1100AB97B4 /* Camera.swift in Sources */,
 				188C04FA1E1074D6008B58EB /* FeedCell.swift in Sources */,
 				186E2A261E34A5D60011AB88 /* RecentViewController.swift in Sources */,

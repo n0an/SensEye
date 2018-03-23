@@ -10,11 +10,6 @@ import UIKit
 import Jelly
 import IDMPhotoBrowser
 
-// MARK: - DELEGATE
-protocol PostViewControllerDelegate: class {
-    func postViewControllerWillDisappear(withPost post: WallPost)
-}
-
 class PostViewController: UIViewController {
     
     // MARK: - OUTLETS

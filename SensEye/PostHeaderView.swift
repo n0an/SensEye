@@ -8,12 +8,6 @@
 
 import UIKit
 
-// MARK: - DELEGATE
-protocol PostHeaderViewDelegate: class {
-    func closeButtonTapped()
-    func logoutFromVKButtonTapped()
-}
-
 class PostHeaderView: UIView {
     
     // MARK: - OUTLETS

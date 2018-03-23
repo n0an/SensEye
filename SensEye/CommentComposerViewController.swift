@@ -8,10 +8,7 @@
 
 import UIKit
 
-// MARK: - DELEGATE
-protocol CommentComposerViewControllerDelegate: class {
-    func commentDidSend(withPost post: WallPost)
-}
+
 
 class CommentComposerViewController: UIViewController {
     

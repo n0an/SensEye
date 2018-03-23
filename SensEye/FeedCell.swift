@@ -10,14 +10,6 @@ import UIKit
 import Spring
 
 // MARK: - DELEGATE
-protocol FeedCellDelegate: AnyObject {
-    
-    func feedCell(_ feedCell: FeedCell, didTapGalleryImageWith post: WallPost, withPhotoIndex index: Int)
-    
-    func feedCellNeedProvideAuthorization(_ feedCell: UITableViewCell)
-    
-    func feedCell(_ feedCell: FeedCell, didTapCommentFor post: WallPost)
-}
 
 class FeedCell: UITableViewCell {
     
