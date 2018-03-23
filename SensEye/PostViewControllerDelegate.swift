@@ -9,6 +9,6 @@
 import Foundation
 
 // MARK: - DELEGATE
-protocol PostViewControllerDelegate: class {
+protocol PostViewControllerDelegate: AnyObject {
     func postViewControllerWillDisappear(withPost post: WallPost)
 }

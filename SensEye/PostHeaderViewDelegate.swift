@@ -9,7 +9,7 @@
 import Foundation
 
 // MARK: - DELEGATE
-protocol PostHeaderViewDelegate: class {
+protocol PostHeaderViewDelegate: AnyObject {
     func closeButtonTapped()
     func logoutFromVKButtonTapped()
 }
