@@ -10,10 +10,13 @@ import UIKit
 import Spring
 
 // MARK: - DELEGATE
-protocol FeedCellDelegate: class {
-    func galleryImageViewDidTap(wallPost: WallPost, clickedPhotoIndex: Int)
-    func provideAuthorization()
-    func commentDidTap(post: WallPost)
+protocol FeedCellDelegate: AnyObject {
+    
+    func feedCell(_ feedCell: FeedCell, didTapGalleryImageWith post: WallPost, withPhotoIndex index: Int)
+    
+    func feedCellNeedProvideAuthorization(_ feedCell: UITableViewCell)
+    
+    func feedCell(_ feedCell: FeedCell, didTapCommentFor post: WallPost)
 }
 
 class FeedCell: UITableViewCell {
@@ -72,7 +75,7 @@ class FeedCell: UITableViewCell {
     
     // MARK: - API METHODS
     func authorize() {
-        delegate?.provideAuthorization()
+        delegate?.feedCellNeedProvideAuthorization(self)
     }
     
     
@@ -187,7 +190,7 @@ class FeedCell: UITableViewCell {
         }
         
         if let clickedIndex = self.galleryImageViews.index(of: tappedImageView) {
-            self.delegate?.galleryImageViewDidTap(wallPost: self.wallPost, clickedPhotoIndex: clickedIndex)
+            self.delegate?.feedCell(self, didTapGalleryImageWith: self.wallPost, withPhotoIndex: clickedIndex)
         }
     }
     
@@ -226,7 +229,7 @@ class FeedCell: UITableViewCell {
             return
         }
         
-        self.delegate?.commentDidTap(post: self.wallPost)
+        self.delegate?.feedCell(self, didTapCommentFor: self.wallPost)
         
         animateButton(sender)
     }

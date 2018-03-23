@@ -363,14 +363,25 @@ extension PostViewController: PostHeaderViewDelegate {
 
 // MARK: - === FeedCellDelegate ===
 extension PostViewController: FeedCellDelegate {
-    
-    func toAuthorize() {
-        ServerManager.sharedManager.authorize { (user) in
-            ServerManager.sharedManager.currentVKUser = user
+    func feedCell(_ feedCell: FeedCell, didTapGalleryImageWith post: WallPost, withPhotoIndex index: Int) {
+        if let photosArray = wallPost.postAttachments as? [Photo] {
+            performJellyTransition(withPhotos: photosArray, indexOfPhoto: index)
+            
+        } else if let albumAttach = wallPost.postAttachments[0] as? PhotoAlbum {
+            
+            ServerManager.sharedManager.getPhotos(forAlbumID: albumAttach.albumID, ownerID: albumAttach.ownerID, completed: { (result) in
+                
+                let photos = result as! [Photo]
+                
+                // Calculating index of clicked photo in album
+                let indexOfClickedPhotoInAlbum = photos.index(of: albumAttach.albumThumbPhoto!)
+                
+                self.performJellyTransition(withPhotos: photos, indexOfPhoto: indexOfClickedPhotoInAlbum ?? index)
+            })
         }
     }
     
-    func provideAuthorization() {
+    func feedCellNeedProvideAuthorization(_ feedCell: UITableViewCell) {
         UserDefaults.standard.set(false, forKey: KEY_VK_USERCANCELAUTH)
         UserDefaults.standard.synchronize()
         
@@ -382,9 +393,16 @@ extension PostViewController: FeedCellDelegate {
         }
     }
     
-    func commentDidTap(post: WallPost) {
+    func feedCell(_ feedCell: FeedCell, didTapCommentFor post: WallPost) {
         performSegue(withIdentifier: Storyboard.segueCommentComposer, sender: post)
-        
+
+    }
+    
+    
+    func toAuthorize() {
+        ServerManager.sharedManager.authorize { (user) in
+            ServerManager.sharedManager.currentVKUser = user
+        }
     }
     
     func performJellyTransition(withPhotos photosArray: [Photo], indexOfPhoto: Int) {
@@ -434,24 +452,6 @@ extension PostViewController: FeedCellDelegate {
         self.present(browser!, animated: true, completion: nil)
     }
     
-    func galleryImageViewDidTap(wallPost: WallPost, clickedPhotoIndex: Int) {
-        
-        if let photosArray = wallPost.postAttachments as? [Photo] {
-            performJellyTransition(withPhotos: photosArray, indexOfPhoto: clickedPhotoIndex)
-            
-        } else if let albumAttach = wallPost.postAttachments[0] as? PhotoAlbum {
-            
-            ServerManager.sharedManager.getPhotos(forAlbumID: albumAttach.albumID, ownerID: albumAttach.ownerID, completed: { (result) in
-                
-                let photos = result as! [Photo]
-                
-                // Calculating index of clicked photo in album
-                let indexOfClickedPhotoInAlbum = photos.index(of: albumAttach.albumThumbPhoto!)
-                
-                self.performJellyTransition(withPhotos: photos, indexOfPhoto: indexOfClickedPhotoInAlbum ?? clickedPhotoIndex)
-            })
-        }
-    }
 }
 
 
