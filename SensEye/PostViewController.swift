@@ -245,7 +245,7 @@ class PostViewController: UIViewController {
     
     // MARK: - NOTIFICATIONS
     func listenForAuthenticationNotification() {
-        NotificationCenter.default.addObserver(self, selector: #selector(vkAuthorizationCompleted), name: Notification.Name(rawValue: "NotificationAuthorizationCompleted"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(vkAuthorizationCompleted), name: Notification.Name.ANNotificationAuthorizationCompleted, object: nil)
     }
     
     // MARK: - ACTIONS

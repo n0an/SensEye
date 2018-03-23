@@ -63,6 +63,7 @@
 		18C395381E1676F200AE1867 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C395371E1676F200AE1867 /* Extensions.swift */; };
 		18D3704020652E31000553D3 /* CommentComposerViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D3703F20652E31000553D3 /* CommentComposerViewControllerDelegate.swift */; };
 		18D3704220652E98000553D3 /* PostViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D3704120652E98000553D3 /* PostViewControllerDelegate.swift */; };
+		18D3708120657150000553D3 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D3708020657150000553D3 /* Notification.swift */; };
 		18D623621E1FCCC800138117 /* VKLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D623611E1FCCC800138117 /* VKLoginViewController.swift */; };
 		18D623641E1FCD0D00138117 /* VKAccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D623631E1FCD0D00138117 /* VKAccessToken.swift */; };
 		18D6236C1E213AE200138117 /* AboutTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D6236B1E213AE200138117 /* AboutTableViewController.swift */; };
@@ -140,6 +141,7 @@
 		18C395371E1676F200AE1867 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		18D3703F20652E31000553D3 /* CommentComposerViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentComposerViewControllerDelegate.swift; sourceTree = "<group>"; };
 		18D3704120652E98000553D3 /* PostViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewControllerDelegate.swift; sourceTree = "<group>"; };
+		18D3708020657150000553D3 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		18D623611E1FCCC800138117 /* VKLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKLoginViewController.swift; sourceTree = "<group>"; };
 		18D623631E1FCD0D00138117 /* VKAccessToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKAccessToken.swift; sourceTree = "<group>"; };
 		18D6236B1E213AE200138117 /* AboutTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutTableViewController.swift; sourceTree = "<group>"; };
@@ -290,6 +292,7 @@
 				18C395371E1676F200AE1867 /* Extensions.swift */,
 				18251C471E2D51A5000DBE57 /* UITextField+Placeholder.swift */,
 				18AEEC4A1E2FA30600AB97B4 /* UIImage+resize.swift */,
+				18D3708020657150000553D3 /* Notification.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -688,6 +691,7 @@
 				18AEEC4F1E2FAB1100AB97B4 /* Camera.swift in Sources */,
 				188C04FA1E1074D6008B58EB /* FeedCell.swift in Sources */,
 				186E2A261E34A5D60011AB88 /* RecentViewController.swift in Sources */,
+				18D3708120657150000553D3 /* Notification.swift in Sources */,
 				182681931E1D822500D96764 /* CommentCell.swift in Sources */,
 				1838C2431E11193E00E02F88 /* WallPost.swift in Sources */,
 				18C395361E16768F00AE1867 /* GeneralHelper.swift in Sources */,

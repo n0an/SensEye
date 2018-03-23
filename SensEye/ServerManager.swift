@@ -54,7 +54,7 @@ class ServerManager {
     
     func postAuthCompleteNotification() {
         let center = NotificationCenter.default
-        let notification = Notification(name: Notification.Name(rawValue: "NotificationAuthorizationCompleted"))
+        let notification = Notification(name: Notification.Name.ANNotificationAuthorizationCompleted)
         
         center.post(notification)
     }
