@@ -260,7 +260,13 @@ class ServerManager {
         
         self.networkActivityIndicatorVisible = true
         
+        let startTime = CFAbsoluteTimeGetCurrent()
+        
         Alamofire.request(url!, method: .get, parameters: params, encoding: URLEncoding(), headers: nil).responseData { (response) in
+            
+            let passed = CFAbsoluteTimeGetCurrent()
+            
+            print("Elapsed \(passed - startTime)")
             
             self.networkActivityIndicatorVisible = false
             
