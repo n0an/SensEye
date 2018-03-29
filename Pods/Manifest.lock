@@ -17,6 +17,8 @@ PODS:
     - Bolts (~> 1.7)
   - FBSDKLoginKit (4.31.1):
     - FBSDKCoreKit
+  - Firebase (4.10.1):
+    - Firebase/Core (= 4.10.1)
   - Firebase/Auth (4.10.1):
     - Firebase/Core
     - FirebaseAuth (= 4.4.4)
@@ -109,6 +111,7 @@ DEPENDENCIES:
   - DGActivityIndicatorView
   - Fabric
   - FBSDKLoginKit
+  - Firebase
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
@@ -177,6 +180,6 @@ SPEC CHECKSUMS:
   SwiftSpinner: 4c058c7a1d6b444dd2e1d70988ead40783097133
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
 
-PODFILE CHECKSUM: aa03c7b107784e463c2809e0b41e9371ba14f905
+PODFILE CHECKSUM: cee8435ea94071495ecb78bc10fc785f054bbe50
 
 COCOAPODS: 1.4.0

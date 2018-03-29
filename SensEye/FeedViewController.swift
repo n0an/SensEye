@@ -21,7 +21,7 @@ enum Storyboard {
     static let segueCommentComposer     = "ShowCommentComposer"
 }
 
-class FeedViewController: UIViewController {
+class FeedViewController: UIViewController, WallPostProtocol {
     
     // MARK: - OUTLETS
     @IBOutlet weak var tableView: UITableView!
@@ -137,7 +137,8 @@ class FeedViewController: UIViewController {
         
         GeneralHelper.sharedHelper.showSpinner(onView: self.view, usingBoundsFromView: self.tableView)
         
-        ServerManager.sharedManager.getFeed(forType: .post, ownerID: groupID, offset: self.feedDataSource.wallPosts.count, count: postsInRequest) { (posts) in
+        
+        getFeed(forType: .post, ownerID: groupID, offset: self.feedDataSource.wallPosts.count, count: postsInRequest) { (posts) in
             
             if posts.count > 0 {
                 guard let posts = posts as? [WallPost] else { return }
