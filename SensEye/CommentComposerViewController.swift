@@ -8,12 +8,7 @@
 
 import UIKit
 
-// MARK: - DELEGATE
-protocol CommentComposerViewControllerDelegate: class {
-    func commentDidSend(withPost post: WallPost)
-}
-
-class CommentComposerViewController: UIViewController {
+class CommentComposerViewController: UIViewController, WallPostProtocol {
     
     // MARK: - OUTLETS
     @IBOutlet weak var commentTextView: UITextView!
@@ -39,7 +34,7 @@ class CommentComposerViewController: UIViewController {
     // MARK: - ACTIONS
     @IBAction func sendDidTap() {
         
-        ServerManager.sharedManager.createComment(ownerID: groupID, postID: wallPost.postID, message: commentTextView.text) { (success) in
+        createComment(ownerID: groupID, postID: wallPost.postID, message: commentTextView.text) { (success) in
             
             if success == true {
                 self.dismiss(animated: true, completion: nil)

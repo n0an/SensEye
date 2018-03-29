@@ -63,3 +63,10 @@ target 'SensEye' do
   pod 'R.swift'
 
 end
+
+target 'SensEyeTests' do
+    inherit! :search_paths
+    pod 'Firebase'
+
+
+end

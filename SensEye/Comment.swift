@@ -71,15 +71,13 @@ class Comment: ServerObject {
 }
 
 
-
-
-// MARK: - Equatable protocol
-
-extension Comment: Equatable { }
-
-func ==(lhs: Comment, rhs: Comment) -> Bool {
-    return lhs.commentID == rhs.commentID
+// MARK: - Equatable
+extension Comment: Equatable {
+    static func ==(lhs: Comment, rhs: Comment) -> Bool {
+        return lhs.commentID == rhs.commentID
+    }
 }
+
 
 
 

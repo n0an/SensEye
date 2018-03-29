@@ -16,22 +16,18 @@ typealias FailureHandler = (NSError, Int) -> Void
 
 class ServerManager {
     
-    // MARK: - PROPERTIES
-    enum FeedItemsType: String {
-        case post = "post"
-        case comment = "comment"
-    }
-    
+    // MARK: - PUBLIC PROPERTIES
     static let sharedManager = ServerManager()
+    var currentVKUser: User?
+    var sharedManagerExists = false
     
-    static let standartParams: [String: Any] =
+    // MARK: - PRIVATE PROPERTIES
+    private static let standartParams: [String: Any] =
         [URL_PARAMS.VER.rawValue: "5.60"]
     
     private var vkAccessToken: VKAccessToken?
     
-    var currentVKUser: User?
-    
-    var networkActivityIndicatorVisible: Bool = false {
+    private var networkActivityIndicatorVisible: Bool = false {
         didSet {
             if networkActivityIndicatorVisible == true {
                 UIApplication.shared.isNetworkActivityIndicatorVisible = true
@@ -41,8 +37,13 @@ class ServerManager {
         }
     }
     
+    // MARK: - INITIALIZER
+    private init() {
+        sharedManagerExists = true
+    }
+    
     // MARK: - VK AUTHORIZATION
-    func tokenToDictionary(token: VKAccessToken) -> [String: Any] {
+    private func tokenToDictionary(token: VKAccessToken) -> [String: Any] {
         let tokenDictionary = [
             "tokenString"       : token.token,
             "expirationDate"    : token.expirationDate,
@@ -52,9 +53,9 @@ class ServerManager {
         return tokenDictionary
     }
     
-    func postAuthCompleteNotification() {
+    private func postAuthCompleteNotification() {
         let center = NotificationCenter.default
-        let notification = Notification(name: Notification.Name(rawValue: "NotificationAuthorizationCompleted"))
+        let notification = Notification(name: Notification.Name.ANNotificationAuthorizationCompleted)
         
         center.post(notification)
     }
@@ -347,7 +348,7 @@ class ServerManager {
     }
     
     // MARK: - USER FEATURE
-    func getUserFor(userID: String, completed: @escaping AuthoizationComplete) {
+    private func getUserFor(userID: String, completed: @escaping AuthoizationComplete) {
         
         let url = URL(string: URL_BASE)?.appendingPathComponent(URL_USERS)
         
@@ -474,7 +475,7 @@ class ServerManager {
     }
     
     // MARK: - HELPER METHODS
-    func parseFeedObjects<T: ServerObject>(forArray array: [JSON], authorsArray: [User], group: Group?) -> [T] {
+    private func parseFeedObjects<T: ServerObject>(forArray array: [JSON], authorsArray: [User], group: Group?) -> [T] {
         
         var feedObjectsArray = [T]()
         

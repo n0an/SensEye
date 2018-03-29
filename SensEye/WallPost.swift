@@ -71,15 +71,15 @@ class WallPost: ServerObject {
     }
 }
 
-
-
-// MARK: - Equatable protocol
-
-extension WallPost: Equatable { }
-
-func ==(lhs: WallPost, rhs: WallPost) -> Bool {
-    return lhs.postID == rhs.postID
+// MARK: - Equatable
+extension WallPost: Equatable {
+    
+    static func ==(lhs: WallPost, rhs: WallPost) -> Bool {
+        return lhs.postID == rhs.postID
+    }
 }
+
+
 
 
 

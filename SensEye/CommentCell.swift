@@ -52,7 +52,7 @@ class CommentCell: UITableViewCell {
     
     // MARK: - API METHODS
     func authorize() {
-        delegate?.provideAuthorization()
+        delegate?.feedCellNeedProvideAuthorization(self)
     }
     
     // LIKE/DISLIKE FEATURE

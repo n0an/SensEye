@@ -14,27 +14,27 @@ import Jelly
 import IDMPhotoBrowser
 import RevealingSplashView
 
-class FeedViewController: UIViewController {
+enum Storyboard {
+    static let feedCellId               = "FeedCell"
+    static let feedRowHeight: CGFloat   = 370.0
+    static let seguePostVC              = "showPost"
+    static let segueCommentComposer     = "ShowCommentComposer"
+}
+
+class FeedViewController: UIViewController, WallPostProtocol {
     
     // MARK: - OUTLETS
     @IBOutlet weak var tableView: UITableView!
     
     // MARK: - PROPERTIES
-    enum Storyboard {
-        static let cellId               = "FeedCell"
-        static let rowHeight: CGFloat   = 370.0
-        static let seguePostVC          = "showPost"
-        static let segueCommentComposer = "ShowCommentComposer"
-    }
     
     let revealingSplashView = RevealingSplashView(iconImage: UIImage(named: "dark_crop_1000")!, iconInitialSize: CGSize.init(width: 249, height: 133), backgroundColor: UIColor.white)
     
-    var wallPosts: [WallPost] = []
     let postsInRequest = 10
 
     var loadingData = false
     
-    fileprivate var jellyAnimator: JellyAnimator?
+//    fileprivate var jellyAnimator: JellyAnimator?
     
     private var refreshControl: UIRefreshControl!
     
@@ -46,14 +46,20 @@ class FeedViewController: UIViewController {
     
     var splashAnimated = false
     
+    var feedDataSource: FeedDataSource!
+    var cellDelegate: CellDelegate!
+    
     // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.delegate = self
-        tableView.dataSource = self
+        feedDataSource = FeedDataSource(vc: self)
+        cellDelegate = CellDelegate(vc: self)
         
-        tableView.estimatedRowHeight = Storyboard.rowHeight
+        tableView.delegate = feedDataSource
+        tableView.dataSource = feedDataSource
+        
+        tableView.estimatedRowHeight = Storyboard.feedRowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
         
         self.tableView.addInfiniteScrolling { 
@@ -103,7 +109,7 @@ class FeedViewController: UIViewController {
                 self.toAuthorize()
                 
             } else {
-                if self.wallPosts.count == 0 {
+                if feedDataSource.wallPosts.count == 0 {
                     self.loadingData = true
                     getPostsFromServer()
                 }
@@ -131,21 +137,22 @@ class FeedViewController: UIViewController {
         
         GeneralHelper.sharedHelper.showSpinner(onView: self.view, usingBoundsFromView: self.tableView)
         
-        ServerManager.sharedManager.getFeed(forType: .post, ownerID: groupID, offset: self.wallPosts.count, count: postsInRequest) { (posts) in
+        
+        getFeed(forType: .post, ownerID: groupID, offset: self.feedDataSource.wallPosts.count, count: postsInRequest) { (posts) in
             
             if posts.count > 0 {
                 guard let posts = posts as? [WallPost] else { return }
                 
-                if self.wallPosts.count == 0 {
-                    self.wallPosts = posts
+                if self.feedDataSource.wallPosts.count == 0 {
+                    self.feedDataSource.wallPosts = posts
                     self.tableView.reloadData()
                     
                 } else {
-                    self.wallPosts.append(contentsOf: posts)
+                    self.feedDataSource.wallPosts.append(contentsOf: posts)
                     var newPaths = [IndexPath]()
-                    var index = self.wallPosts.count - posts.count
+                    var index = self.feedDataSource.wallPosts.count - posts.count
                     
-                    while index < self.wallPosts.count {
+                    while index < self.feedDataSource.wallPosts.count {
                         let newIndPath = IndexPath(row: index, section: 0)
                         newPaths.append(newIndPath)
                         
@@ -172,12 +179,12 @@ class FeedViewController: UIViewController {
             
             GeneralHelper.sharedHelper.showSpinner(onView: self.view, usingBoundsFromView: self.tableView)
             
-            ServerManager.sharedManager.getFeed(forType: .post, ownerID: groupID, offset: 0, count: max(postsInRequest, self.wallPosts.count)) { (posts) in
+            ServerManager.sharedManager.getFeed(forType: .post, ownerID: groupID, offset: 0, count: max(postsInRequest, feedDataSource.wallPosts.count)) { (posts) in
                 
                 if posts.count > 0 {
                     guard let posts = posts as? [WallPost] else { return }
-                    self.wallPosts.removeAll()
-                    self.wallPosts.append(contentsOf: posts)
+                    self.feedDataSource.wallPosts.removeAll()
+                    self.feedDataSource.wallPosts.append(contentsOf: posts)
                     self.tableView.reloadData()
                 }
                 
@@ -189,6 +196,12 @@ class FeedViewController: UIViewController {
     }
     
     // MARK: - HELPER METHODS
+    func toAuthorize() {
+        ServerManager.sharedManager.authorize { (user) in
+            ServerManager.sharedManager.currentVKUser = user
+        }
+    }
+    
     func loadCustomRefreshContents() {
         let refreshContents = Bundle.main.loadNibNamed("RefreshContents", owner: self, options: nil)
         self.customRefreshView = refreshContents?[0] as! UIView
@@ -257,7 +270,7 @@ class FeedViewController: UIViewController {
     }
 
     func listenForAuthenticationNotification() {
-        NotificationCenter.default.addObserver(self, selector: #selector(vkAuthorizationCompleted), name: Notification.Name(rawValue: "NotificationAuthorizationCompleted"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(vkAuthorizationCompleted), name: Notification.Name.ANNotificationAuthorizationCompleted, object: nil)
     }
     
     // MARK: - ACTIONS
@@ -295,132 +308,12 @@ class FeedViewController: UIViewController {
     }
 }
 
-// MARK: - UITableViewDataSource
-extension FeedViewController: UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return wallPosts.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Storyboard.cellId, for: indexPath) as! FeedCell
-        
-        let wallPost = self.wallPosts[indexPath.row]
-        
-        cell.wallPost = wallPost
-        cell.delegate = self
-        
-        return cell
-    }
-}
-
-// MARK: - UITableViewDelegate
-extension FeedViewController: UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        
-        let cell = tableView.cellForRow(at: indexPath) as! FeedCell
-        
-        performSegue(withIdentifier: Storyboard.seguePostVC, sender: cell)
-    }
-}
-
-// MARK: - === FeedCellDelegate ===
-extension FeedViewController: FeedCellDelegate {
-    func toAuthorize() {
-        ServerManager.sharedManager.authorize { (user) in
-            ServerManager.sharedManager.currentVKUser = user
-        }
-    }
-    
-    func provideAuthorization() {
-        
-        UserDefaults.standard.set(false, forKey: KEY_VK_USERCANCELAUTH)
-        UserDefaults.standard.synchronize()
-        GeneralHelper.sharedHelper.showVKAuthorizeActionSheetOnViewController(viewController: self) { (selected) in
-            
-            if selected == true {
-                self.toAuthorize()
-            }
-        }
-    }
-    
-    func commentDidTap(post: WallPost) {
-        performSegue(withIdentifier: Storyboard.segueCommentComposer, sender: post)
-    }
-    
-    func performJellyTransition(withPhotos photosArray: [Photo], indexOfPhoto: Int) {
-        
-        var urlsArray: [URL] = []
-        
-        for photo in photosArray {
-            var linkToNeededRes: String!
-            
-            if traitCollection.horizontalSizeClass == .regular && traitCollection.verticalSizeClass == .regular {
-                linkToNeededRes = photo.maxRes
-                
-            } else {
-                if photo.photo_1280 != nil {
-                    linkToNeededRes = photo.photo_1280
-                } else {
-                    linkToNeededRes = photo.maxRes
-                }
-            }
-            
-            let imageURL = URL(string: linkToNeededRes)
-            urlsArray.append(imageURL!)
-        }
-        
-        let photos = IDMPhoto.photos(withURLs: urlsArray)
-        
-        let browser = IDMPhotoBrowser(photos: photos)
-        
-        browser?.displayDoneButton      = true
-        browser?.displayActionButton    = false
-        browser?.doneButtonImage        = UIImage(named: "CloseButton")
-        browser?.setInitialPageIndex(UInt(indexOfPhoto))
-
-        let customBlurFadeInPresentation = JellyFadeInPresentation(dismissCurve: .easeInEaseOut,
-                                                                    presentationCurve: .easeInEaseOut,
-                                                                    cornerRadius: 0,
-                                                                    backgroundStyle: .blur(effectStyle: .light),
-                                                                    duration: .normal,
-                                                                    widthForViewController: .fullscreen,
-                                                                    heightForViewController: .fullscreen)
-        
-        
-        self.jellyAnimator = JellyAnimator(presentation: customBlurFadeInPresentation)
-        self.jellyAnimator?.prepare(viewController: browser!)
-        self.present(browser!, animated: true, completion: nil)
-    }
-    
-    func galleryImageViewDidTap(wallPost: WallPost, clickedPhotoIndex: Int) {
-        
-        if let photosArray = wallPost.postAttachments as? [Photo] {
-            performJellyTransition(withPhotos: photosArray, indexOfPhoto: clickedPhotoIndex)
-
-        } else if let albumAttach = wallPost.postAttachments[0] as? PhotoAlbum {
-            
-            ServerManager.sharedManager.getPhotos(forAlbumID: albumAttach.albumID, ownerID: albumAttach.ownerID, completed: { (result) in
-                
-                let photos = result as! [Photo]
-                
-                // Calculating index of clicked photo in album
-                let indexOfClickedPhotoInAlbum = photos.index(of: albumAttach.albumThumbPhoto!)
-                
-                self.performJellyTransition(withPhotos: photos, indexOfPhoto: indexOfClickedPhotoInAlbum ?? clickedPhotoIndex)
-            })
-        }
-    }
-}
-
 
 // MARK: - === PostViewControllerDelegate ===
 extension FeedViewController: PostViewControllerDelegate {
     
     func postViewControllerWillDisappear(withPost post: WallPost) {
-        if let index = self.wallPosts.index(of: post) {
+        if let index = self.feedDataSource.wallPosts.index(of: post) {
             
             let indexPath = IndexPath(row: index, section: 0)
             let cell = tableView.cellForRow(at: indexPath) as! FeedCell
@@ -436,9 +329,9 @@ extension FeedViewController: CommentComposerViewControllerDelegate {
     
     func commentDidSend(withPost post: WallPost) {
         
-        if let index = self.wallPosts.index(of: post) {
+        if let index = self.feedDataSource.wallPosts.index(of: post) {
             let indexPath = IndexPath(row: index, section: 0)
-            let commentedPost = self.wallPosts[index]
+            let commentedPost = self.feedDataSource.wallPosts[index]
             let initialCommentsCount = Int(commentedPost.postComments)
             
             commentedPost.postComments = String(initialCommentsCount! + 1)
