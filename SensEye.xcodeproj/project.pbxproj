@@ -62,6 +62,8 @@
 		18B3622F2072369100878299 /* LikesProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B3622E2072369100878299 /* LikesProtocol.swift */; };
 		18B3623120723F1A00878299 /* PhotosProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B3623020723F1A00878299 /* PhotosProtocol.swift */; };
 		18B362332072649D00878299 /* GeneralFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B362322072649D00878299 /* GeneralFeedViewController.swift */; };
+		18B3623520726C7000878299 /* PostVCDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B3623420726C7000878299 /* PostVCDataSource.swift */; };
+		18B3623820726E1F00878299 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B3623720726E1F00878299 /* Enums.swift */; };
 		18BA342A1E4B8CBB00EE6CF1 /* TextFieldsChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BA34291E4B8CBB00EE6CF1 /* TextFieldsChecker.swift */; };
 		18BE87F11E16CF5A00B5837E /* CircleImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BE87F01E16CF5A00B5837E /* CircleImageView.swift */; };
 		18C395321E166D0200AE1867 /* NSDate+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C395301E166D0200AE1867 /* NSDate+Utilities.m */; };
@@ -157,6 +159,8 @@
 		18B3622E2072369100878299 /* LikesProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikesProtocol.swift; sourceTree = "<group>"; };
 		18B3623020723F1A00878299 /* PhotosProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosProtocol.swift; sourceTree = "<group>"; };
 		18B362322072649D00878299 /* GeneralFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralFeedViewController.swift; sourceTree = "<group>"; };
+		18B3623420726C7000878299 /* PostVCDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostVCDataSource.swift; sourceTree = "<group>"; };
+		18B3623720726E1F00878299 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		18BA34291E4B8CBB00EE6CF1 /* TextFieldsChecker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldsChecker.swift; sourceTree = "<group>"; };
 		18BE87F01E16CF5A00B5837E /* CircleImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleImageView.swift; sourceTree = "<group>"; };
 		18C3952F1E166D0100AE1867 /* SensEye-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SensEye-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -299,6 +303,8 @@
 				18E3F9201E466B6100BC95C3 /* InfoPlist.strings */,
 				188FD7981E3544C4007CA1EE /* SensEye.entitlements */,
 				18AA37D01E1053F700D5BCB1 /* AppDelegate.swift */,
+				1838C2401E110A7700E02F88 /* Constants.swift */,
+				18B3623720726E1F00878299 /* Enums.swift */,
 				1842EE0620571396007055C0 /* R.generated.swift */,
 				18D3704320652F3F000553D3 /* Protocols */,
 				18C395331E166D1D00AE1867 /* Extensions */,
@@ -318,6 +324,15 @@
 				180610C41E37CE0A0074ED86 /* secretsFile.txt */,
 			);
 			path = SensEye;
+			sourceTree = "<group>";
+		};
+		18B3623620726D9300878299 /* PostVC */ = {
+			isa = PBXGroup;
+			children = (
+				182681901E1D7C9C00D96764 /* PostViewController.swift */,
+				18B3623420726C7000878299 /* PostVCDataSource.swift */,
+			);
+			name = PostVC;
 			sourceTree = "<group>";
 		};
 		18BE87F21E16E02A00B5837E /* Customized Views */ = {
@@ -351,7 +366,6 @@
 				188C04FB1E10FCBC008B58EB /* ServerManager.swift */,
 				18C395351E16768F00AE1867 /* GeneralHelper.swift */,
 				18FC62621E11545D00E25A18 /* PostPhotoGallery.swift */,
-				1838C2401E110A7700E02F88 /* Constants.swift */,
 				18AEEC4E1E2FAB1100AB97B4 /* Camera.swift */,
 				18BA34291E4B8CBB00EE6CF1 /* TextFieldsChecker.swift */,
 			);
@@ -393,7 +407,6 @@
 			children = (
 				188C04F71E1074C8008B58EB /* FeedViewController.swift */,
 				1835A7EE2063D53900BA4AF8 /* FeedDataSource.swift */,
-				1835A7F22063DEED00BA4AF8 /* WallPostCellDelegate.swift */,
 			);
 			name = FeedVC;
 			sourceTree = "<group>";
@@ -434,8 +447,9 @@
 			isa = PBXGroup;
 			children = (
 				18B362322072649D00878299 /* GeneralFeedViewController.swift */,
+				1835A7F22063DEED00BA4AF8 /* WallPostCellDelegate.swift */,
 				18E3F91A1E464DEB00BC95C3 /* FeedVC */,
-				182681901E1D7C9C00D96764 /* PostViewController.swift */,
+				18B3623620726D9300878299 /* PostVC */,
 				18880A7B1E43C6A30083D0B4 /* CommentComposerViewController.swift */,
 				18D623611E1FCCC800138117 /* VKLoginViewController.swift */,
 				1864A9E11E157E0B0058D2E2 /* Gallery */,
@@ -797,6 +811,7 @@
 				18AEEC4B1E2FA30600AB97B4 /* UIImage+resize.swift in Sources */,
 				1838C2471E112CA200E02F88 /* Group.swift in Sources */,
 				1826818D1E1D781000D96764 /* Comment.swift in Sources */,
+				18B3623820726E1F00878299 /* Enums.swift in Sources */,
 				18D3704020652E31000553D3 /* CommentComposerViewControllerDelegate.swift in Sources */,
 				18251C481E2D51A5000DBE57 /* UITextField+Placeholder.swift in Sources */,
 				18D6236E1E21422E00138117 /* AboutCellInfo.swift in Sources */,
@@ -805,6 +820,7 @@
 				188C04FC1E10FCBC008B58EB /* ServerManager.swift in Sources */,
 				1835A7F32063DEED00BA4AF8 /* WallPostCellDelegate.swift in Sources */,
 				18C395321E166D0200AE1867 /* NSDate+Utilities.m in Sources */,
+				18B3623520726C7000878299 /* PostVCDataSource.swift in Sources */,
 				183E2A201E16B5180099F775 /* RoundedView.swift in Sources */,
 				1876CA18206A9997005E8730 /* FeedProtocol.swift in Sources */,
 				18FC625C1E113E9C00E25A18 /* Photo.swift in Sources */,

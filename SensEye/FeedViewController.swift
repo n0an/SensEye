@@ -14,22 +14,6 @@ import Jelly
 import IDMPhotoBrowser
 import RevealingSplashView
 
-enum Storyboard {
-    static let cellIdFeed               = "FeedCell"
-    static let cellIdComment            = "CommentCell"
-    
-    static let rowHeightFeed: CGFloat           = 370.0
-    static let rowHeightCommentCell: CGFloat    = 100
-
-    static let seguePostVC              = "showPost"
-    static let segueCommentComposer     = "ShowCommentComposer"
-    
-    
-    static let tableHeaderHeight: CGFloat       = 100
-    static let tableHeaderCutAway: CGFloat      = 50
-    
-}
-
 class FeedViewController: GeneralFeedViewController {
     
     // MARK: - OUTLETS
@@ -136,7 +120,6 @@ class FeedViewController: GeneralFeedViewController {
         NotificationCenter.default.removeObserver(self)
     }
 
-    
     // MARK: - API METHODS
     func getPostsFromServer() {
         
@@ -201,8 +184,6 @@ class FeedViewController: GeneralFeedViewController {
         }
     }
     
-    
-    
     func loadCustomRefreshContents() {
         let refreshContents = Bundle.main.loadNibNamed("RefreshContents", owner: self, options: nil)
         self.customRefreshView = refreshContents?[0] as! UIView
@@ -254,7 +235,6 @@ class FeedViewController: GeneralFeedViewController {
             })
         }
     }
-    
     
     // MARK: - NOTIFICATIONS
     // ** HIDING ALERTS, ACTIONS SHEETS, PICKERS WHEN APP GOES TO BACKGROUND
@@ -309,7 +289,6 @@ class FeedViewController: GeneralFeedViewController {
     }
 }
 
-
 // MARK: - === PostViewControllerDelegate ===
 extension FeedViewController: PostViewControllerDelegate {
     
@@ -323,7 +302,6 @@ extension FeedViewController: PostViewControllerDelegate {
         }
     }
 }
-
 
 // MARK: - === CommentComposerViewControllerDelegate ===
 extension FeedViewController: CommentComposerViewControllerDelegate {
@@ -340,6 +318,4 @@ extension FeedViewController: CommentComposerViewControllerDelegate {
             tableView.reloadRows(at: [indexPath], with: .automatic)
         }
     }
-    
 }
-

@@ -11,13 +11,6 @@ import UIKit
 // MARK: - APP SETTINGS
 public let APP_FIRST_RUN = "appFirstRun"
 
-public enum TabBarIndex: Int {
-    case wallFeed   = 0
-    case gallery
-    case chat
-    case about
-}
-
 // MARK: - ===== TYPE ALIASES ====
 typealias DownloadComplete = ([Any]) -> Void
 typealias AuthoizationComplete = (User) -> Void
@@ -58,7 +51,6 @@ public let URL_USERS                = "/users.get"
 public let URL_LIKES_ADD            = "/likes.add"
 public let URL_LIKES_DELETE         = "/likes.delete"
 public let URL_ISLIKED              = "/likes.isLiked"
-
 
 public enum URL_PARAMS: String {
     case OWNER_ID       = "owner_id"

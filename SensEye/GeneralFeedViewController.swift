@@ -8,8 +8,8 @@
 
 import UIKit
 
-class GeneralFeedViewController: UIViewController {
 
+class GeneralFeedViewController: UIViewController {
     
     // MARK: - HELPER METHODS
     func toAuthorize() {
@@ -18,8 +18,6 @@ class GeneralFeedViewController: UIViewController {
             self.setVKUser(user: user)
         }
     }
-
-
 }
 
 extension GeneralFeedViewController: FeedProtocol, AuthorizationProtocol, LikesProtocol, PhotosProtocol { }

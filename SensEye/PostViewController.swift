@@ -10,11 +10,6 @@ import UIKit
 import Jelly
 import IDMPhotoBrowser
 
-enum TableViewSectionType: Int {
-    case post
-    case comment
-}
-
 class PostViewController: GeneralFeedViewController {
     
     // MARK: - OUTLETS
@@ -37,19 +32,21 @@ class PostViewController: GeneralFeedViewController {
     fileprivate var headerView: PostHeaderView!
     fileprivate var headerMaskLayer: CAShapeLayer!
     
+    var postDataSource: PostVCDataSource!
     var cellDelegate: WallPostCellDelegate!
     
     // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        postDataSource = PostVCDataSource(vc: self)
         cellDelegate = WallPostCellDelegate(vc: self)
         
         self.loadingData = true
         getCommentsFromServer()
         
         tableView.delegate = cellDelegate
-        tableView.dataSource = self
+        tableView.dataSource = postDataSource
         
         tableView.rowHeight = UITableViewAutomaticDimension
         
@@ -253,57 +250,6 @@ class PostViewController: GeneralFeedViewController {
     }
 }
 
-
-// MARK: - UITableViewDataSource
-extension PostViewController: UITableViewDataSource {
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        if section == TableViewSectionType.comment.rawValue {
-            return comments.count
-        } else {
-            return 1
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        if indexPath.section == TableViewSectionType.post.rawValue {
-            let postCell = tableView.dequeueReusableCell(withIdentifier: Storyboard.cellIdFeed, for: indexPath) as! FeedCell
-            
-            postCell.wallPost = self.wallPost
-            postCell.delegate = cellDelegate
-            
-            return postCell
-            
-        } else {
-            let commentCell = tableView.dequeueReusableCell(withIdentifier: Storyboard.cellIdComment, for: indexPath) as! CommentCell
-            
-            let comment = self.comments[indexPath.row]
-            
-            commentCell.comment = comment
-            commentCell.delegate = cellDelegate
-            
-            return commentCell
-        }
-    }
-}
-
-// MARK: - UITableViewDelegate
-//extension PostViewController: UITableViewDelegate {
-//    
-//    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-//        if indexPath.section == TableViewSectionType.post.rawValue {
-//            return Storyboard.rowHeightPostCell
-//        } else {
-//            return Storyboard.rowHeightCommentCell
-//        }
-//    }
-//}
 
 // MARK: - UIScrollViewDelegate
 extension PostViewController: UIScrollViewDelegate {
