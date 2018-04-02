@@ -364,7 +364,7 @@ extension PostViewController: FeedCellDelegate {
             
         } else if let albumAttach = wallPost.postAttachments[0] as? PhotoAlbum {
             
-            ServerManager.sharedManager.getPhotos(forAlbumID: albumAttach.albumID, ownerID: albumAttach.ownerID, completed: { (result) in
+            getPhotos(forAlbumID: albumAttach.albumID, ownerID: albumAttach.ownerID, completed: { (result) in
                 
                 let photos = result as! [Photo]
                 
@@ -397,7 +397,7 @@ extension PostViewController: FeedCellDelegate {
     func toAuthorize() {
         authorize { (user) in
 //            ServerManager.sharedManager.currentVKUser = user
-            setVKUser(user: user)
+            self.setVKUser(user: user)
         }
     }
     
@@ -459,6 +459,6 @@ extension PostViewController: CommentComposerViewControllerDelegate {
     }
 }
 
-extension PostViewController: FeedProtocol, AuthorizationProtocol, LikesProtocol { }
+extension PostViewController: FeedProtocol, AuthorizationProtocol, LikesProtocol, PhotosProtocol { }
 
 

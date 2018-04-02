@@ -170,7 +170,7 @@ class LandscapeViewController: UIViewController {
     // MARK: - API METHODS
     func getAlbumsFromServer() {
         
-        ServerManager.sharedManager.getPhotoAlbums(forGroupID: groupID) { (result) in
+        getPhotoAlbums(forGroupID: groupID) { (result) in
             guard let albums = result as? [PhotoAlbum] else { return }
             self.albums = albums
             self.view.layoutSubviews()
@@ -179,7 +179,7 @@ class LandscapeViewController: UIViewController {
     
     private func downloadThumb(forAlbum album: PhotoAlbum, andPlaceOnImageView imageView: UIImageView) {
         
-        ServerManager.sharedManager.getPhotos(forAlbumID: album.albumID, ownerID: groupID, offset: 0, count: 1) { (result) in
+        getPhotos(forAlbumID: album.albumID, ownerID: groupID, offset: 0, count: 1) { (result) in
             
             guard let photos = result as? [Photo] else { return }
             
@@ -624,7 +624,7 @@ class LandscapeViewController: UIViewController {
         
         if let tappedAlbum = tappedAlbum {
             
-            ServerManager.sharedManager.getPhotos(forAlbumID: tappedAlbum.albumID, ownerID: groupID, completed: { (result) in
+            getPhotos(forAlbumID: tappedAlbum.albumID, ownerID: groupID, completed: { (result) in
                 
                 let photos = result as! [Photo]
                 
@@ -694,5 +694,5 @@ extension LandscapeViewController: UIScrollViewDelegate {
 }
 
 
-
+extension LandscapeViewController: PhotosProtocol { }
 

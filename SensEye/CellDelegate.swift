@@ -10,7 +10,7 @@ import UIKit
 import IDMPhotoBrowser
 import Jelly
 
-class CellDelegate: FeedCellDelegate {
+class CellDelegate: FeedCellDelegate, PhotosProtocol {
     
     weak var vc: FeedViewController?
     
@@ -27,7 +27,7 @@ class CellDelegate: FeedCellDelegate {
             
         } else if let albumAttach = post.postAttachments[0] as? PhotoAlbum {
             
-            ServerManager.sharedManager.getPhotos(forAlbumID: albumAttach.albumID, ownerID: albumAttach.ownerID, completed: { (result) in
+            getPhotos(forAlbumID: albumAttach.albumID, ownerID: albumAttach.ownerID, completed: { (result) in
                 
                 let photos = result as! [Photo]
                 
@@ -105,3 +105,4 @@ class CellDelegate: FeedCellDelegate {
     
     
 }
+

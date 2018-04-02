@@ -205,7 +205,7 @@ class FeedViewController: UIViewController {
         authorize { (user) in
 //            ServerManager.sharedManager.currentVKUser = user
             
-            setVKUser(user: user)
+            self.setVKUser(user: user)
         }
     }
     
