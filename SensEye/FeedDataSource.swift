@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FeedDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
+class FeedDataSource: NSObject, UITableViewDataSource {
     
     var wallPosts: [WallPost] = []
     
@@ -23,7 +23,7 @@ class FeedDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Storyboard.feedCellId, for: indexPath) as! FeedCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: Storyboard.cellIdFeed, for: indexPath) as! FeedCell
         
         let wallPost = self.wallPosts[indexPath.row]
         
@@ -33,12 +33,12 @@ class FeedDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        
-        let cell = tableView.cellForRow(at: indexPath) as! FeedCell
-        
-        vc?.performSegue(withIdentifier: Storyboard.seguePostVC, sender: cell)
-    }
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        tableView.deselectRow(at: indexPath, animated: true)
+//
+//        let cell = tableView.cellForRow(at: indexPath) as! FeedCell
+//
+//        vc?.performSegue(withIdentifier: Storyboard.seguePostVC, sender: cell)
+//    }
     
 }

@@ -10,30 +10,16 @@ import UIKit
 import Jelly
 import IDMPhotoBrowser
 
+enum TableViewSectionType: Int {
+    case post
+    case comment
+}
+
 class PostViewController: GeneralFeedViewController {
     
     // MARK: - OUTLETS
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var logoutFromVKButton: UIButton!
-    
-    // MARK: - ENUMS
-    enum Storyboard {
-        static let cellIdPost                       = "FeedCell"
-        static let cellIdComment                    = "CommentCell"
-        
-        static let rowHeightPostCell: CGFloat       = 370
-        static let rowHeightCommentCell: CGFloat    = 100
-        
-        static let tableHeaderHeight: CGFloat       = 100
-        static let tableHeaderCutAway: CGFloat      = 50
-        
-        static let segueCommentComposer             = "ShowCommentComposer"
-    }
-    
-    enum TableViewSectionType: Int {
-        case post
-        case comment
-    }
     
     // MARK: - PROPERTIES
     public var wallPost: WallPost!
@@ -62,7 +48,7 @@ class PostViewController: GeneralFeedViewController {
         self.loadingData = true
         getCommentsFromServer()
         
-        tableView.delegate = self
+        tableView.delegate = cellDelegate
         tableView.dataSource = self
         
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -216,10 +202,6 @@ class PostViewController: GeneralFeedViewController {
     
     // MARK: - HELPER METHODS
     
-    fileprivate func createVC(withID identifier: String) -> UIViewController? {
-        return self.storyboard?.instantiateViewController(withIdentifier: identifier)
-    }
-    
     func updateHeaderView() {
         let effectiveHeight = Storyboard.tableHeaderHeight - Storyboard.tableHeaderCutAway / 2
         
@@ -291,7 +273,7 @@ extension PostViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if indexPath.section == TableViewSectionType.post.rawValue {
-            let postCell = tableView.dequeueReusableCell(withIdentifier: Storyboard.cellIdPost, for: indexPath) as! FeedCell
+            let postCell = tableView.dequeueReusableCell(withIdentifier: Storyboard.cellIdFeed, for: indexPath) as! FeedCell
             
             postCell.wallPost = self.wallPost
             postCell.delegate = cellDelegate
@@ -312,16 +294,16 @@ extension PostViewController: UITableViewDataSource {
 }
 
 // MARK: - UITableViewDelegate
-extension PostViewController: UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == TableViewSectionType.post.rawValue {
-            return Storyboard.rowHeightPostCell
-        } else {
-            return Storyboard.rowHeightCommentCell
-        }
-    }
-}
+//extension PostViewController: UITableViewDelegate {
+//    
+//    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+//        if indexPath.section == TableViewSectionType.post.rawValue {
+//            return Storyboard.rowHeightPostCell
+//        } else {
+//            return Storyboard.rowHeightCommentCell
+//        }
+//    }
+//}
 
 // MARK: - UIScrollViewDelegate
 extension PostViewController: UIScrollViewDelegate {

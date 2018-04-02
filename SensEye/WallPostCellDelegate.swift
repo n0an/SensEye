@@ -1,5 +1,5 @@
 //
-//  CellDelegate.swift
+//  WallPostCellDelegate.swift
 //  SensEye
 //
 //  Created by Anton Novoselov on 22/03/2018.
@@ -10,7 +10,7 @@ import UIKit
 import IDMPhotoBrowser
 import Jelly
 
-class WallPostCellDelegate: FeedCellDelegate, PhotosProtocol {
+class WallPostCellDelegate: NSObject, FeedCellDelegate, PhotosProtocol {
     
     weak var vc: GeneralFeedViewController?
     
@@ -104,5 +104,37 @@ class WallPostCellDelegate: FeedCellDelegate, PhotosProtocol {
     }
     
     
+}
+
+extension WallPostCellDelegate: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        if (self.vc?.isKind(of: FeedViewController.self))! {
+            return indexPath
+        } else {
+            return nil
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let cell = tableView.cellForRow(at: indexPath) as! FeedCell
+        
+        vc?.performSegue(withIdentifier: Storyboard.seguePostVC, sender: cell)
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        if (self.vc?.isKind(of: FeedViewController.self))! {
+            return Storyboard.rowHeightFeed
+        } else {
+            if indexPath.section == TableViewSectionType.post.rawValue {
+                return Storyboard.rowHeightFeed
+            } else {
+                return Storyboard.rowHeightCommentCell
+            }
+        }
+        
+    }
 }
 

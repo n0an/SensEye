@@ -15,10 +15,19 @@ import IDMPhotoBrowser
 import RevealingSplashView
 
 enum Storyboard {
-    static let feedCellId               = "FeedCell"
-    static let feedRowHeight: CGFloat   = 370.0
+    static let cellIdFeed               = "FeedCell"
+    static let cellIdComment            = "CommentCell"
+    
+    static let rowHeightFeed: CGFloat           = 370.0
+    static let rowHeightCommentCell: CGFloat    = 100
+
     static let seguePostVC              = "showPost"
     static let segueCommentComposer     = "ShowCommentComposer"
+    
+    
+    static let tableHeaderHeight: CGFloat       = 100
+    static let tableHeaderCutAway: CGFloat      = 50
+    
 }
 
 class FeedViewController: GeneralFeedViewController {
@@ -54,10 +63,10 @@ class FeedViewController: GeneralFeedViewController {
         feedDataSource = FeedDataSource(vc: self)
         cellDelegate = WallPostCellDelegate(vc: self)
         
-        tableView.delegate = feedDataSource
+        tableView.delegate = cellDelegate
         tableView.dataSource = feedDataSource
         
-        tableView.estimatedRowHeight = Storyboard.feedRowHeight
+        tableView.estimatedRowHeight = Storyboard.rowHeightFeed
         tableView.rowHeight = UITableViewAutomaticDimension
         
         self.tableView.addInfiniteScrolling { 
