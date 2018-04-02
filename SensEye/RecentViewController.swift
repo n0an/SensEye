@@ -97,7 +97,7 @@ class RecentViewController: UIViewController {
     }
     
     // MARK: - ACTIONS
-    func logoutButtonTapped() {
+    @objc func logoutButtonTapped() {
         
         GeneralHelper.sharedHelper.showLogoutView(onViewController: self) { (success) in
             if success == true {

@@ -176,7 +176,7 @@ class FeedCell: UITableViewCell {
     }
     
     // MARK: - GESTURES
-    func actionGlryImageViewDidTap(sender: UITapGestureRecognizer) {
+    @objc func actionGlryImageViewDidTap(sender: UITapGestureRecognizer) {
         guard let tappedImageView = sender.view as? UIImageView else {
             return
         }

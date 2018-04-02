@@ -285,7 +285,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
         }
     }
     
-    func resignKeyboard() {
+    @objc func resignKeyboard() {
         self.view.endEditing(true)
     }
     

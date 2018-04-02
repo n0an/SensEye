@@ -138,7 +138,7 @@ class FeedViewController: UIViewController, FeedProtocol, AuthorizationProtocol 
         GeneralHelper.sharedHelper.showSpinner(onView: self.view, usingBoundsFromView: self.tableView)
         
         
-        getFeed(forType: .post, ownerID: groupID, offset: self.feedDataSource.wallPosts.count, count: postsInRequest) { (posts) in
+        ServerManager.sharedManager.getFeed(forType: .post, ownerID: groupID, offset: self.feedDataSource.wallPosts.count, count: postsInRequest) { (posts) in
             
             if posts.count > 0 {
                 guard let posts = posts as? [WallPost] else { return }
@@ -274,11 +274,11 @@ class FeedViewController: UIViewController, FeedProtocol, AuthorizationProtocol 
     }
     
     // MARK: - ACTIONS
-    func vkAuthorizationCompleted() {
+    @objc func vkAuthorizationCompleted() {
         self.refreshWall()
     }
     
-    func actionRefreshTableView() {
+    @objc func actionRefreshTableView() {
         self.refreshWall()
     }
     

@@ -16,7 +16,7 @@ extension UITextField {
         
         set {
             if let placeholder = self.placeholder {
-                self.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [NSForegroundColorAttributeName: newValue!])
+                self.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [kCTForegroundColorAttributeName as NSAttributedStringKey: newValue!])
             }
         }
     }

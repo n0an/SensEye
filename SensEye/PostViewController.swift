@@ -249,7 +249,7 @@ class PostViewController: UIViewController, AuthorizationProtocol {
     }
     
     // MARK: - ACTIONS
-    func vkAuthorizationCompleted() {
+    @objc func vkAuthorizationCompleted() {
         refreshLogoutButton()
         refreshMainPost()
         refreshComments()

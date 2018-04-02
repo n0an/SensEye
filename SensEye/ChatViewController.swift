@@ -232,7 +232,7 @@ class ChatViewController: JSQMessagesViewController, UIGestureRecognizerDelegate
     
 
     // MARK: - ACTIONS
-    func logoutButtonTapped() {
+    @objc func logoutButtonTapped() {
         
         GeneralHelper.sharedHelper.showLogoutView(onViewController: self) { (success) in
             if success == true {
@@ -247,7 +247,7 @@ class ChatViewController: JSQMessagesViewController, UIGestureRecognizerDelegate
         }
     }
     
-    func actionBackButtonTapped() {
+    @objc func actionBackButtonTapped() {
         if currentUser.email == GeneralHelper.sharedHelper.appOwnerEmail {
             let _ = self.navigationController?.popViewController(animated: true)
 
@@ -261,7 +261,7 @@ class ChatViewController: JSQMessagesViewController, UIGestureRecognizerDelegate
         return true
     }
     
-    func resignKeyboard(gesture: UITapGestureRecognizer) {
+    @objc func resignKeyboard(gesture: UITapGestureRecognizer) {
         
         if gesture.state == .ended {
             if self.inputToolbar.contentView.textView.isFirstResponder {

@@ -38,4 +38,15 @@ class SensEyeTests: XCTestCase {
         }
     }
     
+    func testAuthorize() {
+        
+        ServerManager.sharedManager.authorize { (user) in
+            ServerManager.sharedManager.currentVKUser = user
+            
+            if ServerManager.sharedManager.currentVKUser == nil {
+                XCTFail("Authorize using app run")
+            }
+        }
+    }
+    
 }

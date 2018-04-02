@@ -74,7 +74,7 @@ class SignUpViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-    func resignKeyboard() {
+    @objc func resignKeyboard() {
         self.view.endEditing(true)
     }
     

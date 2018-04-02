@@ -223,7 +223,7 @@ class PhotoViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    func gestureClose() {
+    @objc func gestureClose() {
         dismiss(animated: true, completion: nil)
     }
     

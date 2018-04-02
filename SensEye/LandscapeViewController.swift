@@ -611,7 +611,7 @@ class LandscapeViewController: UIViewController {
     
     
     // MARK: - ACTIONS
-    func actionGestureTap(_ sender: UITapGestureRecognizer) {
+    @objc func actionGestureTap(_ sender: UITapGestureRecognizer) {
         
         var tappedAlbum: PhotoAlbum?
         
