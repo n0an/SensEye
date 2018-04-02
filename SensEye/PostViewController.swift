@@ -10,7 +10,7 @@ import UIKit
 import Jelly
 import IDMPhotoBrowser
 
-class PostViewController: UIViewController, AuthorizationProtocol {
+class PostViewController: UIViewController, FeedProtocol, AuthorizationProtocol {
     
     // MARK: - OUTLETS
     @IBOutlet weak var tableView: UITableView!
@@ -164,7 +164,7 @@ class PostViewController: UIViewController, AuthorizationProtocol {
             
             GeneralHelper.sharedHelper.showSpinner(onView: self.view, usingBoundsFromView: self.tableView)
             
-            ServerManager.sharedManager.getFeed(forType: .comment, ownerID: groupID, postID: wallPost.postID, offset: 0, count: max(commentsInRequest, self.comments.count), completed: { (comments) in
+            getFeed(forType: .comment, ownerID: groupID, postID: wallPost.postID, offset: 0, count: max(commentsInRequest, self.comments.count), completed: { (comments) in
                 
                 if comments.count > 0 {
                     guard let comments = comments as? [Comment] else { return }
@@ -184,7 +184,7 @@ class PostViewController: UIViewController, AuthorizationProtocol {
         
         GeneralHelper.sharedHelper.showSpinner(onView: self.view, usingBoundsFromView: self.tableView)
         
-        ServerManager.sharedManager.getFeed(forType: .comment, ownerID: groupID, postID: wallPost.postID, offset: self.comments.count, count: commentsInRequest) { (comments) in
+        getFeed(forType: .comment, ownerID: groupID, postID: wallPost.postID, offset: self.comments.count, count: commentsInRequest) { (comments) in
             
             if comments.count > 0 {
                 guard let comments = comments as? [Comment] else { return }
