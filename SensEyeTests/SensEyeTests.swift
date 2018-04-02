@@ -31,7 +31,7 @@ class SensEyeTests: XCTestCase {
             }
             postFetchExpectation.fulfill()
         }
-     
+        
         waitForExpectations(timeout: 5) { (err) in
             XCTAssertNil(err, "postFetchTimeout")
         }
@@ -58,8 +58,6 @@ class SensEyeTests: XCTestCase {
                 
                 self.createComment(ownerID: groupID, postID: post.postID, message: "test comment", completed: { (success) in
                     
-                    print(success)
-                    
                     if success {
                         commentAddExpectation.fulfill()
                     } else {
@@ -73,6 +71,111 @@ class SensEyeTests: XCTestCase {
             XCTAssertNil(err, "commentAddExpectation timeout")
         }
     }
+    
+    func testAddLikeToPost() {
+        let likeAddExpectation = expectation(description: "likeAddExpectation")
+        
+        authorize { (user) in
+            
+            self.setVKUser(user: user)
+            
+            if !self.checkIfCurrentVKUserExists() {
+                XCTFail("Authorize using app run")
+            }
+            
+            self.getLastPost(completion: { (post) in
+                
+                guard let post = post else {
+                    XCTFail("Can not fetch post")
+                    return
+                }
+                
+                self.addLike(forItemType: .post, ownerID: groupID, itemID: post.postID, completed: { (success, resultDict) in
+                    if success {
+                        likeAddExpectation.fulfill()
+                    } else {
+                        XCTFail("can't add like")
+                    }
+                })
+                
+                
+            })
+        }
+        
+        waitForExpectations(timeout: 10) { (err) in
+            XCTAssertNil(err, "likeAddExpectation timeout")
+        }
+    }
+    
+    func testDeleteLikeFromPost() {
+        let likeDeleteExpectation = expectation(description: "likeDeleteExpectation")
+        
+        authorize { (user) in
+            
+            self.setVKUser(user: user)
+            
+            if !self.checkIfCurrentVKUserExists() {
+                XCTFail("Authorize using app run")
+            }
+            
+            
+            self.getLastPost(completion: { (post) in
+                
+                guard let post = post else {
+                    XCTFail("Can not fetch post")
+                    return
+                }
+                
+                self.isLiked(forItemType: .post, ownerID: groupID, itemID: post.postID, completed: { (resultDict) in
+                    
+                    if let resultDict = resultDict,
+                        let liked = resultDict["liked"] as? Int {
+                        
+                        if liked == 1 {
+                            
+                            self.deleteLike(forItemType: .post, ownerID: groupID, itemID: post.postID, completed: { (success, resultDict) in
+                                if success {
+                                    likeDeleteExpectation.fulfill()
+                                } else {
+                                    XCTFail("can't delete like")
+                                }
+                            })
+                            
+                            
+                            
+                        } else {
+                            // Not liked. Add like first
+                            self.addAndDeleteLike(forItemType: .post, itemID: post.postID, completion: { (success) in
+                                if success {
+                                    likeDeleteExpectation.fulfill()
+                                } else {
+                                    XCTFail("can't delete like")
+                                }
+                            })
+                            
+                        }
+                        
+                        
+                    } else {
+                        // Not liked. Add like first
+                        self.addAndDeleteLike(forItemType: .post, itemID: post.postID, completion: { (success) in
+                            if success {
+                                likeDeleteExpectation.fulfill()
+                            } else {
+                                XCTFail("can't delete like")
+                            }
+                        })
+                    }
+                    
+                })
+            })
+        }
+        
+        waitForExpectations(timeout: 10) { (err) in
+            XCTAssertNil(err, "likeDeleteExpectation timeout")
+        }
+    }
+    
     
     func testAuthorize() {
         
@@ -95,6 +198,8 @@ class SensEyeTests: XCTestCase {
         }
     }
     
+    
+    
     // MARK: - HELPER METHODS
     func getLastPost(completion: @escaping (WallPost?) -> ()) {
         
@@ -110,6 +215,25 @@ class SensEyeTests: XCTestCase {
                 completion(nil)
             }
         }
+    }
+  
+    func addAndDeleteLike(forItemType itemType: FeedItemsType, itemID: String, completion: @escaping (Bool)->()) {
+        self.addLike(forItemType: itemType, ownerID: groupID, itemID: itemID, completed: { (success, resultDict) in
+            if success {
+                
+                self.deleteLike(forItemType: itemType, ownerID: groupID, itemID: itemID, completed: { (success, resultDict) in
+                    
+                    if success {
+                        completion(true)
+                    } else {
+                        completion(false)
+                    }
+                })
+                
+            } else {
+                completion(false)
+            }
+        })
     }
     
 }
