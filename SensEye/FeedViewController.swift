@@ -191,6 +191,8 @@ class FeedViewController: UIViewController, FeedProtocol, AuthorizationProtocol 
                 self.loadingData = false
                 GeneralHelper.sharedHelper.hideSpinner(onView: self.view)
                 self.refreshControl.endRefreshing()
+                
+                self.revealingSplashView.heartAttack = true
             }
         }
     }
