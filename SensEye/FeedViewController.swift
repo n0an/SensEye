@@ -21,7 +21,7 @@ enum Storyboard {
     static let segueCommentComposer     = "ShowCommentComposer"
 }
 
-class FeedViewController: UIViewController, FeedProtocol, AuthorizationProtocol {
+class FeedViewController: UIViewController {
     
     // MARK: - OUTLETS
     @IBOutlet weak var tableView: UITableView!
@@ -98,12 +98,16 @@ class FeedViewController: UIViewController, FeedProtocol, AuthorizationProtocol 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        let currentVKUser = ServerManager.sharedManager.currentVKUser
+//        let currentVKUser = ServerManager.sharedManager.currentVKUser
         
         let userDidAuth = UserDefaults.standard.bool(forKey: KEY_VK_DIDAUTH)
         let userCancelAuth = UserDefaults.standard.bool(forKey: KEY_VK_USERCANCELAUTH)
         
-        if currentVKUser == nil {
+//        if !checkIfCurrentVKUserExist() {
+//
+//        }
+        
+        if !checkIfCurrentVKUserExist() {
             
             if userDidAuth && !userCancelAuth {
                 self.toAuthorize()
@@ -293,8 +297,15 @@ class FeedViewController: UIViewController, FeedProtocol, AuthorizationProtocol 
                 return
             }
             
+//            let index = tableView.indexPath(for: postCell)
+//
+//            let post = self.feedDataSource.wallPosts[(index?.row)!]
+//
+//            print(post.postID)
+            
             destinationVC.delegate = self
             destinationVC.wallPost = postCell.wallPost
+//            destinationVC.wallPost = post
             destinationVC.backgroundImage = postCell.galleryImageViews[0].image
             
         } else if segue.identifier == Storyboard.segueCommentComposer {
@@ -343,5 +354,6 @@ extension FeedViewController: CommentComposerViewControllerDelegate {
     
 }
 
+extension FeedViewController: FeedProtocol, AuthorizationProtocol { }
 
 

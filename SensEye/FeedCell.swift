@@ -78,7 +78,7 @@ class FeedCell: UITableViewCell {
         
         self.wallPost.isLikedByCurrentUser = true
         
-        ServerManager.sharedManager.addLike(forItemType: .post, ownerID: groupID, itemID: self.wallPost.postID) { (success, resultDict) in
+        addLike(forItemType: .post, ownerID: groupID, itemID: self.wallPost.postID) { (success, resultDict) in
             self.likeButton.isUserInteractionEnabled = true
             
             if success == true {
@@ -102,7 +102,7 @@ class FeedCell: UITableViewCell {
         
         self.wallPost.isLikedByCurrentUser = false
         
-        ServerManager.sharedManager.deleteLike(forItemType: .post, ownerID: groupID, itemID: self.wallPost.postID) { (success, resultDict) in
+        deleteLike(forItemType: .post, ownerID: groupID, itemID: self.wallPost.postID) { (success, resultDict) in
             self.likeButton.isUserInteractionEnabled = true
             
             if success == true {
@@ -188,10 +188,16 @@ class FeedCell: UITableViewCell {
     
     // MARK: - ACTIONS
     @IBAction func likeDidTap(_ sender: DesignableButton) {
-        guard ServerManager.sharedManager.currentVKUser != nil else {
+//        guard ServerManager.sharedManager.currentVKUser != nil else {
+//            authorize()
+//            return
+//        }
+        
+        guard checkIfCurrentVKUserExist() else {
             authorize()
             return
         }
+        
         
         likeButton.isUserInteractionEnabled = false
         
@@ -216,7 +222,12 @@ class FeedCell: UITableViewCell {
     
     @IBAction func commentDidTap(_ sender: DesignableButton) {
         
-        guard ServerManager.sharedManager.currentVKUser != nil else {
+//        guard ServerManager.sharedManager.currentVKUser != nil else {
+//            authorize()
+//            return
+//        }
+        
+        guard checkIfCurrentVKUserExist() else {
             authorize()
             return
         }
@@ -226,3 +237,5 @@ class FeedCell: UITableViewCell {
         animateButton(sender)
     }
 }
+
+extension FeedCell: AuthorizationProtocol, LikesProtocol { }

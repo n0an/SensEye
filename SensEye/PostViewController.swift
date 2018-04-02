@@ -10,7 +10,7 @@ import UIKit
 import Jelly
 import IDMPhotoBrowser
 
-class PostViewController: UIViewController, FeedProtocol, AuthorizationProtocol {
+class PostViewController: UIViewController {
     
     // MARK: - OUTLETS
     @IBOutlet weak var tableView: UITableView!
@@ -121,7 +121,7 @@ class PostViewController: UIViewController, FeedProtocol, AuthorizationProtocol 
     // MARK: - API METHODS
     func refreshLogoutButton() {
         
-        if ServerManager.sharedManager.currentVKUser != nil {
+        if checkIfCurrentVKUserExist()  {
             self.logoutFromVKButton.isHidden = false
         } else {
             self.logoutFromVKButton.isHidden = true
@@ -132,7 +132,7 @@ class PostViewController: UIViewController, FeedProtocol, AuthorizationProtocol 
         
         GeneralHelper.sharedHelper.showSpinner(onView: self.view, usingBoundsFromView: self.tableView)
         
-        ServerManager.sharedManager.isLiked(forItemType: .post, ownerID: groupID, itemID: self.wallPost.postID) { (resultDict) in
+        isLiked(forItemType: .post, ownerID: groupID, itemID: self.wallPost.postID) { (resultDict) in
             
             if let resultDict = resultDict {
                 
@@ -457,5 +457,7 @@ extension PostViewController: CommentComposerViewControllerDelegate {
         refreshComments()
     }
 }
+
+extension PostViewController: FeedProtocol, AuthorizationProtocol, LikesProtocol { }
 
 

@@ -2,4 +2,102 @@
 <Bucket
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SensEye/PostViewController.swift"
+            timestampString = "544357304.297967"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "166"
+            endingLineNumber = "166"
+            landmarkName = "refreshComments()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SensEye.PostViewController.refreshComments() -&gt; ()"
+                  moduleName = "SensEye"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/antonnovoselov/Documents/Development/SensEye/SensEye/SensEye/PostViewController.swift"
+                  timestampString = "544357304.511384"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "167"
+                  endingLineNumber = "167"
+                  offsetFromSymbolStart = "488">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Array&lt;Any&gt;) -&gt; () in SensEye.PostViewController.refreshComments() -&gt; ()"
+                  moduleName = "SensEye"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/antonnovoselov/Documents/Development/SensEye/SensEye/SensEye/PostViewController.swift"
+                  timestampString = "544357304.5129139"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "169"
+                  endingLineNumber = "169"
+                  offsetFromSymbolStart = "24">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SensEye/PostViewController.swift"
+            timestampString = "544357304.298197"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "186"
+            endingLineNumber = "186"
+            landmarkName = "getCommentsFromServer()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SensEye.PostViewController.getCommentsFromServer() -&gt; ()"
+                  moduleName = "SensEye"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/antonnovoselov/Documents/Development/SensEye/SensEye/SensEye/PostViewController.swift"
+                  timestampString = "544357304.516626"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "187"
+                  endingLineNumber = "187"
+                  offsetFromSymbolStart = "412">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Array&lt;Any&gt;) -&gt; () in SensEye.PostViewController.getCommentsFromServer() -&gt; ()"
+                  moduleName = "SensEye"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/antonnovoselov/Documents/Development/SensEye/SensEye/SensEye/PostViewController.swift"
+                  timestampString = "544357304.518001"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "189"
+                  endingLineNumber = "189"
+                  offsetFromSymbolStart = "24">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

@@ -421,7 +421,19 @@ class ServerManager {
         }
     }
     
-    func modifyLike(addLike: Bool, forItemType itemType: FeedItemsType, ownerID: String, itemID: String, completed: @escaping LikeFeatureCompletion) {
+    func addLike(forItemType itemType: FeedItemsType, ownerID: String, itemID: String, completed: @escaping LikeFeatureCompletion) {
+        
+        modifyLike(addLike: true, forItemType: itemType, ownerID: ownerID, itemID: itemID, completed: completed)
+    }
+    
+    func deleteLike(forItemType itemType: FeedItemsType, ownerID: String, itemID: String, completed: @escaping LikeFeatureCompletion) {
+        
+        modifyLike(addLike: false, forItemType: itemType, ownerID: ownerID, itemID: itemID, completed: completed)
+    }
+    
+    // MARK: - PRIVATE HELPER METHODS
+    
+    private func modifyLike(addLike: Bool, forItemType itemType: FeedItemsType, ownerID: String, itemID: String, completed: @escaping LikeFeatureCompletion) {
         
         let pathComponent = addLike ? URL_LIKES_ADD : URL_LIKES_DELETE
         
@@ -464,17 +476,7 @@ class ServerManager {
         }
     }
     
-    func addLike(forItemType itemType: FeedItemsType, ownerID: String, itemID: String, completed: @escaping LikeFeatureCompletion) {
-        
-        modifyLike(addLike: true, forItemType: itemType, ownerID: ownerID, itemID: itemID, completed: completed)
-    }
     
-    func deleteLike(forItemType itemType: FeedItemsType, ownerID: String, itemID: String, completed: @escaping LikeFeatureCompletion) {
-        
-        modifyLike(addLike: false, forItemType: itemType, ownerID: ownerID, itemID: itemID, completed: completed)
-    }
-    
-    // MARK: - HELPER METHODS
     private func parseFeedObjects<T: ServerObject>(forArray array: [JSON], authorsArray: [User], group: Group?) -> [T] {
         
         var feedObjectsArray = [T]()

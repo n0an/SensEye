@@ -60,7 +60,7 @@ class CommentCell: UITableViewCell {
         self.comment.commentLikesCount += 1
         self.comment.isLikedByCurrentUser = true
         
-        ServerManager.sharedManager.addLike(forItemType: .comment, ownerID: groupID, itemID: self.comment.commentID) { (success, resultDict) in
+        addLike(forItemType: .comment, ownerID: groupID, itemID: self.comment.commentID) { (success, resultDict) in
             self.likeButton.isUserInteractionEnabled = true
             
             if success == true {
@@ -82,7 +82,7 @@ class CommentCell: UITableViewCell {
         self.comment.commentLikesCount -= 1
         self.comment.isLikedByCurrentUser = false
         
-        ServerManager.sharedManager.deleteLike(forItemType: .comment, ownerID: groupID, itemID: self.comment.commentID) { (success, resultDict) in
+        deleteLike(forItemType: .comment, ownerID: groupID, itemID: self.comment.commentID) { (success, resultDict) in
             self.likeButton.isUserInteractionEnabled = true
             
             if success == true {
@@ -149,7 +149,12 @@ class CommentCell: UITableViewCell {
     
     // MARK: - ACTIONS
     @IBAction func likeDidTap(_ sender: DesignableButton) {
-        guard ServerManager.sharedManager.currentVKUser != nil else {
+//        guard ServerManager.sharedManager.currentVKUser != nil else {
+//            authorize()
+//            return
+//        }
+        
+        guard checkIfCurrentVKUserExist() else {
             authorize()
             return
         }
@@ -180,3 +185,5 @@ class CommentCell: UITableViewCell {
     }
 
 }
+
+extension CommentCell: AuthorizationProtocol, LikesProtocol { }
