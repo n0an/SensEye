@@ -41,10 +41,11 @@ class SensEyeTests: XCTestCase {
     func testAddComment() {
         let commentAddExpectation = expectation(description: "commentAddExpectation")
         
-        ServerManager.sharedManager.authorize { (user) in
-            ServerManager.sharedManager.currentVKUser = user
+        authorize { (user) in
             
-            if ServerManager.sharedManager.currentVKUser == nil {
+            self.setVKUser(user: user)
+            
+            if !self.checkIfCurrentVKUserExists() {
                 XCTFail("Authorize using app run")
             }
             
@@ -55,7 +56,7 @@ class SensEyeTests: XCTestCase {
                     return
                 }
                 
-                ServerManager.sharedManager.createComment(ownerID: groupID, postID: post.postID, message: "test comment", completed: { (success) in
+                self.createComment(ownerID: groupID, postID: post.postID, message: "test comment", completed: { (success) in
                     
                     print(success)
                     
@@ -77,10 +78,11 @@ class SensEyeTests: XCTestCase {
         
         let authorizeExpectation = expectation(description: "authorizeExpectation")
         
-        ServerManager.sharedManager.authorize { (user) in
-            ServerManager.sharedManager.currentVKUser = user
+        authorize { (user) in
             
-            if ServerManager.sharedManager.currentVKUser == nil {
+            self.setVKUser(user: user)
+            
+            if !self.checkIfCurrentVKUserExists() {
                 XCTFail("Authorize using app run")
             }
             
@@ -95,7 +97,8 @@ class SensEyeTests: XCTestCase {
     
     // MARK: - HELPER METHODS
     func getLastPost(completion: @escaping (WallPost?) -> ()) {
-        ServerManager.sharedManager.getFeed(forType: .post, ownerID: groupID, offset: 0, count: 1) { (posts) in
+        
+        getFeed(forType: .post, ownerID: groupID, offset: 0, count: 1) { (posts) in
             
             if let posts = posts as? [WallPost] {
                 if !posts.isEmpty {
@@ -110,3 +113,5 @@ class SensEyeTests: XCTestCase {
     }
     
 }
+
+extension SensEyeTests: ProjectProtocol  { }

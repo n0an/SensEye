@@ -396,7 +396,7 @@ extension PostViewController: FeedCellDelegate {
     
     func toAuthorize() {
         authorize { (user) in
-//            ServerManager.sharedManager.currentVKUser = user
+
             self.setVKUser(user: user)
         }
     }

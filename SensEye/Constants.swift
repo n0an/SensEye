@@ -23,6 +23,8 @@ typealias DownloadComplete = ([Any]) -> Void
 typealias AuthoizationComplete = (User) -> Void
 typealias LikeFeatureCompletion = (Bool, [String: Any]?) -> Void
 
+typealias ProjectProtocol = AuthorizationProtocol & FeedProtocol & LikesProtocol & PhotosProtocol
+
 // MARK: - ===== UI SETTINGS ====
 let mainShadowColor         = UIColor(netHex: 0x787878)
 var shadowColor             = mainShadowColor

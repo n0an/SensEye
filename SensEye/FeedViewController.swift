@@ -33,9 +33,7 @@ class FeedViewController: UIViewController {
     let postsInRequest = 10
 
     var loadingData = false
-    
-//    fileprivate var jellyAnimator: JellyAnimator?
-    
+        
     private var refreshControl: UIRefreshControl!
     
     var observer: AnyObject!
@@ -98,14 +96,8 @@ class FeedViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-//        let currentVKUser = ServerManager.sharedManager.currentVKUser
-        
         let userDidAuth = UserDefaults.standard.bool(forKey: KEY_VK_DIDAUTH)
         let userCancelAuth = UserDefaults.standard.bool(forKey: KEY_VK_USERCANCELAUTH)
-        
-//        if !checkIfCurrentVKUserExist() {
-//
-//        }
         
         if !checkIfCurrentVKUserExists() {
             
@@ -203,7 +195,6 @@ class FeedViewController: UIViewController {
     // MARK: - HELPER METHODS
     func toAuthorize() {
         authorize { (user) in
-//            ServerManager.sharedManager.currentVKUser = user
             
             self.setVKUser(user: user)
         }
@@ -298,16 +289,9 @@ class FeedViewController: UIViewController {
             guard let postCell = sender as? FeedCell else {
                 return
             }
-            
-//            let index = tableView.indexPath(for: postCell)
-//
-//            let post = self.feedDataSource.wallPosts[(index?.row)!]
-//
-//            print(post.postID)
-            
+     
             destinationVC.delegate = self
             destinationVC.wallPost = postCell.wallPost
-//            destinationVC.wallPost = post
             destinationVC.backgroundImage = postCell.galleryImageViews[0].image
             
         } else if segue.identifier == Storyboard.segueCommentComposer {

@@ -188,11 +188,7 @@ class FeedCell: UITableViewCell {
     
     // MARK: - ACTIONS
     @IBAction func likeDidTap(_ sender: DesignableButton) {
-//        guard ServerManager.sharedManager.currentVKUser != nil else {
-//            authorize()
-//            return
-//        }
-        
+
         guard checkIfCurrentVKUserExists() else {
             authorize()
             return
@@ -221,12 +217,7 @@ class FeedCell: UITableViewCell {
     }
     
     @IBAction func commentDidTap(_ sender: DesignableButton) {
-        
-//        guard ServerManager.sharedManager.currentVKUser != nil else {
-//            authorize()
-//            return
-//        }
-        
+       
         guard checkIfCurrentVKUserExists() else {
             authorize()
             return

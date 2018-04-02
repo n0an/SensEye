@@ -149,11 +149,7 @@ class CommentCell: UITableViewCell {
     
     // MARK: - ACTIONS
     @IBAction func likeDidTap(_ sender: DesignableButton) {
-//        guard ServerManager.sharedManager.currentVKUser != nil else {
-//            authorize()
-//            return
-//        }
-        
+
         guard checkIfCurrentVKUserExists() else {
             authorize()
             return
