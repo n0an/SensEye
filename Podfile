@@ -55,12 +55,9 @@ target 'SensEye' do
   # Fabric
   pod 'Fabric'
   pod 'Crashlytics'
-  
-  pod 'SwiftyJSON'
-  
-  pod 'RevealingSplashView'
 
-  pod 'R.swift'
+  pod 'SwiftyJSON'
+  pod 'RevealingSplashView'
 
 end
 

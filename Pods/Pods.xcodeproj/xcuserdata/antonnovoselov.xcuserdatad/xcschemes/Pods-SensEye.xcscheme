@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D78FF2F2E3E969BF57DCE8505DDFDE05"
+               BlueprintIdentifier = "2D76B356D1D9975E39E42B7B4303B29C"
                BuildableName = "Pods_SensEye.framework"
                BlueprintName = "Pods-SensEye"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D78FF2F2E3E969BF57DCE8505DDFDE05"
+            BlueprintIdentifier = "2D76B356D1D9975E39E42B7B4303B29C"
             BuildableName = "Pods_SensEye.framework"
             BlueprintName = "Pods-SensEye"
             ReferencedContainer = "container:Pods.xcodeproj">

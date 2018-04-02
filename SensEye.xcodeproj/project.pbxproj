@@ -30,7 +30,6 @@
 		1838C24B1E11362D00E02F88 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1838C24A1E11362D00E02F88 /* User.swift */; };
 		183E2A1E1E16A24A0099F775 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183E2A1D1E16A24A0099F775 /* PostView.swift */; };
 		183E2A201E16B5180099F775 /* RoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183E2A1F1E16B5180099F775 /* RoundedView.swift */; };
-		1842EE0720571396007055C0 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1842EE0620571396007055C0 /* R.generated.swift */; };
 		184A0BE81E3B404300EEAB4B /* RefreshContents.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184A0BE71E3B404300EEAB4B /* RefreshContents.xib */; };
 		1852CAA720721CE300ED2EE0 /* AuthorizationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1852CAA620721CE300ED2EE0 /* AuthorizationProtocol.swift */; };
 		185456B91E3E4BAC006773C5 /* MySplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185456B81E3E4BAC006773C5 /* MySplitViewController.swift */; };
@@ -121,7 +120,6 @@
 		1838C24A1E11362D00E02F88 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		183E2A1D1E16A24A0099F775 /* PostView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
 		183E2A1F1E16B5180099F775 /* RoundedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedView.swift; sourceTree = "<group>"; };
-		1842EE0620571396007055C0 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		184A0BE71E3B404300EEAB4B /* RefreshContents.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RefreshContents.xib; sourceTree = "<group>"; };
 		1852CAA620721CE300ED2EE0 /* AuthorizationProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationProtocol.swift; sourceTree = "<group>"; };
 		185456B81E3E4BAC006773C5 /* MySplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MySplitViewController.swift; sourceTree = "<group>"; };
@@ -305,7 +303,6 @@
 				18AA37D01E1053F700D5BCB1 /* AppDelegate.swift */,
 				1838C2401E110A7700E02F88 /* Constants.swift */,
 				18B3623720726E1F00878299 /* Enums.swift */,
-				1842EE0620571396007055C0 /* R.generated.swift */,
 				18D3704320652F3F000553D3 /* Protocols */,
 				18C395331E166D1D00AE1867 /* Extensions */,
 				18FC625F1E114C1700E25A18 /* Model */,
@@ -508,7 +505,6 @@
 			buildConfigurationList = 18AA37DF1E1053F700D5BCB1 /* Build configuration list for PBXNativeTarget "SensEye" */;
 			buildPhases = (
 				03F4FF4F2DBF9B50D7F1CBF4 /* [CP] Check Pods Manifest.lock */,
-				1842EE0520571324007055C0 /* ShellScript */,
 				18AA37C91E1053F700D5BCB1 /* Sources */,
 				18AA37CA1E1053F700D5BCB1 /* Frameworks */,
 				18AA37CB1E1053F700D5BCB1 /* Resources */,
@@ -625,19 +621,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		1842EE0520571324007055C0 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT\"";
-		};
 		18C1BDB71E47A8F200A0BCFA /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -709,7 +692,6 @@
 				"${BUILT_PRODUCTS_DIR}/JSQMessagesViewController/JSQMessagesViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/JSQSystemSoundPlayer/JSQSystemSoundPlayer.framework",
 				"${BUILT_PRODUCTS_DIR}/Jelly/Jelly.framework",
-				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
 				"${BUILT_PRODUCTS_DIR}/RevealingSplashView/RevealingSplashView.framework",
 				"${BUILT_PRODUCTS_DIR}/SAMCache/SAMCache.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
@@ -738,7 +720,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JSQMessagesViewController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JSQSystemSoundPlayer.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Jelly.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RevealingSplashView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SAMCache.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
@@ -826,7 +807,6 @@
 				18FC625C1E113E9C00E25A18 /* Photo.swift in Sources */,
 				188FD7951E34F532007CA1EE /* IncomingMessage.swift in Sources */,
 				18AEEC4D1E2FA64D00AB97B4 /* FRStorageManager.swift in Sources */,
-				1842EE0720571396007055C0 /* R.generated.swift in Sources */,
 				18880A7C1E43C6A30083D0B4 /* CommentComposerViewController.swift in Sources */,
 				18251C4C1E2D5B92000DBE57 /* FRAuthManager.swift in Sources */,
 				188C04F81E1074C8008B58EB /* FeedViewController.swift in Sources */,
