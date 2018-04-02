@@ -10,11 +10,13 @@ import Foundation
 
 protocol AuthorizationProtocol {
     
-    func checkIfCurrentVKUserExist() -> Bool
+    func checkIfCurrentVKUserExists() -> Bool
     
     func deAuthorize(completed: @escaping (Bool) -> Void)
     
     func authorize(completed: @escaping AuthoizationComplete)
+    
+    func setVKUser(user: User)
 }
 
 extension AuthorizationProtocol {
@@ -26,7 +28,11 @@ extension AuthorizationProtocol {
         ServerManager.sharedManager.authorize(completed: completed)
     }
     
-    func checkIfCurrentVKUserExist() -> Bool {
+    func checkIfCurrentVKUserExists() -> Bool {
         return ServerManager.sharedManager.currentVKUser != nil
+    }
+    
+    func setVKUser(user: User) {
+        ServerManager.sharedManager.currentVKUser = user
     }
 }

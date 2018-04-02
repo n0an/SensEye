@@ -107,7 +107,7 @@ class FeedViewController: UIViewController {
 //
 //        }
         
-        if !checkIfCurrentVKUserExist() {
+        if !checkIfCurrentVKUserExists() {
             
             if userDidAuth && !userCancelAuth {
                 self.toAuthorize()
@@ -203,7 +203,9 @@ class FeedViewController: UIViewController {
     // MARK: - HELPER METHODS
     func toAuthorize() {
         authorize { (user) in
-            ServerManager.sharedManager.currentVKUser = user
+//            ServerManager.sharedManager.currentVKUser = user
+            
+            setVKUser(user: user)
         }
     }
     

@@ -121,7 +121,7 @@ class PostViewController: UIViewController {
     // MARK: - API METHODS
     func refreshLogoutButton() {
         
-        if checkIfCurrentVKUserExist()  {
+        if checkIfCurrentVKUserExists()  {
             self.logoutFromVKButton.isHidden = false
         } else {
             self.logoutFromVKButton.isHidden = true
@@ -396,7 +396,8 @@ extension PostViewController: FeedCellDelegate {
     
     func toAuthorize() {
         authorize { (user) in
-            ServerManager.sharedManager.currentVKUser = user
+//            ServerManager.sharedManager.currentVKUser = user
+            setVKUser(user: user)
         }
     }
     

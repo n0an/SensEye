@@ -154,7 +154,7 @@ class CommentCell: UITableViewCell {
 //            return
 //        }
         
-        guard checkIfCurrentVKUserExist() else {
+        guard checkIfCurrentVKUserExists() else {
             authorize()
             return
         }
