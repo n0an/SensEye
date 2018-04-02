@@ -21,7 +21,7 @@ enum Storyboard {
     static let segueCommentComposer     = "ShowCommentComposer"
 }
 
-class FeedViewController: UIViewController, WallPostProtocol {
+class FeedViewController: UIViewController, FeedProtocol, AuthorizationProtocol {
     
     // MARK: - OUTLETS
     @IBOutlet weak var tableView: UITableView!
@@ -197,7 +197,7 @@ class FeedViewController: UIViewController, WallPostProtocol {
     
     // MARK: - HELPER METHODS
     func toAuthorize() {
-        ServerManager.sharedManager.authorize { (user) in
+        authorize { (user) in
             ServerManager.sharedManager.currentVKUser = user
         }
     }

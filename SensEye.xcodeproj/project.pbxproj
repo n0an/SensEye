@@ -32,6 +32,7 @@
 		183E2A201E16B5180099F775 /* RoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183E2A1F1E16B5180099F775 /* RoundedView.swift */; };
 		1842EE0720571396007055C0 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1842EE0620571396007055C0 /* R.generated.swift */; };
 		184A0BE81E3B404300EEAB4B /* RefreshContents.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184A0BE71E3B404300EEAB4B /* RefreshContents.xib */; };
+		1852CAA720721CE300ED2EE0 /* AuthorizationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1852CAA620721CE300ED2EE0 /* AuthorizationProtocol.swift */; };
 		185456B91E3E4BAC006773C5 /* MySplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185456B81E3E4BAC006773C5 /* MySplitViewController.swift */; };
 		186E2A261E34A5D60011AB88 /* RecentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186E2A251E34A5D60011AB88 /* RecentViewController.swift */; };
 		186E2A281E34A9400011AB88 /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186E2A271E34A9400011AB88 /* ChatTableViewCell.swift */; };
@@ -39,7 +40,7 @@
 		186E2A2C1E34B96F0011AB88 /* FRMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186E2A2B1E34B96F0011AB88 /* FRMessage.swift */; };
 		186E2A2E1E34BB940011AB88 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186E2A2D1E34BB940011AB88 /* ChatViewController.swift */; };
 		1876C9D6206A73FD005E8730 /* SensEyeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1876C9D5206A73FD005E8730 /* SensEyeTests.swift */; };
-		1876CA18206A9997005E8730 /* WallPostProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1876CA17206A9997005E8730 /* WallPostProtocol.swift */; };
+		1876CA18206A9997005E8730 /* FeedProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1876CA17206A9997005E8730 /* FeedProtocol.swift */; };
 		18880A7C1E43C6A30083D0B4 /* CommentComposerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18880A7B1E43C6A30083D0B4 /* CommentComposerViewController.swift */; };
 		188C04F81E1074C8008B58EB /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188C04F71E1074C8008B58EB /* FeedViewController.swift */; };
 		188C04FA1E1074D6008B58EB /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188C04F91E1074D6008B58EB /* FeedCell.swift */; };
@@ -117,6 +118,7 @@
 		183E2A1F1E16B5180099F775 /* RoundedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedView.swift; sourceTree = "<group>"; };
 		1842EE0620571396007055C0 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		184A0BE71E3B404300EEAB4B /* RefreshContents.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RefreshContents.xib; sourceTree = "<group>"; };
+		1852CAA620721CE300ED2EE0 /* AuthorizationProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationProtocol.swift; sourceTree = "<group>"; };
 		185456B81E3E4BAC006773C5 /* MySplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MySplitViewController.swift; sourceTree = "<group>"; };
 		186E2A251E34A5D60011AB88 /* RecentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentViewController.swift; sourceTree = "<group>"; };
 		186E2A271E34A9400011AB88 /* ChatTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTableViewCell.swift; sourceTree = "<group>"; };
@@ -126,7 +128,7 @@
 		1876C9D3206A73FD005E8730 /* SensEyeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SensEyeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1876C9D5206A73FD005E8730 /* SensEyeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensEyeTests.swift; sourceTree = "<group>"; };
 		1876C9D7206A73FD005E8730 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1876CA17206A9997005E8730 /* WallPostProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallPostProtocol.swift; sourceTree = "<group>"; };
+		1876CA17206A9997005E8730 /* FeedProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedProtocol.swift; sourceTree = "<group>"; };
 		18880A7B1E43C6A30083D0B4 /* CommentComposerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentComposerViewController.swift; sourceTree = "<group>"; };
 		188C04F71E1074C8008B58EB /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		188C04F91E1074D6008B58EB /* FeedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
@@ -358,7 +360,8 @@
 				18D3704120652E98000553D3 /* PostViewControllerDelegate.swift */,
 				18D3703F20652E31000553D3 /* CommentComposerViewControllerDelegate.swift */,
 				1826818E1E1D79D300D96764 /* ServerObject.swift */,
-				1876CA17206A9997005E8730 /* WallPostProtocol.swift */,
+				1876CA17206A9997005E8730 /* FeedProtocol.swift */,
+				1852CAA620721CE300ED2EE0 /* AuthorizationProtocol.swift */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -794,7 +797,7 @@
 				1835A7F32063DEED00BA4AF8 /* CellDelegate.swift in Sources */,
 				18C395321E166D0200AE1867 /* NSDate+Utilities.m in Sources */,
 				183E2A201E16B5180099F775 /* RoundedView.swift in Sources */,
-				1876CA18206A9997005E8730 /* WallPostProtocol.swift in Sources */,
+				1876CA18206A9997005E8730 /* FeedProtocol.swift in Sources */,
 				18FC625C1E113E9C00E25A18 /* Photo.swift in Sources */,
 				188FD7951E34F532007CA1EE /* IncomingMessage.swift in Sources */,
 				18AEEC4D1E2FA64D00AB97B4 /* FRStorageManager.swift in Sources */,
@@ -819,6 +822,7 @@
 				185456B91E3E4BAC006773C5 /* MySplitViewController.swift in Sources */,
 				18D623641E1FCD0D00138117 /* VKAccessToken.swift in Sources */,
 				186E2A2A1E34A98B0011AB88 /* FRChat.swift in Sources */,
+				1852CAA720721CE300ED2EE0 /* AuthorizationProtocol.swift in Sources */,
 				183E2A1E1E16A24A0099F775 /* PostView.swift in Sources */,
 				18AA37D11E1053F700D5BCB1 /* AppDelegate.swift in Sources */,
 				18AEEC491E2FA01B00AB97B4 /* FRImage.swift in Sources */,

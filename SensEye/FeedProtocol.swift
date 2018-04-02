@@ -13,13 +13,13 @@ enum FeedItemsType: String {
     case comment = "comment"
 }
 
-protocol WallPostProtocol {
+protocol FeedProtocol {
     func getFeed(forType feedType: FeedItemsType, ownerID: String, postID: String?, offset: Int, count: Int, completed: @escaping DownloadComplete)
     
     func createComment(ownerID: String, postID: String, message: String, completed: @escaping (Bool) -> Void)
 }
 
-extension WallPostProtocol {
+extension FeedProtocol {
     
     func getFeed(forType feedType: FeedItemsType, ownerID: String, postID: String? = nil, offset: Int, count: Int, completed: @escaping DownloadComplete) {
         ServerManager.sharedManager.getFeed(forType: feedType, ownerID: ownerID, offset: offset, count: count, completed: completed)

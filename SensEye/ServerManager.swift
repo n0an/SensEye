@@ -60,7 +60,7 @@ class ServerManager {
         center.post(notification)
     }
     
-    func renewAuthorization(completed: @escaping AuthoizationComplete) {
+    private func renewAuthorization(completed: @escaping AuthoizationComplete) {
         
         let loginVC = VKLoginViewController { (accessToken) in
             

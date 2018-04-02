@@ -10,7 +10,7 @@ import UIKit
 import Jelly
 import IDMPhotoBrowser
 
-class PostViewController: UIViewController {
+class PostViewController: UIViewController, AuthorizationProtocol {
     
     // MARK: - OUTLETS
     @IBOutlet weak var tableView: UITableView!
@@ -349,7 +349,7 @@ extension PostViewController: PostHeaderViewDelegate {
     }
     
     func logoutFromVKButtonTapped() {
-        ServerManager.sharedManager.deAuthorize { (success) in
+        deAuthorize { (success) in
             
         }
     }
@@ -395,7 +395,7 @@ extension PostViewController: FeedCellDelegate {
     
     
     func toAuthorize() {
-        ServerManager.sharedManager.authorize { (user) in
+        authorize { (user) in
             ServerManager.sharedManager.currentVKUser = user
         }
     }
