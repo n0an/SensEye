@@ -21,7 +21,7 @@
 		182681911E1D7C9C00D96764 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182681901E1D7C9C00D96764 /* PostViewController.swift */; };
 		182681931E1D822500D96764 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182681921E1D822500D96764 /* CommentCell.swift */; };
 		1835A7EF2063D53900BA4AF8 /* FeedDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1835A7EE2063D53900BA4AF8 /* FeedDataSource.swift */; };
-		1835A7F32063DEED00BA4AF8 /* CellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1835A7F22063DEED00BA4AF8 /* CellDelegate.swift */; };
+		1835A7F32063DEED00BA4AF8 /* WallPostCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1835A7F22063DEED00BA4AF8 /* WallPostCellDelegate.swift */; };
 		1835A83320652C6300BA4AF8 /* FeedCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1835A83220652C6300BA4AF8 /* FeedCellDelegate.swift */; };
 		1835A83520652C9D00BA4AF8 /* PostHeaderViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1835A83420652C9D00BA4AF8 /* PostHeaderViewDelegate.swift */; };
 		1838C2411E110A7700E02F88 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1838C2401E110A7700E02F88 /* Constants.swift */; };
@@ -61,6 +61,7 @@
 		18B19E971E4D067000F6F8C3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 18B19E991E4D067000F6F8C3 /* InfoPlist.strings */; };
 		18B3622F2072369100878299 /* LikesProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B3622E2072369100878299 /* LikesProtocol.swift */; };
 		18B3623120723F1A00878299 /* PhotosProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B3623020723F1A00878299 /* PhotosProtocol.swift */; };
+		18B362332072649D00878299 /* GeneralFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B362322072649D00878299 /* GeneralFeedViewController.swift */; };
 		18BA342A1E4B8CBB00EE6CF1 /* TextFieldsChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BA34291E4B8CBB00EE6CF1 /* TextFieldsChecker.swift */; };
 		18BE87F11E16CF5A00B5837E /* CircleImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BE87F01E16CF5A00B5837E /* CircleImageView.swift */; };
 		18C395321E166D0200AE1867 /* NSDate+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C395301E166D0200AE1867 /* NSDate+Utilities.m */; };
@@ -109,7 +110,7 @@
 		182681901E1D7C9C00D96764 /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		182681921E1D822500D96764 /* CommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		1835A7EE2063D53900BA4AF8 /* FeedDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedDataSource.swift; sourceTree = "<group>"; };
-		1835A7F22063DEED00BA4AF8 /* CellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellDelegate.swift; sourceTree = "<group>"; };
+		1835A7F22063DEED00BA4AF8 /* WallPostCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallPostCellDelegate.swift; sourceTree = "<group>"; };
 		1835A83220652C6300BA4AF8 /* FeedCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCellDelegate.swift; sourceTree = "<group>"; };
 		1835A83420652C9D00BA4AF8 /* PostHeaderViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostHeaderViewDelegate.swift; sourceTree = "<group>"; };
 		1838C2401E110A7700E02F88 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -155,6 +156,7 @@
 		18B19E9A1E4D06E200F6F8C3 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		18B3622E2072369100878299 /* LikesProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikesProtocol.swift; sourceTree = "<group>"; };
 		18B3623020723F1A00878299 /* PhotosProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosProtocol.swift; sourceTree = "<group>"; };
+		18B362322072649D00878299 /* GeneralFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralFeedViewController.swift; sourceTree = "<group>"; };
 		18BA34291E4B8CBB00EE6CF1 /* TextFieldsChecker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldsChecker.swift; sourceTree = "<group>"; };
 		18BE87F01E16CF5A00B5837E /* CircleImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleImageView.swift; sourceTree = "<group>"; };
 		18C3952F1E166D0100AE1867 /* SensEye-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SensEye-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -386,17 +388,14 @@
 			name = VK;
 			sourceTree = "<group>";
 		};
-		18E3F91A1E464DEB00BC95C3 /* Feed */ = {
+		18E3F91A1E464DEB00BC95C3 /* FeedVC */ = {
 			isa = PBXGroup;
 			children = (
-				18D623611E1FCCC800138117 /* VKLoginViewController.swift */,
 				188C04F71E1074C8008B58EB /* FeedViewController.swift */,
-				1835A7F22063DEED00BA4AF8 /* CellDelegate.swift */,
 				1835A7EE2063D53900BA4AF8 /* FeedDataSource.swift */,
-				182681901E1D7C9C00D96764 /* PostViewController.swift */,
-				18880A7B1E43C6A30083D0B4 /* CommentComposerViewController.swift */,
+				1835A7F22063DEED00BA4AF8 /* WallPostCellDelegate.swift */,
 			);
-			name = Feed;
+			name = FeedVC;
 			sourceTree = "<group>";
 		};
 		18E3F91B1E464DF300BC95C3 /* About */ = {
@@ -434,7 +433,11 @@
 		18FC62611E114C2300E25A18 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				18E3F91A1E464DEB00BC95C3 /* Feed */,
+				18B362322072649D00878299 /* GeneralFeedViewController.swift */,
+				18E3F91A1E464DEB00BC95C3 /* FeedVC */,
+				182681901E1D7C9C00D96764 /* PostViewController.swift */,
+				18880A7B1E43C6A30083D0B4 /* CommentComposerViewController.swift */,
+				18D623611E1FCCC800138117 /* VKLoginViewController.swift */,
 				1864A9E11E157E0B0058D2E2 /* Gallery */,
 				18A9FAE51E2E9DC4004C548B /* Chat Tab */,
 				18E3F91B1E464DF300BC95C3 /* About */,
@@ -800,7 +803,7 @@
 				186E2A2E1E34BB940011AB88 /* ChatViewController.swift in Sources */,
 				1838C2411E110A7700E02F88 /* Constants.swift in Sources */,
 				188C04FC1E10FCBC008B58EB /* ServerManager.swift in Sources */,
-				1835A7F32063DEED00BA4AF8 /* CellDelegate.swift in Sources */,
+				1835A7F32063DEED00BA4AF8 /* WallPostCellDelegate.swift in Sources */,
 				18C395321E166D0200AE1867 /* NSDate+Utilities.m in Sources */,
 				183E2A201E16B5180099F775 /* RoundedView.swift in Sources */,
 				1876CA18206A9997005E8730 /* FeedProtocol.swift in Sources */,
@@ -827,6 +830,7 @@
 				18FC625E1E11439D00E25A18 /* PhotoAlbum.swift in Sources */,
 				185456B91E3E4BAC006773C5 /* MySplitViewController.swift in Sources */,
 				18D623641E1FCD0D00138117 /* VKAccessToken.swift in Sources */,
+				18B362332072649D00878299 /* GeneralFeedViewController.swift in Sources */,
 				186E2A2A1E34A98B0011AB88 /* FRChat.swift in Sources */,
 				1852CAA720721CE300ED2EE0 /* AuthorizationProtocol.swift in Sources */,
 				183E2A1E1E16A24A0099F775 /* PostView.swift in Sources */,

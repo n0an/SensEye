@@ -21,7 +21,7 @@ enum Storyboard {
     static let segueCommentComposer     = "ShowCommentComposer"
 }
 
-class FeedViewController: UIViewController {
+class FeedViewController: GeneralFeedViewController {
     
     // MARK: - OUTLETS
     @IBOutlet weak var tableView: UITableView!
@@ -45,14 +45,14 @@ class FeedViewController: UIViewController {
     var splashAnimated = false
     
     var feedDataSource: FeedDataSource!
-    var cellDelegate: CellDelegate!
+    var cellDelegate: WallPostCellDelegate!
     
     // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         
         feedDataSource = FeedDataSource(vc: self)
-        cellDelegate = CellDelegate(vc: self)
+        cellDelegate = WallPostCellDelegate(vc: self)
         
         tableView.delegate = feedDataSource
         tableView.dataSource = feedDataSource
@@ -192,13 +192,7 @@ class FeedViewController: UIViewController {
         }
     }
     
-    // MARK: - HELPER METHODS
-    func toAuthorize() {
-        authorize { (user) in
-            
-            self.setVKUser(user: user)
-        }
-    }
+    
     
     func loadCustomRefreshContents() {
         let refreshContents = Bundle.main.loadNibNamed("RefreshContents", owner: self, options: nil)
@@ -339,7 +333,4 @@ extension FeedViewController: CommentComposerViewControllerDelegate {
     }
     
 }
-
-extension FeedViewController: FeedProtocol, AuthorizationProtocol { }
-
 

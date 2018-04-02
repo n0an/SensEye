@@ -10,7 +10,7 @@ import UIKit
 import Jelly
 import IDMPhotoBrowser
 
-class PostViewController: UIViewController {
+class PostViewController: GeneralFeedViewController {
     
     // MARK: - OUTLETS
     @IBOutlet weak var tableView: UITableView!
@@ -51,9 +51,13 @@ class PostViewController: UIViewController {
     fileprivate var headerView: PostHeaderView!
     fileprivate var headerMaskLayer: CAShapeLayer!
     
+    var cellDelegate: WallPostCellDelegate!
+    
     // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        cellDelegate = WallPostCellDelegate(vc: self)
         
         self.loadingData = true
         getCommentsFromServer()
@@ -290,7 +294,7 @@ extension PostViewController: UITableViewDataSource {
             let postCell = tableView.dequeueReusableCell(withIdentifier: Storyboard.cellIdPost, for: indexPath) as! FeedCell
             
             postCell.wallPost = self.wallPost
-            postCell.delegate = self
+            postCell.delegate = cellDelegate
             
             return postCell
             
@@ -300,7 +304,7 @@ extension PostViewController: UITableViewDataSource {
             let comment = self.comments[indexPath.row]
             
             commentCell.comment = comment
-            commentCell.delegate = self
+            commentCell.delegate = cellDelegate
             
             return commentCell
         }
@@ -356,101 +360,6 @@ extension PostViewController: PostHeaderViewDelegate {
 }
 
 
-// MARK: - === FeedCellDelegate ===
-extension PostViewController: FeedCellDelegate {
-    func feedCell(_ feedCell: FeedCell, didTapGalleryImageWith post: WallPost, withPhotoIndex index: Int) {
-        if let photosArray = wallPost.postAttachments as? [Photo] {
-            performJellyTransition(withPhotos: photosArray, indexOfPhoto: index)
-            
-        } else if let albumAttach = wallPost.postAttachments[0] as? PhotoAlbum {
-            
-            getPhotos(forAlbumID: albumAttach.albumID, ownerID: albumAttach.ownerID, completed: { (result) in
-                
-                let photos = result as! [Photo]
-                
-                // Calculating index of clicked photo in album
-                let indexOfClickedPhotoInAlbum = photos.index(of: albumAttach.albumThumbPhoto!)
-                
-                self.performJellyTransition(withPhotos: photos, indexOfPhoto: indexOfClickedPhotoInAlbum ?? index)
-            })
-        }
-    }
-    
-    func feedCellNeedProvideAuthorization(_ feedCell: UITableViewCell) {
-        UserDefaults.standard.set(false, forKey: KEY_VK_USERCANCELAUTH)
-        UserDefaults.standard.synchronize()
-        
-        GeneralHelper.sharedHelper.showVKAuthorizeActionSheetOnViewController(viewController: self) { (selected) in
-            
-            if selected == true {
-                self.toAuthorize()
-            }
-        }
-    }
-    
-    func feedCell(_ feedCell: FeedCell, didTapCommentFor post: WallPost) {
-        performSegue(withIdentifier: Storyboard.segueCommentComposer, sender: post)
-
-    }
-    
-    
-    func toAuthorize() {
-        authorize { (user) in
-
-            self.setVKUser(user: user)
-        }
-    }
-    
-    func performJellyTransition(withPhotos photosArray: [Photo], indexOfPhoto: Int) {
-        
-        var urlsArray: [URL] = []
-        
-        for photo in photosArray {
-            var linkToNeededRes: String!
-            
-            if traitCollection.horizontalSizeClass == .regular && traitCollection.verticalSizeClass == .regular {
-                linkToNeededRes = photo.maxRes
-                
-            } else {
-                if photo.photo_1280 != nil {
-                    linkToNeededRes = photo.photo_1280
-                } else {
-                    linkToNeededRes = photo.maxRes
-                }
-            }
-            
-            let imageURL = URL(string: linkToNeededRes)
-            urlsArray.append(imageURL!)
-        }
-        
-        let photos = IDMPhoto.photos(withURLs: urlsArray)
-        
-        let browser = IDMPhotoBrowser(photos: photos)
-        
-        browser?.displayDoneButton      = true
-        browser?.displayActionButton    = false
-        browser?.doneButtonImage        = UIImage(named: "CloseButton")
-        browser?.setInitialPageIndex(UInt(indexOfPhoto))
-        
-        
-        let customBlurFadeInPresentation =
-            JellyFadeInPresentation(dismissCurve: .easeInEaseOut,
-                                    presentationCurve: .easeInEaseOut,
-                                    cornerRadius: 0,
-                                    backgroundStyle: .blur(effectStyle: .light),
-                                    duration: .normal,
-                                    widthForViewController: .fullscreen,
-                                    heightForViewController: .fullscreen)
-        
-        self.jellyAnimator = JellyAnimator(presentation: customBlurFadeInPresentation)
-        self.jellyAnimator?.prepare(viewController: browser!)
-        
-        self.present(browser!, animated: true, completion: nil)
-    }
-    
-}
-
-
 // MARK: - === CommentComposerViewControllerDelegate ===
 extension PostViewController: CommentComposerViewControllerDelegate {
     func commentDidSend(withPost post: WallPost) {
@@ -458,7 +367,4 @@ extension PostViewController: CommentComposerViewControllerDelegate {
         refreshComments()
     }
 }
-
-extension PostViewController: FeedProtocol, AuthorizationProtocol, LikesProtocol, PhotosProtocol { }
-
 

@@ -10,14 +10,14 @@ import UIKit
 import IDMPhotoBrowser
 import Jelly
 
-class CellDelegate: FeedCellDelegate, PhotosProtocol {
+class WallPostCellDelegate: FeedCellDelegate, PhotosProtocol {
     
-    weak var vc: FeedViewController?
+    weak var vc: GeneralFeedViewController?
     
     fileprivate var jellyAnimator: JellyAnimator?
     
     
-    init(vc: FeedViewController) {
+    init(vc: GeneralFeedViewController) {
         self.vc = vc
     }
     
