@@ -95,7 +95,7 @@ PODS:
   - SDWebImage (4.0.0):
     - SDWebImage/Core (= 4.0.0)
   - SDWebImage/Core (4.0.0)
-  - Spring (1.0.3)
+  - Spring (1.0.5)
   - SVPullToRefresh (0.4.1)
   - SwiftKeychainWrapper (3.0.1)
   - SwiftSpinner (1.5.0)
@@ -120,7 +120,7 @@ DEPENDENCIES:
   - OneSignal
   - RevealingSplashView
   - SAMCache
-  - Spring (from `https://github.com/MengTo/Spring.git`, branch `swift3`)
+  - Spring (from `https://github.com/MengTo/Spring.git`)
   - SVPullToRefresh
   - SwiftKeychainWrapper
   - SwiftSpinner
@@ -128,12 +128,11 @@ DEPENDENCIES:
 
 EXTERNAL SOURCES:
   Spring:
-    :branch: swift3
     :git: https://github.com/MengTo/Spring.git
 
 CHECKOUT OPTIONS:
   Spring:
-    :commit: 8201b5c93bd7ebdf4cd18160bcde1e6e88c2be64
+    :commit: 19b04d730d3edabbb02a39e58121d1d3220690ee
     :git: https://github.com/MengTo/Spring.git
 
 SPEC CHECKSUMS:
@@ -168,12 +167,12 @@ SPEC CHECKSUMS:
   RevealingSplashView: 0794eecad3a8983ac11a1fe474e9a9b51b926780
   SAMCache: 790b2623a3e087c903daff872c90c248726c4c82
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
-  Spring: 3f02b5dc3308572ef177b3cad0fa7bbc4b0706f7
+  Spring: 48aad470f3ead043b2da98b64e0bf0630b7ebc42
   SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
   SwiftKeychainWrapper: 38952a3636320ae61bad3513cadd870929de7a4a
   SwiftSpinner: 4c058c7a1d6b444dd2e1d70988ead40783097133
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
 
-PODFILE CHECKSUM: 5da7325d68569ada8c142ebd1348fea8ecad6445
+PODFILE CHECKSUM: 30254a0ad7212057809d6d25950db18bbf5124aa
 
 COCOAPODS: 1.4.0

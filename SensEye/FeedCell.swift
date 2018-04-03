@@ -160,9 +160,9 @@ class FeedCell: UITableViewCell {
     func changeLikeImage() {
         if currentUserLikes() {
             
-            likeButton.setImage(R.image.likeYes(), for: [])
+            likeButton.setImage(UIImage(named: "LikeYes"), for: [])
         } else {
-            likeButton.setImage(R.image.likeNo(), for: [])
+            likeButton.setImage(UIImage(named: "LikeNo"), for: [])
         }
     }
     

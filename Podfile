@@ -19,7 +19,7 @@ target 'SensEye' do
   # pod 'Reveal-SDK', :configurations => ['Debug']
   
   # Spring
-  pod 'Spring', :git => 'https://github.com/MengTo/Spring.git', :branch => 'swift3'
+  pod 'Spring', :git => 'https://github.com/MengTo/Spring.git'
 
   # Firebase
   pod 'Firebase/Core'
