@@ -83,7 +83,8 @@ class FRAuthManager: NSObject {
         fbLoginManager.logIn(withReadPermissions: ["public_profile", "email"], from: viewController) { (result, error) in
             
             guard error == nil else {
-                viewController.alertError(error: error! as NSError)
+                let vc = viewController as! UIViewController & Alertable
+                vc.alertError(error: error! as NSError)
                 return
             }
             

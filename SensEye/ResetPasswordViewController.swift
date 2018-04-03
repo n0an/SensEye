@@ -9,7 +9,7 @@
 import UIKit
 import Spring
 
-class ResetPasswordViewController: UIViewController {
+class ResetPasswordViewController: UIViewController, Alertable {
 
     // MARK: - OUTLETS
     @IBOutlet weak var emailTextField: UITextField!

@@ -11,7 +11,7 @@ import Spring
 import Firebase
 import SwiftSpinner
 
-class SignUpViewController: UIViewController {
+class SignUpViewController: UIViewController, Alertable {
 
     // MARK: - OUTLETS
     @IBOutlet weak var nameTextField: DesignableTextField!
@@ -199,5 +199,4 @@ extension SignUpViewController: UIImagePickerControllerDelegate, UINavigationCon
         picker.dismiss(animated: true, completion: nil)
     }
 }
-
 

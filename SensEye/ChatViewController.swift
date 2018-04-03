@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import JSQMessagesViewController
 
-class ChatViewController: JSQMessagesViewController, UIGestureRecognizerDelegate {
+class ChatViewController: JSQMessagesViewController, UIGestureRecognizerDelegate, Alertable {
     
     // MARK: - PROPERTIES
     var chat: FRChat!

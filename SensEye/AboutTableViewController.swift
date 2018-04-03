@@ -11,7 +11,7 @@ import SafariServices
 import MessageUI
 import Spring
 
-class AboutTableViewController: UITableViewController {
+class AboutTableViewController: UITableViewController, Alertable {
     
     // MARK: - ENUMS
     enum TableViewSection: Int {

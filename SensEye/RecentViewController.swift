@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class RecentViewController: UIViewController {
+class RecentViewController: UIViewController, Alertable {
     
     // MARK: - OUTLETS
     @IBOutlet weak var tableView: UITableView!

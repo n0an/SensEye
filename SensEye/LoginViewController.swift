@@ -13,7 +13,7 @@ import GoogleSignIn
 import SwiftSpinner
 import SwiftKeychainWrapper
 
-class LoginViewController: UIViewController, GIDSignInUIDelegate {
+class LoginViewController: UIViewController, GIDSignInUIDelegate, Alertable {
     
     // MARK: - OUTLETS
     @IBOutlet weak var emailTextField: DesignableTextField!
