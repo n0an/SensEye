@@ -90,3 +90,48 @@ public let kNUMBEROFMESSAGES = 40
 
 public let KEY_CHAT_USER        = "chatCurrentUser"
 public let KEY_CHAT_OF_USER     = "chatForCurrentUser"
+
+// MARK: - ==== STORYBOARD CONSTANTS ===
+let MAIN_STORYBOARD = "Main"
+
+// ViewControllers
+let VC_FEED = "FeedViewController"
+let VC_POST = "PostViewController"
+let VC_COMMENTCOMPOSER = "CommentComposerViewController"
+let VC_GALLERY = "LandscapeViewController"
+
+let VC_LOGIN = "LoginViewController"
+let VC_SIGNUP = "SignUpViewController"
+let VC_RESETPASSWD = "ResetPasswordViewController"
+let VC_RECENT = "RecentViewController"
+let VC_CHAT = "ChatViewController"
+
+let VC_ABOUT = "AboutTableViewController"
+
+public enum TabBarIndex: Int {
+    case wallFeed   = 0
+    case gallery
+    case chat
+    case about
+}
+
+public enum Storyboard {
+    static let cellIdFeed               = "FeedCell"
+    static let cellIdComment            = "CommentCell"
+    
+    static let rowHeightFeed: CGFloat           = 370.0
+    static let rowHeightCommentCell: CGFloat    = 100
+    
+    static let seguePostVC              = "showPost"
+    static let segueCommentComposer     = "ShowCommentComposer"
+    
+    
+    static let tableHeaderHeight: CGFloat       = 100
+    static let tableHeaderCutAway: CGFloat      = 50
+}
+
+public enum TableViewSectionType: Int {
+    case post
+    case comment
+}
+

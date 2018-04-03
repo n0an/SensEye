@@ -10,6 +10,9 @@ import UIKit
 
 protocol Alertable {
     func showAlert(_ msg: String)
+    func alert(title: String?, message: String?, handler: ((UIAlertAction) -> Void)?)
+    func alertError(error: NSError, handler: ((UIAlertAction) -> Void)?)
+    func confirm(title: String?, message: String?, handler: @escaping (UIAlertAction) -> Void)
 }
 
 extension Alertable where Self: UIViewController {
