@@ -11,7 +11,7 @@ import UIKit
 // MARK: - NSDATE EXTENSION
 extension NSDate {
     func stringFromDate(short: Bool) -> String {
-        let interval = NSDate().days(after: self as Date!)
+        let interval = NSDate().days(after: self as Date?)
         var dateString = ""
         
         if interval == 0 {
