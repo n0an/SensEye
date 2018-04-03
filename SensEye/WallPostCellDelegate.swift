@@ -102,19 +102,9 @@ class WallPostCellDelegate: NSObject, FeedCellDelegate, PhotosProtocol {
         self.jellyAnimator?.prepare(viewController: browser!)
         self.vc?.present(browser!, animated: true, completion: nil)
     }
-    
-    
 }
 
 extension WallPostCellDelegate: UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        if (self.vc?.isKind(of: FeedViewController.self))! {
-            return indexPath
-        } else {
-            return nil
-        }
-    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
@@ -134,7 +124,28 @@ extension WallPostCellDelegate: UITableViewDelegate {
                 return Storyboard.rowHeightCommentCell
             }
         }
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+     
+        guard let vc = self.vc as? PostViewController else {
+            return
+        }
         
+        vc.updateHeaderView()
+        
+        let offsetY = scrollView.contentOffset.y
+        let adjustment: CGFloat = 100
+        
+        if (-offsetY) > (Storyboard.tableHeaderHeight + adjustment) {
+            vc.dismiss(animated: true, completion: nil)
+        }
+        
+        if (-offsetY) > (Storyboard.tableHeaderHeight) {
+            vc.headerView.pullDownToCloseLabel.isHidden = false
+        } else {
+            vc.headerView.pullDownToCloseLabel.isHidden = true
+        }
     }
 }
 

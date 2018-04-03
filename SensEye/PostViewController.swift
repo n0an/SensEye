@@ -29,7 +29,7 @@ class PostViewController: GeneralFeedViewController {
     
     fileprivate var jellyAnimator: JellyAnimator?
     
-    fileprivate var headerView: PostHeaderView!
+    var headerView: PostHeaderView!
     fileprivate var headerMaskLayer: CAShapeLayer!
     
     var postDataSource: PostVCDataSource!
