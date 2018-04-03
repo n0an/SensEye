@@ -17,7 +17,12 @@ typealias FailureHandler = (NSError, Int) -> Void
 class ServerManager {
     
     // MARK: - PUBLIC PROPERTIES
-    static let sharedManager = ServerManager()
+    private static let _sharedManager = ServerManager()
+    
+    static var sharedManager: ServerManager {
+        return _sharedManager
+    }
+    
     var currentVKUser: User?
     var sharedManagerExists = false
     

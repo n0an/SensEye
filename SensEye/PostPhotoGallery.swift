@@ -22,6 +22,11 @@ class PostPhotoGallery {
     
     var firstRowCount = 1
     var maxPhotos = 4
+    var sharedManagerExists = false
+    
+    private init() {
+        sharedManagerExists = true
+    }
     
     // MARK: - GALLERY METHODS
     func clearGallery(forPost post: WallPost, fromCell postCell: FeedCell) {

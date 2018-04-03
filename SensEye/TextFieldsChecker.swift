@@ -11,7 +11,17 @@ import UIKit
 class TextFieldsChecker {
     
     // MARK: - PROPERTIES
-    static let sharedChecker = TextFieldsChecker()
+    var sharedManagerExists = false
+    
+    private static let _sharedChecker = TextFieldsChecker()
+    
+    static var sharedChecker: TextFieldsChecker {
+        return _sharedChecker
+    }
+    
+    private init() {
+        sharedManagerExists = true
+    }
     
     // MARK: - handleEmailTextField
     func handleEmailTextField(_ textField: UITextField, inRange range: NSRange, withReplacementString replacementString: String) -> Bool {

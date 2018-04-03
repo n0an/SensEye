@@ -35,6 +35,7 @@ let cellSelectionColor      = UIColor(white: 1.0, alpha: 0.2)
 // MARK: - ===== VK CONSTANTS =====
 
 public let groupID                  = "-55347641"
+let postsInRequest = 10
 
 public let KEY_VK_DIDAUTH           = "vkAuth"
 public let KEY_VK_USERCANCELAUTH    = "vkUserCancelAuth"

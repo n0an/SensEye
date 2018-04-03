@@ -23,8 +23,6 @@ class FeedViewController: GeneralFeedViewController {
     
     let revealingSplashView = RevealingSplashView(iconImage: UIImage(named: "dark_crop_1000")!, iconInitialSize: CGSize.init(width: 249, height: 133), backgroundColor: UIColor.white)
     
-    let postsInRequest = 10
-
     var loadingData = false
         
     private var refreshControl: UIRefreshControl!

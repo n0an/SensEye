@@ -21,6 +21,7 @@ class GeneralHelper {
     }
     
     private static let _sharedHelper = GeneralHelper()
+    var sharedManagerExists = false
     
     static var sharedHelper: GeneralHelper {
         return _sharedHelper
@@ -28,7 +29,11 @@ class GeneralHelper {
     
     public var kONESIGNALAPPID = ""
     public var appOwnerEmail = ""
-    public var serviceVKToken = ""    
+    public var serviceVKToken = ""
+    
+    private init() {
+        sharedManagerExists = true
+    }
     
     // MARK: - SPINNERS
     public func showSpinner(onView view: UIView, usingBoundsFromView viewForBounds: UIView) {
