@@ -213,6 +213,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		181999792073BD05003590D8 /* FeedScreen */ = {
+			isa = PBXGroup;
+			children = (
+				18B362322072649D00878299 /* GeneralFeedViewController.swift */,
+				188C04F71E1074C8008B58EB /* FeedViewController.swift */,
+				1835A7EE2063D53900BA4AF8 /* FeedDataSource.swift */,
+				1835A7F22063DEED00BA4AF8 /* WallPostCellDelegate.swift */,
+				188C04F91E1074D6008B58EB /* FeedCell.swift */,
+				18D623611E1FCCC800138117 /* VKLoginViewController.swift */,
+			);
+			name = FeedScreen;
+			sourceTree = "<group>";
+		};
+		1819997A2073BE27003590D8 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				1838C2401E110A7700E02F88 /* Constants.swift */,
+				18B3623720726E1F00878299 /* Enums.swift */,
+				18AEEC4E1E2FAB1100AB97B4 /* Camera.swift */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
 		18251C4D1E2D5E6E000DBE57 /* Firebase */ = {
 			isa = PBXGroup;
 			children = (
@@ -234,14 +257,14 @@
 			name = Firebase;
 			sourceTree = "<group>";
 		};
-		1864A9E11E157E0B0058D2E2 /* Gallery */ = {
+		1864A9E11E157E0B0058D2E2 /* GalleryScreen */ = {
 			isa = PBXGroup;
 			children = (
 				185456B81E3E4BAC006773C5 /* MySplitViewController.swift */,
 				18DD2E2A1E1A484800451CE7 /* LandscapeViewController.swift */,
 				180231C41E12FC1D00FA8322 /* PhotoViewController.swift */,
 			);
-			name = Gallery;
+			name = GalleryScreen;
 			sourceTree = "<group>";
 		};
 		1876C9D4206A73FD005E8730 /* SensEyeTests */ = {
@@ -253,15 +276,7 @@
 			path = SensEyeTests;
 			sourceTree = "<group>";
 		};
-		1899316E1E2D4D93006E00C6 /* Login/Signup */ = {
-			isa = PBXGroup;
-			children = (
-				1899316F1E2D4E23006E00C6 /* FancyButton.swift */,
-			);
-			name = Login/Signup;
-			sourceTree = "<group>";
-		};
-		18A9FAE51E2E9DC4004C548B /* Chat Tab */ = {
+		18A9FAE51E2E9DC4004C548B /* ChatScreen */ = {
 			isa = PBXGroup;
 			children = (
 				1899316C1E2D4B7C006E00C6 /* LoginViewController.swift */,
@@ -270,8 +285,10 @@
 				186E2A251E34A5D60011AB88 /* RecentViewController.swift */,
 				186E2A2D1E34BB940011AB88 /* ChatViewController.swift */,
 				188FD7941E34F532007CA1EE /* IncomingMessage.swift */,
+				186E2A271E34A9400011AB88 /* ChatTableViewCell.swift */,
+				1899316F1E2D4E23006E00C6 /* FancyButton.swift */,
 			);
-			name = "Chat Tab";
+			name = ChatScreen;
 			sourceTree = "<group>";
 		};
 		18AA37C41E1053F700D5BCB1 = {
@@ -301,14 +318,16 @@
 				18E3F9201E466B6100BC95C3 /* InfoPlist.strings */,
 				188FD7981E3544C4007CA1EE /* SensEye.entitlements */,
 				18AA37D01E1053F700D5BCB1 /* AppDelegate.swift */,
-				1838C2401E110A7700E02F88 /* Constants.swift */,
-				18B3623720726E1F00878299 /* Enums.swift */,
+				1819997A2073BE27003590D8 /* Helpers */,
+				181999792073BD05003590D8 /* FeedScreen */,
+				18B3623620726D9300878299 /* PostScreen */,
+				1864A9E11E157E0B0058D2E2 /* GalleryScreen */,
+				18A9FAE51E2E9DC4004C548B /* ChatScreen */,
+				18E3F91B1E464DF300BC95C3 /* AboutScreen */,
 				18D3704320652F3F000553D3 /* Protocols */,
 				18C395331E166D1D00AE1867 /* Extensions */,
 				18FC625F1E114C1700E25A18 /* Model */,
-				18FC62601E114C1F00E25A18 /* View */,
-				18FC62611E114C2300E25A18 /* Controller */,
-				18C395341E166D2600AE1867 /* Helpers */,
+				18C395341E166D2600AE1867 /* Singletons */,
 				18AA37D41E1053F700D5BCB1 /* Main.storyboard */,
 				18D623761E215B9200138117 /* about.storyboard */,
 				18AA37D71E1053F700D5BCB1 /* Assets.xcassets */,
@@ -323,24 +342,19 @@
 			path = SensEye;
 			sourceTree = "<group>";
 		};
-		18B3623620726D9300878299 /* PostVC */ = {
+		18B3623620726D9300878299 /* PostScreen */ = {
 			isa = PBXGroup;
 			children = (
 				182681901E1D7C9C00D96764 /* PostViewController.swift */,
 				18B3623420726C7000878299 /* PostVCDataSource.swift */,
-			);
-			name = PostVC;
-			sourceTree = "<group>";
-		};
-		18BE87F21E16E02A00B5837E /* Customized Views */ = {
-			isa = PBXGroup;
-			children = (
-				1899316E1E2D4D93006E00C6 /* Login/Signup */,
+				189FC50F1E1E778C00092D2F /* PostHeaderView.swift */,
+				182681921E1D822500D96764 /* CommentCell.swift */,
+				18880A7B1E43C6A30083D0B4 /* CommentComposerViewController.swift */,
 				183E2A1D1E16A24A0099F775 /* PostView.swift */,
 				183E2A1F1E16B5180099F775 /* RoundedView.swift */,
 				18BE87F01E16CF5A00B5837E /* CircleImageView.swift */,
 			);
-			name = "Customized Views";
+			name = PostScreen;
 			sourceTree = "<group>";
 		};
 		18C395331E166D1D00AE1867 /* Extensions */ = {
@@ -356,17 +370,16 @@
 			name = Extensions;
 			sourceTree = "<group>";
 		};
-		18C395341E166D2600AE1867 /* Helpers */ = {
+		18C395341E166D2600AE1867 /* Singletons */ = {
 			isa = PBXGroup;
 			children = (
 				18251C521E2D5FCF000DBE57 /* Firebase */,
 				188C04FB1E10FCBC008B58EB /* ServerManager.swift */,
 				18C395351E16768F00AE1867 /* GeneralHelper.swift */,
 				18FC62621E11545D00E25A18 /* PostPhotoGallery.swift */,
-				18AEEC4E1E2FAB1100AB97B4 /* Camera.swift */,
 				18BA34291E4B8CBB00EE6CF1 /* TextFieldsChecker.swift */,
 			);
-			name = Helpers;
+			name = Singletons;
 			sourceTree = "<group>";
 		};
 		18D3704320652F3F000553D3 /* Protocols */ = {
@@ -399,21 +412,14 @@
 			name = VK;
 			sourceTree = "<group>";
 		};
-		18E3F91A1E464DEB00BC95C3 /* FeedVC */ = {
-			isa = PBXGroup;
-			children = (
-				188C04F71E1074C8008B58EB /* FeedViewController.swift */,
-				1835A7EE2063D53900BA4AF8 /* FeedDataSource.swift */,
-			);
-			name = FeedVC;
-			sourceTree = "<group>";
-		};
-		18E3F91B1E464DF300BC95C3 /* About */ = {
+		18E3F91B1E464DF300BC95C3 /* AboutScreen */ = {
 			isa = PBXGroup;
 			children = (
 				18D6236B1E213AE200138117 /* AboutTableViewController.swift */,
+				18D6236D1E21422E00138117 /* AboutCellInfo.swift */,
+				18D6236F1E21423D00138117 /* AboutCellSocnet.swift */,
 			);
-			name = About;
+			name = AboutScreen;
 			sourceTree = "<group>";
 		};
 		18FC625F1E114C1700E25A18 /* Model */ = {
@@ -424,36 +430,6 @@
 				18D623711E21469C00138117 /* Contact.swift */,
 			);
 			name = Model;
-			sourceTree = "<group>";
-		};
-		18FC62601E114C1F00E25A18 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				188C04F91E1074D6008B58EB /* FeedCell.swift */,
-				182681921E1D822500D96764 /* CommentCell.swift */,
-				189FC50F1E1E778C00092D2F /* PostHeaderView.swift */,
-				18D6236D1E21422E00138117 /* AboutCellInfo.swift */,
-				18D6236F1E21423D00138117 /* AboutCellSocnet.swift */,
-				186E2A271E34A9400011AB88 /* ChatTableViewCell.swift */,
-				18BE87F21E16E02A00B5837E /* Customized Views */,
-			);
-			name = View;
-			sourceTree = "<group>";
-		};
-		18FC62611E114C2300E25A18 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				18B362322072649D00878299 /* GeneralFeedViewController.swift */,
-				1835A7F22063DEED00BA4AF8 /* WallPostCellDelegate.swift */,
-				18E3F91A1E464DEB00BC95C3 /* FeedVC */,
-				18B3623620726D9300878299 /* PostVC */,
-				18880A7B1E43C6A30083D0B4 /* CommentComposerViewController.swift */,
-				18D623611E1FCCC800138117 /* VKLoginViewController.swift */,
-				1864A9E11E157E0B0058D2E2 /* Gallery */,
-				18A9FAE51E2E9DC4004C548B /* Chat Tab */,
-				18E3F91B1E464DF300BC95C3 /* About */,
-			);
-			name = Controller;
 			sourceTree = "<group>";
 		};
 		1FD0F3EE1A61ED817B9FBE00 /* Frameworks */ = {
