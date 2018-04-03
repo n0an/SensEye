@@ -22,7 +22,7 @@ protocol FeedProtocol {
 extension FeedProtocol {
     
     func getFeed(forType feedType: FeedItemsType, ownerID: String, postID: String? = nil, offset: Int, count: Int, completed: @escaping DownloadComplete) {
-        ServerManager.sharedManager.getFeed(forType: feedType, ownerID: ownerID, offset: offset, count: count, completed: completed)
+        ServerManager.sharedManager.getFeed(forType: feedType, ownerID: ownerID, postID: postID, offset: offset, count: count, completed: completed)
     }
     
     func createComment(ownerID: String, postID: String, message: String, completed: @escaping (Bool) -> Void) {
