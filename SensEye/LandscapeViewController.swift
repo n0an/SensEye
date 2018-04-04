@@ -56,15 +56,6 @@ class LandscapeViewController: UIViewController, RevealingSplashable {
     
     var isPad = false
     
-    var isPhonePlus: Bool {
-        let rect = UIScreen.main.bounds
-        if (rect.width == 736 && rect.height == 414) || (rect.width == 414 && rect.height == 736)  {
-            return true
-        } else {
-            return false
-        }
-    }
-    
     var isPortrait: Bool {
         let rect = UIScreen.main.bounds
         if rect.width / rect.height < 1  {
@@ -128,14 +119,6 @@ class LandscapeViewController: UIViewController, RevealingSplashable {
         }
         
         scrollView.frame = view.bounds
-        
-        if isPhonePlus {
-            if isPortrait {
-                pageControl.isHidden = false
-            } else {
-                pageControl.isHidden = true
-            }
-        }
         
         var diff: CGFloat = 0
         
@@ -316,15 +299,30 @@ class LandscapeViewController: UIViewController, RevealingSplashable {
             // *** IPHONE 6/6s/7 ***
         // iPhone 6/6s/7 Portrait (375 x 667)
         case 375:
-            self.scrollViewParams.itemWidth = 375
-            self.scrollViewParams.itemHeight = 577
+            if self.scrollViewParams.scrollViewHeight == 812 { // iPhone X
+                
+                self.scrollViewParams.itemWidth = 375
+                self.scrollViewParams.itemHeight = 722
+                
+                self.scrollViewParams.imageViewWidth = 326
+                self.scrollViewParams.imageViewHeight = 466
+                
+                self.scrollViewParams.titleLabelFont = UIFont.systemFont(ofSize: 16.0)
+                
+                self.scrollViewParams.columnsPerPage = 1
+                
+            } else {
+                self.scrollViewParams.itemWidth = 375
+                self.scrollViewParams.itemHeight = 577
+                
+                self.scrollViewParams.imageViewWidth = 326
+                self.scrollViewParams.imageViewHeight = 466
+                
+                self.scrollViewParams.titleLabelFont = UIFont.systemFont(ofSize: 16.0)
+                
+                self.scrollViewParams.columnsPerPage = 1
+            }
             
-            self.scrollViewParams.imageViewWidth = 326
-            self.scrollViewParams.imageViewHeight = 466
-            
-            self.scrollViewParams.titleLabelFont = UIFont.systemFont(ofSize: 16.0)
-            
-            self.scrollViewParams.columnsPerPage = 1
             
         // iPhone 6/6s/7 Landscape (667 x 375)
         case 667:
@@ -353,29 +351,27 @@ class LandscapeViewController: UIViewController, RevealingSplashable {
             self.scrollViewParams.titleLabelFont = UIFont.systemFont(ofSize: 14.0)
             
             self.scrollViewParams.firstRowMarginY = 10
-            
-        // iPhone Plus Landscape Split Mode (295 x 414)
-        case 295:
-            self.scrollViewParams.itemWidth = 295
-            self.scrollViewParams.itemHeight = 414
-            
-            self.scrollViewParams.imageViewWidth = 281
-            self.scrollViewParams.imageViewHeight = 390
-            
-            self.scrollViewParams.columnsPerPage = 1
-            self.scrollViewParams.rowsPerPage = 1
-            
-            self.scrollViewParams.titleLabelFont = UIFont.systemFont(ofSize: 16.0)
-            
-            self.scrollViewParams.firstRowMarginY = 0
-            
-        // iPhone Plus Landscape WITHOUT SPLIT (736 x 414)
+         
+        // iPhone Plus Landscape (736 x 414)
         case 736:
             self.scrollViewParams.itemWidth = 245
             self.scrollViewParams.itemHeight = 414
             
             self.scrollViewParams.imageViewWidth = 229
             self.scrollViewParams.imageViewHeight = 338
+            
+            self.scrollViewParams.columnsPerPage = 3
+            
+        // iPhone X Landscape (812 x 375)
+        case 812:
+            self.scrollViewParams.itemWidth = 271
+            self.scrollViewParams.itemHeight = 375
+            
+            self.scrollViewParams.imageViewWidth = 210
+            self.scrollViewParams.imageViewHeight = 300
+            
+            self.scrollViewParams.columnsPerPage = 3
+
             
         default:
             break
