@@ -1069,7 +1069,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 80BE74E4C44AE3ED1571EFE9 /* Pods-SensEye.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon1;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = SensEye/SensEye.entitlements;
 				DEVELOPMENT_TEAM = 358V8FBM3U;
@@ -1089,7 +1089,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 26E532DE5ABFA138EDDEDBB4 /* Pods-SensEye.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon1;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = SensEye/SensEye.entitlements;
 				DEVELOPMENT_TEAM = 358V8FBM3U;
