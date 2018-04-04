@@ -33,6 +33,7 @@ class AboutTableViewController: UITableViewController, Alertable {
                          NSLocalizedString("About me", comment: "About me")]
     
     var connections = [
+                Contact(imageName: "about-icon-chat", labelText: "www.senseye.ru", link: ""),
                 Contact(imageName: "about-icon-chat", labelText: NSLocalizedString("InApp Chat", comment: "InApp Chat"), link: ""),
                 Contact(imageName: "about-icon-email", labelText: NSLocalizedString("Email to me", comment: "Email to me"), link: ""),
                 Contact(imageName: "about-icon-skypeColor", labelText: "Skype: elena.senseye", link: "")
@@ -40,7 +41,7 @@ class AboutTableViewController: UITableViewController, Alertable {
     
     var socNet = [
         Contact(imageName: "about-icon-facebookColor", labelText: "Facebook", link: "https://facebook.com/elena.senseye"),
-        Contact(imageName: "about-icon-instagramColor", labelText: "Instagram", link: "https://instagram.com/elena.senseye"),
+        Contact(imageName: "about-icon-instagramColor", labelText: "Instagram", link: "https://www.instagram.com/elena.senseye.photo"),
         Contact(imageName: "about-icon-vkColor", labelText: NSLocalizedString("VK", comment: "Vkontakte"), link: "https://vk.com/elena_senseye")
     ]
     
@@ -191,12 +192,16 @@ class AboutTableViewController: UITableViewController, Alertable {
         
         case TableViewSection.connections.rawValue:
             if indexPath.row == 0 {
+                if let url = URL(string: "http://www.senseye.ru") {
+                    let safariController = SFSafariViewController(url: url)
+                    present(safariController, animated: true, completion: nil)
+                }
+            } else if indexPath.row == 1 {
                 let tabBarController = UIApplication.shared.keyWindow?.rootViewController as! UITabBarController
                 tabBarController.selectedIndex = TabBarIndex.chat.rawValue
                 
-            } else if indexPath.row == 1 {
+            } else if indexPath.row == 2 {
                 self.showEmailComposer()
-                
             } else {
                 self.showSkype()
             }

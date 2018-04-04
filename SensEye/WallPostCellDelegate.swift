@@ -93,7 +93,7 @@ class WallPostCellDelegate: NSObject, FeedCellDelegate, PhotosProtocol {
         
         let browser = IDMPhotoBrowser(photos: photos)
         
-        browser?.displayDoneButton      = true
+        browser?.displayDoneButton      = false
         browser?.displayActionButton    = false
         browser?.doneButtonImage        = UIImage(named: "CloseButton")
         browser?.setInitialPageIndex(UInt(indexOfPhoto))
