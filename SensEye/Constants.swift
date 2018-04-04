@@ -116,15 +116,12 @@ public enum TabBarIndex: Int {
 }
 
 public enum Storyboard {
-    static let cellIdFeed               = "FeedCell"
-    static let cellIdComment            = "CommentCell"
+    static let cellIdFeed       = "FeedCell"
+    static let cellIdComment    = "CommentCell"
+    static let cellIdChat       = "ChatCell"
     
     static let rowHeightFeed: CGFloat           = 370.0
     static let rowHeightCommentCell: CGFloat    = 100
-    
-    static let seguePostVC              = "showPost"
-    static let segueCommentComposer     = "ShowCommentComposer"
-    
     
     static let tableHeaderHeight: CGFloat       = 100
     static let tableHeaderCutAway: CGFloat      = 50

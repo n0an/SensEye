@@ -237,17 +237,7 @@ class PostViewController: GeneralFeedViewController {
         refreshMainPost()
         refreshComments()
     }
-    
-    // MARK: - NAVIGATION
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        if segue.identifier == Storyboard.segueCommentComposer {
-            let destinationNVC = segue.destination as! UINavigationController
-            let destinationVC = destinationNVC.topViewController as! CommentComposerViewController
-            destinationVC.delegate = self
-            destinationVC.wallPost = self.wallPost
-        }
-    }
+ 
 }
 
 

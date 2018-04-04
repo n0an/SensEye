@@ -49,11 +49,6 @@ class LandscapeViewController: UIViewController {
                                                 firstRowMarginY: 0,
                                                 lastRowMarginY: 0)
     
-    fileprivate enum Storyboard {
-        static let seguePhotoDisplayer              = "showPhoto"
-        static let viewControllerIdPhotoDisplayer   = "PhotoNavViewController"
-    }
-    
     public var albums: [PhotoAlbum] = []
     
     var isPad = false
@@ -146,7 +141,6 @@ class LandscapeViewController: UIViewController {
         self.tileAlbums(albums: albums)
     }
     
-    
     override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
         
         super.willTransition(to: newCollection, with: coordinator)
@@ -171,7 +165,6 @@ class LandscapeViewController: UIViewController {
             }
         }
     }
-    
     
     // MARK: - API METHODS
     func getAlbumsFromServer() {

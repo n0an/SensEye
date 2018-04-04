@@ -261,30 +261,6 @@ class FeedViewController: GeneralFeedViewController {
         self.refreshWall()
     }
     
-    // MARK: - NAVIGATION
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        if segue.identifier == Storyboard.seguePostVC {
-            let destinationVC = segue.destination as! PostViewController
-            
-            guard let postCell = sender as? FeedCell else {
-                return
-            }
-     
-            destinationVC.delegate = self
-            destinationVC.wallPost = postCell.wallPost
-            destinationVC.backgroundImage = postCell.galleryImageViews[0].image
-            
-        } else if segue.identifier == Storyboard.segueCommentComposer {
-            let destinationNVC = segue.destination as! UINavigationController
-            
-            let destinationVC = destinationNVC.topViewController as! CommentComposerViewController
-            
-            destinationVC.delegate = self
-            
-            destinationVC.wallPost = sender as! WallPost
-        }
-    }
 }
 
 // MARK: - === PostViewControllerDelegate ===

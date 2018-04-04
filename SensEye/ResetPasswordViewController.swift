@@ -15,7 +15,6 @@ class ResetPasswordViewController: UIViewController, Alertable {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var resetPasswordButton: FancyButton!
     @IBOutlet weak var containerView: DesignableView!
-    @IBOutlet weak var backBarButton: UIBarButtonItem!
     
     // MARK: - PROPERTIES
     
@@ -23,7 +22,6 @@ class ResetPasswordViewController: UIViewController, Alertable {
         willSet {
             emailTextField.isEnabled        = !newValue
             resetPasswordButton.isEnabled   = !newValue
-            self.backBarButton.isEnabled    = !newValue
         }
     }
     
@@ -92,9 +90,6 @@ class ResetPasswordViewController: UIViewController, Alertable {
         }
     }
     
-    @IBAction func actionBackTapped() {
-        let _ = self.navigationController?.popViewController(animated: true)
-    }
 }
 
 // MARK: - UITextFieldDelegate

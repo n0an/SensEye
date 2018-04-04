@@ -27,11 +27,6 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, Alertable {
     @IBOutlet weak var hideKeyboardInputAccessoryView: UIView!
     
     // MARK: - PROPERTIES
-    enum Storyboard {
-        static let segueShowRecentChats = "showRecentChatsViewController"
-        static let segueShowChatVC      = "showChatViewController"
-    }
-    
     var currentUser: FRUser!
     
     var isCurrentVC: Bool {
@@ -190,7 +185,13 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, Alertable {
         
         if self.currentUser.email == GeneralHelper.sharedHelper.appOwnerEmail {
             // SUPER ADMIN USER - SEE ALL CHATS
-            self.performSegue(withIdentifier: Storyboard.segueShowRecentChats, sender: nil)
+            self.isMessengerLoading = false
+            let recentChatVC = UIStoryboard.recentVC()
+            
+            SwiftSpinner.hide()
+            
+            self.navigationController?.pushViewController(recentChatVC!, animated: true)
+            
             
         } else {
             // CUSTOMER USER - GO DIRECTLY TO OWN USER CHAT WITH APPOWNER
@@ -230,7 +231,8 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, Alertable {
                     KeychainWrapper.standard.set(chatDictionary as NSDictionary, forKey: KEY_CHAT_OF_USER)
                     
                     
-                    self.performSegue(withIdentifier: Storyboard.segueShowChatVC, sender: newChat)
+                    self.transitToChatVC(withChat: newChat)
+
                 }
             }
         })
@@ -240,7 +242,8 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, Alertable {
         FRDataManager.sharedManager.REF_CHATS.child(currentUser.uid).observeSingleEvent(of: .value, with: { (snapshot) in
             if snapshot.exists() {
                 let chat = FRChat(uid: snapshot.key, dictionary: snapshot.value as! [String: Any])
-                self.performSegue(withIdentifier: Storyboard.segueShowChatVC, sender: chat)
+                
+                self.transitToChatVC(withChat: chat)
                 
             } else {
                 let newChat = FRChat(withUserName: self.currentUser.username, withUserUID: self.currentUser.uid)
@@ -248,41 +251,6 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, Alertable {
                 self.sendGreetingMessage(newChat)
             }
         })
-    }
-    
-    func goCustomerChatWithChatCaching() {
-        
-        if let chatDict = KeychainWrapper.standard.object(forKey: KEY_CHAT_OF_USER) as? [String: Any] {
-            let uid = chatDict["chatUid"] as! String
-            let userChat = FRChat(uid: uid, dictionary: chatDict)
-            self.performSegue(withIdentifier: Storyboard.segueShowChatVC, sender: userChat)
-            
-        } else {
-            
-            FRDataManager.sharedManager.REF_CHATS.child(currentUser.uid).observeSingleEvent(of: .value, with: { (snapshot) in
-                
-                if snapshot.exists() {
-                    let chat = FRChat(uid: snapshot.key, dictionary: snapshot.value as! [String: Any])
-                    
-                    let chatDictionary = [
-                        "chatUid"       : chat.uid,
-                        "lastMessage"   : chat.lastMessage,
-                        "withUserUID"   : chat.withUserUID,
-                        "withUserName"  : chat.withUserName,
-                        "messagesCount" : chat.messagesCount,
-                        "lastUpdate"    : chat.lastUpdate
-                        ] as [String : Any]
-                    
-                    KeychainWrapper.standard.set(chatDictionary as NSDictionary, forKey: KEY_CHAT_OF_USER)
-                    self.performSegue(withIdentifier: Storyboard.segueShowChatVC, sender: chat)
-                    
-                } else {
-                    let newChat = FRChat(withUserName: self.currentUser.username, withUserUID: self.currentUser.uid)
-                    newChat.save()
-                    self.sendGreetingMessage(newChat)
-                }
-            })
-        }
     }
     
     @objc func resignKeyboard() {
@@ -361,34 +329,43 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, Alertable {
         })
     }
     
+    @IBAction func actionSignUpButtonTapped(_ sender: Any) {
+        let vc = UIStoryboard.signupVC()
+        self.navigationController?.pushViewController(vc!, animated: true)
+        
+    }
+    
+    @IBAction func actionForgotPasswordButtonTapped(_ sender: Any) {
+        
+        let vc = UIStoryboard.resetPasswordVC()
+        
+        self.navigationController?.pushViewController(vc!, animated: true)
+        
+    }
+    
+    
+    
     @IBAction func hideKeyboard() {
         emailTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
     }
     
     
-    @IBAction func unwindToLoginVC(segue: UIStoryboardSegue) {
-        
-    }
-    
     // MARK: - NAVIGATION
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
+    func transitToChatVC(withChat chat: FRChat) {
         SwiftSpinner.hide()
         
         self.isMessengerLoading = false
         
-        if segue.identifier == Storyboard.segueShowChatVC {
-            let chatVC = segue.destination as! ChatViewController
-            
-            let selectedChat = sender as! FRChat
-            
-            chatVC.currentUser = currentUser
-            chatVC.chat = selectedChat
-            chatVC.senderId = currentUser.uid
-            chatVC.senderDisplayName = currentUser.username
-            chatVC.hidesBottomBarWhenPushed = true
-        }
+        let chatVC = UIStoryboard.chatVC()
+        
+        chatVC?.currentUser = currentUser
+        chatVC?.chat = chat
+        chatVC?.senderId = currentUser.uid
+        chatVC?.senderDisplayName = currentUser.username
+        chatVC?.hidesBottomBarWhenPushed = true
+        
+        navigationController?.pushViewController(chatVC!, animated: true)
     }
 }
 
@@ -406,7 +383,6 @@ extension LoginViewController: UITextFieldDelegate {
         return true
     }
     
-    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
         if textField == emailTextField {
@@ -418,8 +394,3 @@ extension LoginViewController: UITextFieldDelegate {
         return true
     }
 }
-
-
-
-
-

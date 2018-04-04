@@ -53,7 +53,16 @@ class WallPostCellDelegate: NSObject, FeedCellDelegate, PhotosProtocol {
     }
     
     func feedCell(_ feedCell: FeedCell, didTapCommentFor post: WallPost) {
-        vc?.performSegue(withIdentifier: Storyboard.segueCommentComposer, sender: post)
+        
+        let commentComposerVC = UIStoryboard.commentComposerVC()
+        
+        let navVC = UINavigationController(rootViewController: commentComposerVC!)
+        
+        commentComposerVC?.delegate = self.vc as? CommentComposerViewControllerDelegate
+        
+        commentComposerVC?.wallPost = post
+        
+        self.vc?.present(navVC, animated: true)
 
     }
     
@@ -111,7 +120,14 @@ extension WallPostCellDelegate: UITableViewDelegate {
         
         let cell = tableView.cellForRow(at: indexPath) as! FeedCell
         
-        vc?.performSegue(withIdentifier: Storyboard.seguePostVC, sender: cell)
+        let postVC = UIStoryboard.postVC()
+        
+        postVC?.wallPost = cell.wallPost
+        
+        postVC?.backgroundImage = cell.galleryImageViews[0].image
+        
+        vc?.present(postVC!, animated: true)
+        
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {

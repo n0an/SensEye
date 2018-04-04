@@ -15,12 +15,6 @@ class RecentViewController: UIViewController, Alertable {
     @IBOutlet weak var tableView: UITableView!
     
     // MARK: - PROPERTIES
-    enum Storyboard {
-        static let cellIdChat       = "ChatCell"
-        static let segueShowChatVC  = "showChatViewController"
-        static let segueUsersVC     = "showUsersViewController"
-    }
-    
     var chats: [FRChat] = []
     
     var currentUser: FRUser!
@@ -113,17 +107,20 @@ class RecentViewController: UIViewController, Alertable {
     }
     
     // MARK: - NAVIGATION
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == Storyboard.segueShowChatVC {
-            let chatVC = segue.destination as! ChatViewController
-            let selectedChat = sender as! FRChat
-            chatVC.currentUser = currentUser
-            chatVC.chat = selectedChat
-            chatVC.senderId = currentUser.uid
-            chatVC.senderDisplayName = currentUser.username
-            chatVC.hidesBottomBarWhenPushed = true
-        }
+    func transitToChatVC(withChat chat: FRChat) {
+  
+        let chatVC = UIStoryboard.chatVC()
+        
+        chatVC?.currentUser = currentUser
+        chatVC?.chat = chat
+        chatVC?.senderId = currentUser.uid
+        chatVC?.senderDisplayName = currentUser.username
+        chatVC?.hidesBottomBarWhenPushed = true
+        
+        navigationController?.pushViewController(chatVC!, animated: true)
+        
     }
+
 }
 
 // MARK: - UITableViewDataSource
@@ -170,7 +167,7 @@ extension RecentViewController: UITableViewDelegate {
             selectedChat = self.chats[indexPath.row]
         }
         
-        performSegue(withIdentifier: Storyboard.segueShowChatVC, sender: selectedChat)
+        self.transitToChatVC(withChat: selectedChat)
     }
 }
 
