@@ -19,7 +19,7 @@ class AboutTableViewController: UITableViewController, Alertable {
                          NSLocalizedString("About me", comment: "About me")]
     
     var connections = [
-                Contact(imageName: "about-icon-chat", labelText: "www.senseye.ru", link: ""),
+                Contact(imageName: "about-icon-website", labelText: "www.senseye.ru", link: ""),
                 Contact(imageName: "about-icon-chat", labelText: NSLocalizedString("InApp Chat", comment: "InApp Chat"), link: ""),
                 Contact(imageName: "about-icon-email", labelText: NSLocalizedString("Email to me", comment: "Email to me"), link: ""),
                 Contact(imageName: "about-icon-skypeColor", labelText: "Skype: elena.senseye", link: "")
@@ -129,6 +129,15 @@ class AboutTableViewController: UITableViewController, Alertable {
             cell.contactLabel.text = connection.labelText
             cell.iconImageView.image = UIImage(named: connection.imageName)
             
+            if indexPath.row == 0 {
+                cell.iconImageView.borderWidth = 1
+                cell.iconImageView.borderColor = UIColor.lightGray
+                cell.iconImageView.cornerRadius = cell.iconImageView.bounds.width/2
+            } else {
+                cell.iconImageView.borderWidth = 0
+                cell.iconImageView.cornerRadius = 0
+            }
+                        
             return cell
             
         case AboutScreenTableViewSection.socNet.rawValue:
@@ -248,13 +257,3 @@ extension AboutTableViewController: MFMailComposeViewControllerDelegate {
         dismiss(animated: true, completion: nil)
     }
 }
-
-
-
-
-
-
-
-
-
-

@@ -21,7 +21,7 @@ class FeedViewController: GeneralFeedViewController {
     
     // MARK: - PROPERTIES
     
-    let revealingSplashView = RevealingSplashView(iconImage: UIImage(named: "dark_crop_1000")!, iconInitialSize: CGSize.init(width: 249, height: 133), backgroundColor: UIColor.white)
+    let revealingSplashView = RevealingSplashView(iconImage: UIImage(named: "logo_1024")!, iconInitialSize: CGSize.init(width: 249, height: 249), backgroundColor: UIColor.white)
     
     var loadingData = false
         
