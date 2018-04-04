@@ -1,3 +1,8 @@
+/* TabBar Items */
+"Gallery" = "Галерея";
+"Chat" = "Чат";
+"About" = "Обо мне";
+
 /* About me */
 "About me" = "Обо мне";
 

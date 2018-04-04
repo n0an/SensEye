@@ -106,6 +106,10 @@ class LandscapeViewController: UIViewController {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
+        updateUI()
+    }
+    
+    func updateUI() {
         for view in scrollView.subviews {
             view.removeFromSuperview()
         }
@@ -173,7 +177,7 @@ class LandscapeViewController: UIViewController {
         getPhotoAlbums(forGroupID: groupID) { (result) in
             guard let albums = result as? [PhotoAlbum] else { return }
             self.albums = albums
-            self.view.layoutSubviews()
+            self.updateUI()
         }
     }
     

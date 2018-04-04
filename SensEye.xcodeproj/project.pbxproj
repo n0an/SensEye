@@ -80,7 +80,6 @@
 		18D6236E1E21422E00138117 /* AboutCellInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D6236D1E21422E00138117 /* AboutCellInfo.swift */; };
 		18D623701E21423D00138117 /* AboutCellSocnet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D6236F1E21423D00138117 /* AboutCellSocnet.swift */; };
 		18D623721E21469C00138117 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D623711E21469C00138117 /* Contact.swift */; };
-		18D623781E215B9200138117 /* about.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18D623761E215B9200138117 /* about.storyboard */; };
 		18DD2E2B1E1A484800451CE7 /* LandscapeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DD2E2A1E1A484800451CE7 /* LandscapeViewController.swift */; };
 		18E3F91E1E466B6100BC95C3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 18E3F9201E466B6100BC95C3 /* InfoPlist.strings */; };
 		18E3F92B1E466B6300BC95C3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 18E3F92D1E466B6300BC95C3 /* Localizable.strings */; };
@@ -181,11 +180,9 @@
 		18D6236D1E21422E00138117 /* AboutCellInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutCellInfo.swift; sourceTree = "<group>"; };
 		18D6236F1E21423D00138117 /* AboutCellSocnet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutCellSocnet.swift; sourceTree = "<group>"; };
 		18D623711E21469C00138117 /* Contact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
-		18D623771E215B9200138117 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/about.storyboard; sourceTree = "<group>"; };
 		18DD2E2A1E1A484800451CE7 /* LandscapeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandscapeViewController.swift; sourceTree = "<group>"; };
 		18E3F91F1E466B6100BC95C3 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		18E3F9211E466B6200BC95C3 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
-		18E3F9271E466B6300BC95C3 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/about.strings; sourceTree = "<group>"; };
 		18E3F9281E466B6300BC95C3 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		18E3F92C1E466B6300BC95C3 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		18FC625B1E113E9C00E25A18 /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
@@ -343,7 +340,6 @@
 				18FC625F1E114C1700E25A18 /* Model */,
 				18C395341E166D2600AE1867 /* Singletons */,
 				18AA37D41E1053F700D5BCB1 /* Main.storyboard */,
-				18D623761E215B9200138117 /* about.storyboard */,
 				18AA37D71E1053F700D5BCB1 /* Assets.xcassets */,
 				184A0BE71E3B404300EEAB4B /* RefreshContents.xib */,
 				18AA37D91E1053F700D5BCB1 /* LaunchScreen.storyboard */,
@@ -585,7 +581,6 @@
 				184A0BE81E3B404300EEAB4B /* RefreshContents.xib in Resources */,
 				18AA37D81E1053F700D5BCB1 /* Assets.xcassets in Resources */,
 				18E3F92B1E466B6300BC95C3 /* Localizable.strings in Resources */,
-				18D623781E215B9200138117 /* about.storyboard in Resources */,
 				18AA37D61E1053F700D5BCB1 /* Main.storyboard in Resources */,
 				180610C51E37CE0A0074ED86 /* secretsFile.txt in Resources */,
 				1899316B1E2D42B7006E00C6 /* GoogleService-Info.plist in Resources */,
@@ -882,15 +877,6 @@
 				18B19E9A1E4D06E200F6F8C3 /* ru */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		18D623761E215B9200138117 /* about.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				18D623771E215B9200138117 /* Base */,
-				18E3F9271E466B6300BC95C3 /* ru */,
-			);
-			name = about.storyboard;
 			sourceTree = "<group>";
 		};
 		18E3F9201E466B6100BC95C3 /* InfoPlist.strings */ = {

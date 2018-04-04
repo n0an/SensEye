@@ -21,31 +21,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     var window: UIWindow?
     
     // MARK: - SplitViewController configuration
-    var splitViewController: MySplitViewController {
-        let rootTabController = window!.rootViewController as! UITabBarController
-        
-        let splitVC = rootTabController.viewControllers![TabBarIndex.gallery.rawValue] as! MySplitViewController
-        
-        return splitVC
-    }
-    
-    var galleryMasterVC: LandscapeViewController {
-        return splitViewController.viewControllers.first as! LandscapeViewController
-    }
-    
-    var detailPhotoNavVC: UINavigationController {
-        return splitViewController.viewControllers.last as! UINavigationController
-    }
-    
-    var detailPhotoVC: PhotoViewController {
-        return detailPhotoNavVC.topViewController as! PhotoViewController
-    }
-    
-    func splitViewController(_ svc: UISplitViewController, willChangeTo displayMode: UISplitViewControllerDisplayMode) {
-        if displayMode == .primaryOverlay {
-            svc.dismiss(animated: true, completion: nil)
-        }
-    }
+//    var splitViewController: MySplitViewController {
+//        let rootTabController = window!.rootViewController as! UITabBarController
+//
+//        let splitVC = rootTabController.viewControllers![TabBarIndex.gallery.rawValue] as! MySplitViewController
+//
+//        return splitVC
+//    }
+//
+//    var galleryMasterVC: LandscapeViewController {
+//        return splitViewController.viewControllers.first as! LandscapeViewController
+//    }
+//
+//    var detailPhotoNavVC: UINavigationController {
+//        return splitViewController.viewControllers.last as! UINavigationController
+//    }
+//
+//    var detailPhotoVC: PhotoViewController {
+//        return detailPhotoNavVC.topViewController as! PhotoViewController
+//    }
+//
+//    func splitViewController(_ svc: UISplitViewController, willChangeTo displayMode: UISplitViewControllerDisplayMode) {
+//        if displayMode == .primaryOverlay {
+//            svc.dismiss(animated: true, completion: nil)
+//        }
+//    }
     
     
     // MARK: - didFinishLaunchingWithOptions
@@ -79,9 +79,43 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         
         
         // Split View Controller Configuration:
-        detailPhotoVC.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem
-        galleryMasterVC.splitViewDetail = detailPhotoVC
-        splitViewController.delegate = self
+//        detailPhotoVC.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem
+//        galleryMasterVC.splitViewDetail = detailPhotoVC
+//        splitViewController.delegate = self
+        
+        
+        if let tabBarController = window?.rootViewController as? UITabBarController {
+            guard let feedVC = UIStoryboard.feedVC() else {
+                fatalError("tabBarController init failed")
+            }
+            
+            guard let galleryVC = UIStoryboard.landscapeVC() else {
+                fatalError("tabBarController init failed")
+            }
+            
+            galleryVC.tabBarItem = UITabBarItem(title: NSLocalizedString("Gallery", comment: "Gallery"), image: UIImage(named: "tabBarIcon-Gallery"), selectedImage: UIImage(named: "tabBarIcon-Gallery-filled"))
+            
+            guard let chatLoginVC = UIStoryboard.loginVC() else {
+                fatalError("tabBarController init failed")
+            }
+            
+            let loginNavVC = UINavigationController(rootViewController: chatLoginVC)
+            
+            loginNavVC.tabBarItem = UITabBarItem(title: NSLocalizedString("Chat", comment: "Chat"), image: UIImage(named: "tabBarIcon-Chat"), selectedImage: UIImage(named: "tabBarIcon-Chat-filled"))
+
+            
+            guard let aboutVC = UIStoryboard.aboutVC() else {
+                fatalError("tabBarController init failed")
+            }
+            
+            let aboutNavVC = UINavigationController(rootViewController: aboutVC)
+
+            aboutNavVC.tabBarItem = UITabBarItem(title: NSLocalizedString("About", comment: "About"), image: UIImage(named: "tabBarIcon-About"), selectedImage: UIImage(named: "tabBarIcon-About-filled"))
+
+            
+            tabBarController.viewControllers =  [feedVC, galleryVC, loginNavVC, aboutNavVC]
+        }
+        
         
         return true
     }
