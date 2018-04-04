@@ -35,7 +35,8 @@ let cellSelectionColor      = UIColor(white: 1.0, alpha: 0.2)
 // MARK: - ===== VK CONSTANTS =====
 
 public let groupID                  = "-55347641"
-let postsInRequest = 10
+let postsInRequest      = 10
+let commentsInRequest   = 10
 
 public let KEY_VK_DIDAUTH           = "vkAuth"
 public let KEY_VK_USERCANCELAUTH    = "vkUserCancelAuth"
@@ -115,16 +116,28 @@ public enum TabBarIndex: Int {
     case about
 }
 
+enum AboutScreenTableViewSection: Int {
+    case connections = 0
+    case socNet
+    case info
+}
+
 public enum Storyboard {
     static let cellIdFeed       = "FeedCell"
     static let cellIdComment    = "CommentCell"
+    
     static let cellIdChat       = "ChatCell"
+    
+    static let cellIdSocNet     = "AboutCellSocnet"
+    static let cellIdInfo       = "AboutCellInfo"
     
     static let rowHeightFeed: CGFloat           = 370.0
     static let rowHeightCommentCell: CGFloat    = 100
     
     static let tableHeaderHeight: CGFloat       = 100
     static let tableHeaderCutAway: CGFloat      = 50
+    
+    static let rowHeightInfo: CGFloat           = 200
 }
 
 public enum TableViewSectionType: Int {

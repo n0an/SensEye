@@ -22,9 +22,6 @@ class PostViewController: GeneralFeedViewController {
     
     weak var delegate: PostViewControllerDelegate?
     
-    var comments: [Comment] = []
-    let commentsInRequest = 10
-    
     var loadingData = false
     
     fileprivate var jellyAnimator: JellyAnimator?
@@ -151,12 +148,12 @@ class PostViewController: GeneralFeedViewController {
             
             GeneralHelper.sharedHelper.showSpinner(onView: self.view, usingBoundsFromView: self.tableView)
             
-            getFeed(forType: .comment, ownerID: groupID, postID: wallPost.postID, offset: 0, count: max(commentsInRequest, self.comments.count), completed: { (comments) in
+            getFeed(forType: .comment, ownerID: groupID, postID: wallPost.postID, offset: 0, count: max(commentsInRequest, postDataSource.comments.count), completed: { (comments) in
                 
                 if comments.count > 0 {
                     guard let comments = comments as? [Comment] else { return }
-                    self.comments.removeAll()
-                    self.comments.append(contentsOf: comments)
+                    self.postDataSource.comments.removeAll()
+                    self.postDataSource.comments.append(contentsOf: comments)
                     self.wallPost.postComments = String(comments.count)
                     self.tableView.reloadData()
                 }
@@ -171,15 +168,15 @@ class PostViewController: GeneralFeedViewController {
         
         GeneralHelper.sharedHelper.showSpinner(onView: self.view, usingBoundsFromView: self.tableView)
         
-        getFeed(forType: .comment, ownerID: groupID, postID: wallPost.postID, offset: self.comments.count, count: commentsInRequest) { (comments) in
+        getFeed(forType: .comment, ownerID: groupID, postID: wallPost.postID, offset: postDataSource.comments.count, count: commentsInRequest) { (comments) in
             
             if comments.count > 0 {
                 guard let comments = comments as? [Comment] else { return }
-                self.comments.append(contentsOf: comments)
+                self.postDataSource.comments.append(contentsOf: comments)
                 var newPaths = [IndexPath]()
-                var index = self.comments.count - comments.count
+                var index = self.postDataSource.comments.count - comments.count
                 
-                while index < self.comments.count {
+                while index < self.postDataSource.comments.count {
                     let newIndPath = IndexPath(row: index, section: TableViewSectionType.comment.rawValue)
                     newPaths.append(newIndPath)
                     

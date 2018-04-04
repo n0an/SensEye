@@ -12,21 +12,7 @@ import MessageUI
 import Spring
 
 class AboutTableViewController: UITableViewController, Alertable {
-    
-    // MARK: - ENUMS
-    enum TableViewSection: Int {
-        case connections = 0
-        case socNet
-        case info
-    }
-    
-    enum Storyboard {
-        static let cellConnection           = "ConnectCell"
-        static let cellIdSocNet             = "AboutCellSocnet"
-        static let cellIdInfo               = "AboutCellInfo"
-        static let rowHeightInfo: CGFloat   = 200
-    }
-    
+      
     // MARK: - PROPERTIES
     var sectionTitles = [NSLocalizedString("Contacts", comment: "Contacts"),
                          NSLocalizedString("Social Networks", comment: "Social Networks"),
@@ -121,11 +107,11 @@ class AboutTableViewController: UITableViewController, Alertable {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
-        case TableViewSection.connections.rawValue:
+        case AboutScreenTableViewSection.connections.rawValue:
             return self.connections.count
-        case TableViewSection.socNet.rawValue:
+        case AboutScreenTableViewSection.socNet.rawValue:
             return self.socNet.count
-        case TableViewSection.info.rawValue:
+        case AboutScreenTableViewSection.info.rawValue:
             return 1
         default:
             return 0
@@ -135,7 +121,7 @@ class AboutTableViewController: UITableViewController, Alertable {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         switch indexPath.section {
-        case TableViewSection.connections.rawValue:
+        case AboutScreenTableViewSection.connections.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: Storyboard.cellIdSocNet, for: indexPath) as! AboutCellSocnet
 
             let connection = self.connections[indexPath.row]
@@ -145,7 +131,7 @@ class AboutTableViewController: UITableViewController, Alertable {
             
             return cell
             
-        case TableViewSection.socNet.rawValue:
+        case AboutScreenTableViewSection.socNet.rawValue:
             
             let cell = tableView.dequeueReusableCell(withIdentifier: Storyboard.cellIdSocNet, for: indexPath) as! AboutCellSocnet
             
@@ -161,7 +147,7 @@ class AboutTableViewController: UITableViewController, Alertable {
             
             return cell
             
-        case TableViewSection.info.rawValue:
+        case AboutScreenTableViewSection.info.rawValue:
             
             let cell = tableView.dequeueReusableCell(withIdentifier: Storyboard.cellIdInfo, for: indexPath) as! AboutCellInfo
             
@@ -179,7 +165,7 @@ class AboutTableViewController: UITableViewController, Alertable {
     // MARK: - UITableViewDelegate
     override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        if indexPath.section == TableViewSection.info.rawValue {
+        if indexPath.section == AboutScreenTableViewSection.info.rawValue {
             return Storyboard.rowHeightInfo
         } else {
             return UITableViewAutomaticDimension
@@ -190,7 +176,7 @@ class AboutTableViewController: UITableViewController, Alertable {
         
         switch indexPath.section {
         
-        case TableViewSection.connections.rawValue:
+        case AboutScreenTableViewSection.connections.rawValue:
             if indexPath.row == 0 {
                 if let url = URL(string: "http://www.senseye.ru") {
                     let safariController = SFSafariViewController(url: url)
@@ -206,7 +192,7 @@ class AboutTableViewController: UITableViewController, Alertable {
                 self.showSkype()
             }
             
-        case TableViewSection.socNet.rawValue:
+        case AboutScreenTableViewSection.socNet.rawValue:
             let socNet = self.socNet[indexPath.row]
             
             if let url = URL(string: socNet.link) {
@@ -223,7 +209,7 @@ class AboutTableViewController: UITableViewController, Alertable {
     
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         
-        if indexPath.section == TableViewSection.info.rawValue {
+        if indexPath.section == AboutScreenTableViewSection.info.rawValue {
             return nil
         } else {
             return indexPath
