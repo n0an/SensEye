@@ -8,6 +8,8 @@
 
 import UIKit
 import AlamofireImage
+import IDMPhotoBrowser
+import Jelly
 
 class LandscapeViewController: UIViewController {
     
@@ -74,8 +76,8 @@ class LandscapeViewController: UIViewController {
         }
     }
     
-    weak var splitViewDetail: PhotoViewController?
-    
+    fileprivate var jellyAnimator: JellyAnimator?
+
     
     // MARK: - viewDidLoad
     override func viewDidLoad() {
@@ -596,24 +598,6 @@ class LandscapeViewController: UIViewController {
         pageControl.currentPage = 0
     }
     
-    // MARK: - SPLIT VIEW METHODS
-    func hideMasterPane() {
-        UIView.animate(withDuration: 0.25, animations: {
-            self.splitViewController?.preferredDisplayMode = .primaryHidden
-        }) { (success) in
-            self.splitViewController?.preferredDisplayMode = .automatic
-        }
-    }
-    
-    func hideMasterPanePhonePlus() {
-        UIView.animate(withDuration: 0.25, animations: {
-            self.splitViewController?.preferredDisplayMode = .primaryHidden
-        }) { (success) in
-            
-        }
-    }
-    
-    
     // MARK: - ACTIONS
     @objc func actionGestureTap(_ sender: UITapGestureRecognizer) {
         
@@ -634,19 +618,7 @@ class LandscapeViewController: UIViewController {
                 
                 if self.view.window!.rootViewController!.traitCollection.horizontalSizeClass == .compact {
                     
-                    self.performSegue(withIdentifier: Storyboard.seguePhotoDisplayer, sender: photos)
-                    
-                } else {
-                    if self.isPhonePlus {
-                        self.hideMasterPanePhonePlus()
-                        
-                    } else if self.splitViewController?.displayMode != .allVisible {
-                        self.hideMasterPane()
-                    }
-                    
-                    self.splitViewDetail?.currentPhoto = photos[0]
-                    self.splitViewDetail?.mediasArray = photos
-                    self.splitViewDetail?.currentIndex = 0
+                    self.performJellyTransition(withPhotos: photos)
                 }
             })
         }
@@ -667,20 +639,48 @@ class LandscapeViewController: UIViewController {
     }
     
     // MARK: - NAVIGATION
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    func performJellyTransition(withPhotos photosArray: [Photo]) {
         
-        if segue.identifier == Storyboard.seguePhotoDisplayer {
-            let destinationNavVC = segue.destination as! UINavigationController
-            //            destinationNavVC.transitioningDelegate = TransitionHelper.sharedHelper.acRotateTransition
+        var urlsArray: [URL] = []
+        
+        for photo in photosArray {
+            var linkToNeededRes: String!
             
-            let destinationVC = destinationNavVC.topViewController as! PhotoViewController
+            if self.traitCollection.horizontalSizeClass == .regular && self.traitCollection.verticalSizeClass == .regular {
+                linkToNeededRes = photo.maxRes
+                
+            } else {
+                if photo.photo_1280 != nil {
+                    linkToNeededRes = photo.photo_1280
+                } else {
+                    linkToNeededRes = photo.maxRes
+                }
+            }
             
-            guard let photos = sender as? [Photo] else { return }
-            
-            destinationVC.currentPhoto = photos[0]
-            destinationVC.mediasArray = photos
-            destinationVC.currentIndex = 0
+            let imageURL = URL(string: linkToNeededRes)
+            urlsArray.append(imageURL!)
         }
+        
+        let photos = IDMPhoto.photos(withURLs: urlsArray)
+        
+        let browser = IDMPhotoBrowser(photos: photos)
+        
+        browser?.displayDoneButton      = false
+        browser?.displayActionButton    = false
+        browser?.doneButtonImage        = UIImage(named: "CloseButton")
+        
+        let customBlurFadeInPresentation = JellyFadeInPresentation(dismissCurve: .easeInEaseOut,
+                                                                   presentationCurve: .easeInEaseOut,
+                                                                   cornerRadius: 0,
+                                                                   backgroundStyle: .blur(effectStyle: .light),
+                                                                   duration: .normal,
+                                                                   widthForViewController: .fullscreen,
+                                                                   heightForViewController: .fullscreen)
+        
+        
+        self.jellyAnimator = JellyAnimator(presentation: customBlurFadeInPresentation)
+        self.jellyAnimator?.prepare(viewController: browser!)
+        self.present(browser!, animated: true, completion: nil)
     }
 }
 
