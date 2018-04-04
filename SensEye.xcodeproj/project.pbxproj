@@ -70,6 +70,7 @@
 		18C395321E166D0200AE1867 /* NSDate+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C395301E166D0200AE1867 /* NSDate+Utilities.m */; };
 		18C395361E16768F00AE1867 /* GeneralHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C395351E16768F00AE1867 /* GeneralHelper.swift */; };
 		18C395381E1676F200AE1867 /* UIColor+inits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C395371E1676F200AE1867 /* UIColor+inits.swift */; };
+		18C8E5E72075502700F8AF51 /* RevealingSplashable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C8E5E62075502700F8AF51 /* RevealingSplashable.swift */; };
 		18D3704020652E31000553D3 /* CommentComposerViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D3703F20652E31000553D3 /* CommentComposerViewControllerDelegate.swift */; };
 		18D3704220652E98000553D3 /* PostViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D3704120652E98000553D3 /* PostViewControllerDelegate.swift */; };
 		18D3708120657150000553D3 /* Notification+customName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D3708020657150000553D3 /* Notification+customName.swift */; };
@@ -169,6 +170,7 @@
 		18C395311E166D0200AE1867 /* NSDate+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Utilities.h"; sourceTree = "<group>"; };
 		18C395351E16768F00AE1867 /* GeneralHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralHelper.swift; sourceTree = "<group>"; };
 		18C395371E1676F200AE1867 /* UIColor+inits.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+inits.swift"; sourceTree = "<group>"; };
+		18C8E5E62075502700F8AF51 /* RevealingSplashable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevealingSplashable.swift; sourceTree = "<group>"; };
 		18D3703F20652E31000553D3 /* CommentComposerViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentComposerViewControllerDelegate.swift; sourceTree = "<group>"; };
 		18D3704120652E98000553D3 /* PostViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewControllerDelegate.swift; sourceTree = "<group>"; };
 		18D3708020657150000553D3 /* Notification+customName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+customName.swift"; sourceTree = "<group>"; };
@@ -404,6 +406,7 @@
 				18B3622E2072369100878299 /* LikesProtocol.swift */,
 				18B3623020723F1A00878299 /* PhotosProtocol.swift */,
 				188650B22074007C001D9F88 /* Alertable.swift */,
+				18C8E5E62075502700F8AF51 /* RevealingSplashable.swift */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -831,6 +834,7 @@
 				18B3622F2072369100878299 /* LikesProtocol.swift in Sources */,
 				18FC62631E11545D00E25A18 /* PostPhotoGallery.swift in Sources */,
 				186E2A281E34A9400011AB88 /* ChatTableViewCell.swift in Sources */,
+				18C8E5E72075502700F8AF51 /* RevealingSplashable.swift in Sources */,
 				18D623621E1FCCC800138117 /* VKLoginViewController.swift in Sources */,
 				18C395381E1676F200AE1867 /* UIColor+inits.swift in Sources */,
 				1835A7EF2063D53900BA4AF8 /* FeedDataSource.swift in Sources */,

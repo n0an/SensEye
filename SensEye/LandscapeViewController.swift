@@ -10,8 +10,11 @@ import UIKit
 import AlamofireImage
 import IDMPhotoBrowser
 import Jelly
+import RevealingSplashView
 
-class LandscapeViewController: UIViewController {
+class LandscapeViewController: UIViewController, RevealingSplashable {
+    
+    var revealingSplashView: RevealingSplashView = RevealingSplashView(iconImage: UIImage(named: "logo_1024")!, iconInitialSize: CGSize.init(width: 249, height: 249), backgroundColor: UIColor.white)
     
     // MARK: - OUTLETS
     @IBOutlet weak var scrollView: UIScrollView!
@@ -73,6 +76,7 @@ class LandscapeViewController: UIViewController {
     
     fileprivate var jellyAnimator: JellyAnimator?
 
+    var isNeedToUpdate: Bool!
     
     // MARK: - viewDidLoad
     override func viewDidLoad() {
@@ -85,6 +89,12 @@ class LandscapeViewController: UIViewController {
             self.pageControl.isHidden = true
         }
         
+        isNeedToUpdate = false
+        
+        addRevealingSplashView(toView: view)
+        
+        toggleTabBar(withTraitCollection: self.traitCollection)
+
         getAlbumsFromServer()
         
         // TURN OFF AUTO LAYOUT FOR THIS VC
@@ -103,10 +113,16 @@ class LandscapeViewController: UIViewController {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
-        updateUI()
+        if isNeedToUpdate {
+
+            updateUI()
+        }
     }
     
     func updateUI() {
+        
+        stopRevealingSplashView()
+        
         for view in scrollView.subviews {
             view.removeFromSuperview()
         }
@@ -139,19 +155,32 @@ class LandscapeViewController: UIViewController {
         scrollView.contentOffset = .zero
         
         self.tileAlbums(albums: albums)
+        
+        isNeedToUpdate = false
     }
     
     override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
         
         super.willTransition(to: newCollection, with: coordinator)
         
+        isNeedToUpdate = true
+        
+        toggleTabBar(withTraitCollection: newCollection)
+    }
+    
+    func toggleTabBar(withTraitCollection traitCollection: UITraitCollection) {
         if UIDevice.current.userInterfaceIdiom != .pad {
-            let tabBarController = UIApplication.shared.keyWindow?.rootViewController as! UITabBarController
             
-            switch newCollection.verticalSizeClass {
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
+            let tabBarController = appDelegate.window?.rootViewController as? UITabBarController else {
+                fatalError()
+            }
+            
+            switch traitCollection.verticalSizeClass {
             case .compact:
                 // Hide TabBar
-                if tabBarController.selectedIndex == TabBarIndex.gallery.rawValue {
+                if tabBarController.selectedIndex == TabBarIndex.gallery.rawValue ||
+                    tabBarController.selectedIndex == NSNotFound {
                     self.tabBarController?.tabBar.layer.zPosition = -1
                     self.tabBarController?.tabBar.isUserInteractionEnabled = false
                 }
@@ -223,7 +252,6 @@ class LandscapeViewController: UIViewController {
             imageView.af_setImage(withURL: urlPhoto!)
         }
     }
-    
     
     // MARK: - HELPER METHODS
     // MARK: - ScrollViewParams Calculations

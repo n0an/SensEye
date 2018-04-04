@@ -10,18 +10,20 @@ import UIKit
 import Alamofire
 import AlamofireImage
 import SVPullToRefresh
-import Jelly
-import IDMPhotoBrowser
+//import Jelly
+//import IDMPhotoBrowser
 import RevealingSplashView
 
 class FeedViewController: GeneralFeedViewController {
+//    var revealingSplashView: RevealingSplashView =
+    
     
     // MARK: - OUTLETS
     @IBOutlet weak var tableView: UITableView!
     
     // MARK: - PROPERTIES
     
-    let revealingSplashView = RevealingSplashView(iconImage: UIImage(named: "logo_1024")!, iconInitialSize: CGSize.init(width: 249, height: 249), backgroundColor: UIColor.white)
+//    var revealingSplashView = RevealingSplashView(iconImage: UIImage(named: "logo_1024")!, iconInitialSize: CGSize.init(width: 249, height: 249), backgroundColor: UIColor.white)
     
     var loadingData = false
         
@@ -68,9 +70,11 @@ class FeedViewController: GeneralFeedViewController {
             self.tableView.addSubview(refreshControl)
         }
         
-        self.view.addSubview(revealingSplashView)
-        revealingSplashView.animationType = .heartBeat
-        revealingSplashView.startAnimation()
+//        self.view.addSubview(revealingSplashView)
+//        revealingSplashView.animationType = .heartBeat
+//        revealingSplashView.startAnimation()
+        
+//        addRevealingSplashView(toView: view)
         
         self.refreshControl = refreshControl
         
@@ -107,7 +111,10 @@ class FeedViewController: GeneralFeedViewController {
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         // To redraw Photos with new size after transition to portrait or landscape
-        tableView.reloadData()
+        if tableView != nil {
+            
+            tableView.reloadData()
+        }
     }
     
     // MARK: - deinit
@@ -154,7 +161,9 @@ class FeedViewController: GeneralFeedViewController {
             GeneralHelper.sharedHelper.hideSpinner(onView: self.view)
             self.tableView.infiniteScrollingView.stopAnimating()
             
-            self.revealingSplashView.heartAttack = true
+//            self.revealingSplashView.heartAttack = true
+            
+//            self.stopRevealingSplashView()
         }
     }
     
@@ -177,7 +186,9 @@ class FeedViewController: GeneralFeedViewController {
                 GeneralHelper.sharedHelper.hideSpinner(onView: self.view)
                 self.refreshControl.endRefreshing()
                 
-                self.revealingSplashView.heartAttack = true
+//                self.revealingSplashView.heartAttack = true
+//                self.stopRevealingSplashView()
+                
             }
         }
     }

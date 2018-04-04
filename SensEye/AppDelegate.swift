@@ -19,35 +19,7 @@ import Crashlytics
 class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate {
     
     var window: UIWindow?
-    
-    // MARK: - SplitViewController configuration
-//    var splitViewController: MySplitViewController {
-//        let rootTabController = window!.rootViewController as! UITabBarController
-//
-//        let splitVC = rootTabController.viewControllers![TabBarIndex.gallery.rawValue] as! MySplitViewController
-//
-//        return splitVC
-//    }
-//
-//    var galleryMasterVC: LandscapeViewController {
-//        return splitViewController.viewControllers.first as! LandscapeViewController
-//    }
-//
-//    var detailPhotoNavVC: UINavigationController {
-//        return splitViewController.viewControllers.last as! UINavigationController
-//    }
-//
-//    var detailPhotoVC: PhotoViewController {
-//        return detailPhotoNavVC.topViewController as! PhotoViewController
-//    }
-//
-//    func splitViewController(_ svc: UISplitViewController, willChangeTo displayMode: UISplitViewControllerDisplayMode) {
-//        if displayMode == .primaryOverlay {
-//            svc.dismiss(animated: true, completion: nil)
-//        }
-//    }
-    
-    
+  
     // MARK: - didFinishLaunchingWithOptions
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
@@ -78,12 +50,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         OneSignal.setLogLevel(ONE_S_LOG_LEVEL.LL_NONE, visualLevel: ONE_S_LOG_LEVEL.LL_NONE)
         
         
-        // Split View Controller Configuration:
-//        detailPhotoVC.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem
-//        galleryMasterVC.splitViewDetail = detailPhotoVC
-//        splitViewController.delegate = self
-        
-        
         if let tabBarController = window?.rootViewController as? UITabBarController {
             guard let feedVC = UIStoryboard.feedVC() else {
                 fatalError("tabBarController init failed")
@@ -111,9 +77,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
             let aboutNavVC = UINavigationController(rootViewController: aboutVC)
 
             aboutNavVC.tabBarItem = UITabBarItem(title: NSLocalizedString("About", comment: "About"), image: UIImage(named: "tabBarIcon-About"), selectedImage: UIImage(named: "tabBarIcon-About-filled"))
-
             
-            tabBarController.viewControllers =  [feedVC, galleryVC, loginNavVC, aboutNavVC]
+            tabBarController.viewControllers = [
+                galleryVC,
+                aboutNavVC,
+                feedVC,
+                loginNavVC]
         }
         
         

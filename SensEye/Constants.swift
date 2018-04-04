@@ -110,10 +110,10 @@ let VC_CHAT = "ChatViewController"
 let VC_ABOUT = "AboutTableViewController"
 
 public enum TabBarIndex: Int {
-    case wallFeed   = 0
-    case gallery
-    case chat
+    case gallery   = 0
     case about
+    case wallFeed
+    case chat
 }
 
 enum AboutScreenTableViewSection: Int {
