@@ -75,12 +75,17 @@ class ChatViewController: JSQMessagesViewController, UIGestureRecognizerDelegate
         self.obserInitialLoadMessages()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationController?.isNavigationBarHidden = false
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         self.chat.clearUnreadMessagesCount()
         
-        self.navigationController?.isNavigationBarHidden = false
 
         self.scrollToBottom(animated: false)
         self.navigationController?.hidesBarsOnSwipe = true
@@ -253,7 +258,7 @@ class ChatViewController: JSQMessagesViewController, UIGestureRecognizerDelegate
 
         } else {
             let tabBarController = UIApplication.shared.keyWindow?.rootViewController as! UITabBarController
-            tabBarController.selectedIndex = TabBarIndex.wallFeed.rawValue
+            tabBarController.selectedIndex = TabBarIndex.gallery.rawValue
         }
     }
     

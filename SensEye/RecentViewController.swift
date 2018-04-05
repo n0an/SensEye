@@ -51,15 +51,18 @@ class RecentViewController: UIViewController, Alertable {
         self.tableView.rowHeight = UITableViewAutomaticDimension
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = false
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        self.navigationController?.isNavigationBarHidden = false
         self.navigationController?.hidesBarsOnSwipe = false
 
         self.fetchChats()
     }
-    
     
     // MARK: - HELPER METHODS
     func fetchChats() {

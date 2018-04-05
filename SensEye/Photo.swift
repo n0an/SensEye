@@ -82,7 +82,7 @@ class Photo {
         while index >= PhotoResolution.res130.rawValue {
             let res = self.keysResArray[index]
            
-            if let currentRes = resolutionDictionary[res], currentRes != nil {
+            if let currentRes = resolutionDictionary[res], currentRes != "" {
                 self.maxRes = currentRes
                 break
             }

@@ -21,7 +21,6 @@ class SignUpViewController: UIViewController, Alertable {
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var containerView: DesignableView!
     @IBOutlet weak var hideKeyboardInputAccessoryView: UIView!
-    @IBOutlet weak var cancelBarButton: UIBarButtonItem!
 
     // MARK: - PROPERTIES
     var avatarImage: UIImage?
@@ -32,7 +31,6 @@ class SignUpViewController: UIViewController, Alertable {
             emailTextField.isEnabled        = !newValue
             passwordTextField.isEnabled     = !newValue
             signUpButton.isEnabled          = !newValue
-            cancelBarButton.isEnabled       = !newValue
             avatarImageView.isUserInteractionEnabled = !newValue
         }
     }
@@ -41,8 +39,6 @@ class SignUpViewController: UIViewController, Alertable {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationController?.isNavigationBarHidden = false
-
         nameTextField.delegate      = self
         emailTextField.delegate     = self
         passwordTextField.delegate  = self
@@ -56,6 +52,12 @@ class SignUpViewController: UIViewController, Alertable {
         
         let tapOnAvatarImageView = UITapGestureRecognizer(target: self, action: #selector(actionAvatarImageTapped))
         self.avatarImageView.addGestureRecognizer(tapOnAvatarImageView)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationController?.isNavigationBarHidden = false
     }
     
     override func viewDidAppear(_ animated: Bool) {

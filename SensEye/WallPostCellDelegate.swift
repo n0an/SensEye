@@ -78,7 +78,7 @@ class WallPostCellDelegate: NSObject, FeedCellDelegate, PhotosProtocol {
                 linkToNeededRes = photo.maxRes
                 
             } else {
-                if photo.photo_1280 != nil {
+                if photo.photo_1280 != "" {
                     linkToNeededRes = photo.photo_1280
                 } else {
                     linkToNeededRes = photo.maxRes
