@@ -20,6 +20,7 @@ class AboutTableViewController: UITableViewController, Alertable {
     
     var connections = [
                 Contact(imageName: "about-icon-website", labelText: "www.senseye.ru", link: ""),
+                Contact(imageName: "about-icon-phone", labelText: "+7 916 341-00-46", link: ""),
                 Contact(imageName: "about-icon-chat", labelText: NSLocalizedString("InApp Chat", comment: "InApp Chat"), link: ""),
                 Contact(imageName: "about-icon-email", labelText: NSLocalizedString("Email to me", comment: "Email to me"), link: ""),
                 Contact(imageName: "about-icon-skypeColor", labelText: "Skype: elena.senseye", link: "")
@@ -59,15 +60,26 @@ class AboutTableViewController: UITableViewController, Alertable {
     
     // MARK: - HELPER METHODS
     func showSkype() {
-        let skypeURL = URL(string: "skype:elena.senseye?chat")
+        openURLWith("skype:elena.senseye?chat")
+    }
+    
+    func callToNumber() {
+        openURLWith("tel://+79163410046")
+    }
+    
+    func openURLWith(_ string: String) {
+        let urlToOpen = URL(string: string)
+        
+        guard let url = urlToOpen else { return }
         
         if #available(iOS 10.0, *) {
-            UIApplication.shared.open(skypeURL!, options: [:], completionHandler: nil)
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
         } else {
             // Fallback on earlier versions
-            UIApplication.shared.openURL(skypeURL!)
+            UIApplication.shared.openURL(url)
         }
     }
+    
     
     // MARK: - ANIMATIONS
     func animateIconImageView(iconImageView: DesignableImageView, delay: CGFloat) {
@@ -186,15 +198,16 @@ class AboutTableViewController: UITableViewController, Alertable {
         switch indexPath.section {
         
         case AboutScreenTableViewSection.connections.rawValue:
-            if indexPath.row == 0 {
+            if indexPath.row == AboutScreenTableViewRowConnection.web.rawValue {
                 if let url = URL(string: "http://www.senseye.ru") {
                     let safariController = SFSafariViewController(url: url)
                     present(safariController, animated: true, completion: nil)
                 }
-            } else if indexPath.row == 1 {
+            } else if indexPath.row == AboutScreenTableViewRowConnection.phone.rawValue {
+                self.callToNumber()
+            } else if indexPath.row == AboutScreenTableViewRowConnection.chat.rawValue {
                 let tabBarController = UIApplication.shared.keyWindow?.rootViewController as! UITabBarController
                 tabBarController.selectedIndex = TabBarIndex.chat.rawValue
-                
             } else if indexPath.row == 2 {
                 self.showEmailComposer()
             } else {

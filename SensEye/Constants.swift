@@ -122,6 +122,20 @@ enum AboutScreenTableViewSection: Int {
     case info
 }
 
+enum AboutScreenTableViewRowConnection: Int {
+    case web = 0
+    case phone
+    case chat
+    case email
+    case skype
+}
+
+enum AboutScreenTableViewRowSocnetwork: Int {
+    case facebook = 0
+    case instagram
+    case vk
+}
+
 public enum Storyboard {
     static let cellIdFeed       = "FeedCell"
     static let cellIdComment    = "CommentCell"
