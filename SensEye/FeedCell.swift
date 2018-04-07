@@ -8,6 +8,7 @@
 
 import UIKit
 import Spring
+import AlamofireImage
 
 // MARK: - DELEGATE
 
@@ -20,13 +21,7 @@ class FeedCell: UITableViewCell {
     @IBOutlet weak var postTextLabel: UILabel!
     @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var commentButton: UIButton!
-    @IBOutlet weak var galleryFirstRowLeadingConstraint: NSLayoutConstraint!
-    @IBOutlet weak var gallerySecondRowLeadingConstraint: NSLayoutConstraint!
-    @IBOutlet weak var gallerySecondRowTopConstraint: NSLayoutConstraint!
-    @IBOutlet var galleryImageViews: [UIImageView]!
-
-    @IBOutlet var photoHeights: [NSLayoutConstraint]!
-    @IBOutlet var photoWidths: [NSLayoutConstraint]!
+    @IBOutlet weak var postImageView: UIImageView!
     
     // MARK: - PROPERTIES
     var wallPost: WallPost! {
@@ -61,9 +56,7 @@ class FeedCell: UITableViewCell {
         timestampLabel.text = nil
         postTextLabel.text = nil
         
-        PostPhotoGallery.sharedGalleryManager.clearGallery(forPost: wallPost, fromCell: self)
     }
-    
     
     // MARK: - API METHODS
     func authorize() {
@@ -146,7 +139,58 @@ class FeedCell: UITableViewCell {
             self.profileImageVIew.af_setImage(withURL: imageURL!)
         }
         
-        PostPhotoGallery.sharedGalleryManager.insertGallery(forPost: wallPost, toCell: self)
+        
+        insertPostImageWith(wallPost, forCell: self)
+
+    }
+    
+    func insertPostImageWith(_ post: WallPost, forCell cell: FeedCell) {
+        guard !post.postAttachments.isEmpty else {
+            return
+        }
+        
+        var photoObject: Photo!
+        
+        if let albumAttachment = post.postAttachments.first as? PhotoAlbum,
+            let photoAlbumThumb = albumAttachment.albumThumbPhoto {
+                photoObject = photoAlbumThumb
+            
+        } else if let photoAttachment = post.postAttachments.first as? Photo {
+            photoObject = photoAttachment
+        }
+        
+        var linkToNeededRes = photoObject.photo_807
+        let neededRes: PhotoResolution = .res807
+        
+        if linkToNeededRes == "" {
+            
+            var index = neededRes.rawValue - 1
+            
+            while index >= PhotoResolution.res75.rawValue {
+                let lessResKey = photoObject.keysResArray[index]
+                let lessResolution = photoObject.resolutionDictionary[lessResKey]
+                
+                if lessResolution != nil {
+                    linkToNeededRes = lessResolution!
+                    break
+                }
+                
+                index -= 1
+            }
+            
+            if linkToNeededRes == "" {
+                linkToNeededRes = photoObject.maxRes
+            }
+        }
+        
+        let urlPhoto = URL(string: linkToNeededRes!)
+        
+        postImageView.af_setImage(withURL: urlPhoto!)
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.actionGlryImageViewDidTap))
+        
+        postImageView.addGestureRecognizer(tapGesture)
+        
     }
     
     func currentUserLikes() -> Bool {
@@ -177,13 +221,10 @@ class FeedCell: UITableViewCell {
     
     // MARK: - GESTURES
     @objc func actionGlryImageViewDidTap(sender: UITapGestureRecognizer) {
-        guard let tappedImageView = sender.view as? UIImageView else {
-            return
-        }
         
-        if let clickedIndex = self.galleryImageViews.index(of: tappedImageView) {
-            self.delegate?.feedCell(self, didTapGalleryImageWith: self.wallPost, withPhotoIndex: clickedIndex)
-        }
+        
+        self.delegate?.feedCell(self, didTapGalleryImageWith: self.wallPost, withPhotoIndex: 0)
+        
     }
     
     // MARK: - ACTIONS
@@ -193,7 +234,6 @@ class FeedCell: UITableViewCell {
             authorize()
             return
         }
-        
         
         likeButton.isUserInteractionEnabled = false
         

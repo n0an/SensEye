@@ -124,7 +124,7 @@ extension WallPostCellDelegate: UITableViewDelegate {
         
         postVC?.wallPost = cell.wallPost
         
-        postVC?.backgroundImage = cell.galleryImageViews[0].image
+        postVC?.backgroundImage = cell.postImageView.image
         
         vc?.present(postVC!, animated: true)
         
