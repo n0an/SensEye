@@ -15,15 +15,11 @@ import SVPullToRefresh
 import RevealingSplashView
 
 class FeedViewController: GeneralFeedViewController {
-//    var revealingSplashView: RevealingSplashView =
-    
     
     // MARK: - OUTLETS
     @IBOutlet weak var tableView: UITableView!
     
     // MARK: - PROPERTIES
-    
-//    var revealingSplashView = RevealingSplashView(iconImage: UIImage(named: "logo_1024")!, iconInitialSize: CGSize.init(width: 249, height: 249), backgroundColor: UIColor.white)
     
     var loadingData = false
         
@@ -69,12 +65,6 @@ class FeedViewController: GeneralFeedViewController {
             // Fallback on earlier versions
             self.tableView.addSubview(refreshControl)
         }
-        
-//        self.view.addSubview(revealingSplashView)
-//        revealingSplashView.animationType = .heartBeat
-//        revealingSplashView.startAnimation()
-        
-//        addRevealingSplashView(toView: view)
         
         self.refreshControl = refreshControl
         
@@ -161,9 +151,6 @@ class FeedViewController: GeneralFeedViewController {
             GeneralHelper.sharedHelper.hideSpinner(onView: self.view)
             self.tableView.infiniteScrollingView.stopAnimating()
             
-//            self.revealingSplashView.heartAttack = true
-            
-//            self.stopRevealingSplashView()
         }
     }
     
@@ -186,8 +173,6 @@ class FeedViewController: GeneralFeedViewController {
                 GeneralHelper.sharedHelper.hideSpinner(onView: self.view)
                 self.refreshControl.endRefreshing()
                 
-//                self.revealingSplashView.heartAttack = true
-//                self.stopRevealingSplashView()
                 
             }
         }
