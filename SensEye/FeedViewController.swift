@@ -10,9 +10,6 @@ import UIKit
 import Alamofire
 import AlamofireImage
 import SVPullToRefresh
-//import Jelly
-//import IDMPhotoBrowser
-import RevealingSplashView
 
 class FeedViewController: GeneralFeedViewController {
     

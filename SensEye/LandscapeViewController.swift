@@ -684,6 +684,7 @@ class LandscapeViewController: UIViewController, RevealingSplashable {
         
         browser?.displayDoneButton      = false
         browser?.displayActionButton    = false
+        browser?.useWhiteBackgroundColor = true
         browser?.doneButtonImage        = UIImage(named: "CloseButton")
         
         let customBlurFadeInPresentation = JellyFadeInPresentation(dismissCurve: .easeInEaseOut,

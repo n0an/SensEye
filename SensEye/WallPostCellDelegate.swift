@@ -95,6 +95,7 @@ class WallPostCellDelegate: NSObject, FeedCellDelegate, PhotosProtocol {
         
         browser?.displayDoneButton      = false
         browser?.displayActionButton    = false
+        browser?.useWhiteBackgroundColor = true
         browser?.doneButtonImage        = UIImage(named: "CloseButton")
         browser?.setInitialPageIndex(UInt(indexOfPhoto))
         
