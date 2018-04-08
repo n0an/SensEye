@@ -115,20 +115,13 @@ class WallPostCellDelegate: NSObject, FeedCellDelegate, PhotosProtocol {
 }
 
 extension WallPostCellDelegate: UITableViewDelegate {
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
         let cell = tableView.cellForRow(at: indexPath) as! FeedCell
-        
         let postVC = UIStoryboard.postVC()
-        
         postVC?.wallPost = cell.wallPost
-        
         postVC?.backgroundImage = cell.postImageView.image
-        
         vc?.present(postVC!, animated: true)
-        
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
