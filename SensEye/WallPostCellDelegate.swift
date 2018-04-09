@@ -42,9 +42,7 @@ class WallPostCellDelegate: NSObject, FeedCellDelegate, PhotosProtocol {
     func feedCellNeedProvideAuthorization(_ feedCell: UITableViewCell) {
         UserDefaults.standard.set(false, forKey: KEY_VK_USERCANCELAUTH)
         UserDefaults.standard.synchronize()
-        
-        guard let vc = vc else { return }
-        GeneralHelper.sharedHelper.showVKAuthorizeActionSheetOnViewController(viewController: vc) { (selected) in
+        guard let vc = vc else { return } GeneralHelper.sharedHelper.showVKAuthorizeActionSheetOnViewController(viewController: vc) { (selected) in
             
             if selected == true {
                 self.vc?.toAuthorize()
@@ -53,17 +51,11 @@ class WallPostCellDelegate: NSObject, FeedCellDelegate, PhotosProtocol {
     }
     
     func feedCell(_ feedCell: FeedCell, didTapCommentFor post: WallPost) {
-        
         let commentComposerVC = UIStoryboard.commentComposerVC()
-        
         let navVC = UINavigationController(rootViewController: commentComposerVC!)
-        
         commentComposerVC?.delegate = self.vc as? CommentComposerViewControllerDelegate
-        
         commentComposerVC?.wallPost = post
-        
         self.vc?.present(navVC, animated: true)
-
     }
     
     
