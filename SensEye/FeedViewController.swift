@@ -17,10 +17,9 @@ class FeedViewController: GeneralFeedViewController {
     @IBOutlet weak var tableView: UITableView!
     
     // MARK: - PROPERTIES
-    
     var loadingData = false
         
-    private var refreshControl: UIRefreshControl!
+    var refreshControl: UIRefreshControl!
     
     var observer: AnyObject!
     
@@ -36,37 +35,7 @@ class FeedViewController: GeneralFeedViewController {
     // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        feedDataSource = FeedDataSource(vc: self)
-        cellDelegate = WallPostCellDelegate(vc: self)
-        
-        tableView.delegate = cellDelegate
-        tableView.dataSource = feedDataSource
-        
-        tableView.estimatedRowHeight = Storyboard.rowHeightFeed
-        tableView.rowHeight = UITableViewAutomaticDimension
-        
-        self.tableView.addInfiniteScrolling { 
-            self.getPostsFromServer()
-        }
-        
-        let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(actionRefreshTableView), for: .valueChanged)
-        
-        refreshControl.backgroundColor = UIColor.clear
-        refreshControl.tintColor = UIColor.clear
-        
-        if #available(iOS 10.0, *) {
-            self.tableView.refreshControl = refreshControl
-        } else {
-            // Fallback on earlier versions
-            self.tableView.addSubview(refreshControl)
-        }
-        
-        self.refreshControl = refreshControl
-        
-        loadCustomRefreshContents()
-        
+        configureTableView()
         listenForBackgroundNotification()
         listenForAuthenticationNotification()
     }
@@ -169,8 +138,6 @@ class FeedViewController: GeneralFeedViewController {
                 self.loadingData = false
                 GeneralHelper.sharedHelper.hideSpinner(onView: self.view)
                 self.refreshControl.endRefreshing()
-                
-                
             }
         }
     }
@@ -185,20 +152,10 @@ class FeedViewController: GeneralFeedViewController {
         self.refreshControl.addSubview(self.customRefreshView)
     }
     
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        
-        if refreshControl.isRefreshing {
-            if !isLogoAnimating {
-                animateRefresh()
-            }
-        }
-    }
-    
     // MARK: - ANIMATIONS
     func animateRefresh() {
         
         isLogoAnimating = true
-        
         GeneralHelper.sharedHelper.showDGSpinnter(withType: .ballBeat, onView: self.customRefreshView, withPosition: .right, andColor: UIColor.brown)
         
         UIView.animate(withDuration: 0.6, delay: 0.0, options: .curveLinear, animations: {
@@ -252,6 +209,37 @@ class FeedViewController: GeneralFeedViewController {
     
     @objc func actionRefreshTableView() {
         self.refreshWall()
+    }
+    
+    func configureTableView() {
+        feedDataSource = FeedDataSource(vc: self)
+        cellDelegate = WallPostCellDelegate(vc: self)
+        
+        tableView.delegate = cellDelegate
+        tableView.dataSource = feedDataSource
+        
+        tableView.estimatedRowHeight = Storyboard.rowHeightFeed
+        tableView.rowHeight = UITableViewAutomaticDimension
+        
+        self.tableView.addInfiniteScrolling {
+            self.getPostsFromServer()
+        }
+        
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(actionRefreshTableView), for: .valueChanged)
+        
+        refreshControl.backgroundColor = UIColor.clear
+        refreshControl.tintColor = UIColor.clear
+        
+        if #available(iOS 10.0, *) {
+            self.tableView.refreshControl = refreshControl
+        } else {
+            // Fallback on earlier versions
+            self.tableView.addSubview(refreshControl)
+        }
+        
+        self.refreshControl = refreshControl
+        loadCustomRefreshContents()
     }
     
 }

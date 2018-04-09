@@ -12,15 +12,17 @@ import Jelly
 
 class WallPostCellDelegate: NSObject, FeedCellDelegate, PhotosProtocol {
     
+    // MARK: - PROPERTIES
     weak var vc: GeneralFeedViewController?
     
     fileprivate var jellyAnimator: JellyAnimator?
     
-    
+    // MARK: - INIT
     init(vc: GeneralFeedViewController) {
         self.vc = vc
     }
     
+    // MARK: - HELPER METHODS
     func feedCell(_ feedCell: FeedCell, didTapGalleryImageWith post: WallPost, withPhotoIndex index: Int) {
         if let photosArray = post.postAttachments as? [Photo] {
             performJellyTransition(withPhotos: photosArray, indexOfPhoto: index)
@@ -42,7 +44,8 @@ class WallPostCellDelegate: NSObject, FeedCellDelegate, PhotosProtocol {
     func feedCellNeedProvideAuthorization(_ feedCell: UITableViewCell) {
         UserDefaults.standard.set(false, forKey: KEY_VK_USERCANCELAUTH)
         UserDefaults.standard.synchronize()
-        guard let vc = vc else { return } GeneralHelper.sharedHelper.showVKAuthorizeActionSheetOnViewController(viewController: vc) { (selected) in
+        guard let vc = vc else { return }
+        GeneralHelper.sharedHelper.showVKAuthorizeActionSheetOnViewController(viewController: vc) { (selected) in
             
             if selected == true {
                 self.vc?.toAuthorize()
@@ -58,8 +61,7 @@ class WallPostCellDelegate: NSObject, FeedCellDelegate, PhotosProtocol {
         self.vc?.present(navVC, animated: true)
     }
     
-    
-    func performJellyTransition(withPhotos photosArray: [Photo], indexOfPhoto: Int) {
+    private func performJellyTransition(withPhotos photosArray: [Photo], indexOfPhoto: Int) {
         
         var urlsArray: [URL] = []
         
@@ -106,6 +108,7 @@ class WallPostCellDelegate: NSObject, FeedCellDelegate, PhotosProtocol {
     }
 }
 
+// MARK: - UITableViewDelegate
 extension WallPostCellDelegate: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
@@ -128,8 +131,12 @@ extension WallPostCellDelegate: UITableViewDelegate {
         }
     }
     
+    
+}
+// MARK: - UIScrollViewDelegate
+extension WallPostCellDelegate: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-     
+        
         guard let vc = self.vc as? PostViewController else {
             return
         }
@@ -147,6 +154,17 @@ extension WallPostCellDelegate: UITableViewDelegate {
             vc.headerView.pullDownToCloseLabel.isHidden = false
         } else {
             vc.headerView.pullDownToCloseLabel.isHidden = true
+        }
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        
+        guard let vc = self.vc as? FeedViewController else { return }
+        
+        if vc.refreshControl.isRefreshing {
+            if !vc.isLogoAnimating {
+                vc.animateRefresh()
+            }
         }
     }
 }
