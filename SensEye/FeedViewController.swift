@@ -86,10 +86,12 @@ class FeedViewController: GeneralFeedViewController {
         
         GeneralHelper.sharedHelper.showSpinner(onView: self.view, usingBoundsFromView: self.tableView)
         
-        getFeed(forType: .post, ownerID: groupID, offset: self.feedDataSource.wallPosts.count, count: postsInRequest) { (posts) in
+        getFeed(forType: .post, ownerID: groupID, offset: self.feedDataSource.wallPostsOffset, count: postsInRequest) { (posts) in
             
             if posts.count > 0 {
                 guard let posts = posts as? [WallPost] else { return }
+                
+                self.feedDataSource.wallPostsOffset += postsInRequest
                 
                 if self.feedDataSource.wallPosts.count == 0 {
                     self.feedDataSource.wallPosts = posts
@@ -112,11 +114,9 @@ class FeedViewController: GeneralFeedViewController {
                     self.tableView.endUpdates()
                 }
             }
-            
             self.loadingData = false
             GeneralHelper.sharedHelper.hideSpinner(onView: self.view)
             self.tableView.infiniteScrollingView.stopAnimating()
-            
         }
     }
     
@@ -126,9 +126,12 @@ class FeedViewController: GeneralFeedViewController {
             
             GeneralHelper.sharedHelper.showSpinner(onView: self.view, usingBoundsFromView: self.tableView)
             
-            getFeed(forType: .post, ownerID: groupID, offset: 0, count: max(postsInRequest, feedDataSource.wallPosts.count)) { (posts) in
+            let postsCountToFetch = max(postsInRequest, feedDataSource.wallPostsOffset)
+            
+            getFeed(forType: .post, ownerID: groupID, offset: 0, count: postsCountToFetch) { (posts) in
                 
                 if posts.count > 0 {
+                    self.feedDataSource.wallPostsOffset = postsCountToFetch
                     guard let posts = posts as? [WallPost] else { return }
                     self.feedDataSource.wallPosts.removeAll()
                     self.feedDataSource.wallPosts.append(contentsOf: posts)

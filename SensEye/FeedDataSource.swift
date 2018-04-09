@@ -11,6 +11,7 @@ import UIKit
 class FeedDataSource: NSObject, UITableViewDataSource {
     
     var wallPosts: [WallPost] = []
+    var wallPostsOffset = 0
     
     weak var vc: FeedViewController?
     
