@@ -15,7 +15,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_1024" translatesAutoresizingMaskIntoConstraints="NO" id="rm2-bI-Ql2" customClass="CircleImageView" customModule="SensEye" customModuleProvider="target">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_1024" translatesAutoresizingMaskIntoConstraints="NO" id="rm2-bI-Ql2" customClass="LogoImageView" customModule="SensEye" customModuleProvider="target">
                     <rect key="frame" x="157.5" y="0.0" width="60" height="60"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="60" id="4mT-pT-pq5"/>

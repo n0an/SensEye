@@ -20,7 +20,7 @@ class FeedViewController: GeneralFeedViewController {
     var refreshControl: UIRefreshControl!
     var observer: AnyObject!
     var customRefreshView: UIView!
-    var logoImageView: UIImageView!
+    var logoImageView: LogoImageView!
     var isLogoAnimating = false
     var splashAnimated = false
     var feedDataSource: FeedDataSource!
@@ -109,7 +109,7 @@ class FeedViewController: GeneralFeedViewController {
         let refreshContents = Bundle.main.loadNibNamed("RefreshContents", owner: self, options: nil)
         self.customRefreshView = refreshContents?[0] as! UIView
         self.customRefreshView.frame = self.refreshControl.bounds
-        self.logoImageView = self.customRefreshView.subviews[0] as! UIImageView
+        self.logoImageView = self.customRefreshView.subviews[0] as! LogoImageView
         self.refreshControl.addSubview(self.customRefreshView)
     }
     
@@ -118,29 +118,7 @@ class FeedViewController: GeneralFeedViewController {
         isLogoAnimating = true
         GeneralHelper.sharedHelper.showDGSpinnter(withType: .ballBeat, onView: self.customRefreshView, withPosition: .right, andColor: UIColor.brown)
         
-        UIView.animate(withDuration: 0.6, delay: 0.0, options: .curveLinear, animations: {
-            let transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
-            self.logoImageView.transform = transform
-            self.logoImageView.alpha = 0.0
-            
-        }) { (finished) in
-            UIView.animate(withDuration: 0.25, delay: 0.0, options: .curveLinear, animations: {
-                self.logoImageView.transform = .identity
-                self.logoImageView.alpha = 1.0
-                
-            }, completion: { (finished) in
-                if self.refreshControl.isRefreshing {
-                    self.animateRefresh()
-                    
-                } else {
-                    self.isLogoAnimating = false
-                    self.logoImageView.transform = .identity
-                    self.logoImageView.alpha = 0.0
-
-                    GeneralHelper.sharedHelper.hideDGSpinner(onView: self.customRefreshView)
-                }
-            })
-        }
+        self.logoImageView.animateLogo(withVC: self)
     }
     
     // MARK: - NOTIFICATIONS
