@@ -81,7 +81,6 @@ public enum URL_PARAMS: String {
     case VER            = "v"
 }
 
-
 // MARK: - ==== CAMERA SETTINGS ===
 let kMAXDURATION: Double    = 20.0
 
