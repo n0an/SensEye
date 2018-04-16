@@ -110,6 +110,12 @@ class LandscapeViewController: UIViewController, RevealingSplashable {
         }
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        if isPad {
+            isNeedToUpdate = true
+        }
+    }
+    
     func updateUI() {
         
         stopRevealingSplashView()
@@ -385,6 +391,76 @@ class LandscapeViewController: UIViewController, RevealingSplashable {
         
         switch self.scrollViewParams.scrollViewWidth {
             
+        case 1024:
+            // iPad Pro Portrait (1024 x 1366)
+            if self.scrollViewParams.scrollViewHeight == 1366 {
+                self.scrollViewParams.itemWidth = 512
+                self.scrollViewParams.itemHeight = 653
+                
+                self.scrollViewParams.imageViewWidth = 500
+                self.scrollViewParams.imageViewHeight = 640
+                
+                self.scrollViewParams.columnsPerPage = 2
+                self.scrollViewParams.rowsPerPage = 2
+                
+                self.scrollViewParams.titleLabelFont = UIFont.boldSystemFont(ofSize: 15)
+                
+                self.scrollViewParams.firstRowMarginY = 20
+                self.scrollViewParams.lastRowMarginY = 20
+                
+                // iPad Air/Air2/Retina/Pro9.7" Landscape Split (1024 x 768)
+            } else {
+                self.scrollViewParams.itemWidth = 512
+                self.scrollViewParams.itemHeight = 748
+                
+                self.scrollViewParams.imageViewWidth = 500
+                self.scrollViewParams.imageViewHeight = 700
+                
+                self.scrollViewParams.columnsPerPage = 2
+                self.scrollViewParams.rowsPerPage = 1
+                
+                self.scrollViewParams.titleLabelFont = UIFont.boldSystemFont(ofSize: 15)
+                
+                self.scrollViewParams.firstRowMarginY = 20
+                self.scrollViewParams.lastRowMarginY = 20
+            }
+            
+        case 1366:
+            // iPad Pro Landscape (1366 x 1024)
+            if self.scrollViewParams.scrollViewHeight == 1024 {
+                self.scrollViewParams.itemWidth = 341
+                self.scrollViewParams.itemHeight = 482
+                
+                self.scrollViewParams.imageViewWidth = 330
+                self.scrollViewParams.imageViewHeight = 470
+                
+                self.scrollViewParams.columnsPerPage = 4
+                self.scrollViewParams.rowsPerPage = 2
+                
+                self.scrollViewParams.titleLabelFont = UIFont.boldSystemFont(ofSize: 15)
+                
+                self.scrollViewParams.firstRowMarginY = 20
+                self.scrollViewParams.lastRowMarginY = 20
+                
+                // iPad Air/Air2/Retina/Pro9.7" Landscape Split (1024 x 768)
+            } else {
+                self.scrollViewParams.itemWidth = 512
+                self.scrollViewParams.itemHeight = 748
+                
+                self.scrollViewParams.imageViewWidth = 500
+                self.scrollViewParams.imageViewHeight = 700
+                
+                self.scrollViewParams.columnsPerPage = 2
+                self.scrollViewParams.rowsPerPage = 1
+                
+                self.scrollViewParams.titleLabelFont = UIFont.boldSystemFont(ofSize: 15)
+                
+                self.scrollViewParams.firstRowMarginY = 20
+                self.scrollViewParams.lastRowMarginY = 20
+            }
+            
+            
+            
         // *** iPad Air/Air2/Retina/Pro9.7" ***
         case 320:
             // iPad Air/Air2/Retina/Pro9.7" Portrait Split (320 x 1024)
@@ -478,8 +554,8 @@ class LandscapeViewController: UIViewController, RevealingSplashable {
         
         let contentLabelHeight = self.scrollViewParams.itemHeight * 0.12
         
-        var firstRowMarginY: CGFloat = self.scrollViewParams.firstRowMarginY
-        var lastRowMarginY: CGFloat = 0
+        let firstRowMarginY: CGFloat = self.scrollViewParams.firstRowMarginY
+        let lastRowMarginY: CGFloat = 0
         
         for (index, album) in albums.enumerated() {
             
@@ -568,29 +644,18 @@ class LandscapeViewController: UIViewController, RevealingSplashable {
             extWrapView.addSubview(innerWrapView)
             
             scrollView.addSubview(extWrapView)
+          
+            row += 1
             
-            // Handling iPad SplitVC - scroll view vertical mode
-            if isPad {
-                row += 1
+            if row == self.scrollViewParams.rowsPerPage {
                 
-                if row % self.scrollViewParams.rowsPerPage == 0 {
-                    firstRowMarginY += self.scrollViewParams.firstRowMarginY
-                    lastRowMarginY += self.scrollViewParams.lastRowMarginY
-                }
+                row = 0
                 
-            } else {
-                row += 1
+                x += self.scrollViewParams.itemWidth
+                column += 1
                 
-                if row == self.scrollViewParams.rowsPerPage {
-                    
-                    row = 0
-                    
-                    x += self.scrollViewParams.itemWidth
-                    column += 1
-                    
-                    if column == self.scrollViewParams.columnsPerPage {
-                        column = 0
-                    }
+                if column == self.scrollViewParams.columnsPerPage {
+                    column = 0
                 }
             }
         }
@@ -599,17 +664,9 @@ class LandscapeViewController: UIViewController, RevealingSplashable {
         
         let numPages = 1 + (albums.count - 1) / imagesPerPage
         
-        // Handling iPad SplitVC - scroll view vertical mode
-        if isPad {
-            scrollView.contentSize = CGSize(
-                width: scrollView.bounds.size.width,
-                height: CGFloat(numPages)*self.scrollViewParams.scrollViewHeight)
-            
-        } else {
-            scrollView.contentSize = CGSize(
-                width: CGFloat(numPages)*self.scrollViewParams.scrollViewWidth,
-                height: scrollView.bounds.size.height)
-        }
+        scrollView.contentSize = CGSize(
+            width: CGFloat(numPages)*self.scrollViewParams.scrollViewWidth,
+            height: scrollView.bounds.size.height)
         
         pageControl.numberOfPages = numPages
         pageControl.currentPage = 0
@@ -633,10 +690,8 @@ class LandscapeViewController: UIViewController, RevealingSplashable {
                 
                 let photos = result as! [Photo]
                 
-                if self.view.window!.rootViewController!.traitCollection.horizontalSizeClass == .compact {
-                    
-                    self.performJellyTransition(withPhotos: photos)
-                }
+                self.performJellyTransition(withPhotos: photos)
+
             })
         }
     }
