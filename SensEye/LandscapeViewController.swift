@@ -128,13 +128,19 @@ class LandscapeViewController: UIViewController, RevealingSplashable {
         
         var diff: CGFloat = 0
         
-        if !isPad {
-            if isPortrait {
-                diff = (tabBarController?.tabBar.bounds.height)!
-            } else {
-                diff = 0
-            }
+        if isPad || isPortrait {
+            diff = (tabBarController?.tabBar.bounds.height)!
+        } else {
+            diff = 0
         }
+        
+//        if !isPad {
+//            if isPortrait {
+//                diff = (tabBarController?.tabBar.bounds.height)!
+//            } else {
+//                diff = 0
+//            }
+//        }
         
         pageControl.frame = CGRect(x: 0,
                                    y: view.frame.size.height - pageControl.frame.size.height - diff,
@@ -391,6 +397,23 @@ class LandscapeViewController: UIViewController, RevealingSplashable {
         
         switch self.scrollViewParams.scrollViewWidth {
             
+        case 768:
+            // iPad Pro 9.7 Portrait (768 x 1024)
+            self.scrollViewParams.itemWidth = 384
+            self.scrollViewParams.itemHeight = 482
+            
+            self.scrollViewParams.imageViewWidth = 372
+            self.scrollViewParams.imageViewHeight = 470
+            
+            self.scrollViewParams.columnsPerPage = 2
+            self.scrollViewParams.rowsPerPage = 2
+            
+            self.scrollViewParams.firstRowMarginY = 20
+            self.scrollViewParams.lastRowMarginY = 20
+            
+            self.scrollViewParams.titleLabelFont = UIFont.boldSystemFont(ofSize: 15)
+            
+            
         case 1024:
             // iPad Pro Portrait (1024 x 1366)
             if self.scrollViewParams.scrollViewHeight == 1366 {
@@ -411,10 +434,10 @@ class LandscapeViewController: UIViewController, RevealingSplashable {
                 // iPad Air/Air2/Retina/Pro9.7" Landscape Split (1024 x 768)
             } else {
                 self.scrollViewParams.itemWidth = 512
-                self.scrollViewParams.itemHeight = 748
+                self.scrollViewParams.itemHeight = 708
                 
                 self.scrollViewParams.imageViewWidth = 500
-                self.scrollViewParams.imageViewHeight = 700
+                self.scrollViewParams.imageViewHeight = 696
                 
                 self.scrollViewParams.columnsPerPage = 2
                 self.scrollViewParams.rowsPerPage = 1
