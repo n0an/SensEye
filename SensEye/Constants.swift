@@ -11,17 +11,12 @@ import UIKit
 // MARK: - APP SETTINGS
 public let APP_FIRST_RUN = "appFirstRun"
 
-public enum TabBarIndex: Int {
-    case wallFeed   = 0
-    case gallery
-    case chat
-    case about
-}
-
 // MARK: - ===== TYPE ALIASES ====
 typealias DownloadComplete = ([Any]) -> Void
 typealias AuthoizationComplete = (User) -> Void
 typealias LikeFeatureCompletion = (Bool, [String: Any]?) -> Void
+
+typealias ProjectProtocol = AuthorizationProtocol & FeedProtocol & LikesProtocol & PhotosProtocol
 
 // MARK: - ===== UI SETTINGS ====
 let mainShadowColor         = UIColor(netHex: 0x787878)
@@ -40,6 +35,8 @@ let cellSelectionColor      = UIColor(white: 1.0, alpha: 0.2)
 // MARK: - ===== VK CONSTANTS =====
 
 public let groupID                  = "-55347641"
+let postsInRequest      = 10
+let commentsInRequest   = 10
 
 public let KEY_VK_DIDAUTH           = "vkAuth"
 public let KEY_VK_USERCANCELAUTH    = "vkUserCancelAuth"
@@ -56,7 +53,6 @@ public let URL_USERS                = "/users.get"
 public let URL_LIKES_ADD            = "/likes.add"
 public let URL_LIKES_DELETE         = "/likes.delete"
 public let URL_ISLIKED              = "/likes.isLiked"
-
 
 public enum URL_PARAMS: String {
     case OWNER_ID       = "owner_id"
@@ -85,7 +81,6 @@ public enum URL_PARAMS: String {
     case VER            = "v"
 }
 
-
 // MARK: - ==== CAMERA SETTINGS ===
 let kMAXDURATION: Double    = 20.0
 
@@ -95,3 +90,71 @@ public let kNUMBEROFMESSAGES = 40
 
 public let KEY_CHAT_USER        = "chatCurrentUser"
 public let KEY_CHAT_OF_USER     = "chatForCurrentUser"
+
+// MARK: - ==== STORYBOARD CONSTANTS ===
+let MAIN_STORYBOARD = "Main"
+
+// ViewControllers
+let VC_FEED = "FeedViewController"
+let VC_POST = "PostViewController"
+let VC_COMMENTCOMPOSER = "CommentComposerViewController"
+let VC_GALLERY = "LandscapeViewController"
+
+let VC_LOGIN = "LoginViewController"
+let VC_SIGNUP = "SignUpViewController"
+let VC_RESETPASSWD = "ResetPasswordViewController"
+let VC_RECENT = "RecentViewController"
+let VC_CHAT = "ChatViewController"
+
+let VC_ABOUT = "AboutTableViewController"
+
+public enum TabBarIndex: Int {
+    case gallery   = 0
+    case about
+    case wallFeed
+    case chat
+}
+
+enum AboutScreenTableViewSection: Int {
+    case connections = 0
+    case socNet
+    case info
+}
+
+enum AboutScreenTableViewRowConnection: Int {
+    case web = 0
+    case phone
+    case chat
+    case email
+    case skype
+}
+
+enum AboutScreenTableViewRowSocnetwork: Int {
+    case facebook = 0
+    case instagram
+    case vk
+}
+
+public enum Storyboard {
+    static let cellIdFeed       = "FeedCell"
+    static let cellIdComment    = "CommentCell"
+    
+    static let cellIdChat       = "ChatCell"
+    
+    static let cellIdSocNet     = "AboutCellSocnet"
+    static let cellIdInfo       = "AboutCellInfo"
+    
+    static let rowHeightFeed: CGFloat           = 370.0
+    static let rowHeightCommentCell: CGFloat    = 100
+    
+    static let tableHeaderHeight: CGFloat       = 100
+    static let tableHeaderCutAway: CGFloat      = 50
+    
+    static let rowHeightInfo: CGFloat           = 200
+}
+
+public enum TableViewSectionType: Int {
+    case post
+    case comment
+}
+

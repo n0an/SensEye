@@ -86,6 +86,12 @@ class FancyButton: UIButton {
     @IBInspectable var gradientColor1: UIColor = UIColor.black
     @IBInspectable var gradientColor2: UIColor = UIColor.white
     
+    @IBInspectable var startX: Double = 0
+    @IBInspectable var startY: Double = 0
+    
+    @IBInspectable var endX: Double = 0
+    @IBInspectable var endY: Double = 1
+    
     // MARK: - layoutSubviews
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -101,11 +107,37 @@ class FancyButton: UIButton {
             gradientLayer.frame = self.bounds
             
             gradientLayer.colors = [gradientColor1.cgColor, gradientColor2.cgColor]
-            gradientLayer.locations = [0.0, 1.0]
-            gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.5)
-            gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.5)
+//            gradientLayer.locations = [0.0, 1.0]
+            gradientLayer.startPoint = CGPoint(x: startX, y: startY)
+            gradientLayer.endPoint = CGPoint(x: endX, y: endY)
             
             self.layer.insertSublayer(gradientLayer, at: 0)
         }
     }
+    
+    func flip(delay: CFTimeInterval, duration: CFTimeInterval) {
+        guard let layer = self.layer.sublayers?.first as? CAGradientLayer else { return }
+        
+        let animation = CABasicAnimation(keyPath: "colors")
+        
+        animation.beginTime = CACurrentMediaTime() + delay
+        animation.fromValue = [gradientColor1.cgColor, gradientColor2.cgColor]
+        
+        (gradientColor1, gradientColor2) = (gradientColor2, gradientColor1)
+        
+        animation.toValue = [gradientColor1.cgColor, gradientColor2.cgColor]
+        
+        animation.duration = duration
+        
+        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        
+        animation.fillMode = kCAFillModeBackwards
+        
+        layer.add(animation, forKey: "colors")
+        
+        layer.colors = [gradientColor1.cgColor, gradientColor2.cgColor]
+    }
+    
+    
+    
 }

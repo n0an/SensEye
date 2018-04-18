@@ -9,13 +9,15 @@
 import UIKit
 import Spring
 
-class ResetPasswordViewController: UIViewController {
+class ResetPasswordViewController: UIViewController, Alertable {
 
     // MARK: - OUTLETS
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var resetPasswordButton: FancyButton!
     @IBOutlet weak var containerView: DesignableView!
-    @IBOutlet weak var backBarButton: UIBarButtonItem!
+    
+    @IBOutlet weak var gradientView: GradientView!
+    
     
     // MARK: - PROPERTIES
     
@@ -23,13 +25,16 @@ class ResetPasswordViewController: UIViewController {
         willSet {
             emailTextField.isEnabled        = !newValue
             resetPasswordButton.isEnabled   = !newValue
-            self.backBarButton.isEnabled    = !newValue
         }
     }
+    
+    var isFlipped = false
     
     // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.gradientView.flip(delay: 0, duration: 0)
 
         self.title = NSLocalizedString("Forgot Password", comment: "Forgot Password")
         emailTextField.delegate = self
@@ -40,6 +45,15 @@ class ResetPasswordViewController: UIViewController {
         
         self.navigationController?.isNavigationBarHidden = false
         emailTextField.becomeFirstResponder()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if !isFlipped {
+            self.gradientView.flip(delay: 0.1, duration: 0.3)
+            isFlipped = true
+        }
     }
 
     // MARK: - HELPER METHODS
@@ -92,9 +106,6 @@ class ResetPasswordViewController: UIViewController {
         }
     }
     
-    @IBAction func actionBackTapped() {
-        let _ = self.navigationController?.popViewController(animated: true)
-    }
 }
 
 // MARK: - UITextFieldDelegate

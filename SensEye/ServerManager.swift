@@ -17,7 +17,12 @@ typealias FailureHandler = (NSError, Int) -> Void
 class ServerManager {
     
     // MARK: - PUBLIC PROPERTIES
-    static let sharedManager = ServerManager()
+    private static let _sharedManager = ServerManager()
+    
+    static var sharedManager: ServerManager {
+        return _sharedManager
+    }
+    
     var currentVKUser: User?
     var sharedManagerExists = false
     
@@ -60,7 +65,7 @@ class ServerManager {
         center.post(notification)
     }
     
-    func renewAuthorization(completed: @escaping AuthoizationComplete) {
+    private func renewAuthorization(completed: @escaping AuthoizationComplete) {
         
         let loginVC = VKLoginViewController { (accessToken) in
             
@@ -421,7 +426,19 @@ class ServerManager {
         }
     }
     
-    func modifyLike(addLike: Bool, forItemType itemType: FeedItemsType, ownerID: String, itemID: String, completed: @escaping LikeFeatureCompletion) {
+    func addLike(forItemType itemType: FeedItemsType, ownerID: String, itemID: String, completed: @escaping LikeFeatureCompletion) {
+        
+        modifyLike(addLike: true, forItemType: itemType, ownerID: ownerID, itemID: itemID, completed: completed)
+    }
+    
+    func deleteLike(forItemType itemType: FeedItemsType, ownerID: String, itemID: String, completed: @escaping LikeFeatureCompletion) {
+        
+        modifyLike(addLike: false, forItemType: itemType, ownerID: ownerID, itemID: itemID, completed: completed)
+    }
+    
+    // MARK: - PRIVATE HELPER METHODS
+    
+    private func modifyLike(addLike: Bool, forItemType itemType: FeedItemsType, ownerID: String, itemID: String, completed: @escaping LikeFeatureCompletion) {
         
         let pathComponent = addLike ? URL_LIKES_ADD : URL_LIKES_DELETE
         
@@ -464,17 +481,7 @@ class ServerManager {
         }
     }
     
-    func addLike(forItemType itemType: FeedItemsType, ownerID: String, itemID: String, completed: @escaping LikeFeatureCompletion) {
-        
-        modifyLike(addLike: true, forItemType: itemType, ownerID: ownerID, itemID: itemID, completed: completed)
-    }
     
-    func deleteLike(forItemType itemType: FeedItemsType, ownerID: String, itemID: String, completed: @escaping LikeFeatureCompletion) {
-        
-        modifyLike(addLike: false, forItemType: itemType, ownerID: ownerID, itemID: itemID, completed: completed)
-    }
-    
-    // MARK: - HELPER METHODS
     private func parseFeedObjects<T: ServerObject>(forArray array: [JSON], authorsArray: [User], group: Group?) -> [T] {
         
         var feedObjectsArray = [T]()

@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import JSQMessagesViewController
 
-class ChatViewController: JSQMessagesViewController, UIGestureRecognizerDelegate {
+class ChatViewController: JSQMessagesViewController, UIGestureRecognizerDelegate, Alertable {
     
     // MARK: - PROPERTIES
     var chat: FRChat!
@@ -75,12 +75,17 @@ class ChatViewController: JSQMessagesViewController, UIGestureRecognizerDelegate
         self.obserInitialLoadMessages()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationController?.isNavigationBarHidden = false
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         self.chat.clearUnreadMessagesCount()
         
-        self.navigationController?.isNavigationBarHidden = false
 
         self.scrollToBottom(animated: false)
         self.navigationController?.hidesBarsOnSwipe = true
@@ -232,7 +237,7 @@ class ChatViewController: JSQMessagesViewController, UIGestureRecognizerDelegate
     
 
     // MARK: - ACTIONS
-    func logoutButtonTapped() {
+    @objc func logoutButtonTapped() {
         
         GeneralHelper.sharedHelper.showLogoutView(onViewController: self) { (success) in
             if success == true {
@@ -247,13 +252,13 @@ class ChatViewController: JSQMessagesViewController, UIGestureRecognizerDelegate
         }
     }
     
-    func actionBackButtonTapped() {
+    @objc func actionBackButtonTapped() {
         if currentUser.email == GeneralHelper.sharedHelper.appOwnerEmail {
             let _ = self.navigationController?.popViewController(animated: true)
 
         } else {
             let tabBarController = UIApplication.shared.keyWindow?.rootViewController as! UITabBarController
-            tabBarController.selectedIndex = TabBarIndex.wallFeed.rawValue
+            tabBarController.selectedIndex = TabBarIndex.gallery.rawValue
         }
     }
     
@@ -261,7 +266,7 @@ class ChatViewController: JSQMessagesViewController, UIGestureRecognizerDelegate
         return true
     }
     
-    func resignKeyboard(gesture: UITapGestureRecognizer) {
+    @objc func resignKeyboard(gesture: UITapGestureRecognizer) {
         
         if gesture.state == .ended {
             if self.inputToolbar.contentView.textView.isFirstResponder {

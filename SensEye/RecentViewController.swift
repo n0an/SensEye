@@ -9,18 +9,12 @@
 import UIKit
 import Firebase
 
-class RecentViewController: UIViewController {
+class RecentViewController: UIViewController, Alertable {
     
     // MARK: - OUTLETS
     @IBOutlet weak var tableView: UITableView!
     
     // MARK: - PROPERTIES
-    enum Storyboard {
-        static let cellIdChat       = "ChatCell"
-        static let segueShowChatVC  = "showChatViewController"
-        static let segueUsersVC     = "showUsersViewController"
-    }
-    
     var chats: [FRChat] = []
     
     var currentUser: FRUser!
@@ -57,15 +51,18 @@ class RecentViewController: UIViewController {
         self.tableView.rowHeight = UITableViewAutomaticDimension
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = false
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        self.navigationController?.isNavigationBarHidden = false
         self.navigationController?.hidesBarsOnSwipe = false
 
         self.fetchChats()
     }
-    
     
     // MARK: - HELPER METHODS
     func fetchChats() {
@@ -97,7 +94,7 @@ class RecentViewController: UIViewController {
     }
     
     // MARK: - ACTIONS
-    func logoutButtonTapped() {
+    @objc func logoutButtonTapped() {
         
         GeneralHelper.sharedHelper.showLogoutView(onViewController: self) { (success) in
             if success == true {
@@ -113,17 +110,20 @@ class RecentViewController: UIViewController {
     }
     
     // MARK: - NAVIGATION
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == Storyboard.segueShowChatVC {
-            let chatVC = segue.destination as! ChatViewController
-            let selectedChat = sender as! FRChat
-            chatVC.currentUser = currentUser
-            chatVC.chat = selectedChat
-            chatVC.senderId = currentUser.uid
-            chatVC.senderDisplayName = currentUser.username
-            chatVC.hidesBottomBarWhenPushed = true
-        }
+    func transitToChatVC(withChat chat: FRChat) {
+  
+        let chatVC = UIStoryboard.chatVC()
+        
+        chatVC?.currentUser = currentUser
+        chatVC?.chat = chat
+        chatVC?.senderId = currentUser.uid
+        chatVC?.senderDisplayName = currentUser.username
+        chatVC?.hidesBottomBarWhenPushed = true
+        
+        navigationController?.pushViewController(chatVC!, animated: true)
+        
     }
+
 }
 
 // MARK: - UITableViewDataSource
@@ -170,7 +170,7 @@ extension RecentViewController: UITableViewDelegate {
             selectedChat = self.chats[indexPath.row]
         }
         
-        performSegue(withIdentifier: Storyboard.segueShowChatVC, sender: selectedChat)
+        self.transitToChatVC(withChat: selectedChat)
     }
 }
 

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -22,32 +22,32 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dark_crop_1000" translatesAutoresizingMaskIntoConstraints="NO" id="9zc-yl-X6L">
-                                <rect key="frame" x="62.5" y="266.5" width="249.5" height="133"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="9zc-yl-X6L" secondAttribute="height" multiplier="15:8" id="1QL-R1-ziw"/>
-                                </constraints>
-                            </imageView>
                             <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5P6-w7-30x">
                                 <rect key="frame" x="0.0" y="618" width="375" height="49"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <items>
-                                    <tabBarItem image="tabBarIcon-Home" id="pHt-8n-tdA"/>
                                     <tabBarItem title="" image="tabBarIcon-Gallery" id="Olk-ik-IUh"/>
-                                    <tabBarItem title="" image="tabBarIcon-Chat" id="ZjM-PR-X8V"/>
                                     <tabBarItem image="tabBarIcon-About" id="yGW-nu-Ixu"/>
+                                    <tabBarItem image="tabBarIcon-Home" id="pHt-8n-tdA"/>
+                                    <tabBarItem title="" image="tabBarIcon-Chat" id="ZjM-PR-X8V"/>
                                 </items>
                                 <color key="tintColor" red="0.039215686274509803" green="0.31372549019607843" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </tabBar>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_1024" translatesAutoresizingMaskIntoConstraints="NO" id="vXU-W1-Wal">
+                                <rect key="frame" x="53.5" y="196.5" width="267" height="273"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="vXU-W1-Wal" secondAttribute="height" multiplier="341:349" id="kxn-6C-bri"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="0.88627450980392153" green="0.88627450980392153" blue="0.88627450980392153" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="vXU-W1-Wal" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="height" multiplier="0.4" id="27y-jC-ofn"/>
                             <constraint firstItem="5P6-w7-30x" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="2cY-ie-a0c"/>
-                            <constraint firstItem="9zc-yl-X6L" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="Bg4-ou-aBl"/>
+                            <constraint firstItem="vXU-W1-Wal" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="8NJ-8C-JPb"/>
                             <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="5P6-w7-30x" secondAttribute="bottom" id="JxY-Wr-4dc"/>
                             <constraint firstAttribute="trailing" secondItem="5P6-w7-30x" secondAttribute="trailing" id="TQ5-5a-cn7"/>
-                            <constraint firstItem="9zc-yl-X6L" firstAttribute="height" secondItem="Ze5-6b-2t3" secondAttribute="height" multiplier="0.2" id="aon-0S-IWw"/>
-                            <constraint firstItem="9zc-yl-X6L" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="tJZ-1q-LV6"/>
+                            <constraint firstItem="vXU-W1-Wal" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="dsA-fP-wDS"/>
                         </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
@@ -60,7 +60,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="dark_crop_1000" width="367" height="218"/>
+        <image name="logo_1024" width="341" height="349"/>
         <image name="tabBarIcon-About" width="24" height="24"/>
         <image name="tabBarIcon-Chat" width="30" height="20"/>
         <image name="tabBarIcon-Gallery" width="30" height="28"/>

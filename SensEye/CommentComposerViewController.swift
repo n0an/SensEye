@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CommentComposerViewController: UIViewController, WallPostProtocol {
+class CommentComposerViewController: UIViewController, FeedProtocol {
     
     // MARK: - OUTLETS
     @IBOutlet weak var commentTextView: UITextView!

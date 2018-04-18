@@ -11,28 +11,16 @@ import SafariServices
 import MessageUI
 import Spring
 
-class AboutTableViewController: UITableViewController {
-    
-    // MARK: - ENUMS
-    enum TableViewSection: Int {
-        case connections = 0
-        case socNet
-        case info
-    }
-    
-    enum Storyboard {
-        static let cellConnection           = "ConnectCell"
-        static let cellIdSocNet             = "AboutCellSocnet"
-        static let cellIdInfo               = "AboutCellInfo"
-        static let rowHeightInfo: CGFloat   = 200
-    }
-    
+class AboutTableViewController: UITableViewController, Alertable {
+      
     // MARK: - PROPERTIES
     var sectionTitles = [NSLocalizedString("Contacts", comment: "Contacts"),
                          NSLocalizedString("Social Networks", comment: "Social Networks"),
                          NSLocalizedString("About me", comment: "About me")]
     
     var connections = [
+                Contact(imageName: "about-icon-website", labelText: "www.senseye.ru", link: ""),
+                Contact(imageName: "about-icon-phone", labelText: "+7 916 341-00-46", link: ""),
                 Contact(imageName: "about-icon-chat", labelText: NSLocalizedString("InApp Chat", comment: "InApp Chat"), link: ""),
                 Contact(imageName: "about-icon-email", labelText: NSLocalizedString("Email to me", comment: "Email to me"), link: ""),
                 Contact(imageName: "about-icon-skypeColor", labelText: "Skype: elena.senseye", link: "")
@@ -40,7 +28,7 @@ class AboutTableViewController: UITableViewController {
     
     var socNet = [
         Contact(imageName: "about-icon-facebookColor", labelText: "Facebook", link: "https://facebook.com/elena.senseye"),
-        Contact(imageName: "about-icon-instagramColor", labelText: "Instagram", link: "https://instagram.com/elena.senseye"),
+        Contact(imageName: "about-icon-instagramColor", labelText: "Instagram", link: "https://www.instagram.com/elena.senseye.photo"),
         Contact(imageName: "about-icon-vkColor", labelText: NSLocalizedString("VK", comment: "Vkontakte"), link: "https://vk.com/elena_senseye")
     ]
     
@@ -72,15 +60,26 @@ class AboutTableViewController: UITableViewController {
     
     // MARK: - HELPER METHODS
     func showSkype() {
-        let skypeURL = URL(string: "skype:elena.senseye?chat")
+        openURLWith("skype:elena.senseye?chat")
+    }
+    
+    func callToNumber() {
+        openURLWith("tel://+79163410046")
+    }
+    
+    func openURLWith(_ string: String) {
+        let urlToOpen = URL(string: string)
+        
+        guard let url = urlToOpen else { return }
         
         if #available(iOS 10.0, *) {
-            UIApplication.shared.open(skypeURL!, options: [:], completionHandler: nil)
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
         } else {
             // Fallback on earlier versions
-            UIApplication.shared.openURL(skypeURL!)
+            UIApplication.shared.openURL(url)
         }
     }
+    
     
     // MARK: - ANIMATIONS
     func animateIconImageView(iconImageView: DesignableImageView, delay: CGFloat) {
@@ -120,11 +119,11 @@ class AboutTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
-        case TableViewSection.connections.rawValue:
+        case AboutScreenTableViewSection.connections.rawValue:
             return self.connections.count
-        case TableViewSection.socNet.rawValue:
+        case AboutScreenTableViewSection.socNet.rawValue:
             return self.socNet.count
-        case TableViewSection.info.rawValue:
+        case AboutScreenTableViewSection.info.rawValue:
             return 1
         default:
             return 0
@@ -134,7 +133,7 @@ class AboutTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         switch indexPath.section {
-        case TableViewSection.connections.rawValue:
+        case AboutScreenTableViewSection.connections.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: Storyboard.cellIdSocNet, for: indexPath) as! AboutCellSocnet
 
             let connection = self.connections[indexPath.row]
@@ -142,9 +141,18 @@ class AboutTableViewController: UITableViewController {
             cell.contactLabel.text = connection.labelText
             cell.iconImageView.image = UIImage(named: connection.imageName)
             
+            if indexPath.row == 0 {
+                cell.iconImageView.borderWidth = 1
+                cell.iconImageView.borderColor = UIColor.lightGray
+                cell.iconImageView.cornerRadius = cell.iconImageView.bounds.width/2
+            } else {
+                cell.iconImageView.borderWidth = 0
+                cell.iconImageView.cornerRadius = 0
+            }
+                        
             return cell
             
-        case TableViewSection.socNet.rawValue:
+        case AboutScreenTableViewSection.socNet.rawValue:
             
             let cell = tableView.dequeueReusableCell(withIdentifier: Storyboard.cellIdSocNet, for: indexPath) as! AboutCellSocnet
             
@@ -160,7 +168,7 @@ class AboutTableViewController: UITableViewController {
             
             return cell
             
-        case TableViewSection.info.rawValue:
+        case AboutScreenTableViewSection.info.rawValue:
             
             let cell = tableView.dequeueReusableCell(withIdentifier: Storyboard.cellIdInfo, for: indexPath) as! AboutCellInfo
             
@@ -178,7 +186,7 @@ class AboutTableViewController: UITableViewController {
     // MARK: - UITableViewDelegate
     override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        if indexPath.section == TableViewSection.info.rawValue {
+        if indexPath.section == AboutScreenTableViewSection.info.rawValue {
             return Storyboard.rowHeightInfo
         } else {
             return UITableViewAutomaticDimension
@@ -189,19 +197,24 @@ class AboutTableViewController: UITableViewController {
         
         switch indexPath.section {
         
-        case TableViewSection.connections.rawValue:
-            if indexPath.row == 0 {
+        case AboutScreenTableViewSection.connections.rawValue:
+            if indexPath.row == AboutScreenTableViewRowConnection.web.rawValue {
+                if let url = URL(string: "http://www.senseye.ru") {
+                    let safariController = SFSafariViewController(url: url)
+                    present(safariController, animated: true, completion: nil)
+                }
+            } else if indexPath.row == AboutScreenTableViewRowConnection.phone.rawValue {
+                self.callToNumber()
+            } else if indexPath.row == AboutScreenTableViewRowConnection.chat.rawValue {
                 let tabBarController = UIApplication.shared.keyWindow?.rootViewController as! UITabBarController
                 tabBarController.selectedIndex = TabBarIndex.chat.rawValue
-                
-            } else if indexPath.row == 1 {
+            } else if indexPath.row == 2 {
                 self.showEmailComposer()
-                
             } else {
                 self.showSkype()
             }
             
-        case TableViewSection.socNet.rawValue:
+        case AboutScreenTableViewSection.socNet.rawValue:
             let socNet = self.socNet[indexPath.row]
             
             if let url = URL(string: socNet.link) {
@@ -218,7 +231,7 @@ class AboutTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         
-        if indexPath.section == TableViewSection.info.rawValue {
+        if indexPath.section == AboutScreenTableViewSection.info.rawValue {
             return nil
         } else {
             return indexPath
@@ -257,13 +270,3 @@ extension AboutTableViewController: MFMailComposeViewControllerDelegate {
         dismiss(animated: true, completion: nil)
     }
 }
-
-
-
-
-
-
-
-
-
-

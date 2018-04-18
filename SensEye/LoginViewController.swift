@@ -13,7 +13,7 @@ import GoogleSignIn
 import SwiftSpinner
 import SwiftKeychainWrapper
 
-class LoginViewController: UIViewController, GIDSignInUIDelegate {
+class LoginViewController: UIViewController, GIDSignInUIDelegate, Alertable {
     
     // MARK: - OUTLETS
     @IBOutlet weak var emailTextField: DesignableTextField!
@@ -26,12 +26,9 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     @IBOutlet weak var containerView: DesignableView!
     @IBOutlet weak var hideKeyboardInputAccessoryView: UIView!
     
-    // MARK: - PROPERTIES
-    enum Storyboard {
-        static let segueShowRecentChats = "showRecentChatsViewController"
-        static let segueShowChatVC      = "showChatViewController"
-    }
+    @IBOutlet weak var gradientView: GradientView!
     
+    // MARK: - PROPERTIES
     var currentUser: FRUser!
     
     var isCurrentVC: Bool {
@@ -56,9 +53,13 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
         }
     }
     
+    var isFlipped = false
+    
     // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.gradientView.flip(delay: 0, duration: 0)
         
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
@@ -135,13 +136,22 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
         GIDSignIn.sharedInstance().uiDelegate = self
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = true
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        if !isFlipped {
+            self.gradientView.flip(delay: 0.1, duration: 0.3)
+            isFlipped = true
+        }
         
         if self.currentUser != nil {
             return
         }
-        
         
         if let userDict = KeychainWrapper.standard.object(forKey: KEY_CHAT_USER) as? [String: Any] {
             
@@ -159,6 +169,8 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
             DispatchQueue.main.async {
                 self.goToMessenger()
             }
+            
+            
         }
     }
     
@@ -190,7 +202,13 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
         
         if self.currentUser.email == GeneralHelper.sharedHelper.appOwnerEmail {
             // SUPER ADMIN USER - SEE ALL CHATS
-            self.performSegue(withIdentifier: Storyboard.segueShowRecentChats, sender: nil)
+            self.isMessengerLoading = false
+            let recentChatVC = UIStoryboard.recentVC()
+            
+            SwiftSpinner.hide()
+            
+            self.navigationController?.pushViewController(recentChatVC!, animated: true)
+            
             
         } else {
             // CUSTOMER USER - GO DIRECTLY TO OWN USER CHAT WITH APPOWNER
@@ -230,7 +248,8 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
                     KeychainWrapper.standard.set(chatDictionary as NSDictionary, forKey: KEY_CHAT_OF_USER)
                     
                     
-                    self.performSegue(withIdentifier: Storyboard.segueShowChatVC, sender: newChat)
+                    self.transitToChatVC(withChat: newChat)
+
                 }
             }
         })
@@ -240,7 +259,8 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
         FRDataManager.sharedManager.REF_CHATS.child(currentUser.uid).observeSingleEvent(of: .value, with: { (snapshot) in
             if snapshot.exists() {
                 let chat = FRChat(uid: snapshot.key, dictionary: snapshot.value as! [String: Any])
-                self.performSegue(withIdentifier: Storyboard.segueShowChatVC, sender: chat)
+                
+                self.transitToChatVC(withChat: chat)
                 
             } else {
                 let newChat = FRChat(withUserName: self.currentUser.username, withUserUID: self.currentUser.uid)
@@ -250,42 +270,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
         })
     }
     
-    func goCustomerChatWithChatCaching() {
-        
-        if let chatDict = KeychainWrapper.standard.object(forKey: KEY_CHAT_OF_USER) as? [String: Any] {
-            let uid = chatDict["chatUid"] as! String
-            let userChat = FRChat(uid: uid, dictionary: chatDict)
-            self.performSegue(withIdentifier: Storyboard.segueShowChatVC, sender: userChat)
-            
-        } else {
-            
-            FRDataManager.sharedManager.REF_CHATS.child(currentUser.uid).observeSingleEvent(of: .value, with: { (snapshot) in
-                
-                if snapshot.exists() {
-                    let chat = FRChat(uid: snapshot.key, dictionary: snapshot.value as! [String: Any])
-                    
-                    let chatDictionary = [
-                        "chatUid"       : chat.uid,
-                        "lastMessage"   : chat.lastMessage,
-                        "withUserUID"   : chat.withUserUID,
-                        "withUserName"  : chat.withUserName,
-                        "messagesCount" : chat.messagesCount,
-                        "lastUpdate"    : chat.lastUpdate
-                        ] as [String : Any]
-                    
-                    KeychainWrapper.standard.set(chatDictionary as NSDictionary, forKey: KEY_CHAT_OF_USER)
-                    self.performSegue(withIdentifier: Storyboard.segueShowChatVC, sender: chat)
-                    
-                } else {
-                    let newChat = FRChat(withUserName: self.currentUser.username, withUserUID: self.currentUser.uid)
-                    newChat.save()
-                    self.sendGreetingMessage(newChat)
-                }
-            })
-        }
-    }
-    
-    func resignKeyboard() {
+    @objc func resignKeyboard() {
         self.view.endEditing(true)
     }
     
@@ -300,6 +285,8 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     // MARK: - ACTIONS
     // MARK: - Facebook Login
     @IBAction func actionLoginFacebookTapped(_ sender: Any) {
+        
+        self.loginFacebookButton.flip(delay: 0, duration: 0.3)
         
         self.view.endEditing(true)
         
@@ -318,6 +305,8 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     
     // MARK: - Google Login
     @IBAction func actionLoginGoogleTapped(_ sender: Any) {
+        
+        self.loginGoogleButton.flip(delay: 0, duration: 0.3)
         
         self.view.endEditing(true)
         
@@ -361,34 +350,43 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
         })
     }
     
+    @IBAction func actionSignUpButtonTapped(_ sender: Any) {
+        let vc = UIStoryboard.signupVC()
+        self.navigationController?.pushViewController(vc!, animated: true)
+        
+    }
+    
+    @IBAction func actionForgotPasswordButtonTapped(_ sender: Any) {
+        
+        let vc = UIStoryboard.resetPasswordVC()
+        
+        self.navigationController?.pushViewController(vc!, animated: true)
+        
+    }
+    
+    
+    
     @IBAction func hideKeyboard() {
         emailTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
     }
     
     
-    @IBAction func unwindToLoginVC(segue: UIStoryboardSegue) {
-        
-    }
-    
     // MARK: - NAVIGATION
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
+    func transitToChatVC(withChat chat: FRChat) {
         SwiftSpinner.hide()
         
         self.isMessengerLoading = false
         
-        if segue.identifier == Storyboard.segueShowChatVC {
-            let chatVC = segue.destination as! ChatViewController
-            
-            let selectedChat = sender as! FRChat
-            
-            chatVC.currentUser = currentUser
-            chatVC.chat = selectedChat
-            chatVC.senderId = currentUser.uid
-            chatVC.senderDisplayName = currentUser.username
-            chatVC.hidesBottomBarWhenPushed = true
-        }
+        let chatVC = UIStoryboard.chatVC()
+        
+        chatVC?.currentUser = currentUser
+        chatVC?.chat = chat
+        chatVC?.senderId = currentUser.uid
+        chatVC?.senderDisplayName = currentUser.username
+        chatVC?.hidesBottomBarWhenPushed = true
+        
+        navigationController?.pushViewController(chatVC!, animated: true)
     }
 }
 
@@ -406,7 +404,6 @@ extension LoginViewController: UITextFieldDelegate {
         return true
     }
     
-    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
         if textField == emailTextField {
@@ -418,8 +415,3 @@ extension LoginViewController: UITextFieldDelegate {
         return true
     }
 }
-
-
-
-
-

@@ -11,7 +11,7 @@ import Spring
 import Firebase
 import SwiftSpinner
 
-class SignUpViewController: UIViewController {
+class SignUpViewController: UIViewController, Alertable {
 
     // MARK: - OUTLETS
     @IBOutlet weak var nameTextField: DesignableTextField!
@@ -21,7 +21,9 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var containerView: DesignableView!
     @IBOutlet weak var hideKeyboardInputAccessoryView: UIView!
-    @IBOutlet weak var cancelBarButton: UIBarButtonItem!
+    
+    @IBOutlet weak var gradientView: GradientView!
+    
 
     // MARK: - PROPERTIES
     var avatarImage: UIImage?
@@ -32,16 +34,17 @@ class SignUpViewController: UIViewController {
             emailTextField.isEnabled        = !newValue
             passwordTextField.isEnabled     = !newValue
             signUpButton.isEnabled          = !newValue
-            cancelBarButton.isEnabled       = !newValue
             avatarImageView.isUserInteractionEnabled = !newValue
         }
     }
+    
+    var isFlipped = false
     
     // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationController?.isNavigationBarHidden = false
+        self.gradientView.flip(delay: 0, duration: 0)
 
         nameTextField.delegate      = self
         emailTextField.delegate     = self
@@ -58,8 +61,19 @@ class SignUpViewController: UIViewController {
         self.avatarImageView.addGestureRecognizer(tapOnAvatarImageView)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationController?.isNavigationBarHidden = false
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        if !isFlipped {
+            self.gradientView.flip(delay: 0.1, duration: 0.3)
+            isFlipped = true
+        }
         
         nameTextField.becomeFirstResponder()
     }
@@ -74,7 +88,7 @@ class SignUpViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-    func resignKeyboard() {
+    @objc func resignKeyboard() {
         self.view.endEditing(true)
     }
     
@@ -199,5 +213,4 @@ extension SignUpViewController: UIImagePickerControllerDelegate, UINavigationCon
         picker.dismiss(animated: true, completion: nil)
     }
 }
-
 
