@@ -3,6 +3,9 @@
 /* Class = "UILabel"; text = "Select Album"; ObjectID = "4Id-2v-p6l"; */
 "4Id-2v-p6l.text" = "Выберите Альбом";
 
+/* Class = "UINavigationItem"; title = "Reset Password"; ObjectID = "CLs-yE-zIf"; */
+"CLs-yE-zIf.title" = "Обо мне";
+
 /* Class = "UINavigationItem"; title = "Log In"; ObjectID = "7FI-AP-yKW"; */
 "7FI-AP-yKW.title" = "Войти";
 
