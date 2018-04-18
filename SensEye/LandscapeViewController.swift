@@ -398,7 +398,7 @@ class LandscapeViewController: UIViewController, RevealingSplashable {
         switch self.scrollViewParams.scrollViewWidth {
             
         case 768:
-            // iPad Pro 9.7 Portrait (768 x 1024)
+            // iPad Air/Air2/Retina/Pro9.7" Portrait (768 x 1024)
             self.scrollViewParams.itemWidth = 384
             self.scrollViewParams.itemHeight = 482
             
@@ -413,9 +413,8 @@ class LandscapeViewController: UIViewController, RevealingSplashable {
             
             self.scrollViewParams.titleLabelFont = UIFont.boldSystemFont(ofSize: 15)
             
-            
         case 1024:
-            // iPad Pro Portrait (1024 x 1366)
+            // iPad Pro12.9" Portrait (1024 x 1366)
             if self.scrollViewParams.scrollViewHeight == 1366 {
                 self.scrollViewParams.itemWidth = 512
                 self.scrollViewParams.itemHeight = 653
@@ -431,7 +430,7 @@ class LandscapeViewController: UIViewController, RevealingSplashable {
                 self.scrollViewParams.firstRowMarginY = 20
                 self.scrollViewParams.lastRowMarginY = 20
                 
-                // iPad Air/Air2/Retina/Pro9.7" Landscape Split (1024 x 768)
+                // iPad Air/Air2/Retina/Pro9.7" Landscape (1024 x 768)
             } else {
                 self.scrollViewParams.itemWidth = 512
                 self.scrollViewParams.itemHeight = 708
@@ -448,39 +447,21 @@ class LandscapeViewController: UIViewController, RevealingSplashable {
                 self.scrollViewParams.lastRowMarginY = 20
             }
             
+        // iPad Pro12.9" Landscape (1366 x 1024)
         case 1366:
-            // iPad Pro Landscape (1366 x 1024)
-            if self.scrollViewParams.scrollViewHeight == 1024 {
-                self.scrollViewParams.itemWidth = 341
-                self.scrollViewParams.itemHeight = 482
-                
-                self.scrollViewParams.imageViewWidth = 330
-                self.scrollViewParams.imageViewHeight = 470
-                
-                self.scrollViewParams.columnsPerPage = 4
-                self.scrollViewParams.rowsPerPage = 2
-                
-                self.scrollViewParams.titleLabelFont = UIFont.boldSystemFont(ofSize: 15)
-                
-                self.scrollViewParams.firstRowMarginY = 20
-                self.scrollViewParams.lastRowMarginY = 20
-                
-                // iPad Air/Air2/Retina/Pro9.7" Landscape Split (1024 x 768)
-            } else {
-                self.scrollViewParams.itemWidth = 512
-                self.scrollViewParams.itemHeight = 748
-                
-                self.scrollViewParams.imageViewWidth = 500
-                self.scrollViewParams.imageViewHeight = 700
-                
-                self.scrollViewParams.columnsPerPage = 2
-                self.scrollViewParams.rowsPerPage = 1
-                
-                self.scrollViewParams.titleLabelFont = UIFont.boldSystemFont(ofSize: 15)
-                
-                self.scrollViewParams.firstRowMarginY = 20
-                self.scrollViewParams.lastRowMarginY = 20
-            }
+            self.scrollViewParams.itemWidth = 341
+            self.scrollViewParams.itemHeight = 482
+            
+            self.scrollViewParams.imageViewWidth = 330
+            self.scrollViewParams.imageViewHeight = 470
+            
+            self.scrollViewParams.columnsPerPage = 4
+            self.scrollViewParams.rowsPerPage = 2
+            
+            self.scrollViewParams.titleLabelFont = UIFont.boldSystemFont(ofSize: 15)
+            
+            self.scrollViewParams.firstRowMarginY = 20
+            self.scrollViewParams.lastRowMarginY = 20
             
             
             
