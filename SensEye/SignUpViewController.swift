@@ -21,6 +21,9 @@ class SignUpViewController: UIViewController, Alertable {
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var containerView: DesignableView!
     @IBOutlet weak var hideKeyboardInputAccessoryView: UIView!
+    
+    @IBOutlet weak var gradientView: GradientView!
+    
 
     // MARK: - PROPERTIES
     var avatarImage: UIImage?
@@ -35,10 +38,14 @@ class SignUpViewController: UIViewController, Alertable {
         }
     }
     
+    var isFlipped = false
+    
     // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.gradientView.flip(delay: 0, duration: 0)
+
         nameTextField.delegate      = self
         emailTextField.delegate     = self
         passwordTextField.delegate  = self
@@ -62,6 +69,11 @@ class SignUpViewController: UIViewController, Alertable {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        if !isFlipped {
+            self.gradientView.flip(delay: 0.1, duration: 0.3)
+            isFlipped = true
+        }
         
         nameTextField.becomeFirstResponder()
     }

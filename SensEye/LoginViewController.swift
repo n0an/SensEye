@@ -26,6 +26,8 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, Alertable {
     @IBOutlet weak var containerView: DesignableView!
     @IBOutlet weak var hideKeyboardInputAccessoryView: UIView!
     
+    @IBOutlet weak var gradientView: GradientView!
+    
     // MARK: - PROPERTIES
     var currentUser: FRUser!
     
@@ -51,9 +53,13 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, Alertable {
         }
     }
     
+    var isFlipped = false
+    
     // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.gradientView.flip(delay: 0, duration: 0)
         
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
@@ -138,10 +144,14 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, Alertable {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        if !isFlipped {
+            self.gradientView.flip(delay: 0.1, duration: 0.3)
+            isFlipped = true
+        }
+        
         if self.currentUser != nil {
             return
         }
-        
         
         if let userDict = KeychainWrapper.standard.object(forKey: KEY_CHAT_USER) as? [String: Any] {
             
@@ -159,6 +169,8 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, Alertable {
             DispatchQueue.main.async {
                 self.goToMessenger()
             }
+            
+            
         }
     }
     
@@ -274,6 +286,8 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, Alertable {
     // MARK: - Facebook Login
     @IBAction func actionLoginFacebookTapped(_ sender: Any) {
         
+        self.loginFacebookButton.flip(delay: 0, duration: 0.3)
+        
         self.view.endEditing(true)
         
         FRAuthManager.sharedManager.loginWithFacebook(viewController: self) { (errorString) in
@@ -291,6 +305,8 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, Alertable {
     
     // MARK: - Google Login
     @IBAction func actionLoginGoogleTapped(_ sender: Any) {
+        
+        self.loginGoogleButton.flip(delay: 0, duration: 0.3)
         
         self.view.endEditing(true)
         

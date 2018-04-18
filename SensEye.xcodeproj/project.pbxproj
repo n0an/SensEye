@@ -81,6 +81,7 @@
 		18D6236E1E21422E00138117 /* AboutCellInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D6236D1E21422E00138117 /* AboutCellInfo.swift */; };
 		18D623701E21423D00138117 /* AboutCellSocnet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D6236F1E21423D00138117 /* AboutCellSocnet.swift */; };
 		18D623721E21469C00138117 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D623711E21469C00138117 /* Contact.swift */; };
+		18DBA67E208785670063B157 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DBA67D208785660063B157 /* GradientView.swift */; };
 		18DD2E2B1E1A484800451CE7 /* LandscapeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DD2E2A1E1A484800451CE7 /* LandscapeViewController.swift */; };
 		18E3F91E1E466B6100BC95C3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 18E3F9201E466B6100BC95C3 /* InfoPlist.strings */; };
 		18E3F92B1E466B6300BC95C3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 18E3F92D1E466B6300BC95C3 /* Localizable.strings */; };
@@ -182,6 +183,7 @@
 		18D6236D1E21422E00138117 /* AboutCellInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutCellInfo.swift; sourceTree = "<group>"; };
 		18D6236F1E21423D00138117 /* AboutCellSocnet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutCellSocnet.swift; sourceTree = "<group>"; };
 		18D623711E21469C00138117 /* Contact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
+		18DBA67D208785660063B157 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		18DD2E2A1E1A484800451CE7 /* LandscapeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandscapeViewController.swift; sourceTree = "<group>"; };
 		18E3F91F1E466B6100BC95C3 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		18E3F9211E466B6200BC95C3 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
@@ -300,6 +302,7 @@
 				188FD7941E34F532007CA1EE /* IncomingMessage.swift */,
 				186E2A271E34A9400011AB88 /* ChatTableViewCell.swift */,
 				1899316F1E2D4E23006E00C6 /* FancyButton.swift */,
+				18DBA67D208785660063B157 /* GradientView.swift */,
 			);
 			name = ChatScreen;
 			sourceTree = "<group>";
@@ -805,6 +808,7 @@
 				188650B520740322001D9F88 /* UIView.swift in Sources */,
 				187A8378207D2E24000BD1B1 /* LogoImageView.swift in Sources */,
 				189931701E2D4E23006E00C6 /* FancyButton.swift in Sources */,
+				18DBA67E208785670063B157 /* GradientView.swift in Sources */,
 				180231C51E12FC1D00FA8322 /* PhotoViewControllerDEPRECATED.swift in Sources */,
 				188650B32074007C001D9F88 /* Alertable.swift in Sources */,
 				18BA342A1E4B8CBB00EE6CF1 /* TextFieldsChecker.swift in Sources */,

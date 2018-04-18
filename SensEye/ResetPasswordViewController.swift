@@ -16,6 +16,9 @@ class ResetPasswordViewController: UIViewController, Alertable {
     @IBOutlet weak var resetPasswordButton: FancyButton!
     @IBOutlet weak var containerView: DesignableView!
     
+    @IBOutlet weak var gradientView: GradientView!
+    
+    
     // MARK: - PROPERTIES
     
     var isUILocked = false {
@@ -25,9 +28,13 @@ class ResetPasswordViewController: UIViewController, Alertable {
         }
     }
     
+    var isFlipped = false
+    
     // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.gradientView.flip(delay: 0, duration: 0)
 
         self.title = NSLocalizedString("Forgot Password", comment: "Forgot Password")
         emailTextField.delegate = self
@@ -38,6 +45,15 @@ class ResetPasswordViewController: UIViewController, Alertable {
         
         self.navigationController?.isNavigationBarHidden = false
         emailTextField.becomeFirstResponder()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if !isFlipped {
+            self.gradientView.flip(delay: 0.1, duration: 0.3)
+            isFlipped = true
+        }
     }
 
     // MARK: - HELPER METHODS

@@ -28,6 +28,4 @@ extension RevealingSplashable {
     func stopRevealingSplashView() {
         revealingSplashView.heartAttack = true
     }
-
-
 }
