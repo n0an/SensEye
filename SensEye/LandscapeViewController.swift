@@ -134,13 +134,13 @@ class LandscapeViewController: UIViewController, RevealingSplashable {
             diff = 0
         }
         
-//        if !isPad {
-//            if isPortrait {
-//                diff = (tabBarController?.tabBar.bounds.height)!
-//            } else {
-//                diff = 0
-//            }
-//        }
+        if !isPad {
+            if isPortrait {
+                diff = (tabBarController?.tabBar.bounds.height)!
+            } else {
+                diff = 0
+            }
+        }
         
         pageControl.frame = CGRect(x: 0,
                                    y: view.frame.size.height - pageControl.frame.size.height - diff,
@@ -413,6 +413,22 @@ class LandscapeViewController: UIViewController, RevealingSplashable {
             
             self.scrollViewParams.titleLabelFont = UIFont.boldSystemFont(ofSize: 15)
             
+        case 834:
+            // iPad /Pro10.5" Portrait (834 x 1112)
+            self.scrollViewParams.itemWidth = 417
+            self.scrollViewParams.itemHeight = 526
+            
+            self.scrollViewParams.imageViewWidth = 404
+            self.scrollViewParams.imageViewHeight = 514
+            
+            self.scrollViewParams.columnsPerPage = 2
+            self.scrollViewParams.rowsPerPage = 2
+            
+            self.scrollViewParams.firstRowMarginY = 20
+            self.scrollViewParams.lastRowMarginY = 20
+            
+            self.scrollViewParams.titleLabelFont = UIFont.boldSystemFont(ofSize: 15)
+            
         case 1024:
             // iPad Pro12.9" Portrait (1024 x 1366)
             if self.scrollViewParams.scrollViewHeight == 1366 {
@@ -447,6 +463,22 @@ class LandscapeViewController: UIViewController, RevealingSplashable {
                 self.scrollViewParams.lastRowMarginY = 20
             }
             
+        case 1112:
+            // iPad /Pro10.5" Landscape (1112 x 834)
+            self.scrollViewParams.itemWidth = 556
+            self.scrollViewParams.itemHeight = 774
+            
+            self.scrollViewParams.imageViewWidth = 544
+            self.scrollViewParams.imageViewHeight = 762
+            
+            self.scrollViewParams.columnsPerPage = 2
+            self.scrollViewParams.rowsPerPage = 1
+            
+            self.scrollViewParams.titleLabelFont = UIFont.boldSystemFont(ofSize: 15)
+            
+            self.scrollViewParams.firstRowMarginY = 20
+            self.scrollViewParams.lastRowMarginY = 20
+            
         // iPad Pro12.9" Landscape (1366 x 1024)
         case 1366:
             self.scrollViewParams.itemWidth = 341
@@ -462,78 +494,6 @@ class LandscapeViewController: UIViewController, RevealingSplashable {
             
             self.scrollViewParams.firstRowMarginY = 20
             self.scrollViewParams.lastRowMarginY = 20
-            
-            
-            
-        // *** iPad Air/Air2/Retina/Pro9.7" ***
-        case 320:
-            // iPad Air/Air2/Retina/Pro9.7" Portrait Split (320 x 1024)
-            if self.scrollViewParams.scrollViewHeight == 1024 {
-                self.scrollViewParams.itemWidth = 320
-                self.scrollViewParams.itemHeight = 492
-                
-                self.scrollViewParams.imageViewWidth = 310
-                self.scrollViewParams.imageViewHeight = 480
-                
-                self.scrollViewParams.columnsPerPage = 1
-                self.scrollViewParams.rowsPerPage = 2
-                
-                self.scrollViewParams.titleLabelFont = UIFont.boldSystemFont(ofSize: 15)
-                
-                self.scrollViewParams.firstRowMarginY = 20
-                self.scrollViewParams.lastRowMarginY = 20
-                
-                // iPad Air/Air2/Retina/Pro9.7" Landscape Split (320 x 768)
-            } else {
-                self.scrollViewParams.itemWidth = 320
-                self.scrollViewParams.itemHeight = 349
-                
-                self.scrollViewParams.imageViewWidth = 280
-                self.scrollViewParams.imageViewHeight = 338
-                
-                self.scrollViewParams.columnsPerPage = 1
-                self.scrollViewParams.rowsPerPage = 2
-                
-                self.scrollViewParams.titleLabelFont = UIFont.boldSystemFont(ofSize: 15)
-                
-                self.scrollViewParams.firstRowMarginY = 20
-                self.scrollViewParams.lastRowMarginY = 50
-            }
-            
-        // *** iPad Pro12.9" ***
-        case 375:
-            // iPad Pro12.9" Portrait Split (375 x 1366)
-            if self.scrollViewParams.scrollViewHeight == 1366 {
-                self.scrollViewParams.itemWidth = 375
-                self.scrollViewParams.itemHeight = 442
-                
-                self.scrollViewParams.imageViewWidth = 340
-                self.scrollViewParams.imageViewHeight = 430
-                
-                self.scrollViewParams.columnsPerPage = 1
-                self.scrollViewParams.rowsPerPage = 3
-                
-                self.scrollViewParams.titleLabelFont = UIFont.boldSystemFont(ofSize: 15)
-                
-                self.scrollViewParams.firstRowMarginY = 20
-                self.scrollViewParams.lastRowMarginY = 20
-                
-                // iPad Pro12.9" Landscape Split (375 x 1024)
-            } else {
-                self.scrollViewParams.itemWidth = 375
-                self.scrollViewParams.itemHeight = 477
-                
-                self.scrollViewParams.imageViewWidth = 340
-                self.scrollViewParams.imageViewHeight = 460
-                
-                self.scrollViewParams.columnsPerPage = 1
-                self.scrollViewParams.rowsPerPage = 2
-                
-                self.scrollViewParams.titleLabelFont = UIFont.boldSystemFont(ofSize: 15)
-                
-                self.scrollViewParams.firstRowMarginY = 20
-                self.scrollViewParams.lastRowMarginY = 50
-            }
             
         default:
             break
@@ -774,6 +734,4 @@ extension LandscapeViewController: UIScrollViewDelegate {
     }
 }
 
-
 extension LandscapeViewController: PhotosProtocol { }
-
