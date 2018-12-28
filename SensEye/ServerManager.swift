@@ -169,6 +169,12 @@ class ServerManager {
             params[URL_PARAMS.COUNT.rawValue] = count
         }
         
+        if let accessToken = self.vkAccessToken {
+            params[URL_PARAMS.ACCESS_TOKEN.rawValue] = accessToken.token!
+        } else {
+            params[URL_PARAMS.ACCESS_TOKEN.rawValue] = GeneralHelper.sharedHelper.serviceVKToken
+        }
+        
         self.networkActivityIndicatorVisible = true
         
         Alamofire.request(url!, method: .get, parameters: params, encoding: URLEncoding(), headers: nil).responseData { (response) in
@@ -207,6 +213,12 @@ class ServerManager {
         
         params[URL_PARAMS.OWNER_ID.rawValue] = groupID
         params[URL_PARAMS.NEED_COVERS.rawValue] = 1
+        
+        if let accessToken = self.vkAccessToken {
+            params[URL_PARAMS.ACCESS_TOKEN.rawValue] = accessToken.token!
+        } else {
+            params[URL_PARAMS.ACCESS_TOKEN.rawValue] = GeneralHelper.sharedHelper.serviceVKToken
+        }
         
         self.networkActivityIndicatorVisible = true
         
