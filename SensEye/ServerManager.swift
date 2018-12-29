@@ -289,7 +289,6 @@ class ServerManager {
             let profilesArray   = json["response"]["profiles"].arrayValue
             let groupsArray     = json["response"]["groups"].arrayValue
             
-            
             // Parsing Group object
             var group: Group?
             
@@ -439,17 +438,14 @@ class ServerManager {
     }
     
     func addLike(forItemType itemType: FeedItemsType, ownerID: String, itemID: String, completed: @escaping LikeFeatureCompletion) {
-        
         modifyLike(addLike: true, forItemType: itemType, ownerID: ownerID, itemID: itemID, completed: completed)
     }
     
     func deleteLike(forItemType itemType: FeedItemsType, ownerID: String, itemID: String, completed: @escaping LikeFeatureCompletion) {
-        
         modifyLike(addLike: false, forItemType: itemType, ownerID: ownerID, itemID: itemID, completed: completed)
     }
     
     // MARK: - PRIVATE HELPER METHODS
-    
     private func modifyLike(addLike: Bool, forItemType itemType: FeedItemsType, ownerID: String, itemID: String, completed: @escaping LikeFeatureCompletion) {
         
         let pathComponent = addLike ? URL_LIKES_ADD : URL_LIKES_DELETE
@@ -493,7 +489,6 @@ class ServerManager {
         }
     }
     
-    
     private func parseFeedObjects<T: ServerObject>(forArray array: [JSON], authorsArray: [User], group: Group?) -> [T] {
         
         var feedObjectsArray = [T]()
@@ -503,6 +498,11 @@ class ServerManager {
             var post = T.init(responseObject: item)
             
             feedObjectsArray.append(post)
+            
+            // If authorsArray is empty - group is the author.
+            if authorsArray.isEmpty {
+                post.postGroupAuthor = group
+            }
             
             // Iterating through array of authors - looking for author for this post
             for author in authorsArray {
