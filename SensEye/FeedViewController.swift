@@ -107,9 +107,9 @@ class FeedViewController: GeneralFeedViewController {
     
     func loadCustomRefreshContents() {
         let refreshContents = Bundle.main.loadNibNamed("RefreshContents", owner: self, options: nil)
-        self.customRefreshView = refreshContents?[0] as! UIView
+        self.customRefreshView = refreshContents?[0] as? UIView
         self.customRefreshView.frame = self.refreshControl.bounds
-        self.logoImageView = self.customRefreshView.subviews[0] as! LogoImageView
+        self.logoImageView = self.customRefreshView.subviews[0] as? LogoImageView
         self.refreshControl.addSubview(self.customRefreshView)
     }
     
