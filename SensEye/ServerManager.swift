@@ -169,6 +169,12 @@ class ServerManager {
             params[URL_PARAMS.COUNT.rawValue] = count
         }
         
+        if let accessToken = self.vkAccessToken {
+            params[URL_PARAMS.ACCESS_TOKEN.rawValue] = accessToken.token!
+        } else {
+            params[URL_PARAMS.ACCESS_TOKEN.rawValue] = GeneralHelper.sharedHelper.serviceVKToken
+        }
+        
         self.networkActivityIndicatorVisible = true
         
         Alamofire.request(url!, method: .get, parameters: params, encoding: URLEncoding(), headers: nil).responseData { (response) in
@@ -207,6 +213,12 @@ class ServerManager {
         
         params[URL_PARAMS.OWNER_ID.rawValue] = groupID
         params[URL_PARAMS.NEED_COVERS.rawValue] = 1
+        
+        if let accessToken = self.vkAccessToken {
+            params[URL_PARAMS.ACCESS_TOKEN.rawValue] = accessToken.token!
+        } else {
+            params[URL_PARAMS.ACCESS_TOKEN.rawValue] = GeneralHelper.sharedHelper.serviceVKToken
+        }
         
         self.networkActivityIndicatorVisible = true
         
@@ -276,7 +288,6 @@ class ServerManager {
             let itemsArray      = json["response"]["items"].arrayValue
             let profilesArray   = json["response"]["profiles"].arrayValue
             let groupsArray     = json["response"]["groups"].arrayValue
-            
             
             // Parsing Group object
             var group: Group?
@@ -427,17 +438,14 @@ class ServerManager {
     }
     
     func addLike(forItemType itemType: FeedItemsType, ownerID: String, itemID: String, completed: @escaping LikeFeatureCompletion) {
-        
         modifyLike(addLike: true, forItemType: itemType, ownerID: ownerID, itemID: itemID, completed: completed)
     }
     
     func deleteLike(forItemType itemType: FeedItemsType, ownerID: String, itemID: String, completed: @escaping LikeFeatureCompletion) {
-        
         modifyLike(addLike: false, forItemType: itemType, ownerID: ownerID, itemID: itemID, completed: completed)
     }
     
     // MARK: - PRIVATE HELPER METHODS
-    
     private func modifyLike(addLike: Bool, forItemType itemType: FeedItemsType, ownerID: String, itemID: String, completed: @escaping LikeFeatureCompletion) {
         
         let pathComponent = addLike ? URL_LIKES_ADD : URL_LIKES_DELETE
@@ -481,7 +489,6 @@ class ServerManager {
         }
     }
     
-    
     private func parseFeedObjects<T: ServerObject>(forArray array: [JSON], authorsArray: [User], group: Group?) -> [T] {
         
         var feedObjectsArray = [T]()
@@ -491,6 +498,11 @@ class ServerManager {
             var post = T.init(responseObject: item)
             
             feedObjectsArray.append(post)
+            
+            // If authorsArray is empty - group is the author.
+            if authorsArray.isEmpty {
+                post.postGroupAuthor = group
+            }
             
             // Iterating through array of authors - looking for author for this post
             for author in authorsArray {

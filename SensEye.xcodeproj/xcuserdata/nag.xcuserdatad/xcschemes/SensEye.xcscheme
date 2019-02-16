@@ -28,6 +28,16 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "1876C9D2206A73FD005E8730"
+               BuildableName = "SensEyeTests.xctest"
+               BlueprintName = "SensEyeTests"
+               ReferencedContainer = "container:SensEye.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
