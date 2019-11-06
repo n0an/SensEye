@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		09C1CA3DBDD28430D4747B49 /* Pods_SensEye.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1F6287F56849E930AFED5DA /* Pods_SensEye.framework */; };
+		1568CEE923735B530097BF2C /* SensEyeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1568CEE823735B530097BF2C /* SensEyeUITests.swift */; };
 		159E2DFF21D690E1004546B0 /* secretsFile.txt in Resources */ = {isa = PBXBuildFile; fileRef = 159E2DFE21D690E1004546B0 /* secretsFile.txt */; };
 		180231C51E12FC1D00FA8322 /* PhotoViewControllerDEPRECATED.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180231C41E12FC1D00FA8322 /* PhotoViewControllerDEPRECATED.swift */; };
 		18251C461E2D5160000DBE57 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18251C451E2D5160000DBE57 /* ResetPasswordViewController.swift */; };
@@ -92,6 +93,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		1568CEEB23735B530097BF2C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 18AA37C51E1053F700D5BCB1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 18AA37CC1E1053F700D5BCB1;
+			remoteInfo = SensEye;
+		};
 		1876C9D8206A73FD005E8730 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 18AA37C51E1053F700D5BCB1 /* Project object */;
@@ -102,6 +110,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1568CEE623735B530097BF2C /* SensEyeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SensEyeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1568CEE823735B530097BF2C /* SensEyeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensEyeUITests.swift; sourceTree = "<group>"; };
+		1568CEEA23735B530097BF2C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		159E2DFE21D690E1004546B0 /* secretsFile.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = secretsFile.txt; sourceTree = SOURCE_ROOT; };
 		180231C41E12FC1D00FA8322 /* PhotoViewControllerDEPRECATED.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewControllerDEPRECATED.swift; sourceTree = "<group>"; };
 		18251C451E2D5160000DBE57 /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
@@ -201,6 +212,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		1568CEE323735B530097BF2C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1876C9D0206A73FD005E8730 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -220,6 +238,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1568CEE723735B530097BF2C /* SensEyeUITests */ = {
+			isa = PBXGroup;
+			children = (
+				1568CEE823735B530097BF2C /* SensEyeUITests.swift */,
+				1568CEEA23735B530097BF2C /* Info.plist */,
+			);
+			path = SensEyeUITests;
+			sourceTree = "<group>";
+		};
 		181999792073BD05003590D8 /* FeedScreen */ = {
 			isa = PBXGroup;
 			children = (
@@ -312,6 +339,7 @@
 			children = (
 				18AA37CF1E1053F700D5BCB1 /* SensEye */,
 				1876C9D4206A73FD005E8730 /* SensEyeTests */,
+				1568CEE723735B530097BF2C /* SensEyeUITests */,
 				18AA37CE1E1053F700D5BCB1 /* Products */,
 				615055B3EAF5419CDCCB3084 /* Pods */,
 				1FD0F3EE1A61ED817B9FBE00 /* Frameworks */,
@@ -323,6 +351,7 @@
 			children = (
 				18AA37CD1E1053F700D5BCB1 /* SensEye.app */,
 				1876C9D3206A73FD005E8730 /* SensEyeTests.xctest */,
+				1568CEE623735B530097BF2C /* SensEyeUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -474,6 +503,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		1568CEE523735B530097BF2C /* SensEyeUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1568CEEF23735B530097BF2C /* Build configuration list for PBXNativeTarget "SensEyeUITests" */;
+			buildPhases = (
+				1568CEE223735B530097BF2C /* Sources */,
+				1568CEE323735B530097BF2C /* Frameworks */,
+				1568CEE423735B530097BF2C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1568CEEC23735B530097BF2C /* PBXTargetDependency */,
+			);
+			name = SensEyeUITests;
+			productName = SensEyeUITests;
+			productReference = 1568CEE623735B530097BF2C /* SensEyeUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		1876C9D2206A73FD005E8730 /* SensEyeTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1876C9DC206A73FD005E8730 /* Build configuration list for PBXNativeTarget "SensEyeTests" */;
@@ -482,8 +529,6 @@
 				1876C9CF206A73FD005E8730 /* Sources */,
 				1876C9D0206A73FD005E8730 /* Frameworks */,
 				1876C9D1206A73FD005E8730 /* Resources */,
-				86F6E9F8E94E08D6EDF1CA5D /* [CP] Embed Pods Frameworks */,
-				FCFE059B773606AC8E861F5F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -522,10 +567,16 @@
 		18AA37C51E1053F700D5BCB1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0920;
+				LastSwiftUpdateCheck = 1110;
 				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Anton Novoselov";
 				TargetAttributes = {
+					1568CEE523735B530097BF2C = {
+						CreatedOnToolsVersion = 11.1;
+						DevelopmentTeam = 358V8FBM3U;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 18AA37CC1E1053F700D5BCB1;
+					};
 					1876C9D2206A73FD005E8730 = {
 						CreatedOnToolsVersion = 9.2;
 						DevelopmentTeam = 358V8FBM3U;
@@ -556,8 +607,10 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = 18AA37C41E1053F700D5BCB1;
 			productRefGroup = 18AA37CE1E1053F700D5BCB1 /* Products */;
@@ -566,11 +619,19 @@
 			targets = (
 				18AA37CC1E1053F700D5BCB1 /* SensEye */,
 				1876C9D2206A73FD005E8730 /* SensEyeTests */,
+				1568CEE523735B530097BF2C /* SensEyeUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		1568CEE423735B530097BF2C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1876C9D1206A73FD005E8730 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -653,7 +714,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-SensEye/Pods-SensEye-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-SensEye/Pods-SensEye-resources.sh",
 				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -662,7 +723,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SensEye/Pods-SensEye-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SensEye/Pods-SensEye-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		76D7A33ECF2ECE81501A08BA /* [CP] Embed Pods Frameworks */ = {
@@ -671,7 +732,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-SensEye/Pods-SensEye-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-SensEye/Pods-SensEye-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
@@ -728,42 +789,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SensEye/Pods-SensEye-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		86F6E9F8E94E08D6EDF1CA5D /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SensEyeTests/Pods-SensEyeTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		FCFE059B773606AC8E861F5F /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SensEyeTests/Pods-SensEyeTests-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SensEye/Pods-SensEye-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		1568CEE223735B530097BF2C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1568CEE923735B530097BF2C /* SensEyeUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1876C9CF206A73FD005E8730 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -852,6 +891,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		1568CEEC23735B530097BF2C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 18AA37CC1E1053F700D5BCB1 /* SensEye */;
+			targetProxy = 1568CEEB23735B530097BF2C /* PBXContainerItemProxy */;
+		};
 		1876C9D9206A73FD005E8730 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 18AA37CC1E1053F700D5BCB1 /* SensEye */;
@@ -906,6 +950,51 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		1568CEED23735B530097BF2C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 358V8FBM3U;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = SensEyeUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.antonnovoselov.SensEyeUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = SensEye;
+			};
+			name = Debug;
+		};
+		1568CEEE23735B530097BF2C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 358V8FBM3U;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = SensEyeUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.antonnovoselov.SensEyeUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = SensEye;
+			};
+			name = Release;
+		};
 		1876C9DA206A73FD005E8730 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AF418911D90951FC7819F954 /* Pods-SensEyeTests.debug.xcconfig */;
@@ -1119,6 +1208,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		1568CEEF23735B530097BF2C /* Build configuration list for PBXNativeTarget "SensEyeUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1568CEED23735B530097BF2C /* Debug */,
+				1568CEEE23735B530097BF2C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		1876C9DC206A73FD005E8730 /* Build configuration list for PBXNativeTarget "SensEyeTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
